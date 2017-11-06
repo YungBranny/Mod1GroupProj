@@ -43,6 +43,7 @@ THE SOFTWARE.
 #include "renderer/CCTextureCache.h"
 #include "base/CCNinePatchImageParser.h"
 
+
 using namespace std;
 
 NS_CC_BEGIN
@@ -769,5 +770,68 @@ bool SpriteFrameCache::reloadTexture(const std::string& plist)
     }
     return true;
 }
+
+//////////////////////////////////////////////////////////////////////////
+// GAMER CAMP EDIT
+// 
+// this is a straight copy of addSpriteFramesWithFile with 2 important 
+// differences: 
+// 1) it always loads the plist 
+// 2) and returns the dictionary it creates from the plist
+// 
+//														  
+ValueMap SpriteFrameCache::addSpriteFramesWithFileAndReturnValueMap( const std::string& plist )
+{
+	CCASSERT(!plist.empty(), "plist filename should not be nullptr");
+
+	std::string fullPath = FileUtils::getInstance()->fullPathForFilename(plist);
+	if (fullPath.empty())
+	{
+		// return if plist file doesn't exist
+		CCLOG("cocos2d: SpriteFrameCache: can not find %s", plist.c_str());
+		return ValueMap();
+	}
+
+	ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(fullPath);
+
+	if (_loadedFileNames->find(plist) == _loadedFileNames->end())
+	{
+		string texturePath("");
+
+		if (dict.find("metadata") != dict.end())
+		{
+			ValueMap& metadataDict = dict["metadata"].asValueMap();
+			// try to read  texture file name from meta data
+			texturePath = metadataDict["textureFileName"].asString();
+		}
+
+		if (!texturePath.empty())
+		{
+			// build texture path relative to plist file
+			texturePath = FileUtils::getInstance()->fullPathFromRelativeFile(texturePath, plist);
+		}
+		else
+		{
+			// build texture path by replacing file extension
+			texturePath = plist;
+
+			// remove .xxx
+			size_t startPos = texturePath.find_last_of("."); 
+			texturePath = texturePath.erase(startPos);
+
+			// append .png
+			texturePath = texturePath.append(".png");
+
+			CCLOG("cocos2d: SpriteFrameCache: Trying to use file %s as texture", texturePath.c_str());
+		}
+		addSpriteFramesWithDictionary(dict, texturePath);
+		_loadedFileNames->insert(plist);
+	}	
+	
+	return dict; 
+}
+// GAMER CAMP EDIT
+//////////////////////////////////////////////////////////////////////////
+
 
 NS_CC_END

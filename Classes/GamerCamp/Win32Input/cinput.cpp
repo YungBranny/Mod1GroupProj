@@ -1,0 +1,87 @@
+//////////////////////////////////////////////////////////////////////////
+// original code credits:
+//
+// file name:	cinput.h
+// author:		Victor Saar
+// e-mail:		vsaar@web.de
+// web site:	http://www.two-kings.de
+//
+// Updated for Cocos2d-x by Alex Darby @ Gamer Camp 09/2012
+//////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// (C) Gamer Camp 2012 
+// This document should not be distributed or reproduced in part or in whole without obtaining written 
+// permission from the copyright holders.
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#if defined (WIN32)
+#include "cinput.h"
+
+#include "2d/CCNode.h"
+#include "base/CCEventDispatcher.h"
+#include "base/CCDirector.h"
+#include "base/ccMacros.h"
+#include "platform/CCGLView.h"
+
+                                      
+using namespace cocos2d;
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+CInput::CInput( void )
+{
+	Reset();
+	m_pcKeyboardListener = EventListenerKeyboard::create();
+
+	// when a pressed event is received we set the flag saying the button is pressed...
+	m_pcKeyboardListener->onKeyPressed = [this]( EventKeyboard::KeyCode keyCode, Event* event )
+	{
+		m_abKeyBufferWrite[ (int) keyCode ] = true;
+	};
+
+	// and set t to false when a released event is received 
+	m_pcKeyboardListener->onKeyReleased = [this]( EventKeyboard::KeyCode keyCode, Event* event )
+	{
+		m_abKeyBufferWrite[ (int) keyCode ] = false;
+	};
+
+	// attach this to the director's dispatcher
+	Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority( m_pcKeyboardListener, 1 );
+}
+
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+CInput::~CInput(void)
+{
+}
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+void CInput::Reset( void )
+{
+	memset ( &(m_abKeyBufferWrite[ 0 ]), 0, sizeof(m_abKeyBufferWrite) );
+	memset ( &(m_abKeyBufferRead[ 0 ]),	 0, sizeof(m_abKeyBufferRead) );
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+void CInput::Update( void )
+{
+	memcpy( &( m_abKeyBufferRead[ 0 ] ), &( m_abKeyBufferWrite[ 0 ] ), sizeof( m_abKeyBufferRead ) );
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+bool CInput::KeyIsPressed( EventKeyboard::KeyCode eKeyCode )
+{
+	return m_abKeyBufferRead[ (int) eKeyCode ];
+}
+
+
+#endif //#if defined (WIN32)

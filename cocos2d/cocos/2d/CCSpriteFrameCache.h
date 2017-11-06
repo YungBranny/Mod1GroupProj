@@ -43,6 +43,8 @@ class Sprite;
 class Texture2D;
 class PolygonInfo;
 
+
+
 /**
  * @addtogroup _2d
  * @{
@@ -272,6 +274,20 @@ protected:
     Map<std::string, SpriteFrame*> _spriteFrames;
     ValueMap _spriteFramesAliases;
     std::set<std::string>*  _loadedFileNames;
+
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// GAMER CAMP EDIT
+	// 
+	// this is a straight copy of the regular version, but it returns the 
+	// dictionary it creates from the plist to save having to load it 
+	// independently again
+	// 
+public:
+	ValueMap addSpriteFramesWithFileAndReturnValueMap( const std::string& plist );
+	// GAMER CAMP EDIT
+	//////////////////////////////////////////////////////////////////////////
 };
 
 // end of _2d group

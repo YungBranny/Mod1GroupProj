@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -100,7 +100,8 @@
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command></Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup>
@@ -112,7 +113,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
       <Inputs>$(TargetFileName)</Inputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
-
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
@@ -143,26 +143,75 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
       </Command>
     </PostBuildEvent>
     <PreLinkEvent>
-      <Command></Command>
+      <Command>
+      </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\Debug\GLES-Render.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GCGameLayerPlatformer.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Invaders\GCObjGroupInvader.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Invaders\GCObjInvader.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjGroupItem.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjItem.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjGroupPlatform.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjPlatform.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjGroupProjectilePlayer.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjPlayer.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjProjectilePlayer.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GB2ShapeCache-x.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCCallFuncStatic.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCCocosHelpers.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCObjSprite.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCObjSpritePhysics.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCObjTileLayer.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\IGCGameLayer.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCObject\GCObject.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCObject\GCObjectGroup.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCObject\GCObjectManager.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCObject\GCObjGroupDefault.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\Win32Input\cinput.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.cpp" />
+    <ClCompile Include="..\Classes\MenuScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\AppMacros.h" />
+    <ClInclude Include="..\Classes\GamerCamp\Collections\NoAllocList.h" />
+    <ClInclude Include="..\Classes\GamerCamp\Core\GCTypes.h" />
+    <ClInclude Include="..\Classes\GamerCamp\Debug\GLES-Render.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GCGameLayerPlatformer.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Invaders\GCObjGroupInvader.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Invaders\GCObjInvader.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjGroupItem.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjItem.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjGroupPlatform.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjPlatform.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjGroupProjectilePlayer.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjPlayer.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjProjectilePlayer.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GB2ShapeCache-x.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCCallFuncStatic.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCCocosHelpers.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCObjSprite.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCObjSpritePhysics.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCObjTileLayer.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\IGCGameLayer.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCObject\GCObject.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCObject\GCObjectGroup.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCObject\GCObjectManager.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCObject\GCObjGroupDefault.h" />
+    <ClInclude Include="..\Classes\GamerCamp\Win32Input\cinput.h" />
+    <ClInclude Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.h" />
+    <ClInclude Include="..\Classes\MenuScene.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">
       <Project>{98a51ba8-fc3a-415b-ac8f-8c7bd464e93e}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\cocos2d\cocos\editor-support\spine\proj.win32\libSpine.vcxproj">
-      <Project>{b7c2a162-dec9-4418-972e-240ab3cbfcae}</Project>
     </ProjectReference>
     <ProjectReference Include="..\cocos2d\external\Box2D\proj.win32\libbox2d.vcxproj">
       <Project>{929480e7-23c0-4df6-8456-096d71547116}</Project>
