@@ -19,6 +19,8 @@
 
 #include "GB2ShapeCache-x.h"
 
+#include "GCFactory_ObjSpritePhysics.h"
+
 
 //////////////////////////////////////////////////////////////////////////
 // save ourselves some typing later
@@ -31,6 +33,7 @@ using namespace cocos2d;
 //////////////////////////////////////////////////////////////////////////
 CGCObjSpritePhysics::CGCObjSpritePhysics( GCTypeID idDerivedType )
 : CGCObjSprite		( idDerivedType )
+, m_psCreateParams	( NULL )
 , m_pb2Body			( NULL )
 {
 }
@@ -41,6 +44,7 @@ CGCObjSpritePhysics::CGCObjSpritePhysics( GCTypeID idDerivedType )
 //////////////////////////////////////////////////////////////////////////
 CGCObjSpritePhysics::CGCObjSpritePhysics( void )
 : CGCObjSprite		( GetGCTypeIDOf( CGCObjSpritePhysics ) )
+, m_psCreateParams	( NULL )
 , m_pb2Body			( NULL )
 {
 }
@@ -68,6 +72,17 @@ void CGCObjSpritePhysics::InitBox2DParams( const b2BodyDef& rBodyDef, const char
 
 
 //////////////////////////////////////////////////////////////////////////
+// params are buffered and then resources acquired on VOnResourceAcquire
+//////////////////////////////////////////////////////////////////////////
+//virtual 
+void CGCObjSpritePhysics::VHandleFactoryParams( const CGCFactoryCreationParams& rCreationParams, b2Vec2 v2InitialPosition )
+{
+	m_psCreateParams = &rCreationParams; 
+	SetResetPosition( v2InitialPosition );
+}
+
+
+//////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
@@ -84,22 +99,25 @@ void CGCObjSpritePhysics::VUpdateSpriteFromBody( const b2Body* pcb2Body )
 // N.B. default is to parent self to the layer (needed to render within cocos)
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjSpritePhysics::AcquireResources(		const char* pszPlistFile,
-												const char*	pszPhysicsShape,
-												b2BodyType	eb2BodyType,
-												bool		bRotationIsFixed)
+void CGCObjSpritePhysics::VOnResourceAcquire( void )
 {
-	cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pszPlistFile );
-	CreateSprite( pszPlistFile );
+	// if we have set m_psCreateParams we assume we have been created by 
+	// the factory and require default setup
+	const CGCFactoryCreationParams* const pcCreateParams = GetFactoryCreationParams();
+	if( nullptr != pcCreateParams )
+	{	
+		cocos2d::SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pcCreateParams->strPlistFile );
+		CreateSprite( pcCreateParams->strPlistFile.c_str() );
 
-	// N.B. default is to parent self to the layer (needed to render within cocos)
-	SetParent( IGCGameLayer::ActiveInstance() );
+		// N.B. default is to parent self to the layer (needed to render within cocos)
+		SetParent( IGCGameLayer::ActiveInstance() );
 
-	b2BodyDef bodyDef;
-	bodyDef.type			= eb2BodyType;
-	bodyDef.fixedRotation	= bRotationIsFixed;
+		b2BodyDef bodyDef;
+		bodyDef.type			= pcCreateParams->eB2dBody_BodyType;
+		bodyDef.fixedRotation	= pcCreateParams->bB2dBody_FixedRotation;
 
-	InitBox2DParams( bodyDef, pszPhysicsShape );
+		InitBox2DParams( bodyDef, pcCreateParams->strPhysicsShape.c_str() );
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -151,7 +169,7 @@ void CGCObjSpritePhysics::VOnResourceRelease( void )
 	if( nullptr != m_pb2Body )
 	{
 		IGCGameLayer::ActiveInstance()->B2dGetWorld()->DestroyBody( m_pb2Body );
-		m_pb2Body = NULL;
+		m_pb2Body = nullptr;
 	}
 	CGCObjSprite::DestroySprite();
 }

@@ -49,6 +49,12 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Platforms">
       <UniqueIdentifier>{b08a1995-8545-4a2d-9387-7efa6dc69686}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GCCocosInterface\LevelLoader">
+      <UniqueIdentifier>{a142251b-d129-4f49-8fea-d5e4b655f896}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GamerCamp\GCCocosInterface\pugixml-1.2">
+      <UniqueIdentifier>{707d3d6a-04e3-4f24-8603-39b6b73345da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -131,6 +137,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.cpp">
       <Filter>Classes\GamerCamp\Win32Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCFactory_ObjSpritePhysics.cpp">
+      <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\LevelLoader\GCLevelLoader_Ogmo.cpp">
+      <Filter>Classes\GamerCamp\GCCocosInterface\LevelLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\pugixml-1.2\pugixml.cpp">
+      <Filter>Classes\GamerCamp\GCCocosInterface\pugixml-1.2</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +238,21 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.h">
       <Filter>Classes\GamerCamp\Win32Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCFactory_ObjSpritePhysics.h">
+      <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\SGCFactoryCreationParams.h">
+      <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\LevelLoader\GCLevelLoader_Ogmo.h">
+      <Filter>Classes\GamerCamp\GCCocosInterface\LevelLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\pugixml-1.2\pugiconfig.hpp">
+      <Filter>Classes\GamerCamp\GCCocosInterface\pugixml-1.2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\pugixml-1.2\pugixml.hpp">
+      <Filter>Classes\GamerCamp\GCCocosInterface\pugixml-1.2</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

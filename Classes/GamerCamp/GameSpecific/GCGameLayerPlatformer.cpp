@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <stdlib.h> 
 
+#include "platform/CCFileUtils.h"
+
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 
 #include "MenuScene.h"
@@ -24,6 +26,8 @@
 
 #include "AppDelegate.h"
 
+#include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
+#include "GamerCamp/GCCocosInterface/LevelLoader/GCLevelLoader_Ogmo.h"
 
 USING_NS_CC;
 
@@ -240,53 +244,49 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 
 
 	///////////////////////////////////////////////////////////////////////////
-	// add player
+	// N.B. this is where you would load a level file, using the factory to
+	// create the class instances specified by the level file by passing their
+	// class names and init data
+	//
+	// In order to ensure stuff is correctly cleaned up you will need to either:
+	//
+	// 1) cache pointers to all created CGCObjSpritePhysics created via the factory and destroy them on shutdown / level unload, or
+	//
+	// 2) make sure all the CGCObjSpritePhysics derived instances you create are in an object group and have the groups destroy them
+	//
+	// Personally I favour option 1, as I reckon it's a) more elegant and b) more philosophically 'correct'.
+	//
+	// The invaders are currently destroyed by using option 2 - see CGCObjGroupInvader::DestroyInvaders
+	///////////////////////////////////////////////////////////////////////////
+
+	// load level data from Ogmo Editor
+
+	// read the oel file for level 0
+	m_cLevelLoader.LoadLevelFile( FileUtils::getInstance()->fullPathForFilename( std::string( "OgmoEditor/GCOgmoTemplateLevel.oel" ) ).c_str() );
+	m_cLevelLoader.CreateObjects( CGCFactory_ObjSpritePhysics::GetFactory() );
+
+	// note: we have now created all the items, platforms, & invaders specified in the level file
+
+
+	///////////////////////////////////////////////////////////////////////////
+	// add player - this shows manual use of class factory
 	///////////////////////////////////////////////////////////////////////////
 
 	// starting position
 	b2Vec2 v2MarioStartPos( ( origin.x + ( visibleSize.width * 0.5f) ), 
-							( origin.y + ( visibleSize.height * 0.5f ) ) );
+		( origin.y + ( visibleSize.height * 0.5f ) ) );
+
+	// factory creation parameters
+	// N.B. note m_sPlayerCreateParams is a member variable of this class which will stay in scope whilst mario is in scope
+	CGCFactoryCreationParams& sParams = m_sPlayerCreateParams;
+	sParams.strClassName			= "CGCObjPlayer";
+	sParams.strPlistFile			= "TexturePacker/Sprites/Mario/mario.plist";
+	sParams.strPhysicsShape			= "mario";
+	sParams.eB2dBody_BodyType		= b2_dynamicBody;
+	sParams.bB2dBody_FixedRotation	= true;
 
 	// create player object
-	m_pcGCOPlayer = new CGCObjPlayer();
-	m_pcGCOPlayer->SetResetPosition( v2MarioStartPos );
-
-	///////////////////////////////////////////////////////////////////////////
-	// N.B. invaders are added by the invader object group
-	///////////////////////////////////////////////////////////////////////////
-	m_pcGCGroupInvader->SetFormationOrigin( v2MarioStartPos + b2Vec2( -( visibleSize.width * 0.3f ), ( visibleSize.height * 0.25f ) ) );
-
-	///////////////////////////////////////////////////////////////////////////
-	// add platforms & items
-	///////////////////////////////////////////////////////////////////////////
-	// CGCObjGroupItem & CGCObjGroupPlatform clean up all contained objects during VOnGroupResourceRelease(), so we can be 
-	// very laissez faire about creating items & platforms
-	const u32 uNumColumns		= 3;
-	const u32 uNumRows			= 4;
-
-	float fColumnSpacing		= ( visibleSize.width / ( ((float) uNumColumns ) + 1.0f ) );
-	float fRowSpacing			= ( visibleSize.height / ( ((float) uNumRows ) + 1.0f ) );
-
-	float fNextPlatformPos_x	= fColumnSpacing;
-	float fRowStartPos_y		= fRowSpacing;
-
-	for( u32 uColumn = 0; uColumn < uNumColumns; ++uColumn )
-	{ 
-		b2Vec2 v2NextPlatformPos( fNextPlatformPos_x, fRowStartPos_y );
-
-		for( u32 uRow = 0; uRow < uNumRows; ++uRow )
-		{
-			CGCObjPlatform* pPlatform	= new CGCObjPlatform();
-			CGCObjItem*		pItem		= new CGCObjItem();
-
-			pPlatform->SetResetPosition	( v2NextPlatformPos );
-			pItem->SetResetPosition		( v2NextPlatformPos + b2Vec2( 0.0f, 30.0f ) );
-
-			v2NextPlatformPos.y += fRowSpacing;
-		}
-
-		fNextPlatformPos_x += fColumnSpacing;
-	}
+	m_pcGCOPlayer = static_cast< CGCObjPlayer* >( CGCFactory_ObjSpritePhysics::GetFactory().CreateInstance( sParams, v2MarioStartPos ) );
 }
 
 

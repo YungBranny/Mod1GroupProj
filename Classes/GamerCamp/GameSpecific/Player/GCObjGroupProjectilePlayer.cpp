@@ -69,10 +69,25 @@ GCTypeID CGCObjGroupProjectilePlayer::VGetTypeId( void )
 //////////////////////////////////////////////////////////////////////////
 void CGCObjGroupProjectilePlayer::CreateProjectiles( void )
 {
-	// n.b. these register themselves with this class on creation via CGCObject & CGCObjectManager
+	const char* pszPlist_Egg = "TexturePacker/Sprites/Egg/Egg.plist";
+
+	// create the player's b2dBody...
+	b2BodyDef bodyDef;
+	bodyDef.type			= b2_dynamicBody;
+	bodyDef.fixedRotation	= true;
+	bodyDef.gravityScale	= 0.0f;
+
+	// get the sprite info as a dictionary so we can create loads of them with only one load of the plist
+	// n.b. pdictspriteInfo is set to autorelease so we don't need to release it manually
+	cocos2d::ValueMap cSpriteInfo = GCCocosHelpers::Sprite_LoadTextureAndFramesToCachesAndGetDictionary( pszPlist_Egg );
+
+	// n.b. these register themselves with this class on creation
 	for( u32 uLoop = 0; uLoop < k_uNumInvaders; ++uLoop )
 	{
-		new CGCObjProjectilePlayer(); 
+		CGCObjProjectilePlayer* pProjectile = new CGCObjProjectilePlayer(); 
+		pProjectile->CreateSpriteFast( cSpriteInfo );
+		pProjectile->SetParent( IGCGameLayer::ActiveInstance() );
+		pProjectile->CGCObjSpritePhysics::InitBox2DParams( bodyDef, "egg" ); 
 	}
 }
 

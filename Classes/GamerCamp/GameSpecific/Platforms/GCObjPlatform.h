@@ -6,17 +6,18 @@
 #ifndef _GCOBJPLATFORMS_H_
 #define _GCOBJPLATFORMS_H_
 
+#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 #include "../../GCCocosInterface/GCObjSpritePhysics.h"
 
 class CGCObjPlatform
-: public CGCObjSpritePhysics
+	: public CGCObjSpritePhysics
 {
 public:
-	CGCObjPlatform(	void )
-	: CGCObjSpritePhysics( GetGCTypeIDOf( CGCObjPlatform ) )
-	{}
+	GCFACTORY_DECLARE_CREATABLECLASS( CGCObjPlatform );
 
-	virtual void VOnResourceAcquire( void ) override;
+	CGCObjPlatform(	void )
+		: CGCObjSpritePhysics( GetGCTypeIDOf( CGCObjPlatform ) )
+	{}
 };
 
 

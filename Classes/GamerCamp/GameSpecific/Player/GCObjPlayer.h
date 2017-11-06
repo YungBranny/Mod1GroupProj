@@ -10,6 +10,10 @@
 	#include "../../GCCocosInterface/GCObjSpritePhysics.h"
 #endif
 
+#ifndef _GCFACTORY_OBJSPRITEPHYSICS_H_
+	#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
+#endif
+
 
 //////////////////////////////////////////////////////////////////////////
 // forward declare
@@ -45,6 +49,10 @@ public:
 	CGCObjPlayer();
 
 	//////////////////////////////////////////////////////////////////////////
+	// declare the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
+	GCFACTORY_DECLARE_CREATABLECLASS( CGCObjPlayer );
+
+	//////////////////////////////////////////////////////////////////////////
 	// we need a virtual destructor since delete will be called on pointers of 
 	// this class to delete derived types.
 	virtual ~CGCObjPlayer()
@@ -78,5 +86,18 @@ public:
 
     // this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
     void NotifyOfCollisionWithInvader();
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// example function to show how to use a callback function with an object
+	// NOT derived from cocos2d::Object in a CCSequence
+	//////////////////////////////////////////////////////////////////////////
+	static void TestCBFunction( void* pData )
+	{
+		// we assume this cast is safe because we passed the void* to the function
+		// see line 219 of GCObjPlayer.cpp
+		CGCObjPlayer* pThis = reinterpret_cast< CGCObjPlayer* >( pData );
+		CCLOG(" callback fn! data %s\n", pThis->GetName().c_str() );
+	}
 };
 #endif // #ifndef _GCOBJPLAYER_H_

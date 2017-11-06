@@ -16,6 +16,11 @@
 USING_NS_CC;
 
 //////////////////////////////////////////////////////////////////////////
+// implement the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
+GCFACTORY_IMPLEMENT_CREATEABLECLASS( CGCObjInvader );
+
+
+//////////////////////////////////////////////////////////////////////////
 // GetGCTypeIDOf uses the template in GCTypeID to generate a unique ID for 
 // this type - need this to construct our base type
 CGCObjInvader::CGCObjInvader()
@@ -34,10 +39,7 @@ CGCObjInvader::CGCObjInvader()
 //virtual 
 void CGCObjInvader::VOnResourceAcquire( void )
 {
-	const char* pszPlist = "TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist";
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pszPlist );
-	AcquireResources( pszPlist, "koopa", b2_dynamicBody, true );
-	SetParent( IGCGameLayer::ActiveInstance() );
+	CGCObjSpritePhysics::VOnResourceAcquire();
 }
 
 

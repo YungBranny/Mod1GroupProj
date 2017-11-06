@@ -71,11 +71,9 @@ Global
 		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Debug with data|Win32.ActiveCfg = Debug with data|Win32
 		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Debug with data|Win32.Build.0 = Debug with data|Win32
 		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Debug|Win32.ActiveCfg = Debug|Win32
-		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Debug|Win32.Build.0 = Debug|Win32
 		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Release with data|Win32.ActiveCfg = Release with data|Win32
 		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Release with data|Win32.Build.0 = Release with data|Win32
 		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Release|Win32.ActiveCfg = Release|Win32
-		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -36,7 +36,7 @@
 // is put into the dead list of the containing group.
 //////////////////////////////////////////////////////////////////////////
 class CGCObjSprite
-	: public CGCObject
+: public CGCObject
 {
 private:
 	// cocos2d sprite used to display this object
@@ -99,11 +99,11 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	// CGCObject Interface - see CGCObject for explanation of the purpose
 	// and responsibilities of these functions
-	virtual void VOnResourceAcquire( void );
-	virtual void VOnReset( void );
-	virtual void VOnResourceRelease( void );
-	virtual void VOnKilled( void );
-	virtual void VOnResurrected( void );
+	virtual void VOnResourceAcquire	( void ) override;
+	virtual void VOnReset			( void ) override;
+	virtual void VOnResourceRelease	( void ) override;
+	virtual void VOnKilled			( void ) override;
+	virtual void VOnResurrected		( void ) override;
 	// CGCObject Interface
 	//////////////////////////////////////////////////////////////////////////
 };

@@ -10,8 +10,13 @@
 	#include "GCObjSprite.h"
 #endif
 
-#include "box2d/Box2D.h"
+#ifndef BOX2D_H
+	#include "box2d/Box2D.h"
+#endif
 
+#ifndef _SGCFACTORYCREATIONPARAMS_H_
+	#include "SGCFactoryCreationParams.h"
+#endif
 
 //////////////////////////////////////////////////////////////////////////
 // CGCObjSpritePhysics is intended for use as a base class for any CGCObject 
@@ -28,6 +33,11 @@ class CGCObjSpritePhysics
 : public CGCObjSprite
 {
 private:
+	//////////////////////////////////////////////////////////////////////////
+	// parameters passed to this object from the factory when it was created
+	// this pointer is set during CGCObjSpritePhysics::VHandleFactoryParams()
+	const CGCFactoryCreationParams* m_psCreateParams;	
+	
 	// box 2d body
 	b2Body*			m_pb2Body;
 	b2BodyDef		m_b2BodyDef;
@@ -38,14 +48,18 @@ protected:
 
 	inline b2Body* GetPhysicsBody( void );
 
+	inline const CGCFactoryCreationParams* GetFactoryCreationParams( void )	const;
 
 public:
 					CGCObjSpritePhysics	( void );
 	virtual			~CGCObjSpritePhysics( void );
 
-	void			AcquireResources( const char* pszPlistFile, const char* pszPhysicsShape, b2BodyType eb2BodyType, bool bRotationIsFixed );
-
 	void			InitBox2DParams( const b2BodyDef& rBodyDef, const char* pszShapeName );
+
+	// N.B. this function is called by the macro 
+	// GCFACTORY_IMPLEMENT_CREATEABLECLASS() after the class instance has 
+	// been created
+	virtual void VHandleFactoryParams( const CGCFactoryCreationParams& rCreationParams, b2Vec2 v2InitialPosition ); 
 
 	virtual void	VUpdateSpriteFromBody( const b2Body* pcb2Body );
 
@@ -59,10 +73,11 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	// CGCObject Interface - see CGCObject for explanation of the purpose
 	// and responsibilities of these functions
-		virtual void VOnReset			( void );
-		virtual void VOnKilled			( void );
-		virtual void VOnResurrected		( void );
-		virtual void VOnResourceRelease	( void );
+		virtual void VOnResourceAcquire ( void ) override; 
+		virtual void VOnReset			( void ) override;
+		virtual void VOnKilled			( void ) override;
+		virtual void VOnResurrected		( void ) override;
+		virtual void VOnResourceRelease	( void ) override;
 	// CGCObject Interface
 	//////////////////////////////////////////////////////////////////////////
 };
@@ -71,9 +86,19 @@ public:
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
+// protected
 inline b2Body* CGCObjSpritePhysics::GetPhysicsBody( void )
 {
 	return m_pb2Body;
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
+// protected
+inline const CGCFactoryCreationParams* CGCObjSpritePhysics::GetFactoryCreationParams( void ) const
+{
+	return m_psCreateParams;
 }
 
 //////////////////////////////////////////////////////////////////////////

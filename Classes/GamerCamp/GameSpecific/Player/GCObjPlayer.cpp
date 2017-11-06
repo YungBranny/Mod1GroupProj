@@ -13,9 +13,19 @@
 
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 
+#include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 #include "GCObjPlayer.h"
 
-USING_NS_CC;
+//////////////////////////////////////////////////////////////////////////
+//include this file to be able to use callback functions in CCSequence
+//and use namespace cocos2D
+#include "GamerCamp/GCCocosInterface/GCCallFuncStatic.h"
+using namespace cocos2d;
+//////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////
+// implement the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
+GCFACTORY_IMPLEMENT_CREATEABLECLASS( CGCObjPlayer );
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -42,8 +52,9 @@ void CGCObjPlayer::VOnResourceAcquire( void )
 	const char* pszPlist_mario		= "TexturePacker/Sprites/Mario/mario.plist";
 	const char* pszAnim_marioJog	= "Jog";
 
-	AcquireResources( pszPlist_mario, "mario", b2_dynamicBody, true );
-	SetParent( IGCGameLayer::ActiveInstance() );
+	SetName( "Mario!!" );
+
+	CGCObjSpritePhysics::VOnResourceAcquire();
 
 	// animate!
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( pszPlist_mario );
@@ -74,7 +85,7 @@ void CGCObjPlayer::VOnReset( void )
 	{
 		GetPhysicsBody()->SetLinearVelocity( b2Vec2( 0.0f, 0.0f ) );
 		GetPhysicsBody()->SetTransform( IGCGameLayer::B2dPixelsToWorld( GetSpritePosition() ), 0.0f );
-		GetPhysicsBody()->SetFixedRotation( true );
+		GetPhysicsBody()->SetFixedRotation( GetFactoryCreationParams()->bB2dBody_FixedRotation );
 	}
 }
 
@@ -97,7 +108,7 @@ void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 //virtual
 void CGCObjPlayer::VOnResourceRelease( void )
 {
-    DestroySprite();
+    CGCObjSpritePhysics::VOnResourceRelease();
 }
 
 
@@ -227,6 +238,10 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + b2Vec2( 0.0f, 20.0f ),
 												b2Vec2( 0.0f, 10.0f ),
 												3.0f );	
+
+		// Example of firing a callback function on a GCCObjSprite object in a CCSequence
+		this->RunAction( cocos2d::CCSequence::create( CGCCallFuncStatic::create( callfuncStatic_selector(CGCObjPlayer::TestCBFunction),(void*)this), NULL));
+		// Example of firing a callback function on a GCCObjSprite object in a CCSequence
 	}
 }
 

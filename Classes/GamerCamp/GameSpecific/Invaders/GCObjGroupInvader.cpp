@@ -69,19 +69,10 @@ GCTypeID CGCObjGroupInvader::VGetTypeId( void )
 }
 
 
-
 //////////////////////////////////////////////////////////////////////////
-//
-//////////////////////////////////////////////////////////////////////////
-//virtual 
-void CGCObjGroupInvader::VOnGroupResourceAcquire( void )
-{
-	CreateInvaders();
-	CGCObjectGroup::VOnGroupResourceAcquire();
-}
-
-//////////////////////////////////////////////////////////////////////////
-//
+// invaders are created from level file, we just need to init their anims
+// this has to be done after the invaders have acquired their resources
+// hence the name of this function..
 //////////////////////////////////////////////////////////////////////////
 //virtual 
 void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject( void )
@@ -97,20 +88,16 @@ void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject( void )
 	ValueMap&	rdictPList = GCCocosHelpers::CreateDictionaryFromPlist( pszPlist );
 	Animation*	pAnimation = GCCocosHelpers::CreateAnimation( rdictPList, pszAnim_Fly );
 
-	// N.B. this is a workaround for the fact that Marmalade's version of GCC for ARM doesn't support lambdas. Blergh.
-	SGCObjectGatherer sMyGatherer;
-	ForEachObject( sMyGatherer );
-
-	// create an animation action and set it for each invader
-	for( u32 uIndex = 0; uIndex < sMyGatherer.uCount; ++uIndex )
+	// apply it to all the invaders
+	ForEachObject( [&] ( CGCObject* pcItemAsObject )
 	{
-		CGCObject* pcItemAsObject = sMyGatherer.apObjects[ uIndex ];
 		CCAssert( ( GetGCTypeIDOf( CGCObjInvader ) == pcItemAsObject->GetGCTypeID() ),
 			"CGCObject derived type mismatch!" );
 
 		CGCObjSprite* pItemSprite = (CGCObjSprite*)pcItemAsObject;
 		pItemSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
-	}
+		return true; // returning true means 'please keep iterating'
+	});
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -123,27 +110,6 @@ void CGCObjGroupInvader::VOnGroupResourceRelease( void )
 	CGCObjectGroup::VOnGroupResourceRelease();
 	DestroyInvaders();
 }
-
-
-//////////////////////////////////////////////////////////////////////////
-//
-//////////////////////////////////////////////////////////////////////////
-void CGCObjGroupInvader::CreateInvaders( void )
-{
-	const char* pszPlist_KooperTrooper		= "TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist";
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pszPlist_KooperTrooper );
-
-	i32	iOffsetX = 40;
-	i32	iOffsetY = 100;
-	for( u32 uLoop = 0; uLoop < k_uNumProjectiles; ++uLoop )
-	{	
-		// n.b. these register themselves with this class on creation
-		CGCObjInvader* pInvader = new CGCObjInvader(); 
-		pInvader->SetResetPosition( b2Vec2( m_v2FormationOrigin.x + ( iOffsetX * uLoop ), ( m_v2FormationOrigin.y + iOffsetY ) ) );
-		pInvader->SetName( "Derek" );
-	}
-}
-
 
 
 //////////////////////////////////////////////////////////////////////////

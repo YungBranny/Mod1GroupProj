@@ -66,6 +66,34 @@ GCTypeID CGCObjGroupPlatform::VGetTypeId( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
+void CGCObjGroupPlatform::VOnGroupResourceAcquire_PostObject( void )
+{
+	// parent class version
+	CGCObjectGroup::VOnGroupResourceAcquire();
+
+	// set up animations for all platforms
+	const char* pszPlist_Platform		= "TexturePacker/Sprites/Platform/Platform.plist";
+	const char* pszAnim_Platfrom_Rotate	= "Hover";
+
+	// make an animation
+	// N.B. pdictPList is returned autoreleased - will clean itslef at end of frame if not retained
+	cocos2d::ValueMap	cSpriteInfo	= GCCocosHelpers::CreateDictionaryFromPlist( pszPlist_Platform );
+	cocos2d::Animation*	pAnimation	= GCCocosHelpers::CreateAnimation( cSpriteInfo, pszAnim_Platfrom_Rotate );
+
+	ForEachObject( [&] ( CGCObject* pcPlatformAsObject )
+	{
+		GCASSERT( GetGCTypeIDOf( CGCObjPlatform ) == pcPlatformAsObject->GetGCTypeID(), "wrong type!" );
+		CGCObjSprite* pSprite = (CGCObjSprite*) pcPlatformAsObject;
+		pSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
+		return true;
+	} );
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
+//virtual 
 void CGCObjGroupPlatform::VOnGroupResourceRelease( void )
 {
 	// n.b. this must happen first, as will fail if objects destroyed before 

@@ -39,7 +39,7 @@ private:
 
 public:
 	// number of invaders
-	static const u32 k_uNumProjectiles = 16;
+	static const u32 k_uNumInvaders = 16;
 
 	CGCObjGroupInvader();		
 	virtual ~CGCObjGroupInvader() override;
@@ -55,8 +55,8 @@ public:
 	// must return the typeid of the CGCObjectGroup derived class
 	virtual GCTypeID	VGetTypeId							( void ) override;
 
-	virtual void		VOnGroupResourceAcquire				( void ) override;
-	virtual void		VOnGroupResourceAcquire_PostObject	( void ) override;
+	virtual void		VOnGroupResourceAcquire_PostObject	( void ) override; // invaders are created from level file
+
 	virtual void		VOnGroupResourceRelease				( void ) override;
 
 // CGCObjectGroup public interface

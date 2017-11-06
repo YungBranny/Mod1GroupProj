@@ -46,6 +46,8 @@ public:
 	// must return the typeid of the CGCObjectGroup derived class
 	virtual GCTypeID	VGetTypeId							( void );
 
+	virtual void		VOnGroupResourceAcquire_PostObject	( void );	
+
 	virtual void		VOnGroupResourceRelease				( void );	
 
 // CGCObjectGroup public interface

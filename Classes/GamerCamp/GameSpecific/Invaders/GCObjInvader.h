@@ -6,6 +6,10 @@
 #ifndef _GCOBJINVADER_H_
 #define _GCOBJINVADER_H_
 
+#ifndef _GCFACTORY_OBJSPRITEPHYSICS_H_
+	#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
+#endif
+
 #ifndef _GCOBJSPRITEPHYSICS_H_
 	#include "../../GCCocosInterface/GCObjSpritePhysics.h"
 #endif
@@ -23,6 +27,9 @@ private:
 
 public:
 	CGCObjInvader();
+
+	// declare the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
+	GCFACTORY_DECLARE_CREATABLECLASS( CGCObjInvader );
 
 	//////////////////////////////////////////////////////////////////////////
 	// we need a virtual destructor since delete will be called on pointers of 
