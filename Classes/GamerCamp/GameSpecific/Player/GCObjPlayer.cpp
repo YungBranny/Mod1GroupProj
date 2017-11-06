@@ -20,8 +20,17 @@
 //include this file to be able to use callback functions in CCSequence
 //and use namespace cocos2D
 #include "GamerCamp/GCCocosInterface/GCCallFuncStatic.h"
-using namespace cocos2d;
+
+
 //////////////////////////////////////////////////////////////////////////
+// define this in to get keyboard controls
+//#define USE_KEYBOARD_CONTROLS
+
+
+
+using namespace cocos2d;
+
+
 
 //////////////////////////////////////////////////////////////////////////
 // implement the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
@@ -141,39 +150,16 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	// we accumulate total force over the frame and apply it at the end
 	b2Vec2 v2TotalForce( 0.0f, 0.0f);
 
-
 	// * calculate the control force direction
-	b2Vec2 v2ControlForceDirection( 0.0f, 0.0f );
+	b2Vec2 v2ControlForceDirection = GetControlVector( fTimeStep );
 
-	// these 2 floats are used to add / remove the effect of various terms 
-	// in equations based on whether input has been applied this frame
-	f32 fIsInputInactive	= 1.0f;
-
-	const CGCKeyboardManager* pKeyManager = AppDelegate::GetKeyboardManager();
-	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Up ) )
-	{
-		v2ControlForceDirection.y	= 1.0f;
-		fIsInputInactive			= 0.0f;
-	}
-	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Down ) )
-	{
-		v2ControlForceDirection.y	= -1.0f;
-		fIsInputInactive			= 0.0f;
-	}
-
-	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Left ) )
-	{
-		v2ControlForceDirection.x	= -1.0f;
-		fIsInputInactive			= 0.0f;
-	}	
-	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Right ) )
-	{
-		v2ControlForceDirection.x	= 1.0f;
-		fIsInputInactive			= 0.0f;
-	}
-	
 	// normalise the control vector and multiply by movement force
-	v2ControlForceDirection.Normalize();
+	// n.b. b2Vec2::Normalize checks for 0 length vectors
+	// n.n.b. fIsInputActive is used to add / remove the effect of various terms 
+	// in equations based on whether input has been applied this frame
+	f32 fIsInputInactive = ( v2ControlForceDirection.Normalize() > 0.0f ) ? 1.0f : 0.0f;
+	
+	// multiply the normalised control force by the scaling values
 	v2ControlForceDirection.x *= m_fMaximumMoveForce_Horizontal;
 	v2ControlForceDirection.y *= m_fMaximumMoveForce_Vertical;
 
@@ -232,7 +218,8 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	}
 
 	// fire!
-	if( pKeyManager->ActionHasJustBeenPressed( CGCGameLayerPlatformer::EPA_Fire ) )
+	const CGCKeyboardManager* pKeyManager = AppDelegate::GetKeyboardManager();
+	if( FireWasJustPressed() )
 	{
 		// supply initial position, velocity, lifetime
 		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + b2Vec2( 0.0f, 20.0f ),
@@ -244,6 +231,74 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 		// Example of firing a callback function on a GCCObjSprite object in a CCSequence
 	}
 }
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+b2Vec2 CGCObjPlayer::GetControlVector( f32 fTImeStep )
+{
+	b2Vec2 vReturn( 0.0f, 0.0f );
+
+	#if defined( USE_KEYBOARD_CONTROLS )
+	{
+		const CGCKeyboardManager* pKeyManager = AppDelegate::GetKeyboardManager();
+	
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Up ) )
+		{
+			vReturn.y	= 1.0f;
+		}
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Down ) )
+		{
+			vReturn.y	= -1.0f;
+		}
+
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Left ) )
+		{
+			vReturn.x	= -1.0f;
+		}	
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Right ) )
+		{
+			vReturn.x	= 1.0f;
+		}
+
+	}
+	#else
+	{
+		if( IGCGameLayer::ActiveInstance()->ATouchIsActive() )
+		{
+			// calc distance in pixels
+			b2Vec2 v2TouchPos			= IGCGameLayer::ActiveInstance()->GetTouchPos();
+			b2Vec2 v2ControlInPixels	= v2TouchPos - GetSpritePosition();
+			vReturn						= IGCGameLayer::B2dPixelsToWorld( v2ControlInPixels );	 
+		}
+	}
+	#endif
+
+	return vReturn;
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+bool CGCObjPlayer::FireWasJustPressed()
+{
+	bool bReturn = false;
+
+	#if defined( USE_KEYBOARD_CONTROLS )
+	{
+		const CGCKeyboardManager* pKeyManager = AppDelegate::GetKeyboardManager();
+
+		bReturn = pKeyManager->ActionHasJustBeenPressed( CGCGameLayerPlatformer::EPA_Fire );
+	}
+	#else
+	{
+		bReturn = IGCGameLayer::ActiveInstance()->TouchWasJustStarted();
+	}
+	#endif
+
+	return bReturn;
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // this function exists purely to better illustrate the EXAMPLE collision 

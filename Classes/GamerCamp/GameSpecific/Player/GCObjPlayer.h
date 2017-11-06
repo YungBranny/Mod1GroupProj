@@ -84,6 +84,10 @@ public:
 	// updates the movement of the CCSprite
 	void UpdateMovement( f32 fTimeStep );
 
+	b2Vec2	GetControlVector( f32 fTImeStep );
+
+	bool	FireWasJustPressed();
+
     // this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
     void NotifyOfCollisionWithInvader();
 
