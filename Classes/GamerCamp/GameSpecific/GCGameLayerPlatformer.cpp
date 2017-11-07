@@ -273,8 +273,8 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 	///////////////////////////////////////////////////////////////////////////
 
 	// starting position
-	b2Vec2 v2MarioStartPos( ( origin.x + ( visibleSize.width * 0.5f) ), 
-		( origin.y + ( visibleSize.height * 0.5f ) ) );
+	b2Vec2 v2MarioStartPos( ( origin.x + ( visibleSize.width * 0.5f) ),
+		                    ( origin.y + ( visibleSize.height * 0.5f ) ) );
 
 	// factory creation parameters
 	// N.B. note m_sPlayerCreateParams is a member variable of this class which will stay in scope whilst mario is in scope

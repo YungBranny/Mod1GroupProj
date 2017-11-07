@@ -161,7 +161,9 @@ inline bool CGCLevelLoader_Ogmo::AddFactoryDataForXMLElementIfValid( const tinyx
 			pParams = AddCreationParamsToInternalStore( GetFactoryData( rxmlElement ) );
 		}
 
-		CGCObjSpritePhysics* pObject = rClassFactory.CreateInstance( (*pParams), GetObjectPosition( rxmlElement ) );
+		b2Vec2 v2Pos = GetObjectPosition( rxmlElement );
+		CCLOG( "creating instance of %s at position [%f, %f]", pParams->strClassName.c_str(), v2Pos.x, v2Pos.y );
+		CGCObjSpritePhysics* pObject = rClassFactory.CreateInstance( (*pParams), v2Pos );
 
 		return true;
 	}
@@ -221,8 +223,14 @@ inline const CGCFactoryCreationParams* CGCLevelLoader_Ogmo::GetFactoryData( cons
 // private  
 inline b2Vec2 CGCLevelLoader_Ogmo::GetObjectPosition( const tinyxml2::XMLElement& rxmlElement )
 {
-	return( b2Vec2( rxmlElement.FloatAttribute( k_pszXmlAttr_StartPos_X ), 
-					( m_v2LevelDimensions.y - rxmlElement.FloatAttribute( k_pszXmlAttr_StartPos_Y ) ) ) );
+	// N.B. we use the screen origin as the level position origin
+	// this means that the bottom left of your level will always be visible, but the top right not guaranteed
+	// resolution and sprite scale settings are all in AppDelegate.cpp - good luck!
+	Point	origin = Director::getInstance()->getVisibleOrigin();
+	b2Vec2	v2Origin( origin.x, origin.y );
+
+	return( v2Origin + b2Vec2(	rxmlElement.FloatAttribute( k_pszXmlAttr_StartPos_X ), 
+								( m_v2LevelDimensions.y - rxmlElement.FloatAttribute( k_pszXmlAttr_StartPos_Y ) ) ) );
 }
 
 

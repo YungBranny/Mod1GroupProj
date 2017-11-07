@@ -29,6 +29,7 @@ namespace GCCocosHelpers
 		// disc access when initialising sprites with a lots of animations (see CreateSpriteFromPlist() ) 
 		std::string		strPath		= FileUtils::getInstance()->fullPathForFilename( rstrPlist );
 		ValueMap		dicPList	= FileUtils::getInstance()->getValueMapFromFile( strPath.c_str() );
+		CCASSERT( !dicPList.empty(), "ValueMap created from file is empty - is the path correct? remember Android paths are case sensitive" );
 		return dicPList;
 	}
 
@@ -40,7 +41,10 @@ namespace GCCocosHelpers
 	Sprite* CreateSpriteFromPlist( const std::string& rstrPlist ) 
 	{
 		// n.b. pdictSpriteInfo is set to autorelease so we don't need to release it manually
-		ValueMap	dicSpriteInfo	= Sprite_LoadTextureAndFramesToCachesAndGetDictionary( rstrPlist );
+		ValueMap dicSpriteInfo = Sprite_LoadTextureAndFramesToCachesAndGetDictionary( rstrPlist );
+		
+		CCASSERT( !dicSpriteInfo.empty(), "ValueMap created from file is empty - is the path correct? remember Android paths are case sensitive" );
+		
 		Sprite*		pSprite			= Sprite_CreateSpriteFrom1stFrame( dicSpriteInfo );
 		return pSprite;
 	}
@@ -63,7 +67,9 @@ namespace GCCocosHelpers
 	//////////////////////////////////////////////////////////////////////////
 	Sprite* Sprite_CreateSpriteFrom1stFrame( ValueMap& dicSpriteInfo )
 	{
-		ValueMap		dicFrames	= dicSpriteInfo[ "frames" ].asValueMap();
+		ValueMap dicFrames = dicSpriteInfo[ "frames" ].asValueMap();
+		
+		CCASSERT( !dicFrames.empty(), "ValueMap created from file is empty - is the path correct? remember Android paths are case sensitive" );
 
 		// elements are tuple< string, value >
 		auto			itr1stFrame	= dicFrames.begin();

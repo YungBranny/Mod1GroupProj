@@ -38,18 +38,10 @@ typedef struct tagResource
 
 //////////////////////////////////////////////////////////////////////////
 // GamerCamp Edit - add windows
-#if defined WIN32
 static Resource WindowsResource =  { cocos2d::Size(1024, 768),   "windows" };
-#else
-// GamerCamp Edit - add windows
-//////////////////////////////////////////////////////////////////////////
-static Resource WindowsResource =  { cocos2d::Size(1024, 768),   "windows" };
-static Resource smallResource  =  { cocos2d::Size(480, 320),   "iphone" };
-static Resource mediumResource =  { cocos2d::Size(1024, 768),  "ipad"   };
-static Resource largeResource  =  { cocos2d::Size(2048, 1536), "ipadhd" };
-//////////////////////////////////////////////////////////////////////////
-// GamerCamp Edit - add windows
-#endif
+static Resource smallResource	=  { cocos2d::Size(480, 320),   "iphone" };
+static Resource mediumResource	=  { cocos2d::Size(1024, 768),  "ipad"   };
+static Resource largeResource	=  { cocos2d::Size(2048, 1536), "ipadhd" };
 // GamerCamp Edit - add windows
 //////////////////////////////////////////////////////////////////////////
 
