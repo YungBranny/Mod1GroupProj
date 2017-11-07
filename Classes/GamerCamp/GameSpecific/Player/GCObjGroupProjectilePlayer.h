@@ -32,12 +32,12 @@ class CGCObjGroupProjectilePlayer
 {
 public:
 	// number of invaders
-	static const u32 k_uNumInvaders = 16;
+	static const u32 k_uNumProjectiles = 16;
 
 	CGCObjGroupProjectilePlayer			( void );		
 	virtual ~CGCObjGroupProjectilePlayer( void )  override;
 
-	// called from CGCGameLayerSpaceInvaders::VOnCreate
+	// called from CGCGameLayerPlatformer::VOnCreate
 	void				CreateProjectiles	( void );
 	void				DestroyProjectiles	( void );
 

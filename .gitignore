@@ -6,3 +6,8 @@ cocos2d/cocos/editor-support/spine/proj.win32/Debug.win32/
 *.opendb
 proj.win32/Debug.win32/
 Resources/
+cocos2d/cocos/platform/android/libcocos2dx/libcocos2dx.iml
+proj.android-studio/.idea/
+proj.android-studio/proj.android-studio.iml
+proj.android-studio/app/GCFramework.iml
+cocos2d/cocos/platform/android/libcocos2dx/build/

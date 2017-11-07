@@ -20,6 +20,8 @@
 #include "GamerCamp/GameSpecific/Items/GCObjItem.h" 
 #include "AppDelegate.h"
 
+#include "external\tinyxml2\tinyxml2.h"
+
 #include "GCLevelLoader_Ogmo.h"
 
 using namespace std;
@@ -74,6 +76,14 @@ CGCLevelLoader_Ogmo::~CGCLevelLoader_Ogmo( void )
 bool CGCLevelLoader_Ogmo::LoadLevelFile( const char* pszOelFile )
 {
 	//=== 1. XML-file
+
+	Data data = FileUtils::getInstance()->getDataFromFile( pszOelFile );
+	tinyxml2::XMLDocument tinyDoc;
+	tinyDoc.Parse( (const char*) data.getBytes(), data.getSize() );
+
+	tinyxml2::XMLElement* pElement = tinyDoc.RootElement();
+
+	std::string strName = pElement->Name();
 
 	// Load and parse the xml-file
 	pugi::xml_parse_result sParseResult = m_xmlOgmoLevelFile.load_file( pszOelFile );

@@ -9,9 +9,6 @@
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 
-#include "GamerCamp/GameSpecific/GCGameLayerSpaceInvaders.h"
-
-#include "GCObjProjectilePlayer.h"
 
 USING_NS_CC;
 

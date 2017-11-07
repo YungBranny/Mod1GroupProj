@@ -77,8 +77,8 @@ void CGCObjGroupItem::VOnGroupResourceAcquire_PostObject( void )
 
 	// make an animation
 	// N.B. pdictPList is returned autoreleased - will clean itslef at end of frame if not retained
-	ValueMap&	rdicPList	= GCCocosHelpers::CreateDictionaryFromPlist( pszPlist_Coin );
-	Animation*	pAnimation	= GCCocosHelpers::CreateAnimation( rdicPList, pszAnim_Coin_Rotate );
+	ValueMap	cDicPList	= GCCocosHelpers::CreateDictionaryFromPlist( pszPlist_Coin );
+	Animation*	pAnimation	= GCCocosHelpers::CreateAnimation( cDicPList, pszAnim_Coin_Rotate );
 
 	// N.B. this is a workaround for the fact that Marmalade's version of GCC for ARM doesn't support lambdas. Blergh.
 	SGCObjectGatherer sMyGatherer;
@@ -116,11 +116,13 @@ void CGCObjGroupItem::DestroyItems( void )
 {
 	// this iterates the array of registered CGCObjects 
 	// calling the supplied functor then deleting them
-	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
+	auto cMyLambda = [&]( CGCObject* pObject )
 	{
 		GCASSERT( GetGCTypeIDOf( CGCObjItem ) == pObject->GetGCTypeID(), "wrong type!" );
 		CGCObjSprite* pProjectileAsSprite = static_cast< CGCObjSprite* >( pObject );
 		pProjectileAsSprite->DestroySprite();
-	});
+	};
+
+	DestroyObjectsReverseOrder( cMyLambda );
 }
 

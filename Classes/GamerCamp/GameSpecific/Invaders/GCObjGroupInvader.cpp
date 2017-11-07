@@ -9,7 +9,6 @@
 
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
-#include "GamerCamp/GameSpecific/GCGameLayerSpaceInvaders.h"
 #include "GamerCamp/Core/GCTypes.h"
 #include "GamerCamp/GCObject/GCObject.h"
 #include "GamerCamp/GameSpecific/Invaders/GCObjInvader.h"
@@ -85,19 +84,21 @@ void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject( void )
 	const char* pszAnim_Fly = "Fly";
 
 	// make an animation
-	ValueMap&	rdictPList = GCCocosHelpers::CreateDictionaryFromPlist( pszPlist );
-	Animation*	pAnimation = GCCocosHelpers::CreateAnimation( rdictPList, pszAnim_Fly );
+	ValueMap	cDictPList = GCCocosHelpers::CreateDictionaryFromPlist( pszPlist );
+	Animation*	pAnimation = GCCocosHelpers::CreateAnimation( cDictPList, pszAnim_Fly );
 
 	// apply it to all the invaders
-	ForEachObject( [&] ( CGCObject* pcItemAsObject )
+	auto cMyLambda = [&] ( CGCObject* pcItemAsObject )
 	{
-		CCAssert( ( GetGCTypeIDOf( CGCObjInvader ) == pcItemAsObject->GetGCTypeID() ),
-			"CGCObject derived type mismatch!" );
+				CCAssert( ( GetGCTypeIDOf( CGCObjInvader ) == pcItemAsObject->GetGCTypeID() ),
+						  "CGCObject derived type mismatch!" );
 
 		CGCObjSprite* pItemSprite = (CGCObjSprite*)pcItemAsObject;
 		pItemSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
 		return true; // returning true means 'please keep iterating'
-	});
+	};
+
+	ForEachObject( cMyLambda );
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -119,10 +120,12 @@ void CGCObjGroupInvader::DestroyInvaders( void )
 {
 	// this iterates the array of registered CGCObjects 
 	// calling the supplied functor then deleting them
-	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
+	auto cMyLambda = [&]( CGCObject* pObject )
 	{
 		GCASSERT( GetGCTypeIDOf( CGCObjInvader ) == pObject->GetGCTypeID(), "wrong type!" );
 		CGCObjSprite* pProjectileAsSprite = static_cast< CGCObjSprite* >( pObject );
 		pProjectileAsSprite->DestroySprite();
-	});
+	};
+
+	DestroyObjectsReverseOrder( cMyLambda );
 }

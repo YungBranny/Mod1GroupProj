@@ -88,7 +88,7 @@ public:
 
 	bool	FireWasJustPressed();
 
-    // this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
+    // this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerPlatformer
     void NotifyOfCollisionWithInvader();
 
 

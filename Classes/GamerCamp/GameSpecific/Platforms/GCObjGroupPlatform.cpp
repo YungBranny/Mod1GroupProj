@@ -80,13 +80,15 @@ void CGCObjGroupPlatform::VOnGroupResourceAcquire_PostObject( void )
 	cocos2d::ValueMap	cSpriteInfo	= GCCocosHelpers::CreateDictionaryFromPlist( pszPlist_Platform );
 	cocos2d::Animation*	pAnimation	= GCCocosHelpers::CreateAnimation( cSpriteInfo, pszAnim_Platfrom_Rotate );
 
-	ForEachObject( [&] ( CGCObject* pcPlatformAsObject )
+	auto cMyLambda = [&] ( CGCObject* pcPlatformAsObject )
 	{
 		GCASSERT( GetGCTypeIDOf( CGCObjPlatform ) == pcPlatformAsObject->GetGCTypeID(), "wrong type!" );
 		CGCObjSprite* pSprite = (CGCObjSprite*) pcPlatformAsObject;
 		pSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
 		return true;
-	} );
+	};
+
+	ForEachObject( cMyLambda );
 }
 
 
@@ -109,11 +111,13 @@ void CGCObjGroupPlatform::DestroyPlatforms( void )
 {
 	// this iterates the array of registered CGCObjects 
 	// calling the supplied functor then deleting them
-	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
+	auto cMyLambda = [&]( CGCObject* pObject )
 	{
 		GCASSERT( GetGCTypeIDOf( CGCObjPlatform ) == pObject->GetGCTypeID(), "wrong type!" );
 		CGCObjSprite* pProjectileAsSprite = static_cast< CGCObjSprite* >( pObject );
 		pProjectileAsSprite->DestroySprite();
-	});
+	};
+
+	DestroyObjectsReverseOrder( cMyLambda );
 }
 

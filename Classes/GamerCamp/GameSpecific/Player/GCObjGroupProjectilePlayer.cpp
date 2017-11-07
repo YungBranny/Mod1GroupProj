@@ -8,7 +8,6 @@
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
-#include "GamerCamp/GameSpecific/GCGameLayerSpaceInvaders.h"
 #include "GamerCamp/Core/GCTypes.h"
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
@@ -82,7 +81,7 @@ void CGCObjGroupProjectilePlayer::CreateProjectiles( void )
 	cocos2d::ValueMap cSpriteInfo = GCCocosHelpers::Sprite_LoadTextureAndFramesToCachesAndGetDictionary( pszPlist_Egg );
 
 	// n.b. these register themselves with this class on creation
-	for( u32 uLoop = 0; uLoop < k_uNumInvaders; ++uLoop )
+	for( u32 uLoop = 0; uLoop < k_uNumProjectiles; ++uLoop )
 	{
 		CGCObjProjectilePlayer* pProjectile = new CGCObjProjectilePlayer(); 
 		pProjectile->CreateSpriteFast( cSpriteInfo );
@@ -105,12 +104,14 @@ void CGCObjGroupProjectilePlayer::DestroyProjectiles( void )
 {
 	// this iterates the array of registered CGCObjects 
 	// calling the supplied functor then deleting them
-	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
-	{
-		GCASSERT( GetGCTypeIDOf( CGCObjProjectilePlayer ) == pObject->GetGCTypeID(), "wrong type!" );
-		CGCObjSprite* pProjectileAsSprite = static_cast< CGCObjSprite* >( pObject );
-		pProjectileAsSprite->DestroySprite();
-	});
+    auto cMyLambda = [&]( CGCObject* pObject )
+    {
+        GCASSERT( GetGCTypeIDOf( CGCObjProjectilePlayer ) == pObject->GetGCTypeID(), "wrong type!" );
+        CGCObjSprite* pProjectileAsSprite = static_cast< CGCObjSprite* >( pObject );
+        pProjectileAsSprite->DestroySprite();
+    };
+
+	DestroyObjectsReverseOrder( cMyLambda );
 }
 
 

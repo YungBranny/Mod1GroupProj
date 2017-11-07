@@ -66,7 +66,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 // GamerCamp Edit - add windows
 //////////////////////////////////////////////////////////////////////////
 
-    // In this demo, we select resource according to the frame's height.
+	searchPath.push_back( WindowsResource.directory );
+
+	// In this demo, we select resource according to the frame's height.
     // If the resource size is different from design resolution size, you need to set contentScaleFactor.
     // We use the ratio of resource's height to the height of design resolution,
     // this can make sure that the resource's height could fit for the height of design resolution.

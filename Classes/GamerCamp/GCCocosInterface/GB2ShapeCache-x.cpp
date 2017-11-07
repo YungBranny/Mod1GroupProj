@@ -201,8 +201,8 @@ void GB2ShapeCache::addShapesWithFile(const std::string& plist) {
 			cFixtureDef.restitution			= rdicFixtureData[ "restitution"			].asFloat();
 			cFixtureDef.isSensor			= ( rdicFixtureData[ "isSensor"				].asInt() != 0 );
 			
-			std::string& rstrFixtureId		= rdicFixtureData[ "id"						].asString();
-			std::string& rstrFixtureType	= rdicFixtureData[ "fixture_type"			].asString();
+			std::string rstrFixtureId		= rdicFixtureData[ "id"						].asString();
+			std::string rstrFixtureType		= rdicFixtureData[ "fixture_type"			].asString();
 
 			if( rstrFixtureType == "POLYGON" )
 			{

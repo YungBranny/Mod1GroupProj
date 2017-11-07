@@ -3,8 +3,8 @@
 // This document should not be distributed or reproduced in part or in whole without obtaining written 
 // permission from the copyright holders.
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#ifndef _GAMELAYERSPACEINVADERS_H_
-#define _GAMELAYERSPACEINVADERS_H_
+#ifndef _GAMELAYERSPACEPLATFORMER_H_
+#define _GAMELAYERSPACEPLATFORMER_H_
 
 #include "../GCCocosInterface/IGCGameLayer.h"
 
@@ -105,4 +105,4 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 };
 
-#endif // __CGCGameLayerPlatformer_SCENE_H__
+#endif // _GAMELAYERSPACEPLATFORMER_H_
