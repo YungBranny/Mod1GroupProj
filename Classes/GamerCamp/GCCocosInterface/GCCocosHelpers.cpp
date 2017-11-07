@@ -63,7 +63,7 @@ namespace GCCocosHelpers
 	//////////////////////////////////////////////////////////////////////////
 	Sprite* Sprite_CreateSpriteFrom1stFrame( ValueMap& dicSpriteInfo )
 	{
-		ValueMap&		dicFrames	= dicSpriteInfo[ "frames" ].asValueMap();
+		ValueMap		dicFrames	= dicSpriteInfo[ "frames" ].asValueMap();
 
 		// elements are tuple< string, value >
 		auto			itr1stFrame	= dicFrames.begin();

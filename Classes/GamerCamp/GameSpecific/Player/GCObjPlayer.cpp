@@ -58,7 +58,7 @@ CGCObjPlayer::CGCObjPlayer()
 //virtual 
 void CGCObjPlayer::VOnResourceAcquire( void )
 {
-	const char* pszPlist_mario		= "TexturePacker/Sprites/Mario/mario.plist";
+	const char* pszPlist_mario		= "TexturePacker/Sprites/Mario/Mario.plist";
 	const char* pszAnim_marioJog	= "Jog";
 
 	SetName( "Mario!!" );
