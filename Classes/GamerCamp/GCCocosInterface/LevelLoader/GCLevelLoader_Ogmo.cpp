@@ -20,8 +20,6 @@
 #include "GamerCamp/GameSpecific/Items/GCObjItem.h" 
 #include "AppDelegate.h"
 
-#include "external\tinyxml2\tinyxml2.h"
-
 #include "GCLevelLoader_Ogmo.h"
 
 using namespace std;
@@ -58,6 +56,7 @@ CGCLevelLoader_Ogmo::CGCLevelLoader_Ogmo( void )
 	m_vecFactoryCreationParams.reserve( EMAX_HANDLED_UNIQUE_CREATIONPARAMS );
 }
 
+
 //////////////////////////////////////////////////////////////////////////
 // destructor
 //////////////////////////////////////////////////////////////////////////
@@ -69,6 +68,7 @@ CGCLevelLoader_Ogmo::~CGCLevelLoader_Ogmo( void )
 	}
 }
 
+
 //////////////////////////////////////////////////////////////////////////
 // This function just loads the level file.
 // CreateObjects() must be called to create them
@@ -76,39 +76,159 @@ CGCLevelLoader_Ogmo::~CGCLevelLoader_Ogmo( void )
 bool CGCLevelLoader_Ogmo::LoadLevelFile( const char* pszOelFile )
 {
 	//=== 1. XML-file
-
 	Data data = FileUtils::getInstance()->getDataFromFile( pszOelFile );
-	tinyxml2::XMLDocument tinyDoc;
-	tinyDoc.Parse( (const char*) data.getBytes(), data.getSize() );
+	
+	if( data.getSize() > 0 )
+	{
+		m_xmlOgmoDocument.Parse( (const char*) data.getBytes(), data.getSize() );
 
-	tinyxml2::XMLElement* pElement = tinyDoc.RootElement();
+		if( m_xmlOgmoDocument.Error() )
+		{
+			cerr << " CGCLevelLoader_Ogmo: Error during parsing of xml-file!" << endl;
 
-	std::string strName = pElement->Name();
+			// Print details about the error / Print the "parsing status"
+			cerr << " xml-file [" << pszOelFile << "] was parsed with error: " << m_xmlOgmoDocument.ErrorID() << "\n";
+			cerr << " Error description: " << m_xmlOgmoDocument.GetErrorStr1() << m_xmlOgmoDocument.GetErrorStr2() << "\n";
 
-	// Load and parse the xml-file
-	pugi::xml_parse_result sParseResult = m_xmlOgmoLevelFile.load_file( pszOelFile );
+			CCAssert( false, " CGCLevelLoader_Ogmo: Failed to load xml-file!" );
+		}
+		else
+		{
+			m_pxmlLevelNode		= m_xmlOgmoDocument.RootElement();
+			std::string strName	= m_pxmlLevelNode->Name();
 
-	// print errors if they occurred during the loading
-	if( !sParseResult ) 
-	{		
-		cerr << " CGCLevelLoader_Ogmo: Error during parsing of xml-file!" << endl;
+			CCAssert( !strcmp( m_pxmlLevelNode->Name(), "level" ), "oel file appears to be incorrect format" );
 
-		// Print details about the error / Print the "parsing status"
-		cerr << " xml-file [" << pszOelFile << "] was parsed with errors, attr value: [" << m_xmlOgmoLevelFile.child( "node" ).attribute( "attr" ).value() << "]\n";
-		cerr << " Error description: " << sParseResult.description() << "\n";
-		cerr << " Error offset: " << sParseResult.offset << " (error at [..." << ( pszOelFile + sParseResult.offset ) << "]\n\n";
-
-		CCAssert( false, " CGCLevelLoader_Ogmo: Failed to load xml-file!" );
+			m_v2LevelDimensions = b2Vec2( m_pxmlLevelNode->FloatAttribute( "width" ), m_pxmlLevelNode->FloatAttribute( "height" ) );
+		}
 
 	}
-
-	// Get the level node and store the width / height of the level (needed to crrect position setting...)
-	m_nodeLevels = m_xmlOgmoLevelFile.child( "level" );
-	m_v2LevelDimensions = b2Vec2( m_nodeLevels.attribute("width").as_float(), m_nodeLevels.attribute("height").as_float() );
+	else
+	{
+		CCAssert( false, " CGCLevelLoader_Ogmo: Failed to open oel file" );
+	}
 
 	// successful
 	return true;
 }
+
+
+//////////////////////////////////////////////////////////////////////////
+//    tiny xml * tiny xml * tiny xml * tiny xml * tiny xml * tiny xml
+//////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////
+// tinyxml version of the file parser
+class OgmoVisitor 
+	: public tinyxml2::XMLVisitor
+{
+	CGCLevelLoader_Ogmo&			m_rOgmoLoader;
+	CGCFactory_ObjSpritePhysics&	m_rFactoryClass;
+	int								m_iNumCreated;
+
+public:
+	OgmoVisitor( CGCLevelLoader_Ogmo& rOgmoLoader, CGCFactory_ObjSpritePhysics& rClassFactory )
+		: m_rOgmoLoader		( rOgmoLoader )
+		, m_rFactoryClass	( rClassFactory )
+		, m_iNumCreated		( 0 )
+	{}
+
+	virtual bool VisitEnter( const tinyxml2::XMLElement& rxmlElement, const tinyxml2::XMLAttribute* pxmlAttribute ) override
+	{
+		if( m_rOgmoLoader.AddFactoryDataForXMLElementIfValid( rxmlElement, m_rFactoryClass ) )
+		{
+			++m_iNumCreated;
+		}
+		return true;
+	}
+
+	int NumCreated()
+	{
+		return m_iNumCreated;
+	}
+};
+
+
+//////////////////////////////////////////////////////////////////////////
+inline bool CGCLevelLoader_Ogmo::AddFactoryDataForXMLElementIfValid( const tinyxml2::XMLElement& rxmlElement, CGCFactory_ObjSpritePhysics& rClassFactory )
+{
+	if( IsValidFactoryData( rxmlElement ) )
+	{
+		const CGCFactoryCreationParams* pParams = GetCreationParamsFromCache( GetFactoryClassName( rxmlElement ) );
+
+		if( nullptr == pParams )
+		{
+			pParams = AddCreationParamsToInternalStore( GetFactoryData( rxmlElement ) );
+		}
+
+		CGCObjSpritePhysics* pObject = rClassFactory.CreateInstance( (*pParams), GetObjectPosition( rxmlElement ) );
+
+		return true;
+	}
+
+	return false;
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+// validates an xml node as data that can be used to create an instance
+// via the class factory
+//////////////////////////////////////////////////////////////////////////
+// private
+inline bool CGCLevelLoader_Ogmo::IsValidFactoryData( const tinyxml2::XMLElement& rxmlElement )
+{
+	const char*	pszName						= rxmlElement.Name();
+	const tinyxml2::XMLAttribute* pName		= rxmlElement.FindAttribute( k_pszXmlAttr_ClassName );
+	const tinyxml2::XMLAttribute* pPlist	= rxmlElement.FindAttribute( k_pszXmlAttr_PlistFile );
+	const tinyxml2::XMLAttribute* pShape	= rxmlElement.FindAttribute( k_pszXmlAttr_PhysicsShape );
+	const tinyxml2::XMLAttribute* pBodyType	= rxmlElement.FindAttribute( k_pszXmlAttr_B2D_BodyType );
+	const tinyxml2::XMLAttribute* pFixedRot	= rxmlElement.FindAttribute( k_pszXmlAttr_B2D_HasFixedRotation );
+	const tinyxml2::XMLAttribute* pPosX		= rxmlElement.FindAttribute( k_pszXmlAttr_StartPos_X );
+	const tinyxml2::XMLAttribute* pPosY		= rxmlElement.FindAttribute( k_pszXmlAttr_StartPos_Y );
+
+	return(		( nullptr != pName		)
+			&&	( nullptr != pPlist		)
+			&&	( nullptr != pShape		)
+			&&	( nullptr != pBodyType	)
+			&&	( nullptr != pFixedRot	)
+			&&	( nullptr != pPosX		)
+			&&	( nullptr != pPosY		)
+			);
+}
+
+//////////////////////////////////////////////////////////////////////////
+// private  
+inline const char* CGCLevelLoader_Ogmo::GetFactoryClassName( const tinyxml2::XMLElement& rxmlElement )
+{
+	return rxmlElement.Attribute( k_pszXmlAttr_ClassName );
+}
+
+//////////////////////////////////////////////////////////////////////////
+// creates the corresponding factory creation params for a valid xml node
+//////////////////////////////////////////////////////////////////////////
+// private
+inline const CGCFactoryCreationParams* CGCLevelLoader_Ogmo::GetFactoryData( const tinyxml2::XMLElement& rxmlElement )
+{
+	return( new CGCFactoryCreationParams(	rxmlElement.Attribute( k_pszXmlAttr_ClassName ),
+			rxmlElement.Attribute( k_pszXmlAttr_PlistFile ),
+			rxmlElement.Attribute( k_pszXmlAttr_PhysicsShape ),
+			B2BodyTypeFromString( rxmlElement.Attribute( k_pszXmlAttr_B2D_BodyType ) ),
+			rxmlElement.BoolAttribute( k_pszXmlAttr_B2D_HasFixedRotation ) 
+			) );
+}
+
+//////////////////////////////////////////////////////////////////////////
+// private  
+inline b2Vec2 CGCLevelLoader_Ogmo::GetObjectPosition( const tinyxml2::XMLElement& rxmlElement )
+{
+	return( b2Vec2( rxmlElement.FloatAttribute( k_pszXmlAttr_StartPos_X ), 
+					( m_v2LevelDimensions.y - rxmlElement.FloatAttribute( k_pszXmlAttr_StartPos_Y ) ) ) );
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//    tiny xml * tiny xml * tiny xml * tiny xml * tiny xml * tiny xml
+//////////////////////////////////////////////////////////////////////////
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -118,100 +238,13 @@ bool CGCLevelLoader_Ogmo::LoadLevelFile( const char* pszOelFile )
 //////////////////////////////////////////////////////////////////////////
 u32	CGCLevelLoader_Ogmo::CreateObjects( CGCFactory_ObjSpritePhysics& rcClassFactory )
 {
-	return RecursiveIterateXMLNodeCreatingObjects( m_nodeLevels, rcClassFactory );
-}
+	OgmoVisitor cOgmoVisitor( *this, rcClassFactory );
 
-//////////////////////////////////////////////////////////////////////////
-// recursively iterates he xml nodes in the loaded level document
-// for each one it checks if it is a valid chunk of class factory data
-// and if so uses it to create an object via the class factory
-// 
-// N.B. depth first recursion
-// 
-//////////////////////////////////////////////////////////////////////////
-// private
-u32 CGCLevelLoader_Ogmo::RecursiveIterateXMLNodeCreatingObjects( pugi::xml_node xnodeStart, CGCFactory_ObjSpritePhysics& rcClassFactory )
-{ 
-	pugi::xml_node	xnodeCurrent	= xnodeStart;
-	u32				uNumCreated		= 0;
+	m_xmlOgmoDocument.Accept( &cOgmoVisitor );
 
-	for( ; xnodeCurrent; xnodeCurrent = xnodeCurrent.next_sibling() ) 
-	{
-		if( IsValidFactoryData( xnodeCurrent ) )
-		{
-			// check to see if we already have factory data for this class
-			const CGCFactoryCreationParams* pParams = GetCreationParamsFromCache( GetFactoryClassName( xnodeCurrent ) );
+	return cOgmoVisitor.NumCreated();
 
-			// if not found create it and add to the store
-			if( nullptr == pParams )
-			{
-				pParams = AddCreationParamsToInternalStore( GetFactoryData( xnodeCurrent ) );
-			}
-
-			CCAssert( ( nullptr != pParams ), "Error creating creation params from xml!" );
-
-			// CreateInstance takes CGCFactoryCreationParams& 
-			CGCObjSpritePhysics* pObject = rcClassFactory.CreateInstance( (*pParams), GetObjectPosition( xnodeCurrent ) );
-			uNumCreated++;
-		}
-
-		pugi::xml_node xnodeChild = xnodeCurrent.first_child();
-		if( xnodeChild )
-		{
-			uNumCreated += RecursiveIterateXMLNodeCreatingObjects( xnodeChild, rcClassFactory );
-		}
-	}
-
-	return uNumCreated; 
-}
-
-//////////////////////////////////////////////////////////////////////////
-// validates an xml node as data that can be used to create an instance
-// via the class factory
-//////////////////////////////////////////////////////////////////////////
-// private
-inline bool CGCLevelLoader_Ogmo::IsValidFactoryData( pugi::xml_node xnodeToCheck )
-{
-	return(		xnodeToCheck.attribute( k_pszXmlAttr_ClassName ) 
-			&& 	xnodeToCheck.attribute( k_pszXmlAttr_PlistFile )
-			&& 	xnodeToCheck.attribute( k_pszXmlAttr_PhysicsShape )
-			&& 	xnodeToCheck.attribute( k_pszXmlAttr_B2D_BodyType )
-			&& 	xnodeToCheck.attribute( k_pszXmlAttr_B2D_HasFixedRotation )
-			&& 	xnodeToCheck.attribute( k_pszXmlAttr_StartPos_X )
-			&& 	xnodeToCheck.attribute( k_pszXmlAttr_StartPos_Y )
-		);
-}
-
-//////////////////////////////////////////////////////////////////////////
-// private inline 
-const char* CGCLevelLoader_Ogmo::GetFactoryClassName( pugi::xml_node xnodeData )
-{
-	return xnodeData.attribute( k_pszXmlAttr_ClassName ).value();
-}
-
-//////////////////////////////////////////////////////////////////////////
-// creates the corresponding factory creation params for a valid xml node
-//////////////////////////////////////////////////////////////////////////
-// private
-inline const CGCFactoryCreationParams* CGCLevelLoader_Ogmo::GetFactoryData( pugi::xml_node xnodeData )
-{
-	return( new CGCFactoryCreationParams(	xnodeData.attribute( k_pszXmlAttr_ClassName ).value(),
-											xnodeData.attribute( k_pszXmlAttr_PlistFile ).value(),
-											xnodeData.attribute( k_pszXmlAttr_PhysicsShape ).value(),
-											B2BodyTypeFromString( xnodeData.attribute( k_pszXmlAttr_B2D_BodyType ).value() ),
-											xnodeData.attribute( k_pszXmlAttr_B2D_HasFixedRotation ).as_bool() ) );
-}
-
-//////////////////////////////////////////////////////////////////////////
-// extracts the x, y 2d vector from a valid xml node 
-// N.B. corrects for the coordinate diference between cocos2d and ogmo
-// (cocos2d 0,0 : left,bottom & ogmo 0,0 : left, top)
-//////////////////////////////////////////////////////////////////////////
-// private
-inline b2Vec2 CGCLevelLoader_Ogmo::GetObjectPosition( pugi::xml_node xnodePosition )
-{
-	return( b2Vec2( xnodePosition.attribute( k_pszXmlAttr_StartPos_X ).as_float(), 
-					( m_v2LevelDimensions.y - xnodePosition.attribute( k_pszXmlAttr_StartPos_Y ).as_float() ) ) );
+	// return RecursiveIterateXMLNodeCreatingObjects( m_nodeLevels, rcClassFactory );
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -272,5 +305,3 @@ const CGCFactoryCreationParams* CGCLevelLoader_Ogmo::AddCreationParamsToInternal
 	m_vecFactoryCreationParams.push_back( ptParams );
 	return m_vecFactoryCreationParams.back();
 }
-
-

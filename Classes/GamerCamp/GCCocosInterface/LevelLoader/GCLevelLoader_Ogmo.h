@@ -5,13 +5,16 @@
 #include <map>
 #include <functional>
 
-#ifndef HEADER_PUGIXML_HPP
-	#include "..\pugixml-1.2\pugixml.hpp"
-#endif
 
 #ifndef _SGCFACTORYCREATIONPARAMS_H_
 	#include "GamerCamp\GCCocosInterface\SGCFactoryCreationParams.h"
 #endif
+
+#ifndef TINYXML2_INCLUDED
+	#include "external\tinyxml2\tinyxml2.h"
+#endif
+
+
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -32,11 +35,9 @@ class CGCFactory_ObjSpritePhysics;
 //////////////////////////////////////////////////////////////////////////
 class CGCLevelLoader_Ogmo
 {
-	// the xml document (tree structure)
-	pugi::xml_document	m_xmlOgmoLevelFile;
+	tinyxml2::XMLDocument	m_xmlOgmoDocument;
+	tinyxml2::XMLElement*	m_pxmlLevelNode;
 
-	// the level node of the xml document
-	pugi::xml_node		m_nodeLevels;
 
 	// level file has dimensions, need to use these to correctly position objects from level file
 	// as ogmo's coords are top left 0,0 & cocos are bottom left 0,0
@@ -51,19 +52,17 @@ class CGCLevelLoader_Ogmo
 	}; 
 
 	// adds the creation params to internal store
-	const	CGCFactoryCreationParams*	AddCreationParamsToInternalStore	( const CGCFactoryCreationParams* rtParamsToCheck );
-	const	CGCFactoryCreationParams*	GetCreationParamsFromCache			( const char* pszClassName );
+	const	CGCFactoryCreationParams*		AddCreationParamsToInternalStore		( const CGCFactoryCreationParams* rtParamsToCheck );
+	const	CGCFactoryCreationParams*		GetCreationParamsFromCache				( const char* pszClassName );
 
-	// iterates the xml data and calls the class factory for each valid
-	// instance of object data contained in it 
-	u32								RecursiveIterateXMLNodeCreatingObjects	(	pugi::xml_node xnodeStart, 
-																				CGCFactory_ObjSpritePhysics& rcClassFactory );
-	// helper functions to validate data & extract required data from xml 
-	inline bool								IsValidFactoryData						( pugi::xml_node xnodeToCheck );
-	inline const char*						GetFactoryClassName						( pugi::xml_node xnodeData );
-	inline const CGCFactoryCreationParams*	GetFactoryData							( pugi::xml_node xnodeData );
-	inline b2Vec2							GetObjectPosition						( pugi::xml_node xnodePosition );
 	inline b2BodyType						B2BodyTypeFromString					( const char* pszBodyType );
+	inline bool								IsValidFactoryData						( const tinyxml2::XMLElement& rxmlElement );
+	inline const char*						GetFactoryClassName						( const tinyxml2::XMLElement& rxmlElement );
+	inline const CGCFactoryCreationParams*	GetFactoryData							( const tinyxml2::XMLElement& rxmlElement );
+	inline b2Vec2							GetObjectPosition						( const tinyxml2::XMLElement& rxmlElement );
+
+public:
+	inline bool								AddFactoryDataForXMLElementIfValid		( const tinyxml2::XMLElement& rxmlElement, CGCFactory_ObjSpritePhysics& rClassFactory );
 
 public:
 	// Con/destruction
