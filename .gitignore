@@ -6,3 +6,4 @@ cocos2d/cocos/editor-support/spine/proj.win32/Debug.win32/
 *.opendb
 proj.win32/Debug.win32/
 Resources/
+proj.win32/Release.win32/
