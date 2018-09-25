@@ -7,3 +7,10 @@ cocos2d/cocos/editor-support/spine/proj.win32/Debug.win32/
 proj.win32/Debug.win32/
 Resources/
 proj.win32/Release.win32/
+*.user
+BuildData/Debug/
+*.obj
+*.log
+*.pdb
+*.suo
+proj.win32/.vs/
