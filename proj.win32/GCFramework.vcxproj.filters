@@ -7,9 +7,6 @@
     <Filter Include="resource">
       <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
     </Filter>
-    <Filter Include="NewFilter1">
-      <UniqueIdentifier>{6c09a8d7-cffe-4810-9593-c167a87051ec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
