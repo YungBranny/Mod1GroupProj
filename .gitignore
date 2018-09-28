@@ -14,3 +14,8 @@ BuildData/Debug/
 *.pdb
 *.suo
 proj.win32/.vs/
+BuildData/Debug/
+BuildData/Release/
+BuildData/Debug with data/
+BuildData/Release with data/
+
