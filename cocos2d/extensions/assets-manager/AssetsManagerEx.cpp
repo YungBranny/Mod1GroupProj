@@ -47,7 +47,7 @@ NS_CC_EXT_BEGIN
 
 #define DEFAULT_CONNECTION_TIMEOUT 45
 
-#define SAVE_POINT_INTERVAL 0.1
+#define SAVE_POINT_INTERVAL (0.1f)
 
 const std::string AssetsManagerEx::VERSION_ID = "@version";
 const std::string AssetsManagerEx::MANIFEST_ID = "@manifest";

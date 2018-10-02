@@ -181,7 +181,7 @@ typedef enum { XXH_bigEndian=0, XXH_littleEndian=1 } XXH_endianess;
 //**************************************
 // Macros
 //**************************************
-#define XXH_STATIC_ASSERT(c)   { enum { XXH_static_assert = 1/(!!(c)) }; }    // use only *after* variable declarations
+#define XXH_STATIC_ASSERT(c)   { enum { XXH_static_assert = 1/((int)(!!(c))) }; }    // use only *after* variable declarations
 
 
 //****************************

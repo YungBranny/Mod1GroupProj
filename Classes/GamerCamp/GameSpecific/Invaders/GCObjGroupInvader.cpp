@@ -8,7 +8,7 @@
 
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
-#include "GamerCamp/GameSpecific/GCGameLayerSpaceInvaders.h"
+#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "GamerCamp/Core/GCTypes.h"
 #include "GamerCamp/GCObject/GCObject.h"
 #include "GamerCamp/GameSpecific/Invaders/GCObjInvader.h"
