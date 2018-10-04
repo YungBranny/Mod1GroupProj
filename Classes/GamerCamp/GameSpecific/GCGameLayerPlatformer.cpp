@@ -501,7 +501,8 @@ void CGCGameLayerPlatformer::HandleCollisions( void )
 			++i;
 		}
 
-		// different?
+		// is this collision an invader and a projectile?
+		// if so, kil the invader
 		if(	   pB2Contact->IsEnabled()
 			&& ( pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() ) )
 		{
