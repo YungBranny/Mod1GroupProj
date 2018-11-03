@@ -1,7 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// (C) Gamer Camp 2012 
-// This document should not be distributed or reproduced in part or in whole without obtaining written 
-// permission from the copyright holders.
+// (C) Gamer Camp / Alex Darby 2018
+// Distributed under the MIT license - see readme.md
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #ifndef _GCOBJECT_H_
 #define _GCOBJECT_H_
@@ -150,5 +149,20 @@ public:
 
 	// game object interface
 	//////////////////////////////////////////////////////////////////////////
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// safely cast a pointer to a GCObject derived type to its EXACT type
+	// returns nullptr if instance type doesn't match
+	//////////////////////////////////////////////////////////////////////////
+		template< class TGCObjectOrDerivedPtr >
+		static TGCObjectOrDerivedPtr SafeCastToDerived( CGCObject* pGCObjectDerived )
+		{
+			if( pGCObjectDerived->GetGCTypeID() == TGCTypeIDGenerator< std::remove_pointer< TGCObjectOrDerivedPtr >::type >::GetTypeID() )
+			{
+				return static_cast<TGCObjectOrDerivedPtr>( pGCObjectDerived );
+			}
+			return nullptr;
+		}
 };
 #endif

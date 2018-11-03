@@ -1,7 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// (C) Gamer Camp 2012 
-// This document should not be distributed or reproduced in part or in whole without obtaining written 
-// permission from the copyright holders.
+// (C) Gamer Camp / Alex Darby 2018
+// Distributed under the MIT license - see readme.md
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <string>
 
@@ -18,7 +17,7 @@ CGCFactory_ObjSpritePhysics::CGCFactory_ObjSpritePhysics( void )
 //////////////////////////////////////////////////////////////////////////
 // this class is *completely* a singleton all access is via this function
 //////////////////////////////////////////////////////////////////////////
-// static 
+// static 																			
 CGCFactory_ObjSpritePhysics& CGCFactory_ObjSpritePhysics::GetFactory( void )
 {
 	static CGCFactory_ObjSpritePhysics s_SingleInstance;

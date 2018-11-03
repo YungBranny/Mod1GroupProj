@@ -10,5 +10,9 @@ proj.android-studio/.idea/
 proj.android-studio/proj.android-studio.iml
 proj.android-studio/app/GCFramework.iml
 cocos2d/cocos/platform/android/libcocos2dx/build/
-proj.win32/Debug.win32/
-proj.win32/Release.win32/
+**/proj.win32/Debug.win32/
+**/proj.win32/Release.win32/
+BuildData/Debug*
+BuildData/Release*
+*.vcxproj.user
+proj.win32/.vs/

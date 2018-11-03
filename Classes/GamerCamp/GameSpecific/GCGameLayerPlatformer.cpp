@@ -1,7 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////
-// (C) Gamer Camp 2012
-// This document should not be distributed or reproduced in part or in whole 
-// without obtaining written permission from the copyright holders.
+// (C) Gamer Camp / Alex Darby 2018
+// Distributed under the MIT license - see readme.md
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "GCGameLayerPlatformer.h"
@@ -9,7 +8,6 @@
 #include <stdlib.h> 
 
 #include "platform/CCFileUtils.h"
-
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 
 #include "MenuScene.h"
@@ -482,7 +480,7 @@ void CGCGameLayerPlatformer::HandleCollisions( void )
 		// in the text box immediately below the 'Is Sensor?' checkbox
 		// 
 		// Mario has a fixture that is a sensor with id 'bottom_left' 
-		// and this  =is what we're checking for :)
+		// and this is what we're checking for :)
 		const std::string*	pstrCheckMe		= cocos2d::GB2ShapeCache::getFixtureIdText( pFixtureA );
 		bool				bNameMatches	= ( 0 == pstrCheckMe->compare( "bottom_left" ) );
 		bool				bIsASensor		= pFixtureA->IsSensor();
@@ -502,16 +500,20 @@ void CGCGameLayerPlatformer::HandleCollisions( void )
 			++i;
 		}
 
-		// different?
+		// is this collision an invader and a projectile?
+		// if so, kil the invader
 		if(	   pB2Contact->IsEnabled()
 			&& ( pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() ) )
 		{
+			// returns a valid ptr if instance's EXACT type matches or nullptr if not
+			CGCObjInvader* pInvaderA = CGCObject::SafeCastToDerived< CGCObjInvader* >( pGcSprPhysA );
+			CGCObjInvader* pInvaderB = CGCObject::SafeCastToDerived< CGCObjInvader* >( pGcSprPhysB );
+
 			// at least one of them is an invader?
-			if(		( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjInvader ) )
-				||	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf( CGCObjInvader ) ) )
+			if(	pInvaderA || pInvaderB )
 			{
-				CGCObjSpritePhysics*	pKillMe			= ( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjInvader ) ) ? pGcSprPhysA				: pGcSprPhysB;
-				GCTypeID				tidNotInvader	= ( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjInvader ) ) ? pGcSprPhysB->GetGCTypeID() : pGcSprPhysA->GetGCTypeID();
+				CGCObjInvader*	pKillMe			= ( pInvaderA ? pInvaderA : pInvaderB );
+				GCTypeID		tidNotInvader	= ( pInvaderA ? pGcSprPhysB->GetGCTypeID() : pGcSprPhysA->GetGCTypeID() );
 			
 				if( GetGCTypeIDOf( CGCObjProjectilePlayer ) == tidNotInvader )
 				{

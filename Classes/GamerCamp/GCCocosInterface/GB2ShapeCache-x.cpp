@@ -42,7 +42,8 @@ using namespace cocos2d;
 /**
  * Internal class to hold the fixtures
  */
-class FixtureDef {
+class FixtureDef
+{
 public:
 	static const int k_iMagicNumber = 0x0C0FFEE0;
 
@@ -53,135 +54,145 @@ public:
 	};
 
 
-    FixtureDef( const b2FixtureDef& rFixDef, const char* pszIdText )
-    : next		( NULL )
-	, fixture	( rFixDef )
+	FixtureDef( const b2FixtureDef& rFixDef, const char* pszIdText )
+		: next( NULL )
+		, fixture( rFixDef )
 	{
-		sUserData.iMagicNumber	= k_iMagicNumber;
-		sUserData.strIdText		= pszIdText;
-		fixture.userData		= reinterpret_cast< void* >( &sUserData );
+		sUserData.iMagicNumber = k_iMagicNumber;
+		sUserData.strIdText = pszIdText;
+		fixture.userData = reinterpret_cast<void*>( &sUserData );
 	}
-    
-    ~FixtureDef() {
-        delete next;
-        delete fixture.shape;
-    }
+
+	~FixtureDef()
+	{
+		delete next;
+		delete fixture.shape;
+	}
 
 	static const std::string* RetrieveIdText( const b2Fixture* pb2Fixture )
 	{
-		const std::string*	pstrReturn	= NULL;
-		const SUserData*	pUserData	= reinterpret_cast< const SUserData* >( pb2Fixture->GetUserData() );	
-		
-		if(	pUserData->iMagicNumber == k_iMagicNumber )
+		const std::string*	pstrReturn = NULL;
+		const SUserData*	pUserData = reinterpret_cast<const SUserData*>( pb2Fixture->GetUserData() );
+
+		if( pUserData->iMagicNumber == k_iMagicNumber )
 		{
 			pstrReturn = &( pUserData->strIdText );
 		}
 
 		return pstrReturn;
 	}
-    
-    FixtureDef*		next;
-    b2FixtureDef	fixture;
+
+	FixtureDef*		next;
+	b2FixtureDef	fixture;
 	SUserData		sUserData;
 };
 
-class BodyDef {
+class BodyDef
+{
 public:
-        BodyDef()
-        : fixtures(NULL) {}
-        
-        ~BodyDef() {
-                if (fixtures)
-                        delete fixtures;
-        }
-        
-        FixtureDef*		fixtures;
-        cocos2d::Vec2	anchorPoint;
+	BodyDef()
+		: fixtures( NULL )
+	{}
+
+	~BodyDef()
+	{
+		if( fixtures )
+			delete fixtures;
+	}
+
+	FixtureDef*		fixtures;
+	cocos2d::Vec2	anchorPoint;
 };
 
 static GB2ShapeCache *_sharedGB2ShapeCache = NULL;
 
-GB2ShapeCache* GB2ShapeCache::sharedGB2ShapeCache(void) {
-        if (!_sharedGB2ShapeCache) {
-                _sharedGB2ShapeCache = new GB2ShapeCache();
-        _sharedGB2ShapeCache->init();
-        }
-        
-        return _sharedGB2ShapeCache;
+GB2ShapeCache* GB2ShapeCache::sharedGB2ShapeCache( void )
+{
+	if( !_sharedGB2ShapeCache ) {
+		_sharedGB2ShapeCache = new GB2ShapeCache();
+		_sharedGB2ShapeCache->init();
+	}
+
+	return _sharedGB2ShapeCache;
 }
 
 //static 
 const std::string* GB2ShapeCache::getFixtureIdText( const b2Fixture* pb2Fixture )
 {
-	return FixtureDef::RetrieveIdText( pb2Fixture ); 
+	return FixtureDef::RetrieveIdText( pb2Fixture );
 }
 
 
-bool GB2ShapeCache::init() {
-        return true;
+bool GB2ShapeCache::init()
+{
+	return true;
 }
 
-void GB2ShapeCache::reset() {
-        std::map<std::string, BodyDef *>::iterator iter;
-        for (iter = shapeObjects.begin() ; iter != shapeObjects.end() ; ++iter) {
-                delete iter->second;
-        }
-        shapeObjects.clear();
+void GB2ShapeCache::reset()
+{
+	std::map<std::string, BodyDef *>::iterator iter;
+	for( iter = shapeObjects.begin(); iter != shapeObjects.end(); ++iter ) {
+		delete iter->second;
+	}
+	shapeObjects.clear();
 }
 
-void GB2ShapeCache::addFixturesToBody(b2Body *body, const std::string &shape) {
-        std::map<std::string, BodyDef *>::iterator pos = shapeObjects.find(shape);
-        assert(pos != shapeObjects.end());
-        
-        BodyDef *so = (*pos).second;
+void GB2ShapeCache::addFixturesToBody( b2Body *body, const std::string &shape )
+{
+	std::map<std::string, BodyDef *>::iterator pos = shapeObjects.find( shape );
+	assert( pos != shapeObjects.end() );
 
-        FixtureDef *fix = so->fixtures;
-    while (fix) {
-        body->CreateFixture(&fix->fixture);
-        fix = fix->next;
-    }
+	BodyDef *so = ( *pos ).second;
+
+	FixtureDef *fix = so->fixtures;
+	while( fix ) {
+		body->CreateFixture( &fix->fixture );
+		fix = fix->next;
+	}
 }
 
-cocos2d::CCPoint GB2ShapeCache::anchorPointForShape(const std::string &shape) {
-        std::map<std::string, BodyDef *>::iterator pos = shapeObjects.find(shape);
-        assert(pos != shapeObjects.end());
-        
-        BodyDef *bd = (*pos).second;
-        return bd->anchorPoint;
+cocos2d::CCPoint GB2ShapeCache::anchorPointForShape( const std::string &shape )
+{
+	std::map<std::string, BodyDef *>::iterator pos = shapeObjects.find( shape );
+	assert( pos != shapeObjects.end() );
+
+	BodyDef *bd = ( *pos ).second;
+	return bd->anchorPoint;
 }
 
 
-void GB2ShapeCache::addShapesWithFile(const std::string& plist) {
-        
+void GB2ShapeCache::addShapesWithFile( const std::string& plist )
+{
+
 	ValueMap dict = FileUtils::getInstance()->getValueMapFromFile( plist );
-    // not triggered - cocos2dx delivers empty dict if non was found
+	// not triggered - cocos2dx delivers empty dict if non was found
 
-    CCAssert( !dict.empty(), "Shape-file not found, plist file empty, or not existing");
-        
-    ValueMap& metadataDict = dict[ "metadata" ].asValueMap();
-    
-    //int format	= static_cast<CCString *>(metadataDict->objectForKey("format"))->intValue();
+	CCAssert( !dict.empty(), "Shape-file not found, plist file empty, or not existing" );
+
+	ValueMap& metadataDict = dict[ "metadata" ].asValueMap();
+
+	//int format	= static_cast<CCString *>(metadataDict->objectForKey("format"))->intValue();
 	//ptmRatio = static_cast<CCString *>(metadataDict->objectForKey("ptm_ratio"))->floatValue();
-	int format	= metadataDict[ "format" ].asInt();
-	ptmRatio	= metadataDict[ "ptm_ratio" ].asFloat();
-    CCLOG("ptmRatio = %f",ptmRatio);
-    CCAssert(format == 1, "Format not supported");
+	int format = metadataDict[ "format" ].asInt();
+	ptmRatio = metadataDict[ "ptm_ratio" ].asFloat();
+	CCLOG( "ptmRatio = %f", ptmRatio );
+	CCAssert( format == 1, "Format not supported" );
 
 	//CCDictionary *bodyDict = (CCDictionary *)dict->objectForKey("bodies");
 	ValueMap& bodyDict = dict[ "bodies" ].asValueMap();
 
-    b2Vec2 vertices[b2_maxPolygonVertices];
+	b2Vec2 vertices[ b2_maxPolygonVertices ];
 
 	// new code!
 	// cKeyPair is tuple< string, value >
 	for( auto cKeyPair : bodyDict )
 	{
 		// get top level body data
-		ValueMap&	rdicBodyData	= cKeyPair.second.asValueMap();
-		std::string	strBodyName		= cKeyPair.first;
+		ValueMap&	rdicBodyData = cKeyPair.second.asValueMap();
+		std::string	strBodyName = cKeyPair.first;
 
-		BodyDef* pBodyDef		= new BodyDef();
-		pBodyDef->anchorPoint	= PointFromString( rdicBodyData[ "anchorpoint" ].asString() );
+		BodyDef* pBodyDef = new BodyDef();
+		pBodyDef->anchorPoint = PointFromString( rdicBodyData[ "anchorpoint" ].asString() );
 
 		ValueVector vvFixtureList = rdicBodyData[ "fixtures" ].asValueVector();
 
@@ -193,16 +204,16 @@ void GB2ShapeCache::addShapesWithFile(const std::string& plist) {
 			b2FixtureDef	cFixtureDef;
 			ValueMap&		rdicFixtureData = cvalFixture.asValueMap();
 
-			cFixtureDef.filter.categoryBits = rdicFixtureData[ "filter_categoryBits"	].asInt();
-			cFixtureDef.filter.maskBits		= rdicFixtureData[ "filter_maskBits"		].asInt();
-			cFixtureDef.filter.groupIndex	= rdicFixtureData[ "filter_groupIndex"		].asInt();
-			cFixtureDef.friction			= rdicFixtureData[ "friction"				].asFloat();
-			cFixtureDef.density				= rdicFixtureData[ "density"				].asFloat();
-			cFixtureDef.restitution			= rdicFixtureData[ "restitution"			].asFloat();
-			cFixtureDef.isSensor			= ( rdicFixtureData[ "isSensor"				].asInt() != 0 );
-			
-			std::string rstrFixtureId		= rdicFixtureData[ "id"						].asString();
-			std::string rstrFixtureType		= rdicFixtureData[ "fixture_type"			].asString();
+			cFixtureDef.filter.categoryBits = rdicFixtureData[ "filter_categoryBits" ].asInt();
+			cFixtureDef.filter.maskBits = rdicFixtureData[ "filter_maskBits" ].asInt();
+			cFixtureDef.filter.groupIndex = rdicFixtureData[ "filter_groupIndex" ].asInt();
+			cFixtureDef.friction = rdicFixtureData[ "friction" ].asFloat();
+			cFixtureDef.density = rdicFixtureData[ "density" ].asFloat();
+			cFixtureDef.restitution = rdicFixtureData[ "restitution" ].asFloat();
+			cFixtureDef.isSensor = ( rdicFixtureData[ "isSensor" ].asInt() != 0 );
+
+			std::string& rstrFixtureId = rdicFixtureData[ "id" ].asString();
+			std::string& rstrFixtureType = rdicFixtureData[ "fixture_type" ].asString();
 
 			if( rstrFixtureType == "POLYGON" )
 			{
@@ -212,12 +223,12 @@ void GB2ShapeCache::addShapesWithFile(const std::string& plist) {
 				{
 					FixtureDef* pFixture = new FixtureDef( cFixtureDef, rstrFixtureId.c_str() );
 
-					b2PolygonShape* pPolyShape	= new b2PolygonShape();
-					int				iVIndex		= 0;
+					b2PolygonShape* pPolyShape = new b2PolygonShape();
+					int				iVIndex = 0;
 
 					ValueVector vvVertices = cPolyValue.asValueVector();
 
-					assert( vvVertices.size() <= b2_maxPolygonVertices);
+					assert( vvVertices.size() <= b2_maxPolygonVertices );
 
 					for( auto cVertValue : vvVertices )
 					{
@@ -231,31 +242,31 @@ void GB2ShapeCache::addShapesWithFile(const std::string& plist) {
 					pFixture->fixture.shape = pPolyShape;
 
 					// add pFixture to the list
-					*ppNextFixtureDef	= pFixture;
-					ppNextFixtureDef	= &( pFixture->next );
+					*ppNextFixtureDef = pFixture;
+					ppNextFixtureDef = &( pFixture->next );
 				}
 			}
 			else if( rstrFixtureType == "CIRCLE" )
 			{
-				FixtureDef*		pCircleFixture	= new FixtureDef( cFixtureDef, rstrFixtureId.c_str() );
+				FixtureDef*		pCircleFixture = new FixtureDef( cFixtureDef, rstrFixtureId.c_str() );
 
-				ValueMap&		rdicCircleShape	= rdicFixtureData[ "circle" ].asValueMap();
+				ValueMap&		rdicCircleShape = rdicFixtureData[ "circle" ].asValueMap();
 
-				b2CircleShape*	pCircleShape	= new b2CircleShape();
+				b2CircleShape*	pCircleShape = new b2CircleShape();
 
-				pCircleShape->m_radius	= ( rdicCircleShape[ "radius" ].asFloat() / ptmRatio );
-				cocos2d::Vec2 v2Pos		= PointFromString( rdicCircleShape[ "position" ].asString() );
-				pCircleShape->m_p		= b2Vec2( (v2Pos.x / ptmRatio), (v2Pos.y / ptmRatio) );
+				pCircleShape->m_radius = ( rdicCircleShape[ "radius" ].asFloat() / ptmRatio );
+				cocos2d::Vec2 v2Pos = PointFromString( rdicCircleShape[ "position" ].asString() );
+				pCircleShape->m_p = b2Vec2( ( v2Pos.x / ptmRatio ), ( v2Pos.y / ptmRatio ) );
 
 				pCircleFixture->fixture.shape = pCircleShape;
 
 				// add pFixture to the list
-				*ppNextFixtureDef	= pCircleFixture;
-				ppNextFixtureDef	= &( pCircleFixture->next );
+				*ppNextFixtureDef = pCircleFixture;
+				ppNextFixtureDef = &( pCircleFixture->next );
 			}
 			else
 			{
-				CCAssert(0, "Unknown fixtureType");
+				CCAssert( 0, "Unknown fixtureType" );
 			}
 
 		}// for( auto cValue : vvFixtureList )
