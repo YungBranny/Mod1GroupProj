@@ -1,5 +1,5 @@
 /****************************************************************************
-Copyright (c) 2013-2017 Chukong Technologies Inc.
+Copyright (c) 2013-2014 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -105,11 +105,12 @@ void ComponentContainer::removeAll()
 {
     if (!_componentMap.empty())
     {
-        for (auto& iter : _componentMap)
+        for (auto iter = _componentMap.begin(); iter != _componentMap.end(); ++iter)
         {
-            iter.second->onRemove();
-            iter.second->setOwner(nullptr);
-            iter.second->release();
+            auto component = iter->second;
+            component->onRemove();
+            component->setOwner(nullptr);
+            component->release();
         }
         
         _componentMap.clear();
@@ -122,9 +123,10 @@ void ComponentContainer::visit(float delta)
     if (!_componentMap.empty())
     {
         CC_SAFE_RETAIN(_owner);
-        for (auto& iter : _componentMap)
+        auto iterEnd = _componentMap.end();
+        for (auto iter = _componentMap.begin(); iter != iterEnd; ++iter)
         {
-            iter.second->update(delta);
+            iter->second->update(delta);
         }
         CC_SAFE_RELEASE(_owner);
     }
@@ -132,17 +134,17 @@ void ComponentContainer::visit(float delta)
 
 void ComponentContainer::onEnter()
 {
-    for (auto& iter : _componentMap)
+    for (auto iter = _componentMap.begin(); iter != _componentMap.end(); ++iter)
     {
-        iter.second->onEnter();
+        iter->second->onEnter();
     }
 }
 
 void ComponentContainer::onExit()
 {
-    for (auto& iter : _componentMap)
+    for (auto iter = _componentMap.begin(); iter != _componentMap.end(); ++iter)
     {
-        iter.second->onExit();
+        iter->second->onExit();
     }
 }
 

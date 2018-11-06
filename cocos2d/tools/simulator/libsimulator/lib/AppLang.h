@@ -9,7 +9,7 @@
 #include "cocos2d.h"
 #include <map>
 
-#include "json/document-wrapper.h"
+#include "json/document.h"
 #include "DeviceEx.h"
 #include "SimulatorExport.h"
 

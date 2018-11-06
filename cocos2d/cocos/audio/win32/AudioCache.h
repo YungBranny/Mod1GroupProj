@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2014-2017 Chukong Technologies Inc.
+ Copyright (c) 2014 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -21,24 +21,57 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
-
-#pragma once
-
 #include "platform/CCPlatformConfig.h"
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 
+#ifndef __AUDIO_CACHE_H_
+#define __AUDIO_CACHE_H_
+
 #include <string>
 #include <mutex>
 #include <vector>
-#include <memory>
 #ifdef OPENAL_PLAIN_INCLUDES
 #include <al.h>
 #else
 #include <AL/al.h>
 #endif
 #include "platform/CCPlatformMacros.h"
-#include "audio/win32/AudioMacros.h"
+
+#define QUEUEBUFFER_NUM 5
+#define QUEUEBUFFER_TIME_STEP 0.1f
+
+// log, CCLOG aren't threadsafe, since we uses sub threads for parsing pcm data, threadsafe log output
+// is needed. Define the following macros (ALOGV, ALOGD, ALOGI, ALOGW, ALOGE) for threadsafe log output.
+
+//FIXME:Move the definition of the following macros to a separated file.
+
+void audioLog(const char * format, ...);
+
+#define QUOTEME_(x) #x
+#define QUOTEME(x) QUOTEME_(x)
+
+#if defined(COCOS2D_DEBUG) && COCOS2D_DEBUG > 0
+#define ALOGV(fmt, ...) audioLog("V/" LOG_TAG " (" QUOTEME(__LINE__) "): " fmt "", ##__VA_ARGS__)
+#else
+#define ALOGV(fmt, ...) do {} while(false)
+#endif
+#define ALOGD(fmt, ...) audioLog("D/" LOG_TAG " (" QUOTEME(__LINE__) "): " fmt "", ##__VA_ARGS__)
+#define ALOGI(fmt, ...) audioLog("I/" LOG_TAG " (" QUOTEME(__LINE__) "): " fmt "", ##__VA_ARGS__)
+#define ALOGW(fmt, ...) audioLog("W/" LOG_TAG " (" QUOTEME(__LINE__) "): " fmt "", ##__VA_ARGS__)
+#define ALOGE(fmt, ...) audioLog("E/" LOG_TAG " (" QUOTEME(__LINE__) "): " fmt "", ##__VA_ARGS__)
+
+#if defined(COCOS2D_DEBUG) && COCOS2D_DEBUG > 0
+#define CHECK_AL_ERROR_DEBUG() \
+do { \
+    GLenum __error = alGetError(); \
+    if (__error) { \
+        ALOGE("OpenAL error 0x%04X in %s %s %d\n", __error, __FILE__, __FUNCTION__, __LINE__); \
+    } \
+} while (false)
+#else
+#define CHECK_AL_ERROR_DEBUG() 
+#endif
 
 NS_CC_BEGIN
 namespace experimental{
@@ -46,19 +79,17 @@ namespace experimental{
 class AudioEngineImpl;
 class AudioPlayer;
 
-class CC_DLL AudioCache
-{
+class CC_DLL AudioCache{
 public:
-
-    enum class State
+    enum class FileFormat
     {
-        INITIAL,
-        LOADING,
-        READY,
-        FAILED
+        UNKNOWN,
+        OGG,
+        MP3
     };
 
     AudioCache();
+    AudioCache(const AudioCache&);
     ~AudioCache();
 
     void addPlayCallback(const std::function<void()>& callback);
@@ -66,54 +97,53 @@ public:
     void addLoadCallback(const std::function<void(bool)>& callback);
 
 protected:
-    void setSkipReadDataTask(bool isSkip) { _isSkipReadDataTask = isSkip; };
-    void readDataTask(unsigned int selfId);
-
+    void readDataTask();  
     void invokingPlayCallbacks();
-
     void invokingLoadCallbacks();
 
+    std::string _fileFullPath;
+    FileFormat _fileFormat;
     //pcm data related stuff
-    ALenum _format;
-    ALsizei _sampleRate;
-    float _duration;
-    uint32_t _totalFrames;
-    uint32_t _framesRead;
+    size_t _pcmDataSize;
+    ALenum _alBufferFormat;
 
+    int _channels;
+    ALuint _sampleRate;
+    size_t _bytesPerFrame;
+    float _duration;
+    
     /*Cache related stuff;
      * Cache pcm data when sizeInBytes less than PCMDATA_CACHEMAXSIZE
      */
     ALuint _alBufferId;
-    char* _pcmData;
+    void* _pcmData;
+    size_t _bytesOfRead;
 
     /*Queue buffer related stuff
      *  Streaming in OpenAL when sizeInBytes greater then PCMDATA_CACHEMAXSIZE
      */
     char* _queBuffers[QUEUEBUFFER_NUM];
     ALsizei _queBufferSize[QUEUEBUFFER_NUM];
-    uint32_t _queBufferFrames;
+    int _queBufferFrames;
+    int _queBufferBytes;
 
-    std::mutex _playCallbackMutex;
-    std::vector< std::function<void()> > _playCallbacks;
-
-    // loadCallbacks doesn't need mutex since it's invoked only in Cocos thread.
+    bool _alBufferReady;
+    bool _loadFail;
+    std::mutex _callbackMutex; 
+    std::vector< std::function<void()> > _callbacks;
     std::vector< std::function<void(bool)> > _loadCallbacks;
 
-    std::mutex _readDataTaskMutex;
+    std::mutex _readDataTaskMutex;    
 
-    State _state;
-
-    std::shared_ptr<bool> _isDestroyed;
-    std::string _fileFullPath;
-    unsigned int _id;
-    bool _isLoadingFinished;
-    bool _isSkipReadDataTask;
-
+    int _mp3Encoding;
+    
     friend class AudioEngineImpl;
     friend class AudioPlayer;
-};
+} ;
 
 }
 NS_CC_END
 
+#endif // __AUDIO_CACHE_H_
 #endif
+

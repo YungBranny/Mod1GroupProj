@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2014-2017 Chukong Technologies Inc.
+ Copyright (c) 2014 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -74,12 +74,6 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
 
 - (void)setBounces:(bool)bounces;
 
-- (void)setOpacityWebView:(float)opacity;
-
-- (float)getOpacityWebView;
-
-- (void)setBackgroundTransparent;
-
 - (void)setFrameWithX:(float)x y:(float)y width:(float)width height:(float)height;
 
 - (void)setJavascriptInterfaceScheme:(const std::string &)scheme;
@@ -88,7 +82,7 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
 
 - (void)loadHTMLString:(const std::string &)string baseURL:(const std::string &)baseURL;
 
-- (void)loadUrl:(const std::string &)urlString cleanCachedData:(BOOL) needCleanCachedData;
+- (void)loadUrl:(const std::string &)urlString;
 
 - (void)loadFile:(const std::string &)filePath;
 
@@ -158,19 +152,6 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
   self.uiWebView.scrollView.bounces = bounces;
 }
 
-- (void)setOpacityWebView:(float)opacity {
-    self.uiWebView.alpha=opacity;
-    [self.uiWebView setOpaque:NO];
-}
-
--(float) getOpacityWebView{
-    return self.uiWebView.alpha;
-}
-
--(void) setBackgroundTransparent{
-    [self.uiWebView setBackgroundColor:[UIColor clearColor]];
-}
-
 - (void)setFrameWithX:(float)x y:(float)y width:(float)width height:(float)height {
     if (!self.uiWebView) {[self setupWebView];}
     CGRect newFrame = CGRectMake(x, y, width, height);
@@ -195,20 +176,12 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
     [self.uiWebView loadHTMLString:@(string.c_str()) baseURL:[NSURL URLWithString:@(getFixedBaseUrl(baseURL).c_str())]];
 }
 
-- (void)loadUrl:(const std::string &)urlString cleanCachedData:(BOOL) needCleanCachedData {
+- (void)loadUrl:(const std::string &)urlString {
     if (!self.uiWebView) {[self setupWebView];}
     NSURL *url = [NSURL URLWithString:@(urlString.c_str())];
-
-    NSURLRequest *request = nil;
-    if (needCleanCachedData)
-        request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:60];
-    else
-        request = [NSURLRequest requestWithURL:url];
-
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.uiWebView loadRequest:request];
 }
-
-
 
 - (void)loadFile:(const std::string &)filePath {
     if (!self.uiWebView) {[self setupWebView];}
@@ -250,8 +223,6 @@ static std::string getFixedBaseUrl(const std::string& baseUrl)
     if (!self.uiWebView) {[self setupWebView];}
     self.uiWebView.scalesPageToFit = scalesPageToFit;
 }
-
-
 
 #pragma mark - UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
@@ -341,11 +312,7 @@ void WebViewImpl::loadHTMLString(const std::string &string, const std::string &b
 }
 
 void WebViewImpl::loadURL(const std::string &url) {
-    this->loadURL(url, false);
-}
-
-void WebViewImpl::loadURL(const std::string &url, bool cleanCachedData) {
-    [_uiWebViewWrapper loadUrl:url cleanCachedData:cleanCachedData];
+    [_uiWebViewWrapper loadUrl:url];
 }
 
 void WebViewImpl::loadFile(const std::string &fileName) {
@@ -418,19 +385,6 @@ void WebViewImpl::draw(cocos2d::Renderer *renderer, cocos2d::Mat4 const &transfo
 void WebViewImpl::setVisible(bool visible){
     [_uiWebViewWrapper setVisible:visible];
 }
-        
-void WebViewImpl::setOpacityWebView(float opacity){
-    [_uiWebViewWrapper setOpacityWebView: opacity];
-}
-        
-float WebViewImpl::getOpacityWebView() const{
-    return [_uiWebViewWrapper getOpacityWebView];
-}
-
-void WebViewImpl::setBackgroundTransparent(){
-    [_uiWebViewWrapper setBackgroundTransparent];
-}
-
         
     } // namespace ui
 } // namespace experimental

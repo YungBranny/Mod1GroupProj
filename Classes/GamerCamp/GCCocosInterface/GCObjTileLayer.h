@@ -6,7 +6,7 @@
 #define _GCOBJTILELAYER_H_
 
 #ifndef BOX2D_H
-	#include "Box2d/Box2D.h"
+	#include "Box2D/Box2D.h"
 #endif
 
 #ifndef __CCTMX_TILE_MAP_H__

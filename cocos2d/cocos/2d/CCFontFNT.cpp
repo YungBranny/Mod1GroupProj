@@ -1,6 +1,6 @@
 /****************************************************************************
  Copyright (c) 2013      Zynga Inc.
- Copyright (c) 2013-2017 Chukong Technologies Inc.
+ Copyright (c) 2013-2016 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
 
@@ -24,6 +24,9 @@
  ****************************************************************************/
 
 #include "2d/CCFontFNT.h"
+#include <cmath>
+#include <set>
+#include "base/uthash.h"
 #include "2d/CCFontAtlas.h"
 #include "platform/CCFileUtils.h"
 #include "base/CCConfiguration.h"
@@ -32,10 +35,7 @@
 #include "base/ccUTF8.h"
 #include "renderer/CCTextureCache.h"
 
-#include <cmath>
-#include <set>
-#include <unordered_map>
-
+using namespace std;
 NS_CC_BEGIN
 
 /**
@@ -74,7 +74,7 @@ BMFont padding
 */
 typedef struct _BMFontPadding {
     /// padding left
-    int left;
+    int    left;
     /// padding top
     int top;
     /// padding right
@@ -82,6 +82,21 @@ typedef struct _BMFontPadding {
     /// padding bottom
     int bottom;
 } BMFontPadding;
+
+typedef struct _FontDefHashElement
+{
+    unsigned int    key;        // key. Font Unicode value
+    BMFontDef       fontDef;    // font definition
+    UT_hash_handle  hh;
+} tFontDefHashElement;
+
+// Equal function for targetSet.
+typedef struct _KerningHashElement
+{
+    int				key;        // key for the hash. 16-bit for 1st element, 16-bit for 2nd element
+    int				amount;
+    UT_hash_handle	hh;
+} tKerningHashElement;
 
 /** @brief BMFontConfiguration has parsed configuration of the .fnt file
 @since v0.8
@@ -91,7 +106,7 @@ class CC_DLL BMFontConfiguration : public Ref
     // FIXME: Creating a public interface so that the bitmapFontArray[] is accessible
 public://@public
     // BMFont definitions
-    std::unordered_map<int /* key */, BMFontDef /* fontDef */> _fontDefDictionary;
+    tFontDefHashElement *_fontDefDictionary;
 
     //! FNTConfig: Common Height Should be signed (issue #1343)
     int _commonHeight;
@@ -100,7 +115,7 @@ public://@public
     //! atlas name
     std::string _atlasName;
     //! values for kerning
-    std::unordered_map<uint64_t /* key */, int /* amount */> _kerningDictionary;
+    tKerningHashElement *_kerningDictionary;
     
     // Character Set defines the letters that actually exist in the font
     std::set<unsigned int> *_characterSet;
@@ -128,14 +143,14 @@ public:
     /** initializes a BitmapFontConfiguration with a FNT file */
     bool initWithFNTfile(const std::string& FNTfile);
     
-    const std::string& getAtlasName() { return _atlasName; }
-    void setAtlasName(const std::string& atlasName) { _atlasName = atlasName; }
+    inline const std::string& getAtlasName(){ return _atlasName; }
+    inline void setAtlasName(const std::string& atlasName) { _atlasName = atlasName; }
     
     std::set<unsigned int>* getCharacterSet() const;
 private:
     std::set<unsigned int>* parseConfigFile(const std::string& controlFile);
     std::set<unsigned int>* parseBinaryConfigFile(unsigned char* pData, unsigned long size, const std::string& controlFile);
-    unsigned int parseCharacterDefinition(const char* line);
+    void parseCharacterDefinition(const char* line, BMFontDef *characterDefinition);
     void parseInfoArguments(const char* line);
     void parseCommonArguments(const char* line);
     void parseImageFileName(const char* line, const std::string& fntFile);
@@ -153,7 +168,7 @@ BMFontConfiguration* FNTConfigLoadFile(const std::string& fntFile)
 {
     BMFontConfiguration* ret = nullptr;
 
-    if (s_configurations == nullptr)
+    if( s_configurations == nullptr )
     {
         s_configurations = new (std::nothrow) Map<std::string, BMFontConfiguration*>();
     }
@@ -189,6 +204,9 @@ BMFontConfiguration * BMFontConfiguration::create(const std::string& FNTfile)
 
 bool BMFontConfiguration::initWithFNTfile(const std::string& FNTfile)
 {
+    _kerningDictionary = nullptr;
+    _fontDefDictionary = nullptr;
+    
     _characterSet = this->parseConfigFile(FNTfile);
 
     if (! _characterSet)
@@ -205,7 +223,9 @@ std::set<unsigned int>* BMFontConfiguration::getCharacterSet() const
 }
 
 BMFontConfiguration::BMFontConfiguration()
-: _commonHeight(0)
+: _fontDefDictionary(nullptr)
+, _commonHeight(0)
+, _kerningDictionary(nullptr)
 , _characterSet(nullptr)
 , _fontSize(0)
 {
@@ -226,26 +246,37 @@ std::string BMFontConfiguration::description(void) const
     return StringUtils::format(
         "<BMFontConfiguration = " CC_FORMAT_PRINTF_SIZE_T " | Glphys:%d Kernings:%d | Image = %s>",
         (size_t)this,
-        static_cast<int>(_fontDefDictionary.size()),
-        static_cast<int>(_kerningDictionary.size()),
+        HASH_COUNT(_fontDefDictionary),
+        HASH_COUNT(_kerningDictionary),
         _atlasName.c_str()
     );
 }
 
 void BMFontConfiguration::purgeKerningDictionary()
 {
-    _kerningDictionary.clear();
+    tKerningHashElement *current;
+    while(_kerningDictionary) 
+    {
+        current = _kerningDictionary; 
+        HASH_DEL(_kerningDictionary,current);
+        free(current);
+    }
 }
 
 void BMFontConfiguration::purgeFontDefDictionary()
-{
-    _fontDefDictionary.clear();
+{    
+    tFontDefHashElement *current, *tmp;
+
+    HASH_ITER(hh, _fontDefDictionary, current, tmp) {
+        HASH_DEL(_fontDefDictionary, current);
+        free(current);
+    }
 }
 
 std::set<unsigned int>* BMFontConfiguration::parseConfigFile(const std::string& controlFile)
 {
-    std::string data = FileUtils::getInstance()->getStringFromFile(controlFile);
-    if (data.empty())
+    std::string data;
+    if (FileUtils::getInstance()->getContents(controlFile, &data) != FileUtils::Status::OK || data.empty())
     {
         return nullptr;
     }
@@ -310,8 +341,13 @@ std::set<unsigned int>* BMFontConfiguration::parseConfigFile(const std::string& 
         else if (memcmp(line, "char", 4) == 0)
         {
             // Parse the current line and create a new CharDef
-            unsigned int charID = this->parseCharacterDefinition(line);
-            validCharsString->insert(charID);
+            tFontDefHashElement* element = (tFontDefHashElement*)malloc( sizeof(*element) );
+            this->parseCharacterDefinition(line, &element->fontDef);
+
+            element->key = element->fontDef.charID;
+            HASH_ADD_INT(_fontDefDictionary, key, element);
+            
+            validCharsString->insert(element->fontDef.charID);
         }
         else if (memcmp(line, "kerning first", 13) == 0)
         {
@@ -326,7 +362,7 @@ std::set<unsigned int>* BMFontConfiguration::parseBinaryConfigFile(unsigned char
 {
     /* based on http://www.angelcode.com/products/bmfont/doc/file_format.html file format */
 
-    std::set<unsigned int> *validCharsString = new (std::nothrow) std::set<unsigned int>();
+    set<unsigned int> *validCharsString = new (std::nothrow) set<unsigned int>();
 
     unsigned long remains = size;
 
@@ -421,33 +457,36 @@ std::set<unsigned int>* BMFontConfiguration::parseBinaryConfigFile(unsigned char
 
             for (unsigned long i = 0; i < count; i++)
             {
+                tFontDefHashElement* element = (tFontDefHashElement*)malloc( sizeof(*element) );
+
                 uint32_t charId = 0; memcpy(&charId, pData + (i * 20), 4);
-                
-                BMFontDef& fontDef = _fontDefDictionary[charId];
-                fontDef.charID = charId;
+                element->fontDef.charID = charId;
 
                 uint16_t charX = 0; memcpy(&charX, pData + (i * 20) + 4, 2);
-                fontDef.rect.origin.x = charX;
+                element->fontDef.rect.origin.x = charX;
 
                 uint16_t charY = 0; memcpy(&charY, pData + (i * 20) + 6, 2);
-                fontDef.rect.origin.y = charY;
+                element->fontDef.rect.origin.y = charY;
 
                 uint16_t charWidth = 0; memcpy(&charWidth, pData + (i * 20) + 8, 2);
-                fontDef.rect.size.width = charWidth;
+                element->fontDef.rect.size.width = charWidth;
 
                 uint16_t charHeight = 0; memcpy(&charHeight, pData + (i * 20) + 10, 2);
-                fontDef.rect.size.height = charHeight;
+                element->fontDef.rect.size.height = charHeight;
 
                 int16_t xoffset = 0; memcpy(&xoffset, pData + (i * 20) + 12, 2);
-                fontDef.xOffset = xoffset;
+                element->fontDef.xOffset = xoffset;
 
                 int16_t yoffset = 0; memcpy(&yoffset, pData + (i * 20) + 14, 2);
-                fontDef.yOffset = yoffset;
+                element->fontDef.yOffset = yoffset;
 
                 int16_t xadvance = 0; memcpy(&xadvance, pData + (i * 20) + 16, 2);
-                fontDef.xAdvance = xadvance;
+                element->fontDef.xAdvance = xadvance;
 
-                validCharsString->insert(fontDef.charID);
+                element->key = element->fontDef.charID;
+                HASH_ADD_INT(_fontDefDictionary, key, element);
+
+                validCharsString->insert(element->fontDef.charID);
             }
         }
         else if (blockId == 5) {
@@ -465,8 +504,10 @@ std::set<unsigned int>* BMFontConfiguration::parseBinaryConfigFile(unsigned char
                 uint32_t second = 0; memcpy(&second, pData + (i * 10) + 4, 4);
                 int16_t amount = 0; memcpy(&amount, pData + (i * 10) + 8, 2);
 
-                uint64_t key = ((uint64_t)first<<32) | ((uint64_t)second&0xffffffffll);
-                _kerningDictionary[key] = amount;
+                tKerningHashElement *element = (tKerningHashElement *)calloc( sizeof( *element ), 1 );
+                element->amount = amount;
+                element->key = (first<<16) | (second&0xffff);
+                HASH_ADD_INT(_kerningDictionary,key, element);
             }
         }
 
@@ -539,10 +580,8 @@ void BMFontConfiguration::parseCommonArguments(const char* line)
     // packed (ignore) What does this mean ??
 }
 
-unsigned int BMFontConfiguration::parseCharacterDefinition(const char* line)
-{
-    unsigned int charID = 0;
-    
+void BMFontConfiguration::parseCharacterDefinition(const char* line, BMFontDef *characterDefinition)
+{    
     //////////////////////////////////////////////////////////////////////////
     // line to parse:
     // char id=32   x=0     y=0     width=0     height=0     xoffset=0     yoffset=44    xadvance=14     page=0  chnl=0 
@@ -550,34 +589,29 @@ unsigned int BMFontConfiguration::parseCharacterDefinition(const char* line)
 
     // Character ID
     auto tmp = strstr(line, "id=") + 3;
-    sscanf(tmp, "%u", &charID);
-    
-    BMFontDef& characterDefinition = _fontDefDictionary[charID];
-    characterDefinition.charID = charID;
+    sscanf(tmp, "%u", &characterDefinition->charID);
 
     // Character x
     tmp = strstr(tmp, "x=") + 2;
-    sscanf(tmp, "%f", &characterDefinition.rect.origin.x);
+    sscanf(tmp, "%f", &characterDefinition->rect.origin.x);
     // Character y
     tmp = strstr(tmp, "y=") + 2;
-    sscanf(tmp, "%f", &characterDefinition.rect.origin.y);
+    sscanf(tmp, "%f", &characterDefinition->rect.origin.y);
     // Character width
     tmp = strstr(tmp, "width=") + 6;
-    sscanf(tmp, "%f", &characterDefinition.rect.size.width);
+    sscanf(tmp, "%f", &characterDefinition->rect.size.width);
     // Character height
     tmp = strstr(tmp, "height=") + 7;
-    sscanf(tmp, "%f", &characterDefinition.rect.size.height);
+    sscanf(tmp, "%f", &characterDefinition->rect.size.height);
     // Character xoffset
     tmp = strstr(tmp, "xoffset=") + 8;
-    sscanf(tmp, "%hd", &characterDefinition.xOffset);
+    sscanf(tmp, "%hd", &characterDefinition->xOffset);
     // Character yoffset
     tmp = strstr(tmp, "yoffset=") + 8;
-    sscanf(tmp, "%hd", &characterDefinition.yOffset);
+    sscanf(tmp, "%hd", &characterDefinition->yOffset);
     // Character xadvance
     tmp = strstr(tmp, "xadvance=") + 9;
-    sscanf(tmp, "%hd", &characterDefinition.xAdvance);
-    
-    return charID;
+    sscanf(tmp, "%hd", &characterDefinition->xAdvance);
 }
 
 void BMFontConfiguration::parseKerningEntry(const char* line)
@@ -597,9 +631,10 @@ void BMFontConfiguration::parseKerningEntry(const char* line)
     tmp = strstr(tmp, "amount=") + 7;
     sscanf(tmp, "%d", &amount);
 
-    uint64_t key = ((uint64_t)first<<32) | ((uint64_t)second&0xffffffffll);
-    
-    _kerningDictionary[key] = amount;
+    tKerningHashElement *element = (tKerningHashElement *)calloc( sizeof( *element ), 1 );
+    element->amount = amount;
+    element->key = (first<<16) | (second&0xffff);
+    HASH_ADD_INT(_kerningDictionary,key, element);
 }
 
 FontFNT * FontFNT::create(const std::string& fntFilePath, const Vec2& imageOffset /* = Vec2::ZERO */)
@@ -646,7 +681,7 @@ void FontFNT::purgeCachedData()
     }
 }
 
-int * FontFNT::getHorizontalKerningForTextUTF32(const std::u32string& text, int &outNumLetters) const
+int * FontFNT::getHorizontalKerningForTextUTF16(const std::u16string& text, int &outNumLetters) const
 {
     outNumLetters = static_cast<int>(text.length());
     
@@ -668,16 +703,18 @@ int * FontFNT::getHorizontalKerningForTextUTF32(const std::u32string& text, int 
     return sizes;
 }
 
-int  FontFNT::getHorizontalKerningForChars(char32_t firstChar, char32_t secondChar) const
+int  FontFNT::getHorizontalKerningForChars(unsigned short firstChar, unsigned short secondChar) const
 {
     int ret = 0;
-    uint64_t key = ((uint64_t)firstChar << 32) | ((uint64_t)secondChar & 0xffffffffll);
+    unsigned int key = (firstChar << 16) | (secondChar & 0xffff);
     
-    auto iter = _configuration->_kerningDictionary.find(key);
-    
-    if (iter != _configuration->_kerningDictionary.end())
+    if (_configuration->_kerningDictionary)
     {
-        ret = iter->second;
+        tKerningHashElement *element = nullptr;
+        HASH_FIND_INT(_configuration->_kerningDictionary, &key, element);
+        
+        if (element)
+            ret = element->amount;
     }
     
     return ret;
@@ -696,7 +733,7 @@ int FontFNT::getOriginalFontSize()const
 FontAtlas * FontFNT::createFontAtlas()
 {
     // check that everything is fine with the BMFontCofniguration
-    if (_configuration->_fontDefDictionary.empty())
+    if (!_configuration->_fontDefDictionary)
         return nullptr;
     
     size_t numGlyphs = _configuration->_characterSet->size();
@@ -722,12 +759,17 @@ FontAtlas * FontFNT::createFontAtlas()
     
     tempAtlas->setLineHeight(originalLineHeight * factor);
     
-    for (auto&& e : _configuration->_fontDefDictionary)
+    
+    BMFontDef fontDef;
+    tFontDefHashElement *currentElement, *tmp;
+    
+    // Purge uniform hash
+    HASH_ITER(hh, _configuration->_fontDefDictionary, currentElement, tmp)
     {
-        BMFontDef& fontDef = e.second;
         
         FontLetterDefinition tempDefinition;
-
+        
+        fontDef = currentElement->fontDef;
         Rect tempRect;
         
         tempRect = fontDef.rect;

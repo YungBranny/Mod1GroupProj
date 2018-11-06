@@ -329,9 +329,11 @@ Node* CSLoader::createNodeWithVisibleSize(const std::string &filename, const ccN
 
 std::string CSLoader::getExtentionName(const std::string& name)
 {
+    std::string result = "";
+
     std::string path = name;
     size_t pos = path.find_last_of('.');
-    std::string result = path.substr(pos + 1, path.length());
+    result = path.substr(pos + 1, path.length());
 
     return result;
 }

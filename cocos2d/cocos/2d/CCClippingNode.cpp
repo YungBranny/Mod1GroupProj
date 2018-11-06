@@ -1,7 +1,7 @@
 /*
  * Copyright (c) 2012      Pierre-David Bélanger
  * Copyright (c) 2012      cocos2d-x.org
- * Copyright (c) 2013-2017 Chukong Technologies Inc.
+ * Copyright (c) 2013-2014 Chukong Technologies Inc.
  *
  * cocos2d-x: http://www.cocos2d-x.org
  *
@@ -32,7 +32,7 @@
 #include "renderer/CCRenderer.h"
 #include "renderer/CCRenderState.h"
 #include "base/CCDirector.h"
-#include "base/CCStencilStateManager.h"
+#include "base/CCStencilStateManager.hpp"
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #define CC_CLIPPING_NODE_OPENGLES 0
@@ -56,8 +56,7 @@ static void setProgram(Node *n, GLProgram *p)
 
 ClippingNode::ClippingNode()
 : _stencil(nullptr)
-, _stencilStateManager(new StencilStateManager())
-, _originStencilProgram(nullptr)
+,_stencilStateManager(new StencilStateManager())
 {
 }
 
@@ -229,6 +228,7 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
         // we need to recursively apply this shader to all the nodes in the stencil node
         // FIXME: we should have a way to apply shader to all nodes without having to do this
         setProgram(_stencil, program);
+        
 #endif
 
     }
@@ -245,7 +245,7 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
     {
         sortAllChildren();
         // draw children zOrder < 0
-        for(auto size = _children.size(); i < size; ++i)
+        for( ; i < _children.size(); i++ )
         {
             auto node = _children.at(i);
             
@@ -257,8 +257,8 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
         // self draw
         if (visibleByCamera)
             this->draw(renderer, _modelViewTransform, flags);
-
-        for(auto it=_children.cbegin()+i, itCend = _children.cend(); it != itCend; ++it)
+        
+        for(auto it=_children.cbegin()+i; it != _children.cend(); ++it)
             (*it)->visit(renderer, _modelViewTransform, flags);
     }
     else if (visibleByCamera)
@@ -324,9 +324,6 @@ void ClippingNode::setStencil(Node *stencil)
             _stencil->onEnterTransitionDidFinish();
         }
     }
-    
-    if (_stencil != nullptr)
-        _originStencilProgram = _stencil->getGLProgram();
 }
 
 bool ClippingNode::hasContent() const
@@ -341,15 +338,6 @@ GLfloat ClippingNode::getAlphaThreshold() const
 
 void ClippingNode::setAlphaThreshold(GLfloat alphaThreshold)
 {
-#if CC_CLIPPING_NODE_OPENGLES
-    if (alphaThreshold == 1 && alphaThreshold != _stencilStateManager->getAlphaThreshold())
-    {
-        // should reset program used by _stencil
-        if (_stencil)
-            setProgram(_stencil, _originStencilProgram);
-    }
-#endif
-    
     _stencilStateManager->setAlphaThreshold(alphaThreshold);
 }
 

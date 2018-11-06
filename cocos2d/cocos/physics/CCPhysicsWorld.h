@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2013-2017 Chukong Technologies Inc.
+ Copyright (c) 2013 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -56,7 +56,7 @@ typedef struct PhysicsRayCastInfo
 {
     PhysicsShape* shape;
     Vec2 start;
-    Vec2 end;              ///< in lua, it's name is "ended"
+    Vec2 end;              //< in lua, it's name is "ended"
     Vec2 contact;
     Vec2 normal;
 
@@ -228,14 +228,14 @@ public:
     * @attention This value is initialized in constructor
     * @return A Scene object reference.
     */
-    Scene& getScene() const { return *_scene; }
+    inline Scene& getScene() const { return *_scene; }
     
     /**
     * Get the gravity value of this physics world.
     *
     * @return A Vec2 object.
     */
-    Vec2 getGravity() const { return _gravity; }
+    inline Vec2 getGravity() const { return _gravity; }
     
     /**
     * set the gravity value of this physics world.
@@ -250,14 +250,14 @@ public:
      * @attention if you setAutoStep(false), this won't work.
      * @param speed  A float number. Speed is the rate at which the simulation executes. default value is 1.0.
      */
-    void setSpeed(float speed) { if(speed >= 0.0f) { _speed = speed; } }
+    inline void setSpeed(float speed) { if(speed >= 0.0f) { _speed = speed; } }
     
     /**
     * Get the speed of this physics world.
     *
     * @return A float number.
     */
-    float getSpeed() { return _speed; }
+    inline float getSpeed() { return _speed; }
     
     /**
      * Set the update rate of this physics world
@@ -267,7 +267,7 @@ public:
      * @attention if you setAutoStep(false), this won't work.
      * @param rate An integer number, default value is 1.0.
      */
-    void setUpdateRate(int rate) { if(rate > 0) { _updateRate = rate; } }
+    inline void setUpdateRate(int rate) { if(rate > 0) { _updateRate = rate; } }
 
 
     /**
@@ -275,7 +275,7 @@ public:
     *
     * @return An integer number.
     */
-    int getUpdateRate() { return _updateRate; }
+    inline int getUpdateRate() { return _updateRate; }
 
     /**
      * set the number of substeps in an update of the physics world.
@@ -290,7 +290,7 @@ public:
     *
     * @return An integer number.
     */
-    int getSubsteps() const { return _substeps; }
+    inline int getSubsteps() const { return _substeps; }
     
     /**
      * set the number of update of the physics world in a second.
@@ -299,7 +299,7 @@ public:
      */
     void setFixedUpdateRate(int updatesPerSecond) { if(updatesPerSecond > 0) { _fixedRate = updatesPerSecond; } }
     /** get the number of substeps */
-    int getFixedUpdateRate() const { return _fixedRate; }
+    inline int getFixedUpdateRate() const { return _fixedRate; }
 
     /**
     * Set the debug draw mask of this physics world.
@@ -314,7 +314,7 @@ public:
     *
     * @return An integer number.
     */
-    int getDebugDrawMask() { return _debugDrawMask; }
+    inline int getDebugDrawMask() { return _debugDrawMask; }
     
     /**
      * To control the step of physics.

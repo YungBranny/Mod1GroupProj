@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2013-2017 Chukong Technologies Inc.
+ Copyright (c) 2013-2014 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -103,9 +103,9 @@ public:
     /**Realloc command queues and reserve with given size. Note: this clears any existing commands.*/
     void realloc(size_t reserveSize);
     /**Get a sub group of the render queue.*/
-    std::vector<RenderCommand*>& getSubQueue(QUEUE_GROUP group) { return _commands[group]; }
+    inline std::vector<RenderCommand*>& getSubQueue(QUEUE_GROUP group) { return _commands[group]; }
     /**Get the number of render commands contained in a subqueue.*/
-    ssize_t getSubQueueSize(QUEUE_GROUP group) const { return _commands[group].size(); }
+    inline ssize_t getSubQueueSize(QUEUE_GROUP group) const { return _commands[group].size();}
 
     /**Save the current DepthState, CullState, DepthWriteState render state.*/
     void saveRenderState();
@@ -201,7 +201,7 @@ public:
     void setDepthTest(bool enable);
     
     //This will not be used outside.
-    GroupCommandManager* getGroupCommandManager() const { return _groupCommandManager; }
+    inline GroupCommandManager* getGroupCommandManager() const { return _groupCommandManager; };
 
     /** returns whether or not a rectangle is visible or not */
     bool checkVisibility(const Mat4& transform, const Size& size);
@@ -249,8 +249,8 @@ protected:
     // Internal structure that has the information for the batches
     struct TriBatchToDraw {
         TrianglesCommand* cmd;  // needed for the Material
-        GLsizei indicesToDraw;
-        GLsizei offset;
+        GLushort indicesToDraw;
+        GLushort offset;
     };
     // capacity of the array of TriBatches
     int _triBatchesToDrawCapacity;

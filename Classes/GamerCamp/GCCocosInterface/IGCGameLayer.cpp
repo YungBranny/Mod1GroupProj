@@ -290,7 +290,6 @@ void IGCGameLayer::VOnReset( void )
 //virtual 
 void IGCGameLayer::VOnUpdate( f32 fTimeStep )
 {
-	AppDelegate::GetKeyboardManager()->Update();
 	UpdateTouchState();
 	VB2dWorldUpdate();
 	CGCObjectManager::OnUpdate( fTimeStep );

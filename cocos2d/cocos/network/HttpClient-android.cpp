@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2012      greathqy
  Copyright (c) 2012      cocos2d-x.org
- Copyright (c) 2013-2017 Chukong Technologies Inc.
+ Copyright (c) 2013-2014 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -85,8 +85,8 @@ class HttpURLConnection
 {
 public:
     HttpURLConnection(HttpClient* httpClient)
-    :_client(httpClient)
-    ,_httpURLConnection(nullptr)
+    :_httpURLConnection(nullptr)
+    ,_client(httpClient)
     ,_requestmethod("")
     ,_responseCookies("")
     ,_cookieFileName("")
@@ -133,16 +133,18 @@ public:
         if(!headers.empty())
         {
             /* append custom headers one by one */
-            for (auto& header : headers)
+            for (HttpRequestHeadersIter it = headers.begin(); it != headers.end(); ++it)
             {
-                int len = header.length();
-                int pos = header.find(':');
+                std::string val = *it;
+                
+                int len = val.length();
+                int pos = val.find(':');
                 if (-1 == pos || pos >= len)
                 {
                     continue;
                 }
-                std::string str1 = header.substr(0, pos);
-                std::string str2 = header.substr(pos + 1, len - pos - 1);
+                std::string str1 = val.substr(0, pos);
+                std::string str2 = val.substr(pos + 1, len - pos - 1);
                 addRequestHeader(str1.c_str(), str2.c_str());
             }
         }
@@ -460,11 +462,14 @@ private:
         if (cookiesVec.empty())
             return;
         
+        HttpCookiesIter iter = cookiesVec.begin();
+        
         std::vector<CookiesInfo> cookiesInfoVec;
         cookiesInfoVec.clear();
 
-        for (auto& cookies : cookiesVec)
+        for (; iter != cookiesVec.end(); iter++)
         {
+            std::string cookies = *iter;
             if (cookies.find("#HttpOnly_") != std::string::npos)
             {
                 cookies = cookies.substr(10);
@@ -497,15 +502,16 @@ private:
             cookiesInfoVec.push_back(co);
         }
 
+        std::vector<CookiesInfo>::iterator cookiesIter = cookiesInfoVec.begin();
         std::string sendCookiesInfo = "";
         int cookiesCount = 0;
-        for (auto& cookieInfo : cookiesInfoVec)
+        for (; cookiesIter != cookiesInfoVec.end(); cookiesIter++)
         {
-            if (_url.find(cookieInfo.domain) != std::string::npos)
+            if (_url.find(cookiesIter->domain) != std::string::npos)
             {
-                std::string keyValue = cookieInfo.key;
+                std::string keyValue = cookiesIter->key;
                 keyValue.append("=");
-                keyValue.append(cookieInfo.value);
+                keyValue.append(cookiesIter->value);
                 if (cookiesCount != 0)
                     sendCookiesInfo.append(";");
                 
@@ -578,8 +584,10 @@ private:
         {
             return nullptr;
         }
+        char *ret = nullptr;
         std::string strValue = cocos2d::StringUtils::getStringUTFCharsJNI(env, jstr);
-        return strdup(strValue.c_str());
+        ret = strdup(strValue.c_str());
+        return ret;
     }
 
     int getCStrFromJByteArray(jbyteArray jba, JNIEnv* env, char** ppData)
@@ -590,8 +598,10 @@ private:
             return 0;
         }
 
-        int len = env->GetArrayLength(jba);
-        char* str = (char*)malloc(sizeof(char)*len);
+        char* str = nullptr;
+
+        int len  = env->GetArrayLength(jba);
+        str = (char*)malloc(sizeof(char)*len);
         env->GetByteArrayRegion(jba, 0, len, (jbyte*)str);
 
         *ppData = str;
@@ -676,14 +686,6 @@ void HttpClient::processResponse(HttpResponse* response, char* responseMessage)
 
     responseCode = urlConnection.getResponseCode();
 
-    if (0 == responseCode)
-    {
-       response->setSucceed(false);
-       response->setErrorBuffer("connect failed");
-       response->setResponseCode(-1);
-       return;
-    }
-
     char* headers = urlConnection.getResponseHeaders();
     if (nullptr != headers)
     {
@@ -711,11 +713,8 @@ void HttpClient::processResponse(HttpResponse* response, char* responseMessage)
     free(contentInfo);
     
     char *messageInfo = urlConnection.getResponseMessage();
-    if (messageInfo)
-    {
-        strcpy(responseMessage, messageInfo);
-        free(messageInfo);
-    }
+    strcpy(responseMessage, messageInfo);
+    free(messageInfo);
 
     urlConnection.disconnect();
 
@@ -878,12 +877,12 @@ void HttpClient::setSSLVerification(const std::string& caFile)
 }
 
 HttpClient::HttpClient()
-: _isInited(false)
-, _timeoutForConnect(30)
+: _timeoutForConnect(30)
 , _timeoutForRead(60)
+, _isInited(false)
 , _threadCount(0)
-, _cookie(nullptr)
 , _requestSentinel(new HttpRequest())
+, _cookie(nullptr)
 {
     CCLOG("In the constructor of HttpClient!");
     increaseThreadCount();
@@ -897,7 +896,7 @@ HttpClient::~HttpClient()
 }
 
 //Lazy create semaphore & mutex & thread
-bool HttpClient::lazyInitThreadSemaphore()
+bool HttpClient::lazyInitThreadSemphore()
 {
     if (_isInited)
     {
@@ -916,7 +915,7 @@ bool HttpClient::lazyInitThreadSemaphore()
 //Add a get task to queue
 void HttpClient::send(HttpRequest* request)
 {    
-    if (!lazyInitThreadSemaphore()) 
+    if (!lazyInitThreadSemphore()) 
     {
         return;
     }

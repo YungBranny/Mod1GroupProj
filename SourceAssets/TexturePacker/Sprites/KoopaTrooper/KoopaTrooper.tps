@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>cocos2d-v2</string>
         <key>textureFileName</key>
-        <filename>../../../../Resources/windows/TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.png</filename>
+        <filename>../../../../Resources/TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>../../../../Resources/windows/TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist</filename>
+        <filename>../../../../Resources/TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist</filename>
         <key>multiPack</key>
         <false/>
         <key>mainExtension</key>

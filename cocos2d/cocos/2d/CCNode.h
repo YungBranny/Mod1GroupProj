@@ -3,7 +3,7 @@
  Copyright (c) 2009      Valentin Milea
  Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2011      Zynga Inc.
- Copyright (c) 2013-2017 Chukong Technologies Inc.
+ Copyright (c) 2013-2014 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -128,12 +128,6 @@ public:
     static Node * create();
 
     /**
-     * Gets count of nodes those are attached to scene graph.
-     */
-    static int getAttachedNodeCount();
-public:
-    
-    /**
      * Gets the description string. It makes debugging easier.
      * @return A string
      * @js NA
@@ -171,7 +165,7 @@ public:
      Helper function used by `setLocalZOrder`. Don't use it unless you know what you are doing.
      @js NA
      */
-    virtual void _setLocalZOrder(int z);
+    CC_DEPRECATED_ATTRIBUTE virtual void _setLocalZOrder(int z);
 
     /** !!! ONLY FOR INTERNAL USE
     * Sets the arrival order when this node has a same ZOrder with other children.
@@ -345,9 +339,7 @@ public:
      *
      * @param position The normalized position (x,y) of the node, using value between 0 and 1.
      */
-    virtual void setPositionNormalized(const Vec2 &position);
-    // FIXME: should get deprecated in v4.0
-    virtual void setNormalizedPosition(const Vec2 &position) { setPositionNormalized(position); }
+    virtual void setNormalizedPosition(const Vec2 &position);
 
     /**
      * Gets the position (x,y) of the node in its parent's coordinate system.
@@ -365,9 +357,7 @@ public:
      * 
      * @return The normalized position.
      */
-    virtual const Vec2& getPositionNormalized() const;
-    // FIXME: should get deprecated in v4.0
-    virtual const Vec2& getNormalizedPosition() const { return getPositionNormalized(); }
+    virtual const Vec2& getNormalizedPosition() const;
 
     /**
      * Sets the position (x,y) of the node in its parent's coordinate system.
@@ -520,7 +510,7 @@ public:
      * It's like a pin in the node where it is "attached" to its parent.
      * The anchorPoint is normalized, like a percentage. (0,0) means the bottom-left corner and (1,1) means the top-right corner.
      * But you can use values higher than (1,1) and lower than (0,0) too.
-     * The default anchorPoint is (0,0), so it starts in the lower left corner of the node.
+     * The default anchorPoint is (0.5,0.5), so it starts in the center of the node.
      * @note If node has a physics body, the anchor must be in the middle, you can't change this to other value.
      *
      * @param anchorPoint   The anchor point of node.
@@ -694,7 +684,7 @@ public:
     /** @deprecated No longer needed
     * @lua NA
     */
-    CC_DEPRECATED_ATTRIBUTE void setGLServerState(int /*serverState*/) {}
+    CC_DEPRECATED_ATTRIBUTE void setGLServerState(int serverState) { /* ignore */ };
     /** @deprecated No longer needed
     * @lua NA
     */
@@ -785,7 +775,7 @@ public:
      * @return a Node with the given tag that can be cast to Type T.
     */
     template <typename T>
-    T getChildByTag(int tag) const { return static_cast<T>(getChildByTag(tag)); }
+    inline T getChildByTag(int tag) const { return static_cast<T>(getChildByTag(tag)); }
     
     /**
      * Gets a child from the container with its name.
@@ -805,7 +795,7 @@ public:
      * @return a Node with the given name that can be cast to Type T.
     */
     template <typename T>
-    T getChildByName(const std::string& name) const { return static_cast<T>(getChildByName(name)); }
+    inline T getChildByName(const std::string& name) const { return static_cast<T>(getChildByName(name)); }
     /** Search the children of the receiving node to perform processing for nodes which share a name.
      *
      * @param name The name to search for, supports c++11 regular expression.
@@ -1064,7 +1054,7 @@ public:
      * Since v2.0, each rendering node must set its shader program.
      * It should be set in initialize phase.
      @code
-     node->setGLProgram(GLProgramCache::getInstance()->getProgram(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR));
+     node->setGLrProgram(GLProgramCache::getInstance()->getProgram(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR));
      @endcode
      *
      * @param glprogram The shader program.
@@ -1196,7 +1186,7 @@ public:
     virtual Rect getBoundingBox() const;
 
     /** @deprecated Use getBoundingBox instead */
-    CC_DEPRECATED_ATTRIBUTE virtual Rect boundingBox() const { return getBoundingBox(); }
+    CC_DEPRECATED_ATTRIBUTE inline virtual Rect boundingBox() const { return getBoundingBox(); }
 
     /** Set event dispatcher for scene.
      *
@@ -1291,23 +1281,6 @@ public:
      */
     ssize_t getNumberOfRunningActions() const;
 
-    /**
-     * Returns the numbers of actions that are running plus the ones that are
-     * schedule to run (actions in actionsToAdd and actions arrays) with a
-     * specific tag.
-     *
-     * Composable actions are counted as 1 action. Example:
-     *    If you are running 1 Sequence of 7 actions, it will return 1.
-     *    If you are running 7 Sequences of 2 actions, it will return 7.
-     *
-     * @param  tag The tag that will be searched.
-     *
-     * @return The number of actions that are running plus the
-     *         ones that are schedule to run with specific tag.
-     */
-    ssize_t getNumberOfRunningActionsByTag(int tag) const;
-
-
     /** @deprecated Use getNumberOfRunningActions() instead */
     CC_DEPRECATED_ATTRIBUTE ssize_t numberOfRunningActions() const { return getNumberOfRunningActions(); };
 
@@ -1342,7 +1315,7 @@ public:
      * @js NA
      * @lua NA
      */
-    bool isScheduled(SEL_SCHEDULE selector) const;
+    bool isScheduled(SEL_SCHEDULE selector);
 
     /**
      * Checks whether a lambda function is scheduled.
@@ -1352,7 +1325,7 @@ public:
      * @js NA
      * @lua NA
      */
-    bool isScheduled(const std::string &key) const;
+    bool isScheduled(const std::string &key);
 
     /**
      * Schedules the "update" method.
@@ -1579,7 +1552,7 @@ public:
     virtual void setNodeToParentTransform(const Mat4& transform);
 
     /** @deprecated use getNodeToParentTransform() instead */
-    CC_DEPRECATED_ATTRIBUTE virtual AffineTransform nodeToParentTransform() const { return getNodeToParentAffineTransform(); }
+    CC_DEPRECATED_ATTRIBUTE inline virtual AffineTransform nodeToParentTransform() const { return getNodeToParentAffineTransform(); }
 
     /**
      * Returns the matrix that transform parent's space coordinates to the node's (local) space coordinates.
@@ -1591,7 +1564,7 @@ public:
     virtual AffineTransform getParentToNodeAffineTransform() const;
 
     /** @deprecated Use getParentToNodeTransform() instead */
-    CC_DEPRECATED_ATTRIBUTE virtual AffineTransform parentToNodeTransform() const { return getParentToNodeAffineTransform(); }
+    CC_DEPRECATED_ATTRIBUTE inline virtual AffineTransform parentToNodeTransform() const { return getParentToNodeAffineTransform(); }
 
     /**
      * Returns the world affine transform matrix. The matrix is in Pixels.
@@ -1602,7 +1575,7 @@ public:
     virtual AffineTransform getNodeToWorldAffineTransform() const;
 
     /** @deprecated Use getNodeToWorldTransform() instead */
-    CC_DEPRECATED_ATTRIBUTE virtual AffineTransform nodeToWorldTransform() const { return getNodeToWorldAffineTransform(); }
+    CC_DEPRECATED_ATTRIBUTE inline virtual AffineTransform nodeToWorldTransform() const { return getNodeToWorldAffineTransform(); }
 
     /**
      * Returns the inverse world affine transform matrix. The matrix is in Pixels.
@@ -1613,7 +1586,7 @@ public:
     virtual AffineTransform getWorldToNodeAffineTransform() const;
 
     /** @deprecated Use getWorldToNodeTransform() instead */
-    CC_DEPRECATED_ATTRIBUTE virtual AffineTransform worldToNodeTransform() const { return getWorldToNodeAffineTransform(); }
+    CC_DEPRECATED_ATTRIBUTE inline virtual AffineTransform worldToNodeTransform() const { return getWorldToNodeAffineTransform(); }
 
     /// @} end of Transformations
 
@@ -1796,12 +1769,12 @@ public:
      *  If you want the opacity affect the color property, then set to true.
      * @param value A boolean value.
      */
-    virtual void setOpacityModifyRGB(bool value);
+    virtual void setOpacityModifyRGB(bool value) {CC_UNUSED_PARAM(value);}
     /**
      * If node opacity will modify the RGB color value, then you should override this method and return true.
      * @return A boolean value, true indicates that opacity will modify color; false otherwise.
      */
-    virtual bool isOpacityModifyRGB() const;
+    virtual bool isOpacityModifyRGB() const { return false; };
 
     /**
      * Set the callback of event onEnter.
@@ -2018,8 +1991,6 @@ public:
     friend class PhysicsBody;
 #endif
 
-    static int __attachedNodeCount;
-    
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(Node);
 };

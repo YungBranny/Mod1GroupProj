@@ -136,9 +136,4 @@ namespace cocostudio
         
         nodeReader->setPropsWithFlatBuffers(node, (Table*)options->nodeOptions());
     }
-    
-    Node* ProjectNodeReader::createNodeWithFlatBuffers(const flatbuffers::Table* /*nodeOptions*/)
-    {
-        return nullptr;
-    }
 }

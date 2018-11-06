@@ -231,7 +231,7 @@ static FASTLZ_INLINE int FASTLZ_COMPRESSOR(const void* input, int length, void* 
     ref = htab[hval];
 
     /* calculate distance to the match */
-    distance = (int)(anchor - ref);
+    distance = anchor - ref;
 
     /* update hash table */
     *hslot = anchor;
@@ -301,7 +301,7 @@ static FASTLZ_INLINE int FASTLZ_COMPRESSOR(const void* input, int length, void* 
 
     /* length is biased, '1' means a match of 3 bytes */
     ip -= 3;
-    len = (int)(ip - anchor);
+    len = ip - anchor;
 
     /* encode the match */
 #if FASTLZ_LEVEL==2
@@ -414,7 +414,7 @@ static FASTLZ_INLINE int FASTLZ_COMPRESSOR(const void* input, int length, void* 
   *(flzuint8*)output |= (1 << 5);
 #endif
 
-  return (int)(op - (flzuint8*)output);
+  return op - (flzuint8*)output;
 }
 
 static FASTLZ_INLINE int FASTLZ_DECOMPRESSOR(const void* input, int length, void* output, int maxout)
@@ -538,14 +538,14 @@ static FASTLZ_INLINE int FASTLZ_DECOMPRESSOR(const void* input, int length, void
       for(--ctrl; ctrl; ctrl--)
         *op++ = *ip++;
 
-      loop = (int)FASTLZ_EXPECT_CONDITIONAL(ip < ip_limit);
+      loop = FASTLZ_EXPECT_CONDITIONAL(ip < ip_limit);
       if(loop)
         ctrl = *ip++;
     }
   }
   while(FASTLZ_EXPECT_CONDITIONAL(loop));
 
-  return (int)(op - (flzuint8*)output);
+  return op - (flzuint8*)output;
 }
 
 #endif /* !defined(FASTLZ_COMPRESSOR) && !defined(FASTLZ_DECOMPRESSOR) */

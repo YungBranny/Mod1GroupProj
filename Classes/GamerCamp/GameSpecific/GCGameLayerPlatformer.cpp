@@ -82,9 +82,6 @@ void CGCGameLayerPlatformer::onEnter()
 	};
 
 	u32 uSizeOfActionArray = ( sizeof(aeKeyCodesForActions) / sizeof(cocos2d::EventKeyboard::KeyCode) );
-
-	// call base class function	to init the keyboard manager
-	AppDelegate::InitialiseKeyboardManager( uSizeOfActionArray, aeKeyCodesForActions );
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -296,7 +293,6 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 {
 	IGCGameLayer::VOnUpdate( fTimeStep );
 
-	AppDelegate::GetKeyboardManager()->Update();
 	HandleCollisions();	
 }
 

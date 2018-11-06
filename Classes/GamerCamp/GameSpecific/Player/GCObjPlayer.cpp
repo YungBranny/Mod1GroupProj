@@ -217,7 +217,6 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	}
 
 	// fire!
-	const CGCKeyboardManager* pKeyManager = AppDelegate::GetKeyboardManager();
 	if( FireWasJustPressed() )
 	{
 		// supply initial position, velocity, lifetime

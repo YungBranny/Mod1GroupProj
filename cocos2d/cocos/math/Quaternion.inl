@@ -22,7 +22,7 @@
 
 NS_CC_MATH_BEGIN
 
-inline Quaternion Quaternion::operator*(const Quaternion& q) const
+inline const Quaternion Quaternion::operator*(const Quaternion& q) const
 {
     Quaternion result(*this);
     result.multiply(q);

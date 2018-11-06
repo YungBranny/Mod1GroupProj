@@ -2,7 +2,7 @@
 Copyright (c) 2009-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2017 Chukong Technologies Inc.
+Copyright (c) 2013-2014 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -206,66 +206,66 @@ public:
      *
      * @return The map's size property measured in tiles.
      */
-    const Size& getMapSize() const { return _mapSize; }
+    inline const Size& getMapSize() const { return _mapSize; };
     
     /** Set the map's size property measured in tiles. 
      *
      * @param mapSize The map's size property measured in tiles.
      */
-    void setMapSize(const Size& mapSize) { _mapSize = mapSize; }
+    inline void setMapSize(const Size& mapSize) { _mapSize = mapSize; };
 
     /** The tiles's size property measured in pixels. 
      *
      * @return The tiles's size property measured in pixels.
      */
-    const Size& getTileSize() const { return _tileSize; }
+    inline const Size& getTileSize() const { return _tileSize; };
     
     /** Set the tiles's size property measured in pixels. 
      *
      * @param tileSize The tiles's size property measured in pixels.
      */
-    void setTileSize(const Size& tileSize) { _tileSize = tileSize; }
+    inline void setTileSize(const Size& tileSize) { _tileSize = tileSize; };
 
     /** Map orientation. 
      *
      * @return Map orientation.
      */
-    int getMapOrientation() const { return _mapOrientation; }
+    inline int getMapOrientation() const { return _mapOrientation; };
     
     /** Set map orientation. 
      *
      * @param mapOrientation The map orientation.
      */
-    void setMapOrientation(int mapOrientation) { _mapOrientation = mapOrientation; }
+    inline void setMapOrientation(int mapOrientation) { _mapOrientation = mapOrientation; };
 
     /** Get the Object groups. 
      *
      * @return The object groups.
      */
-    const Vector<TMXObjectGroup*>& getObjectGroups() const { return _objectGroups; }
-    Vector<TMXObjectGroup*>& getObjectGroups() { return _objectGroups; }
+    inline const Vector<TMXObjectGroup*>& getObjectGroups() const { return _objectGroups; };
+    inline Vector<TMXObjectGroup*>& getObjectGroups() { return _objectGroups; };
     
     /** Set the object groups. 
      *
      * @param groups The object groups.
      */
-    void setObjectGroups(const Vector<TMXObjectGroup*>& groups) {
+    inline void setObjectGroups(const Vector<TMXObjectGroup*>& groups) {
         _objectGroups = groups;
-    }
+    };
     
     /** Properties. 
      *
      * @return Properties.
      */
-    ValueMap& getProperties() { return _properties; }
+    inline ValueMap& getProperties() { return _properties; };
     
     /** Set the properties.
      *
      * @param properties A  Type of ValueMap to set the properties.
      */
-    void setProperties(const ValueMap& properties) {
+    inline void setProperties(const ValueMap& properties) {
         _properties = properties;
-    }
+    };
     
     /** Get the description.
      * @js NA

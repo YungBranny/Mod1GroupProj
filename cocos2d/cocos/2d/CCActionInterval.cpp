@@ -2,7 +2,7 @@
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2017 Chukong Technologies Inc.
+Copyright (c) 2013-2016 Chukong Technologies Inc.
  
 http://www.cocos2d-x.org
 
@@ -47,7 +47,7 @@ class ExtraAction : public FiniteTimeAction
 public:
     static ExtraAction* create();
     virtual ExtraAction* clone() const;
-    virtual ExtraAction* reverse() const;
+    virtual ExtraAction* reverse(void) const;
     virtual void update(float time);
     virtual void step(float dt);
 };
@@ -73,12 +73,14 @@ ExtraAction* ExtraAction::reverse() const
     return ExtraAction::create();
 }
 
-void ExtraAction::update(float /*time*/)
+void ExtraAction::update(float time)
 {
+    CC_UNUSED_PARAM(time);
 }
 
-void ExtraAction::step(float /*dt*/)
+void ExtraAction::step(float dt)
 {
+    CC_UNUSED_PARAM(dt);
 }
 
 //
@@ -89,10 +91,17 @@ bool ActionInterval::initWithDuration(float d)
 {
     _duration = d;
 
+    // prevent division by 0
+    // This comparison could be in step:, but it might decrease the performance
+    // by 3% in heavy based action games.
+    if (_duration <= FLT_EPSILON)
+    {
+        _duration = FLT_EPSILON;
+    }
+
     _elapsed = 0;
     _firstTick = true;
-    _done = false;
-    
+
     return true;
 }
 
@@ -110,7 +119,7 @@ bool ActionInterval::sendUpdateEventToScript(float dt, Action *actionObject)
 
 bool ActionInterval::isDone() const
 {
-    return _done;
+    return _elapsed >= _duration;
 }
 
 void ActionInterval::step(float dt)
@@ -133,12 +142,11 @@ void ActionInterval::step(float dt)
     if (sendUpdateEventToScript(updateDt, this)) return;
     
     this->update(updateDt);
-
-    _done = _elapsed >= _duration;
 }
 
-void ActionInterval::setAmplitudeRate(float /*amp*/)
+void ActionInterval::setAmplitudeRate(float amp)
 {
+    CC_UNUSED_PARAM(amp);
     // Abstract class needs implementation
     CCASSERT(0, "Subclass should implement this method!");
 }
@@ -156,7 +164,6 @@ void ActionInterval::startWithTarget(Node *target)
     FiniteTimeAction::startWithTarget(target);
     _elapsed = 0.0f;
     _firstTick = true;
-    _done = false;
 }
 
 //
@@ -285,15 +292,6 @@ bool Sequence::initWithTwoActions(FiniteTimeAction *actionOne, FiniteTimeAction 
     return true;
 }
 
-bool Sequence::isDone() const
-{
-    // fix issue #17884
-    if (dynamic_cast<ActionInstant*>(_actions[1]))
-        return (_done && _actions[1]->isDone());
-    else
-        return _done;
-}
-
 Sequence* Sequence::clone() const
 {
     // no copy constructor
@@ -331,14 +329,13 @@ void Sequence::startWithTarget(Node *target)
         return;
     }
     if (_duration > FLT_EPSILON)
-        // fix #14936 - FLT_EPSILON (instant action) / very fast duration (0.001) leads to worng split, that leads to call instant action few times
-        _split = _actions[0]->getDuration() > FLT_EPSILON ? _actions[0]->getDuration() / _duration : 0;
+        _split = _actions[0]->getDuration() / _duration;
     
     ActionInterval::startWithTarget(target);
     _last = -1;
 }
 
-void Sequence::stop()
+void Sequence::stop(void)
 {
     // Issue #1305
     if( _last != - 1 && _actions[_last])
@@ -468,13 +465,13 @@ bool Repeat::initWithAction(FiniteTimeAction *action, unsigned int times)
     return false;
 }
 
-Repeat* Repeat::clone() const
+Repeat* Repeat::clone(void) const
 {
     // no copy constructor
     return Repeat::create(_innerAction->clone(), _times);
 }
 
-Repeat::~Repeat()
+Repeat::~Repeat(void)
 {
     CC_SAFE_RELEASE(_innerAction);
 }
@@ -487,7 +484,7 @@ void Repeat::startWithTarget(Node *target)
     _innerAction->startWithTarget(target);
 }
 
-void Repeat::stop()
+void Repeat::stop(void)
 {
     _innerAction->stop();
     ActionInterval::stop();
@@ -544,7 +541,7 @@ void Repeat::update(float dt)
     }
 }
 
-bool Repeat::isDone() const
+bool Repeat::isDone(void) const
 {
     return _total == _times;
 }
@@ -605,14 +602,13 @@ void RepeatForever::startWithTarget(Node* target)
 void RepeatForever::step(float dt)
 {
     _innerAction->step(dt);
-    // only action interval should prevent jerk, issue #17808
-    if (_innerAction->isDone() && _innerAction->getDuration() > 0)
+    if (_innerAction->isDone())
     {
         float diff = _innerAction->getElapsed() - _innerAction->getDuration();
         if (diff > _innerAction->getDuration())
             diff = fmodf(diff, _innerAction->getDuration());
         _innerAction->startWithTarget(_target);
-        // to prevent jerk. cocos2d-iphone issue #390, 1247
+        // to prevent jerk. issue #390, 1247
         _innerAction->step(0.0f);
         _innerAction->step(diff);
     }
@@ -771,7 +767,7 @@ bool Spawn::initWithTwoActions(FiniteTimeAction *action1, FiniteTimeAction *acti
     return ret;
 }
 
-Spawn* Spawn::clone() const
+Spawn* Spawn::clone(void) const
 {
     // no copy constructor
     if (_one && _two)
@@ -787,7 +783,7 @@ Spawn::Spawn()
     
 }
 
-Spawn::~Spawn()
+Spawn::~Spawn(void)
 {
     CC_SAFE_RELEASE(_one);
     CC_SAFE_RELEASE(_two);
@@ -811,7 +807,7 @@ void Spawn::startWithTarget(Node *target)
     _two->startWithTarget(target);
 }
 
-void Spawn::stop()
+void Spawn::stop(void)
 {
     if (_one)
         _one->stop();
@@ -918,7 +914,7 @@ bool RotateTo::initWithDuration(float duration, const Vec3& dstAngle3D)
     return false;
 }
 
-RotateTo* RotateTo::clone() const
+RotateTo* RotateTo::clone(void) const
 {
     // no copy constructor
     auto a = new (std::nothrow) RotateTo();
@@ -1464,129 +1460,6 @@ SkewBy* SkewBy::reverse() const
     return SkewBy::create(_duration, -_skewX, -_skewY);
 }
 
-ResizeTo* ResizeTo::create(float duration, const cocos2d::Size& final_size)
-{
-    ResizeTo *ret = new (std::nothrow) ResizeTo();
-    
-    if (ret)
-    {
-        if (ret->initWithDuration(duration, final_size))
-        {
-            ret->autorelease();
-        } 
-        else
-        {
-            delete ret;
-            ret = nullptr;
-        }
-    }
-    
-    return ret;
-}
-
-ResizeTo* ResizeTo::clone() const
-{
-    // no copy constructor
-    ResizeTo* a = new (std::nothrow) ResizeTo();
-    a->initWithDuration(_duration, _finalSize);
-    a->autorelease();
-
-    return a;
-}
-
-void ResizeTo::startWithTarget(cocos2d::Node* target)
-{
-    ActionInterval::startWithTarget(target);
-    _initialSize = target->getContentSize();
-    _sizeDelta = _finalSize - _initialSize;
-}
-
-void ResizeTo::update(float time)
-{
-    if (_target)
-    {
-        auto new_size = _initialSize + (_sizeDelta * time);
-        _target->setContentSize(new_size);
-    }
-}
-
-bool ResizeTo::initWithDuration(float duration, const cocos2d::Size& final_size)
-{
-    if (cocos2d::ActionInterval::initWithDuration(duration))
-    {
-        _finalSize = final_size;
-        return true;
-    }
-
-    return false;
-}
-
-//
-// ResizeBy
-//
-
-ResizeBy* ResizeBy::create(float duration, const cocos2d::Size& deltaSize)
-{
-    ResizeBy *ret = new (std::nothrow) ResizeBy();
-    
-    if (ret)
-    {
-        if (ret->initWithDuration(duration, deltaSize))
-        {
-            ret->autorelease();
-        } 
-        else
-        {
-              delete ret;
-              ret = nullptr;
-        }
-    }
-    
-    return ret;
-}
-
-ResizeBy* ResizeBy::clone() const
-{
-    // no copy constructor
-    auto a = new (std::nothrow) ResizeBy();
-    a->initWithDuration(_duration, _sizeDelta);
-    a->autorelease();
-    return a;
-}
-
-void ResizeBy::startWithTarget(Node *target)
-{
-    ActionInterval::startWithTarget(target);
-    _previousSize = _startSize = target->getContentSize();
-}
-
-ResizeBy* ResizeBy::reverse() const
-{
-    cocos2d::Size newSize(-_sizeDelta.width, -_sizeDelta.height);
-    return ResizeBy::create(_duration, newSize);
-}
-
-void ResizeBy::update(float t)
-{
-    if (_target)
-    {
-        _target->setContentSize(_startSize + (_sizeDelta * t));
-    }
-}
-
-bool ResizeBy::initWithDuration(float duration, const cocos2d::Size& deltaSize)
-{
-    bool ret = false;
-    
-    if (ActionInterval::initWithDuration(duration))
-    {
-        _sizeDelta = deltaSize;
-        ret = true;
-    }
-    
-    return ret;
-}
-
 //
 // JumpBy
 //
@@ -2096,7 +1969,7 @@ void Blink::startWithTarget(Node *target)
     _originalState = target->isVisible();
 }
 
-Blink* Blink::clone() const
+Blink* Blink::clone(void) const
 {
     // no copy constructor
     return Blink::create(_duration, _times);
@@ -2424,8 +2297,9 @@ DelayTime* DelayTime::clone() const
     return DelayTime::create(_duration);
 }
 
-void DelayTime::update(float /*time*/)
+void DelayTime::update(float time)
 {
+    CC_UNUSED_PARAM(time);
     return;
 }
 
@@ -2498,7 +2372,7 @@ void ReverseTime::startWithTarget(Node *target)
     _other->startWithTarget(target);
 }
 
-void ReverseTime::stop()
+void ReverseTime::stop(void)
 {
     _other->stop();
     ActionInterval::stop();
@@ -2698,7 +2572,7 @@ Animate* Animate::reverse() const
    
     if (!oldArray.empty())
     {
-        for (auto iter = oldArray.crbegin(), iterCrend = oldArray.crend(); iter != iterCrend; ++iter)
+        for (auto iter = oldArray.crbegin(); iter != oldArray.crend(); ++iter)
         {
             AnimationFrame* animFrame = *iter;
             if (!animFrame)

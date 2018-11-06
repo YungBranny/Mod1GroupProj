@@ -372,7 +372,7 @@ namespace tinyobj {
         }
         
         // Flatten vertices and indices
-        for (size_t i = 0, size = faceGroup.size(); i < size; ++i) {
+        for (size_t i = 0; i < faceGroup.size(); i++) {
             const std::vector<vertex_index> &face = faceGroup[i];
             
             vertex_index i0 = face[0];
@@ -414,7 +414,7 @@ namespace tinyobj {
     
     static std::string& replacePathSeperator(std::string& path)
     {
-        for (std::string::size_type i = 0, size = path.size(); i < size; ++i) {
+        for (std::string::size_type i = 0; i < path.size(); i++) {
             if (path[i] == '\\')
                 path[i] = '/';
         }
@@ -640,16 +640,13 @@ namespace tinyobj {
             filepath = matId;
         }
         
-        std::string err = "";
-        
         std::istringstream matIStream(cocos2d::FileUtils::getInstance()->getStringFromFile(filepath));
+        std::string err = LoadMtl(matMap, materials, matIStream);
         if (!matIStream) {
             std::stringstream ss;
             ss << "WARN: Material file [ " << filepath << " ] not found. Created a default material.";
             err += ss.str();
         }
-        err += LoadMtl(matMap, materials, matIStream);
-
         return err;
     }
     
@@ -765,12 +762,9 @@ namespace tinyobj {
                 token += strspn(token, " \t");
                 
                 std::vector<vertex_index> face;
-                auto first = static_cast<int>(v.size() / 3);
-                auto second = static_cast<int>(vn.size() / 3);
-                auto third = static_cast<int>(vt.size() / 2);
                 while (!isNewLine(token[0])) {
                     vertex_index vi =
-                    parseTriple(token, first, second, third);
+                    parseTriple(token, static_cast<int>(v.size() / 3), static_cast<int>(vn.size() / 3), static_cast<int>(vt.size() / 2));
                     face.push_back(vi);
                     size_t n = strspn(token, " \t\r");
                     token += n;

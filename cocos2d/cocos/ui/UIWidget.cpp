@@ -1,5 +1,5 @@
 /****************************************************************************
-Copyright (c) 2013-2017 Chukong Technologies Inc.
+Copyright (c) 2013-2014 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -56,7 +56,7 @@ class Widget::FocusNavigationController
     }
     ~FocusNavigationController();
 protected:
-    void setFirstFocusedWidget(Widget* widget);
+    void setFirstFocsuedWidget(Widget* widget);
 
     void onKeypadKeyPressed(EventKeyboard::KeyCode, Event*);
 
@@ -76,7 +76,7 @@ Widget::FocusNavigationController::~FocusNavigationController()
     this->removeKeyboardEventListener();
 }
 
-void Widget::FocusNavigationController::onKeypadKeyPressed(EventKeyboard::KeyCode  keyCode, Event* /*event*/)
+void Widget::FocusNavigationController::onKeypadKeyPressed(EventKeyboard::KeyCode  keyCode, Event *event)
 {
     if (_enableFocusNavigation && _firstFocusedWidget)
     {
@@ -112,7 +112,7 @@ void Widget::FocusNavigationController::enableFocusNavigation(bool flag)
         this->removeKeyboardEventListener();
 }
 
-void Widget::FocusNavigationController::setFirstFocusedWidget(Widget* widget)
+void Widget::FocusNavigationController::setFirstFocsuedWidget(Widget* widget)
 {
     _firstFocusedWidget = widget;
 }
@@ -690,7 +690,7 @@ void Widget::updateChildrenDisplayedRGBA()
 }
 
 
-Widget* Widget::getAncestorWidget(Node* node)
+Widget* Widget::getAncensterWidget(Node* node)
 {
     if (nullptr == node)
     {
@@ -709,13 +709,8 @@ Widget* Widget::getAncestorWidget(Node* node)
     }
     else
     {
-        return this->getAncestorWidget(parent->getParent());
+        return this->getAncensterWidget(parent->getParent());
     }
-}
-
-Widget* Widget::getAncensterWidget(Node* node)
-{
-    return getAncestorWidget(node);
 }
 
 bool Widget::isAncestorsVisible(Node* node)
@@ -735,7 +730,7 @@ bool Widget::isAncestorsVisible(Node* node)
 
 bool Widget::isAncestorsEnabled()
 {
-    Widget* parentWidget = this->getAncestorWidget(this);
+    Widget* parentWidget = this->getAncensterWidget(this);
     if (parentWidget == nullptr)
     {
         return true;
@@ -775,7 +770,7 @@ bool Widget::isSwallowTouches()const
     return false;
 }
 
-bool Widget::onTouchBegan(Touch *touch, Event* /*unusedEvent*/)
+bool Widget::onTouchBegan(Touch *touch, Event *unusedEvent)
 {
     _hitted = false;
     if (isVisible() && isEnabled() && isAncestorsEnabled() && isAncestorsVisible(this) )
@@ -819,7 +814,7 @@ void Widget::propagateTouchEvent(cocos2d::ui::Widget::TouchEventType event, coco
     }
 }
 
-void Widget::onTouchMoved(Touch *touch, Event* /*unusedEvent*/)
+void Widget::onTouchMoved(Touch *touch, Event *unusedEvent)
 {
     _touchMovePosition = touch->getLocation();
 
@@ -836,7 +831,7 @@ void Widget::onTouchMoved(Touch *touch, Event* /*unusedEvent*/)
     moveEvent();
 }
 
-void Widget::onTouchEnded(Touch *touch, Event* /*unusedEvent*/)
+void Widget::onTouchEnded(Touch *touch, Event *unusedEvent)
 {
     _touchEndPosition = touch->getLocation();
 
@@ -861,16 +856,8 @@ void Widget::onTouchEnded(Touch *touch, Event* /*unusedEvent*/)
     }
 }
 
-void Widget::onTouchCancelled(Touch* touch, Event* /*unusedEvent*/)
+void Widget::onTouchCancelled(Touch *touch, Event *unusedEvent)
 {
-    /*
-     * Propagate touch events to its parents
-     */
-    if (_propagateTouchEvents)
-    {
-        this->propagateTouchEvent(TouchEventType::CANCELED, this, touch);
-    }
-    
     setHighlighted(false);
     cancelUpEvent();
 }
@@ -1125,22 +1112,22 @@ bool Widget::isEnabled() const
 
 float Widget::getLeftBoundary() const
 {
-    return getBoundingBox().origin.x;
+    return getPosition().x - getAnchorPoint().x * _contentSize.width;
 }
 
 float Widget::getBottomBoundary() const
 {
-    return getBoundingBox().origin.y;
+    return getPosition().y - getAnchorPoint().y * _contentSize.height;
 }
 
 float Widget::getRightBoundary() const
 {
-    return getLeftBoundary() + getBoundingBox().size.width;
+    return getLeftBoundary() + _contentSize.width;
 }
 
 float Widget::getTopBoundary() const
 {
-    return getBottomBoundary() + getBoundingBox().size.height;
+    return getBottomBoundary() + _contentSize.height;
 }
 
 const Vec2& Widget::getTouchBeganPosition()const
@@ -1210,17 +1197,47 @@ void Widget::copyClonedWidgetChildren(Widget* model)
     }
 }
 
-GLProgramState* Widget::getNormalGLProgramState(Texture2D* texture)const
+GLProgramState* Widget::getNormalGLProgramState()const
 {
-    return GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP, texture);
+    GLProgramState *glState = nullptr;
+
+    // ETC1 Gray supports.
+    // currently, Only AbstractCheckButton, ui::Slider called this function, them's VirtualRender is Sprite
+    auto virtualRender = const_cast<Widget*>(this)->getVirtualRenderer();
+    Texture2D* virtualTexture = nullptr;
+    if (auto sp = dynamic_cast<Sprite*>(virtualRender))
+    {
+        virtualTexture = sp->getTexture();
+    }
+    else if (auto scale9sp = dynamic_cast<Scale9Sprite*>(virtualRender))
+    {
+        virtualTexture = scale9sp->getSprite() != nullptr ? scale9sp->getSprite()->getTexture() : nullptr;
+    }
+    glState = GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_TEXTURE_COLOR_NO_MVP, virtualTexture);
+    return glState;
 }
 
-GLProgramState* Widget::getGrayGLProgramState(Texture2D* texture)const
+GLProgramState* Widget::getGrayGLProgramState()const
 {
-    return GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_GRAYSCALE, texture);
+    GLProgramState *glState = nullptr;
+
+    // ETC1 Gray supports.
+    // currently, Only AbstractCheckButton, ui::Slider called this function, them's VirtualRender is Sprite
+    auto virtualRender = const_cast<Widget*>(this)->getVirtualRenderer();
+    Texture2D* virtualTexture = nullptr;
+    if (auto sp = dynamic_cast<cocos2d::Sprite*>(virtualRender))
+    {
+        virtualTexture = sp->getTexture();
+    }
+    else if (auto scale9sp = dynamic_cast<Scale9Sprite*>(virtualRender))
+    {
+        virtualTexture = scale9sp->getSprite() != nullptr ? scale9sp->getSprite()->getTexture() : nullptr;
+    }
+    glState = GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_GRAYSCALE, virtualTexture);
+    return glState;
 }
 
-void Widget::copySpecialProperties(Widget* /*model*/)
+void Widget::copySpecialProperties(Widget* model)
 {
 
 }
@@ -1266,9 +1283,9 @@ void Widget::copyProperties(Widget *widget)
     copySpecialProperties(widget);
 
     Map<int, LayoutParameter*>& layoutParameterDic = widget->_layoutParameterDictionary;
-    for (auto& iter : layoutParameterDic)
+    for (auto iter = layoutParameterDic.begin(); iter != layoutParameterDic.end(); ++iter)
     {
-        setLayoutParameter(iter.second->clone());
+        setLayoutParameter(iter->second->clone());
     }
 }
 
@@ -1364,7 +1381,7 @@ void Widget::setFocused(bool focus)
     if (focus) {
         _focusedWidget = this;
         if (_focusNavigationController) {
-            _focusNavigationController->setFirstFocusedWidget(this);
+            _focusNavigationController->setFirstFocsuedWidget(this);
         }
     }
 
@@ -1472,10 +1489,6 @@ void Widget::onFocusChange(Widget* widgetLostFocus, Widget* widgetGetFocus)
         widgetGetFocus->setFocused(true);
     }
 }
-    
-Widget* Widget::getCurrentFocusedWidget(bool /*isWidget*/){
-    return getCurrentFocusedWidget();
-}
 
 Widget* Widget::getCurrentFocusedWidget()
 {
@@ -1491,7 +1504,7 @@ void Widget::enableDpadNavigation(bool enable)
             _focusNavigationController = new (std::nothrow) FocusNavigationController;
             if (_focusedWidget)
             {
-                _focusNavigationController->setFirstFocusedWidget(_focusedWidget);
+                _focusNavigationController->setFirstFocsuedWidget(_focusedWidget);
             }
         }
     }

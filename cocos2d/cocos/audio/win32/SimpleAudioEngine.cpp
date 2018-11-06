@@ -1,6 +1,6 @@
 /****************************************************************************
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2017 Chukong Technologies Inc.
+Copyright (c) 2013-2014 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -78,11 +78,13 @@ void SimpleAudioEngine::end()
 {
     sharedMusic().Close();
 
-    for (auto& iter : sharedList())
+    EffectList::iterator p = sharedList().begin();
+    while (p != sharedList().end())
     {
-        delete iter.second;
-        iter.second = nullptr;
-    }
+        delete p->second;
+        p->second = nullptr;
+        p++;
+    }   
     sharedList().clear();
     return;
 }
@@ -171,7 +173,7 @@ void SimpleAudioEngine::stopEffect(unsigned int nSoundId)
 void SimpleAudioEngine::preloadEffect(const char* pszFilePath)
 {
     int nRet = 0;
-    do
+    do 
     {
         BREAK_IF(! pszFilePath);
 
@@ -202,9 +204,10 @@ void SimpleAudioEngine::pauseEffect(unsigned int nSoundId)
 
 void SimpleAudioEngine::pauseAllEffects()
 {
-    for (auto& iter : sharedList())
+    EffectList::iterator iter;
+    for (iter = sharedList().begin(); iter != sharedList().end(); iter++)
     {
-        iter.second->Pause();
+        iter->second->Pause();
     }
 }
 
@@ -219,17 +222,19 @@ void SimpleAudioEngine::resumeEffect(unsigned int nSoundId)
 
 void SimpleAudioEngine::resumeAllEffects()
 {
-    for (auto& iter : sharedList())
+    EffectList::iterator iter;
+    for (iter = sharedList().begin(); iter != sharedList().end(); iter++)
     {
-        iter.second->Resume();
+        iter->second->Resume();
     }
 }
 
 void SimpleAudioEngine::stopAllEffects()
 {
-    for (auto& iter : sharedList())
+    EffectList::iterator iter;
+    for (iter = sharedList().begin(); iter != sharedList().end(); iter++)
     {
-        iter.second->Stop();
+        iter->second->Stop();
     }
 }
 
@@ -248,7 +253,7 @@ void SimpleAudioEngine::unloadEffect(const char* pszFilePath)
         delete p->second;
         p->second = nullptr;
         sharedList().erase(nID);
-    }
+    }    
 }
 
 //////////////////////////////////////////////////////////////////////////

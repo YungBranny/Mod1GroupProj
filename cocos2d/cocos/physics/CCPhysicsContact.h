@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2013-2017 Chukong Technologies Inc.
+ Copyright (c) 2013 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -78,22 +78,22 @@ public:
     };
     
     /** Get contact shape A. */
-    PhysicsShape* getShapeA() const { return _shapeA; }
+    inline PhysicsShape* getShapeA() const { return _shapeA; }
     
     /** Get contact shape B. */
-    PhysicsShape* getShapeB() const { return _shapeB; }
+    inline PhysicsShape* getShapeB() const { return _shapeB; }
     
     /** Get contact data. */
-    const PhysicsContactData* getContactData() const { return _contactData; }
+    inline const PhysicsContactData* getContactData() const { return _contactData; }
     
     /** Get previous contact data */
-    const PhysicsContactData* getPreContactData() const { return _preContactData; }
+    inline const PhysicsContactData* getPreContactData() const { return _preContactData; }
     
     /** 
      * Get data. 
      * @lua NA
      */
-    void* getData() const { return _data; }
+    inline void* getData() const { return _data; }
     
     /**
      * @brief Set data to contact. 
@@ -102,7 +102,7 @@ public:
      *
      * @lua NA
      */
-    void setData(void* data) { _data = data; }
+    inline void setData(void* data) { _data = data; }
 
     /** Get the event code */
     EventCode getEventCode() const { return _eventCode; };
@@ -112,12 +112,12 @@ private:
     bool init(PhysicsShape* a, PhysicsShape* b);
     
     void setEventCode(EventCode eventCode) { _eventCode = eventCode; };
-    bool isNotificationEnabled() const { return _notificationEnable; }
-    void setNotificationEnable(bool enable) { _notificationEnable = enable; }
-    PhysicsWorld* getWorld() const { return _world; }
-    void setWorld(PhysicsWorld* world) { _world = world; }
-    void setResult(bool result) { _result = result; }
-    bool resetResult() { bool ret = _result; _result = true; return ret; }
+    inline bool isNotificationEnabled() const { return _notificationEnable; }
+    inline void setNotificationEnable(bool enable) { _notificationEnable = enable; }
+    inline PhysicsWorld* getWorld() const { return _world; }
+    inline void setWorld(PhysicsWorld* world) { _world = world; }
+    inline void setResult(bool result) { _result = result; }
+    inline bool resetResult() { bool ret = _result; _result = true; return ret; }
     
     void generateContactData();
 

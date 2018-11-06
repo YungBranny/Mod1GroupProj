@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2015-2017 Chukong Technologies Inc.
+ Copyright (c) 2015 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -36,7 +36,7 @@
 class btDynamicsWorld;
 class btDefaultCollisionConfiguration;
 class btCollisionDispatcher;
-struct btDbvtBroadphase;
+class btDbvtBroadphase;
 class btSequentialImpulseConstraintSolver;
 class btGhostPairCallback;
 class btRigidBody;

@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2013-2017 Chukong Technologies Inc.
+ Copyright (c) 2013-2014 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -75,28 +75,28 @@ public:
     void init(float globalZOrder, const Mat4& modelViewTransform, uint32_t flags);
     
     /** Get global Z order. */
-    float getGlobalOrder() const { return _globalOrder; }
+    inline float getGlobalOrder() const { return _globalOrder; }
 
     /** Returns the Command type. */
-    Type getType() const { return _type; }
+    inline Type getType() const { return _type; }
     
     /** Returns whether is transparent. */
-    bool isTransparent() const { return _isTransparent; }
+    inline bool isTransparent() const { return _isTransparent; }
     
     /** Set transparent flag. */
-    void setTransparent(bool isTransparent) { _isTransparent = isTransparent; }
+    inline void setTransparent(bool isTransparent) { _isTransparent = isTransparent; }
     /**
      Get skip batching status, if a rendering is skip batching, it will be forced to be rendering separately.
      */
-    bool isSkipBatching() const { return _skipBatching; }
+    inline bool isSkipBatching() const { return _skipBatching; }
     /**Set skip batching.*/
-    void setSkipBatching(bool value) { _skipBatching = value; }
+    inline void setSkipBatching(bool value) { _skipBatching = value; }
     /**Whether the command should be rendered at 3D mode.*/
-    bool is3D() const { return _is3D; }
+    inline bool is3D() const { return _is3D; }
     /**Set the command rendered in 3D mode or not.*/
-    void set3D(bool value) { _is3D = value; }
+    inline void set3D(bool value) { _is3D = value; }
     /**Get the depth by current model view matrix.*/
-    float getDepth() const { return _depth; }
+    inline float getDepth() const { return _depth; }
     
 protected:
     /**Constructor.*/

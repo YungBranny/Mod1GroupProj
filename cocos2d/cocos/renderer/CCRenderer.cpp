@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2013-2017 Chukong Technologies Inc.
+ Copyright (c) 2013-2014 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -111,9 +111,9 @@ ssize_t RenderQueue::size() const
 void RenderQueue::sort()
 {
     // Don't sort _queue0, it already comes sorted
-    std::stable_sort(std::begin(_commands[QUEUE_GROUP::TRANSPARENT_3D]), std::end(_commands[QUEUE_GROUP::TRANSPARENT_3D]), compare3DCommand);
-    std::stable_sort(std::begin(_commands[QUEUE_GROUP::GLOBALZ_NEG]), std::end(_commands[QUEUE_GROUP::GLOBALZ_NEG]), compareRenderCommand);
-    std::stable_sort(std::begin(_commands[QUEUE_GROUP::GLOBALZ_POS]), std::end(_commands[QUEUE_GROUP::GLOBALZ_POS]), compareRenderCommand);
+    std::sort(std::begin(_commands[QUEUE_GROUP::TRANSPARENT_3D]), std::end(_commands[QUEUE_GROUP::TRANSPARENT_3D]), compare3DCommand);
+    std::sort(std::begin(_commands[QUEUE_GROUP::GLOBALZ_NEG]), std::end(_commands[QUEUE_GROUP::GLOBALZ_NEG]), compareRenderCommand);
+    std::sort(std::begin(_commands[QUEUE_GROUP::GLOBALZ_POS]), std::end(_commands[QUEUE_GROUP::GLOBALZ_POS]), compareRenderCommand);
 }
 
 RenderCommand* RenderQueue::operator[](ssize_t index) const
@@ -281,14 +281,7 @@ void Renderer::setupVBOAndVAO()
     glGenBuffers(2, &_buffersVBO[0]);
 
     glBindBuffer(GL_ARRAY_BUFFER, _buffersVBO[0]);
-    // Issue #15652
-    // Should not initialize VBO with a large size (VBO_SIZE=65536),
-    // it may cause low FPS on some Android devices like LG G4 & Nexus 5X.
-    // It's probably because some implementations of OpenGLES driver will
-    // copy the whole memory of VBO which initialized at the first time
-    // once glBufferData/glBufferSubData is invoked.
-    // For more discussion, please refer to https://github.com/cocos2d/cocos2d-x/issues/15652
-    //glBufferData(GL_ARRAY_BUFFER, sizeof(_verts[0]) * VBO_SIZE, _verts, GL_DYNAMIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(_verts[0]) * VBO_SIZE, _verts, GL_DYNAMIC_DRAW);
 
     // vertices
     glEnableVertexAttribArray(GLProgram::VERTEX_ATTRIB_POSITION);
@@ -317,10 +310,10 @@ void Renderer::setupVBO()
 {
     glGenBuffers(2, &_buffersVBO[0]);
     // Issue #15652
-    // Should not initialize VBO with a large size (VBO_SIZE=65536),
+    // Should not initialzie VBO with a large size (VBO_SIZE=65536),
     // it may cause low FPS on some Android devices like LG G4 & Nexus 5X.
     // It's probably because some implementations of OpenGLES driver will
-    // copy the whole memory of VBO which initialized at the first time
+    // copy the whole memory of VBO which initialzied at the first time
     // once glBufferData/glBufferSubData is invoked.
     // For more discussion, please refer to https://github.com/cocos2d/cocos2d-x/issues/15652
 //    mapBuffers();
@@ -499,9 +492,9 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         glDisable(GL_CULL_FACE);
         RenderState::StateBlock::_defaultState->setCullFace(false);
         
-        for (const auto& zNegNext : zNegQueue)
+        for (auto it = zNegQueue.cbegin(); it != zNegQueue.cend(); ++it)
         {
-            processRenderCommand(zNegNext);
+            processRenderCommand(*it);
         }
         flush();
     }
@@ -522,9 +515,10 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         RenderState::StateBlock::_defaultState->setBlend(false);
         RenderState::StateBlock::_defaultState->setCullFace(true);
 
-        for (const auto& opaqueNext : opaqueQueue)
+
+        for (auto it = opaqueQueue.cbegin(); it != opaqueQueue.cend(); ++it)
         {
-            processRenderCommand(opaqueNext);
+            processRenderCommand(*it);
         }
         flush();
     }
@@ -546,9 +540,9 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         RenderState::StateBlock::_defaultState->setCullFace(true);
 
 
-        for (const auto& transNext : transQueue)
+        for (auto it = transQueue.cbegin(); it != transQueue.cend(); ++it)
         {
-            processRenderCommand(transNext);
+            processRenderCommand(*it);
         }
         flush();
     }
@@ -582,9 +576,9 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         glDisable(GL_CULL_FACE);
         RenderState::StateBlock::_defaultState->setCullFace(false);
         
-        for (const auto& zZeroNext : zZeroQueue)
+        for (auto it = zZeroQueue.cbegin(); it != zZeroQueue.cend(); ++it)
         {
-            processRenderCommand(zZeroNext);
+            processRenderCommand(*it);
         }
         flush();
     }
@@ -618,9 +612,9 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         glDisable(GL_CULL_FACE);
         RenderState::StateBlock::_defaultState->setCullFace(false);
         
-        for (const auto& zPosNext : zPosQueue)
+        for (auto it = zPosQueue.cbegin(); it != zPosQueue.cend(); ++it)
         {
-            processRenderCommand(zPosNext);
+            processRenderCommand(*it);
         }
         flush();
     }
@@ -653,7 +647,7 @@ void Renderer::render()
 void Renderer::clean()
 {
     // Clear render group
-    for (size_t j = 0, size = _renderGroups.size() ; j < size; j++)
+    for (size_t j = 0 ; j < _renderGroups.size(); j++)
     {
         //commands are owned by nodes
         // for (const auto &cmd : _renderGroups[j])
@@ -747,8 +741,9 @@ void Renderer::drawBatchedTriangles()
     int prevMaterialID = -1;
     bool firstCommand = true;
 
-    for(const auto& cmd : _queuedTriangleCommands)
+    for(auto it = std::begin(_queuedTriangleCommands); it != std::end(_queuedTriangleCommands); ++it)
     {
+        const auto& cmd = *it;
         auto currentMaterialID = cmd->getMaterialID();
         const bool batchable = !cmd->isSkipBatching();
 
@@ -851,7 +846,7 @@ void Renderer::drawBatchedTriangles()
     }
 
     /************** 4: Cleanup *************/
-    if (conf->supportsShareableVAO() && conf->supportsMapBuffer())
+    if (Configuration::getInstance()->supportsShareableVAO())
     {
         //Unbind VAO
         GL::bindVAO(0);
@@ -897,15 +892,15 @@ void Renderer::flushTriangles()
 // helpers
 bool Renderer::checkVisibility(const Mat4 &transform, const Size &size)
 {
-    auto director = Director::getInstance();
-    auto scene = director->getRunningScene();
+    auto scene = Director::getInstance()->getRunningScene();
     
     //If draw to Rendertexture, return true directly.
     // only cull the default camera. The culling algorithm is valid for default camera.
     if (!scene || (scene && scene->_defaultCamera != Camera::getVisitingCamera()))
         return true;
 
-    Rect visibleRect(director->getVisibleOrigin(), director->getVisibleSize());
+    auto director = Director::getInstance();
+    Rect visiableRect(director->getVisibleOrigin(), director->getVisibleSize());
     
     // transform center point to screen space
     float hSizeX = size.width/2;
@@ -919,11 +914,11 @@ bool Renderer::checkVisibility(const Mat4 &transform, const Size &size)
     float wshh = std::max(fabsf(hSizeX * transform.m[1] + hSizeY * transform.m[5]), fabsf(hSizeX * transform.m[1] - hSizeY * transform.m[5]));
     
     // enlarge visible rect half size in screen coord
-    visibleRect.origin.x -= wshw;
-    visibleRect.origin.y -= wshh;
-    visibleRect.size.width += wshw * 2;
-    visibleRect.size.height += wshh * 2;
-    bool ret = visibleRect.containsPoint(v2p);
+    visiableRect.origin.x -= wshw;
+    visiableRect.origin.y -= wshh;
+    visiableRect.size.width += wshw * 2;
+    visiableRect.size.height += wshh * 2;
+    bool ret = visiableRect.containsPoint(v2p);
     return ret;
 }
 

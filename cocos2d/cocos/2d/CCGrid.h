@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2009      On-Core
 Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2017 Chukong Technologies Inc.
+Copyright (C) 2013-2014 Chukong Technologies Inc.
  
 http://www.cocos2d-x.org
 
@@ -74,27 +74,27 @@ public:
     /** @{
     Getter and setter of the active state of the grid.
     */
-    bool isActive() const { return _active; }
+    inline bool isActive(void) const { return _active; }
     void setActive(bool active);
     /**@}*/
 
     /** Get number of times that the grid will be reused. */
-    int getReuseGrid() const { return _reuseGrid; }
+    inline int getReuseGrid(void) const { return _reuseGrid; }
     /** Set number of times that the grid will be reused. */
-    void setReuseGrid(int reuseGrid) { _reuseGrid = reuseGrid; }
+    inline void setReuseGrid(int reuseGrid) { _reuseGrid = reuseGrid; }
 
     /** Size of the grid. */
-    const Size& getGridSize() const { return _gridSize; }
+    inline const Size& getGridSize(void) const { return _gridSize; }
     /**Set the size of the grid.*/
-    void setGridSize(const Size& gridSize) { _gridSize = gridSize; }
+    inline void setGridSize(const Size& gridSize) { _gridSize = gridSize; }
 
     /** Pixels between the grids. */
-    const Vec2& getStep() const { return _step; }
+    inline const Vec2& getStep(void) const { return _step; }
     /**Get the pixels between the grids.*/
-    void setStep(const Vec2& step) { _step = step; }
+    inline void setStep(const Vec2& step) { _step = step; }
 
     /** is texture flipped. */
-    bool isTextureFlipped() const { return _isTextureFlipped; }
+    inline bool isTextureFlipped(void) const { return _isTextureFlipped; }
     /**Set the texture flipped or not.*/
     void setTextureFlipped(bool flipped);
     
@@ -132,7 +132,7 @@ public:
      * @brief Get the effect grid rect.
      * @return Return the effect grid rect.
      */
-    const Rect& getGridRect() const { return _gridRect; }
+    inline const Rect& getGridRect() const {return _gridRect;}
 
 protected:
     bool _active;

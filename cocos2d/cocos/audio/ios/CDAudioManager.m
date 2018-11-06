@@ -415,11 +415,13 @@ static BOOL configured = FALSE;
 
 - (id) init: (tAudioManagerMode) mode {
     if ((self = [super init])) {
-   
-         [[NSNotificationCenter defaultCenter] addObserver: self
-         selector:    NSSelectorFromString(@"handleInterruption")
-         name:        AVAudioSessionInterruptionNotification
-         object:      [AVAudioSession sharedInstance]];
+
+        // 'delegate' not supported on tvOS
+#if !defined(CC_TARGET_OS_TVOS)
+        //Initialise the audio session
+        AVAudioSession* session = [AVAudioSession sharedInstance];
+        session.delegate = self;
+#endif
     
         _mode = mode;
         backgroundMusicCompletionSelector = nil;
@@ -728,30 +730,26 @@ static BOOL configured = FALSE;
     if (backgroundMusicCompletionSelector != nil) {
         [backgroundMusicCompletionListener performSelector:backgroundMusicCompletionSelector];
     }    
+}    
+
+-(void) beginInterruption {
+    CDLOGINFO(@"Denshion::CDAudioManager - begin interruption");
+    [self audioSessionInterrupted];
 }
 
-- (void) handleInterruption:(NSNotification*) notification {
-    if (notification.name != AVAudioSessionInterruptionNotification ||
-        notification.userInfo == nil)
-        return;
-    
-    NSDictionary *interuptionDict = notification.userInfo;
-    NSInteger interuptionType = [[interuptionDict valueForKey:AVAudioSessionInterruptionTypeKey] integerValue];
-    // decide what to do based on interruption type here...
-    switch (interuptionType) {
-        case AVAudioSessionInterruptionTypeBegan:
-            [self audioSessionInterrupted];
-            break;
-            
-        case AVAudioSessionInterruptionTypeEnded:
-            [self audioSessionResumed];
-            break;
-            
-        default:
-            NSLog(@"Audio Session Interruption Notification case default.");
-            break;
-    }
+-(void) endInterruption {
+    CDLOGINFO(@"Denshion::CDAudioManager - end interruption");
+    [self audioSessionResumed];
 }
+
+#if __CC_PLATFORM_IOS >= 40000
+-(void) endInterruptionWithFlags:(NSUInteger)flags {
+    CDLOGINFO(@"Denshion::CDAudioManager - interruption ended with flags %i",flags);
+    if (flags == AVAudioSessionInterruptionFlags_ShouldResume) {
+        [self audioSessionResumed];
+    }    
+}
+#endif
 
 -(void)audioSessionInterrupted 
 { 

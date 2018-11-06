@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2013-2017 Chukong Technologies Inc.
+ Copyright (c) 2013-2016 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -47,8 +47,10 @@ void HttpCookie::readFile()
 
         _cookies.clear();
 
-        for(auto& cookie : cookiesVec)
+        for(auto iter = cookiesVec.begin();iter != cookiesVec.end(); iter++)
         {
+            std::string cookie = *iter;
+
             if(cookie.length() == 0)
                 continue;
 
@@ -93,10 +95,10 @@ const std::vector<CookiesInfo>* HttpCookie::getCookies() const
 
 const CookiesInfo* HttpCookie::getMatchCookie(const std::string& url) const
 {
-    for(auto& cookie : _cookies)
+    for(auto iter = _cookies.begin(); iter != _cookies.end(); iter++)
     {
-        if(url.find(cookie.domain) != std::string::npos)
-            return &cookie;
+        if(url.find(iter->domain) != std::string::npos)
+            return &(*iter);
     }
 
     return nullptr;
@@ -104,11 +106,11 @@ const CookiesInfo* HttpCookie::getMatchCookie(const std::string& url) const
 
 void HttpCookie::updateOrAddCookie(CookiesInfo* cookie)
 {
-    for(auto& _cookie : _cookies)
+    for(auto iter = _cookies.begin(); iter != _cookies.end(); iter++)
     {
-        if(cookie->domain == _cookie.domain)
+        if(cookie->domain == iter->domain)
         {
-            _cookie = *cookie;
+            *iter = *cookie;
             return;
         }
     }
@@ -126,22 +128,22 @@ void HttpCookie::writeFile()
           out);
 
     std::string line;
-    for(auto& cookie : _cookies)
+    for(auto iter = _cookies.begin(); iter != _cookies.end(); iter++)
     {
         line.clear();
-        line.append(cookie.domain);
+        line.append(iter->domain);
         line.append(1, '\t');
-        cookie.tailmatch ? line.append("TRUE") : line.append("FALSE");
+        iter->tailmatch ? line.append("TRUE") : line.append("FALSE");
         line.append(1, '\t');
-        line.append(cookie.path);
+        line.append(iter->path);
         line.append(1, '\t');
-        cookie.secure ? line.append("TRUE") : line.append("FALSE");
+        iter->secure ? line.append("TRUE") : line.append("FALSE");
         line.append(1, '\t');
-        line.append(cookie.expires);
+        line.append(iter->expires);
         line.append(1, '\t');
-        line.append(cookie.name);
+        line.append(iter->name);
         line.append(1, '\t');
-        line.append(cookie.value);
+        line.append(iter->value);
         //line.append(1, '\n');
 
         fprintf(out, "%s\n", line.c_str());

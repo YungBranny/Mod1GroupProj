@@ -8,7 +8,7 @@
 #define __Simulator__RuntimeProtocol__
 
 #include <string>
-#include "json/document-wrapper.h"
+#include "json/document.h"
 #include "SimulatorExport.h"
 
 class CC_LIBSIM_DLL RuntimeProtocol

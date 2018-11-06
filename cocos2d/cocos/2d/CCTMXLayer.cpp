@@ -2,7 +2,7 @@
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2017 Chukong Technologies Inc.
+Copyright (c) 2013-2014 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -145,14 +145,14 @@ TMXLayer::~TMXLayer()
         _atlasIndexArray = nullptr;
     }
 
-    CC_SAFE_FREE(_tiles);
+    CC_SAFE_DELETE_ARRAY(_tiles);
 }
 
 void TMXLayer::releaseMap()
 {
     if (_tiles)
     {
-        free(_tiles);
+        delete [] _tiles;
         _tiles = nullptr;
     }
 
@@ -263,7 +263,7 @@ void TMXLayer::parseInternalProperties()
     }
 }
 
-void TMXLayer::setupTileSprite(Sprite* sprite, const Vec2& pos, uint32_t gid)
+void TMXLayer::setupTileSprite(Sprite* sprite, const Vec2& pos, int gid)
 {
     sprite->setPosition(getPositionAt(pos));
     sprite->setPositionZ((float)getVertexZForPos(pos));
@@ -284,7 +284,7 @@ void TMXLayer::setupTileSprite(Sprite* sprite, const Vec2& pos, uint32_t gid)
         sprite->setPosition(getPositionAt(pos).x + sprite->getContentSize().height/2,
            getPositionAt(pos).y + sprite->getContentSize().width/2 );
 
-        auto flag = gid & (kTMXTileHorizontalFlag | kTMXTileVerticalFlag );
+        int flag = gid & (kTMXTileHorizontalFlag | kTMXTileVerticalFlag );
 
         // handle the 4 diagonally flipped states.
         if (flag == kTMXTileHorizontalFlag)
@@ -459,35 +459,6 @@ Sprite * TMXLayer::updateTileForGID(uint32_t gid, const Vec2& pos)
     return tile;
 }
 
-intptr_t TMXLayer::getZForPos(const Vec2& pos) const
-{
-    intptr_t z = -1;
-    // fix correct render ordering in Hexagonal maps when stagger axis == x
-    if (_staggerAxis == TMXStaggerAxis_X && _layerOrientation == TMXOrientationHex)
-    {
-        if (_staggerIndex == TMXStaggerIndex_Odd)
-        {
-            if (((int)pos.x % 2) == 0)
-                z = pos.x / 2 + pos.y * _layerSize.width;
-            else
-                z = pos.x / 2 + std::ceil(_layerSize.width / 2) + pos.y * _layerSize.width;
-        } else {
-            // TMXStaggerIndex_Even
-            if (((int)pos.x % 2) == 1)
-                z = pos.x / 2 + pos.y * _layerSize.width;
-            else
-                z = pos.x / 2 + std::floor(_layerSize.width / 2) + pos.y * _layerSize.width;
-        }
-    }
-    else
-    {
-        z = (pos.x + pos.y * _layerSize.width);
-    }
-
-    CCASSERT(z != -1, "Invalid Z");
-    return z;
-}
-
 // used only when parsing the map. useless after the map was parsed
 // since lot's of assumptions are no longer true
 Sprite * TMXLayer::appendTileForGID(uint32_t gid, const Vec2& pos)
@@ -496,14 +467,9 @@ Sprite * TMXLayer::appendTileForGID(uint32_t gid, const Vec2& pos)
     {
         Rect rect = _tileSet->getRectForGID(gid);
         rect = CC_RECT_PIXELS_TO_POINTS(rect);
-
-        // Z could be just an integer that gets incremented each time it is called.
-        // but that wouldn't work on layers with empty tiles.
-        // and it is IMPORTANT that Z returns an unique and bigger number than the previous one.
-        // since _atlasIndexArray must be ordered because `bsearch` is used to find the GID for
-        // a given Z. (github issue #16512)
-        intptr_t z = getZForPos(pos);
-
+        
+        intptr_t z = (intptr_t)(pos.x + pos.y * _layerSize.width);
+        
         Sprite *tile = reusedTileWithRect(rect);
         
         setupTileSprite(tile ,pos ,gid);
@@ -518,11 +484,7 @@ Sprite * TMXLayer::appendTileForGID(uint32_t gid, const Vec2& pos)
         
         // append should be after addQuadFromSprite since it modifies the quantity values
         ccCArrayInsertValueAtIndex(_atlasIndexArray, (void*)z, indexForZ);
-
-        // Validation for issue #16512
-        CCASSERT(_atlasIndexArray->num == 1 ||
-                 _atlasIndexArray->arr[_atlasIndexArray->num-1] > _atlasIndexArray->arr[_atlasIndexArray->num-2], "Invalid z for _atlasIndexArray");
-
+        
         return tile;
     }
     
@@ -532,9 +494,7 @@ Sprite * TMXLayer::appendTileForGID(uint32_t gid, const Vec2& pos)
 // TMXLayer - atlasIndex and Z
 static inline int compareInts(const void * a, const void * b)
 {
-    const int ia = *(int*)a;
-    const int ib = *(int*)b;
-    return (ia-ib);
+    return ((*(int*)a) - (*(int*)b));
 }
 
 ssize_t TMXLayer::atlasIndexForExistantZ(int z)
@@ -618,8 +578,11 @@ void TMXLayer::setTileGID(uint32_t gid, const Vec2& pos, TMXTileFlags flags)
     }
 }
 
-void TMXLayer::addChild(Node* /*child*/, int /*zOrder*/, int /*tag*/)
+void TMXLayer::addChild(Node * child, int zOrder, int tag)
 {
+    CC_UNUSED_PARAM(child);
+    CC_UNUSED_PARAM(zOrder);
+    CC_UNUSED_PARAM(tag);
     CCASSERT(0, "addChild: is not supported on TMXLayer. Instead use setTileGID:at:/tileAt:");
 }
 

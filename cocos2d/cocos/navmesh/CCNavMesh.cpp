@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2015-2017 Chukong Technologies Inc.
+ Copyright (c) 2015 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -32,12 +32,11 @@
 
 NS_CC_BEGIN
 
-#pragma pack(push,1)
 struct TileCacheSetHeader
 {
-    int32_t magic;
-    int32_t version;
-    int32_t numTiles;
+    int magic;
+    int version;
+    int numTiles;
     dtNavMeshParams meshParams;
     dtTileCacheParams cacheParams;
 };
@@ -45,9 +44,8 @@ struct TileCacheSetHeader
 struct TileCacheTileHeader
 {
     dtCompressedTileRef tileRef;
-    int32_t dataSize;
+    int dataSize;
 };
-#pragma pack(pop)
 
 static unsigned char* parseRow(unsigned char* buf, unsigned char* bufEnd, char* row, int len)
 {

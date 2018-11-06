@@ -1,6 +1,6 @@
 /* Copyright (c) 2012 Scott Lembcke and Howling Moon Software
  * Copyright (c) 2012 cocos2d-x.org
- * Copyright (c) 2013-2017 Chukong Technologies Inc.
+ * Copyright (c) 2013-2014 Chukong Technologies Inc.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -58,7 +58,7 @@ public:
      *
      * @return Return an autorelease object.
      */
-    static DrawNode* create(GLfloat defaultLineWidth = DEFAULT_LINE_WIDTH);
+    static DrawNode* create(int defaultLineWidth = DEFAULT_LINE_WIDTH);
     
     /** Draw a point.
      *
@@ -313,13 +313,13 @@ public:
     // Overrides
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
     
-    void setLineWidth(GLfloat lineWidth);
+    void setLineWidth(int lineWidth);
 
     // Get CocosStudio guide lines width.
-    GLfloat getLineWidth();
+    float getLineWidth();
 
 CC_CONSTRUCTOR_ACCESS:
-    DrawNode(GLfloat lineWidth = DEFAULT_LINE_WIDTH);
+    DrawNode(int lineWidth = DEFAULT_LINE_WIDTH);
     virtual ~DrawNode();
     virtual bool init() override;
 
@@ -358,9 +358,9 @@ protected:
     bool        _dirtyGLPoint;
     bool        _dirtyGLLine;
     
-    GLfloat         _lineWidth;
+    int         _lineWidth;
 
-    GLfloat  _defaultLineWidth;
+    int  _defaultLineWidth;
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(DrawNode);
 };

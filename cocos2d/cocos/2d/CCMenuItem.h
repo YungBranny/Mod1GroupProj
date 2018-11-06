@@ -2,7 +2,7 @@
 Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2017 Chukong Technologies Inc.
+Copyright (c) 2013-2014 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -159,13 +159,13 @@ public:
     std::string getString() const;
 
     /** Gets the color that will be used when the item is disabled. */
-    const Color3B& getDisabledColor() const { return _disabledColor; }
+    inline const Color3B& getDisabledColor() const { return _disabledColor; };
 
     /** Sets the color that will be used when the item is disabled. */
-    void setDisabledColor(const Color3B& color) { _disabledColor = color; }
+    inline void setDisabledColor(const Color3B& color) { _disabledColor = color; };
     
     /** Gets the label that is rendered. */
-    Node* getLabel() const { return _label; }
+    inline Node* getLabel() const { return _label; };
     
     /** Sets the label that is rendered. */
     void setLabel(Node* node);
@@ -353,19 +353,19 @@ public:
     static MenuItemSprite * create(Node* normalSprite, Node* selectedSprite, Node* disabledSprite, const ccMenuCallback& callback);
 
     /** Gets the image used when the item is not selected. */
-    Node* getNormalImage() const { return _normalImage; }
+    inline Node* getNormalImage() const { return _normalImage; };
     
     /** Sets the image used when the item is not selected. */
     void setNormalImage(Node* image);
     
     /** Gets the image used when the item is selected. */
-    Node* getSelectedImage() const { return _selectedImage; }
+    inline Node* getSelectedImage() const { return _selectedImage; };
     
     /** Sets the image used when the item is selected. */
     void setSelectedImage(Node* image);
     
     /** Gets the image used when the item is disabled. */
-    Node* getDisabledImage() const { return _disabledImage; }
+    inline Node* getDisabledImage() const { return _disabledImage; };
     
     /** Sets the image used when the item is disabled. */
     void setDisabledImage(Node* image);
@@ -528,7 +528,7 @@ public:
     CC_DEPRECATED_ATTRIBUTE MenuItem* selectedItem() { return getSelectedItem(); }
 
     /** Gets the index of the selected item. */
-    unsigned int getSelectedIndex() const { return _selectedIndex; }
+    inline unsigned int getSelectedIndex() const { return _selectedIndex; };
     
     /** Sets the index of the selected item. */
     void setSelectedIndex(unsigned int index);
@@ -539,11 +539,11 @@ public:
      * @js NA
      * @lua NA
      */
-    const Vector<MenuItem*>& getSubItems() const { return _subItems; }
-    Vector<MenuItem*>& getSubItems() { return _subItems; }
+    inline const Vector<MenuItem*>& getSubItems() const { return _subItems; };
+    inline Vector<MenuItem*>& getSubItems() { return _subItems; };
 
     /** Sets the array that contains the subitems. */
-    void setSubItems(const Vector<MenuItem*>& items) {
+    inline void setSubItems(const Vector<MenuItem*>& items) {
         _subItems = items;
     }
     

@@ -26,8 +26,9 @@
 #import <AppKit/AppKit.h>
 #include "ui/UIEditBox/Mac/CCUITextInput.h"
 
-@interface CCUIPasswordTextField : NSTextField<CCUITextInput>
+@interface CCUIPasswordTextField : NSSecureTextField<CCUITextInput>
 {
+    NSMutableDictionary* _placeholderAttributes;
 }
 
 @end

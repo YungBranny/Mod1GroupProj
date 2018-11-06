@@ -62,8 +62,7 @@ void FileServer::readResFileFinfo()
     FILE * pFile = fopen (filecfg.c_str() , "r");
     if(pFile)
     {
-        char buffer[65536];
-        rapidjson::FileReadStream inputStream(pFile, buffer, sizeof(buffer));
+        rapidjson::FileStream inputStream(pFile);
         _filecfgjson.ParseStream<0>(inputStream);
         fclose(pFile);
     }

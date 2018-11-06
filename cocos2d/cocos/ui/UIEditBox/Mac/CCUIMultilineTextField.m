@@ -104,16 +104,6 @@
     self.font = ccui_font;
 }
 
-- (NSTextAlignment)ccui_alignment
-{
-  return self.alignment;
-}
-
-- (void)ccui_setTextHorizontalAlignment:(NSTextAlignment)ccui_alignment
-{
-  self.alignment = ccui_alignment;
-}
-
 
 - (void)ccui_setDelegate:(id<NSTextFieldDelegate,NSTextViewDelegate>)delegate
 {

@@ -203,8 +203,8 @@ struct StructDef : public Definition {
       bytesize(0)
     {}
 
-  void PadLastField(size_t _minalign) {
-    auto padding = PaddingBytes(bytesize, _minalign);
+  void PadLastField(size_t minalign) {
+    auto padding = PaddingBytes(bytesize, minalign);
     bytesize += padding;
     if (fields.vec.size()) fields.vec.back()->padding = padding;
   }

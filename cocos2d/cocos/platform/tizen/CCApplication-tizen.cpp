@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2014-2017 Chukong Technologies Inc.
+ Copyright (c) 2014 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -119,7 +119,6 @@ Application::Application()
 : _win(nullptr)
 , _conform(nullptr)
 , _animationInterval(1.0f/60.0f*1000.0f)
-, _paused(false)
 {
     _orientation = APP_DEVICE_ORIENTATION_0;
     CC_ASSERT(! __instance);
@@ -432,7 +431,6 @@ static void app_pause(void *data)
     app->applicationDidEnterBackground();
 
     ecore_animator_freeze(app->_ani);
-    app->setPauseFlag(true);
 }
 
 static void app_resume(void *data)
@@ -448,7 +446,6 @@ static void app_resume(void *data)
     resumeAccelerometerSensor();
 
     ecore_animator_thaw(app->_ani);
-    app->setPauseFlag(false);
 }
 
 static void app_terminate(void *data)
@@ -498,11 +495,6 @@ void Application::setAnimationInterval(float interval)
 {
     _animationInterval = interval*1000.0f;
     ecore_animator_frametime_set(interval);
-}
-
-void Application::setAnimationInterval(float interval, SetIntervalReason reason)
-{
-    setAnimationInterval(interval);
 }
 
 void Application::setResourceRootPath(const std::string& rootResDir)

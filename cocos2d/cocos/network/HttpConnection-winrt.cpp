@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2012      greathqy
 Copyright (c) 2012      cocos2d-x.org
-Copyright (c) 2013-2017 Chukong Technologies Inc.
+Copyright (c) 2013-2014 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -38,9 +38,9 @@ namespace network {
     static void formatHeaders(std::vector<std::string>& headers)
     {
 #if defined(_XBOX_ONE)
-        for(auto& header : headers)
+        for(auto iter = headers.begin(); iter != headers.end(); ++iter)
         {
-            header += "\r\n";
+            (*iter) += "\r\n";
         }
 
         // append default headers
@@ -664,13 +664,13 @@ namespace network {
         std::string cookieInfo = "";
         int cCnt = 0;
 
-        for(auto& cookie : *cookies)
+        for(auto iter = cookies->begin(); iter != cookies->end(); iter++)
         {
-            if(url.find(cookie.domain) != std::string::npos)
+            if(url.find(iter->domain) != std::string::npos)
             {
-                std::string keyVal = cookie.name;
+                std::string keyVal = iter->name;
                 keyVal.append("=");
-                keyVal.append(cookie.value);
+                keyVal.append(iter->value);
                 if(cCnt != 0) {
                     cookieInfo.append(";");
                 }

@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2015-2017 Chukong Technologies Inc.
+ Copyright (c) 2015 Chukong Technologies Inc.
  
  http://www.cocos2d-x.org
  
@@ -84,42 +84,20 @@ CameraBackgroundSkyBoxBrush* CameraBackgroundBrush::createSkyboxBrush(const std:
 CameraBackgroundDepthBrush::CameraBackgroundDepthBrush()
 : _depth(0.f)
 , _clearColor(GL_FALSE)
-, _vao(0)
-, _vertexBuffer(0)
-, _indexBuffer(0)
 {
     
 }
 CameraBackgroundDepthBrush::~CameraBackgroundDepthBrush()
 {
-    glDeleteBuffers(1, &_vertexBuffer);
-    glDeleteBuffers(1, &_indexBuffer);
     
-    _vertexBuffer = 0;
-    _indexBuffer = 0;
-    
-    if (Configuration::getInstance()->supportsShareableVAO())
-    {
-        glDeleteVertexArrays(1, &_vao);
-        GL::bindVAO(0);
-        _vao = 0;
-    }
 }
 
 CameraBackgroundDepthBrush* CameraBackgroundDepthBrush::create(float depth)
 {
     auto ret = new (std::nothrow) CameraBackgroundDepthBrush();
-    
-    if (nullptr != ret && ret->init())
-    {
-        ret->_depth = depth;
-        ret->autorelease();
-    }
-    else
-    {
-        CC_SAFE_DELETE(ret);
-    }
-
+    ret->_depth = depth;
+    ret->init();
+    ret->autorelease();
     return ret;
 }
 
@@ -140,47 +118,10 @@ bool CameraBackgroundDepthBrush::init()
     _quad.br.texCoords = Tex2F(1,0);
     _quad.tl.texCoords = Tex2F(0,1);
     _quad.tr.texCoords = Tex2F(1,1);
-    
-    auto supportVAO = Configuration::getInstance()->supportsShareableVAO();
-    if (supportVAO)
-    {
-        glGenVertexArrays(1, &_vao);
-        GL::bindVAO(_vao);
-    }
-
-    glGenBuffers(1, &_vertexBuffer);
-    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(_quad), &_quad, GL_STATIC_DRAW);
-    
-    GLshort indices[6] = {0, 1, 2, 3, 2, 1};
-    glGenBuffers(1, &_indexBuffer);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-    
-    if (supportVAO)
-    {
-        // vertices
-        glEnableVertexAttribArray(GLProgram::VERTEX_ATTRIB_POSITION);
-        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(V3F_C4B_T2F), (GLvoid*)offsetof( V3F_C4B_T2F, vertices));
-
-        // colors
-        glEnableVertexAttribArray(GLProgram::VERTEX_ATTRIB_COLOR);
-        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(V3F_C4B_T2F), (GLvoid*)offsetof( V3F_C4B_T2F, colors));
-
-        // tex coords
-        glEnableVertexAttribArray(GLProgram::VERTEX_ATTRIB_TEX_COORD);
-        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(V3F_C4B_T2F), (GLvoid*)offsetof( V3F_C4B_T2F, texCoords));
-    }
-
-    if (supportVAO)
-        GL::bindVAO(0);
-
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     return true;
 }
 
-void CameraBackgroundDepthBrush::drawBackground(Camera* /*camera*/)
+void CameraBackgroundDepthBrush::drawBackground(Camera* camera)
 {
     GLboolean oldDepthTest;
     GLint oldDepthFunc;
@@ -202,35 +143,25 @@ void CameraBackgroundDepthBrush::drawBackground(Camera* /*camera*/)
     
     _glProgramState->setUniformFloat("depth", _depth);
     _glProgramState->apply(Mat4::IDENTITY);
+    GLshort indices[6] = {0, 1, 2, 3, 2, 1};
     
-    auto supportVAO = Configuration::getInstance()->supportsShareableVAO();
-    if (supportVAO)
-        GL::bindVAO(_vao);
-    else
     {
-        glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
+        GL::bindVAO(0);
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+        
         GL::enableVertexAttribs(GL::VERTEX_ATTRIB_FLAG_POS_COLOR_TEX);
-
+        
         // vertices
-        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(V3F_C4B_T2F), (GLvoid*)offsetof(V3F_C4B_T2F, vertices));
+        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 3, GL_FLOAT, GL_FALSE, sizeof(V3F_C4B_T2F), &_quad.tl.vertices);
         
         // colors
-        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(V3F_C4B_T2F), (GLvoid*)offsetof(V3F_C4B_T2F, colors));
+        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(V3F_C4B_T2F), &_quad.tl.colors);
         
         // tex coords
-        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(V3F_C4B_T2F), (GLvoid*)offsetof(V3F_C4B_T2F, texCoords));
+        glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_TEX_COORD, 2, GL_FLOAT, GL_FALSE, sizeof(V3F_C4B_T2F), &_quad.tl.texCoords);
         
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
-    }
-    
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, nullptr);
-    
-    if (supportVAO)
-        GL::bindVAO(0);
-    else
-    {
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_SHORT, indices);
     }
     
     
@@ -282,30 +213,16 @@ bool CameraBackgroundColorBrush::init()
 void CameraBackgroundColorBrush::setColor(const Color4F& color)
 {
     _quad.bl.colors = _quad.br.colors = _quad.tl.colors = _quad.tr.colors = Color4B(color);
-    
-    if (_vertexBuffer)
-    {
-        glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(_quad), &_quad, GL_STATIC_DRAW);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-    }
 }
 
 CameraBackgroundColorBrush* CameraBackgroundColorBrush::create(const Color4F& color, float depth)
 {
     auto ret = new (std::nothrow) CameraBackgroundColorBrush();
-
-    if (nullptr != ret && ret->init())
-    {
-        ret->setColor(color);
-        ret->setDepth(depth);
-        ret->autorelease();
-    }
-    else
-    {
-        CC_SAFE_DELETE(ret);
-    }
-
+    ret->init();
+    ret->setColor(color);
+    ret->setDepth(depth);
+    
+    ret->autorelease();
     return ret;
 }
 
@@ -347,64 +264,35 @@ CameraBackgroundSkyBoxBrush::~CameraBackgroundSkyBoxBrush()
     }
 }
 
-CameraBackgroundSkyBoxBrush* CameraBackgroundSkyBoxBrush::create(
-    const std::string& positive_x,
-    const std::string& negative_x,
-    const std::string& positive_y,
-    const std::string& negative_y,
-    const std::string& positive_z,
-    const std::string& negative_z
-    )
+CameraBackgroundSkyBoxBrush* CameraBackgroundSkyBoxBrush::create(const std::string& positive_x, const std::string& negative_x, const std::string& positive_y, const std::string& negative_y, const std::string& positive_z, const std::string& negative_z)
 {
-    CameraBackgroundSkyBoxBrush* ret = nullptr;
-
-    auto texture = TextureCube::create(positive_x,
-                                       negative_x,
-                                       positive_y,
-                                       negative_y,
-                                       positive_z,
-                                       negative_z);
-
-    if (texture != nullptr)
-    {
-
-        Texture2D::TexParams tRepeatParams;
-        tRepeatParams.magFilter = GL_LINEAR;
-        tRepeatParams.minFilter = GL_LINEAR;
-        tRepeatParams.wrapS = GL_CLAMP_TO_EDGE;
-        tRepeatParams.wrapT = GL_CLAMP_TO_EDGE;
-        texture->setTexParameters(tRepeatParams);
-
-        ret = new (std::nothrow) CameraBackgroundSkyBoxBrush;
-
-        if (nullptr != ret && ret->init())
-        {
-            ret->setTexture(texture);
-            ret->autorelease();
-        }
-        else
-        {
-            CC_SAFE_DELETE(texture);
-            CC_SAFE_DELETE(ret);
-        }
-    }
-
+    auto texture = TextureCube::create(positive_x, negative_x, positive_y, negative_y, positive_z, negative_z);
+    if (texture == nullptr)
+        return nullptr;
+    
+    Texture2D::TexParams tRepeatParams;
+    tRepeatParams.magFilter = GL_LINEAR;
+    tRepeatParams.minFilter = GL_LINEAR;
+    tRepeatParams.wrapS = GL_CLAMP_TO_EDGE;
+    tRepeatParams.wrapT = GL_CLAMP_TO_EDGE;
+    texture->setTexParameters(tRepeatParams);
+    
+    auto ret = new(std::nothrow)CameraBackgroundSkyBoxBrush();
+    
+    ret->init();
+    ret->setTexture(texture);
+    
+    ret->autorelease();
     return ret;
 }
 
 CameraBackgroundSkyBoxBrush* CameraBackgroundSkyBoxBrush::create()
 {
-    auto ret = new (std::nothrow) CameraBackgroundSkyBoxBrush();
+    auto ret = new(std::nothrow)CameraBackgroundSkyBoxBrush();
     
-    if (nullptr != ret && ret->init())
-    {
-        ret->autorelease();
-    }
-    else
-    {
-        CC_SAFE_DELETE(ret);
-    }
-
+    ret->init();
+    
+    ret->autorelease();
     return ret;
 }
 
