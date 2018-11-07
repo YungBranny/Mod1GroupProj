@@ -20,6 +20,7 @@
 //////////////////////////////////////////////////////////////////////////
 // forward declaration
 //////////////////////////////////////////////////////////////////////////
+class CGCObjSpritePhysics;
 class CGCFactory_ObjSpritePhysics;
 
 
@@ -51,6 +52,15 @@ class CGCLevelLoader_Ogmo
 	   EMAX_HANDLED_UNIQUE_CREATIONPARAMS = 256
 	}; 
 
+	// 
+	std::vector< CGCObjSpritePhysics* >	m_vecFactoryCreatedObjects;
+	enum
+	{
+		EMAX_HANDLED_OBJECTS = 1024
+	};
+
+
+
 	// adds the creation params to internal store
 	const	CGCFactoryCreationParams*		AddCreationParamsToInternalStore		( const CGCFactoryCreationParams* rtParamsToCheck );
 	const	CGCFactoryCreationParams*		GetCreationParamsFromCache				( const char* pszClassName );
@@ -62,7 +72,7 @@ class CGCLevelLoader_Ogmo
 	inline b2Vec2							GetObjectPosition						( const tinyxml2::XMLElement& rxmlElement );
 
 public:
-	inline bool								AddFactoryDataForXMLElementIfValid		( const tinyxml2::XMLElement& rxmlElement, CGCFactory_ObjSpritePhysics& rClassFactory );
+	inline bool								AddFactoryDataForXMLElementAndCreateInstance		( const tinyxml2::XMLElement& rxmlElement, CGCFactory_ObjSpritePhysics& rClassFactory );
 
 public:
 	// Con/destruction
@@ -74,6 +84,9 @@ public:
 
 	// create objects
 	u32				CreateObjects( CGCFactory_ObjSpritePhysics& rcClassFactory );
+
+	// destroy objects
+	void			DestroyObjects();
 };
 
 

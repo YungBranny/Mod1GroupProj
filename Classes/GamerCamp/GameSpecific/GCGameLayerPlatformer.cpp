@@ -309,7 +309,9 @@ void CGCGameLayerPlatformer::VOnDestroy( void )
 	delete m_pcGCOPlayer;
 	m_pcGCOPlayer = NULL;
 
-	m_pcGCSprBackGround->DestroySprite();
+	// clean up the level
+	m_cLevelLoader.DestroyObjects();
+
 	delete m_pcGCSprBackGround;
 	m_pcGCSprBackGround = NULL;
 

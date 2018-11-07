@@ -22,7 +22,6 @@
 using namespace cocos2d;
 
 
-
 //////////////////////////////////////////////////////////////////////////
 // protected version to pass through id to GCObject
 //////////////////////////////////////////////////////////////////////////
@@ -40,7 +39,7 @@ CGCObjSprite::CGCObjSprite( void )
 : CGCObject				( GetGCTypeIDOf( CGCObjSprite ) )
 , m_pcSprite			( NULL )
 , m_v2InitialPosition	( b2Vec2( 0.0f, 0.0f ) )
-{
+{					  
 }
 
 
@@ -53,6 +52,7 @@ CGCObjSprite::~CGCObjSprite( void )
 	CCAssert( NULL == m_pcSprite,	"CGCObjSprite::~CGCObjSprite -it appears that DestroySprite() "
 									"was not called on this instance of CGCObjSprite" );
 }
+
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -155,6 +155,7 @@ void CGCObjSprite::VOnReset( void )
 //virtual 
 void CGCObjSprite::VOnResourceRelease( void )
 {
+	DestroySprite();
 }
 
 

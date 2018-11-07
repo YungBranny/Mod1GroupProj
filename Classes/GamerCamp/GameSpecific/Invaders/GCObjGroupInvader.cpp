@@ -108,23 +108,5 @@ void CGCObjGroupInvader::VOnGroupResourceRelease( void )
 {
 	// N.B. need to do this first as it clears internal lists
 	CGCObjectGroup::VOnGroupResourceRelease();
-	DestroyInvaders();
 }
 
-
-//////////////////////////////////////////////////////////////////////////
-//
-//////////////////////////////////////////////////////////////////////////
-void CGCObjGroupInvader::DestroyInvaders( void )
-{
-	// this iterates the array of registered CGCObjects 
-	// calling the supplied functor then deleting them
-	auto cMyLambda = [&]( CGCObject* pObject )
-	{
-		GCASSERT( GetGCTypeIDOf( CGCObjInvader ) == pObject->GetGCTypeID(), "wrong type!" );
-		CGCObjSprite* pProjectileAsSprite = static_cast< CGCObjSprite* >( pObject );
-		pProjectileAsSprite->DestroySprite();
-	};
-
-	DestroyObjectsReverseOrder( cMyLambda );
-}

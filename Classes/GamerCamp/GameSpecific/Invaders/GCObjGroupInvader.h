@@ -33,9 +33,6 @@ class CGCObjGroupInvader
 private:
 	b2Vec2 m_v2FormationOrigin; // origin of the formation
 
-	void	CreateInvaders	( void );
-	void	DestroyInvaders	( void );
-
 public:
 	// number of invaders
 	static const u32 k_uNumInvaders = 16;

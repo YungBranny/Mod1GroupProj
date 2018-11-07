@@ -106,8 +106,7 @@ void CGCObjGroupProjectilePlayer::DestroyProjectiles( void )
     auto cMyLambda = [&]( CGCObject* pObject )
     {
         GCASSERT( GetGCTypeIDOf( CGCObjProjectilePlayer ) == pObject->GetGCTypeID(), "wrong type!" );
-        CGCObjSprite* pProjectileAsSprite = static_cast< CGCObjSprite* >( pObject );
-        pProjectileAsSprite->DestroySprite();
+		delete pObject;
     };
 
 	DestroyObjectsReverseOrder( cMyLambda );

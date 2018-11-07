@@ -26,8 +26,6 @@ class CGCObjItem;
 class CGCObjGroupItem
 : public CGCObjectGroup
 {
-	// destroy managed items
-	void DestroyItems( void );
 
 public:
 	//// number of items

@@ -54,6 +54,7 @@ CGCLevelLoader_Ogmo::CGCLevelLoader_Ogmo( void )
 : m_v2LevelDimensions( b2Vec2_zero )
 {
 	m_vecFactoryCreationParams.reserve( EMAX_HANDLED_UNIQUE_CREATIONPARAMS );
+	m_vecFactoryCreatedObjects.reserve( EMAX_HANDLED_OBJECTS );
 }
 
 
@@ -135,7 +136,7 @@ public:
 
 	virtual bool VisitEnter( const tinyxml2::XMLElement& rxmlElement, const tinyxml2::XMLAttribute* pxmlAttribute ) override
 	{
-		if( m_rOgmoLoader.AddFactoryDataForXMLElementIfValid( rxmlElement, m_rFactoryClass ) )
+		if( m_rOgmoLoader.AddFactoryDataForXMLElementAndCreateInstance( rxmlElement, m_rFactoryClass ) )
 		{
 			++m_iNumCreated;
 		}
@@ -150,7 +151,7 @@ public:
 
 
 //////////////////////////////////////////////////////////////////////////
-inline bool CGCLevelLoader_Ogmo::AddFactoryDataForXMLElementIfValid( const tinyxml2::XMLElement& rxmlElement, CGCFactory_ObjSpritePhysics& rClassFactory )
+inline bool CGCLevelLoader_Ogmo::AddFactoryDataForXMLElementAndCreateInstance( const tinyxml2::XMLElement& rxmlElement, CGCFactory_ObjSpritePhysics& rClassFactory )
 {
 	if( IsValidFactoryData( rxmlElement ) )
 	{
@@ -163,7 +164,11 @@ inline bool CGCLevelLoader_Ogmo::AddFactoryDataForXMLElementIfValid( const tinyx
 
 		b2Vec2 v2Pos = GetObjectPosition( rxmlElement );
 		CCLOG( "creating instance of %s at position [%f, %f]", pParams->strClassName.c_str(), v2Pos.x, v2Pos.y );
-		CGCObjSpritePhysics* pObject = rClassFactory.CreateInstance( (*pParams), v2Pos );
+
+		CCAssert( ( m_vecFactoryCreatedObjects.size() < EMAX_HANDLED_OBJECTS ),
+				  "You need to reserve more space in CGCLevelLoader_Ogmo::m_vecFactoryCreatedObjects! Make CGCLevelLoader_Ogmo::EMAX_HANDLED_OBJECTS bigger!" );
+
+		m_vecFactoryCreatedObjects.push_back( rClassFactory.CreateInstance( ( *pParams ), v2Pos ) );
 
 		return true;
 	}
@@ -251,9 +256,21 @@ u32	CGCLevelLoader_Ogmo::CreateObjects( CGCFactory_ObjSpritePhysics& rcClassFact
 	m_xmlOgmoDocument.Accept( &cOgmoVisitor );
 
 	return cOgmoVisitor.NumCreated();
-
-	// return RecursiveIterateXMLNodeCreatingObjects( m_nodeLevels, rcClassFactory );
 }
+
+//////////////////////////////////////////////////////////////////////////
+// delete all the ObjSpritePhysics derived objects we created
+//////////////////////////////////////////////////////////////////////////
+void CGCLevelLoader_Ogmo::DestroyObjects()
+{
+	for( CGCObjSpritePhysics* pCreatedObj : m_vecFactoryCreatedObjects )
+	{
+		delete pCreatedObj;
+	}
+
+	m_vecFactoryCreatedObjects.clear();
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // converts the xml string version of the box 2d body type to the enum

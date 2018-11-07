@@ -26,8 +26,6 @@ class CGCObjPlatform;
 class CGCObjGroupPlatform
 : public CGCObjectGroup
 {
-	// destroy managed platforms
-	void DestroyPlatforms( void );
 
 public:
 	//// number of platforms

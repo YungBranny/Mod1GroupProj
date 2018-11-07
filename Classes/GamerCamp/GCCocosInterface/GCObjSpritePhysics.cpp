@@ -170,6 +170,6 @@ void CGCObjSpritePhysics::VOnResourceRelease( void )
 		IGCGameLayer::ActiveInstance()->B2dGetWorld()->DestroyBody( m_pb2Body );
 		m_pb2Body = nullptr;
 	}
-	CGCObjSprite::DestroySprite();
+	CGCObjSprite::VOnResourceRelease();
 }
 
