@@ -18,10 +18,6 @@ using namespace cocos2d;
 namespace GCCocosHelpers
 {
 	//////////////////////////////////////////////////////////////////////////
-	// creates a __Dictionary from a plist
-	// N.B. the returned __Dictionary IS autoreleased, so you'll need to 
-	// retain it if you want it there later
-	//////////////////////////////////////////////////////////////////////////
 	ValueMap CreateDictionaryFromPlist( const std::string& rstrPlist )
 	{
 		// addSpriteFramesWithFile() actually does this internally - caching this could represent a big reduction in 
@@ -39,7 +35,6 @@ namespace GCCocosHelpers
 	//////////////////////////////////////////////////////////////////////////
 	Sprite* CreateSpriteFromPlist( const std::string& rstrPlist ) 
 	{
-		// n.b. pdictSpriteInfo is set to autorelease so we don't need to release it manually
 		ValueMap dicSpriteInfo = Sprite_LoadTextureAndFramesToCachesAndGetDictionary( rstrPlist );
 		
 		CCASSERT( !dicSpriteInfo.empty(), "ValueMap created from file is empty - is the path correct? remember Android paths are case sensitive" );
