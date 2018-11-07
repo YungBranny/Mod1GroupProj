@@ -28,24 +28,25 @@ CGCObjPlayer::CGCObjPlayer()
 , m_fDragCoefficient_Square		( 0.2f )
 , m_fNoInput_ExtraDrag_Square	( 0.2f )
 , m_fNoInput_VelocityThreshold	( 0.25f )
-{	
+{
 }
 
 
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
+IN_CPP_CREATION_PARAMS_DECLARE( CGCObjPlayer, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true );
 //virtual 
 void CGCObjPlayer::VOnResourceAcquire( void )
 {
-	const char* pszPlist_mario		= "TexturePacker/Sprites/Mario/mario.plist";
-	const char* pszAnim_marioJog	= "Jog";
+	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjPlayer );
 
-	AcquireResources( pszPlist_mario, "mario", b2_dynamicBody, true );
-	SetParent( IGCGameLayer::ActiveInstance() );
+	CGCObjSpritePhysics::VOnResourceAcquire();
+
+	const char* pszAnim_marioJog = "Jog";
 
 	// animate!
-	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( pszPlist_mario );
+	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( GetFactoryCreationParams()->strPlistFile );
 	RunAction( GCCocosHelpers::CreateAnimationActionLoop( GCCocosHelpers::CreateAnimation( dicPList, pszAnim_marioJog ) ) );
 
 	// find the player projectile group 
@@ -96,7 +97,7 @@ void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 //virtual
 void CGCObjPlayer::VOnResourceRelease( void )
 {
-    DestroySprite();
+    CGCObjSpritePhysics::VOnResourceRelease();
 }
 
 

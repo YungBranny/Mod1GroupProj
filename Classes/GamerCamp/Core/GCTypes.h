@@ -132,7 +132,7 @@ namespace GCHelpers
 	#define DEBUG_ONLY( expr )							expr
 #else
 	#define GCASSERT( ... )								/*nothing*/
-	#define DEBUG_ONLY( ... )							expr
+	#define DEBUG_ONLY( ... )							/*nothing*/
 #endif		 
 
 #endif//#ifndef _GCTYPES_H_

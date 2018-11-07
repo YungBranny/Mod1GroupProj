@@ -221,6 +221,9 @@
     <ClInclude Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.h">
       <Filter>Classes\GamerCamp\Win32Input</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\SGCFactoryCreationParams.h">
+      <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

@@ -83,8 +83,7 @@ void CGCObjGroupPlatform::DestroyPlatforms( void )
 	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
 	{
 		GCASSERT( GetGCTypeIDOf( CGCObjPlatform ) == pObject->GetGCTypeID(), "wrong type!" );
-		CGCObjSprite* pProjectileAsSprite = static_cast< CGCObjSprite* >( pObject );
-		pProjectileAsSprite->DestroySprite();
+		delete pObject;
 	});
 }
 

@@ -118,8 +118,7 @@ void CGCObjGroupItem::DestroyItems( void )
 	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
 	{
 		GCASSERT( GetGCTypeIDOf( CGCObjItem ) == pObject->GetGCTypeID(), "wrong type!" );
-		CGCObjSprite* pProjectileAsSprite = static_cast< CGCObjSprite* >( pObject );
-		pProjectileAsSprite->DestroySprite();
+		delete pObject;
 	});
 }
 

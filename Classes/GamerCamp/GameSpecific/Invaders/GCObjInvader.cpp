@@ -30,13 +30,12 @@ CGCObjInvader::CGCObjInvader()
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
+IN_CPP_CREATION_PARAMS_DECLARE( CGCObjInvader, "TexturePacker/Sprites/Platform/Platform.plist", "platform", b2_staticBody, true );
 //virtual 
 void CGCObjInvader::VOnResourceAcquire( void )
 {
-	const char* pszPlist = "TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist";
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pszPlist );
-	AcquireResources( pszPlist, "koopa", b2_dynamicBody, true );
-	SetParent( IGCGameLayer::ActiveInstance() );
+	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjInvader );
+	CGCObjSpritePhysics::VOnResourceAcquire();
 }
 
 

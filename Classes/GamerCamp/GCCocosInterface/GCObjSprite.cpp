@@ -123,11 +123,14 @@ CGCObjSprite::EActionState CGCObjSprite::RunAction( Action* pAction )
 }
 
 //////////////////////////////////////////////////////////////////////////
+DEBUG_ONLY( static int s_iRespourceAcquiredCount = 0 );
 // default behaviour is to add the managed sprite to the game layer 
 //////////////////////////////////////////////////////////////////////////
 //virtual 
 void CGCObjSprite::VOnResourceAcquire( void )
-{}
+{
+	DEBUG_ONLY( ++s_iRespourceAcquiredCount );
+}
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -155,6 +158,11 @@ void CGCObjSprite::VOnReset( void )
 //virtual 
 void CGCObjSprite::VOnResourceRelease( void )
 {
+	DEBUG_ONLY( if( --s_iRespourceAcquiredCount == 0 ) )
+	DEBUG_ONLY( { )
+	DEBUG_ONLY(		CCLOG( "CGCObjectSprite - all acquired resources have been freed" ); )
+	DEBUG_ONLY( } )
+	DestroySprite();
 }
 
 

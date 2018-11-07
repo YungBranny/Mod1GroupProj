@@ -33,15 +33,12 @@ CGCObjProjectilePlayer::CGCObjProjectilePlayer()
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
+IN_CPP_CREATION_PARAMS_DECLARE( CGCObjProjectilePlayer, "TexturePacker/Sprites/Egg/Egg.plist", "egg", b2_dynamicBody, true );
 //virtual 
 void CGCObjProjectilePlayer::VOnResourceAcquire( void )
 {
+	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjProjectilePlayer );
 	CGCObjSpritePhysics::VOnResourceAcquire();
-
-	const char* pszPlist = "TexturePacker/Sprites/Egg/Egg.plist";
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pszPlist );
-	AcquireResources( pszPlist, "egg", b2_dynamicBody, true );
-	SetParent( IGCGameLayer::ActiveInstance() );
 }
 
 

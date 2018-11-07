@@ -17,12 +17,11 @@ USING_NS_CC;
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
+IN_CPP_CREATION_PARAMS_DECLARE( CGCObjItem, "TexturePacker/Sprites/Coin/Coin.plist", "coin", b2_dynamicBody, true );
 //virtual 
 void CGCObjItem::VOnResourceAcquire( void )
 {
-	const char* pszPlist		= "TexturePacker/Sprites/Coin/Coin.plist";
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pszPlist );
-	AcquireResources( pszPlist, "coin", b2_dynamicBody, true );
-	SetParent( IGCGameLayer::ActiveInstance() );
+	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjItem );
+	CGCObjSpritePhysics::VOnResourceAcquire();
 }
 

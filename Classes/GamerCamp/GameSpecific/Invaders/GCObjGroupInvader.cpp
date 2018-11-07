@@ -85,6 +85,8 @@ void CGCObjGroupInvader::VOnGroupResourceAcquire( void )
 //virtual 
 void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject( void )
 {
+	// we do this here because the alternative is to do it for each invader as they're created and it's
+
 	// parent class version
 	CGCObjectGroup::VOnGroupResourceAcquire_PostObject();
 
@@ -97,19 +99,15 @@ void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject( void )
 	Animation*	pAnimation = GCCocosHelpers::CreateAnimation( rdictPList, pszAnim_Fly );
 
 	// N.B. this is a workaround for the fact that Marmalade's version of GCC for ARM doesn't support lambdas. Blergh.
-	SGCObjectGatherer sMyGatherer;
-	ForEachObject( sMyGatherer );
-
-	// create an animation action and set it for each invader
-	for( u32 uIndex = 0; uIndex < sMyGatherer.uCount; ++uIndex )
+	ForEachObject( [&] ( CGCObject* pObject ) -> bool
 	{
-		CGCObject* pcItemAsObject = sMyGatherer.apObjects[ uIndex ];
-		CCAssert( ( GetGCTypeIDOf( CGCObjInvader ) == pcItemAsObject->GetGCTypeID() ),
+		CCAssert( ( GetGCTypeIDOf( CGCObjInvader ) == pObject->GetGCTypeID() ),
 			"CGCObject derived type mismatch!" );
 
-		CGCObjSprite* pItemSprite = (CGCObjSprite*)pcItemAsObject;
+		CGCObjSprite* pItemSprite = (CGCObjSprite*)pObject;
 		pItemSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
-	}
+		return true;
+	} );
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -155,7 +153,6 @@ void CGCObjGroupInvader::DestroyInvaders( void )
 	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
 	{
 		GCASSERT( GetGCTypeIDOf( CGCObjInvader ) == pObject->GetGCTypeID(), "wrong type!" );
-		CGCObjSprite* pProjectileAsSprite = static_cast< CGCObjSprite* >( pObject );
-		pProjectileAsSprite->DestroySprite();
+		// do nothing - DestroyObjectsReverseOrder calls delete!
 	});
 }

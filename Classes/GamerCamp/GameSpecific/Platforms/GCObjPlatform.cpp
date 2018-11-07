@@ -17,11 +17,10 @@ USING_NS_CC;
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
+IN_CPP_CREATION_PARAMS_DECLARE( CGCObjPlatform, "TexturePacker/Sprites/Platform/Platform.plist", "platform", b2_staticBody, true );
 //virtual 
 void CGCObjPlatform::VOnResourceAcquire( void )
 {
-	const char* pszPlist = "TexturePacker/Sprites/Platform/Platform.plist";
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pszPlist );
-	AcquireResources( pszPlist, "platform", b2_staticBody, true );
-	SetParent( IGCGameLayer::ActiveInstance() );
+	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjPlatform );
+	CGCObjSpritePhysics::VOnResourceAcquire();
 }
