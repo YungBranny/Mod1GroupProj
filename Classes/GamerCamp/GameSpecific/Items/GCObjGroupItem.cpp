@@ -62,36 +62,38 @@ GCTypeID CGCObjGroupItem::VGetTypeId( void )
 
 
 //////////////////////////////////////////////////////////////////////////
-//
+// invaders are created from level file, we just need to init their anims
+// this has to be done after the invaders have acquired their resources
+// hence the name of this function..
 //////////////////////////////////////////////////////////////////////////
 //virtual 
 void CGCObjGroupItem::VOnGroupResourceAcquire_PostObject( void )
 {
-	// parent class version
-	CGCObjectGroup::VOnGroupResourceAcquire_PostObject();
-
-	// set up animations for all items
-	const char* pszPlist_Coin	        = "TexturePacker/Sprites/Coin/Coin.plist";
-	const char* pszAnim_Coin_Rotate		= "Rotate";
-
-	// make an animation
-	// N.B. pdictPList is returned autoreleased - will clean itslef at end of frame if not retained
-	ValueMap	cDicPList	= GCCocosHelpers::CreateDictionaryFromPlist( pszPlist_Coin );
-	Animation*	pAnimation	= GCCocosHelpers::CreateAnimation( cDicPList, pszAnim_Coin_Rotate );
-
-	// N.B. this is a workaround for the fact that Marmalade's version of GCC for ARM doesn't support lambdas. Blergh.
-	SGCObjectGatherer sMyGatherer;
-	ForEachObject( sMyGatherer );
-
-	// create an animation action and set it for each invader
-	for( u32 uIndex = 0; uIndex < sMyGatherer.uCount; ++uIndex )
+	if( GetCountRegistered() > 0 )
 	{
-		CGCObject* pcItemAsObject = sMyGatherer.apObjects[ uIndex ];
-		CCAssert(	( GetGCTypeIDOf( CGCObjItem ) == pcItemAsObject->GetGCTypeID() ), 
-			"CGCObject derived type mismatch!" );
+		const CGCObjItem* pcItem = static_cast< const CGCObjItem* >( GetRegisteredObjectAtIndex( 0 ) );
+		CCAssert( ( GetGCTypeIDOf( CGCObjItem ) == pcItem->GetGCTypeID() ),
+				  "CGCObject derived type mismatch!" );
 
-		CGCObjSprite* pItemSprite = (CGCObjSprite*) pcItemAsObject;
-		pItemSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
+		// set up animations for all items - get the creation params from the first one in the group
+		const CGCFactoryCreationParams* psObjCreateParams = pcItem->GetFactoryCreationParams();
+
+		CCAssert( psObjCreateParams, "0th object in group has no creation params" );
+
+		// make an animation
+		ValueMap	cDicPList	= GCCocosHelpers::CreateDictionaryFromPlist( psObjCreateParams->strPlistFile );
+		Animation*	pAnimation	= GCCocosHelpers::CreateAnimation( cDicPList, "Rotate" );
+
+		// apply it to all the objects
+		ForEachObject
+		( 
+			[&] ( CGCObject* pcItemAsObject )
+			{
+				CGCObjSprite* pItemSprite = (CGCObjSprite*)pcItemAsObject;
+				pItemSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
+				return true;
+			} 
+		);
 	}
 }
 

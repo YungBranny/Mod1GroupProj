@@ -101,15 +101,8 @@ struct SArrayOfProjectiles
 //////////////////////////////////////////////////////////////////////////
 void CGCObjGroupProjectilePlayer::DestroyProjectiles( void )
 {
-	// this iterates the array of registered CGCObjects 
-	// calling the supplied functor then deleting them
-    auto cMyLambda = [&]( CGCObject* pObject )
-    {
-        GCASSERT( GetGCTypeIDOf( CGCObjProjectilePlayer ) == pObject->GetGCTypeID(), "wrong type!" );
-		delete pObject;
-    };
-
-	DestroyObjectsReverseOrder( cMyLambda );
+	// this iterates the array of registered CGCObjects deleting them backwards
+	DestroyObjectsReverseOrder();
 }
 
 

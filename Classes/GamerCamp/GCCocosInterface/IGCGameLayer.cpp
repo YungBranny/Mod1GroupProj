@@ -490,7 +490,7 @@ void IGCGameLayer::OnTouchesBegan( const std::vector< cocos2d::Touch* >& vecTouc
 	cocos2d::Touch* pFirstTouch = ( vecTouches.size() > 0 ) ? vecTouches[ 0 ] : nullptr;
 	if( pFirstTouch )
 	{
-		cocos2d::CCPoint touchLocation = pFirstTouch->getLocationInView();
+		cocos2d::Point touchLocation = pFirstTouch->getLocationInView();
 		touchLocation = cocos2d::Director::getInstance()->convertToGL(touchLocation);
 
 		m_v2RawTouchPos.x = touchLocation.x;
@@ -509,7 +509,7 @@ void IGCGameLayer::OnTouchesMoved( const std::vector< cocos2d::Touch* >& vecTouc
 	cocos2d::Touch* pFirstTouch = ( vecTouches.size() > 0 ) ? vecTouches[ 0 ] : nullptr;
 	if( pFirstTouch )
 	{
-		cocos2d::CCPoint touchLocation = pFirstTouch->getLocationInView();
+		cocos2d::Point touchLocation = pFirstTouch->getLocationInView();
 		touchLocation = cocos2d::Director::getInstance()->convertToGL(touchLocation);
 
 		m_v2RawTouchPos.x = touchLocation.x;
@@ -530,7 +530,7 @@ void IGCGameLayer::OnTouchesEnded( const std::vector< cocos2d::Touch* >& vecTouc
 	cocos2d::Touch* pFirstTouch = ( vecTouches.size() > 0 ) ? vecTouches[ 0 ] : nullptr;
 	if( pFirstTouch )
 	{
-		cocos2d::CCPoint touchLocation = pFirstTouch->getLocationInView();
+		cocos2d::Point touchLocation = pFirstTouch->getLocationInView();
 		touchLocation = cocos2d::Director::getInstance()->convertToGL(touchLocation);
 
 		m_v2RawTouchPos.x = touchLocation.x;

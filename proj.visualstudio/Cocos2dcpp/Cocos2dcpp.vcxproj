@@ -90,7 +90,7 @@
       <AdditionalIncludeDirectories>$(AndroidSDKAPILevelRoot)\arch-x86\usr\include\SLES;$(AndroidSDKAPILevelRoot)\arch-x86\usr\include;$(ProjectDir)\jni;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++11</CppLanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PreprocessorDefinitions>ANDROID;USE_FILE32API;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANDROID;USE_FILE32API;_DEBUG;COCOS2D_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
     </ClCompile>
@@ -134,7 +134,7 @@
       <AdditionalIncludeDirectories>$(AndroidSDKAPILevelRoot)\arch-arm\usr\include\SLES;$(AndroidSDKAPILevelRoot)\arch-arm\usr\include;$(ProjectDir)\jni;$(Sysroot)\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CppLanguageStandard>c++11</CppLanguageStandard>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <PreprocessorDefinitions>ANDROID;USE_FILE32API;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANDROID;USE_FILE32API;_DEBUG;COCOS2D_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CLanguageStandard>gnu11</CLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <AdditionalOptions>-Wno-format %(AdditionalOptions)</AdditionalOptions>

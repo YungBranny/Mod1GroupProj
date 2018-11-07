@@ -130,9 +130,14 @@ namespace GCHelpers
 #if defined(_DEBUG) && defined(WIN32)
 	#define GCASSERT( BoolExpression, MessageNotUsed )	do{ if(!(BoolExpression)){__asm int 3}}while(0)
 	#define DEBUG_ONLY( expr )							expr
+
+#elif defined(_DEBUG)
+	#define GCASSERT( BoolExpression, MessageNotUsed )	/*nothing*/
+	#define DEBUG_ONLY( expr )							expr
+
 #else
 	#define GCASSERT( ... )								/*nothing*/
-	#define DEBUG_ONLY( ... )							expr
+	#define DEBUG_ONLY( ... )							/*nothing*/
 #endif		 
 
 #endif//#ifndef _GCTYPES_H_

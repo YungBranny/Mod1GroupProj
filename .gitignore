@@ -17,6 +17,7 @@ cocos2d/cocos/platform/android/libcocos2dx/build/
 *.vcxproj.user
 proj.win32/.vs/
 **/Debug.*/
+**/Release.*/
 GCTemplate/proj.visualstudio/**/Release/
 GCTemplate/proj.visualstudio/**/Debug/
 **/.vs/
@@ -29,3 +30,4 @@ ignoreme*
 proj.visualstudio/Cocos2d/assets/
 BuildData/Debug*/
 BuildData/Release*/
+*.user

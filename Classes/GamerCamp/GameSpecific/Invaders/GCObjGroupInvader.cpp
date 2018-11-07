@@ -75,29 +75,32 @@ GCTypeID CGCObjGroupInvader::VGetTypeId( void )
 //virtual 
 void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject( void )
 {
-	// parent class version
-	CGCObjectGroup::VOnGroupResourceAcquire_PostObject();
-
-	// set up animations for all items
-	const char* pszPlist	= "TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist";
-	const char* pszAnim_Fly = "Fly";
-
-	// make an animation
-	ValueMap	cDictPList = GCCocosHelpers::CreateDictionaryFromPlist( pszPlist );
-	Animation*	pAnimation = GCCocosHelpers::CreateAnimation( cDictPList, pszAnim_Fly );
-
-	// apply it to all the invaders
-	auto cMyLambda = [&] ( CGCObject* pcItemAsObject )
+	if( GetCountRegistered() > 0 )
 	{
-				CCAssert( ( GetGCTypeIDOf( CGCObjInvader ) == pcItemAsObject->GetGCTypeID() ),
-						  "CGCObject derived type mismatch!" );
+		const CGCObjInvader* pcInvader = static_cast<const CGCObjInvader*>( GetRegisteredObjectAtIndex( 0 ) );
+		CCAssert( ( GetGCTypeIDOf( CGCObjInvader ) == pcInvader->GetGCTypeID() ),
+				  "CGCObject derived type mismatch!" );
 
-		CGCObjSprite* pItemSprite = (CGCObjSprite*)pcItemAsObject;
-		pItemSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
-		return true; // returning true means 'please keep iterating'
-	};
+		// set up animations for all items - get the creation params from the first one in the group
+		const CGCFactoryCreationParams* psObjCreateParams = pcInvader->GetFactoryCreationParams();
 
-	ForEachObject( cMyLambda );
+		CCAssert( psObjCreateParams, "0th object in group has no creation params" );
+
+		// make an animation
+		ValueMap	cDicPList = GCCocosHelpers::CreateDictionaryFromPlist( psObjCreateParams->strPlistFile );
+		Animation*	pAnimation = GCCocosHelpers::CreateAnimation( cDicPList, "Fly" );
+
+		// apply it to all the objects
+		ForEachObject
+		(
+			[&] ( CGCObject* pcItemAsObject )
+			{
+				CGCObjSprite* pItemSprite = (CGCObjSprite*)pcItemAsObject;
+				pItemSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
+				return true;
+			}
+		);
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////

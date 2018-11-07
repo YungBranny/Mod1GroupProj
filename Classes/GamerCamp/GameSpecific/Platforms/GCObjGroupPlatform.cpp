@@ -62,32 +62,39 @@ GCTypeID CGCObjGroupPlatform::VGetTypeId( void )
 
 
 //////////////////////////////////////////////////////////////////////////
-//
+// invaders are created from level file, we just need to init their anims
+// this has to be done after the invaders have acquired their resources
+// hence the name of this function..
 //////////////////////////////////////////////////////////////////////////
 //virtual 
 void CGCObjGroupPlatform::VOnGroupResourceAcquire_PostObject( void )
 {
-	// parent class version
-	CGCObjectGroup::VOnGroupResourceAcquire();
-
-	// set up animations for all platforms
-	const char* pszPlist_Platform		= "TexturePacker/Sprites/Platform/Platform.plist";
-	const char* pszAnim_Platfrom_Rotate	= "Hover";
-
-	// make an animation
-	// N.B. pdictPList is returned autoreleased - will clean itslef at end of frame if not retained
-	cocos2d::ValueMap	cSpriteInfo	= GCCocosHelpers::CreateDictionaryFromPlist( pszPlist_Platform );
-	cocos2d::Animation*	pAnimation	= GCCocosHelpers::CreateAnimation( cSpriteInfo, pszAnim_Platfrom_Rotate );
-
-	auto cMyLambda = [&] ( CGCObject* pcPlatformAsObject )
+	if( GetCountRegistered() > 0 )
 	{
-		GCASSERT( GetGCTypeIDOf( CGCObjPlatform ) == pcPlatformAsObject->GetGCTypeID(), "wrong type!" );
-		CGCObjSprite* pSprite = (CGCObjSprite*) pcPlatformAsObject;
-		pSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
-		return true;
-	};
+		const CGCObjPlatform* pcPlatform = static_cast<const CGCObjPlatform*>( GetRegisteredObjectAtIndex( 0 ) );
+		CCAssert( ( GetGCTypeIDOf( CGCObjPlatform ) == pcPlatform->GetGCTypeID() ),
+				  "CGCObject derived type mismatch!" );
 
-	ForEachObject( cMyLambda );
+		// set up animations for all items - get the creation params from the first one in the group
+		const CGCFactoryCreationParams* psObjCreateParams = pcPlatform->GetFactoryCreationParams();
+
+		CCAssert( psObjCreateParams, "0th object in group has no creation params" );
+
+		// make an animation
+		ValueMap	cDicPList = GCCocosHelpers::CreateDictionaryFromPlist( psObjCreateParams->strPlistFile );
+		Animation*	pAnimation = GCCocosHelpers::CreateAnimation( cDicPList, "Hover" );
+
+		// apply it to all the objects
+		ForEachObject
+		(
+			[&] ( CGCObject* pcItemAsObject )
+			{
+				CGCObjSprite* pItemSprite = (CGCObjSprite*)pcItemAsObject;
+				pItemSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
+				return true;
+			}
+		);
+	}
 }
 
 
