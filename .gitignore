@@ -19,3 +19,7 @@ BuildData/Release/
 BuildData/Debug with data/
 BuildData/Release with data/
 
+proj.visualstudio/.vs/
+proj.visualstudio/Cocos2d/
+proj.visualstudio/Cocos2dcpp/
+proj.visualstudio/x86/
