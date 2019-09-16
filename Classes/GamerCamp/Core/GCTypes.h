@@ -128,7 +128,7 @@ namespace GCHelpers
 
 // hacky quick assert for use in places we can't / don't want to have CCAssert included
 #if defined(_DEBUG) && defined(WIN32)
-	#define GCASSERT( BoolExpression, MessageNotUsed )	do{ if(!(BoolExpression)){__asm int 3}}while(0)
+	#define GCASSERT( BoolExpression, MessageNotUsed )	do{ if(!(BoolExpression)){__debugbreak();}}while(0)
 	#define DEBUG_ONLY( expr )							expr
 #else
 	#define GCASSERT( ... )								/*nothing*/
