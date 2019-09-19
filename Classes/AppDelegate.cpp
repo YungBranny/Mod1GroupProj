@@ -5,6 +5,7 @@
 #include "AppMacros.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCObject/GCObjGroupDefault.h"
+#include "GamerCamp/GameController/GameController.h"
 #include "MenuScene.h"
 
 
@@ -56,48 +57,48 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     vector<string> searchPath;
 
-//////////////////////////////////////////////////////////////////////////
-// GamerCamp Edit - add windows
-#if defined WIN32
-       searchPath.push_back( WindowsResource.directory );
+	//////////////////////////////////////////////////////////////////////////
+	// GamerCamp Edit - add windows
+	#if defined WIN32
+		   searchPath.push_back( WindowsResource.directory );
 
-       pDirector->setContentScaleFactor( MIN( WindowsResource.size.height/designResolutionSize.height, WindowsResource.size.width/designResolutionSize.width ) );
-#else
-// GamerCamp Edit - add windows
-//////////////////////////////////////////////////////////////////////////
+		   pDirector->setContentScaleFactor( MIN( WindowsResource.size.height/designResolutionSize.height, WindowsResource.size.width/designResolutionSize.width ) );
+	#else
+	// GamerCamp Edit - add windows
+	//////////////////////////////////////////////////////////////////////////
 
-    // In this demo, we select resource according to the frame's height.
-    // If the resource size is different from design resolution size, you need to set contentScaleFactor.
-    // We use the ratio of resource's height to the height of design resolution,
-    // this can make sure that the resource's height could fit for the height of design resolution.
+		// In this demo, we select resource according to the frame's height.
+		// If the resource size is different from design resolution size, you need to set contentScaleFactor.
+		// We use the ratio of resource's height to the height of design resolution,
+		// this can make sure that the resource's height could fit for the height of design resolution.
 
-    // if the frame's height is larger than the height of medium resource size, select large resource.
-	if (frameSize.height > mediumResource.size.height)
-	{
-        searchPath.push_back(largeResource.directory);
+		// if the frame's height is larger than the height of medium resource size, select large resource.
+		if (frameSize.height > mediumResource.size.height)
+		{
+			searchPath.push_back(largeResource.directory);
 
-        pDirector->setContentScaleFactor(MIN(largeResource.size.height/designResolutionSize.height, largeResource.size.width/designResolutionSize.width));
-	}
-    // if the frame's height is larger than the height of small resource size, select medium resource.
-    else if (frameSize.height > smallResource.size.height)
-    {
-        searchPath.push_back(mediumResource.directory);
+			pDirector->setContentScaleFactor(MIN(largeResource.size.height/designResolutionSize.height, largeResource.size.width/designResolutionSize.width));
+		}
+		// if the frame's height is larger than the height of small resource size, select medium resource.
+		else if (frameSize.height > smallResource.size.height)
+		{
+			searchPath.push_back(mediumResource.directory);
         
-        pDirector->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));
-    }
-    // if the frame's height is smaller than the height of medium resource size, select small resource.
-	else
-    {
-        searchPath.push_back(smallResource.directory);
+			pDirector->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));
+		}
+		// if the frame's height is smaller than the height of medium resource size, select small resource.
+		else
+		{
+			searchPath.push_back(smallResource.directory);
 
-        pDirector->setContentScaleFactor(MIN(smallResource.size.height/designResolutionSize.height, smallResource.size.width/designResolutionSize.width));
-    }
+			pDirector->setContentScaleFactor(MIN(smallResource.size.height/designResolutionSize.height, smallResource.size.width/designResolutionSize.width));
+		}
 
-//////////////////////////////////////////////////////////////////////////
-// GamerCamp Edit - add windows
-#endif //#if defined WIN32
-// GamerCamp Edit - add windows
-//////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////////////////////////////////////////
+	// GamerCamp Edit - add windows
+	#endif //#if defined WIN32
+	// GamerCamp Edit - add windows
+	//////////////////////////////////////////////////////////////////////////
     
     // set searching path
     CCFileUtils::getInstance()->setSearchPaths( searchPath );
@@ -116,6 +117,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 		// create the initial GameScene
 		Scene* pScene = CMenuLayer::scene();
+
+		GameController* pcGameController = GameController::create();
+		pScene->addChild( pcGameController );
 
 	// GamerCamp Edit
 	//////////////////////////////////////////////////////////////////////////

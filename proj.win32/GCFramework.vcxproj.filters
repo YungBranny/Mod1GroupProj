@@ -46,6 +46,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Platforms">
       <UniqueIdentifier>{b08a1995-8545-4a2d-9387-7efa6dc69686}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameController">
+      <UniqueIdentifier>{4ae41667-3df5-4816-b3c8-f6aa92570597}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -128,6 +131,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.cpp">
       <Filter>Classes\GamerCamp\Win32Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameController\GameController.cpp">
+      <Filter>Classes\GamerCamp\GameController</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +229,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\SGCFactoryCreationParams.h">
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameController\GameController.h">
+      <Filter>Classes\GamerCamp\GameController</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
