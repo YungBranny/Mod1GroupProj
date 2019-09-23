@@ -126,13 +126,16 @@
     <ClCompile Include="..\Classes\GamerCamp\GCObject\GCObjGroupDefault.cpp">
       <Filter>Classes\GamerCamp\GCObject</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\Win32Input\cinput.cpp">
-      <Filter>Classes\GamerCamp\Win32Input</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.cpp">
       <Filter>Classes\GamerCamp\Win32Input</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameController\GameController.cpp">
+      <Filter>Classes\GamerCamp\GameController</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\Win32Input\CInputKeyboard.cpp">
+      <Filter>Classes\GamerCamp\Win32Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameController\GCControllerManager.cpp">
       <Filter>Classes\GamerCamp\GameController</Filter>
     </ClCompile>
   </ItemGroup>
@@ -221,9 +224,6 @@
     <ClInclude Include="..\Classes\GamerCamp\GCObject\GCObjGroupDefault.h">
       <Filter>Classes\GamerCamp\GCObject</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\Win32Input\cinput.h">
-      <Filter>Classes\GamerCamp\Win32Input</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.h">
       <Filter>Classes\GamerCamp\Win32Input</Filter>
     </ClInclude>
@@ -231,6 +231,12 @@
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameController\GameController.h">
+      <Filter>Classes\GamerCamp\GameController</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\Win32Input\CInputKeyboard.h">
+      <Filter>Classes\GamerCamp\Win32Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameController\GCControllerManager.h">
       <Filter>Classes\GamerCamp\GameController</Filter>
     </ClInclude>
   </ItemGroup>

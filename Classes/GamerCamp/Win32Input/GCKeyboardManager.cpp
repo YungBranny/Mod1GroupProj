@@ -11,7 +11,7 @@
 #endif
 
 #ifndef _CINPUT_H_
-	#include "cinput.h"
+	#include "CInputKeyboard.h"
 #endif
 
 
@@ -22,7 +22,7 @@ CGCKeyboardManager::CGCKeyboardManager()
 , m_pabActionStates_CurrentFrame( m_abActionBuffer_One )
 , m_pabActionStates_LastFrame	( m_abActionBuffer_Two )
 {
-	m_pKeyboardInput = new CInput();
+	m_pKeyboardInput = new CInputKeyboard();
 }
 
 // destructor does nothing

@@ -17,7 +17,7 @@ using namespace cocos2d;
 
 //////////////////////////////////////////////////////////////////////////
 // forward declare
-class CInput;
+class CInputKeyboard;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,7 @@ public:
 	};
 
 private:
-	CInput*	m_pKeyboardInput;					// This is the class that contains the dinput code
+	CInputKeyboard*	m_pKeyboardInput;					// This is the class that contains the dinput code
 
 	u32						m_uNumActions;						// Number of actions managed
 	bool*					m_pabActionStates_CurrentFrame;		// Pointer to whichever of m_abActionBuffer_One or m_abActionBuffer_Two is the current frame's buffer

@@ -151,6 +151,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\Debug\GLES-Render.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameController\GCControllerManager.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameController\GameController.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GCGameLayerPlatformer.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Invaders\GCObjGroupInvader.cpp" />
@@ -173,7 +174,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GCObject\GCObjectGroup.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GCObject\GCObjectManager.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GCObject\GCObjGroupDefault.cpp" />
-    <ClCompile Include="..\Classes\GamerCamp\Win32Input\cinput.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\Win32Input\CInputKeyboard.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.cpp" />
     <ClCompile Include="..\Classes\MenuScene.cpp" />
     <ClCompile Include="main.cpp" />
@@ -184,6 +185,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\Collections\NoAllocList.h" />
     <ClInclude Include="..\Classes\GamerCamp\Core\GCTypes.h" />
     <ClInclude Include="..\Classes\GamerCamp\Debug\GLES-Render.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameController\GCControllerManager.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameController\GameController.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GCGameLayerPlatformer.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Invaders\GCObjGroupInvader.h" />
@@ -207,7 +209,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GCObject\GCObjectGroup.h" />
     <ClInclude Include="..\Classes\GamerCamp\GCObject\GCObjectManager.h" />
     <ClInclude Include="..\Classes\GamerCamp\GCObject\GCObjGroupDefault.h" />
-    <ClInclude Include="..\Classes\GamerCamp\Win32Input\cinput.h" />
+    <ClInclude Include="..\Classes\GamerCamp\Win32Input\CInputKeyboard.h" />
     <ClInclude Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.h" />
     <ClInclude Include="..\Classes\MenuScene.h" />
     <ClInclude Include="main.h" />

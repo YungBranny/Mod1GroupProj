@@ -151,7 +151,7 @@ void GB2ShapeCache::addFixturesToBody( b2Body *body, const std::string &shape )
 	}
 }
 
-cocos2d::CCPoint GB2ShapeCache::anchorPointForShape( const std::string &shape )
+cocos2d::Vec2 GB2ShapeCache::anchorPointForShape( const std::string &shape )
 {
 	std::map<std::string, BodyDef *>::iterator pos = shapeObjects.find( shape );
 	assert( pos != shapeObjects.end() );

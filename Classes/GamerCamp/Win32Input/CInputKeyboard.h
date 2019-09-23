@@ -12,11 +12,11 @@
 //////////////////////////////////////////////////////////////////////////
 #if defined (WIN32)
 
-class CInput
+class CInputKeyboard
 {
 public:
-	CInput	(void);
-	~CInput	(void);
+	CInputKeyboard(void);
+	~CInputKeyboard(void);
 
 	enum
 	{
