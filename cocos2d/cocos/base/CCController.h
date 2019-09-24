@@ -239,6 +239,16 @@ private:
 
     friend class ControllerImpl;
     friend class EventListenerController;
+
+
+// GC EDIT - darbotron
+public:
+	void reset();
+	const KeyStatus& getLastKeyStatus( int keyCode );
+
+// GC EDIT - darbotron
+
+
 };
 
 // end group

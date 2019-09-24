@@ -15,7 +15,8 @@ using namespace std;
 //////////////////////////////////////////////////////////////////////////
 // GamerCamp Edit
 // static 
-CGCKeyboardManager*	AppDelegate::sm_pcKeyboardManager = NULL;
+CGCKeyboardManager*		AppDelegate::sm_pcKeyboardManager	= NULL;
+CGCControllerManager*	AppDelegate::sm_pcControllerManager = NULL;
 // GamerCamp Edit
 //////////////////////////////////////////////////////////////////////////
 
@@ -31,6 +32,9 @@ AppDelegate::~AppDelegate()
 	// clean up win32 input 
 	delete sm_pcKeyboardManager;
 	sm_pcKeyboardManager = NULL;
+
+	delete sm_pcControllerManager;
+	sm_pcControllerManager = NULL;
 // GamerCamp Edit
 //////////////////////////////////////////////////////////////////////////
 }
@@ -112,14 +116,15 @@ bool AppDelegate::applicationDidFinishLaunching()
 	//////////////////////////////////////////////////////////////////////////
 	// GamerCamp Edit
 
- 		// create windows input
-		sm_pcKeyboardManager = new CGCKeyboardManager();
+ 		// create & init input
+		sm_pcKeyboardManager	= new CGCKeyboardManager();
+
+		sm_pcControllerManager	= new CGCControllerManager();
+		InitialiseControllerManager();
 
 		// create the initial GameScene
 		Scene* pScene = CMenuLayer::scene();
 
-		GameController* pcGameController = GameController::create();
-		pScene->addChild( pcGameController );
 
 	// GamerCamp Edit
 	//////////////////////////////////////////////////////////////////////////

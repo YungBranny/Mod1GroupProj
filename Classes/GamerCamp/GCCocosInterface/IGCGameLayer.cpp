@@ -281,6 +281,8 @@ void IGCGameLayer::VOnResourceAcquire( void )
 void IGCGameLayer::VOnReset( void )
 {
 	ResetTouchState();
+	AppDelegate::GetKeyboardManager()->Reset();
+	AppDelegate::GetControllerManager()->Reset();
 	CGCObjectManager::OnReset();
 }
 

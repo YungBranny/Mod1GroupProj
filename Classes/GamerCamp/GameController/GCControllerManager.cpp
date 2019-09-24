@@ -16,90 +16,180 @@
 using namespace cocos2d;
 
 
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-GCControllerManager::GCControllerManager()
-{
-	Reset();
-
-	m_pcControllerListener = EventListenerController::create();
-
-
-}
-
 
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-GCControllerManager::~GCControllerManager()
+CGCControllerManager::CGCControllerManager()
 {}
 
+
+
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-void GCControllerManager::Reset()
+CGCControllerManager::~CGCControllerManager()
 {}
 
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-void GCControllerManager::Update()
+void CGCControllerManager::Initialise()
+{
+	Controller::startDiscoveryController();
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+void CGCControllerManager::Reset()
+{
+	for( Controller* pcController : Controller::getAllController() )
+	{
+		pcController->reset();
+	}
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+void CGCControllerManager::Update()
 {}
 
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-bool GCControllerManager::ControllerIsActive( i32 iControllerID )
+bool CGCControllerManager::ControllerIsActive( EControllerId eControllerId )
 {
-	return false;
+	const Controller* pcController = Controller::getControllerByDeviceId( (int) eControllerId );
+	return ( nullptr != pcController );
 }
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-bool GCControllerManager::ControllerButtonIsPressed( i32 iControllerID, Controller::Key eKeyCode )
+void CGCControllerManager::ControllerReset( EControllerId eControllerId )
 {
-	return false;
+	Controller* pcController = Controller::getControllerByDeviceId( (int) eControllerId );
+	GCASSERT( ( nullptr != pcController ), "Aiieee!! You should check the controller is valid before calling this!" );
+
+	pcController->reset();
 }
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-bool GCControllerManager::ControllerButtonHasJustBeenPressed( i32 iControllerID, Controller::Key eKeyCode )
+bool CGCControllerManager::ControllerButtonIsPressed( EControllerId eControllerId, Controller::Key eKeyCode )
 {
-	return false;
+	Controller* pcController = Controller::getControllerByDeviceId( (int) eControllerId );
+	GCASSERT( ( nullptr != pcController ), "Aiieee!! You should check the controller is valid before calling this!" );
+
+	const Controller::KeyStatus& rcKeyStatus = pcController->getKeyStatus( (int) eKeyCode );
+
+	return rcKeyStatus.isPressed;
 }
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-bool GCControllerManager::ControllerButtonHasJustBeenReleased( i32 iControllerID, Controller::Key eKeyCode )
+bool CGCControllerManager::ControllerButtonHasJustBeenPressed( EControllerId eControllerId, Controller::Key eKeyCode )
 {
-	return false;
+	Controller* pcController = Controller::getControllerByDeviceId( (int) eControllerId );
+	GCASSERT( ( nullptr != pcController ), "Aiieee!! You should check the controller is valid before calling this!" );
+
+	const Controller::KeyStatus& rcKeyStatus		= pcController->getKeyStatus		( (int) eKeyCode );
+	const Controller::KeyStatus& rcLastKeyStatus	= pcController->getLastKeyStatus	( (int) eKeyCode );
+
+	return ( ( ! rcLastKeyStatus.isPressed ) && rcKeyStatus.isPressed );
 }
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-f32 GCControllerManager::ControllerGetCurrentAxisValueRaw( i32 iControllerID, Controller::Key eAxisKeyCode )
+bool CGCControllerManager::ControllerButtonHasJustBeenReleased( EControllerId eControllerId, Controller::Key eKeyCode )
 {
+	Controller* pcController = Controller::getControllerByDeviceId( (int) eControllerId );
+	GCASSERT( ( nullptr != pcController ), "Aiieee!! You should check the controller is valid before calling this!" );
+
+	const Controller::KeyStatus& rcKeyStatus		= pcController->getKeyStatus		( (int) eKeyCode );
+	const Controller::KeyStatus& rcLastKeyStatus	= pcController->getLastKeyStatus	( (int) eKeyCode );
+
+	return ( rcLastKeyStatus.isPressed && ( ! rcKeyStatus.isPressed ) );
+}
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+f32 CGCControllerManager::ControllerGetCurrentAxisValueRaw( EControllerId eControllerId, Controller::Key eAxisKeyCode )
+{
+	Controller* pcController = Controller::getControllerByDeviceId( (int) eControllerId );
+	GCASSERT( ( nullptr != pcController ), "Aiieee!! You should check the controller is valid before calling this!" );
+
+	const Controller::KeyStatus& rcKeyStatus = pcController->getKeyStatus( (int) eAxisKeyCode );
+
+	if( rcKeyStatus.isAnalog )
+	{
+		return rcKeyStatus.value;
+	}
+
 	return 0.0f;
 }
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-f32 GCControllerManager::ControllerGetCurrentAxisDeadzoned( i32 iControllerID, Controller::Key eAxisKeyCode, float fDeadzone )
+f32 CGCControllerManager::ControllerGetCurrentAxisDeadzoned( EControllerId eControllerId, Controller::Key eAxisKeyCode, float fDeadzone )
 {
-	return 0.0f;
+	f32 fRawAxisValue	= ControllerGetCurrentAxisValueRaw( eControllerId, eAxisKeyCode );
+	fRawAxisValue		= GCMaths::Clamp( fRawAxisValue, ( -k_fAxisMax ), k_fAxisMax );
+
+	f32 fSignCorrecter	= ( ( fRawAxisValue < 0.0f ) ? -1.0f : 1.0f );
+	f32 fAbsAxisValue	= std::min( std::fabsf( fRawAxisValue ),	k_fAxisMax );		// these limits prevent div0 later
+	f32 fAbsDeadzone	= std::min( std::fabsf( fDeadzone ),		k_fDeadzoneMax );	// these limits prevent div0 later
+
+	f32 fAvailableRange			= ( k_fAxisMax - fAbsDeadzone );
+	f32 fAbsRawWRTDeadzone		= std::max( ( fAbsAxisValue - fAbsDeadzone ), 0.0f );
+	f32 fAbsRawAsPropOfAvailble = ( fAbsRawWRTDeadzone / fAvailableRange );
+
+	f32 fFinalAxisValue = ( fAbsRawAsPropOfAvailble * fSignCorrecter );
+
+	return fFinalAxisValue;
 }
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-Vec2 GCControllerManager::ControllerGetCurrentStickValueRaw( i32 iControllerID, Controller::Key eAxisKeyCodeX, Controller::Key eAxisKeyCodeY )
+Vec2 CGCControllerManager::ControllerGetCurrentStickValueRaw( EControllerId eControllerId, Controller::Key eAxisKeyCodeX, Controller::Key eAxisKeyCodeY )
 {
-	return Vec2::ZERO;
+	return ControllerGetCurrentStickValueDeadzoned( eControllerId, eAxisKeyCodeX, eAxisKeyCodeY, 0.0f );
 }
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-Vec2 GCControllerManager::ControllerGetCurrentStickValueDeadzoned( i32 iControllerID, Controller::Key eAxisKeyCodeX, Controller::Key eAxisKeyCodeY, float fDeadzone )
+Vec2 CGCControllerManager::ControllerGetCurrentStickValueDeadzoned( EControllerId eControllerId, Controller::Key eAxisKeyCodeX, Controller::Key eAxisKeyCodeY, float fDeadzone )
 {
-	return Vec2::ZERO;
+	f32 fRawAxisX = ControllerGetCurrentAxisValueRaw( eControllerId, eAxisKeyCodeX );
+	f32 fRawAxisY = ControllerGetCurrentAxisValueRaw( eControllerId, eAxisKeyCodeY );
+
+	fRawAxisX = GCMaths::Clamp( fRawAxisX, ( -k_fAxisMax ), k_fAxisMax );
+	fRawAxisY = GCMaths::Clamp( fRawAxisY, ( -k_fAxisMax ), k_fAxisMax );
+
+	// get magnitude & normalise
+	Vec2	v2Raw			= Vec2( fRawAxisX, fRawAxisY );
+	f32		fMagnitude		= v2Raw.length();	
+	
+	// early out if very small
+	if( fMagnitude < 0.0001f )
+	{
+		return Vec2::ZERO;
+	}
+
+	Vec2	v2Normalised	= ( v2Raw / fMagnitude );
+
+
+	// clamp and deadzone magnitude
+	f32		fValidatedDeadzone			= std::min( std::fabsf( fDeadzone ), k_fDeadzoneMax );	
+	f32		fMaxMagnitudeWRTDeadzone	= ( k_fAxisMax - fValidatedDeadzone );
+
+	f32		fMagnitudeClamped			= std::min( fMagnitude, k_fAxisMax );
+	f32		fMagnitudeWRTDeadzone		= std::max( ( fMagnitudeClamped - fValidatedDeadzone ), 0.0f );
+	
+	f32		fDeadzonedMagnitudeAsPropOfAvailableRange	= ( fMagnitudeWRTDeadzone / fMaxMagnitudeWRTDeadzone );
+	Vec2	v2ClampedToMaxAndDeadZoned					= ( v2Normalised * fDeadzonedMagnitudeAsPropOfAvailableRange );
+
+	return v2ClampedToMaxAndDeadZoned;
 }
 
 

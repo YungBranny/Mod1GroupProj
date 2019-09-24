@@ -5,11 +5,12 @@
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-#ifndef _CINPUTCONTROLLER_H_
-#define _CINPUTCONTROLLER_H_
+#ifndef _GCINPUTCONTROLLER_H_
+#define _GCINPUTCONTROLLER_H_
 #include "GamerCamp/Core/GCTypes.h"
 
 #include "platform/CCGLView.h"
+#include "cocos2d/external/glfw3/include/win32/glfw3.h"
 #include "cocos/base/CCController.h"
 
 #include "base/CCEventKeyboard.h"
@@ -17,7 +18,7 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-#error read comment below!!
+//#error read comment below!!
 //					PLAN
 //					
 // * get this working passing the explicit controller ID to CC code from gameplay code
@@ -41,35 +42,45 @@
 
 using namespace cocos2d;
 
-class GCControllerManager
+class CGCControllerManager
 {
 public:
-	GCControllerManager											();
-	~GCControllerManager										();
 
+	const f32 k_fAxisMax		= 1.0f;
+	const f32 k_fDeadzoneMax	= 0.3333f;
+
+	enum EControllerId
+	{
+		eControllerOne		= GLFW_JOYSTICK_1, // the values are actually zero indexed but they could in principle change...
+		eControllerTwo		= GLFW_JOYSTICK_2,
+		eControllerThree	= GLFW_JOYSTICK_3,
+		eControllerFour		= GLFW_JOYSTICK_4,
+	};
+
+	CGCControllerManager										();
+	~CGCControllerManager										();
+
+	void				Initialise								();
 	void				Reset									();
 	void				Update									();
 
-	bool				ControllerIsActive						( i32 iControllerID );
+	bool				ControllerIsActive						( EControllerId eControllerId );
 
-	bool				ControllerButtonIsPressed				( i32 iControllerID, Controller::Key eKeyCode );
+	void				ControllerReset							( EControllerId eControllerId );
 
-	bool				ControllerButtonHasJustBeenPressed		( i32 iControllerID, Controller::Key eKeyCode );
-	bool				ControllerButtonHasJustBeenReleased		( i32 iControllerID, Controller::Key eKeyCode );
+	bool				ControllerButtonIsPressed				( EControllerId eControllerId, Controller::Key eKeyCode );
 
-	f32					ControllerGetCurrentAxisValueRaw		( i32 iControllerID, Controller::Key eAxisKeyCode );
-	f32					ControllerGetCurrentAxisDeadzoned		( i32 iControllerID, Controller::Key eAxisKeyCode, float fDeadzone );
+	bool				ControllerButtonHasJustBeenPressed		( EControllerId eControllerId, Controller::Key eKeyCode );
+	bool				ControllerButtonHasJustBeenReleased		( EControllerId eControllerId, Controller::Key eKeyCode );
 
-	cocos2d::Vec2		ControllerGetCurrentStickValueRaw		( i32 iControllerID, Controller::Key eAxisKeyCodeX, Controller::Key eAxisKeyCodeY );
-	cocos2d::Vec2		ControllerGetCurrentStickValueDeadzoned ( i32 iControllerID, Controller::Key eAxisKeyCodeX, Controller::Key eAxisKeyCodeY, float fDeadzone );
+	f32					ControllerGetCurrentAxisValueRaw		( EControllerId eControllerId, Controller::Key eAxisKeyCode );
+	f32					ControllerGetCurrentAxisDeadzoned		( EControllerId eControllerId, Controller::Key eAxisKeyCode, float fDeadzone );
 
-
-private:
-
-	cocos2d::EventListenerController*	m_pcControllerListener;
+	cocos2d::Vec2		ControllerGetCurrentStickValueRaw		( EControllerId eControllerId, Controller::Key eAxisKeyCodeX, Controller::Key eAxisKeyCodeY );
+	cocos2d::Vec2		ControllerGetCurrentStickValueDeadzoned	( EControllerId eControllerId, Controller::Key eAxisKeyCodeX, Controller::Key eAxisKeyCodeY, float fDeadzone );
 };
 
 
 
 #endif // #if defined (WIN32)
-#endif // #ifndef _CINPUTCONTROLLER_H_
+#endif // #ifndef _GCINPUTCONTROLLER_H_

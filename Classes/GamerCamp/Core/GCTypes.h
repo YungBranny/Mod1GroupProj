@@ -71,6 +71,26 @@ GCTypeID GetTypeIDOfVariable( T instance )
 	return TGCTypeIDGenerator< T >::GetTypeID();
 }
 
+namespace GCMaths
+{
+	template< typename T >
+	static T Min( T tOne, T tTwo )
+	{
+		return ( ( tOne < tTwo ) ? tOne : tTwo );
+	}
+
+	template< typename T >
+	static T Max( T tOne, T tTwo )
+	{
+		return ( ( tOne > tTwo ) ? tOne : tTwo );
+	}
+
+	template< typename T >
+	static T Clamp( T tValue, T tMin, T tMax )
+	{
+		return Max( tMin, Min( tMax, tValue ) );
+	}
+}
 
 namespace GCHelpers
 {

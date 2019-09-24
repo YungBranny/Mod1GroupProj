@@ -7,6 +7,14 @@
 	#include "GamerCamp/Win32Input/GCKeyboardManager.h"
 #endif
 
+#ifndef _GCINPUTCONTROLLER_H_
+	#include "GamerCamp/GameController/GCControllerManager.h"
+#endif
+
+#ifndef _GCKEYBOARDMANAGER_H_
+	#include "GamerCamp/Win32Input/GCKeyboardManager.h"
+#endif
+
 #ifndef __cocos2d_libs__CCKeyboardEvent__
 	#include "base/CCEventKeyboard.h"
 #endif
@@ -27,7 +35,8 @@ class  AppDelegate : private cocos2d::Application
 //////////////////////////////////////////////////////////////////////////
 // GamerCamp Edit
 private:
-	static CGCKeyboardManager*	sm_pcKeyboardManager;	// handles keyboard input
+	static CGCKeyboardManager*		sm_pcKeyboardManager;	// handles keyboard input
+	static CGCControllerManager*	sm_pcControllerManager;
 // GamerCamp Edit
 //////////////////////////////////////////////////////////////////////////
 
@@ -60,10 +69,11 @@ public:
 	// accessors for m_pcInputManager
 
 		// initialise actions - see CGCKeyboardManager::Initialise() for details of arguments
-		static void InitialiseKeyboardManager( u32 uNumActions, cocos2d::EventKeyboard::KeyCode pauActionsAsKeycodes[] );
-	
-		// accessor for keyboard manager
-		static CGCKeyboardManager* GetKeyboardManager();
+		static void						InitialiseKeyboardManager( u32 uNumActions, cocos2d::EventKeyboard::KeyCode pauActionsAsKeycodes[] );
+		static CGCKeyboardManager*		GetKeyboardManager();
+
+		static void						InitialiseControllerManager();
+		static CGCControllerManager*	GetControllerManager();
 
 	// accessors for m_pcInputManager
 	//////////////////////////////////////////////////////////////////////////
@@ -94,7 +104,26 @@ public:
 		return sm_pcKeyboardManager;
 	}
 
-// GamerCamp Edit
+	//////////////////////////////////////////////////////////////////////////
+	// initialise actions - see CGCKeyboardManager::Initialise() for details of arguments
+	//////////////////////////////////////////////////////////////////////////
+	// static
+	inline void AppDelegate::InitialiseControllerManager()
+	{
+		sm_pcControllerManager->Initialise();
+	}
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// accessor for keyboard manager
+	//////////////////////////////////////////////////////////////////////////
+	// static
+	inline CGCControllerManager* AppDelegate::GetControllerManager()
+	{
+		return sm_pcControllerManager;
+	}
+
+	// GamerCamp Edit
 //////////////////////////////////////////////////////////////////////////
 
 #endif // _APP_DELEGATE_H_

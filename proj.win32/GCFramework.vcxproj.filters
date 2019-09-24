@@ -129,9 +129,6 @@
     <ClCompile Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.cpp">
       <Filter>Classes\GamerCamp\Win32Input</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameController\GameController.cpp">
-      <Filter>Classes\GamerCamp\GameController</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\Win32Input\CInputKeyboard.cpp">
       <Filter>Classes\GamerCamp\Win32Input</Filter>
     </ClCompile>
@@ -229,9 +226,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\SGCFactoryCreationParams.h">
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameController\GameController.h">
-      <Filter>Classes\GamerCamp\GameController</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\Win32Input\CInputKeyboard.h">
       <Filter>Classes\GamerCamp\Win32Input</Filter>

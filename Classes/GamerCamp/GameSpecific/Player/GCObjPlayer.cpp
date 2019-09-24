@@ -134,35 +134,25 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	// * calculate the control force direction
 	b2Vec2 v2ControlForceDirection( 0.0f, 0.0f );
 
-	// these 2 floats are used to add / remove the effect of various terms 
+	// this float is used to add / remove the effect of various terms 
 	// in equations based on whether input has been applied this frame
-	f32 fIsInputInactive	= 1.0f;
+	f32 fIsInputInactive = 1.0f;
 
-	const CGCKeyboardManager* pKeyManager = AppDelegate::GetKeyboardManager();
-	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Up ) )
+	CGCControllerManager* pcConMan = AppDelegate::GetControllerManager();
+
+	if( pcConMan->ControllerIsActive( CGCControllerManager::eControllerOne ) )
 	{
-		v2ControlForceDirection.y	= 1.0f;
-		fIsInputInactive			= 0.0f;
-	}
-	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Down ) )
-	{
-		v2ControlForceDirection.y	= -1.0f;
-		fIsInputInactive			= 0.0f;
+		Vec2 v2LeftStickRaw			= pcConMan->ControllerGetCurrentStickValueRaw( CGCControllerManager::eControllerOne, cocos2d::Controller::Key::JOYSTICK_LEFT_X, cocos2d::Controller::Key::JOYSTICK_LEFT_Y );
+		v2ControlForceDirection.x	= v2LeftStickRaw.x;
+		v2ControlForceDirection.y	= v2LeftStickRaw.y;
+
+		if( v2ControlForceDirection.Length() > 0.0f )
+		{
+			fIsInputInactive = 0.0f;
+		}
 	}
 
-	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Left ) )
-	{
-		v2ControlForceDirection.x	= -1.0f;
-		fIsInputInactive			= 0.0f;
-	}	
-	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Right ) )
-	{
-		v2ControlForceDirection.x	= 1.0f;
-		fIsInputInactive			= 0.0f;
-	}
-	
 	// normalise the control vector and multiply by movement force
-	v2ControlForceDirection.Normalize();
 	v2ControlForceDirection.x *= m_fMaximumMoveForce_Horizontal;
 	v2ControlForceDirection.y *= m_fMaximumMoveForce_Vertical;
 
@@ -221,7 +211,8 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	}
 
 	// fire!
-	if( pKeyManager->ActionHasJustBeenPressed( CGCGameLayerPlatformer::EPA_Fire ) )
+	if(		pcConMan->ControllerIsActive( CGCControllerManager::eControllerOne ) 
+		&&	pcConMan->ControllerButtonHasJustBeenPressed( CGCControllerManager::eControllerOne, cocos2d::Controller::Key::BUTTON_A ) )
 	{
 		// supply initial position, velocity, lifetime
 		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + b2Vec2( 0.0f, 20.0f ),

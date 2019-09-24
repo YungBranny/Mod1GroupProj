@@ -62,16 +62,11 @@ Controller* Controller::getControllerByDeviceId(int deviceId)
 
 void Controller::init()
 {
-    for (int key = Key::JOYSTICK_LEFT_X; key < Key::KEY_MAX; ++key)
-    {
-        _allKeyStatus[key].isPressed = false;
-        _allKeyStatus[key].value = 0.0f;
+	// GC EDIT - darbotron - extracted method
+	reset();
+	// GC EDIT - darbotron - extracted method
 
-        _allKeyPrevStatus[key].isPressed = false;
-        _allKeyPrevStatus[key].value = 0.0f;
-    }
-
-    _eventDispatcher = Director::getInstance()->getEventDispatcher();
+	_eventDispatcher = Director::getInstance()->getEventDispatcher();
     _connectEvent = new (std::nothrow) EventController(EventController::ControllerEventType::CONNECTION, this, false);
     _keyEvent = new (std::nothrow) EventController(EventController::ControllerEventType::BUTTON_STATUS_CHANGED, this, 0);
     _axisEvent = new (std::nothrow) EventController(EventController::ControllerEventType::AXIS_STATUS_CHANGED, this, 0);
@@ -122,6 +117,33 @@ void Controller::onAxisEvent(int axisCode, float value, bool isAnalog)
     _axisEvent->setKeyCode(axisCode);
     _eventDispatcher->dispatchEvent(_axisEvent);
 }
+
+// GC EDIT - darbotron - extracted method, was part of init
+void Controller::reset()
+{
+	for( int key = Key::JOYSTICK_LEFT_X; key < Key::KEY_MAX; ++key )
+	{
+		_allKeyStatus[ key ].isPressed = false;
+		_allKeyStatus[ key ].value = 0.0f;
+
+		_allKeyPrevStatus[ key ].isPressed = false;
+		_allKeyPrevStatus[ key ].value = 0.0f;
+	}
+}
+// GC EDIT - darbotron - extracted method, was part of init
+
+// GC EDIT - darbotron - added this to access previous key status
+const Controller::KeyStatus& Controller::getLastKeyStatus( int keyCode )
+{
+	if (_allKeyPrevStatus.find(keyCode) == _allKeyPrevStatus.end())
+	{
+		_allKeyPrevStatus[keyCode].isPressed = false;
+		_allKeyPrevStatus[keyCode].value = 0.0f;
+	}
+
+	return _allKeyPrevStatus[keyCode];
+}
+// GC EDIT - darbotron - added this to access previous key status
 
 NS_CC_END
 
