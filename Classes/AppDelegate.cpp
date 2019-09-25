@@ -5,7 +5,6 @@
 #include "AppMacros.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCObject/GCObjGroupDefault.h"
-#include "GamerCamp/GameController/GameController.h"
 #include "MenuScene.h"
 
 

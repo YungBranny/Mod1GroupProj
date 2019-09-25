@@ -9,8 +9,8 @@
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
-
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
+#include "GamerCamp/GameController/GCController.h"
 
 #include "GCObjPlayer.h"
 
@@ -139,11 +139,11 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	// in equations based on whether input has been applied this frame
 	f32 fIsInputInactive = 1.0f;
 
-	CGCControllerManager* pcConMan = AppDelegate::GetControllerManager();
+	CGCController cController = CGCController( CGCControllerManager::eControllerOne );
 
-	if( pcConMan->ControllerIsActive( CGCControllerManager::eControllerOne ) )
+	if( cController.IsActive() )
 	{
-		Vec2 v2LeftStickRaw			= pcConMan->ControllerGetCurrentStickValueRaw( CGCControllerManager::eControllerOne, cocos2d::Controller::Key::JOYSTICK_LEFT_X, cocos2d::Controller::Key::JOYSTICK_LEFT_Y );
+		Vec2 v2LeftStickRaw			= cController.GetCurrentStickValueRaw( cocos2d::Controller::Key::JOYSTICK_LEFT_X, cocos2d::Controller::Key::JOYSTICK_LEFT_Y );
 		v2ControlForceDirection.x	= v2LeftStickRaw.x;
 		v2ControlForceDirection.y	= v2LeftStickRaw.y;
 
@@ -212,8 +212,8 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	}
 
 	// fire!
-	if(		pcConMan->ControllerIsActive( CGCControllerManager::eControllerOne ) 
-		&&	pcConMan->ControllerButtonHasJustBeenPressed( CGCControllerManager::eControllerOne, cocos2d::Controller::Key::BUTTON_A ) )
+	if(		cController.IsActive() 
+		&&	cController.ButtonHasJustBeenPressed( cocos2d::Controller::Key::BUTTON_A ) )
 	{
 		// supply initial position, velocity, lifetime
 		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + Vec2( 0.0f, 20.0f ),

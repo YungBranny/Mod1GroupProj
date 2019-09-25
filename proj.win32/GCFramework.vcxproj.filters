@@ -135,6 +135,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameController\GCControllerManager.cpp">
       <Filter>Classes\GamerCamp\GameController</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameController\GCController.cpp">
+      <Filter>Classes\GamerCamp\GameController</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -231,6 +234,9 @@
       <Filter>Classes\GamerCamp\Win32Input</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameController\GCControllerManager.h">
+      <Filter>Classes\GamerCamp\GameController</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameController\GCController.h">
       <Filter>Classes\GamerCamp\GameController</Filter>
     </ClInclude>
   </ItemGroup>

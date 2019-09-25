@@ -5,47 +5,41 @@
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
-#ifndef _GCINPUTCONTROLLER_H_
-#define _GCINPUTCONTROLLER_H_
+#ifndef _GCINPUTCONTROLLERMANAGER_H_
+#define _GCINPUTCONTROLLERMANAGER_H_
+
 #include "GamerCamp/Core/GCTypes.h"
 
 #include "platform/CCGLView.h"
 #include "cocos2d/external/glfw3/include/win32/glfw3.h"
 #include "cocos/base/CCController.h"
 
-#include "base/CCEventKeyboard.h"
-#include "base/CCEventListenerKeyboard.h"
 
-
+//////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 //#error read comment below!!
 //					PLAN
 //					
-// * get this working passing the explicit controller ID to CC code from gameplay code
+// [ DONE] * get this working passing the explicit controller ID to CC code from gameplay code
 // 
-// * once working add a controller class which wraps the ID and which calls the right functions on GCControllerManager
+// * once working add a controller class which wraps the ID and which calls the right functions on GCControllerManager (this can be a value type!)
 // 
-// * MAYBE, IF THERE'S TIME!
+//		* add action maps to this?
 // 
-//	 * add a listener to listen to connect / disconnect messages
-//			* cache connected Controllers 
-//			* use a handle to access the controllers (index into std::vec of Controller* plus controller connection counter should do it...)
-//				int					m_iConnectionCount;					// starts at 1, ticks up with each connection
-//				std::vector< int >	m_vecControllerIDs; 				// stores controller ID in 1st free index
-//				std::vector< int >	m_vecCorrespondingConnectionCounts; // stores m_iConnectionCount at same index the newly connected controllerId is stored at
-//																																								 
-//				* handle is index into these two arrays plus connection count at creation to check handle is still valid (since the controller could connect / disconnect)
-//				
-//			* DO NOT OVER ENGINEER! JUST BRUTE FORCE SEARCH FOR A FREE INDEX!
+// [DONE] * sort out the bodgy mess of Vec2 vs b2Vec2 : use Vec2 for all GC stuff & wrap b2Vec2
+// 
+// 
 //		
 #if defined (WIN32)
 
 using namespace cocos2d;
 
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
 class CGCControllerManager
 {
 public:
-
 	const f32 k_fAxisMax		= 1.0f;
 	const f32 k_fDeadzoneMax	= 0.3333f;
 
@@ -57,8 +51,8 @@ public:
 		eControllerFour		= GLFW_JOYSTICK_4,
 	};
 
-	CGCControllerManager										();
-	~CGCControllerManager										();
+						CGCControllerManager					();
+						~CGCControllerManager					();
 
 	void				Initialise								();
 	void				Reset									();
@@ -83,4 +77,4 @@ public:
 
 
 #endif // #if defined (WIN32)
-#endif // #ifndef _GCINPUTCONTROLLER_H_
+#endif // #ifndef _GCINPUTCONTROLLERMANAGER_H_
