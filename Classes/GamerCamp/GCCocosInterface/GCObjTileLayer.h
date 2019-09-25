@@ -5,8 +5,8 @@
 #ifndef _GCOBJTILELAYER_H_
 #define _GCOBJTILELAYER_H_
 
-#ifndef BOX2D_H
-	#include "Box2d/Box2D.h"
+#ifndef MATH_VEC2_H
+	#include "cocos2d/cocos/math/Vec2.h"
 #endif
 
 #ifndef __CCTMX_TILE_MAP_H__
@@ -17,7 +17,9 @@
 	#include "GamerCamp/GCObject/GCObject.h"
 #endif
 
-//////////////////////////////////////////////////////////////////////////
+
+
+
 // 
 // N.B. since this shares a lot of common code with CGCObjSprite the
 // common interface should probably be factored into a base class they can 
@@ -31,27 +33,27 @@ private:
 	cocos2d::TMXTiledMap* m_pTMXMap;
 
 	// used to reposition the sprite at its original position on reset
-	b2Vec2				m_v2InitialPosition;
+	cocos2d::Vec2			m_v2InitialPosition;
 
 protected:
-			CGCObjTileLayer	( GCTypeID idDerivedType );
+							CGCObjTileLayer		( GCTypeID idDerivedType );
 
 public:
-			CGCObjTileLayer		( void );
-	virtual ~CGCObjTileLayer	( void );
+							CGCObjTileLayer		();
+	virtual					~CGCObjTileLayer	();
 
 	// explicit construction / destruction for tiel layer
-	void			CreateTileLayer	( const char* pszPlist );
-	void			DestroyTileLayer( void );
+	void					CreateTileLayer		( const char* pszPlist );
+	void					DestroyTileLayer	();
 
 	// position accessors
-	inline void		SetPosition		( b2Vec2 v2Position );
-	inline b2Vec2	GetPosition		( void ) const;
+	inline void				SetPosition			( cocos2d::Vec2 v2Position );
+	inline cocos2d::Vec2	GetPosition			() const;
 	// reset position is where the sprite will go back to when reset
-	inline void		SetResetPosition( b2Vec2 v2Position );
+	inline void				SetResetPosition	( cocos2d::Vec2 v2Position );
 	
 	// adds the sprite as a child of the passed CCNode derived type
-	void			SetParent		( cocos2d::Node* pNewParent );
+	void					SetParent			( cocos2d::Node* pNewParent );
 
 	//////////////////////////////////////////////////////////////////////////
 	// accessors for the TMX data
@@ -64,7 +66,7 @@ public:
 			EGetObjPosErr_ObjectNotFound	// returned if named object not found
 		};
 		// n.b. position is returned by reference
-		EGetObjPosErr GetObjectPosition( const char* pszObjectGroupName, const char* pszObjectName, b2Vec2& rv2ReturnPos );
+		EGetObjPosErr GetObjectPosition( const char* pszObjectGroupName, const char* pszObjectName, cocos2d::Vec2& rv2ReturnPos );
 
 	// accessors for the TMX data
 	//////////////////////////////////////////////////////////////////////////
@@ -72,10 +74,10 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	// CGCObject Interface - see CGCObject for explanation of the purpose
 	// and responsibilities of these functions
-		virtual void VOnResourceAcquire	( void );
-		virtual void VOnReset		    ( void );              // must be implemented as pure virtual in GCObject
+		virtual void VOnResourceAcquire	();
+		virtual void VOnReset		    ();              // must be implemented as pure virtual in GCObject
 		virtual void VOnUpdate		    ( float fTimeStep );   // must be implemented as pure virtual in GCObject
-		virtual void VOnResourceRelease	( void );
+		virtual void VOnResourceRelease	();
 	// CGCObject Interface
 	//////////////////////////////////////////////////////////////////////////
 };
@@ -84,7 +86,7 @@ public:
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
-inline void CGCObjTileLayer::SetResetPosition( b2Vec2 bArgPosition )
+inline void CGCObjTileLayer::SetResetPosition( cocos2d::Vec2 bArgPosition )
 {
 	m_v2InitialPosition = bArgPosition;
 }
@@ -93,7 +95,7 @@ inline void CGCObjTileLayer::SetResetPosition( b2Vec2 bArgPosition )
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
-inline void CGCObjTileLayer::SetPosition( b2Vec2 bArgPosition )
+inline void CGCObjTileLayer::SetPosition( cocos2d::Vec2 bArgPosition )
 {
 	CCAssert( m_pTMXMap, "m_pTMXMap is NULL. Have you called CreateSprite?" );
 	m_pTMXMap->setPosition( cocos2d::Point( bArgPosition.x, bArgPosition.y ) );
@@ -103,11 +105,10 @@ inline void CGCObjTileLayer::SetPosition( b2Vec2 bArgPosition )
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
-inline b2Vec2 CGCObjTileLayer::GetPosition( void ) const
+inline cocos2d::Vec2 CGCObjTileLayer::GetPosition() const
 {
-	CCAssert( m_pTMXMap, "m_pcSpm_pTMXMaprite is NULL. Have you called CreateSprite?" );
-	cocos2d::Point cPosition = m_pTMXMap->getPosition();
-	return b2Vec2( cPosition.x, cPosition.y );
+	CCAssert( m_pTMXMap, "m_pcSpm_pTMXMaprite is NULL. Have you called CreateSprite?" );	
+	return m_pTMXMap->getPosition();
 }
 
 #endif // _GCOBJTILELAYER_H_

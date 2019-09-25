@@ -37,7 +37,7 @@ USING_NS_CC;
 ///////////////////////////////////////////////////////////////////////////////
 // Constructor
 ///////////////////////////////////////////////////////////////////////////////
-CGCGameLayerPlatformer::CGCGameLayerPlatformer( void )
+CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 : IGCGameLayer					( GetGCTypeIDOf( CGCGameLayerPlatformer ) ) 
 , m_pcGCGroupItem				( NULL )
 , m_pcGCGroupInvader			( NULL )
@@ -51,7 +51,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer( void )
 //////////////////////////////////////////////////////////////////////////
 // Destructor
 //////////////////////////////////////////////////////////////////////////
-CGCGameLayerPlatformer::~CGCGameLayerPlatformer( void )
+CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
 {
 }
 
@@ -88,7 +88,7 @@ void CGCGameLayerPlatformer::onEnter()
 // on create
 //////////////////////////////////////////////////////////////////////////
 //virtual
-void CGCGameLayerPlatformer::VOnCreate( void )
+void CGCGameLayerPlatformer::VOnCreate()
 { 
 	///////////////////////////////////////////////////////////////////////////
 	// cache some useful values 
@@ -179,7 +179,7 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 	{
 		m_pcGCSprBackGround = new CGCObjSprite();
 		m_pcGCSprBackGround->CreateSprite( pszPlist_background );
-		m_pcGCSprBackGround->SetResetPosition( b2Vec2( visibleSize.width/2, visibleSize.height/2 ) );
+		m_pcGCSprBackGround->SetResetPosition( Vec2( visibleSize.width/2, visibleSize.height/2 ) );
 		m_pcGCSprBackGround->SetParent( IGCGameLayer::ActiveInstance() );
  	}
 
@@ -243,7 +243,7 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 	///////////////////////////////////////////////////////////////////////////
 
 	// starting position
-	b2Vec2 v2MarioStartPos( ( origin.x + ( visibleSize.width * 0.5f) ), 
+	Vec2 v2MarioStartPos( ( origin.x + ( visibleSize.width * 0.5f) ), 
 							( origin.y + ( visibleSize.height * 0.5f ) ) );
 
 	// create player object
@@ -253,7 +253,7 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. invaders are added by the invader object group
 	///////////////////////////////////////////////////////////////////////////
-	m_pcGCGroupInvader->SetFormationOrigin( v2MarioStartPos + b2Vec2( -( visibleSize.width * 0.3f ), ( visibleSize.height * 0.25f ) ) );
+	m_pcGCGroupInvader->SetFormationOrigin( v2MarioStartPos + Vec2( -( visibleSize.width * 0.3f ), ( visibleSize.height * 0.25f ) ) );
 
 	///////////////////////////////////////////////////////////////////////////
 	// add platforms & items
@@ -271,7 +271,7 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 
 	for( u32 uColumn = 0; uColumn < uNumColumns; ++uColumn )
 	{ 
-		b2Vec2 v2NextPlatformPos( fNextPlatformPos_x, fRowStartPos_y );
+		Vec2 v2NextPlatformPos( fNextPlatformPos_x, fRowStartPos_y );
 
 		for( u32 uRow = 0; uRow < uNumRows; ++uRow )
 		{
@@ -279,7 +279,7 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 			CGCObjItem*		pItem		= new CGCObjItem();
 
 			pPlatform->SetResetPosition	( v2NextPlatformPos );
-			pItem->SetResetPosition		( v2NextPlatformPos + b2Vec2( 0.0f, 30.0f ) );
+			pItem->SetResetPosition		( v2NextPlatformPos + Vec2( 0.0f, 30.0f ) );
 
 			v2NextPlatformPos.y += fRowSpacing;
 		}
@@ -306,7 +306,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 // on destroy
 ///////////////////////////////////////////////////////////////////////////////
 // virtual
-void CGCGameLayerPlatformer::VOnDestroy( void )
+void CGCGameLayerPlatformer::VOnDestroy()
 {
 	///////////////////////////////////////////////////////////////////////////
 	// clean up anything we allocated in opposite order to creation
@@ -448,7 +448,7 @@ void CGCGameLayerPlatformer::PostSolve( b2Contact* pB2Contact, const b2ContactIm
 // e.g. for gamplay reasons like jumping up through a platform
 // 
 ///////////////////////////////////////////////////////////////////////////////
-void CGCGameLayerPlatformer::HandleCollisions( void )
+void CGCGameLayerPlatformer::HandleCollisions()
 {
 	// check for collisions
 	b2Body* pBodyToDestroy = NULL;

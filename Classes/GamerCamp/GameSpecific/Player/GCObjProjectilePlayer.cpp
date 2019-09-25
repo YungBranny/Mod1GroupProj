@@ -35,7 +35,7 @@ CGCObjProjectilePlayer::CGCObjProjectilePlayer()
 //////////////////////////////////////////////////////////////////////////
 IN_CPP_CREATION_PARAMS_DECLARE( CGCObjProjectilePlayer, "TexturePacker/Sprites/Egg/Egg.plist", "egg", b2_dynamicBody, true );
 //virtual 
-void CGCObjProjectilePlayer::VOnResourceAcquire( void )
+void CGCObjProjectilePlayer::VOnResourceAcquire()
 {
 	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjProjectilePlayer );
 	CGCObjSpritePhysics::VOnResourceAcquire();
@@ -46,7 +46,7 @@ void CGCObjProjectilePlayer::VOnResourceAcquire( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjProjectilePlayer::VOnReset( void )
+void CGCObjProjectilePlayer::VOnReset()
 {
 	CGCObjSpritePhysics::VOnReset();
 }
@@ -59,13 +59,13 @@ void CGCObjProjectilePlayer::VOnReset( void )
 void CGCObjProjectilePlayer::VOnUpdate( f32 fTimeStep )
 {
 	// changes to desired velocity
-	b2Vec2 v2DesiredVelocityDelta = ( m_v2VelocityDesired - GetPhysicsBody()->GetLinearVelocity() );
+	Vec2 v2DesiredVelocityDelta = ( m_v2VelocityDesired - GetVelocity() );
 
 	// 1) f = m * a -> a = f/m
 	// 2) v = a * t -> a = v/t
 	// so f/m = v/t -> f = (v/t) * m
-	b2Vec2 v2RequiredForce = GetPhysicsBody()->GetMass() * ( ( 1.0f / fTimeStep ) * v2DesiredVelocityDelta );
-	GetPhysicsBody()->ApplyForceToCenter( v2RequiredForce, true );
+	Vec2 v2RequiredForce = GetPhysicsBody()->GetMass() * ( ( 1.0f / fTimeStep ) * v2DesiredVelocityDelta );
+	ApplyForceToCenter( v2RequiredForce );
 
 	// handle lifetime
 	m_fRemainingLifetime -= fTimeStep;

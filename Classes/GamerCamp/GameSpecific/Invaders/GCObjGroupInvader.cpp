@@ -26,9 +26,9 @@ using namespace cocos2d;
 //////////////////////////////////////////////////////////////////////////
 CGCObjGroupInvader::CGCObjGroupInvader()
 {
-	m_v2FormationOrigin = b2Vec2_zero;
+	m_v2FormationOrigin = Vec2::ZERO;
 }
-
+										
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ CGCObjGroupInvader::~CGCObjGroupInvader()
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjGroupInvader::SetFormationOrigin( b2Vec2 v2FormationOrigin )
+void CGCObjGroupInvader::SetFormationOrigin( Vec2 v2FormationOrigin )
 {
 	m_v2FormationOrigin = v2FormationOrigin;
 }
@@ -62,7 +62,7 @@ bool CGCObjGroupInvader::VHandlesThisTypeId( GCTypeID idQueryType )
 // must return the typeid of the CGCObjectGroup derived class
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-GCTypeID CGCObjGroupInvader::VGetTypeId( void )
+GCTypeID CGCObjGroupInvader::VGetTypeId()
 {
 	return GetGCTypeIDOf( CGCObjGroupInvader );
 }
@@ -73,7 +73,7 @@ GCTypeID CGCObjGroupInvader::VGetTypeId( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjGroupInvader::VOnGroupResourceAcquire( void )
+void CGCObjGroupInvader::VOnGroupResourceAcquire()
 {
 	CreateInvaders();
 	CGCObjectGroup::VOnGroupResourceAcquire();
@@ -83,7 +83,7 @@ void CGCObjGroupInvader::VOnGroupResourceAcquire( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject( void )
+void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject()
 {
 	// we do this here because the alternative is to do it for each invader as they're created and it's
 
@@ -114,7 +114,7 @@ void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjGroupInvader::VOnGroupResourceRelease( void )
+void CGCObjGroupInvader::VOnGroupResourceRelease()
 {
 	// N.B. need to do this first as it clears internal lists
 	CGCObjectGroup::VOnGroupResourceRelease();
@@ -125,7 +125,7 @@ void CGCObjGroupInvader::VOnGroupResourceRelease( void )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjGroupInvader::CreateInvaders( void )
+void CGCObjGroupInvader::CreateInvaders()
 {
 	const char* pszPlist_KooperTrooper		= "TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist";
 	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pszPlist_KooperTrooper );
@@ -136,7 +136,7 @@ void CGCObjGroupInvader::CreateInvaders( void )
 	{	
 		// n.b. these register themselves with this class on creation
 		CGCObjInvader* pInvader = new CGCObjInvader(); 
-		pInvader->SetResetPosition( b2Vec2( m_v2FormationOrigin.x + ( iOffsetX * uLoop ), ( m_v2FormationOrigin.y + iOffsetY ) ) );
+		pInvader->SetResetPosition( Vec2( m_v2FormationOrigin.x + ( iOffsetX * uLoop ), ( m_v2FormationOrigin.y + iOffsetY ) ) );
 		pInvader->SetName( "Derek" );
 	}
 }
@@ -146,7 +146,7 @@ void CGCObjGroupInvader::CreateInvaders( void )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjGroupInvader::DestroyInvaders( void )
+void CGCObjGroupInvader::DestroyInvaders()
 {
 	// this iterates the array of registered CGCObjects 
 	// calling the supplied functor then deleting them

@@ -247,7 +247,7 @@ public:
      * 
      * @return This vector, after the normalization occurs.
      */
-    void normalize();
+    float normalize(); // GC EDIT - darbotron - made this return the length
 
     /**
      Get the normalized vector.

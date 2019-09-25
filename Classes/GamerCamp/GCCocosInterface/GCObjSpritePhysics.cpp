@@ -40,7 +40,7 @@ CGCObjSpritePhysics::CGCObjSpritePhysics( GCTypeID idDerivedType )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-CGCObjSpritePhysics::CGCObjSpritePhysics( void )
+CGCObjSpritePhysics::CGCObjSpritePhysics()
 : CGCObjSprite		( GetGCTypeIDOf( CGCObjSpritePhysics ) )
 , m_psCreateParams	( NULL )
 , m_pb2Body			( NULL )
@@ -52,7 +52,7 @@ CGCObjSpritePhysics::CGCObjSpritePhysics( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-CGCObjSpritePhysics::~CGCObjSpritePhysics( void )
+CGCObjSpritePhysics::~CGCObjSpritePhysics()
 {
 	// this object is owned by the box2d world
 	m_pb2Body = NULL;
@@ -73,7 +73,7 @@ void CGCObjSpritePhysics::InitBox2DParams( const b2BodyDef& rBodyDef, const char
 // params are buffered and then resources acquired on VOnResourceAcquire
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjSpritePhysics::VHandleFactoryParams( const CGCFactoryCreationParams& rCreationParams, b2Vec2 v2InitialPosition )
+void CGCObjSpritePhysics::VHandleFactoryParams( const CGCFactoryCreationParams& rCreationParams, Vec2 v2InitialPosition )
 {
 	m_psCreateParams = &rCreationParams; 
 	SetResetPosition( v2InitialPosition );
@@ -87,7 +87,8 @@ void CGCObjSpritePhysics::VHandleFactoryParams( const CGCFactoryCreationParams& 
 void CGCObjSpritePhysics::VUpdateSpriteFromBody( const b2Body* pcb2Body )
 {
 	CCAssert( pcb2Body == m_pb2Body, "called back for a body that we did not expect to be!" );
-	SetSpritePosition( IGCGameLayer::B2dWorldToPixels( pcb2Body->GetPosition() ) );
+	b2Vec2 b2v2Pos = IGCGameLayer::B2dWorldToPixels( pcb2Body->GetPosition() );
+	SetSpritePosition( Vec2( b2v2Pos.x, b2v2Pos.y ) );
 }
 
 
@@ -97,7 +98,7 @@ void CGCObjSpritePhysics::VUpdateSpriteFromBody( const b2Body* pcb2Body )
 // N.B. default is to parent self to the layer (needed to render within cocos)
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjSpritePhysics::VOnResourceAcquire( void )
+void CGCObjSpritePhysics::VOnResourceAcquire()
 {
 	// if we have set m_psCreateParams we assume we have been created by 
 	// the factory and require default setup
@@ -122,7 +123,7 @@ void CGCObjSpritePhysics::VOnResourceAcquire( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjSpritePhysics::VOnReset( void )
+void CGCObjSpritePhysics::VOnReset()
 {
 	CGCObjSprite::VOnReset();
 }
@@ -132,7 +133,7 @@ void CGCObjSpritePhysics::VOnReset( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjSpritePhysics::VOnKilled( void )
+void CGCObjSpritePhysics::VOnKilled()
 {
 	CGCObjSprite::VOnKilled();
 	IGCGameLayer::ActiveInstance()->B2dGetWorld()->DestroyBody( m_pb2Body );
@@ -144,7 +145,7 @@ void CGCObjSpritePhysics::VOnKilled( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual  
-void CGCObjSpritePhysics::VOnResurrected( void )
+void CGCObjSpritePhysics::VOnResurrected()
 {
 	CGCObjSprite::VOnResurrected();
 
@@ -152,7 +153,9 @@ void CGCObjSpritePhysics::VOnResurrected( void )
 	m_pb2Body = IGCGameLayer::ActiveInstance()->B2dGetWorld()->CreateBody( &m_b2BodyDef );
 	cocos2d::GB2ShapeCache::sharedGB2ShapeCache()->addFixturesToBody( m_pb2Body, m_strShapeName );
 	m_pb2Body->SetUserData( this );
-	m_pb2Body->SetTransform( IGCGameLayer::B2dPixelsToWorld( GetSpritePosition() ), 0.0f );
+
+	Vec2 v2Position = GetSpritePosition();
+	m_pb2Body->SetTransform( IGCGameLayer::B2dPixelsToWorld( b2Vec2( v2Position.x, v2Position.y ) ), 0.0f );
 }
 
 
@@ -162,7 +165,7 @@ void CGCObjSpritePhysics::VOnResurrected( void )
 // still get cleaned up properly...
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjSpritePhysics::VOnResourceRelease( void )
+void CGCObjSpritePhysics::VOnResourceRelease()
 {
 	if( nullptr != m_pb2Body )
 	{

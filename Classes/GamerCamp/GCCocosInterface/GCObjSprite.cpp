@@ -36,10 +36,10 @@ CGCObjSprite::CGCObjSprite( GCTypeID idDerivedType )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-CGCObjSprite::CGCObjSprite( void )
+CGCObjSprite::CGCObjSprite()
 : CGCObject				( GetGCTypeIDOf( CGCObjSprite ) )
 , m_pcSprite			( NULL )
-, m_v2InitialPosition	( b2Vec2( 0.0f, 0.0f ) )
+, m_v2InitialPosition	( Vec2( 0.0f, 0.0f ) )
 {
 }
 
@@ -48,7 +48,7 @@ CGCObjSprite::CGCObjSprite( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-CGCObjSprite::~CGCObjSprite( void )
+CGCObjSprite::~CGCObjSprite()
 {
 	CCAssert( NULL == m_pcSprite,	"CGCObjSprite::~CGCObjSprite -it appears that DestroySprite() "
 									"was not called on this instance of CGCObjSprite" );
@@ -87,7 +87,7 @@ void CGCObjSprite::CreateSpriteFast( ValueMap dicSpriteInfo )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjSprite::DestroySprite( void )
+void CGCObjSprite::DestroySprite()
 {
 	// this macro calls release on m_pcSprite then sets it to NULL
 	CC_SAFE_RELEASE_NULL( m_pcSprite );
@@ -127,7 +127,7 @@ DEBUG_ONLY( static int s_iRespourceAcquiredCount = 0 );
 // default behaviour is to add the managed sprite to the game layer 
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjSprite::VOnResourceAcquire( void )
+void CGCObjSprite::VOnResourceAcquire()
 {
 	DEBUG_ONLY( ++s_iRespourceAcquiredCount );
 }
@@ -137,7 +137,7 @@ void CGCObjSprite::VOnResourceAcquire( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjSprite::VOnReset( void )
+void CGCObjSprite::VOnReset()
 {
 	SetSpriteRotation( 0.0f );
 	SetSpritePosition( m_v2InitialPosition );
@@ -156,7 +156,7 @@ void CGCObjSprite::VOnReset( void )
 // refcount on m_pcSprite 
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjSprite::VOnResourceRelease( void )
+void CGCObjSprite::VOnResourceRelease()
 {
 	DEBUG_ONLY( if( --s_iRespourceAcquiredCount == 0 ) )
 	DEBUG_ONLY( { )
@@ -170,7 +170,7 @@ void CGCObjSprite::VOnResourceRelease( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjSprite::VOnKilled( void )
+void CGCObjSprite::VOnKilled()
 {
 	SetVisible( false );
 }
@@ -180,7 +180,7 @@ void CGCObjSprite::VOnKilled( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjSprite::VOnResurrected( void )
+void CGCObjSprite::VOnResurrected()
 {
 	SetVisible( true );
 }

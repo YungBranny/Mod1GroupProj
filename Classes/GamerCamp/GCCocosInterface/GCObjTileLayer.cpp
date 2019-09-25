@@ -36,10 +36,10 @@ CGCObjTileLayer::CGCObjTileLayer( GCTypeID idDerivedType )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-CGCObjTileLayer::CGCObjTileLayer( void )
+CGCObjTileLayer::CGCObjTileLayer()
 : CGCObject				( GetGCTypeIDOf( CGCObjTileLayer ) )
 , m_pTMXMap				( NULL )
-, m_v2InitialPosition	( b2Vec2( 0.0f, 0.0f ) )
+, m_v2InitialPosition	( Vec2( 0.0f, 0.0f ) )
 {
 }
 
@@ -49,7 +49,7 @@ CGCObjTileLayer::CGCObjTileLayer( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-CGCObjTileLayer::~CGCObjTileLayer( void )
+CGCObjTileLayer::~CGCObjTileLayer()
 {
 	CCAssert( !m_pTMXMap,	"CGCObjTileLayer::~CGCObjTileLayer - it appears "
 							"you have not called CGCObjTileLayer::DestroyTileLayer" );
@@ -73,7 +73,7 @@ void CGCObjTileLayer::CreateTileLayer( const char* pszTMXFile )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjTileLayer::DestroyTileLayer( void )
+void CGCObjTileLayer::DestroyTileLayer()
 {
 	// this macro calls release on m_pTMXMap then sets it to NULL
 	CC_SAFE_RELEASE_NULL( m_pTMXMap );
@@ -100,7 +100,7 @@ void CGCObjTileLayer::SetParent( cocos2d::Node* pNewParent )
 //////////////////////////////////////////////////////////////////////////
 CGCObjTileLayer::EGetObjPosErr CGCObjTileLayer::GetObjectPosition(	const char* pszObjectGroupName, 
 																	const char* pszObjectName, 
-																	b2Vec2&		rv2ReturnPos )
+																	Vec2&		rv2ReturnPos )
 {
 	// get the object group ...
 	TMXObjectGroup* pObjGroup = m_pTMXMap->getObjectGroup( pszObjectGroupName );
@@ -128,7 +128,7 @@ CGCObjTileLayer::EGetObjPosErr CGCObjTileLayer::GetObjectPosition(	const char* p
 // default behaviour is to add the managed sprite to the game layer 
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjTileLayer::VOnResourceAcquire( void )
+void CGCObjTileLayer::VOnResourceAcquire()
 {}
 
 
@@ -137,7 +137,7 @@ void CGCObjTileLayer::VOnResourceAcquire( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjTileLayer::VOnReset( void )
+void CGCObjTileLayer::VOnReset()
 {
 	SetPosition( m_v2InitialPosition );
 }
@@ -159,5 +159,5 @@ void CGCObjTileLayer::VOnUpdate( float fTimeStep )
 // refcount on m_pTMXMap 
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjTileLayer::VOnResourceRelease( void )
+void CGCObjTileLayer::VOnResourceRelease()
 {}

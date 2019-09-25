@@ -21,8 +21,8 @@ class CGCObjProjectilePlayer
 : public CGCObjSpritePhysics
 {
 private:
-	b2Vec2	m_v2VelocityDesired;	// velocity of the projectile
-	f32		m_fRemainingLifetime;	// remaining lifetime
+	cocos2d::Vec2	m_v2VelocityDesired;	// velocity of the projectile
+	f32				m_fRemainingLifetime;	// remaining lifetime
 
 public:
 	CGCObjProjectilePlayer();
@@ -34,15 +34,15 @@ public:
 	{}
 
 	// accessors for data members
-	inline void SetVelocity( b2Vec2 v2Velocity );
+	inline void SetVelocity( cocos2d::Vec2 v2Velocity );
 	inline void SetLifeTime( f32 fLifeTime );
 
 	//////////////////////////////////////////////////////////////////////////
 	// overridden virtuals from the game object interface
 
-		virtual void VOnResourceAcquire	( void ) override;
+		virtual void VOnResourceAcquire	() override;
 
-		virtual void VOnReset			( void ) override;
+		virtual void VOnReset			() override;
 
 		virtual void VOnUpdate			( f32 fTimeStep ) override;
 
@@ -55,7 +55,7 @@ public:
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-inline void CGCObjProjectilePlayer::SetVelocity( b2Vec2 v2Velocity )
+inline void CGCObjProjectilePlayer::SetVelocity( cocos2d::Vec2 v2Velocity )
 {
 	m_v2VelocityDesired = v2Velocity;
 }

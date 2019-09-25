@@ -5,9 +5,8 @@
 #ifndef	_GCOBJECTGROUPINVADER_H_
 #define	_GCOBJECTGROUPINVADER_H_
 
-
-#ifndef BOX2D_H
-	#include "Box2d/Box2D.h"
+#ifndef MATH_VEC2_H
+	#include "cocos2d/cocos/math/Vec2.h"
 #endif
 
 #ifndef	_GCOBJECTGROUP_H_
@@ -31,10 +30,10 @@ class CGCObjGroupInvader
 : public CGCObjectGroup
 {
 private:
-	b2Vec2 m_v2FormationOrigin; // origin of the formation
+	cocos2d::Vec2	m_v2FormationOrigin; // origin of the formation
 
-	void	CreateInvaders	( void );
-	void	DestroyInvaders	( void );
+	void	CreateInvaders	();
+	void	DestroyInvaders	();
 
 public:
 	// number of invaders
@@ -43,7 +42,7 @@ public:
 	CGCObjGroupInvader();		
 	virtual ~CGCObjGroupInvader() override;
 
-	void SetFormationOrigin( b2Vec2 m_v2FormationOrigin );
+	void SetFormationOrigin( cocos2d::Vec2 m_v2FormationOrigin );
 
 //////////////////////////////////////////////////////////////////////////
 // overrides for CGCObjectGroup public interface
@@ -52,11 +51,11 @@ public:
 	virtual bool		VHandlesThisTypeId					( GCTypeID idQueryType ) override;
 
 	// must return the typeid of the CGCObjectGroup derived class
-	virtual GCTypeID	VGetTypeId							( void ) override;
+	virtual GCTypeID	VGetTypeId							() override;
 
-	virtual void		VOnGroupResourceAcquire				( void ) override;
-	virtual void		VOnGroupResourceAcquire_PostObject	( void ) override;
-	virtual void		VOnGroupResourceRelease				( void ) override;
+	virtual void		VOnGroupResourceAcquire				() override;
+	virtual void		VOnGroupResourceAcquire_PostObject	() override;
+	virtual void		VOnGroupResourceRelease				() override;
 
 // CGCObjectGroup public interface
 //////////////////////////////////////////////////////////////////////////

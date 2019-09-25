@@ -5,6 +5,9 @@
 #ifndef	_GCOBJGROUPPROJECTILEPLAYER_H_
 #define	_GCOBJGROUPPROJECTILEPLAYER_H_
 
+#ifndef MATH_VEC2_H
+	#include "cocos2d/cocos/math/Vec2.h"
+#endif
 
 #ifndef BOX2D_H
 	#include "Box2d/Box2D.h"
@@ -33,14 +36,14 @@ public:
 	// number of invaders
 	static const u32 k_uNumInvaders = 16;
 
-	CGCObjGroupProjectilePlayer			( void );		
-	virtual ~CGCObjGroupProjectilePlayer( void )  override;
+	CGCObjGroupProjectilePlayer			();		
+	virtual ~CGCObjGroupProjectilePlayer()  override;
 
 	// called from CGCGameLayerSpaceInvaders::VOnCreate
-	void				CreateProjectiles	( void );
-	void				DestroyProjectiles	( void );
+	void				CreateProjectiles	();
+	void				DestroyProjectiles	();
 
-	void				SpawnProjectile		( b2Vec2 v2Position, b2Vec2 v2Velocity, f32 fMaxLifeTime );
+	void				SpawnProjectile		( cocos2d::Vec2 v2Position, cocos2d::Vec2 v2Velocity, f32 fMaxLifeTime );
 
 //////////////////////////////////////////////////////////////////////////
 // overrides for CGCObjectGroup public interface
@@ -49,10 +52,10 @@ public:
 	virtual bool		VHandlesThisTypeId	( GCTypeID idQueryType ) override;
 
 	// must return the typeid of the CGCObjectGroup derived class
-	virtual GCTypeID	VGetTypeId				( void ) override;
+	virtual GCTypeID	VGetTypeId				() override;
 
-	virtual void		VOnGroupResourceAcquire	( void ) override;	
-	virtual void		VOnGroupResourceRelease	( void ) override;	
+	virtual void		VOnGroupResourceAcquire	() override;	
+	virtual void		VOnGroupResourceRelease	() override;	
 
 // CGCObjectGroup public interface
 //////////////////////////////////////////////////////////////////////////

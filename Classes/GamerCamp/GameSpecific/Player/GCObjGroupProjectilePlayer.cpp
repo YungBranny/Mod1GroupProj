@@ -56,7 +56,7 @@ bool CGCObjGroupProjectilePlayer::VHandlesThisTypeId( GCTypeID idQueryType )
 // must return the typeid of the CGCObjectGroup derived class
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-GCTypeID CGCObjGroupProjectilePlayer::VGetTypeId( void )
+GCTypeID CGCObjGroupProjectilePlayer::VGetTypeId()
 {
 	return GetGCTypeIDOf( CGCObjGroupProjectilePlayer );
 }
@@ -66,7 +66,7 @@ GCTypeID CGCObjGroupProjectilePlayer::VGetTypeId( void )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjGroupProjectilePlayer::CreateProjectiles( void )
+void CGCObjGroupProjectilePlayer::CreateProjectiles()
 {
 	// n.b. these register themselves with this class on creation via CGCObject & CGCObjectManager
 	for( u32 uLoop = 0; uLoop < k_uNumInvaders; ++uLoop )
@@ -85,7 +85,7 @@ struct SArrayOfProjectiles
 	CGCObjProjectilePlayer* apProjectiles[ CGCObjectGroup::EMaxGCObjects ];
 };
 //////////////////////////////////////////////////////////////////////////
-void CGCObjGroupProjectilePlayer::DestroyProjectiles( void )
+void CGCObjGroupProjectilePlayer::DestroyProjectiles()
 {
 	// this iterates the array of registered CGCObjects 
 	// calling the supplied functor then deleting them
@@ -101,7 +101,7 @@ void CGCObjGroupProjectilePlayer::DestroyProjectiles( void )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjGroupProjectilePlayer::SpawnProjectile( b2Vec2 v2Position, b2Vec2 v2Velocity, f32 fMaxLifeTime )
+void CGCObjGroupProjectilePlayer::SpawnProjectile( Vec2 v2Position, Vec2 v2Velocity, f32 fMaxLifeTime )
 {
 	// check we have a projectile to spawn...
 	if( GetCountDead() )
@@ -126,7 +126,7 @@ void CGCObjGroupProjectilePlayer::SpawnProjectile( b2Vec2 v2Position, b2Vec2 v2V
 //////////////////////////////////////////////////////////////////////////
 // called from CGCObjectManager::Initialise
 //virtual 
-void CGCObjGroupProjectilePlayer::VOnGroupResourceAcquire( void )
+void CGCObjGroupProjectilePlayer::VOnGroupResourceAcquire()
 {
 	CreateProjectiles();
 	CGCObjectGroup::VOnGroupResourceAcquire();
@@ -137,7 +137,7 @@ void CGCObjGroupProjectilePlayer::VOnGroupResourceAcquire( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjGroupProjectilePlayer::VOnGroupResourceRelease( void )
+void CGCObjGroupProjectilePlayer::VOnGroupResourceRelease()
 {
 	// need to do this first as it resets the state of internal lists
 	CGCObjectGroup::VOnGroupResourceRelease();

@@ -37,7 +37,7 @@ CGCObjPlayer::CGCObjPlayer()
 //////////////////////////////////////////////////////////////////////////
 IN_CPP_CREATION_PARAMS_DECLARE( CGCObjPlayer, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true );
 //virtual 
-void CGCObjPlayer::VOnResourceAcquire( void )
+void CGCObjPlayer::VOnResourceAcquire()
 {
 	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjPlayer );
 
@@ -61,7 +61,7 @@ void CGCObjPlayer::VOnResourceAcquire( void )
 // 
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjPlayer::VOnReset( void )
+void CGCObjPlayer::VOnReset()
 {
 	CGCObjSpritePhysics::VOnReset();
 
@@ -72,8 +72,9 @@ void CGCObjPlayer::VOnReset( void )
 	// reset
 	if( GetPhysicsBody() )
 	{
+		Vec2 v2SpritePos = GetSpritePosition();
 		GetPhysicsBody()->SetLinearVelocity( b2Vec2( 0.0f, 0.0f ) );
-		GetPhysicsBody()->SetTransform( IGCGameLayer::B2dPixelsToWorld( GetSpritePosition() ), 0.0f );
+		GetPhysicsBody()->SetTransform( IGCGameLayer::B2dPixelsToWorld( b2Vec2( v2SpritePos.x, v2SpritePos.y ) ), 0.0f );
 		GetPhysicsBody()->SetFixedRotation( true );
 	}
 }
@@ -95,7 +96,7 @@ void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 // 
 //////////////////////////////////////////////////////////////////////////
 //virtual
-void CGCObjPlayer::VOnResourceRelease( void )
+void CGCObjPlayer::VOnResourceRelease()
 {
     CGCObjSpritePhysics::VOnResourceRelease();
 }
@@ -128,11 +129,11 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	m_fNoInput_VelocityThreshold	= g_CGCObjPlayer_fNoInput_VelocityThreshold;
 
 	// we accumulate total force over the frame and apply it at the end
-	b2Vec2 v2TotalForce( 0.0f, 0.0f);
+	Vec2 v2TotalForce( 0.0f, 0.0f);
 
 
 	// * calculate the control force direction
-	b2Vec2 v2ControlForceDirection( 0.0f, 0.0f );
+	Vec2 v2ControlForceDirection( 0.0f, 0.0f );
 
 	// this float is used to add / remove the effect of various terms 
 	// in equations based on whether input has been applied this frame
@@ -146,7 +147,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 		v2ControlForceDirection.x	= v2LeftStickRaw.x;
 		v2ControlForceDirection.y	= v2LeftStickRaw.y;
 
-		if( v2ControlForceDirection.Length() > 0.0f )
+		if( v2ControlForceDirection.length() > 0.0f )
 		{
 			fIsInputInactive = 0.0f;
 		}
@@ -161,8 +162,8 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 
 	// * calculate drag force
-	b2Vec2 v2Velocity_Unit = GetPhysicsBody()->GetLinearVelocity();
-	f32 fVelocity = v2Velocity_Unit.Normalize();
+	Vec2 v2Velocity_Unit	= GetVelocity();
+	f32 fVelocity			= v2Velocity_Unit.normalize();
 	
 	// This is not the real equation for drag.
 	// This is a simple mathematical function that approximates the behaviour 
@@ -181,12 +182,12 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	// drag is applied in the opposite direction to the current velocity of the object
 	// so scale out unit version of the object's velocity by -fDragForce
-	// N.B. operator* is only defined for (float, b2Vec2) and not for (b2Vec2, float) !?!
+	// N.B. operator* is only defined for (float, Vec2) and not for (Vec2, float) !?!
 	v2TotalForce += ( -fDragForce * v2Velocity_Unit );
 
 
 	// physics calcs handled by box 2d based on force applied
-	GetPhysicsBody()->ApplyForceToCenter( v2TotalForce, true );
+	ApplyForceToCenter( v2TotalForce );
 
 
 	// * set sprite flip based on velocity
@@ -215,8 +216,8 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 		&&	pcConMan->ControllerButtonHasJustBeenPressed( CGCControllerManager::eControllerOne, cocos2d::Controller::Key::BUTTON_A ) )
 	{
 		// supply initial position, velocity, lifetime
-		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + b2Vec2( 0.0f, 20.0f ),
-												b2Vec2( 0.0f, 10.0f ),
+		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + Vec2( 0.0f, 20.0f ),
+												Vec2( 0.0f, 10.0f ),
 												3.0f );	
 	}
 }
