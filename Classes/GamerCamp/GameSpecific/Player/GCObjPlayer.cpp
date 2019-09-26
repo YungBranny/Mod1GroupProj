@@ -17,6 +17,12 @@
 USING_NS_CC;
 
 
+// action map arrays must match in length - in the templated controller class we use they map from the user define enum to cocos2d::Controller::Key 
+static EPlayerActions			s_aePlayerActions[]	= { EPA_AxisMove_X, EPA_AxisMove_Y, EPA_ButtonFire };
+static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYSTICK_LEFT_X, cocos2d::Controller::Key::JOYSTICK_LEFT_Y, cocos2d::Controller::Key::BUTTON_A };
+
+
+
 //////////////////////////////////////////////////////////////////////////
 // GetGCTypeIDOf uses the template in GCTypeID to generate a unique ID for 
 // this type - need this to construct our base type
@@ -28,6 +34,7 @@ CGCObjPlayer::CGCObjPlayer()
 , m_fDragCoefficient_Square		( 0.2f )
 , m_fNoInput_ExtraDrag_Square	( 0.2f )
 , m_fNoInput_VelocityThreshold	( 0.25f )
+, m_pcControllerActionToKeyMap	( nullptr )
 {
 }
 
@@ -53,6 +60,8 @@ void CGCObjPlayer::VOnResourceAcquire()
 	// N.B. we know this cast is safe because we're checking the typeID
 	m_pProjectileManager = static_cast< CGCObjGroupProjectilePlayer* >
 		( CGCObjectManager::FindObjectGroupByID( GetGCTypeIDOf( CGCObjGroupProjectilePlayer ) ));
+
+	m_pcControllerActionToKeyMap = TCreateActionToKeyMap( s_aePlayerActions, s_aeKeys );
 }
 
 
@@ -99,6 +108,8 @@ void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 void CGCObjPlayer::VOnResourceRelease()
 {
     CGCObjSpritePhysics::VOnResourceRelease();
+	delete m_pcControllerActionToKeyMap;
+	m_pcControllerActionToKeyMap = nullptr;
 }
 
 
@@ -114,7 +125,6 @@ f32	g_CGCObjPlayer_fDragCoefficient_Linear		= 0.25f;	// unitless
 f32	g_CGCObjPlayer_fDragCoefficient_Square		= 0.2f;		// unitless
 f32 g_CGCObjPlayer_m_fNoInput_ExtraDrag_Square	= 0.2f;		// unitless
 f32 g_CGCObjPlayer_fNoInput_VelocityThreshold	= 0.25f;	// m/s
-
 f32 g_GCGameLayer_fPixelsPerMetre				= 20.0f;	// pixels / metre
 f32 g_GCGameLayer_fDamping						= 0.999f;	// unitless
 //
@@ -139,11 +149,12 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	// in equations based on whether input has been applied this frame
 	f32 fIsInputInactive = 1.0f;
 
-	CGCController cController = CGCController( CGCControllerManager::eControllerOne );
+	// instantiating templates are one of the few use cases where auto is a big improvement & arguably the best thing to do
+	auto cController = TGetActionMappedController( CGCControllerManager::eControllerOne, (*m_pcControllerActionToKeyMap ) );
 
 	if( cController.IsActive() )
 	{
-		Vec2 v2LeftStickRaw			= cController.GetCurrentStickValueRaw( cocos2d::Controller::Key::JOYSTICK_LEFT_X, cocos2d::Controller::Key::JOYSTICK_LEFT_Y );
+		Vec2 v2LeftStickRaw			= cController.GetCurrentStickValueRaw( EPA_AxisMove_X, EPA_AxisMove_Y );
 		v2ControlForceDirection.x	= v2LeftStickRaw.x;
 		v2ControlForceDirection.y	= v2LeftStickRaw.y;
 
@@ -213,7 +224,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	// fire!
 	if(		cController.IsActive() 
-		&&	cController.ButtonHasJustBeenPressed( cocos2d::Controller::Key::BUTTON_A ) )
+		&&	cController.ButtonHasJustBeenPressed( EPA_ButtonFire ) )
 	{
 		// supply initial position, velocity, lifetime
 		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + Vec2( 0.0f, 20.0f ),

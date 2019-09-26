@@ -13,8 +13,15 @@
 //////////////////////////////////////////////////////////////////////////
 // forward declare
 class CGCObjGroupProjectilePlayer;
+template< typename TActionType > class TGCActionToKeyMap;
 
-
+// enum of user defined input actions the class
+enum EPlayerActions
+{
+	EPA_AxisMove_X,
+	EPA_AxisMove_Y,
+	EPA_ButtonFire
+};
 
 //////////////////////////////////////////////////////////////////////////
 // This is a sample class derived from CGCObject.
@@ -39,6 +46,9 @@ private:
 	f32		m_fDragCoefficient_Square;
 	f32		m_fNoInput_ExtraDrag_Square;
 	f32		m_fNoInput_VelocityThreshold;
+
+	// action map for controllers
+	TGCActionToKeyMap< EPlayerActions >* m_pcControllerActionToKeyMap;
 
 public:
 	CGCObjPlayer();

@@ -19,14 +19,7 @@
 //////////////////////////////////////////////////////////////////////////
 //#error read comment below!!
 //					PLAN
-//					
-// [ DONE] * get this working passing the explicit controller ID to CC code from gameplay code
-// 
-// * once working add a controller class which wraps the ID and which calls the right functions on GCControllerManager (this can be a value type!)
-// 
-//		* add action maps to this?
-// 
-// [DONE] * sort out the bodgy mess of Vec2 vs b2Vec2 : use Vec2 for all GC stuff & wrap b2Vec2
+// add action maps to CGCController 
 // 
 // 
 //		
