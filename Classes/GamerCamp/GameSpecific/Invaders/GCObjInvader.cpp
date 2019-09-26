@@ -30,7 +30,7 @@ CGCObjInvader::CGCObjInvader()
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
-IN_CPP_CREATION_PARAMS_DECLARE( CGCObjInvader, "TexturePacker/Sprites/Platform/Platform.plist", "platform", b2_staticBody, true );
+IN_CPP_CREATION_PARAMS_DECLARE( CGCObjInvader, "TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist", "koopa", b2_staticBody, true );
 //virtual 
 void CGCObjInvader::VOnResourceAcquire( void )
 {
