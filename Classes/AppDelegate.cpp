@@ -47,7 +47,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	
 	if( !glview ) 
 	{
-		glview = GLViewImpl::create("Cpp Empty Test");
+		glview = GLViewImpl::create("GC Framework Demo");
 		pDirector->setOpenGLView(glview);
 	}
 
