@@ -89,6 +89,17 @@ public:
         BUTTON_SELECT,
 
         BUTTON_PAUSE,
+
+		// GAMERCAMP EDIT added L / R triggers as buttons (supported on PS4 pad)
+		BUTTON_LEFT_TRIGGER,
+		BUTTON_RIGHT_TRIGGER,
+		BUTTON_OPTIONS,				// options
+		BUTTON_SHARE,				// share
+		BUTTON_PS,					// PS button
+		BUTTON_TOUCHPAD_CLICK,		// touch pad click
+		// GAMERCAMP EDIT added L / R triggers as buttons
+
+
         KEY_MAX
     };
 
@@ -233,8 +244,39 @@ private:
     // usage is negligible.  Peformance over memory optimization was
     // consciously chosen.
 
+	// GAMERCAMP EDIT added a struct in here to allow us to flip the axes
+	// e.g. on PS4 the Y axes are the opposite polarity up - down vs. X360
+	struct SFlippableAxis
+	{
+		int		m_iKeyCode;
+		bool	m_bIsFlipped;
+
+		// default constructor needed to make it work with std::unordered map
+		SFlippableAxis()
+		: m_iKeyCode( Controller::KEY_NONE )
+		, m_bIsFlipped( false )
+		{}
+
+		// this constructor lets this type construct itself from integers
+		// why do we want this?!
+		// because there's a load of existing code which would need editing - filthy C++!!
+		SFlippableAxis( Controller::Key eKeyCode )
+		: m_iKeyCode	( eKeyCode )
+		, m_bIsFlipped	( false )
+		{}
+
+		SFlippableAxis( Controller::Key eKeyCode, bool bIsFlipped )
+		: m_iKeyCode	( eKeyCode )
+		, m_bIsFlipped	( bIsFlipped )
+		{}
+	};
+
     std::unordered_map<int,int> _buttonInputMap;
-    std::unordered_map<int,int> _axisInputMap;
+
+	// GAMERCAMP EDIT  - replaced this to allow flipped axis maps to be specified
+    // std::unordered_map<int,int> _axisInputMap;
+	std::unordered_map<int,SFlippableAxis> _axisInputMap;
+
     #endif
 
     friend class ControllerImpl;

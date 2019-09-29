@@ -18,8 +18,8 @@ USING_NS_CC;
 
 
 // action map arrays must match in length - in the templated controller class we use they map from the user define enum to cocos2d::Controller::Key 
-static EPlayerActions			s_aePlayerActions[]	= { EPA_AxisMove_X, EPA_AxisMove_Y, EPA_ButtonFire };
-static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYSTICK_LEFT_X, cocos2d::Controller::Key::JOYSTICK_LEFT_Y, cocos2d::Controller::Key::BUTTON_A };
+static EPlayerActions			s_aePlayerActions[]	= { EPA_AxisMove_X,								EPA_AxisMove_Y,								EPA_ButtonFire };
+static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYSTICK_LEFT_X,	cocos2d::Controller::Key::JOYSTICK_LEFT_Y,	cocos2d::Controller::Key::BUTTON_A };
 
 
 
