@@ -75,24 +75,20 @@ void CGCObjGroupItem::VOnGroupResourceAcquire_PostObject( void )
 	const char* pszAnim_Coin_Rotate		= "Rotate";
 
 	// make an animation
-	// N.B. pdictPList is returned autoreleased - will clean itslef at end of frame if not retained
+	// N.B. pdictPList is returned autoreleased - will clean itself at end of frame if not retained
 	ValueMap&	rdicPList	= GCCocosHelpers::CreateDictionaryFromPlist( pszPlist_Coin );
 	Animation*	pAnimation	= GCCocosHelpers::CreateAnimation( rdicPList, pszAnim_Coin_Rotate );
 
-	// N.B. this is a workaround for the fact that Marmalade's version of GCC for ARM doesn't support lambdas. Blergh.
-	SGCObjectGatherer sMyGatherer;
-	ForEachObject( sMyGatherer );
-
-	// create an animation action and set it for each invader
-	for( u32 uIndex = 0; uIndex < sMyGatherer.uCount; ++uIndex )
+	ForEachObject( [&] ( CGCObject* pcItemAsObject ) -> bool
 	{
-		CGCObject* pcItemAsObject = sMyGatherer.apObjects[ uIndex ];
+		// this check is essentially redundant, but they say assumption is the mother of all something or others...
 		CCAssert(	( GetGCTypeIDOf( CGCObjItem ) == pcItemAsObject->GetGCTypeID() ), 
 			"CGCObject derived type mismatch!" );
 
 		CGCObjSprite* pItemSprite = (CGCObjSprite*) pcItemAsObject;
 		pItemSprite->RunAction( GCCocosHelpers::CreateAnimationActionLoop( pAnimation ) );
-	}
+		return true;
+	} );
 }
 
 

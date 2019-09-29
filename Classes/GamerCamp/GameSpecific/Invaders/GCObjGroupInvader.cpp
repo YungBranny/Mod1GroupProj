@@ -98,7 +98,6 @@ void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject()
 	ValueMap&	rdictPList = GCCocosHelpers::CreateDictionaryFromPlist( pszPlist );
 	Animation*	pAnimation = GCCocosHelpers::CreateAnimation( rdictPList, pszAnim_Fly );
 
-	// N.B. this is a workaround for the fact that Marmalade's version of GCC for ARM doesn't support lambdas. Blergh.
 	ForEachObject( [&] ( CGCObject* pObject ) -> bool
 	{
 		CCAssert( ( GetGCTypeIDOf( CGCObjInvader ) == pObject->GetGCTypeID() ),

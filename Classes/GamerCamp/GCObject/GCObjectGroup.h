@@ -537,31 +537,4 @@ inline u32 CGCObjectGroup::GetCountRegistered( void )
 	return m_uNumGCObjects;
 }
 
-
-//////////////////////////////////////////////////////////////////////////
-// helper object to pass to ForEachObjectIn_LiveList(), 
-// ForEachObjectIn_DeadList(), & ForEachObject()
-// 
-// N.B. operator() is what makes this a 'functor' and allows it to be used
-// with the templated functions above
-// 
-//////////////////////////////////////////////////////////////////////////
-struct SGCObjectGatherer
-{
-	u32			uCount;
-	CGCObject*	apObjects[ CGCObjectGroup::EMaxGCObjects ];
-
-	// initialising constructor
-	SGCObjectGatherer() 
-		: uCount( 0 )
-	{}
-
-	// function call operator
-	bool operator()( CGCObject* pObject )
-	{
-		apObjects[ uCount++ ] = pObject;
-		return true;
-	}
-};
-
 #endif
