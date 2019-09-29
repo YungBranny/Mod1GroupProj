@@ -61,6 +61,11 @@ void CGCObjPlayer::VOnResourceAcquire()
 	m_pProjectileManager = static_cast< CGCObjGroupProjectilePlayer* >
 		( CGCObjectManager::FindObjectGroupByID( GetGCTypeIDOf( CGCObjGroupProjectilePlayer ) ));
 
+	// because we're just storing a vanilla pointer we must call delete on it in VOnResourceRelease or leak memory 
+	// 
+	// n.b. m_pcControllerActionToKeyMap is a "perfect use case" for std::unique_ptr...
+	// 
+	// n.n.b. ... however if we did use std::unique_ptr we'd need to use std::unique_ptr::reset in VOnResourceRelease if we wanted the memory allocate / free behaviour to be the same...
 	m_pcControllerActionToKeyMap = TCreateActionToKeyMap( s_aePlayerActions, s_aeKeys );
 }
 
@@ -149,8 +154,10 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	// in equations based on whether input has been applied this frame
 	f32 fIsInputInactive = 1.0f;
 
-	// instantiating templates are one of the few use cases where auto is a big improvement & arguably the best thing to do
-	auto cController = TGetActionMappedController( CGCControllerManager::eControllerOne, (*m_pcControllerActionToKeyMap ) );
+	// instantiating templates is one of the few use cases where auto is a big improvement & arguably the best thing to do
+	// e.g.
+	//	auto cController = ... ;
+	TGCController< EPlayerActions > cController = TGetActionMappedController( CGCControllerManager::eControllerOne, (*m_pcControllerActionToKeyMap ) );
 
 	if( cController.IsActive() )
 	{
