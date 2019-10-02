@@ -40,7 +40,7 @@ void CGCCollisionManager::HandleCollisions( b2World& rcb2World )
 			
 			if( pcHandler->CanHandleCollisionsFor( ( *pGcSprPhysA ), ( *pGcSprPhysB ) ) )
 			{
-				pcHandler->HandleCollision( ( *pGcSprPhysA ), ( *pGcSprPhysB ) );
+				pcHandler->HandleCollision( ( *pGcSprPhysA ), ( *pGcSprPhysB ), ( *pB2Contact ) );
 			}
 		}
 	}

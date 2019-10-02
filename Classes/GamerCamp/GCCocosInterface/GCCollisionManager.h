@@ -45,7 +45,7 @@ protected:
 		return m_tidTypeTwo;
 	}
 
-	virtual void VInternalHandleCollision( CGCObjSpritePhysics& pcOSPOne, CGCObjSpritePhysics& pcOSPTwo ) = 0;
+	virtual void VInternalHandleCollision( CGCObjSpritePhysics& pcOSPOne, CGCObjSpritePhysics& pcOSPTwo, const b2Contact& rcContact ) = 0;
 
 
 public:
@@ -67,18 +67,18 @@ public:
 	}
 
 	// this function flips the order to match the order expected by VHandleCollision
-	void HandleCollision( CGCObjSpritePhysics& pcOSP_A, CGCObjSpritePhysics& pcOSP_B )
+	void HandleCollision( CGCObjSpritePhysics& rcOSP_A, CGCObjSpritePhysics& rcOSP_B, const b2Contact& rcContact )
 	{
-		GCASSERT( CanHandleCollisionsFor( pcOSP_A, pcOSP_B ), "types don't match, can't handle this collision!" );
+		GCASSERT( CanHandleCollisionsFor( rcOSP_A, rcOSP_B ), "types don't match, can't handle this collision!" );
 		
-		if(		( GetTypeIdOf1stParam() == pcOSP_A.GetGCTypeID() )
-			&&	( GetTypeIdOf2ndParam() == pcOSP_B.GetGCTypeID() ) )
+		if(		( GetTypeIdOf1stParam() == rcOSP_A.GetGCTypeID() )
+			&&	( GetTypeIdOf2ndParam() == rcOSP_B.GetGCTypeID() ) )
 		{
-			VInternalHandleCollision( pcOSP_A, pcOSP_B );
+			VInternalHandleCollision( rcOSP_A, rcOSP_B, rcContact );
 		}
 		else
 		{
-			VInternalHandleCollision( pcOSP_B, pcOSP_A );
+			VInternalHandleCollision( rcOSP_B, rcOSP_A, rcContact );
 		}
 	}
 };
@@ -89,18 +89,18 @@ template < typename TOSPDerivedOne, typename TOSPDerivedTwo >
 class TGCCollisionPairHandler 
 : public CGCCollisionPairHandler
 {
-	std::function< void( TOSPDerivedOne&, TOSPDerivedTwo& ) > m_funcOnHandleCollision;
+	std::function< void( TOSPDerivedOne&, TOSPDerivedTwo&, const b2Contact& ) > m_funcOnHandleCollision;
 
-	virtual void VInternalHandleCollision( CGCObjSpritePhysics& rcOSPOne, CGCObjSpritePhysics& rcOSPTwo ) override
+	virtual void VInternalHandleCollision( CGCObjSpritePhysics& rcOSPOne, CGCObjSpritePhysics& rcOSPTwo, const b2Contact& rcContact ) override
 	{
 		CCASSERT( ( GetTypeIdOf1stParam() == rcOSPOne.GetGCTypeID() ), "type Id of pcOSPOne does not match GetTypeIdOf1stParam()" );
 		CCASSERT( ( GetTypeIdOf2ndParam() == rcOSPTwo.GetGCTypeID() ), "type Id of pcOSPTwo does not match GetTypeIdOf2ndParam()" );
-		m_funcOnHandleCollision( static_cast< TOSPDerivedOne& >( rcOSPOne ), static_cast< TOSPDerivedTwo& >( rcOSPTwo ) );
+		m_funcOnHandleCollision( static_cast< TOSPDerivedOne& >( rcOSPOne ), static_cast< TOSPDerivedTwo& >( rcOSPTwo ), rcContact );
 	}
 
 public:
 
-	TGCCollisionPairHandler( GCTypeID tidOne, GCTypeID tidTwo, std::function< void( TOSPDerivedOne&, TOSPDerivedTwo& ) > funcHandleCollision )
+	TGCCollisionPairHandler( GCTypeID tidOne, GCTypeID tidTwo, std::function< void( TOSPDerivedOne&, TOSPDerivedTwo&, const b2Contact& ) > funcHandleCollision )
 	: CGCCollisionPairHandler( tidOne, tidTwo )
 	, m_funcOnHandleCollision( funcHandleCollision )
 	{
@@ -131,6 +131,9 @@ public:
 // on the parameters of the function passed to it (thus avoiding the potential 
 // human errors whiuch could come from manually typing it al out - not to 
 // mention it's abut a billion times more elegant & cleaner looking!
+// 
+// Actually it would also be worth passing through the b2dcontact structure 
+// to the collision handler or there's loads of useful context entirely missing
 // 
 //////////////////////////////////////////////////////////////////////////
 class CGCCollisionManager

@@ -94,7 +94,7 @@ void CGCGameLayerPlatformer::onEnter()
 }
 
 //////////////////////////////////////////////////////////////////////////
-void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem )
+void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact )
 {
 	COLLISIONTESTLOG( "( standard function!) the player hit an item!" );
 }
@@ -302,9 +302,23 @@ void CGCGameLayerPlatformer::VOnCreate()
 		fNextPlatformPos_x += fColumnSpacing;
 	}
 
-	//GetCollisionManager().AddCollisionHandler( std::function< void( CGCObjPlayer&, CGCObjItem& ) >( CB_TestCollisionHandler ) );
-	//GetCollisionManager().AddCollisionHandler( CB_TestCollisionHandler );
-	GetCollisionManager().AddCollisionHandler( [] ( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem ) -> void
+
+	//////////////////////////////////////////////////////////////////////////
+	// test new collision handler code
+	// 
+	// this is proof of concept code which could be used to replace the 
+	// function HandleCollisions()
+	// 
+	// note it will need a little additional polish (simple & noted in the 
+	// header...) before it's properly ready to be used in a game :)
+	// 
+	//////////////////////////////////////////////////////////////////////////
+	//
+	// you can also pass a regular (non member) function:
+	// GetCollisionManager().AddCollisionHandler( CB_TestCollisionHandler );
+	// 
+
+	GetCollisionManager().AddCollisionHandler( [] ( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact ) -> void
 	{
 		COLLISIONTESTLOG( "(lambda) the player hit an item!" );
 	} );
