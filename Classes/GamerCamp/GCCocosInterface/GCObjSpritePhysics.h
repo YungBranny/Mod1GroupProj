@@ -82,6 +82,10 @@ public:
 		virtual void VOnResourceRelease	() override;
 	// CGCObject Interface
 	//////////////////////////////////////////////////////////////////////////
+
+	static inline const b2Fixture* 		FromB2DContactGetFixture_A		( const b2Contact* pcContact );
+	static inline const b2Fixture*		FromB2DContactGetFixture_B		( const b2Contact* pcContact );
+	static inline CGCObjSpritePhysics*	FromB2DFixtureGetSpritePhysics	( const b2Fixture* pFixture );
 };
 
 
@@ -146,5 +150,39 @@ inline void	CGCObjSpritePhysics::SetPhysicsTransform( const cocos2d::Vec2& rv2Po
 	m_pb2Body->SetTransform( b2Vec2( rv2Pos.x, rv2Pos.y ), fAngle );
 }
 
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
+//static 
+inline const b2Fixture* CGCObjSpritePhysics::FromB2DContactGetFixture_A( const b2Contact* pcContact )
+{
+	return pcContact->GetFixtureA();
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
+//static 
+inline const b2Fixture* CGCObjSpritePhysics::FromB2DContactGetFixture_B( const b2Contact* pcContact )
+{
+	return pcContact->GetFixtureB();
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
+//static 
+inline CGCObjSpritePhysics* CGCObjSpritePhysics::FromB2DFixtureGetSpritePhysics( const b2Fixture* pFixture )
+{
+	const b2Body* pBody = pFixture->GetBody();
+
+	if( nullptr != pBody->GetUserData() )
+	{
+		return (CGCObjSpritePhysics*) pBody->GetUserData();
+	}
+
+	return nullptr;
+}
 
 #endif

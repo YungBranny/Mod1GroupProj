@@ -157,6 +157,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	// instantiating templates is one of the few use cases where auto is a big improvement & arguably the best thing to do
 	// e.g.
 	//	auto cController = ... ;
+	const CGCKeyboardManager*		pKeyManager = AppDelegate::GetKeyboardManager();
 	TGCController< EPlayerActions > cController = TGetActionMappedController( CGCControllerManager::eControllerOne, (*m_pcControllerActionToKeyMap ) );
 
 	if( cController.IsActive() )
@@ -168,6 +169,30 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 		if( v2ControlForceDirection.length() > 0.0f )
 		{
 			fIsInputInactive = 0.0f;
+		}
+	}
+	else
+	{
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Up ) )
+		{
+			v2ControlForceDirection.y   = 1.0f;
+			fIsInputInactive            = 0.0f;
+		}
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Down ) )
+		{
+			v2ControlForceDirection.y	= -1.0f;
+			fIsInputInactive            = 0.0f;
+		}
+
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Left ) )
+		{
+			v2ControlForceDirection.x   = -1.0f;
+			fIsInputInactive            = 0.0f;
+		}    
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Right ) )
+		{
+			v2ControlForceDirection.x	= 1.0f;
+			fIsInputInactive			= 0.0f;
 		}
 	}
 
@@ -211,32 +236,48 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	// * set sprite flip based on velocity
 	// N.B. the else-if looks redundant, but we want the sprite's flip 
 	// state to stay the same if its velocity is set to (0.0f, 0.0f)
-	if( GetPhysicsBody()->GetLinearVelocity().y >= 0.0f )
+	if( GetVelocity().y >= 0.0f )
 	{
 		SetFlippedY( false );
 	}
-	else if( GetPhysicsBody()->GetLinearVelocity().y < 0.0f )
+	else if( GetVelocity().y < 0.0f )
 	{
 		SetFlippedY( true );
 	}
 
-	if( GetPhysicsBody()->GetLinearVelocity().x >= 0.0f )
+	if( GetVelocity().x >= 0.0f )
 	{
 		SetFlippedX( true );
 	}
-	else if( GetPhysicsBody()->GetLinearVelocity().x < 0.0f )
+	else if( GetVelocity().x < 0.0f )
 	{
 		SetFlippedX( false );
 	}
 
 	// fire!
-	if(		cController.IsActive() 
-		&&	cController.ButtonHasJustBeenPressed( EPA_ButtonFire ) )
+	bool bFireWasPressed = false;
+
+	if( cController.IsActive() )
+	{
+		if( cController.ButtonHasJustBeenPressed( EPA_ButtonFire ) )
+		{
+			bFireWasPressed = true;
+		}
+	}
+	else
+	{
+		if( pKeyManager->ActionHasJustBeenPressed( CGCGameLayerPlatformer::EPA_Fire ) )
+		{
+			bFireWasPressed = true;
+		}
+	}
+
+	if( bFireWasPressed )
 	{
 		// supply initial position, velocity, lifetime
 		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + Vec2( 0.0f, 20.0f ),
 												Vec2( 0.0f, 10.0f ),
-												3.0f );	
+												3.0f );
 	}
 }
 

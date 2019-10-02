@@ -166,6 +166,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GB2ShapeCache-x.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCCallFuncStatic.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCCocosHelpers.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCCollisionManager.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCObjSprite.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCObjSpritePhysics.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCObjTileLayer.cpp" />
@@ -200,6 +201,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GB2ShapeCache-x.h" />
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCCallFuncStatic.h" />
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCCocosHelpers.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCCollisionManager.h" />
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCObjSprite.h" />
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCObjSpritePhysics.h" />
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCObjTileLayer.h" />

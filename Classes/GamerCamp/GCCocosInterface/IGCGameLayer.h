@@ -25,6 +25,10 @@
 	#include "GamerCamp/GCObject/GCObjGroupDefault.h"
 #endif
 
+#ifndef	_GCCOLLISIONMANAGER_H_
+	#include "GamerCamp/GCCocosInterface/GCCollisionManager.h"
+#endif
+
 #ifndef B2_MATH_H
 	#include "Box2D/Box2D.h" 
 #endif
@@ -57,13 +61,13 @@ class IGCGameLayer
 , public CNoAllocListable
 {
 private:
-	GCTypeID			m_idTypeID;					// GCTypeid of this type
+	GCTypeID				m_idTypeID;					// GCTypeid of this type
 	
-	bool				m_bOnTopOfSceneStack;		// set to false when a new scene is pushed over the top of this scene
-	bool				m_bSceneTransitionActive;	// set to true when a scene transition is active (see onAdd / onExit etc.) 
+	bool					m_bOnTopOfSceneStack;		// set to false when a new scene is pushed over the top of this scene
+	bool					m_bSceneTransitionActive;	// set to true when a scene transition is active (see onAdd / onExit etc.) 
 	
-	CGCObjectManager*	m_pcObjectManager;			// root of GCObject update code
-	CGCObjGroupDefault*	m_pcGCObjGroupDefault;		// default object group needed by GCObjectManager
+	CGCObjectManager*		m_pcObjectManager;			// root of GCObject update code
+	CGCObjGroupDefault*		m_pcGCObjGroupDefault;		// default object group needed by GCObjectManager
 
 	// prevent construction other than by derivation
 	IGCGameLayer	();
@@ -213,6 +217,21 @@ public:
 
 
 	// box 2d
+	//////////////////////////////////////////////////////////////////////////
+
+	//////////////////////////////////////////////////////////////////////////
+	// collision manager
+	private:
+			
+		CGCCollisionManager		m_cGCCollisionManager;
+
+	public:
+		CGCCollisionManager& GetCollisionManager()
+		{
+			return m_cGCCollisionManager;
+		}
+
+	// collision manager
 	//////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////////////////////////////////////////////////////

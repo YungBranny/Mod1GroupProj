@@ -36,11 +36,10 @@ private:
 	CGCObjGroupProjectilePlayer*	m_pcGCGroupProjectilePlayer;
 
 	// backgrounds
-	CGCObjSprite*			m_pcGCSprBackGround;
+	CGCObjSprite*					m_pcGCSprBackGround;
 
 	// mario
-	CGCObjPlayer*				m_pcGCOPlayer;
-
+	CGCObjPlayer*					m_pcGCOPlayer;
 
 public:
 	CGCGameLayerPlatformer	( void );
@@ -96,6 +95,26 @@ public:
 	// b2ContactListener interface - see b2ContactListener for details of 
 	// when these get called and what they are
 	//////////////////////////////////////////////////////////////////////////
+	
+	////////////////////////////////////////////////////////////////////////// 
+	// reset handling
+private:
+	bool							m_bResetWasRequested;
+
+	void RequestReset()
+	{
+		m_bResetWasRequested = true; 
+	}
+
+	void ResetRequestWasHandled()
+	{
+		m_bResetWasRequested = false; 
+	}
+
+	bool ResetWasRequested()
+	{
+		return m_bResetWasRequested; 
+	}
 };
 
 #endif // __CGCGameLayerPlatformer_SCENE_H__

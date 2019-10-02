@@ -126,9 +126,6 @@ void CGCObjGroupInvader::VOnGroupResourceRelease()
 //////////////////////////////////////////////////////////////////////////
 void CGCObjGroupInvader::CreateInvaders()
 {
-	const char* pszPlist_KooperTrooper		= "TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist";
-	SpriteFrameCache::getInstance()->addSpriteFramesWithFile( pszPlist_KooperTrooper );
-
 	i32	iOffsetX = 40;
 	i32	iOffsetY = 100;
 	for( u32 uLoop = 0; uLoop < k_uNumProjectiles; ++uLoop )

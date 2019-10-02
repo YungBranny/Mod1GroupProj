@@ -295,6 +295,8 @@ void IGCGameLayer::VOnUpdate( f32 fTimeStep )
 	AppDelegate::GetKeyboardManager()->Update();
 	UpdateTouchState();
 	VB2dWorldUpdate();
+	GCASSERT( nullptr != B2dGetWorld(), "b2d physics world is null" );
+	m_cGCCollisionManager.HandleCollisions( *B2dGetWorld() );
 	CGCObjectManager::OnUpdate( fTimeStep );
 }
 

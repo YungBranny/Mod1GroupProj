@@ -5,6 +5,7 @@
 #ifndef _GCTYPES_H_
 #define _GCTYPES_H_
 
+#include <tuple>
 
 //////////////////////////////////////////////////////////////////////////
 // as well as containing the basic definitions of all our types, this 
@@ -46,10 +47,10 @@ public:
 	static GCTypeID GetTypeID()
 	{
 		static char s_chTheAdressOfThisIsTheClassID;
-		return reinterpret_cast< GCTypeID >( &s_chTheAdressOfThisIsTheClassID );
+		return reinterpret_cast<GCTypeID>( &s_chTheAdressOfThisIsTheClassID );
 	}
 
-// no instance of this class can be created.
+	// no instance of this class can be created.
 private:
 	TGCTypeIDGenerator()
 	{}
@@ -109,7 +110,7 @@ namespace GCHelpers
 	class Conversion
 	{
 		typedef char	ConvWorks;
-		class			ConvDoesnt { char dummy[2]; };
+		class			ConvDoesnt { char dummy[ 2 ]; };
 
 		static ConvWorks	Test( const TTo* );	// will match only types implicitly convertible to TTo
 		static ConvDoesnt	Test( ... );		// will match anything else
@@ -130,8 +131,46 @@ namespace GCHelpers
 	{
 		StaticAssert( ... );
 	};
-	
+
 	template<> struct StaticAssert< false > {};
+
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// function traits is taken from:https://github.com/aminroosta/sqlite_modern_cpp/blob/master/hdr/sqlite_modern_cpp/utility/function_traits.h
+	// for use example see template function GCCollisionManager::RegisterCollisionHandler
+	template<typename> struct function_traits;
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	template <typename Function>
+	struct function_traits
+		: public function_traits< decltype( &std::remove_reference<Function>::type::operator() ) >
+	{};
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	template < typename    ClassType, typename    ReturnType, typename... Arguments>
+	struct function_traits< ReturnType( ClassType::* )( Arguments... ) const >
+		: function_traits< ReturnType( *)( Arguments... )>
+	{};
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	// support the non-const operator () this will work with user defined functors
+	template <typename ClassType, typename    ReturnType, typename... Arguments >
+	struct function_traits< ReturnType( ClassType::* )( Arguments... )>
+		: function_traits<ReturnType( *)( Arguments... )>
+	{};
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	template < typename ReturnType, typename... Arguments >
+	struct function_traits< ReturnType( *)( Arguments... ) >
+	{
+		typedef ReturnType result_type;
+
+		template <std::size_t Index>
+		using argument = typename std::tuple_element< Index, std::tuple< Arguments... > >::type;
+
+		static const std::size_t arity = sizeof...( Arguments );
+	};
+
 }//namespace Helpers
 
 
@@ -148,11 +187,11 @@ namespace GCHelpers
 
 // hacky quick assert for use in places we can't / don't want to have CCAssert included
 #if defined(_DEBUG) && defined(WIN32)
-	#define GCASSERT( BoolExpression, MessageNotUsed )	do{ if(!(BoolExpression)){__debugbreak();}}while(0)
-	#define DEBUG_ONLY( expr )							expr
+#define GCASSERT( BoolExpression, MessageNotUsed )	do{ if(!(BoolExpression)){__debugbreak();}}while(0)
+#define DEBUG_ONLY( expr )							expr
 #else
-	#define GCASSERT( ... )								/*nothing*/
-	#define DEBUG_ONLY( ... )							/*nothing*/
+#define GCASSERT( ... )								/*nothing*/
+#define DEBUG_ONLY( ... )							/*nothing*/
 #endif		 
 
 #endif//#ifndef _GCTYPES_H_

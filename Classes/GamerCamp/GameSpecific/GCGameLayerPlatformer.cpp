@@ -27,11 +27,19 @@
 USING_NS_CC;
 
 
-///////////////////////////////////////////////////////////////////////////////
-// hack! name used to identify test CGCObjItem
-///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+// this just demos how simple it is to turn on/off logging on a define....
+#define ENABLE_COLLISION_TEST_LOGGING
 
-//const char* k_pszItemName = "boris";
+#if defined (ENABLE_COLLISION_TEST_LOGGING)
+
+	#define COLLISIONTESTLOG( str )		CCLOG( str )
+
+#else
+
+	#define COLLISIONTESTLOG( str )		/*nothing*/
+
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -44,6 +52,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGroupProjectilePlayer	( NULL )
 , m_pcGCSprBackGround			( NULL )
 , m_pcGCOPlayer					( NULL )
+, m_bResetWasRequested			( false )
 {
 }
 
@@ -82,6 +91,12 @@ void CGCGameLayerPlatformer::onEnter()
 
 	// call base class function	to init the keyboard manager
 	AppDelegate::InitialiseKeyboardManager( uSizeOfActionArray, aeKeyCodesForActions );
+}
+
+//////////////////////////////////////////////////////////////////////////
+void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem )
+{
+	COLLISIONTESTLOG( "( standard function!) the player hit an item!" );
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -204,13 +219,14 @@ void CGCGameLayerPlatformer::VOnCreate()
 	// PTM_RATIO
 	f32 PTM_RATIO = IGCGAMELAYER_B2D_PIXELS_PER_METER;
 	
-	b2Vec2 v2ScreenCentre_Pixels( ( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ) );
+	b2Vec2	b2v2ScreenCentre_Pixels( ( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ) );
+	Vec2	v2ScreenCentre_Pixels( ( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ) );
 
 
 
 	// define the ground body
 	b2BodyDef groundBodyDef;
-	groundBodyDef.position	=	IGCGameLayer::B2dPixelsToWorld( v2ScreenCentre_Pixels );
+	groundBodyDef.position	=	IGCGameLayer::B2dPixelsToWorld( b2v2ScreenCentre_Pixels );
 	groundBodyDef.type		=	b2_kinematicBody;
 
 	// Call the body factory which allocates memory for the ground body
@@ -243,8 +259,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	///////////////////////////////////////////////////////////////////////////
 
 	// starting position
-	Vec2 v2MarioStartPos( ( origin.x + ( visibleSize.width * 0.5f) ), 
-							( origin.y + ( visibleSize.height * 0.5f ) ) );
+	Vec2 v2MarioStartPos = v2ScreenCentre_Pixels;
 
 	// create player object
 	m_pcGCOPlayer = new CGCObjPlayer();
@@ -253,7 +268,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. invaders are added by the invader object group
 	///////////////////////////////////////////////////////////////////////////
-	m_pcGCGroupInvader->SetFormationOrigin( v2MarioStartPos + Vec2( -( visibleSize.width * 0.3f ), ( visibleSize.height * 0.25f ) ) );
+	m_pcGCGroupInvader->SetFormationOrigin( v2ScreenCentre_Pixels + Vec2( -( visibleSize.width * 0.3f ), -( visibleSize.height * 0.25f ) ) );
 
 	///////////////////////////////////////////////////////////////////////////
 	// add platforms & items
@@ -286,7 +301,16 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 		fNextPlatformPos_x += fColumnSpacing;
 	}
-}
+
+	//GetCollisionManager().AddCollisionHandler( std::function< void( CGCObjPlayer&, CGCObjItem& ) >( CB_TestCollisionHandler ) );
+	//GetCollisionManager().AddCollisionHandler( CB_TestCollisionHandler );
+	GetCollisionManager().AddCollisionHandler( [] ( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem ) -> void
+	{
+		COLLISIONTESTLOG( "(lambda) the player hit an item!" );
+	} );
+
+
+}// void CGCGameLayerPlatformer::VOnCreate() { ...
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -296,9 +320,15 @@ void CGCGameLayerPlatformer::VOnCreate()
 void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 {
 	IGCGameLayer::VOnUpdate( fTimeStep );
-
-	AppDelegate::GetKeyboardManager()->Update();
+	
+	// this shows how to iterate and respond to the box2d collision info
 	HandleCollisions();	
+
+	if( ResetWasRequested() )
+	{
+		VOnReset();
+		ResetRequestWasHandled();
+	}
 }
 
 
@@ -356,7 +386,7 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 {
-	VOnReset();
+	RequestReset();
 }
 
 
@@ -456,21 +486,17 @@ void CGCGameLayerPlatformer::HandleCollisions()
 			NULL						!= pB2Contact;
 			pB2Contact					= pB2Contact->GetNext() )
 	{
-		const b2Fixture* pFixtureA = pB2Contact->GetFixtureA();
-		const b2Fixture* pFixtureB = pB2Contact->GetFixtureB();
-
-		const b2Body* pBodyA = pFixtureA->GetBody();
-		const b2Body* pBodyB = pFixtureB->GetBody();
-
+		const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A( pB2Contact );
+		const b2Fixture* pFixtureB = CGCObjSpritePhysics::FromB2DContactGetFixture_B( pB2Contact );
 
 		// return if either physics body has null user data
-		CGCObjSpritePhysics* pGcSprPhysA = (CGCObjSpritePhysics*) pBodyA->GetUserData();
+		CGCObjSpritePhysics* pGcSprPhysA = CGCObjSpritePhysics::FromB2DFixtureGetSpritePhysics( pFixtureA );
 		if( !pGcSprPhysA )
 		{
 			return;
 		}
 
-		CGCObjSpritePhysics* pGcSprPhysB = (CGCObjSpritePhysics*) pBodyB->GetUserData();
+		CGCObjSpritePhysics* pGcSprPhysB = CGCObjSpritePhysics::FromB2DFixtureGetSpritePhysics( pFixtureB );
 		if( !pGcSprPhysB )
 		{
 			return;
@@ -501,7 +527,7 @@ void CGCGameLayerPlatformer::HandleCollisions()
 		}
 
 		// is this collision an invader and a projectile?
-		// if so, kil the invader
+		// if so, kill the invader
 		if(	   pB2Contact->IsEnabled()
 			&& ( pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() ) )
 		{

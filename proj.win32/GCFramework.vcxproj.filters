@@ -138,6 +138,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameController\GCController.cpp">
       <Filter>Classes\GamerCamp\GameController</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCCollisionManager.cpp">
+      <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -238,6 +241,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameController\GCController.h">
       <Filter>Classes\GamerCamp\GameController</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCCollisionManager.h">
+      <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
