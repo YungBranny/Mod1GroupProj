@@ -9,16 +9,19 @@
 	#include "../../GCCocosInterface/GCObjSpritePhysics.h"
 #endif
 
-#ifndef _GCFACTORY_OBJSPRITEPHYSICS_H_
-	#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
-#endif
-
 
 //////////////////////////////////////////////////////////////////////////
 // forward declare
 class CGCObjGroupProjectilePlayer;
+template< typename TActionType > class TGCActionToKeyMap;
 
-
+// enum of user defined input actions the class
+enum EPlayerActions
+{
+	EPA_AxisMove_X,
+	EPA_AxisMove_Y,
+	EPA_ButtonFire
+};
 
 //////////////////////////////////////////////////////////////////////////
 // This is a sample class derived from CGCObject.
@@ -44,12 +47,11 @@ private:
 	f32		m_fNoInput_ExtraDrag_Square;
 	f32		m_fNoInput_VelocityThreshold;
 
+	// action map for controllers
+	TGCActionToKeyMap< EPlayerActions >* m_pcControllerActionToKeyMap;
+
 public:
 	CGCObjPlayer();
-
-	//////////////////////////////////////////////////////////////////////////
-	// declare the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
-	GCFACTORY_DECLARE_CREATABLECLASS( CGCObjPlayer );
 
 	//////////////////////////////////////////////////////////////////////////
 	// we need a virtual destructor since delete will be called on pointers of 
@@ -83,24 +85,7 @@ public:
 	// updates the movement of the CCSprite
 	void UpdateMovement( f32 fTimeStep );
 
-	b2Vec2	GetControlVector( f32 fTImeStep );
-
-	bool	FireWasJustPressed();
-
-    // this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerPlatformer
+    // this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
     void NotifyOfCollisionWithInvader();
-
-
-	//////////////////////////////////////////////////////////////////////////
-	// example function to show how to use a callback function with an object
-	// NOT derived from cocos2d::Object in a CCSequence
-	//////////////////////////////////////////////////////////////////////////
-	static void TestCBFunction( void* pData )
-	{
-		// we assume this cast is safe because we passed the void* to the function
-		// see line 219 of GCObjPlayer.cpp
-		CGCObjPlayer* pThis = reinterpret_cast< CGCObjPlayer* >( pData );
-		CCLOG(" callback fn! data %s\n", pThis->GetName().c_str() );
-	}
 };
 #endif // #ifndef _GCOBJPLAYER_H_

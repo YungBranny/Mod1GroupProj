@@ -26,8 +26,8 @@ namespace cocos2d
 // GCCocosHelpers
 namespace GCCocosHelpers
 {
-	// N.B. the returned dictionary is NOT acocos type, it's a typedef for a 
-	// std:: type which is returned by value so it will destroy itself when it goes out of scope
+	// N.B. the returned dictionary is NOT autoreleased
+	// N.N.B. you must call release on it when finished or it will leak
 	cocos2d::ValueMap CreateDictionaryFromPlist( const std::string& rstrPlist );
 
 	// creates a dictionary from the passed .plist file

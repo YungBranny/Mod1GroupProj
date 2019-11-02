@@ -7,6 +7,7 @@
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
+#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "GamerCamp/Core/GCTypes.h"
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
@@ -55,7 +56,7 @@ bool CGCObjGroupProjectilePlayer::VHandlesThisTypeId( GCTypeID idQueryType )
 // must return the typeid of the CGCObjectGroup derived class
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-GCTypeID CGCObjGroupProjectilePlayer::VGetTypeId( void )
+GCTypeID CGCObjGroupProjectilePlayer::VGetTypeId()
 {
 	return GetGCTypeIDOf( CGCObjGroupProjectilePlayer );
 }
@@ -65,27 +66,12 @@ GCTypeID CGCObjGroupProjectilePlayer::VGetTypeId( void )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjGroupProjectilePlayer::CreateProjectiles( void )
+void CGCObjGroupProjectilePlayer::CreateProjectiles()
 {
-	const char* pszPlist_Egg = "TexturePacker/Sprites/Egg/Egg.plist";
-
-	// create the player's b2dBody...
-	b2BodyDef bodyDef;
-	bodyDef.type			= b2_dynamicBody;
-	bodyDef.fixedRotation	= true;
-	bodyDef.gravityScale	= 0.0f;
-
-	// get the sprite info as a dictionary so we can create loads of them with only one load of the plist
-	// n.b. pdictspriteInfo is set to autorelease so we don't need to release it manually
-	cocos2d::ValueMap cSpriteInfo = GCCocosHelpers::Sprite_LoadTextureAndFramesToCachesAndGetDictionary( pszPlist_Egg );
-
-	// n.b. these register themselves with this class on creation
-	for( u32 uLoop = 0; uLoop < k_uNumProjectiles; ++uLoop )
+	// n.b. these register themselves with this class on creation via CGCObject & CGCObjectManager
+	for( u32 uLoop = 0; uLoop < k_uNumInvaders; ++uLoop )
 	{
-		CGCObjProjectilePlayer* pProjectile = new CGCObjProjectilePlayer(); 
-		pProjectile->CreateSpriteFast( cSpriteInfo );
-		pProjectile->SetParent( IGCGameLayer::ActiveInstance() );
-		pProjectile->CGCObjSpritePhysics::InitBox2DParams( bodyDef, "egg" ); 
+		new CGCObjProjectilePlayer(); 
 	}
 }
 
@@ -99,10 +85,15 @@ struct SArrayOfProjectiles
 	CGCObjProjectilePlayer* apProjectiles[ CGCObjectGroup::EMaxGCObjects ];
 };
 //////////////////////////////////////////////////////////////////////////
-void CGCObjGroupProjectilePlayer::DestroyProjectiles( void )
+void CGCObjGroupProjectilePlayer::DestroyProjectiles()
 {
-	// this iterates the array of registered CGCObjects deleting them backwards
-	DestroyObjectsReverseOrder();
+	// this iterates the array of registered CGCObjects 
+	// calling the supplied functor then deleting them
+	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
+	{
+		GCASSERT( GetGCTypeIDOf( CGCObjProjectilePlayer ) == pObject->GetGCTypeID(), "wrong type!" );
+		delete pObject;
+	});
 }
 
 
@@ -110,7 +101,7 @@ void CGCObjGroupProjectilePlayer::DestroyProjectiles( void )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-void CGCObjGroupProjectilePlayer::SpawnProjectile( b2Vec2 v2Position, b2Vec2 v2Velocity, f32 fMaxLifeTime )
+void CGCObjGroupProjectilePlayer::SpawnProjectile( Vec2 v2Position, Vec2 v2Velocity, f32 fMaxLifeTime )
 {
 	// check we have a projectile to spawn...
 	if( GetCountDead() )
@@ -135,7 +126,7 @@ void CGCObjGroupProjectilePlayer::SpawnProjectile( b2Vec2 v2Position, b2Vec2 v2V
 //////////////////////////////////////////////////////////////////////////
 // called from CGCObjectManager::Initialise
 //virtual 
-void CGCObjGroupProjectilePlayer::VOnGroupResourceAcquire( void )
+void CGCObjGroupProjectilePlayer::VOnGroupResourceAcquire()
 {
 	CreateProjectiles();
 	CGCObjectGroup::VOnGroupResourceAcquire();
@@ -146,7 +137,7 @@ void CGCObjGroupProjectilePlayer::VOnGroupResourceAcquire( void )
 //
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjGroupProjectilePlayer::VOnGroupResourceRelease( void )
+void CGCObjGroupProjectilePlayer::VOnGroupResourceRelease()
 {
 	// need to do this first as it resets the state of internal lists
 	CGCObjectGroup::VOnGroupResourceRelease();

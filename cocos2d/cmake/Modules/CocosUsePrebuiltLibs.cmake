@@ -4,7 +4,20 @@
 
 set(_chipmunk_inc chipmunk/chipmunk.h)
 set(_chipmunk_inc_paths include)
-set(_chipmunk_libs chipmunk libchipmunk)
+if(WINDOWS)
+    if (${MSVC_VERSION} EQUAL 1900 OR ${MSVC_VERSION} GREATER 1900)
+        set(_chipmunk_libs chipmunk libchipmunk-2015)
+    else()
+        set(_chipmunk_libs chipmunk libchipmunk)
+    endif(${MSVC_VERSION})
+else()
+    set(_chipmunk_libs chipmunk libchipmunk)
+endif(WINDOWS)
+
+set(_bullet_inc bullet/Bullet-C-Api.h BulletCollision/btBulletCollisionCommon.h)
+set(_bullet_inc_paths  bullet)
+# sequence is important
+set(_bullet_libs BulletDynamics libBulletDynamics BulletCollision libBulletCollision BulletMultiThreaded libBulletMultiThreaded LinearMath libLinearMath MiniCL libMiniCL)
 
 set(_curl_inc curl/curl.h)
 # order: curl, ssl, crypto
@@ -16,13 +29,37 @@ set(_freetype2_inc_paths freetype2)
 set(_freetype2_libs freetype freetype250)
 
 set(_jpeg_inc jpeglib.h)
-set(_jpeg_libs jpeg libjpeg)
+if(WINDOWS)
+    if (${MSVC_VERSION} EQUAL 1900 OR ${MSVC_VERSION} GREATER 1900)
+        set(_jpeg_libs jpeg libjpeg-2015)
+    else()
+        set(_jpeg_libs jpeg libjpeg)
+    endif(${MSVC_VERSION})
+else()
+    set(_jpeg_libs jpeg libjpeg)
+endif(WINDOWS)
 
 set(_png_inc png.h)
-set(_png_libs png libpng)
+if(WINDOWS)
+    if (${MSVC_VERSION} EQUAL 1900 OR ${MSVC_VERSION} GREATER 1900)
+        set(_png_libs png libpng-2015)
+    else()
+        set(_png_libs png libpng)
+    endif(${MSVC_VERSION})
+else()
+    set(_png_libs png libpng)
+endif(WINDOWS)
 
 set(_tiff_inc tiff.h)
-set(_tiff_libs tiff libtiff)
+if(WINDOWS)
+    if (${MSVC_VERSION} EQUAL 1900 OR ${MSVC_VERSION} GREATER 1900)
+        set(_tiff_libs tiff libtiff-2015)
+    else()
+        set(_tiff_libs tiff libtiff)
+    endif(${MSVC_VERSION})
+else()
+    set(_tiff_libs tiff libtiff)
+endif(WINDOWS)
 
 set(_webp_inc decode.h)
 set(_webp_libs webp libwebp)
@@ -30,8 +67,19 @@ set(_webp_libs webp libwebp)
 set(_websockets_inc libwebsockets.h)
 set(_websockets_libs websockets libwebsockets)
 
+set(_openssl_inc openssl/ssl.h)
+set(_openssl_libs ssl crypto)
+
 set(_glfw3_inc glfw3.h)
-set(_glfw3_libs glfw3 libglfw3)
+if(WINDOWS)
+    if (${MSVC_VERSION} EQUAL 1900 OR ${MSVC_VERSION} GREATER 1900)
+        set(_glfw3_libs glfw3-2015 libglfw3)
+    else()
+        set(_glfw3_libs glfw3 libglfw3)
+    endif(${MSVC_VERSION})
+else()
+    set(_glfw3_libs glfw3 libglfw3)
+endif(WINDOWS)
 
 set(_sqlite3_inc sqlite3.h)
 set(_sqlite3_libs sqlite3)
@@ -74,6 +122,8 @@ set(all_prebuilt_libs
   tiff
   webp
   websockets
+  openssl
+  bullet
 )
 
 
@@ -165,7 +215,7 @@ foreach(_lib ${all_prebuilt_libs})
       if(libs)
         set(${_prefix}_LIBRARIES ${libs} CACHE STRING "Libraries to link for ${_prefix}" FORCE)
       endif()
-      #message(STATUS "${_lib} ${_prefix}_LIBRARIES: ${${_prefix}_LIBRARIES}")
+      message(STATUS "${_lib} ${_prefix}_LIBRARIES: ${${_prefix}_LIBRARIES}")
 
       if(${_prefix}_LIBRARIES AND ${_prefix}_INCLUDE_DIRS)
         set(${_prefix}_FOUND YES)

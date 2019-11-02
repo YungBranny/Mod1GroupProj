@@ -70,7 +70,7 @@ IGCGameLayer::IGCGameLayer( GCTypeID idIGCGameLayerDerived )
 
 
 // virtual
-IGCGameLayer::~IGCGameLayer( void )
+IGCGameLayer::~IGCGameLayer()
 {
 	// clean default object group
 	m_pcObjectManager->ObjectGroupUnRegister( m_pcGCObjGroupDefault );
@@ -101,7 +101,7 @@ IGCGameLayer::~IGCGameLayer( void )
 	//////////////////////////////////////////////////////////////////////////
 	// explicit constructor
 	//virtual 
-	bool IGCGameLayer::init( void )
+	bool IGCGameLayer::init()
 	{
 		// ensure base class behaviour works
 		if( !CCLayer::init() )
@@ -140,7 +140,7 @@ IGCGameLayer::~IGCGameLayer( void )
 	// called by cocos2d when layer is added to the active cocos 2d scenegraph
 	//////////////////////////////////////////////////////////////////////////
 	//virtual 
-	void IGCGameLayer::onEnter( void )
+	void IGCGameLayer::onEnter()
 	{
 		// ensure base class behaviour works
 		CCLayer::onEnter();
@@ -172,7 +172,7 @@ IGCGameLayer::~IGCGameLayer( void )
 	// called by cocos2d when the transition to the scene containing this finishes
 	//////////////////////////////////////////////////////////////////////////
 	//virtual 
-	void IGCGameLayer::onEnterTransitionDidFinish( void )
+	void IGCGameLayer::onEnterTransitionDidFinish()
 	{
 		CCLayer::onEnterTransitionDidFinish();
 		// scene transition definitely not active
@@ -184,7 +184,7 @@ IGCGameLayer::~IGCGameLayer( void )
 	// called by cocos2d when the transition to the scene containing this starts
 	//////////////////////////////////////////////////////////////////////////
 	//virtual 
-	void IGCGameLayer::onExitTransitionDidStart( void )
+	void IGCGameLayer::onExitTransitionDidStart()
 	{
 		// from this point, a scene transition may be active until we get a call to onExit() 
 		m_bSceneTransitionActive = true;
@@ -196,7 +196,7 @@ IGCGameLayer::~IGCGameLayer( void )
 	// called by cocos2d when layer is removed from the active cocos 2d scenegraph
 	//////////////////////////////////////////////////////////////////////////
 	//virtual 
-	void IGCGameLayer::onExit( void )
+	void IGCGameLayer::onExit()
 	{
 		// scene transition definitely no longer active
 		m_bSceneTransitionActive = false;
@@ -249,7 +249,7 @@ void IGCGameLayer::InternalUpdate( f32 fTimeStep )
 // N.N.B. if you override this fn. and want to rely on its behaviour call 
 // it before your code
 //virtual 
-void IGCGameLayer::VOnCreate( void )
+void IGCGameLayer::VOnCreate()
 {
 }
 
@@ -261,7 +261,7 @@ void IGCGameLayer::VOnCreate( void )
 // N.N.B. if you override this fn. and want to rely on its behaviour call 
 // it after your code
 //virtual 
-void IGCGameLayer::VOnDestroy( void )
+void IGCGameLayer::VOnDestroy()
 {
 }
 
@@ -269,7 +269,7 @@ void IGCGameLayer::VOnDestroy( void )
 //////////////////////////////////////////////////////////////////////////
 // allocate dynamic memory and load resources
 //virtual 
-void IGCGameLayer::VOnResourceAcquire( void )
+void IGCGameLayer::VOnResourceAcquire()
 {
 	m_pcObjectManager->OnResourceAcquire();
 }
@@ -278,9 +278,11 @@ void IGCGameLayer::VOnResourceAcquire( void )
 //////////////////////////////////////////////////////////////////////////
 // reset state 
 //virtual 
-void IGCGameLayer::VOnReset( void )
+void IGCGameLayer::VOnReset()
 {
 	ResetTouchState();
+	AppDelegate::GetKeyboardManager()->Reset();
+	AppDelegate::GetControllerManager()->Reset();
 	CGCObjectManager::OnReset();
 }
 
@@ -290,8 +292,11 @@ void IGCGameLayer::VOnReset( void )
 //virtual 
 void IGCGameLayer::VOnUpdate( f32 fTimeStep )
 {
+	AppDelegate::GetKeyboardManager()->Update();
 	UpdateTouchState();
 	VB2dWorldUpdate();
+	GCASSERT( nullptr != B2dGetWorld(), "b2d physics world is null" );
+	m_cGCCollisionManager.HandleCollisions( *B2dGetWorld() );
 	CGCObjectManager::OnUpdate( fTimeStep );
 }
 
@@ -355,7 +360,7 @@ const b2Vec2	k_v2B2dGravity( 0.0f, -10.0f );
 		}
 
 		// called by cocos2d when layer is removed from the active cocos 2d scenegraph
-		virtual void onExit	( void )
+		virtual void onExit	()
 		{
 			delete m_b2dDebugDrawer;
 		}
@@ -366,7 +371,7 @@ const b2Vec2	k_v2B2dGravity( 0.0f, -10.0f );
 //////////////////////////////////////////////////////////////////////////
 // creates box 2d world
 //////////////////////////////////////////////////////////////////////////
-void IGCGameLayer::B2dWorldCreate( void )
+void IGCGameLayer::B2dWorldCreate()
 {
 	m_pBox2DWorld = new b2World( k_v2B2dGravity );
 	m_pBox2DWorld->SetContinuousPhysics( true );
@@ -389,7 +394,7 @@ void IGCGameLayer::B2dWorldCreate( void )
 //////////////////////////////////////////////////////////////////////////
 // destroys box 2d world
 //////////////////////////////////////////////////////////////////////////
-void IGCGameLayer::B2dWorldDestroy( void )
+void IGCGameLayer::B2dWorldDestroy()
 {
 	delete m_pBox2DWorld;
 	m_pBox2DWorld = NULL;
@@ -403,7 +408,7 @@ i32 k_iVelocityIterations	= 8;
 i32 k_iPositionIterations	= 3;
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void IGCGameLayer::VB2dWorldUpdate( void )
+void IGCGameLayer::VB2dWorldUpdate()
 {
 	// step the world
 	m_pBox2DWorld->Step( k_fTimeStep, k_iVelocityIterations, k_iPositionIterations );
@@ -430,7 +435,7 @@ void IGCGameLayer::VB2dWorldUpdate( void )
 //
 //////////////////////////////////////////////////////////////////////////
 // private
-void IGCGameLayer::InitTouchHandler( void )
+void IGCGameLayer::InitTouchHandler()
 {
 	EventListenerTouchAllAtOnce* pTouchEventListener = cocos2d::EventListenerTouchAllAtOnce::create();
 
@@ -454,11 +459,11 @@ void IGCGameLayer::InitTouchHandler( void )
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
-void IGCGameLayer::ResetTouchState( void )
+void IGCGameLayer::ResetTouchState()
 {
 	m_v2RawTouchPos		= 
 	m_v2TouchPos		=
-	m_v2LastTouchPos	= b2Vec2( 0.0f, 0.0f );
+	m_v2LastTouchPos	= Vec2( 0.0f, 0.0f );
 	m_bRawTouching		=
 	m_bTouching			=
 	m_bTouchingLastFrame= false;
@@ -469,13 +474,13 @@ void IGCGameLayer::ResetTouchState( void )
 // N.B. always set current touch to 0.0 ifno current touch
 //////////////////////////////////////////////////////////////////////////
 // private
-void IGCGameLayer::UpdateTouchState( void )
+void IGCGameLayer::UpdateTouchState()
 {
 	m_bTouchingLastFrame	= m_bTouching;
 	m_bTouching				= m_bRawTouching;
 
 	m_v2LastTouchPos		= m_v2TouchPos;
-	m_v2TouchPos			= ( m_bTouching ) ? m_v2RawTouchPos : b2Vec2( 0.0f, 0.0f );
+	m_v2TouchPos			= ( m_bTouching ) ? m_v2RawTouchPos : Vec2( 0.0f, 0.0f );
 }
 
 
@@ -490,7 +495,7 @@ void IGCGameLayer::OnTouchesBegan( const std::vector< cocos2d::Touch* >& vecTouc
 	cocos2d::Touch* pFirstTouch = ( vecTouches.size() > 0 ) ? vecTouches[ 0 ] : nullptr;
 	if( pFirstTouch )
 	{
-		cocos2d::Point touchLocation = pFirstTouch->getLocationInView();
+		cocos2d::Vec2 touchLocation = pFirstTouch->getLocationInView();
 		touchLocation = cocos2d::Director::getInstance()->convertToGL(touchLocation);
 
 		m_v2RawTouchPos.x = touchLocation.x;
@@ -509,7 +514,7 @@ void IGCGameLayer::OnTouchesMoved( const std::vector< cocos2d::Touch* >& vecTouc
 	cocos2d::Touch* pFirstTouch = ( vecTouches.size() > 0 ) ? vecTouches[ 0 ] : nullptr;
 	if( pFirstTouch )
 	{
-		cocos2d::Point touchLocation = pFirstTouch->getLocationInView();
+		cocos2d::Vec2 touchLocation = pFirstTouch->getLocationInView();
 		touchLocation = cocos2d::Director::getInstance()->convertToGL(touchLocation);
 
 		m_v2RawTouchPos.x = touchLocation.x;
@@ -530,7 +535,7 @@ void IGCGameLayer::OnTouchesEnded( const std::vector< cocos2d::Touch* >& vecTouc
 	cocos2d::Touch* pFirstTouch = ( vecTouches.size() > 0 ) ? vecTouches[ 0 ] : nullptr;
 	if( pFirstTouch )
 	{
-		cocos2d::Point touchLocation = pFirstTouch->getLocationInView();
+		cocos2d::Vec2 touchLocation = pFirstTouch->getLocationInView();
 		touchLocation = cocos2d::Director::getInstance()->convertToGL(touchLocation);
 
 		m_v2RawTouchPos.x = touchLocation.x;

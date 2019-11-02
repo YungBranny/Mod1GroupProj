@@ -141,7 +141,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../../Resources/TexturePacker/Sprites/RedLuigi/RedLuigi.plist</filename>
+                <filename>../../../../Resources/windows/TexturePacker/Sprites/RedLuigi/RedLuigi.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>

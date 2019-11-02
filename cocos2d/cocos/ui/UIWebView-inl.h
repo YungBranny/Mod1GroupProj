@@ -1,5 +1,5 @@
 /****************************************************************************
- Copyright (c) 2014-2015 Chukong Technologies Inc.
+ Copyright (c) 2014-2017 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -80,7 +80,12 @@ namespace experimental{
 
         void WebView::loadURL(const std::string &url)
         {
-            _impl->loadURL(url);
+            this->loadURL(url, false);
+        }
+
+        void WebView::loadURL(const std::string& url, bool cleanCachedData)
+        {
+            _impl->loadURL(url, cleanCachedData);
         }
 
         void WebView::loadFile(const std::string &fileName)
@@ -142,6 +147,19 @@ namespace experimental{
                 _impl->setVisible(visible);
             }
         }
+        
+        void WebView::setOpacityWebView(float opacity){
+            _impl->setOpacityWebView(opacity);
+        }
+        
+        float WebView::getOpacityWebView() const{
+            return _impl->getOpacityWebView();
+        }
+        
+        void WebView::setBackgroundTransparent()
+        {
+            _impl->setBackgroundTransparent();
+        };
 
         void WebView::onEnter()
         {

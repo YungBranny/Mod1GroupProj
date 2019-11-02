@@ -23,8 +23,6 @@ setlocal
 :: sub folder containing physics editor files and assets
 @set SUBFOLDER_PHYSICSEDITOR=PhysicsEditor
 
-:: sub folder containing ogmo editor files
-@set SUBFOLDER_OGMOEDITOR=OgmoEditor
 
 :: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 :: parameters - we resolve these to absolute paths
@@ -158,27 +156,7 @@ for /F "tokens=*" %%A in (%_TPSLIST_FILENAME_%) do %TEXTUREPACKER_EXE% --quiet -
 :: /xo	- excludes older files (i.e. only copy if newer)
 :: /xf	- exclude files matching following wildcard
 :: other switches reduce output verbosity
-@robocopy /mir /xo /njh /njs /ns /nc /ndl /np %SOURCEFOLDER_PHYSED% %OUTPUTFOLDER_PHYSED% /xf *.pes
-
-
-:: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-:: copy ogmo editor resources
-:: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-:: sub folder containing loose resource files that don't get processed
-@set SOURCEFOLDER_OGMO=%SOURCEFOLDER_ABS%\%SUBFOLDER_OGMOEDITOR%
-@set OUTPUTFOLDER_OGMO=%OUTPUTFOLDER_ABS%\%SUBFOLDER_OGMOEDITOR%
-
-@echo ----------------------------------------------------------------------------------------------------
-@echo - Copying OGMO Editor level files
-@echo -
-@echo -	Source folder: %SOURCEFOLDER_OGMO%
-@echo -	Output folder: %OUTPUTFOLDER_OGMO%
-@echo ----------------------------------------------------------------------------------------------------
-:: /mir - mirror the folder structure
-:: /xo	- excludes older files (i.e. only copy if newer)
-:: /xf	- exclude files matching following wildcard
-:: other switches reduce output verbosity
-@robocopy /mir /xo /njh /njs /ns /nc /ndl /np %SOURCEFOLDER_OGMO% %OUTPUTFOLDER_OGMO% /xf *.oep
+@robocopy /mir /xo /njh /njs /ns /nc /ndl /np %SOURCEFOLDER_PHYSED% %OUTPUTFOLDER_PHYSED% /xf *.oep
 
 
 :: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

@@ -9,6 +9,10 @@
 	#include "cocos2d.h"
 #endif
 
+#ifndef MATH_VEC2_H
+	#include "cocos2d/cocos/math/Vec2.h"
+#endif
+
 #ifndef _GCTYPES_H_
 	#include "GamerCamp/Core/GCTypes.h"
 #endif
@@ -19,6 +23,10 @@
 
 #ifndef _GCOBJECTGROUPDEFAULT_H_
 	#include "GamerCamp/GCObject/GCObjGroupDefault.h"
+#endif
+
+#ifndef	_GCCOLLISIONMANAGER_H_
+	#include "GamerCamp/GCCocosInterface/GCCollisionManager.h"
 #endif
 
 #ifndef B2_MATH_H
@@ -53,16 +61,16 @@ class IGCGameLayer
 , public CNoAllocListable
 {
 private:
-	GCTypeID			m_idTypeID;					// GCTypeid of this type
+	GCTypeID				m_idTypeID;					// GCTypeid of this type
 	
-	bool				m_bOnTopOfSceneStack;		// set to false when a new scene is pushed over the top of this scene
-	bool				m_bSceneTransitionActive;	// set to true when a scene transition is active (see onAdd / onExit etc.) 
+	bool					m_bOnTopOfSceneStack;		// set to false when a new scene is pushed over the top of this scene
+	bool					m_bSceneTransitionActive;	// set to true when a scene transition is active (see onAdd / onExit etc.) 
 	
-	CGCObjectManager*	m_pcObjectManager;			// root of GCObject update code
-	CGCObjGroupDefault*	m_pcGCObjGroupDefault;		// default object group needed by GCObjectManager
+	CGCObjectManager*		m_pcObjectManager;			// root of GCObject update code
+	CGCObjGroupDefault*		m_pcGCObjGroupDefault;		// default object group needed by GCObjectManager
 
 	// prevent construction other than by derivation
-	IGCGameLayer	( void );
+	IGCGameLayer	();
 
 	// revoke copy
 	IGCGameLayer( const IGCGameLayer& );
@@ -76,23 +84,23 @@ protected:
 	IGCGameLayer( GCTypeID idDerivedType );
 
 	// protected accessor for m_bSceneTransitionActive
-	inline bool ASceneTransitionIsActive( void );
+	inline bool ASceneTransitionIsActive();
 
 
 public:
 	// virtual destructor
-	virtual			~IGCGameLayer	( void );
+	virtual			~IGCGameLayer	();
 
 	// accessor for TypeID - set by deriving classes in constructor
-	inline GCTypeID GetTypeID( void );
+	inline GCTypeID GetTypeID();
 
 	//////////////////////////////////////////////////////////////////////////
 	// CCNode interface...
-		virtual bool	init						( void ); // explicit constructor
-		virtual void	onEnter						( void ); // called by cocos2d when layer is added to the active cocos 2d scenegraph
-		virtual void	onEnterTransitionDidFinish	( void ); // called by cocos2d when the transition to the scene containing this finishes
-		virtual void	onExitTransitionDidStart	( void ); // called by cocos2d when the transition to the scene containing this starts
-		virtual void	onExit						( void ); // called by cocos2d when layer is removed from the active cocos 2d scenegraph
+		virtual bool	init						(); // explicit constructor
+		virtual void	onEnter						(); // called by cocos2d when layer is added to the active cocos 2d scenegraph
+		virtual void	onEnterTransitionDidFinish	(); // called by cocos2d when the transition to the scene containing this finishes
+		virtual void	onExitTransitionDidStart	(); // called by cocos2d when the transition to the scene containing this starts
+		virtual void	onExit						(); // called by cocos2d when layer is removed from the active cocos 2d scenegraph
 
 	// CCNode interface...
 	//////////////////////////////////////////////////////////////////////////
@@ -101,16 +109,16 @@ public:
 	// IGCGameLayer interface 
 				
 		// create everything: CGCObjectGroups before CGCObjects 
-		virtual void			VOnCreate					( void );
+		virtual void			VOnCreate					();
 		
 		// destroy everything: CGCObjects before CGCObjectGroups
-		virtual void			VOnDestroy					( void );
+		virtual void			VOnDestroy					();
 		
 		// allocate dynamic memory and load resources
-		virtual void			VOnResourceAcquire			( void );		
+		virtual void			VOnResourceAcquire			();		
 		
 		// reset state 
-		virtual void			VOnReset					( void );		
+		virtual void			VOnReset					();		
 		
 		// update
 		virtual void			VOnUpdate					( f32 fTimeStep );
@@ -125,7 +133,7 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	// accessor for CGCObjectManager
 		 
-		CGCObjectManager* ObjectManager( void );
+		CGCObjectManager* ObjectManager();
 
 	// accessor for CGCObjectManager
 	//////////////////////////////////////////////////////////////////////////
@@ -149,7 +157,7 @@ public:
 		// static function to hide away a static list of IGCGameLayer instances
 		// they add themselves to it on construction and remove themselves on deletion
 		// only one instance of any specific IGCGameLayer derived type should exist at one time
-		inline static TNoAllocList< IGCGameLayer >& GetHiddenGameLayerList( void );
+		inline static TNoAllocList< IGCGameLayer >& GetHiddenGameLayerList();
 	public:
 		// accessor for IGCGameLayer instances
 		// N.B. since this class is derived from CCLayer we can add
@@ -169,11 +177,11 @@ public:
 
 	protected:
 		// sets instance as the active game layer
-		inline void SetSelfAsActiveGameLayer( void );
+		inline void SetSelfAsActiveGameLayer();
 
 	public:
 		// singleton-esque function that returns the active game layer pointer
-		inline static IGCGameLayer* ActiveInstance( void );
+		inline static IGCGameLayer* ActiveInstance();
 
 	// "active layer" singleton-esque interface
 	//////////////////////////////////////////////////////////////////////////
@@ -188,20 +196,20 @@ public:
 		bool		m_bDebugDrawIsSet;			// set when phsyics debug drawing is enabled
 
 		// create / destroy box 2d world
-		void B2dWorldCreate	( void );
-		void B2dWorldDestroy( void );
+		void B2dWorldCreate	();
+		void B2dWorldDestroy();
 
 
 	protected:
-		virtual void VB2dWorldUpdate( void );
+		virtual void VB2dWorldUpdate();
 
 	public:
 		// scale factor from meters to pixels - box2d units are all meters
 		#define IGCGAMELAYER_B2D_PIXELS_PER_METER	(20.0f)
 
-		inline b2World*	B2dGetWorld				( void );
+		inline b2World*	B2dGetWorld				();
 		inline void		B2dLoadShapesFromPlist	( const char* pszPlistFile ); 
-		inline bool		B2dIsDebugDrawing		( void );
+		inline bool		B2dIsDebugDrawing		();
 
 		// conversion between world and pixel spaces
 		template< typename Ttype > static inline Ttype B2dWorldToPixels( Ttype tArgWorld );
@@ -212,28 +220,43 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////////////////////////////////////////////////////
+	// collision manager
+	private:
+			
+		CGCCollisionManager		m_cGCCollisionManager;
+
+	public:
+		CGCCollisionManager& GetCollisionManager()
+		{
+			return m_cGCCollisionManager;
+		}
+
+	// collision manager
+	//////////////////////////////////////////////////////////////////////////
+
+	//////////////////////////////////////////////////////////////////////////
 	// uber simple touch manager interface
 	private:
-		b2Vec2	m_v2RawTouchPos;
-		b2Vec2	m_v2TouchPos;
-		b2Vec2	m_v2LastTouchPos;
+		cocos2d::Vec2	m_v2RawTouchPos;
+		cocos2d::Vec2	m_v2TouchPos;
+		cocos2d::Vec2	m_v2LastTouchPos;
 
 		bool	m_bRawTouching;
 		bool	m_bTouching;
 		bool	m_bTouchingLastFrame;
 
-		void	InitTouchHandler( void );		
-		void	ResetTouchState	( void );
-		void	UpdateTouchState( void );	
+		void	InitTouchHandler();		
+		void	ResetTouchState	();
+		void	UpdateTouchState();	
 
 	public:
 
 		// external touch accessors
-		inline b2Vec2	GetTouchPos			( void );
-		inline b2Vec2	GetLastTouchPos		( void );
-		inline bool		ATouchIsActive		( void );
-		inline bool		TouchWasJustStarted	( void );
-		inline bool		TouchWasJustReleased( void );
+		inline cocos2d::Vec2	GetTouchPos			();
+		inline cocos2d::Vec2	GetLastTouchPos		();
+		inline bool				ATouchIsActive		();
+		inline bool				TouchWasJustStarted	();
+		inline bool				TouchWasJustReleased();
 
 		// touch functions
 		void OnTouchesBegan( const std::vector< cocos2d::Touch* >& vecTouches, cocos2d::Event* pEvent );
@@ -259,11 +282,11 @@ template < typename TGameLayerDerived >
 class TGCGameLayerSceneCreator
 {
 private:
-	TGCGameLayerSceneCreator	( void );
-	~TGCGameLayerSceneCreator	( void );
+	TGCGameLayerSceneCreator	();
+	~TGCGameLayerSceneCreator	();
 
 public:
-	static cocos2d::Scene* CreateScene( void )
+	static cocos2d::Scene* CreateScene()
 	{
 		STATIC_ASSERT_CONVERSION_VALID( IGCGameLayer, TGameLayerDerived, TGameLayerDerived_must_be_derived_from_IGCGameLayer );
 
@@ -299,7 +322,7 @@ public:
 // protected accessor for m_bSceneTransitionActive
 //////////////////////////////////////////////////////////////////////////
 // protected
-inline bool IGCGameLayer::ASceneTransitionIsActive( void )
+inline bool IGCGameLayer::ASceneTransitionIsActive()
 {
 	return m_bSceneTransitionActive;
 }
@@ -308,7 +331,7 @@ inline bool IGCGameLayer::ASceneTransitionIsActive( void )
 //////////////////////////////////////////////////////////////////////////
 // accessor for TypeID - set by deriving classes in constructor
 //////////////////////////////////////////////////////////////////////////
-inline GCTypeID IGCGameLayer::GetTypeID( void )
+inline GCTypeID IGCGameLayer::GetTypeID()
 {
 	return m_idTypeID;
 }
@@ -348,7 +371,7 @@ inline void IGCGameLayer::ReplaceScene( cocos2d::Scene* pNewScene )
 // sets instance as the active game layer
 //////////////////////////////////////////////////////////////////////////
 // protected
-inline void IGCGameLayer::SetSelfAsActiveGameLayer( void )
+inline void IGCGameLayer::SetSelfAsActiveGameLayer()
 {
 	sm_ActiveGameLayer = this;
 }
@@ -358,7 +381,7 @@ inline void IGCGameLayer::SetSelfAsActiveGameLayer( void )
 // singleton-esque function that returns the active game layer pointer 
 ////////////////////////////////////////////////////////////////////////// 
 // static 
-inline IGCGameLayer* IGCGameLayer::ActiveInstance( void )
+inline IGCGameLayer* IGCGameLayer::ActiveInstance()
 {
 	return sm_ActiveGameLayer;
 }
@@ -370,7 +393,7 @@ inline IGCGameLayer* IGCGameLayer::ActiveInstance( void )
 // only one instance of any specific IGCGameLayer derived type should exist at one time
 //////////////////////////////////////////////////////////////////////////
 // static 
-inline TNoAllocList< IGCGameLayer >& IGCGameLayer::GetHiddenGameLayerList( void )
+inline TNoAllocList< IGCGameLayer >& IGCGameLayer::GetHiddenGameLayerList()
 {
 	static TNoAllocList< IGCGameLayer > s_MagicalHiddenList;
 	return s_MagicalHiddenList;
@@ -402,7 +425,7 @@ inline IGCGameLayer* IGCGameLayer::GetGameLayerByID( const GCTypeID kidOfGameLay
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-inline b2World* IGCGameLayer::B2dGetWorld( void )
+inline b2World* IGCGameLayer::B2dGetWorld()
 {
 	return m_pBox2DWorld;
 }
@@ -420,7 +443,7 @@ inline void IGCGameLayer::B2dLoadShapesFromPlist( const char* pszPlistFile )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-inline bool IGCGameLayer::B2dIsDebugDrawing( void )
+inline bool IGCGameLayer::B2dIsDebugDrawing()
 {
 	return m_bDebugDrawIsSet;
 }
@@ -452,7 +475,7 @@ inline Ttype IGCGameLayer::B2dPixelsToWorld( Ttype tArgPixels )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-inline b2Vec2 IGCGameLayer::GetTouchPos( void )
+inline cocos2d::Vec2 IGCGameLayer::GetTouchPos()
 {
 	return m_v2TouchPos;
 }
@@ -461,7 +484,7 @@ inline b2Vec2 IGCGameLayer::GetTouchPos( void )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-inline b2Vec2 IGCGameLayer::GetLastTouchPos( void )
+inline cocos2d::Vec2 IGCGameLayer::GetLastTouchPos()
 {
 	return m_v2LastTouchPos;
 }
@@ -470,7 +493,7 @@ inline b2Vec2 IGCGameLayer::GetLastTouchPos( void )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-inline bool IGCGameLayer::ATouchIsActive( void )
+inline bool IGCGameLayer::ATouchIsActive()
 {
 	return m_bTouching;
 }
@@ -479,7 +502,7 @@ inline bool IGCGameLayer::ATouchIsActive( void )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-inline bool IGCGameLayer::TouchWasJustStarted( void )
+inline bool IGCGameLayer::TouchWasJustStarted()
 {
 	return ( m_bTouching && (!m_bTouchingLastFrame) );
 }
@@ -488,7 +511,7 @@ inline bool IGCGameLayer::TouchWasJustStarted( void )
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-inline bool IGCGameLayer::TouchWasJustReleased( void )
+inline bool IGCGameLayer::TouchWasJustReleased()
 {
 	return ( (!m_bTouching)	&& m_bTouchingLastFrame );
 }

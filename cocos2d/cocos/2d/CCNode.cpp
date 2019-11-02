@@ -3,7 +3,7 @@ Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2009      Valentin Milea
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2017 Chukong Technologies Inc.
 
 http://www.cocos2d-x.org
 
@@ -57,6 +57,7 @@ NS_CC_BEGIN
 
 // FIXME:: Yes, nodes might have a sort problem once every 30 days if the game runs at 60 FPS and each frame sprites are reordered.
 unsigned int Node::s_globalOrderOfArrival = 0;
+int Node::__attachedNodeCount = 0;
 
 // MARK: Constructor, Destructor, Init
 
@@ -113,6 +114,11 @@ Node::Node()
 #if CC_USE_PHYSICS
 , _physicsBody(nullptr)
 #endif
+, _anchorPoint(0, 0)
+, _onEnterCallback(nullptr)
+, _onExitCallback(nullptr)
+, _onEnterTransitionDidFinishCallback(nullptr)
+, _onExitTransitionDidStartCallback(nullptr)
 {
     // set default scheduler and actionManager
     _director = Director::getInstance();
@@ -156,7 +162,7 @@ Node::~Node()
 #endif
 
     // User object has to be released before others, since userObject may have a weak reference of this node
-    // It may invoke `node->stopAllAction();` while `_actionManager` is null if the next line is after `CC_SAFE_RELEASE_NULL(_actionManager)`.
+    // It may invoke `node->stopAllActions();` while `_actionManager` is null if the next line is after `CC_SAFE_RELEASE_NULL(_actionManager)`.
     CC_SAFE_RELEASE_NULL(_userObject);
     
     // attributes
@@ -211,6 +217,8 @@ void Node::cleanup()
     this->stopAllActions();
     // timers
     this->unscheduleAllCallbacks();
+
+    _eventDispatcher->removeEventListenersForTarget(this);
     
     for( const auto &child: _children)
         child->cleanup();
@@ -558,13 +566,13 @@ void Node::setPositionZ(float positionZ)
 }
 
 /// position getter
-const Vec2& Node::getNormalizedPosition() const
+const Vec2& Node::getPositionNormalized() const
 {
     return _normalizedPosition;
 }
 
 /// position setter
-void Node::setNormalizedPosition(const Vec2& position)
+void Node::setPositionNormalized(const Vec2& position)
 {
     if (_normalizedPosition.equals(position))
         return;
@@ -940,6 +948,21 @@ void Node::addChild(Node* child, int localZOrder, const std::string &name)
 
 void Node::addChildHelper(Node* child, int localZOrder, int tag, const std::string &name, bool setTag)
 {
+    auto assertNotSelfChild
+        ( [ this, child ]() -> bool
+          {
+              for ( Node* parent( getParent() ); parent != nullptr;
+                    parent = parent->getParent() )
+                  if ( parent == child )
+                      return false;
+              
+              return true;
+          } );
+    (void)assertNotSelfChild;
+    
+    CCASSERT( assertNotSelfChild(),
+              "A node cannot be the child of his own children" );
+    
     if (_children.empty())
     {
         this->childrenAlloc();
@@ -1150,6 +1173,7 @@ void Node::sortAllChildren()
     {
         sortNodes(_children);
         _reorderChildDirty = false;
+        _eventDispatcher->setDirtyForNode(this);
     }
 }
 
@@ -1161,7 +1185,7 @@ void Node::draw()
     draw(renderer, _modelViewTransform, true);
 }
 
-void Node::draw(Renderer* renderer, const Mat4 &transform, uint32_t flags)
+void Node::draw(Renderer* /*renderer*/, const Mat4 & /*transform*/, uint32_t /*flags*/)
 {
 }
 
@@ -1176,7 +1200,7 @@ uint32_t Node::processParentFlags(const Mat4& parentTransform, uint32_t parentFl
 {
     if(_usingNormalizedPosition)
     {
-        CCASSERT(_parent, "setNormalizedPosition() doesn't work with orphan nodes");
+        CCASSERT(_parent, "setPositionNormalized() doesn't work with orphan nodes");
         if ((parentFlags & FLAGS_CONTENT_SIZE_DIRTY) || _normalizedPositionDirty)
         {
             auto& s = _parent->getContentSize();
@@ -1237,7 +1261,7 @@ void Node::visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t paren
     {
         sortAllChildren();
         // draw children zOrder < 0
-        for( ; i < _children.size(); i++ )
+        for(auto size = _children.size(); i < size; ++i)
         {
             auto node = _children.at(i);
 
@@ -1250,7 +1274,7 @@ void Node::visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t paren
         if (visibleByCamera)
             this->draw(renderer, _modelViewTransform, flags);
 
-        for(auto it=_children.cbegin()+i; it != _children.cend(); ++it)
+        for(auto it=_children.cbegin()+i, itCend = _children.cend(); it != itCend; ++it)
             (*it)->visit(renderer, _modelViewTransform, flags);
     }
     else if (visibleByCamera)
@@ -1275,6 +1299,10 @@ Mat4 Node::transform(const Mat4& parentTransform)
 
 void Node::onEnter()
 {
+    if (!_running)
+    {
+        ++__attachedNodeCount;
+    }
 #if CC_ENABLE_SCRIPT_BINDING
     if (_scriptType == kScriptTypeJavascript)
     {
@@ -1359,6 +1387,10 @@ void Node::onExitTransitionDidStart()
 
 void Node::onExit()
 {
+    if (_running)
+    {
+        --__attachedNodeCount;
+    }
 #if CC_ENABLE_SCRIPT_BINDING
     if (_scriptType == kScriptTypeJavascript)
     {
@@ -1462,6 +1494,12 @@ ssize_t Node::getNumberOfRunningActions() const
     return _actionManager->getNumberOfRunningActionsInTarget(this);
 }
 
+ssize_t Node::getNumberOfRunningActionsByTag(int tag) const
+{
+    return _actionManager->getNumberOfRunningActionsInTargetByTag(this, tag);
+}
+
+
 // MARK: Callbacks
 
 void Node::setScheduler(Scheduler* scheduler)
@@ -1475,12 +1513,12 @@ void Node::setScheduler(Scheduler* scheduler)
     }
 }
 
-bool Node::isScheduled(SEL_SCHEDULE selector)
+bool Node::isScheduled(SEL_SCHEDULE selector) const
 {
     return _scheduler->isScheduled(selector, this);
 }
 
-bool Node::isScheduled(const std::string &key)
+bool Node::isScheduled(const std::string &key) const
 {
     return _scheduler->isScheduled(key, this);
 }
@@ -1672,21 +1710,11 @@ const Mat4& Node::getNodeToParentTransform() const
         }
         
         bool needsSkewMatrix = ( _skewX || _skewY );
-        
-        
-        Vec2 anchorPoint(_anchorPointInPoints.x * _scaleX, _anchorPointInPoints.y * _scaleY);
-        
-        // calculate real position
-        if (! needsSkewMatrix && !_anchorPointInPoints.isZero())
-        {
-            x += -anchorPoint.x;
-            y += -anchorPoint.y;
-        }
-        
+
         // Build Transform Matrix = translation * rotation * scale
         Mat4 translation;
         //move to anchor point first, then rotate
-        Mat4::createTranslation(x + anchorPoint.x, y + anchorPoint.y, z, &translation);
+        Mat4::createTranslation(x, y, z, &translation);
         
         Mat4::createRotation(_rotationQuat, &_transform);
         
@@ -1707,10 +1735,7 @@ const Mat4& Node::getNodeToParentTransform() const
             _transform.m[1] = sy * m0 + cx * m1, _transform.m[5] = sy * m4 + cx * m5, _transform.m[9] = sy * m8 + cx * m9;
         }
         _transform = translation * _transform;
-        //move by (-anchorPoint.x, -anchorPoint.y, 0) after rotation
-        _transform.translate(-anchorPoint.x, -anchorPoint.y, 0);
-        
-        
+
         if (_scaleX != 1.f)
         {
             _transform.m[0] *= _scaleX, _transform.m[1] *= _scaleX, _transform.m[2] *= _scaleX;
@@ -1738,15 +1763,16 @@ const Mat4& Node::getNodeToParentTransform() const
             Mat4 skewMatrix(skewMatArray);
             
             _transform = _transform * skewMatrix;
-            
-            // adjust anchor point
-            if (!_anchorPointInPoints.isZero())
-            {
-                // FIXME:: Argh, Mat4 needs a "translate" method.
-                // FIXME:: Although this is faster than multiplying a vec4 * mat4
-                _transform.m[12] += _transform.m[0] * -_anchorPointInPoints.x + _transform.m[4] * -_anchorPointInPoints.y;
-                _transform.m[13] += _transform.m[1] * -_anchorPointInPoints.x + _transform.m[5] * -_anchorPointInPoints.y;
-            }
+        }
+
+        // adjust anchor point
+        if (!_anchorPointInPoints.isZero())
+        {
+            // FIXME:: Argh, Mat4 needs a "translate" method.
+            // FIXME:: Although this is faster than multiplying a vec4 * mat4
+            _transform.m[12] += _transform.m[0] * -_anchorPointInPoints.x + _transform.m[4] * -_anchorPointInPoints.y;
+            _transform.m[13] += _transform.m[1] * -_anchorPointInPoints.x + _transform.m[5] * -_anchorPointInPoints.y;
+            _transform.m[14] += _transform.m[2] * -_anchorPointInPoints.x + _transform.m[6] * -_anchorPointInPoints.y;
         }
     }
 
@@ -1792,6 +1818,7 @@ void Node::setAdditionalTransform(const Mat4* additionalTransform)
 {
     if (additionalTransform == nullptr)
     {
+        if(_additionalTransform)  _transform = _additionalTransform[1];
         delete[] _additionalTransform;
         _additionalTransform = nullptr;
     }
@@ -2035,6 +2062,14 @@ void Node::disableCascadeOpacity()
     }
 }
 
+void Node::setOpacityModifyRGB(bool /*value*/)
+{}
+
+bool Node::isOpacityModifyRGB() const
+{
+    return false;
+}
+
 const Color3B& Node::getColor(void) const
 {
     return _realColor;
@@ -2168,6 +2203,11 @@ void Node::setCameraMask(unsigned short mask, bool applyChildren)
             child->setCameraMask(mask, applyChildren);
         }
     }
+}
+
+int Node::getAttachedNodeCount()
+{
+    return __attachedNodeCount;
 }
 
 // MARK: Deprecated

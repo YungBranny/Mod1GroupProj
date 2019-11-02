@@ -66,6 +66,50 @@
     self.font = ccui_font;
 }
 
+- (NSTextAlignment)ccui_alignment
+{
+  return self.textAlignment;
+}
+
+- (void)ccui_setTextHorizontalAlignment:(NSTextAlignment)ccui_alignment
+{
+  self.textAlignment = ccui_alignment;
+}
+
+- (UIColor *)ccui_placeholderTextColor
+{
+    SEL selector = NSSelectorFromString(@"placeholderTextColor");
+    if ([self respondsToSelector:selector]) {
+        return [self performSelector:selector];
+    }
+    return nil;
+}
+
+- (void)ccui_setPlaceholderTextColor:(UIColor *)ccui_placeholderTextColor
+{
+    SEL selector = NSSelectorFromString(@"setPlaceholderTextColor:");
+    if ([self respondsToSelector:selector]) {
+        [self performSelector:selector withObject:ccui_placeholderTextColor];
+    }
+}
+
+- (UIFont *)ccui_placeholderFont
+{
+    SEL selector = NSSelectorFromString(@"placeholderFont");
+    if ([self respondsToSelector:selector]) {
+        return [self performSelector:selector];
+    }
+    return nil;
+}
+
+- (void)ccui_setPlaceholderFont:(UIFont *)ccui_placeholderFont
+{
+    SEL selector = NSSelectorFromString(@"setPlaceholderFont:");
+    if ([self respondsToSelector:selector]) {
+        [self performSelector:selector withObject:ccui_placeholderFont];
+    }
+}
+
 - (BOOL)ccui_secureTextEntry
 {
     return self.secureTextEntry;

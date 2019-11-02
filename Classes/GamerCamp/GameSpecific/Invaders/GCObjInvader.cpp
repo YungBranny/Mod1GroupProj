@@ -8,15 +8,11 @@
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 
+#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
 #include "GCObjInvader.h"
 
 USING_NS_CC;
-
-//////////////////////////////////////////////////////////////////////////
-// implement the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS( CGCObjInvader );
-
 
 //////////////////////////////////////////////////////////////////////////
 // GetGCTypeIDOf uses the template in GCTypeID to generate a unique ID for 
@@ -34,9 +30,11 @@ CGCObjInvader::CGCObjInvader()
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
+IN_CPP_CREATION_PARAMS_DECLARE( CGCObjInvader, "TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist", "koopa", b2_staticBody, true );
 //virtual 
 void CGCObjInvader::VOnResourceAcquire( void )
 {
+	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjInvader );
 	CGCObjSpritePhysics::VOnResourceAcquire();
 }
 

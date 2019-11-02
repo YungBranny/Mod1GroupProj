@@ -9,31 +9,18 @@
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
-
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
+#include "GamerCamp/GameController/GCController.h"
 
-#include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 #include "GCObjPlayer.h"
 
-//////////////////////////////////////////////////////////////////////////
-//include this file to be able to use callback functions in CCSequence
-//and use namespace cocos2D
-#include "GamerCamp/GCCocosInterface/GCCallFuncStatic.h"
+USING_NS_CC;
 
 
-//////////////////////////////////////////////////////////////////////////
-// define this in to get keyboard controls
-//#define USE_KEYBOARD_CONTROLS
+// action map arrays must match in length - in the templated controller class we use they map from the user define enum to cocos2d::Controller::Key 
+static EPlayerActions			s_aePlayerActions[]	= { EPA_AxisMove_X,								EPA_AxisMove_Y,								EPA_ButtonFire };
+static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYSTICK_LEFT_X,	cocos2d::Controller::Key::JOYSTICK_LEFT_Y,	cocos2d::Controller::Key::BUTTON_A };
 
-
-
-using namespace cocos2d;
-
-
-
-//////////////////////////////////////////////////////////////////////////
-// implement the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS( CGCObjPlayer );
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -47,31 +34,39 @@ CGCObjPlayer::CGCObjPlayer()
 , m_fDragCoefficient_Square		( 0.2f )
 , m_fNoInput_ExtraDrag_Square	( 0.2f )
 , m_fNoInput_VelocityThreshold	( 0.25f )
-{	
+, m_pcControllerActionToKeyMap	( nullptr )
+{
 }
 
 
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
+IN_CPP_CREATION_PARAMS_DECLARE( CGCObjPlayer, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true );
 //virtual 
-void CGCObjPlayer::VOnResourceAcquire( void )
+void CGCObjPlayer::VOnResourceAcquire()
 {
-	const char* pszPlist_mario		= "TexturePacker/Sprites/Mario/Mario.plist";
-	const char* pszAnim_marioJog	= "Jog";
-
-	SetName( "Mario!!" );
+	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjPlayer );
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
 
+	const char* pszAnim_marioJog = "Jog";
+
 	// animate!
-	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( pszPlist_mario );
+	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( GetFactoryCreationParams()->strPlistFile );
 	RunAction( GCCocosHelpers::CreateAnimationActionLoop( GCCocosHelpers::CreateAnimation( dicPList, pszAnim_marioJog ) ) );
 
 	// find the player projectile group 
 	// N.B. we know this cast is safe because we're checking the typeID
 	m_pProjectileManager = static_cast< CGCObjGroupProjectilePlayer* >
 		( CGCObjectManager::FindObjectGroupByID( GetGCTypeIDOf( CGCObjGroupProjectilePlayer ) ));
+
+	// because we're just storing a vanilla pointer we must call delete on it in VOnResourceRelease or leak memory 
+	// 
+	// n.b. m_pcControllerActionToKeyMap is a "perfect use case" for std::unique_ptr...
+	// 
+	// n.n.b. ... however if we did use std::unique_ptr we'd need to use std::unique_ptr::reset in VOnResourceRelease if we wanted the memory allocate / free behaviour to be the same...
+	m_pcControllerActionToKeyMap = TCreateActionToKeyMap( s_aePlayerActions, s_aeKeys );
 }
 
 
@@ -80,7 +75,7 @@ void CGCObjPlayer::VOnResourceAcquire( void )
 // 
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCObjPlayer::VOnReset( void )
+void CGCObjPlayer::VOnReset()
 {
 	CGCObjSpritePhysics::VOnReset();
 
@@ -91,9 +86,10 @@ void CGCObjPlayer::VOnReset( void )
 	// reset
 	if( GetPhysicsBody() )
 	{
+		Vec2 v2SpritePos = GetSpritePosition();
 		GetPhysicsBody()->SetLinearVelocity( b2Vec2( 0.0f, 0.0f ) );
-		GetPhysicsBody()->SetTransform( IGCGameLayer::B2dPixelsToWorld( GetSpritePosition() ), 0.0f );
-		GetPhysicsBody()->SetFixedRotation( GetFactoryCreationParams()->bB2dBody_FixedRotation );
+		GetPhysicsBody()->SetTransform( IGCGameLayer::B2dPixelsToWorld( b2Vec2( v2SpritePos.x, v2SpritePos.y ) ), 0.0f );
+		GetPhysicsBody()->SetFixedRotation( true );
 	}
 }
 
@@ -114,9 +110,11 @@ void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 // 
 //////////////////////////////////////////////////////////////////////////
 //virtual
-void CGCObjPlayer::VOnResourceRelease( void )
+void CGCObjPlayer::VOnResourceRelease()
 {
     CGCObjSpritePhysics::VOnResourceRelease();
+	delete m_pcControllerActionToKeyMap;
+	m_pcControllerActionToKeyMap = nullptr;
 }
 
 
@@ -132,7 +130,6 @@ f32	g_CGCObjPlayer_fDragCoefficient_Linear		= 0.25f;	// unitless
 f32	g_CGCObjPlayer_fDragCoefficient_Square		= 0.2f;		// unitless
 f32 g_CGCObjPlayer_m_fNoInput_ExtraDrag_Square	= 0.2f;		// unitless
 f32 g_CGCObjPlayer_fNoInput_VelocityThreshold	= 0.25f;	// m/s
-
 f32 g_GCGameLayer_fPixelsPerMetre				= 20.0f;	// pixels / metre
 f32 g_GCGameLayer_fDamping						= 0.999f;	// unitless
 //
@@ -147,18 +144,59 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	m_fNoInput_VelocityThreshold	= g_CGCObjPlayer_fNoInput_VelocityThreshold;
 
 	// we accumulate total force over the frame and apply it at the end
-	b2Vec2 v2TotalForce( 0.0f, 0.0f);
+	Vec2 v2TotalForce( 0.0f, 0.0f);
+
 
 	// * calculate the control force direction
-	b2Vec2 v2ControlForceDirection = GetControlVector( fTimeStep );
+	Vec2 v2ControlForceDirection( 0.0f, 0.0f );
+
+	// this float is used to add / remove the effect of various terms 
+	// in equations based on whether input has been applied this frame
+	f32 fIsInputInactive = 1.0f;
+
+	// instantiating templates is one of the few use cases where auto is a big improvement & arguably the best thing to do
+	// e.g.
+	//	auto cController = ... ;
+	const CGCKeyboardManager*		pKeyManager = AppDelegate::GetKeyboardManager();
+	TGCController< EPlayerActions > cController = TGetActionMappedController( CGCControllerManager::eControllerOne, (*m_pcControllerActionToKeyMap ) );
+
+	if( cController.IsActive() )
+	{
+		Vec2 v2LeftStickRaw			= cController.GetCurrentStickValueRaw( EPA_AxisMove_X, EPA_AxisMove_Y );
+		v2ControlForceDirection.x	= v2LeftStickRaw.x;
+		v2ControlForceDirection.y	= v2LeftStickRaw.y;
+
+		if( v2ControlForceDirection.length() > 0.0f )
+		{
+			fIsInputInactive = 0.0f;
+		}
+	}
+	else
+	{
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Up ) )
+		{
+			v2ControlForceDirection.y   = 1.0f;
+			fIsInputInactive            = 0.0f;
+		}
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Down ) )
+		{
+			v2ControlForceDirection.y	= -1.0f;
+			fIsInputInactive            = 0.0f;
+		}
+
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Left ) )
+		{
+			v2ControlForceDirection.x   = -1.0f;
+			fIsInputInactive            = 0.0f;
+		}    
+		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Right ) )
+		{
+			v2ControlForceDirection.x	= 1.0f;
+			fIsInputInactive			= 0.0f;
+		}
+	}
 
 	// normalise the control vector and multiply by movement force
-	// n.b. b2Vec2::Normalize checks for 0 length vectors
-	// n.n.b. fIsInputActive is used to add / remove the effect of various terms 
-	// in equations based on whether input has been applied this frame
-	f32 fIsInputInactive = ( v2ControlForceDirection.Normalize() > 0.0f ) ? 1.0f : 0.0f;
-	
-	// multiply the normalised control force by the scaling values
 	v2ControlForceDirection.x *= m_fMaximumMoveForce_Horizontal;
 	v2ControlForceDirection.y *= m_fMaximumMoveForce_Vertical;
 
@@ -167,8 +205,8 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 
 	// * calculate drag force
-	b2Vec2 v2Velocity_Unit = GetPhysicsBody()->GetLinearVelocity();
-	f32 fVelocity = v2Velocity_Unit.Normalize();
+	Vec2 v2Velocity_Unit	= GetVelocity();
+	f32 fVelocity			= v2Velocity_Unit.normalize();
 	
 	// This is not the real equation for drag.
 	// This is a simple mathematical function that approximates the behaviour 
@@ -187,116 +225,61 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	// drag is applied in the opposite direction to the current velocity of the object
 	// so scale out unit version of the object's velocity by -fDragForce
-	// N.B. operator* is only defined for (float, b2Vec2) and not for (b2Vec2, float) !?!
+	// N.B. operator* is only defined for (float, Vec2) and not for (Vec2, float) !?!
 	v2TotalForce += ( -fDragForce * v2Velocity_Unit );
 
 
 	// physics calcs handled by box 2d based on force applied
-	GetPhysicsBody()->ApplyForceToCenter( v2TotalForce, true );
+	ApplyForceToCenter( v2TotalForce );
 
 
 	// * set sprite flip based on velocity
 	// N.B. the else-if looks redundant, but we want the sprite's flip 
 	// state to stay the same if its velocity is set to (0.0f, 0.0f)
-	if( GetPhysicsBody()->GetLinearVelocity().y >= 0.0f )
+	if( GetVelocity().y >= 0.0f )
 	{
 		SetFlippedY( false );
 	}
-	else if( GetPhysicsBody()->GetLinearVelocity().y < 0.0f )
+	else if( GetVelocity().y < 0.0f )
 	{
 		SetFlippedY( true );
 	}
 
-	if( GetPhysicsBody()->GetLinearVelocity().x >= 0.0f )
+	if( GetVelocity().x >= 0.0f )
 	{
 		SetFlippedX( true );
 	}
-	else if( GetPhysicsBody()->GetLinearVelocity().x < 0.0f )
+	else if( GetVelocity().x < 0.0f )
 	{
 		SetFlippedX( false );
 	}
 
 	// fire!
-	if( FireWasJustPressed() )
+	bool bFireWasPressed = false;
+
+	if( cController.IsActive() )
+	{
+		if( cController.ButtonHasJustBeenPressed( EPA_ButtonFire ) )
+		{
+			bFireWasPressed = true;
+		}
+	}
+	else
+	{
+		if( pKeyManager->ActionHasJustBeenPressed( CGCGameLayerPlatformer::EPA_Fire ) )
+		{
+			bFireWasPressed = true;
+		}
+	}
+
+	if( bFireWasPressed )
 	{
 		// supply initial position, velocity, lifetime
-		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + b2Vec2( 0.0f, 20.0f ),
-												b2Vec2( 0.0f, 10.0f ),
-												3.0f );	
-
-		// Example of firing a callback function on a GCCObjSprite object in a CCSequence
-		this->RunAction( cocos2d::CCSequence::create( CGCCallFuncStatic::create( callfuncStatic_selector(CGCObjPlayer::TestCBFunction),(void*)this), NULL));
-		// Example of firing a callback function on a GCCObjSprite object in a CCSequence
+		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + Vec2( 0.0f, 20.0f ),
+												Vec2( 0.0f, 10.0f ),
+												3.0f );
 	}
 }
-
-
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-b2Vec2 CGCObjPlayer::GetControlVector( f32 fTImeStep )
-{
-	b2Vec2 vReturn( 0.0f, 0.0f );
-
-	#if defined( USE_KEYBOARD_CONTROLS )
-	{
-		const CGCKeyboardManager* pKeyManager = AppDelegate::GetKeyboardManager();
-	
-		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Up ) )
-		{
-			vReturn.y	= 1.0f;
-		}
-		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Down ) )
-		{
-			vReturn.y	= -1.0f;
-		}
-
-		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Left ) )
-		{
-			vReturn.x	= -1.0f;
-		}	
-		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Right ) )
-		{
-			vReturn.x	= 1.0f;
-		}
-
-	}
-	#else
-	{
-		if( IGCGameLayer::ActiveInstance()->ATouchIsActive() )
-		{
-			// calc distance in pixels
-			b2Vec2 v2TouchPos			= IGCGameLayer::ActiveInstance()->GetTouchPos();
-			b2Vec2 v2ControlInPixels	= v2TouchPos - GetSpritePosition();
-			vReturn						= IGCGameLayer::B2dPixelsToWorld( v2ControlInPixels );	 
-		}
-	}
-	#endif
-
-	return vReturn;
-}
-
-
-//////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
-bool CGCObjPlayer::FireWasJustPressed()
-{
-	bool bReturn = false;
-
-	#if defined( USE_KEYBOARD_CONTROLS )
-	{
-		const CGCKeyboardManager* pKeyManager = AppDelegate::GetKeyboardManager();
-
-		bReturn = pKeyManager->ActionHasJustBeenPressed( CGCGameLayerPlatformer::EPA_Fire );
-	}
-	#else
-	{
-		bReturn = IGCGameLayer::ActiveInstance()->TouchWasJustStarted();
-	}
-	#endif
-
-	return bReturn;
-}
-
 
 //////////////////////////////////////////////////////////////////////////
 // this function exists purely to better illustrate the EXAMPLE collision 

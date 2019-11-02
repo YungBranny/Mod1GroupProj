@@ -1519,7 +1519,7 @@ struct ScrollViewOptions : private flatbuffers::Table {
   uint8_t bounceEnabled() const { return GetField<uint8_t>(32, 0); }
   uint8_t scrollbarEnabeld() const { return GetField<uint8_t>(34, 1); }
   uint8_t scrollbarAutoHide() const { return GetField<uint8_t>(36, 1); }
-  float scrollbarAutoHideTime() const { return GetField<float>(38, 0.2); }
+  float scrollbarAutoHideTime() const { return GetField<float>(38, 0.2f); }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyField<flatbuffers::uoffset_t>(verifier, 4 /* widgetOptions */) &&
@@ -1566,7 +1566,7 @@ struct ScrollViewOptionsBuilder {
   void add_bounceEnabled(uint8_t bounceEnabled) { fbb_.AddElement<uint8_t>(32, bounceEnabled, 0); }
   void add_scrollbarEnabeld(uint8_t scrollbarEnabeld) { fbb_.AddElement<uint8_t>(34, scrollbarEnabeld, 1); }
   void add_scrollbarAutoHide(uint8_t scrollbarAutoHide) { fbb_.AddElement<uint8_t>(36, scrollbarAutoHide, 1); }
-  void add_scrollbarAutoHideTime(float scrollbarAutoHideTime) { fbb_.AddElement<float>(38, scrollbarAutoHideTime, 0.2); }
+  void add_scrollbarAutoHideTime(float scrollbarAutoHideTime) { fbb_.AddElement<float>(38, scrollbarAutoHideTime, 0.2f); }
   ScrollViewOptionsBuilder(flatbuffers::FlatBufferBuilder &_fbb) : fbb_(_fbb) { start_ = fbb_.StartTable(); }
   ScrollViewOptionsBuilder &operator=(const ScrollViewOptionsBuilder &);
   flatbuffers::Offset<ScrollViewOptions> Finish() {
@@ -2167,13 +2167,13 @@ inline flatbuffers::Offset<Frame> CreateFrame(flatbuffers::FlatBufferBuilder &_f
 struct PointFrame : private flatbuffers::Table {
   int32_t frameIndex() const { return GetField<int32_t>(4, 0); }
   uint8_t tween() const { return GetField<uint8_t>(6, 1); }
-  const Position *postion() const { return GetStruct<const Position *>(8); }
+  const Position *position() const { return GetStruct<const Position *>(8); }
   const EasingData *easingData() const { return GetPointer<const EasingData *>(10); }
   bool Verify(flatbuffers::Verifier &verifier) const {
     return VerifyTableStart(verifier) &&
            VerifyField<int32_t>(verifier, 4 /* frameIndex */) &&
            VerifyField<uint8_t>(verifier, 6 /* tween */) &&
-           VerifyField<Position>(verifier, 8 /* postion */) &&
+           VerifyField<Position>(verifier, 8 /* position */) &&
            VerifyField<flatbuffers::uoffset_t>(verifier, 10 /* easingData */) &&
            verifier.VerifyTable(easingData()) &&
            verifier.EndTable();
@@ -2185,7 +2185,7 @@ struct PointFrameBuilder {
   flatbuffers::uoffset_t start_;
   void add_frameIndex(int32_t frameIndex) { fbb_.AddElement<int32_t>(4, frameIndex, 0); }
   void add_tween(uint8_t tween) { fbb_.AddElement<uint8_t>(6, tween, 1); }
-  void add_postion(const Position *postion) { fbb_.AddStruct(8, postion); }
+  void add_postion(const Position *position) { fbb_.AddStruct(8, position); }
   void add_easingData(flatbuffers::Offset<EasingData> easingData) { fbb_.AddOffset(10, easingData); }
   PointFrameBuilder(flatbuffers::FlatBufferBuilder &_fbb) : fbb_(_fbb) { start_ = fbb_.StartTable(); }
   PointFrameBuilder &operator=(const PointFrameBuilder &);
@@ -2198,11 +2198,11 @@ struct PointFrameBuilder {
 inline flatbuffers::Offset<PointFrame> CreatePointFrame(flatbuffers::FlatBufferBuilder &_fbb,
    int32_t frameIndex = 0,
    uint8_t tween = 1,
-   const Position *postion = 0,
+   const Position *position = 0,
    flatbuffers::Offset<EasingData> easingData = 0) {
   PointFrameBuilder builder_(_fbb);
   builder_.add_easingData(easingData);
-  builder_.add_postion(postion);
+  builder_.add_postion(position);
   builder_.add_frameIndex(frameIndex);
   builder_.add_tween(tween);
   return builder_.Finish();

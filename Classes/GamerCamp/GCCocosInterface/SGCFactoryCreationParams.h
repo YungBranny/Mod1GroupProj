@@ -5,8 +5,10 @@
 #ifndef _SGCFACTORYCREATIONPARAMS_H_
 #define _SGCFACTORYCREATIONPARAMS_H_
 
+#include <string>
+
 #ifndef _GCTYPES_H_
-#include "../Core/GCTypes.h"
+	#include "../Core/GCTypes.h"
 #endif
 
 #ifndef BOX2D_H
@@ -15,30 +17,11 @@
 
 
 //////////////////////////////////////////////////////////////////////////
-// class used to pass data to the factory in order to create an object
-// createable classes must have a constructor that takes a reference to 
-// an instance of this class as its single parameter
-// 
-// If you need to extend this system, the best way is probably to:
-//
-// 1) add the ability for classes to register custom xml parsing functions 
-//	  with CGCLevelLoader_Ogmo. CGCLevelLoader_Ogmo would need to associate 
-//	  the custom parser functions with the class name to call the right one
-//	  
-// 2) ...these custom parsers would take the xml data for the class and 
-//	  return a reference to CGCFactoryCreationParams...
-//	  
-// 3) ...to make your life easy and code more robust the class deriving from 
-//	  CGCObjSpritePhysics which uses the custom parser would need to derive 
-//	  a class from CGCFactoryCreationParams so CGCLevelLoader_Ogmo can fill 
-//	  out the standard data in CGCFactoryCreationParams automatically and
-//	  the custom parse can just read the rest of it and return it from the 
-//	  function as a CGCFactoryCreationParams&...
-//    
-// 4) ...and your CGCObjSpritePhysics derived class can override the base
-//    VHandleFactoryParams() and static_cast the CGCFactoryCreationParams 
-//	  argument back to the expected derived type to get at the extra data. 
-//	  Job done, you're welcome :)
+// class used to initialise the data needed by a GCObjSpritePhysics
+// to acquire its resources - it *is* technically possible to initialise 
+// instances derived from GCObjSpritePhysics manually, however please use
+// this method as it will make your life *much* easier in module 2 for 
+// reasons which will become apparent in mopdule 2 :)
 //////////////////////////////////////////////////////////////////////////
 class CGCFactoryCreationParams
 {
@@ -101,5 +84,17 @@ public:
 		return !( strClassName.compare( pszNameToTest ) );
 	}
 };
+
+
+//////////////////////////////////////////////////////////////////////////
+// macros to make declaring these a bit easier
+// see GCObjectPlayer.cpp for usage examples
+//////////////////////////////////////////////////////////////////////////
+#define IN_CPP_CREATION_PARAMS_DECLARE( ClassName, SpritePlistPath, PhysicsShapeName, Box2dBodyType, BodyIsFixedRotation )\
+	static CGCFactoryCreationParams s_cCreationParams_##ClassName( #ClassName, SpritePlistPath, PhysicsShapeName, Box2dBodyType, BodyIsFixedRotation )
+
+#define IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( ClassName )	VHandleFactoryParams( s_cCreationParams_##ClassName, GetResetPosition() )
+
+
 
 #endif // #ifndef _SCGFACTORYCREATIONPARAMS_H_ ...

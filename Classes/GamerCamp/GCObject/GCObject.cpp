@@ -5,8 +5,8 @@
 
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCObject/GCObject.h"
-#include "cocos/base/CCConsole.h"
-#include "cocos/base/ccMacros.h"
+#include "cocos2d/cocos/base/CCConsole.h"
+#include "cocos2d/cocos/base/ccMacros.h"
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +18,7 @@ DEBUG_ONLY( static int s_iCreationCount = 0 );
 //////////////////////////////////////////////////////////////////////////
 // protected constructor
 CGCObject::CGCObject( GCTypeID idDerivedType )
-: m_idConcreteClass	( idDerivedType )
+	: m_idConcreteClass	( idDerivedType )
 {
 	DEBUG_ONLY( ++s_iCreationCount );
 	// add ourself to the object manager

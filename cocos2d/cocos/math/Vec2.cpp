@@ -136,21 +136,31 @@ float Vec2::length() const
     return std::sqrt(x * x + y * y);
 }
 
-void Vec2::normalize()
+
+// GC EDIT - darbotron - made this return length
+float Vec2::normalize()
 {
-    float n = x * x + y * y;
+    float fLenSquared = x * x + y * y;
+
     // Already normalized.
-    if (n == 1.0f)
-        return;
+	if( fLenSquared == 1.0f )
+	{
+		return 1.0f;
+	}
     
-    n = std::sqrt(n);
+    float fLen = std::sqrt( fLenSquared );
+
     // Too close to zero.
-    if (n < MATH_TOLERANCE)
-        return;
+	if( fLenSquared < MATH_TOLERANCE )
+	{
+		return 0.0f;
+	}
     
-    n = 1.0f / n;
-    x *= n;
-    y *= n;
+	float fRecipLen = ( 1.0f / fLen );
+    x *= fRecipLen;
+    y *= fRecipLen;
+
+	return fLen;
 }
 
 Vec2 Vec2::getNormalized() const

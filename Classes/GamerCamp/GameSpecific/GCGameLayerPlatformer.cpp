@@ -7,7 +7,6 @@
 #include <algorithm>
 #include <stdlib.h> 
 
-#include "platform/CCFileUtils.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 
 #include "MenuScene.h"
@@ -24,29 +23,36 @@
 
 #include "AppDelegate.h"
 
-#include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
-#include "GamerCamp/GCCocosInterface/LevelLoader/GCLevelLoader_Ogmo.h"
 
 USING_NS_CC;
 
 
-///////////////////////////////////////////////////////////////////////////////
-// hack! name used to identify test CGCObjItem
-///////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+// this just demos how simple it is to turn on/off logging on a define....
+#define ENABLE_COLLISION_TEST_LOGGING
 
-//const char* k_pszItemName = "boris";
+#if defined (ENABLE_COLLISION_TEST_LOGGING)
+
+	#define COLLISIONTESTLOG( str )		CCLOG( str )
+
+#else
+
+	#define COLLISIONTESTLOG( str )		/*nothing*/
+
+#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // Constructor
 ///////////////////////////////////////////////////////////////////////////////
-CGCGameLayerPlatformer::CGCGameLayerPlatformer( void )
+CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 : IGCGameLayer					( GetGCTypeIDOf( CGCGameLayerPlatformer ) ) 
 , m_pcGCGroupItem				( NULL )
 , m_pcGCGroupInvader			( NULL )
 , m_pcGCGroupProjectilePlayer	( NULL )
 , m_pcGCSprBackGround			( NULL )
 , m_pcGCOPlayer					( NULL )
+, m_bResetWasRequested			( false )
 {
 }
 
@@ -54,7 +60,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer( void )
 //////////////////////////////////////////////////////////////////////////
 // Destructor
 //////////////////////////////////////////////////////////////////////////
-CGCGameLayerPlatformer::~CGCGameLayerPlatformer( void )
+CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
 {
 }
 
@@ -82,13 +88,22 @@ void CGCGameLayerPlatformer::onEnter()
 	};
 
 	u32 uSizeOfActionArray = ( sizeof(aeKeyCodesForActions) / sizeof(cocos2d::EventKeyboard::KeyCode) );
+
+	// call base class function	to init the keyboard manager
+	AppDelegate::InitialiseKeyboardManager( uSizeOfActionArray, aeKeyCodesForActions );
+}
+
+//////////////////////////////////////////////////////////////////////////
+void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact )
+{
+	COLLISIONTESTLOG( "( standard function!) the player hit an item!" );
 }
 
 //////////////////////////////////////////////////////////////////////////
 // on create
 //////////////////////////////////////////////////////////////////////////
 //virtual
-void CGCGameLayerPlatformer::VOnCreate( void )
+void CGCGameLayerPlatformer::VOnCreate()
 { 
 	///////////////////////////////////////////////////////////////////////////
 	// cache some useful values 
@@ -179,7 +194,7 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 	{
 		m_pcGCSprBackGround = new CGCObjSprite();
 		m_pcGCSprBackGround->CreateSprite( pszPlist_background );
-		m_pcGCSprBackGround->SetResetPosition( b2Vec2( visibleSize.width/2, visibleSize.height/2 ) );
+		m_pcGCSprBackGround->SetResetPosition( Vec2( visibleSize.width/2, visibleSize.height/2 ) );
 		m_pcGCSprBackGround->SetParent( IGCGameLayer::ActiveInstance() );
  	}
 
@@ -204,13 +219,14 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 	// PTM_RATIO
 	f32 PTM_RATIO = IGCGAMELAYER_B2D_PIXELS_PER_METER;
 	
-	b2Vec2 v2ScreenCentre_Pixels( ( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ) );
+	b2Vec2	b2v2ScreenCentre_Pixels( ( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ) );
+	Vec2	v2ScreenCentre_Pixels( ( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ) );
 
 
 
 	// define the ground body
 	b2BodyDef groundBodyDef;
-	groundBodyDef.position	=	IGCGameLayer::B2dPixelsToWorld( v2ScreenCentre_Pixels );
+	groundBodyDef.position	=	IGCGameLayer::B2dPixelsToWorld( b2v2ScreenCentre_Pixels );
 	groundBodyDef.type		=	b2_kinematicBody;
 
 	// Call the body factory which allocates memory for the ground body
@@ -239,50 +255,76 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 
 
 	///////////////////////////////////////////////////////////////////////////
-	// N.B. this is where you would load a level file, using the factory to
-	// create the class instances specified by the level file by passing their
-	// class names and init data
-	//
-	// In order to ensure stuff is correctly cleaned up you will need to either:
-	//
-	// 1) cache pointers to all created CGCObjSpritePhysics created via the factory and destroy them on shutdown / level unload, or
-	//
-	// 2) make sure all the CGCObjSpritePhysics derived instances you create are in an object group and have the groups destroy them
-	//
-	// Personally I favour option 1, as I reckon it's a) more elegant and b) more philosophically 'correct'.
-	//
-	// The invaders are currently destroyed by using option 2 - see CGCObjGroupInvader::DestroyInvaders
-	///////////////////////////////////////////////////////////////////////////
-
-	// load level data from Ogmo Editor
-
-	// read the oel file for level 0
-	m_cLevelLoader.LoadLevelFile( FileUtils::getInstance()->fullPathForFilename( std::string( "OgmoEditor/GCOgmoTemplateLevel.oel" ) ).c_str() );
-	m_cLevelLoader.CreateObjects( CGCFactory_ObjSpritePhysics::GetFactory() );
-
-	// note: we have now created all the items, platforms, & invaders specified in the level file
-
-
-	///////////////////////////////////////////////////////////////////////////
-	// add player - this shows manual use of class factory
+	// add player
 	///////////////////////////////////////////////////////////////////////////
 
 	// starting position
-	b2Vec2 v2MarioStartPos( ( origin.x + ( visibleSize.width * 0.5f) ),
-		                    ( origin.y + ( visibleSize.height * 0.5f ) ) );
-
-	// factory creation parameters
-	// N.B. note m_sPlayerCreateParams is a member variable of this class which will stay in scope whilst mario is in scope
-	CGCFactoryCreationParams& sParams = m_sPlayerCreateParams;
-	sParams.strClassName			= "CGCObjPlayer";
-	sParams.strPlistFile			= "TexturePacker/Sprites/Mario/Mario.plist";
-	sParams.strPhysicsShape			= "mario";
-	sParams.eB2dBody_BodyType		= b2_dynamicBody;
-	sParams.bB2dBody_FixedRotation	= true;
+	Vec2 v2MarioStartPos = v2ScreenCentre_Pixels;
 
 	// create player object
-	m_pcGCOPlayer = static_cast< CGCObjPlayer* >( CGCFactory_ObjSpritePhysics::GetFactory().CreateInstance( sParams, v2MarioStartPos ) );
-}
+	m_pcGCOPlayer = new CGCObjPlayer();
+	m_pcGCOPlayer->SetResetPosition( v2MarioStartPos );
+
+	///////////////////////////////////////////////////////////////////////////
+	// N.B. invaders are added by the invader object group
+	///////////////////////////////////////////////////////////////////////////
+	m_pcGCGroupInvader->SetFormationOrigin( v2ScreenCentre_Pixels + Vec2( -( visibleSize.width * 0.3f ), ( visibleSize.height * 0.3f ) ) );
+
+	///////////////////////////////////////////////////////////////////////////
+	// add platforms & items
+	///////////////////////////////////////////////////////////////////////////
+	// CGCObjGroupItem & CGCObjGroupPlatform clean up all contained objects during VOnGroupResourceRelease(), so we can be 
+	// very laissez faire about creating items & platforms
+	const u32 uNumColumns		= 3;
+	const u32 uNumRows			= 4;
+
+	float fColumnSpacing		= ( visibleSize.width / ( ((float) uNumColumns ) + 1.0f ) );
+	float fRowSpacing			= ( visibleSize.height / ( ((float) uNumRows ) + 1.0f ) );
+
+	float fNextPlatformPos_x	= fColumnSpacing;
+	float fRowStartPos_y		= fRowSpacing;
+
+	for( u32 uColumn = 0; uColumn < uNumColumns; ++uColumn )
+	{ 
+		Vec2 v2NextPlatformPos( fNextPlatformPos_x, fRowStartPos_y );
+
+		for( u32 uRow = 0; uRow < uNumRows; ++uRow )
+		{
+			CGCObjPlatform* pPlatform	= new CGCObjPlatform();
+			CGCObjItem*		pItem		= new CGCObjItem();
+
+			pPlatform->SetResetPosition	( v2NextPlatformPos );
+			pItem->SetResetPosition		( v2NextPlatformPos + Vec2( 0.0f, 30.0f ) );
+
+			v2NextPlatformPos.y += fRowSpacing;
+		}
+
+		fNextPlatformPos_x += fColumnSpacing;
+	}
+
+
+	//////////////////////////////////////////////////////////////////////////
+	// test new collision handler code
+	// 
+	// this is proof of concept code which could be used to replace the 
+	// function HandleCollisions()
+	// 
+	// note it will need a little additional polish (simple & noted in the 
+	// header...) before it's properly ready to be used in a game :)
+	// 
+	//////////////////////////////////////////////////////////////////////////
+	//
+	// you can also pass a regular (non member) function:
+	// GetCollisionManager().AddCollisionHandler( CB_TestCollisionHandler );
+	// 
+
+	GetCollisionManager().AddCollisionHandler( [] ( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact ) -> void
+	{
+		COLLISIONTESTLOG( "(lambda) the player hit an item!" );
+	} );
+
+
+}// void CGCGameLayerPlatformer::VOnCreate() { ...
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -292,8 +334,15 @@ void CGCGameLayerPlatformer::VOnCreate( void )
 void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 {
 	IGCGameLayer::VOnUpdate( fTimeStep );
-
+	
+	// this shows how to iterate and respond to the box2d collision info
 	HandleCollisions();	
+
+	if( ResetWasRequested() )
+	{
+		VOnReset();
+		ResetRequestWasHandled();
+	}
 }
 
 
@@ -301,16 +350,13 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 // on destroy
 ///////////////////////////////////////////////////////////////////////////////
 // virtual
-void CGCGameLayerPlatformer::VOnDestroy( void )
+void CGCGameLayerPlatformer::VOnDestroy()
 {
 	///////////////////////////////////////////////////////////////////////////
 	// clean up anything we allocated in opposite order to creation
 	///////////////////////////////////////////////////////////////////////////	
 	delete m_pcGCOPlayer;
 	m_pcGCOPlayer = NULL;
-
-	// clean up the level
-	m_cLevelLoader.DestroyObjects();
 
 	delete m_pcGCSprBackGround;
 	m_pcGCSprBackGround = NULL;
@@ -354,7 +400,7 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 {
-	VOnReset();
+	RequestReset();
 }
 
 
@@ -446,7 +492,7 @@ void CGCGameLayerPlatformer::PostSolve( b2Contact* pB2Contact, const b2ContactIm
 // e.g. for gamplay reasons like jumping up through a platform
 // 
 ///////////////////////////////////////////////////////////////////////////////
-void CGCGameLayerPlatformer::HandleCollisions( void )
+void CGCGameLayerPlatformer::HandleCollisions()
 {
 	// check for collisions
 	b2Body* pBodyToDestroy = NULL;
@@ -454,21 +500,17 @@ void CGCGameLayerPlatformer::HandleCollisions( void )
 			NULL						!= pB2Contact;
 			pB2Contact					= pB2Contact->GetNext() )
 	{
-		const b2Fixture* pFixtureA = pB2Contact->GetFixtureA();
-		const b2Fixture* pFixtureB = pB2Contact->GetFixtureB();
-
-		const b2Body* pBodyA = pFixtureA->GetBody();
-		const b2Body* pBodyB = pFixtureB->GetBody();
-
+		const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A( pB2Contact );
+		const b2Fixture* pFixtureB = CGCObjSpritePhysics::FromB2DContactGetFixture_B( pB2Contact );
 
 		// return if either physics body has null user data
-		CGCObjSpritePhysics* pGcSprPhysA = (CGCObjSpritePhysics*) pBodyA->GetUserData();
+		CGCObjSpritePhysics* pGcSprPhysA = CGCObjSpritePhysics::FromB2DFixtureGetSpritePhysics( pFixtureA );
 		if( !pGcSprPhysA )
 		{
 			return;
 		}
 
-		CGCObjSpritePhysics* pGcSprPhysB = (CGCObjSpritePhysics*) pBodyB->GetUserData();
+		CGCObjSpritePhysics* pGcSprPhysB = CGCObjSpritePhysics::FromB2DFixtureGetSpritePhysics( pFixtureB );
 		if( !pGcSprPhysB )
 		{
 			return;
@@ -499,7 +541,7 @@ void CGCGameLayerPlatformer::HandleCollisions( void )
 		}
 
 		// is this collision an invader and a projectile?
-		// if so, kil the invader
+		// if so, kill the invader
 		if(	   pB2Contact->IsEnabled()
 			&& ( pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() ) )
 		{

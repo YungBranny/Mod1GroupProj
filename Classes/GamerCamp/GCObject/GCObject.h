@@ -150,19 +150,18 @@ public:
 	// game object interface
 	//////////////////////////////////////////////////////////////////////////
 
-
 	//////////////////////////////////////////////////////////////////////////
 	// safely cast a pointer to a GCObject derived type to its EXACT type
 	// returns nullptr if instance type doesn't match
 	//////////////////////////////////////////////////////////////////////////
-		template< class TGCObjectOrDerivedPtr >
-		static TGCObjectOrDerivedPtr SafeCastToDerived( CGCObject* pGCObjectDerived )
+	template< class TGCObjectOrDerivedPtr >
+	static TGCObjectOrDerivedPtr SafeCastToDerived( CGCObject* pGCObjectDerived )
+	{
+		if( pGCObjectDerived->GetGCTypeID() == TGCTypeIDGenerator< std::remove_pointer< TGCObjectOrDerivedPtr >::type >::GetTypeID() )
 		{
-			if( pGCObjectDerived->GetGCTypeID() == TGCTypeIDGenerator< typename std::remove_pointer< TGCObjectOrDerivedPtr >::type >::GetTypeID() )
-			{
-				return static_cast<TGCObjectOrDerivedPtr>( pGCObjectDerived );
-			}
-			return nullptr;
+			return static_cast< TGCObjectOrDerivedPtr >( pGCObjectDerived );
 		}
+		return nullptr;
+	}
 };
 #endif

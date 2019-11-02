@@ -1,6 +1,6 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
- Copyright (c) 2014 Chukong Technologies Inc.
+ Copyright (c) 2014-2017 Chukong Technologies Inc.
 
  http://www.cocos2d-x.org
 
@@ -25,7 +25,7 @@
 
 #include "base/CCController.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 
 #include "base/CCEventDispatcher.h"
 #include "base/CCEventController.h"
@@ -47,18 +47,26 @@ Controller* Controller::getControllerByTag(int tag)
     return nullptr;
 }
 
+Controller* Controller::getControllerByDeviceId(int deviceId)
+{
+    for (auto controller : Controller::s_allController)
+    {
+        if (controller->_deviceId == deviceId)
+        {
+            return controller;
+        }
+    }
+    return nullptr;
+}
+
+
 void Controller::init()
 {
-    for (int key = Key::JOYSTICK_LEFT_X; key < Key::KEY_MAX; ++key)
-    {
-        _allKeyStatus[key].isPressed = false;
-        _allKeyStatus[key].value = 0.0f;
+	// GC EDIT - darbotron - extracted method
+	reset();
+	// GC EDIT - darbotron - extracted method
 
-        _allKeyPrevStatus[key].isPressed = false;
-        _allKeyPrevStatus[key].value = 0.0f;
-    }
-
-    _eventDispatcher = Director::getInstance()->getEventDispatcher();
+	_eventDispatcher = Director::getInstance()->getEventDispatcher();
     _connectEvent = new (std::nothrow) EventController(EventController::ControllerEventType::CONNECTION, this, false);
     _keyEvent = new (std::nothrow) EventController(EventController::ControllerEventType::BUTTON_STATUS_CHANGED, this, 0);
     _axisEvent = new (std::nothrow) EventController(EventController::ControllerEventType::AXIS_STATUS_CHANGED, this, 0);
@@ -110,6 +118,33 @@ void Controller::onAxisEvent(int axisCode, float value, bool isAnalog)
     _eventDispatcher->dispatchEvent(_axisEvent);
 }
 
+// GC EDIT - darbotron - extracted method, was part of init
+void Controller::reset()
+{
+	for( int key = Key::JOYSTICK_LEFT_X; key < Key::KEY_MAX; ++key )
+	{
+		_allKeyStatus[ key ].isPressed = false;
+		_allKeyStatus[ key ].value = 0.0f;
+
+		_allKeyPrevStatus[ key ].isPressed = false;
+		_allKeyPrevStatus[ key ].value = 0.0f;
+	}
+}
+// GC EDIT - darbotron - extracted method, was part of init
+
+// GC EDIT - darbotron - added this to access previous key status
+const Controller::KeyStatus& Controller::getLastKeyStatus( int keyCode )
+{
+	if (_allKeyPrevStatus.find(keyCode) == _allKeyPrevStatus.end())
+	{
+		_allKeyPrevStatus[keyCode].isPressed = false;
+		_allKeyPrevStatus[keyCode].value = 0.0f;
+	}
+
+	return _allKeyPrevStatus[keyCode];
+}
+// GC EDIT - darbotron - added this to access previous key status
+
 NS_CC_END
 
-#endif // #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+#endif // (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)

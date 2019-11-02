@@ -5,8 +5,6 @@
 #ifndef	_GCOBJECTGROUP_H_
 #define	_GCOBJECTGROUP_H_
 
-#include <functional>
-
 #ifndef _NOALLOCLIST_H_
 	#include "GamerCamp/Collections/NoAllocList.h"
 #endif
@@ -185,7 +183,6 @@ protected:
 	inline u32				GetCountDead( void );
 	inline u32				GetCountRegistered( void );
 
-	inline const CGCObject*	GetRegisteredObjectAtIndex( unsigned int iIndex );
 
 	// get a dead object to resurrect
 	inline CGCObject*		GetDeadObject( void );
@@ -254,12 +251,13 @@ public:
 	
 		// call tFunctor once for each cGCObject managed by the list
 		// N.B. tFunctor must return bool and take a CGCObject* as its argument
-		void ForEachObject( std::function< bool( CGCObject*) > cFunctor )
+		template< typename TFunctor >
+		void ForEachObject( TFunctor& tFunctor )
 		{ 
 			for( u32 uLoop = 0; uLoop < m_uNumGCObjects; ++uLoop )
 			{
 				// keep going until tFunctor returns false
-				if( !cFunctor( m_apGCObjects[ uLoop ] ) )
+				if( !tFunctor( m_apGCObjects[ uLoop ] ) )
 				{
 					break;		    
 				}
@@ -268,14 +266,14 @@ public:
 
 		// call pfnVisitor with pUserData once for each cGCObject in the live list
 		template< typename TFunctor >
-		void ForEachObjectIn_LiveList( std::function< bool( CGCObject*) > cFunctor )
+		void ForEachObjectIn_LiveList( TFunctor& tFunctor )
 		{
 			for(	CGCObject* pCurrent = m_lstObjectsLive.GetFirst();
 					pCurrent != 0;
 					pCurrent = m_lstObjectsLive.GetNext( pCurrent ) )
 			{
 				// keep going until pfnVisitor returns false
-				if( !cFunctor( pCurrent ) )
+				if( !tFunctor( pCurrent ) )
 				{
 					break;
 				}
@@ -285,14 +283,14 @@ public:
 		// call tFunctor once for each cGCObject in the live list by the list
 		// N.B. tFunctor must return bool and take a CGCObject* as its argument
 		template< typename TFunctor >
-		void ForEachObject_InDeadList( std::function< bool( CGCObject*) > cFunctor )
+		void ForEachObject_InDeadList( TFunctor& tFunctor )
 		{
 			for(	CGCObject* pCurrent = m_lstObjectsDead.GetFirst();
 					pCurrent != 0;
 					pCurrent = m_lstObjectsDead.GetNext( pCurrent ) )
 			{
 				// keep going until tFunctor returns false
-				if( !cFunctor( pCurrent ) )
+				if( !tFunctor( pCurrent ) )
 				{
 					break;
 				}
@@ -320,11 +318,11 @@ public:
 		//
 		// N.N.B. tFunctor must take a CGCObject* as its argument
 		template< typename TFunctor >
-		void DestroyObjectsReverseOrder( std::function< bool( CGCObject*) > cFunctorCallBeforeDestructor )
+		void DestroyObjectsReverseOrder( TFunctor& tFunctorCallBeforeDestructor )
 		{ 
 			for( i32 iIndex = ( m_uNumGCObjects - 1); iIndex >=0; --iIndex )
 			{
-				cFunctorCallBeforeDestructor( m_apGCObjects[ iIndex ] );
+				tFunctorCallBeforeDestructor( m_apGCObjects[ iIndex ] );
 				delete m_apGCObjects[ iIndex ];
 				m_apGCObjects[ iIndex ] = nullptr;				
 			}
@@ -538,46 +536,5 @@ inline u32 CGCObjectGroup::GetCountRegistered( void )
 {
 	return m_uNumGCObjects;
 }
-
-
-//////////////////////////////////////////////////////////////////////////
-// get iIndex-th registered object
-//////////////////////////////////////////////////////////////////////////
-// protected
-inline const CGCObject*	CGCObjectGroup::GetRegisteredObjectAtIndex( unsigned int uIndex )
-{
-	if( uIndex < m_uNumGCObjects )
-	{
-		return m_apGCObjects[ uIndex ];
-	}
-	return nullptr;
-}
-
-
-//////////////////////////////////////////////////////////////////////////
-// helper object to pass to ForEachObjectIn_LiveList(), 
-// ForEachObjectIn_DeadList(), & ForEachObject()
-// 
-// N.B. operator() is what makes this a 'functor' and allows it to be used
-// with the templated functions above
-// 
-//////////////////////////////////////////////////////////////////////////
-struct SGCObjectGatherer
-{
-	u32			uCount;
-	CGCObject*	apObjects[ CGCObjectGroup::EMaxGCObjects ];
-
-	// initialising constructor
-	SGCObjectGatherer() 
-		: uCount( 0 )
-	{}
-
-	// function call operator
-	bool operator()( CGCObject* pObject )
-	{
-		apObjects[ uCount++ ] = pObject;
-		return true;
-	}
-};
 
 #endif

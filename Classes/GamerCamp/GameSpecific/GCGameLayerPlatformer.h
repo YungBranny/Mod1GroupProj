@@ -2,14 +2,11 @@
 // (C) Gamer Camp / Alex Darby 2018
 // Distributed under the MIT license - see readme.md
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#ifndef _GAMELAYERSPACEPLATFORMER_H_
-#define _GAMELAYERSPACEPLATFORMER_H_
+#ifndef _GAMELAYERSPACEINVADERS_H_
+#define _GAMELAYERSPACEINVADERS_H_
 
 #include "../GCCocosInterface/IGCGameLayer.h"
 
-#ifndef _GCLEVELLOADER_OGMO_H_
-	#include "../GCCocosInterface/LevelLoader/GCLevelLoader_Ogmo.h"
-#endif
 
 //////////////////////////////////////////////////////////////////////////
 // fwd decl
@@ -39,14 +36,10 @@ private:
 	CGCObjGroupProjectilePlayer*	m_pcGCGroupProjectilePlayer;
 
 	// backgrounds
-	CGCObjSprite*			m_pcGCSprBackGround;
+	CGCObjSprite*					m_pcGCSprBackGround;
 
 	// mario
-	CGCObjPlayer*				m_pcGCOPlayer;
-	CGCFactoryCreationParams	m_sPlayerCreateParams;
-
-	// level loader
-	CGCLevelLoader_Ogmo		m_cLevelLoader;
+	CGCObjPlayer*					m_pcGCOPlayer;
 
 public:
 	CGCGameLayerPlatformer	( void );
@@ -102,6 +95,26 @@ public:
 	// b2ContactListener interface - see b2ContactListener for details of 
 	// when these get called and what they are
 	//////////////////////////////////////////////////////////////////////////
+	
+	////////////////////////////////////////////////////////////////////////// 
+	// reset handling
+private:
+	bool							m_bResetWasRequested;
+
+	void RequestReset()
+	{
+		m_bResetWasRequested = true; 
+	}
+
+	void ResetRequestWasHandled()
+	{
+		m_bResetWasRequested = false; 
+	}
+
+	bool ResetWasRequested()
+	{
+		return m_bResetWasRequested; 
+	}
 };
 
-#endif // _GAMELAYERSPACEPLATFORMER_H_
+#endif // __CGCGameLayerPlatformer_SCENE_H__

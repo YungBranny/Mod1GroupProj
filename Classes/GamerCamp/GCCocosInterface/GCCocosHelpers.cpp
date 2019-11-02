@@ -18,13 +18,16 @@ using namespace cocos2d;
 namespace GCCocosHelpers
 {
 	//////////////////////////////////////////////////////////////////////////
+	// creates a __Dictionary from a plist
+	// N.B. the returned __Dictionary IS autoreleased, so you'll need to 
+	// retain it if you want it there later
+	//////////////////////////////////////////////////////////////////////////
 	ValueMap CreateDictionaryFromPlist( const std::string& rstrPlist )
 	{
 		// addSpriteFramesWithFile() actually does this internally - caching this could represent a big reduction in 
 		// disc access when initialising sprites with a lots of animations (see CreateSpriteFromPlist() ) 
 		std::string		strPath		= FileUtils::getInstance()->fullPathForFilename( rstrPlist );
 		ValueMap		dicPList	= FileUtils::getInstance()->getValueMapFromFile( strPath.c_str() );
-		CCASSERT( !dicPList.empty(), "ValueMap created from file is empty - is the path correct? remember Android paths are case sensitive" );
 		return dicPList;
 	}
 
@@ -35,10 +38,8 @@ namespace GCCocosHelpers
 	//////////////////////////////////////////////////////////////////////////
 	Sprite* CreateSpriteFromPlist( const std::string& rstrPlist ) 
 	{
-		ValueMap dicSpriteInfo = Sprite_LoadTextureAndFramesToCachesAndGetDictionary( rstrPlist );
-		
-		CCASSERT( !dicSpriteInfo.empty(), "ValueMap created from file is empty - is the path correct? remember Android paths are case sensitive" );
-		
+		// n.b. pdictSpriteInfo is set to autorelease so we don't need to release it manually
+		ValueMap	dicSpriteInfo	= Sprite_LoadTextureAndFramesToCachesAndGetDictionary( rstrPlist );
 		Sprite*		pSprite			= Sprite_CreateSpriteFrom1stFrame( dicSpriteInfo );
 		return pSprite;
 	}
@@ -61,9 +62,7 @@ namespace GCCocosHelpers
 	//////////////////////////////////////////////////////////////////////////
 	Sprite* Sprite_CreateSpriteFrom1stFrame( ValueMap& dicSpriteInfo )
 	{
-		ValueMap dicFrames = dicSpriteInfo[ "frames" ].asValueMap();
-		
-		CCASSERT( !dicFrames.empty(), "ValueMap created from file is empty - is the path correct? remember Android paths are case sensitive" );
+		ValueMap&		dicFrames	= dicSpriteInfo[ "frames" ].asValueMap();
 
 		// elements are tuple< string, value >
 		auto			itr1stFrame	= dicFrames.begin();

@@ -34,7 +34,7 @@
 //
 
 #include "GB2ShapeCache-x.h"
-#include "Box2D/Box2D.h"
+#include "Box2d/Box2D.h"
 #include "base/CCNS.h"
 
 using namespace cocos2d;
@@ -151,7 +151,7 @@ void GB2ShapeCache::addFixturesToBody( b2Body *body, const std::string &shape )
 	}
 }
 
-cocos2d::Point GB2ShapeCache::anchorPointForShape( const std::string &shape )
+cocos2d::Vec2 GB2ShapeCache::anchorPointForShape( const std::string &shape )
 {
 	std::map<std::string, BodyDef *>::iterator pos = shapeObjects.find( shape );
 	assert( pos != shapeObjects.end() );
@@ -212,8 +212,8 @@ void GB2ShapeCache::addShapesWithFile( const std::string& plist )
 			cFixtureDef.restitution = rdicFixtureData[ "restitution" ].asFloat();
 			cFixtureDef.isSensor = ( rdicFixtureData[ "isSensor" ].asInt() != 0 );
 
-			std::string rstrFixtureId	= rdicFixtureData[ "id" ].asString();
-			std::string rstrFixtureType = rdicFixtureData[ "fixture_type" ].asString();
+			std::string& rstrFixtureId = rdicFixtureData[ "id" ].asString();
+			std::string& rstrFixtureType = rdicFixtureData[ "fixture_type" ].asString();
 
 			if( rstrFixtureType == "POLYGON" )
 			{

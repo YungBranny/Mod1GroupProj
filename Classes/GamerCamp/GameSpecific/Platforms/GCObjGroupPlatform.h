@@ -7,7 +7,7 @@
 
 
 #ifndef BOX2D_H
-	#include "Box2D/Box2D.h"
+	#include "Box2d/Box2D.h"
 #endif
 
 #ifndef	_GCOBJECTGROUP_H_
@@ -26,6 +26,8 @@ class CGCObjPlatform;
 class CGCObjGroupPlatform
 : public CGCObjectGroup
 {
+	// destroy managed platforms
+	void DestroyPlatforms( void );
 
 public:
 	//// number of platforms
@@ -42,8 +44,6 @@ public:
 
 	// must return the typeid of the CGCObjectGroup derived class
 	virtual GCTypeID	VGetTypeId							( void );
-
-	virtual void		VOnGroupResourceAcquire_PostObject	( void );	
 
 	virtual void		VOnGroupResourceRelease				( void );	
 

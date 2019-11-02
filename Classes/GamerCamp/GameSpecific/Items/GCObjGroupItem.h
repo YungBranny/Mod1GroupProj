@@ -7,7 +7,7 @@
 
 
 #ifndef BOX2D_H
-	#include "Box2D/Box2D.h"
+	#include "Box2d/Box2D.h"
 #endif
 
 #ifndef	_GCOBJECTGROUP_H_
@@ -26,6 +26,8 @@ class CGCObjItem;
 class CGCObjGroupItem
 : public CGCObjectGroup
 {
+	// destroy managed items
+	void DestroyItems( void );
 
 public:
 	//// number of items

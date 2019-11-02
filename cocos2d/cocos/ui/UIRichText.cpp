@@ -27,8 +27,8 @@
 #include <sstream>
 #include <vector>
 #include <locale>
+#include <algorithm>
 
-#include "tinyxml2.h"
 #include "platform/CCFileUtils.h"
 #include "platform/CCApplication.h"
 #include "base/CCEventListenerTouch.h"
@@ -38,6 +38,8 @@
 #include "2d/CCSprite.h"
 #include "base/ccUTF8.h"
 #include "ui/UIHelper.h"
+
+#include "platform/CCSAXParser.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -74,7 +76,7 @@ public:
         _touchListener->release();
     }
 
-    void onTouchesEnded(const std::vector<Touch*>& touches, Event *event)
+    void onTouchesEnded(const std::vector<Touch*>& touches, Event* /*event*/)
     {
         for (const auto& touch: touches)
         {
@@ -161,10 +163,10 @@ bool RichElementText::init(int tag, const Color3B &color, GLubyte opacity, const
     return false;
 }
 
-RichElementImage* RichElementImage::create(int tag, const Color3B &color, GLubyte opacity, const std::string& filePath, const std::string& url)
+RichElementImage* RichElementImage::create(int tag, const Color3B &color, GLubyte opacity, const std::string& filePath, const std::string& url, Widget::TextureResType texType)
 {
     RichElementImage* element = new (std::nothrow) RichElementImage();
-    if (element && element->init(tag, color, opacity, filePath, url))
+    if (element && element->init(tag, color, opacity, filePath, url, texType))
     {
         element->autorelease();
         return element;
@@ -173,7 +175,7 @@ RichElementImage* RichElementImage::create(int tag, const Color3B &color, GLubyt
     return nullptr;
 }
     
-bool RichElementImage::init(int tag, const Color3B &color, GLubyte opacity, const std::string& filePath, const std::string& url)
+bool RichElementImage::init(int tag, const Color3B &color, GLubyte opacity, const std::string& filePath, const std::string& url, Widget::TextureResType texType)
 {
     if (RichElement::init(tag, color, opacity))
     {
@@ -181,6 +183,7 @@ bool RichElementImage::init(int tag, const Color3B &color, GLubyte opacity, cons
         _width = -1;
         _height = -1;
         _url = url;
+        _textureType = texType;
         return true;
     }
     return false;
@@ -237,7 +240,7 @@ RichElementNewLine* RichElementNewLine::create(int tag, const Color3B& color, GL
 }
 
 /** @brief parse a XML. */
-class MyXMLVisitor: public tinyxml2::XMLVisitor
+class MyXMLVisitor : public SAXDelegator
 {
 public:
     /** @brief underline or strikethrough */
@@ -280,11 +283,11 @@ public:
             hasColor = true;
         }
         Attributes()
-        : bold(false)
+        : fontSize(-1)
+        , hasColor(false)
+        , bold(false)
         , italics(false)
         , line(StyleLine::NONE)
-        , hasColor(false)
-        , fontSize(-1)
         , effect(StyleEffect::NONE)
         {
         }
@@ -329,14 +332,12 @@ public:
     
     std::tuple<bool, Color3B> getGlow() const;
     
-    /// Visit an element.
-    virtual bool VisitEnter( const tinyxml2::XMLElement& element, const tinyxml2::XMLAttribute* firstAttribute );
-    
-    /// Visit an element.
-    virtual bool VisitExit( const tinyxml2::XMLElement& element );
-    
-    /// Visit a text node.
-    virtual bool Visit(const tinyxml2::XMLText& text);
+    void startElement(void *ctx, const char *name, const char **atts) override;
+
+    void endElement(void *ctx, const char *name) override;
+
+    void textHandler(void *ctx, const char *s, size_t len) override;
+
     
     void pushBackFontElement(const Attributes& attribs);
     
@@ -349,14 +350,14 @@ public:
     static void removeTagDescription(const std::string& tag);
     
 private:
-    ValueMap tagAttrMapWithXMLElement(const tinyxml2::XMLElement& element);
+    ValueMap tagAttrMapWithXMLElement(const char ** attrs);
 };
 
 MyXMLVisitor::TagTables MyXMLVisitor::_tagTables;
 
 MyXMLVisitor::MyXMLVisitor(RichText* richText)
-: _richText(richText)
-, _fontElements(20)
+:  _fontElements(20)
+, _richText(richText)
 {
     MyXMLVisitor::setTagDescription("font", true, [](const ValueMap& tagAttrValueMap) {
         // supported attributes:
@@ -376,41 +377,41 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
         return make_pair(attrValueMap, nullptr);
     });
     
-    MyXMLVisitor::setTagDescription("b", true, [](const ValueMap& tagAttrValueMap) {
+    MyXMLVisitor::setTagDescription("b", true, [](const ValueMap& /*tagAttrValueMap*/) {
         // no supported attributes
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_TEXT_BOLD] = true;
         return make_pair(attrValueMap, nullptr);
     });
     
-    MyXMLVisitor::setTagDescription("i", true, [](const ValueMap& tagAttrValueMap) {
+    MyXMLVisitor::setTagDescription("i", true, [](const ValueMap& /*tagAttrValueMap*/) {
         // no supported attributes
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_TEXT_ITALIC] = true;
         return make_pair(attrValueMap, nullptr);
     });
     
-    MyXMLVisitor::setTagDescription("del", true, [](const ValueMap& tagAttrValueMap) {
+    MyXMLVisitor::setTagDescription("del", true, [](const ValueMap& /*tagAttrValueMap*/) {
         // no supported attributes
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_TEXT_LINE] = RichText::VALUE_TEXT_LINE_DEL;
         return make_pair(attrValueMap, nullptr);
     });
     
-    MyXMLVisitor::setTagDescription("u", true, [](const ValueMap& tagAttrValueMap) {
+    MyXMLVisitor::setTagDescription("u", true, [](const ValueMap& /*tagAttrValueMap*/) {
         // no supported attributes
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_TEXT_LINE] = RichText::VALUE_TEXT_LINE_UNDER;
         return make_pair(attrValueMap, nullptr);
     });
     
-    MyXMLVisitor::setTagDescription("small", true, [](const ValueMap& tagAttrValueMap) {
+    MyXMLVisitor::setTagDescription("small", true, [](const ValueMap& /*tagAttrValueMap*/) {
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_FONT_SMALL] = true;
         return make_pair(attrValueMap, nullptr);
     });
     
-    MyXMLVisitor::setTagDescription("big", true, [](const ValueMap& tagAttrValueMap) {
+    MyXMLVisitor::setTagDescription("big", true, [](const ValueMap& /*tagAttrValueMap*/) {
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_FONT_BIG] = true;
         return make_pair(attrValueMap, nullptr);
@@ -422,6 +423,7 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
         std::string src;
         int height = -1;
         int width = -1;
+        Widget::TextureResType resType = Widget::TextureResType::LOCAL;
         
         if (tagAttrValueMap.find("src") != tagAttrValueMap.end()) {
             src = tagAttrValueMap.at("src").asString();
@@ -432,10 +434,17 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
         if (tagAttrValueMap.find("width") != tagAttrValueMap.end()) {
             width = tagAttrValueMap.at("width").asInt();
         }
+        if (tagAttrValueMap.find("type") != tagAttrValueMap.end()) {
+            // texture type
+            // 0: normal file path
+            // 1: sprite frame name
+            int type = tagAttrValueMap.at("type").asInt();
+            resType = type == 0 ? Widget::TextureResType::LOCAL : Widget::TextureResType::PLIST;
+        }
         
         RichElementImage* elementImg = nullptr;
         if (src.length()) {
-            elementImg = RichElementImage::create(0, Color3B::WHITE, 255, src);
+            elementImg = RichElementImage::create(0, Color3B::WHITE, 255, src, "", resType);
             if (0 <= height) elementImg->setHeight(height);
             if (0 <= width)  elementImg->setWidth(width);
         }
@@ -452,7 +461,7 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
         return make_pair(attrValueMap, nullptr);
     });
     
-    MyXMLVisitor::setTagDescription("br", false, [](const ValueMap& tagAttrValueMap)  {
+    MyXMLVisitor::setTagDescription("br", false, [](const ValueMap& /*tagAttrValueMap*/)  {
         RichElementNewLine* richElement = RichElementNewLine::create(0, Color3B::WHITE, 255);
         return make_pair(ValueMap(), richElement);
     });
@@ -512,7 +521,7 @@ MyXMLVisitor::~MyXMLVisitor()
 
 Color3B MyXMLVisitor::getColor() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->hasColor)
             return i->color;
@@ -522,7 +531,7 @@ Color3B MyXMLVisitor::getColor() const
 
 float MyXMLVisitor::getFontSize() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->fontSize != -1)
             return i->fontSize;
@@ -532,7 +541,7 @@ float MyXMLVisitor::getFontSize() const
 
 std::string MyXMLVisitor::getFace() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->face.size() != 0)
             return i->face;
@@ -542,7 +551,7 @@ std::string MyXMLVisitor::getFace() const
 
 std::string MyXMLVisitor::getURL() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->url.size() != 0)
             return i->url;
@@ -552,7 +561,7 @@ std::string MyXMLVisitor::getURL() const
 
 bool MyXMLVisitor::getBold() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->bold)
             return true;
@@ -562,7 +571,7 @@ bool MyXMLVisitor::getBold() const
 
 bool MyXMLVisitor::getItalics() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->italics)
             return true;
@@ -572,7 +581,7 @@ bool MyXMLVisitor::getItalics() const
 
 bool MyXMLVisitor::getUnderline() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->line == StyleLine::UNDERLINE)
             return true;
@@ -582,7 +591,7 @@ bool MyXMLVisitor::getUnderline() const
 
 bool MyXMLVisitor::getStrikethrough() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->line == StyleLine::STRIKETHROUGH)
             return true;
@@ -592,7 +601,7 @@ bool MyXMLVisitor::getStrikethrough() const
 
 std::tuple<bool, Color3B, int> MyXMLVisitor::getOutline() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->effect == StyleEffect::OUTLINE)
             return std::make_tuple(true, i->outlineColor, i->outlineSize);
@@ -602,7 +611,7 @@ std::tuple<bool, Color3B, int> MyXMLVisitor::getOutline() const
 
 std::tuple<bool, Color3B, cocos2d::Size, int> MyXMLVisitor::getShadow() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->effect == StyleEffect::SHADOW)
             return std::make_tuple(true, i->shadowColor, i->shadowOffset, i->shadowBlurRadius);
@@ -612,7 +621,7 @@ std::tuple<bool, Color3B, cocos2d::Size, int> MyXMLVisitor::getShadow() const
 
 std::tuple<bool, Color3B> MyXMLVisitor::getGlow() const
 {
-    for (auto i = _fontElements.rbegin(); i != _fontElements.rend(); ++i)
+    for (auto i = _fontElements.rbegin(), iRend = _fontElements.rend(); i != iRend; ++i)
     {
         if (i->effect == StyleEffect::GLOW)
             return std::make_tuple(true, i->glowColor);
@@ -620,14 +629,13 @@ std::tuple<bool, Color3B> MyXMLVisitor::getGlow() const
     return std::make_tuple(false, Color3B::WHITE);
 }
 
-bool MyXMLVisitor::VisitEnter( const tinyxml2::XMLElement& element, const tinyxml2::XMLAttribute* firstAttribute )
+void MyXMLVisitor::startElement(void* /*ctx*/, const char *elementName, const char **atts)
 {
-    auto elementName = element.Value();
     auto it = _tagTables.find(elementName);
     if (it != _tagTables.end()) {
         auto tagBehavior = it->second;
         if (tagBehavior.handleVisitEnter != nullptr) {
-            ValueMap&& tagAttrValueMap = tagAttrMapWithXMLElement(element);
+            ValueMap&& tagAttrValueMap = tagAttrMapWithXMLElement(atts);
             auto result = tagBehavior.handleVisitEnter(tagAttrValueMap);
             ValueMap& attrValueMap = result.first;
             RichElement* richElement = result.second;
@@ -743,12 +751,10 @@ bool MyXMLVisitor::VisitEnter( const tinyxml2::XMLElement& element, const tinyxm
             }
         }
     }
-    return true;
 }
 
-bool MyXMLVisitor::VisitExit( const tinyxml2::XMLElement& element )
+void MyXMLVisitor::endElement(void* /*ctx*/, const char *elementName)
 {
-    auto elementName = element.Value();
     auto it = _tagTables.find(elementName);
     if (it != _tagTables.end()) {
         auto tagBehavior = it->second;
@@ -756,11 +762,11 @@ bool MyXMLVisitor::VisitExit( const tinyxml2::XMLElement& element )
             popBackFontElement();
         }
     }
-    return true;
 }
 
-bool MyXMLVisitor::Visit(const tinyxml2::XMLText& text)
+void MyXMLVisitor::textHandler(void* /*ctx*/, const char *str, size_t len)
 {
+    std::string text(str, len);
     auto color = getColor();
     auto face = getFace();
     auto fontSize = getFontSize();
@@ -790,13 +796,12 @@ bool MyXMLVisitor::Visit(const tinyxml2::XMLText& text)
         flags |= RichElementText::SHADOW_FLAG;
     if (std::get<0>(glow))
         flags |= RichElementText::GLOW_FLAG;
-    
-    auto element = RichElementText::create(0, color, 255, text.Value(), face, fontSize, flags, url,
-                                           std::get<1>(outline), std::get<2>(outline),
-                                           std::get<1>(shadow), std::get<2>(shadow), std::get<3>(shadow),
-                                           std::get<1>(glow));
+
+    auto element = RichElementText::create(0, color, 255, text, face, fontSize, flags, url,
+        std::get<1>(outline), std::get<2>(outline),
+        std::get<1>(shadow), std::get<2>(shadow), std::get<3>(shadow),
+        std::get<1>(glow));
     _richText->pushBackElement(element);
-    return true;
 }
 
 void MyXMLVisitor::pushBackFontElement(const MyXMLVisitor::Attributes& attribs)
@@ -824,12 +829,12 @@ void MyXMLVisitor::removeTagDescription(const std::string& tag)
     MyXMLVisitor::_tagTables.erase(tag);
 }
 
-ValueMap MyXMLVisitor::tagAttrMapWithXMLElement(const tinyxml2::XMLElement& element)
+ValueMap MyXMLVisitor::tagAttrMapWithXMLElement(const char ** attrs)
 {
     ValueMap tagAttrValueMap;
-    for (const tinyxml2::XMLAttribute* attr = element.FirstAttribute(); attr != nullptr; attr = attr->Next()) {
-        if (attr->Name() && attr->Value()) {
-            tagAttrValueMap[std::string(attr->Name())] = std::string(attr->Value());
+    for (const char** attr = attrs; *attr != nullptr; attr = (attrs += 2)) {
+        if (attr[0] && attr[1]) {
+            tagAttrValueMap[attr[0]] = attr[1];
         }
     }
     return tagAttrValueMap;
@@ -837,6 +842,7 @@ ValueMap MyXMLVisitor::tagAttrMapWithXMLElement(const tinyxml2::XMLElement& elem
 
 const std::string RichText::KEY_VERTICAL_SPACE("KEY_VERTICAL_SPACE");
 const std::string RichText::KEY_WRAP_MODE("KEY_WRAP_MODE");
+const std::string RichText::KEY_HORIZONTAL_ALIGNMENT("KEY_HORIZONTAL_ALIGNMENT");
 const std::string RichText::KEY_FONT_COLOR_STRING("KEY_FONT_COLOR_STRING");
 const std::string RichText::KEY_FONT_SIZE("KEY_FONT_SIZE");
 const std::string RichText::KEY_FONT_SMALL("KEY_FONT_SMALL");
@@ -880,6 +886,7 @@ RichText::RichText()
 {
     _defaults[KEY_VERTICAL_SPACE] = 0.0f;
     _defaults[KEY_WRAP_MODE] = static_cast<int>(WrapMode::WRAP_PER_WORD);
+	_defaults[KEY_HORIZONTAL_ALIGNMENT] = static_cast<int>(HorizontalAlignment::LEFT);
     _defaults[KEY_FONT_COLOR_STRING] = "#ffffff";
     _defaults[KEY_FONT_SIZE] = 12.0f;
     _defaults[KEY_FONT_FACE] = "Verdana";
@@ -942,8 +949,6 @@ bool RichText::initWithXML(const std::string& origxml, const ValueMap& defaults,
     {
         setDefaults(defaults);
         setOpenUrlHandler(handleOpenUrl);
-        
-        tinyxml2::XMLDocument document;
 
         // solves to issues:
         //  - creates defaults values
@@ -952,14 +957,10 @@ bool RichText::initWithXML(const std::string& origxml, const ValueMap& defaults,
         xml += origxml;
         xml += "</font>";
 
-        auto error = document.Parse(xml.c_str(), xml.length());
-        if (error == tinyxml2::XML_SUCCESS)
-        {
-            MyXMLVisitor visitor(this);
-            document.Accept(&visitor);
-            return true;
-        }
-        CCLOG("cocos2d: UI::RichText: Error parsing xml: %s, %s", document.GetErrorStr1(), document.GetErrorStr2());
+        MyXMLVisitor visitor(this);
+        SAXParser parser;
+        parser.setDelegator(&visitor);
+        return parser.parseIntrusive(&xml.front(), xml.length());
     }
     return false;
 }
@@ -1004,6 +1005,20 @@ void RichText::setWrapMode(RichText::WrapMode wrapMode)
         _defaults[KEY_WRAP_MODE] = static_cast<int>(wrapMode);
         _formatTextDirty = true;
     }
+}
+
+RichText::HorizontalAlignment RichText::getHorizontalAlignment() const
+{
+	return static_cast<RichText::HorizontalAlignment>(_defaults.at(KEY_HORIZONTAL_ALIGNMENT).asInt());
+}
+
+void RichText::setHorizontalAlignment(cocos2d::ui::RichText::HorizontalAlignment a)
+{
+	if (static_cast<RichText::HorizontalAlignment>(_defaults.at(KEY_HORIZONTAL_ALIGNMENT).asInt()) != a)
+	{
+		_defaults[KEY_HORIZONTAL_ALIGNMENT] = static_cast<int>(a);
+		_formatTextDirty = true;
+	}
 }
 
 void RichText::setFontColor(const std::string& color)
@@ -1209,6 +1224,9 @@ void RichText::setDefaults(const ValueMap& defaults)
     if (defaults.find(KEY_WRAP_MODE) != defaults.end()) {
         _defaults[KEY_WRAP_MODE] = defaults.at(KEY_WRAP_MODE).asInt();
     }
+	if (defaults.find(KEY_HORIZONTAL_ALIGNMENT) != defaults.end()) {
+		_defaults[KEY_HORIZONTAL_ALIGNMENT] = defaults.at(KEY_HORIZONTAL_ALIGNMENT).asInt();
+	}
     if (defaults.find(KEY_FONT_COLOR_STRING) != defaults.end()) {
         _defaults[KEY_FONT_COLOR_STRING] = defaults.at(KEY_FONT_COLOR_STRING).asString();
     }
@@ -1340,7 +1358,7 @@ void RichText::formatText()
         if (_ignoreSize)
         {
             addNewLine();
-            for (ssize_t i=0; i<_richElements.size(); i++)
+            for (ssize_t i=0, size = _richElements.size(); i<size; ++i)
             {
                 RichElement* element = _richElements.at(i);
                 Node* elementRenderer = nullptr;
@@ -1386,7 +1404,11 @@ void RichText::formatText()
                     case RichElement::Type::IMAGE:
                     {
                         RichElementImage* elmtImage = static_cast<RichElementImage*>(element);
-                        elementRenderer = Sprite::create(elmtImage->_filePath);
+                        if (elmtImage->_textureType == Widget::TextureResType::LOCAL)
+                            elementRenderer = Sprite::create(elmtImage->_filePath);
+                        else
+                            elementRenderer = Sprite::createWithSpriteFrameName(elmtImage->_filePath);
+                        
                         if (elementRenderer && (elmtImage->_height != -1 || elmtImage->_width != -1))
                         {
                             auto currentSize = elementRenderer->getContentSize();
@@ -1428,7 +1450,7 @@ void RichText::formatText()
         else
         {
             addNewLine();
-            for (ssize_t i=0; i<_richElements.size(); i++)
+            for (ssize_t i=0, size = _richElements.size(); i<size; ++i)
             {
                 RichElement* element = static_cast<RichElement*>(_richElements.at(i));
                 switch (element->_type)
@@ -1483,7 +1505,7 @@ static int getPrevWord(const std::string& text, int idx)
 
 static bool isWrappable(const std::string& text)
 {
-    for (size_t i = 0; i < text.length(); ++i)
+    for (size_t i = 0, size = text.length(); i < size; ++i)
     {
         if (!std::isalnum(text[i], std::locale()))
             return true;
@@ -1691,7 +1713,7 @@ void RichText::handleTextRenderer(const std::string& text, const std::string& fo
     }
 }
     
-void RichText::handleImageRenderer(const std::string& filePath, const Color3B &color, GLubyte opacity, int width, int height, const std::string& url)
+void RichText::handleImageRenderer(const std::string& filePath, const Color3B &/*color*/, GLubyte /*opacity*/, int width, int height, const std::string& url)
 {
     Sprite* imageRenderer = Sprite::create(filePath);
     if (imageRenderer)
@@ -1703,7 +1725,7 @@ void RichText::handleImageRenderer(const std::string& filePath, const Color3B &c
             imageRenderer->setScaleY(height / currentSize.height);
         imageRenderer->setContentSize(Size(currentSize.width * imageRenderer->getScaleX(),
                                              currentSize.height * imageRenderer->getScaleY()));
-
+        imageRenderer->setScale(1.f, 1.f);
         handleCustomRenderer(imageRenderer);
         imageRenderer->addComponent(ListenerComponent::create(imageRenderer,
                                                               url,
@@ -1730,7 +1752,7 @@ void RichText::handleCustomRenderer(cocos2d::Node *renderer)
 void RichText::addNewLine()
 {
     _leftSpaceWidth = _customSize.width;
-    _elementRenders.push_back(new Vector<Node*>());
+    _elementRenders.emplace_back();
 }
     
 void RichText::formarRenderers()
@@ -1739,70 +1761,65 @@ void RichText::formarRenderers()
     {
         float newContentSizeWidth = 0.0f;
         float nextPosY = 0.0f;
+        std::vector<std::pair<Vector<Node*>*, float> > rowWidthPairs;
+        rowWidthPairs.reserve(_elementRenders.size());
         for (auto& element: _elementRenders)
         {
-            Vector<Node*>* row = element;
             float nextPosX = 0.0f;
             float maxY = 0.0f;
-            for (ssize_t j=0; j<row->size(); j++)
+            for (auto& iter : element)
             {
-                Node* l = row->at(j);
-                l->setAnchorPoint(Vec2::ZERO);
-                l->setPosition(nextPosX, nextPosY);
-                this->addProtectedChild(l, 1);
-                Size iSize = l->getContentSize();
+                iter->setAnchorPoint(Vec2::ZERO);
+                iter->setPosition(nextPosX, nextPosY);
+                this->addProtectedChild(iter, 1);
+                Size iSize = iter->getContentSize();
                 newContentSizeWidth += iSize.width;
                 nextPosX += iSize.width;
                 maxY = MAX(maxY, iSize.height);
             }
             nextPosY -= maxY;
+            rowWidthPairs.emplace_back(&element, nextPosX);
         }
         this->setContentSize(Size(newContentSizeWidth, -nextPosY));
+        for ( auto& row : rowWidthPairs )
+            doHorizontalAlignment(*row.first, row.second);
     }
     else
     {
         float newContentSizeHeight = 0.0f;
-        float *maxHeights = new (std::nothrow) float[_elementRenders.size()];
+        std::vector<float> maxHeights(_elementRenders.size());
         
-        for (size_t i=0; i<_elementRenders.size(); i++)
+        for (size_t i=0, size = _elementRenders.size(); i<size; i++)
         {
-            Vector<Node*>* row = (_elementRenders[i]);
+            Vector<Node*>& row = _elementRenders[i];
             float maxHeight = 0.0f;
-            for (ssize_t j=0; j<row->size(); j++)
+            for (auto& iter : row)
             {
-                Node* l = row->at(j);
-                maxHeight = MAX(l->getContentSize().height, maxHeight);
+                maxHeight = MAX(iter->getContentSize().height, maxHeight);
             }
             maxHeights[i] = maxHeight;
             newContentSizeHeight += maxHeights[i];
         }
         
         float nextPosY = _customSize.height;
-        for (size_t i=0; i<_elementRenders.size(); i++)
+        for (size_t i=0, size = _elementRenders.size(); i<size; i++)
         {
-            Vector<Node*>* row = (_elementRenders[i]);
+            Vector<Node*>& row = _elementRenders[i];
             float nextPosX = 0.0f;
             nextPosY -= (maxHeights[i] + _defaults.at(KEY_VERTICAL_SPACE).asFloat());
             
-            for (ssize_t j=0; j<row->size(); j++)
+            for (auto& iter : row)
             {
-                Node* l = row->at(j);
-                l->setAnchorPoint(Vec2::ZERO);
-                l->setPosition(nextPosX, nextPosY);
-                this->addProtectedChild(l, 1);
-                nextPosX += l->getContentSize().width;
+                iter->setAnchorPoint(Vec2::ZERO);
+                iter->setPosition(nextPosX, nextPosY);
+                this->addProtectedChild(iter, 1);
+                nextPosX += iter->getContentSize().width;
             }
+            
+            doHorizontalAlignment(row, nextPosX);
         }
-        delete [] maxHeights;
     }
     
-    size_t length = _elementRenders.size();
-    for (size_t i = 0; i<length; i++)
-	{
-        Vector<Node*>* l = _elementRenders[i];
-        l->clear();
-        delete l;
-	}    
     _elementRenders.clear();
     
     if (_ignoreSize)
@@ -1816,19 +1833,73 @@ void RichText::formarRenderers()
     }
     updateContentSizeWithTextureSize(_contentSize);
 }
-    
+
+namespace {
+    float getPaddingAmount(const RichText::HorizontalAlignment alignment, const float leftOver) {
+        switch ( alignment ) {
+            case RichText::HorizontalAlignment::CENTER:
+                return leftOver / 2.f;
+            case RichText::HorizontalAlignment::RIGHT:
+                return leftOver;
+            default:
+                CCASSERT(false, "invalid horizontal alignment!");
+                return 0.f;
+        }
+    }
+}
+
+void RichText::doHorizontalAlignment(const Vector<cocos2d::Node*> &row, float rowWidth) {
+    const auto alignment = static_cast<HorizontalAlignment>(_defaults.at(KEY_HORIZONTAL_ALIGNMENT).asInt());
+    if ( alignment != HorizontalAlignment::LEFT ) {
+        const auto diff = stripTrailingWhitespace(row);
+        const auto leftOver = getContentSize().width - (rowWidth + diff);
+        const float leftPadding = getPaddingAmount(alignment, leftOver);
+        const Vec2 offset(leftPadding, 0.f);
+        for ( auto& node : row ) {
+            node->setPosition(node->getPosition() + offset);
+        }
+    }
+}
+
+namespace {
+    bool isWhitespace(char c) {
+        return std::isspace(c, std::locale());
+    }
+    std::string rtrim(std::string s) {
+        s.erase(std::find_if_not(s.rbegin(),
+                                 s.rend(),
+                                 isWhitespace).base(),
+                s.end());
+        return s;
+    }
+}
+
+float RichText::stripTrailingWhitespace(const Vector<cocos2d::Node*>& row) {
+    if ( !row.empty() ) {
+        if ( auto label = dynamic_cast<Label*>(row.back()) ) {
+            const auto width = label->getContentSize().width;
+            const auto trimmedString = rtrim(label->getString());
+            if ( label->getString() != trimmedString ) {
+                label->setString(trimmedString);
+                return label->getContentSize().width - width;
+            }
+        }
+    }
+    return 0.0f;
+}
+
 void RichText::adaptRenderers()
 {
     this->formatText();
 }
-    
+
 void RichText::pushToContainer(cocos2d::Node *renderer)
 {
     if (_elementRenders.size() <= 0)
     {
         return;
     }
-    _elementRenders[_elementRenders.size()-1]->pushBack(renderer);
+    _elementRenders[_elementRenders.size()-1].pushBack(renderer);
 }
     
 void RichText::setVerticalSpace(float space)
