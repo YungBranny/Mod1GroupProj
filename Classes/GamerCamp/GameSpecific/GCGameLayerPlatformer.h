@@ -7,6 +7,9 @@
 
 #include "../GCCocosInterface/IGCGameLayer.h"
 
+#ifndef _GCLEVELLOADER_OGMO_H_
+	#include "../GCCocosInterface/LevelLoader/GCLevelLoader_Ogmo.h"
+#endif
 
 //////////////////////////////////////////////////////////////////////////
 // fwd decl
@@ -39,7 +42,11 @@ private:
 	CGCObjSprite*					m_pcGCSprBackGround;
 
 	// mario
-	CGCObjPlayer*					m_pcGCOPlayer;
+	CGCObjPlayer*				m_pcGCOPlayer;
+	CGCFactoryCreationParams	m_sPlayerCreateParams;
+
+	// level loader
+	CGCLevelLoader_Ogmo		m_cLevelLoader;
 
 public:
 	CGCGameLayerPlatformer	( void );

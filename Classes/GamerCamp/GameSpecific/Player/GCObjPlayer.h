@@ -9,6 +9,10 @@
 	#include "../../GCCocosInterface/GCObjSpritePhysics.h"
 #endif
 
+#ifndef _GCFACTORY_OBJSPRITEPHYSICS_H_
+	#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
+#endif
+
 
 //////////////////////////////////////////////////////////////////////////
 // forward declare
@@ -52,6 +56,10 @@ private:
 
 public:
 	CGCObjPlayer();
+
+	//////////////////////////////////////////////////////////////////////////
+	// declare the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
+	GCFACTORY_DECLARE_CREATABLECLASS( CGCObjPlayer );
 
 	//////////////////////////////////////////////////////////////////////////
 	// we need a virtual destructor since delete will be called on pointers of 

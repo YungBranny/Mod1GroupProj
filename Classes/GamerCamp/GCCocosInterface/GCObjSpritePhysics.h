@@ -51,11 +51,11 @@ protected:
 
 	inline b2Body* GetPhysicsBody();
 
-	inline const CGCFactoryCreationParams* GetFactoryCreationParams()	const;
+public:	
+	inline const CGCFactoryCreationParams* GetFactoryCreationParams( void )	const;
 
-public:
-							CGCObjSpritePhysics();
-	virtual					~CGCObjSpritePhysics();
+					CGCObjSpritePhysics	( void );
+	virtual			~CGCObjSpritePhysics( void );
 
 	void					InitBox2DParams( const b2BodyDef& rBodyDef, const char* pszShapeName );
 

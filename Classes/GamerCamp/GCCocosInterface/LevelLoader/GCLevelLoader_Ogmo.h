@@ -10,6 +10,11 @@
 	#include "GamerCamp\GCCocosInterface\SGCFactoryCreationParams.h"
 #endif
 
+#ifndef MATH_VEC2_H
+	#include "cocos2d/cocos/math/Vec2.h"
+#endif
+
+
 #ifndef TINYXML2_INCLUDED
 	#include "external\tinyxml2\tinyxml2.h"
 #endif
@@ -69,7 +74,7 @@ class CGCLevelLoader_Ogmo
 	inline bool								IsValidFactoryData						( const tinyxml2::XMLElement& rxmlElement );
 	inline const char*						GetFactoryClassName						( const tinyxml2::XMLElement& rxmlElement );
 	inline const CGCFactoryCreationParams*	GetFactoryData							( const tinyxml2::XMLElement& rxmlElement );
-	inline b2Vec2							GetObjectPosition						( const tinyxml2::XMLElement& rxmlElement );
+	inline cocos2d::Vec2					GetObjectPosition						( const tinyxml2::XMLElement& rxmlElement );
 
 public:
 	inline bool								AddFactoryDataForXMLElementAndCreateInstance		( const tinyxml2::XMLElement& rxmlElement, CGCFactory_ObjSpritePhysics& rClassFactory );

@@ -49,6 +49,9 @@
     <Filter Include="Classes\GamerCamp\GameController">
       <UniqueIdentifier>{4ae41667-3df5-4816-b3c8-f6aa92570597}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GCCocosInterface\LevelLoader">
+      <UniqueIdentifier>{dc3fe9f1-371d-46a8-98ad-a1216f6a7390}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -140,6 +143,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCCollisionManager.cpp">
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCFactory_ObjSpritePhysics.cpp">
+      <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\LevelLoader\GCLevelLoader_Ogmo.cpp">
+      <Filter>Classes\GamerCamp\GCCocosInterface\LevelLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +253,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCCollisionManager.h">
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCFactory_ObjSpritePhysics.h">
+      <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\LevelLoader\GCLevelLoader_Ogmo.h">
+      <Filter>Classes\GamerCamp\GCCocosInterface\LevelLoader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

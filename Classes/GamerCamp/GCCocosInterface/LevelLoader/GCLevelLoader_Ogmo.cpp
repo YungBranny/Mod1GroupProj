@@ -6,19 +6,7 @@
 
 #include "cocos2d.h"
 
-#include "../../GameSpecific/GCGameLayerPlatformer.h"
-#include "../IGCGameLayer.h"
-
-#include "GamerCamp/GCObject/GCObjectManager.h"
-#include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
-#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
-#include "GamerCamp/GCCocosInterface/GCObjTileLayer.h"
-#include "GamerCamp/GameSpecific/Player/GCObjPlayer.h"
-#include "GamerCamp/GameSpecific/Invaders/GCObjInvader.h"
-#include "GamerCamp/GameSpecific/Invaders/GCObjGroupInvader.h"
-#include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
-#include "GamerCamp/GameSpecific/Items/GCObjItem.h" 
-#include "AppDelegate.h"
+#include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 #include "GCLevelLoader_Ogmo.h"
 
@@ -162,7 +150,7 @@ inline bool CGCLevelLoader_Ogmo::AddFactoryDataForXMLElementAndCreateInstance( c
 			pParams = AddCreationParamsToInternalStore( GetFactoryData( rxmlElement ) );
 		}
 
-		b2Vec2 v2Pos = GetObjectPosition( rxmlElement );
+		cocos2d::Vec2 v2Pos = GetObjectPosition( rxmlElement );
 		CCLOG( "creating instance of %s at position [%f, %f]", pParams->strClassName.c_str(), v2Pos.x, v2Pos.y );
 
 		CCAssert( ( m_vecFactoryCreatedObjects.size() < EMAX_HANDLED_OBJECTS ),
@@ -226,15 +214,15 @@ inline const CGCFactoryCreationParams* CGCLevelLoader_Ogmo::GetFactoryData( cons
 
 //////////////////////////////////////////////////////////////////////////
 // private  
-inline b2Vec2 CGCLevelLoader_Ogmo::GetObjectPosition( const tinyxml2::XMLElement& rxmlElement )
+inline cocos2d::Vec2 CGCLevelLoader_Ogmo::GetObjectPosition( const tinyxml2::XMLElement& rxmlElement )
 {
 	// N.B. we use the screen origin as the level position origin
 	// this means that the bottom left of your level will always be visible, but the top right not guaranteed
 	// resolution and sprite scale settings are all in AppDelegate.cpp - good luck!
-	Point	origin = Director::getInstance()->getVisibleOrigin();
-	b2Vec2	v2Origin( origin.x, origin.y );
+	Point			origin = Director::getInstance()->getVisibleOrigin();
+	cocos2d::Vec2	v2Origin( origin.x, origin.y );
 
-	return( v2Origin + b2Vec2(	rxmlElement.FloatAttribute( k_pszXmlAttr_StartPos_X ), 
+	return( v2Origin + cocos2d::Vec2(	rxmlElement.FloatAttribute( k_pszXmlAttr_StartPos_X ),
 								( m_v2LevelDimensions.y - rxmlElement.FloatAttribute( k_pszXmlAttr_StartPos_Y ) ) ) );
 }
 

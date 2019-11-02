@@ -43,7 +43,7 @@ void CGCFactory_ObjSpritePhysics::RegisterCreatableClass( const char* pszClassNa
 //////////////////////////////////////////////////////////////////////////
 // factory function
 //////////////////////////////////////////////////////////////////////////
-CGCObjSpritePhysics* CGCFactory_ObjSpritePhysics::CreateInstance( const CGCFactoryCreationParams& rCreationParams, b2Vec2 v2InitialPosition )
+CGCObjSpritePhysics* CGCFactory_ObjSpritePhysics::CreateInstance( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition )
 {
 	CGCObjSpritePhysics*	pReturn			= NULL;
 

@@ -5,18 +5,19 @@
 #ifndef _GCOBJITEMS_H_
 #define _GCOBJITEMS_H_
 
+#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 #include "../../GCCocosInterface/GCObjSpritePhysics.h"
 
 class CGCObjItem
 : public CGCObjSpritePhysics
 {
 public:
+	GCFACTORY_DECLARE_CREATABLECLASS( CGCObjItem );
+
 
 	CGCObjItem(	void )
 	: CGCObjSpritePhysics( GetGCTypeIDOf( CGCObjItem ) )
 	{}
-
-	virtual void VOnResourceAcquire( void ) override;
 };
 
 

@@ -16,8 +16,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{05
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "librecast", "..\cocos2d\external\recast\proj.win32\librecast.vcxproj", "{41E34993-647E-4282-8384-4AB1AE31A452}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libSpine", "..\cocos2d\cocos\editor-support\spine\proj.win32\libSpine.vcxproj", "{B7C2A162-DEC9-4418-972E-240AB3CBFCAE}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildData", "..\BuildData\BuildData.vcxproj", "{2877CAA6-A032-44DD-B218-EB901CA9283A}"
 EndProject
 Global
@@ -60,14 +58,6 @@ Global
 		{41E34993-647E-4282-8384-4AB1AE31A452}.Release with data|Win32.Build.0 = Release|Win32
 		{41E34993-647E-4282-8384-4AB1AE31A452}.Release|Win32.ActiveCfg = Release|Win32
 		{41E34993-647E-4282-8384-4AB1AE31A452}.Release|Win32.Build.0 = Release|Win32
-		{B7C2A162-DEC9-4418-972E-240AB3CBFCAE}.Debug with data|Win32.ActiveCfg = Debug|Win32
-		{B7C2A162-DEC9-4418-972E-240AB3CBFCAE}.Debug with data|Win32.Build.0 = Debug|Win32
-		{B7C2A162-DEC9-4418-972E-240AB3CBFCAE}.Debug|Win32.ActiveCfg = Debug|Win32
-		{B7C2A162-DEC9-4418-972E-240AB3CBFCAE}.Debug|Win32.Build.0 = Debug|Win32
-		{B7C2A162-DEC9-4418-972E-240AB3CBFCAE}.Release with data|Win32.ActiveCfg = Release|Win32
-		{B7C2A162-DEC9-4418-972E-240AB3CBFCAE}.Release with data|Win32.Build.0 = Release|Win32
-		{B7C2A162-DEC9-4418-972E-240AB3CBFCAE}.Release|Win32.ActiveCfg = Release|Win32
-		{B7C2A162-DEC9-4418-972E-240AB3CBFCAE}.Release|Win32.Build.0 = Release|Win32
 		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Debug with data|Win32.ActiveCfg = Debug with data|Win32
 		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Debug with data|Win32.Build.0 = Debug with data|Win32
 		{2877CAA6-A032-44DD-B218-EB901CA9283A}.Debug|Win32.ActiveCfg = Debug|Win32
@@ -81,7 +71,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{929480E7-23C0-4DF6-8456-096D71547116} = {057918D7-2822-4E8D-BD80-C1E699031CDB}
 		{41E34993-647E-4282-8384-4AB1AE31A452} = {057918D7-2822-4E8D-BD80-C1E699031CDB}
-		{B7C2A162-DEC9-4418-972E-240AB3CBFCAE} = {057918D7-2822-4E8D-BD80-C1E699031CDB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {86F19666-38E7-4CC3-9012-1A9E8E4B1BD5}

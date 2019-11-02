@@ -37,7 +37,7 @@ public:
 
 private:
 	// typedef for the function pointer signature required to use the factory
-	typedef CGCObjSpritePhysics* (*pfnFactoryFunction)( const CGCFactoryCreationParams& rCreateParams, b2Vec2 v2InitialPosition );
+	typedef CGCObjSpritePhysics* (*pfnFactoryFunction)( const CGCFactoryCreationParams& rCreateParams, cocos2d::Vec2 v2InitialPosition );
 
 	// struct used to store the data needed for the factory
 	struct SCreatableClass
@@ -66,7 +66,7 @@ public:
 
 
 	// factory function
-	CGCObjSpritePhysics* CreateInstance( const CGCFactoryCreationParams& rCreationParams, b2Vec2 v2InitialPosition ); 
+	CGCObjSpritePhysics* CreateInstance( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition );
 };
 
 
@@ -75,12 +75,12 @@ public:
 
 // must be put in a public: section of your class declaration in the classes .h file
 #define GCFACTORY_DECLARE_CREATABLECLASS( ClassName	) \
-	static CGCObjSpritePhysics* GCFactoryFunction_##ClassName( const CGCFactoryCreationParams& rCreationParams, b2Vec2 v2InitialPosition )
+	static CGCObjSpritePhysics* GCFactoryFunction_##ClassName( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition )
 
 
 // must be put in the corresponding .cpp file to that where GCFACTORY_DECLARE_CREATABLECLASS() was used
 #define GCFACTORY_IMPLEMENT_CREATEABLECLASS( ClassName ) \
-	CGCObjSpritePhysics* ClassName::GCFactoryFunction_##ClassName( const CGCFactoryCreationParams& rCreationParams, b2Vec2 v2InitialPosition )\
+	CGCObjSpritePhysics* ClassName::GCFactoryFunction_##ClassName( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition )\
 	{\
 		ClassName* pReturn = new ClassName();\
 		pReturn->VHandleFactoryParams( rCreationParams, v2InitialPosition );\

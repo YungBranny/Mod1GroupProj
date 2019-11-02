@@ -24,6 +24,11 @@ static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYST
 
 
 //////////////////////////////////////////////////////////////////////////
+// implement the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
+GCFACTORY_IMPLEMENT_CREATEABLECLASS( CGCObjPlayer );
+
+
+//////////////////////////////////////////////////////////////////////////
 // GetGCTypeIDOf uses the template in GCTypeID to generate a unique ID for 
 // this type - need this to construct our base type
 CGCObjPlayer::CGCObjPlayer()
@@ -42,15 +47,15 @@ CGCObjPlayer::CGCObjPlayer()
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
-IN_CPP_CREATION_PARAMS_DECLARE( CGCObjPlayer, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true );
 //virtual 
 void CGCObjPlayer::VOnResourceAcquire()
 {
-	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjPlayer );
+	const char* pszPlist_mario		= "TexturePacker/Sprites/Mario/Mario.plist";
+	const char* pszAnim_marioJog	= "Jog";
+
+	SetName( "Mario!!" );
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
-
-	const char* pszAnim_marioJog = "Jog";
 
 	// animate!
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( GetFactoryCreationParams()->strPlistFile );
