@@ -307,7 +307,10 @@ void IGCGameLayer::VOnUpdate( f32 fTimeStep )
 void IGCGameLayer::VOnResourceRelease( void)
 {
 	CGCObjectManager::OnResourceRelease();
-	GB2ShapeCache::sharedGB2ShapeCache()->reset();
+
+	// DON'T DO THIS!!
+	// Will break when you use a transition with ReplaceScene()
+	//GB2ShapeCache::sharedGB2ShapeCache()->reset();
 }
 
 
