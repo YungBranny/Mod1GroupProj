@@ -104,9 +104,10 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	
 	////////////////////////////////////////////////////////////////////////// 
-	// reset handling
+	// reset / quit handling
 private:
 	bool							m_bResetWasRequested;
+	bool							m_bQuitWasRequested;
 
 	void RequestReset()
 	{
@@ -121,6 +122,21 @@ private:
 	bool ResetWasRequested()
 	{
 		return m_bResetWasRequested; 
+	}
+
+	void RequestQuit()
+	{
+		m_bQuitWasRequested = true; 
+	}
+
+	void QuitRequestWasHandled()
+	{
+		m_bQuitWasRequested = false; 
+	}
+
+	bool QuitWasRequested()
+	{
+		return m_bQuitWasRequested; 
 	}
 };
 

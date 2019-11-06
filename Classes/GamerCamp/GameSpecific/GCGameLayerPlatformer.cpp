@@ -54,6 +54,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCSprBackGround			( NULL )
 , m_pcGCOPlayer					( NULL )
 , m_bResetWasRequested			( false )
+, m_bQuitWasRequested			( false )
 {
 }
 
@@ -339,6 +340,12 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		VOnReset();
 		ResetRequestWasHandled();
 	}
+
+	if( QuitWasRequested() )
+	{
+		QuitRequestWasHandled();
+		ReplaceScene( TransitionRotoZoom::create( 1.0f, CMenuLayer::scene() ) );
+	}
 }
 
 
@@ -389,7 +396,7 @@ void CGCGameLayerPlatformer::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 {
-	ReplaceScene( TransitionRotoZoom::create( 1.0f, CMenuLayer::scene() ) );
+	RequestQuit();
 }
 
 
