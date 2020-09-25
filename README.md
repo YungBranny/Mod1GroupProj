@@ -12,3 +12,24 @@ This is a framework for making 2D games *based on* cocos2d-x which is used for M
 - The Module 2 version is on branch "Module_2_Version"
 
 The main difference between the two is that Module 2 uses OGMO editor (https://ogmo-editor-3.github.io/, https://github.com/ogmo-editor-3) to load levels and uses a factory pattern to create level objects from the leel.
+
+# required tools #
+This framework relies on two paid for tools:
+TexturePacker and PhysicsEditor which are available from here: https://www.codeandweb.com/store
+
+Texture Packer has a 7 day free trial for the pro features needed for the framework's data toolchain, beyond this you will have to pay for Texture packer or export manually using the limited free features.
+Physics Editor has a free limited feature version which you can use.
+
+# relevant links #
+Content of (/SystemDiagrams): 
+
+- hand-drawn overview of cocos' system  (SystemDiagrams/CocosArchitectureOverview.jpg)
+- hand-drawn overview of the way in which the GCFramework works with Cocos (SystemDiagrams/GCTemplateClassDiagram.jpg)
+- hand-drawn overview of cocos' "memory management" paradigm (SystemDiagrams/CocosMemoryManagement.jpg)
+
+Content of (GamerCampDocs/)
+
+- explanation of the way art assets get into the game (GamerCampDocs/ArtPipeline.pdf)
+- Gamer Camp coding standards (fwiw!) (GamerCampDocs/CodingStandards.pdf)
+
+Otherwise feel free to google for cocos2d-x	and read their overview stuff, but bear in mind that the GCFramework really only uses Cocos as a renderer...
