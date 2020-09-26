@@ -268,7 +268,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. invaders are added by the invader object group
 	///////////////////////////////////////////////////////////////////////////
-	m_pcGCGroupInvader->SetFormationOrigin( v2ScreenCentre_Pixels + Vec2( -( visibleSize.width * 0.3f ), -( visibleSize.height * 0.25f ) ) );
+	m_pcGCGroupInvader->SetFormationOrigin( v2ScreenCentre_Pixels + Vec2( -( visibleSize.width * 0.3f ), ( visibleSize.height * 0.25f ) ) );
 
 	///////////////////////////////////////////////////////////////////////////
 	// add platforms & items
