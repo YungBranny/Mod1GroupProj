@@ -148,7 +148,7 @@ void CGCObjGroupInvader::DestroyInvaders()
 	// calling the supplied functor then deleting them
 	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
 	{
-		GCASSERT( GetGCTypeIDOf( CGCObjInvader ) == pObject->GetGCTypeID(), "wrong type!" );
 		// do nothing - DestroyObjectsReverseOrder calls delete!
+		GCASSERT( GetGCTypeIDOf( CGCObjInvader ) == pObject->GetGCTypeID(), "wrong type!" );
 	});
 }

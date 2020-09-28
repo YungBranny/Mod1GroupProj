@@ -113,8 +113,8 @@ void CGCObjGroupItem::DestroyItems( void )
 	// calling the supplied functor then deleting them
 	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
 	{
+		// do nothing - DestroyObjectsReverseOrder calls delete!
 		GCASSERT( GetGCTypeIDOf( CGCObjItem ) == pObject->GetGCTypeID(), "wrong type!" );
-		delete pObject;
 	});
 }
 

@@ -82,8 +82,8 @@ void CGCObjGroupPlatform::DestroyPlatforms( void )
 	// calling the supplied functor then deleting them
 	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
 	{
+		// do nothing - DestroyObjectsReverseOrder calls delete!
 		GCASSERT( GetGCTypeIDOf( CGCObjPlatform ) == pObject->GetGCTypeID(), "wrong type!" );
-		delete pObject;
 	});
 }
 

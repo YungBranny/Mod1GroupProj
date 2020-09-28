@@ -98,7 +98,7 @@ setlocal
 @dir /B /S *.tps > %_TPSLIST_FILENAME_%
 
 :: iterate through the temp file line by line running texture packer on each
-for /F "tokens=*" %%A in (%_TPSLIST_FILENAME_%) do %TEXTUREPACKER_EXE% --quiet --smart-update %%A
+for /F "tokens=*" %%A in (%_TPSLIST_FILENAME_%) do %TEXTUREPACKER_EXE% --quiet --smart-update "%%A"
 @popd
 
 
