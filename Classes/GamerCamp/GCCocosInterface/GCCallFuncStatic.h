@@ -28,7 +28,7 @@ class CGCCallFuncStatic
 {
 public:
 	CGCCallFuncStatic()
-	: m_pCallFunc		(NULL)
+	: m_pCallFunc		(nullptr)
 	{
 	}
 

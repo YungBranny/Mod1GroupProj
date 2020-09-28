@@ -91,6 +91,6 @@ void CGCKeyboardManager::Update( void )
 void CGCKeyboardManager::ShutDown( void )
 {
 	delete m_pKeyboardInput;
-	m_pKeyboardInput = NULL;
+	m_pKeyboardInput = nullptr;
 }
 

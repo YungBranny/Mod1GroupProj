@@ -42,7 +42,7 @@ using namespace cocos2d;
 
 //////////////////////////////////////////////////////////////////////////
 // init static active layer
-IGCGameLayer* IGCGameLayer::sm_ActiveGameLayer = NULL;
+IGCGameLayer* IGCGameLayer::sm_ActiveGameLayer = nullptr;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -52,8 +52,8 @@ IGCGameLayer::IGCGameLayer( GCTypeID idIGCGameLayerDerived )
 : m_idTypeID				( idIGCGameLayerDerived )
 , m_bOnTopOfSceneStack		( true )
 , m_bSceneTransitionActive	( true )
-, m_pcObjectManager			( NULL )
-, m_pcGCObjGroupDefault		( NULL )
+, m_pcObjectManager			( nullptr )
+, m_pcGCObjGroupDefault		( nullptr )
 , m_bDebugDrawIsSet			( false )
 , m_v2RawTouchPos			( 0.0f, 0.0f )
 , m_v2TouchPos				( 0.0f, 0.0f )
@@ -75,11 +75,11 @@ IGCGameLayer::~IGCGameLayer()
 	// clean default object group
 	m_pcObjectManager->ObjectGroupUnRegister( m_pcGCObjGroupDefault );
 	delete m_pcGCObjGroupDefault;
-	m_pcGCObjGroupDefault = NULL;
+	m_pcGCObjGroupDefault = nullptr;
 
 	// and object manager
 	delete m_pcObjectManager;
-	m_pcObjectManager = NULL;
+	m_pcObjectManager = nullptr;
 
 	// destroy b2dWorld
 	B2dWorldDestroy();
@@ -87,10 +87,10 @@ IGCGameLayer::~IGCGameLayer()
 	// remove self from	hidden IGCGameLayer instance list
 	GetHiddenGameLayerList().Remove( this );
 
-	// if this is the active layer set active layer to NULL
+	// if this is the active layer set active layer to nullptr
 	if( sm_ActiveGameLayer == this )
 	{
-		sm_ActiveGameLayer = NULL;
+		sm_ActiveGameLayer = nullptr;
 	}
 }
 
@@ -397,7 +397,7 @@ void IGCGameLayer::B2dWorldCreate()
 void IGCGameLayer::B2dWorldDestroy()
 {
 	delete m_pBox2DWorld;
-	m_pBox2DWorld = NULL;
+	m_pBox2DWorld = nullptr;
 }
 
 
@@ -416,12 +416,12 @@ void IGCGameLayer::VB2dWorldUpdate()
 
 	// update graphical positions based on body movement
 	for(	const b2Body* pB2Body	= m_pBox2DWorld->GetBodyList(); 
-			NULL					!= pB2Body; 
+			nullptr					!= pB2Body; 
 			pB2Body					= pB2Body->GetNext() )
 	{
 		CGCObjSpritePhysics* pcObjPhys = (CGCObjSpritePhysics*)pB2Body->GetUserData();
 		// if( this is an alex object )
-		if (pcObjPhys != NULL)
+		if (pcObjPhys != nullptr)
 		{
 			pcObjPhys->VUpdateSpriteFromBody( pB2Body );
 		}

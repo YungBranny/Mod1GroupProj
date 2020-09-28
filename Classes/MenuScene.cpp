@@ -58,7 +58,7 @@ bool CMenuLayer::init()
 										origin.y + (visibleSize.height * 0.5f ) ) );
 
     // create menu, it's an autorelease object
-    Menu* pMenu = Menu::create(pItemStartGame, NULL);
+    Menu* pMenu = Menu::create(pItemStartGame, nullptr);
     pMenu->setPosition( Vec2::ZERO );
     this->addChild(pMenu, 1);
 

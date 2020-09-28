@@ -57,7 +57,7 @@ private:
 };
 
 // since all GCTypeIDs are essentially valid memory addresses the only safe thing to 
-// use for the invalid ID is the system invalid pointer default: NULL - i.e. 0
+// use for the invalid ID is the system invalid pointer default: nullptr - i.e. 0
 #define GCTYPEID_INVALID	0
 
 // macro for getting hold of a type's ID

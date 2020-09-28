@@ -31,8 +31,8 @@ using namespace cocos2d;
 //////////////////////////////////////////////////////////////////////////
 CGCObjSpritePhysics::CGCObjSpritePhysics( GCTypeID idDerivedType )
 : CGCObjSprite		( idDerivedType )
-, m_psCreateParams	( NULL )
-, m_pb2Body			( NULL )
+, m_psCreateParams	( nullptr )
+, m_pb2Body			( nullptr )
 {
 }
 
@@ -42,8 +42,8 @@ CGCObjSpritePhysics::CGCObjSpritePhysics( GCTypeID idDerivedType )
 //////////////////////////////////////////////////////////////////////////
 CGCObjSpritePhysics::CGCObjSpritePhysics()
 : CGCObjSprite		( GetGCTypeIDOf( CGCObjSpritePhysics ) )
-, m_psCreateParams	( NULL )
-, m_pb2Body			( NULL )
+, m_psCreateParams	( nullptr )
+, m_pb2Body			( nullptr )
 {
 }
 
@@ -55,7 +55,7 @@ CGCObjSpritePhysics::CGCObjSpritePhysics()
 CGCObjSpritePhysics::~CGCObjSpritePhysics()
 {
 	// this object is owned by the box2d world
-	m_pb2Body = NULL;
+	m_pb2Body = nullptr;
 }
 
 

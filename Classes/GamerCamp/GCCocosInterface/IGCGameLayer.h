@@ -418,7 +418,7 @@ inline IGCGameLayer* IGCGameLayer::GetGameLayerByID( const GCTypeID kidOfGameLay
 			return pGameLayer;
 		}
 	}
-	return NULL;
+	return nullptr;
 }
 
 
