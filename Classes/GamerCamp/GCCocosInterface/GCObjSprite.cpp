@@ -28,7 +28,7 @@ using namespace cocos2d;
 //////////////////////////////////////////////////////////////////////////
 CGCObjSprite::CGCObjSprite( GCTypeID idDerivedType )
 : CGCObject		( idDerivedType )
-, m_pcSprite	( NULL )
+, m_pcSprite	( nullptr )
 {
 }
 
@@ -38,7 +38,7 @@ CGCObjSprite::CGCObjSprite( GCTypeID idDerivedType )
 //////////////////////////////////////////////////////////////////////////
 CGCObjSprite::CGCObjSprite()
 : CGCObject				( GetGCTypeIDOf( CGCObjSprite ) )
-, m_pcSprite			( NULL )
+, m_pcSprite			( nullptr )
 , m_v2InitialPosition	( Vec2( 0.0f, 0.0f ) )
 {
 }
@@ -50,7 +50,7 @@ CGCObjSprite::CGCObjSprite()
 //virtual 
 CGCObjSprite::~CGCObjSprite()
 {
-	CCAssert( NULL == m_pcSprite,	"CGCObjSprite::~CGCObjSprite -it appears that DestroySprite() "
+	CCAssert( nullptr == m_pcSprite,	"CGCObjSprite::~CGCObjSprite -it appears that DestroySprite() "
 									"was not called on this instance of CGCObjSprite" );
 }
 
@@ -89,7 +89,7 @@ void CGCObjSprite::CreateSpriteFast( ValueMap dicSpriteInfo )
 //////////////////////////////////////////////////////////////////////////
 void CGCObjSprite::DestroySprite()
 {
-	// this macro calls release on m_pcSprite then sets it to NULL
+	// this macro calls release on m_pcSprite then sets it to nullptr
 	CC_SAFE_RELEASE_NULL( m_pcSprite );
 }
 
@@ -100,8 +100,8 @@ void CGCObjSprite::DestroySprite()
 //////////////////////////////////////////////////////////////////////////
 void CGCObjSprite::SetParent( cocos2d::Node* pNewParent )
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
-	CCAssert( pNewParent, "pNewParent is NULL" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
+	CCAssert( pNewParent, "pNewParent is nullptr" );
 	// n.b. this does nothing if the CCNode derived type has no parent...
 	if( m_pcSprite->getParent() )
 	{
@@ -116,8 +116,8 @@ void CGCObjSprite::SetParent( cocos2d::Node* pNewParent )
 //////////////////////////////////////////////////////////////////////////
 CGCObjSprite::EActionState CGCObjSprite::RunAction( Action* pAction )
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
-	CCAssert( pAction, "pAction is NULL" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
+	CCAssert( pAction, "pAction is nullptr" );
 	m_pcSprite->runAction( pAction );
 	return EAS_Running;
 }

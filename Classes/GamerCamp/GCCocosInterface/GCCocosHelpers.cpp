@@ -133,7 +133,7 @@ namespace GCCocosHelpers
 			if( pstrFoundAt && ( pstrFoundAt == pszFrameName ) )
 			{
 				// ...and that pstrFoundAt reaches to the last \ or / in the path (i.e. we have a complete match)
-				char*	pchLastPathDelim	= NULL;
+				char*	pchLastPathDelim	= nullptr;
 				char*	pchCheck			= ((char*) pstrFoundAt) + 1;
 				int		iMaxCharsToCheck	= iFrameNameLength - 1; // N.B. can't get to this unless anim name is at 1st char of frame name...
 				for( int i = 0; i < iMaxCharsToCheck; ++i, ++pchCheck )
@@ -157,9 +157,9 @@ namespace GCCocosHelpers
 
 		}//for( all frames ){ ... check if in anim ...
 
-		// If no frames were added we return NULL, else the animation
+		// If no frames were added we return nullptr, else the animation
 		// N.B. pReturnAnim is created auto released so it will self delete if not retained
-		return ( 0 == uFramesFound ) ? NULL : pReturnAnim;
+		return ( 0 == uFramesFound ) ? nullptr : pReturnAnim;
 	}
 
 
@@ -168,7 +168,7 @@ namespace GCCocosHelpers
 	//////////////////////////////////////////////////////////////////////////
 	ActionInterval* CreateAnimationActionOnce( Animation* pAnimation )
 	{
-		CCAssert( pAnimation, "pAnimation passed as NULL" );
+		CCAssert( pAnimation, "pAnimation passed as nullptr" );
 		return Animate::create( pAnimation ); // N.B. Auto release
 	}
 
@@ -178,7 +178,7 @@ namespace GCCocosHelpers
 	//////////////////////////////////////////////////////////////////////////
 	ActionInterval* CreateAnimationActionLoop( Animation* pAnimation )
 	{
-		CCAssert( pAnimation, "pAnimation passed as NULL" );
+		CCAssert( pAnimation, "pAnimation passed as nullptr" );
 		return RepeatForever::create( Animate::create( pAnimation ) ); // N.B. Auto release
 	}
 }

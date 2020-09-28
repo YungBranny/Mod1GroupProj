@@ -91,8 +91,8 @@ void CGCObjGroupProjectilePlayer::DestroyProjectiles()
 	// calling the supplied functor then deleting them
 	DestroyObjectsReverseOrder( [&]( CGCObject* pObject )
 	{
+		// do nothing - DestroyObjectsReverseOrder calls delete!
 		GCASSERT( GetGCTypeIDOf( CGCObjProjectilePlayer ) == pObject->GetGCTypeID(), "wrong type!" );
-		delete pObject;
 	});
 }
 

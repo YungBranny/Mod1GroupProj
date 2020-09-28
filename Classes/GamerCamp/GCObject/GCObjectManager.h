@@ -67,7 +67,7 @@ private:
 	
 	// called by static fn FindObject
 	// allows CGCObjectManager to be used as an object registry
-	// returns NULL if not found
+	// returns nullptr if not found
 	CGCObject* OnFindObject( const char* pstrObjectName, GCTypeID idObjectClass );	
 
 	// helper function for registering objects
@@ -163,8 +163,8 @@ public:
 		static void			ObjectUnRegister( CGCObject* pArgObject );
 
 		// allows CGCObjectManager to be used as an object registry
-		// if pstrObjectName is NULL will return the 1st object of idObjectClass found
-		// returns NULL if not found
+		// if pstrObjectName is nullptr will return the 1st object of idObjectClass found
+		// returns nullptr if not found
 		static CGCObject*	FindObject		( const char* pstrObjectName, GCTypeID idObjectClass );
 
 		// called during gameplay to remove from the update list

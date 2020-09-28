@@ -205,9 +205,9 @@ public:
 	void OnObjectRegister		( CGCObject* pArgObject );
 	void OnObjectUnRegister		( CGCObject* pArgObject );
 	
-	// find a named object in this group - return NULL if not found
+	// find a named object in this group - return nullptr if not found
 	//
-	// N.B. if pstrObjectName is NULL will return the 1st object of idObjectClass found
+	// N.B. if pstrObjectName is nullptr will return the 1st object of idObjectClass found
 	// called from static CGCObjectManager::FindObject -> CGCObjectManager::OnFindObject
 	CGCObject* OnFindObject( const char* pstrObjectName, GCTypeID idObjectClass );
 	
@@ -500,7 +500,7 @@ inline CGCObjectGroup::EResetBehaviour CGCObjectGroup::GetResetBehaviour( void )
 
 
 //////////////////////////////////////////////////////////////////////////
-// returns the tail of the deadlist - will be NULL if empty
+// returns the tail of the deadlist - will be nullptr if empty
 //////////////////////////////////////////////////////////////////////////
 // protected
 inline CGCObject* CGCObjectGroup::GetDeadObject( void )

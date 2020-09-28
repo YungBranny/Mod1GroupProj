@@ -33,7 +33,7 @@ GCFACTORY_IMPLEMENT_CREATEABLECLASS( CGCObjPlayer );
 // this type - need this to construct our base type
 CGCObjPlayer::CGCObjPlayer()
 : CGCObjSpritePhysics			( GetGCTypeIDOf( CGCObjPlayer ) )
-, m_pProjectileManager			( NULL )
+, m_pProjectileManager			( nullptr )
 , m_fMaximumMoveForce_Horizontal( 20.0f )
 , m_fDragCoefficient_Linear		( 0.25f )
 , m_fDragCoefficient_Square		( 0.2f )

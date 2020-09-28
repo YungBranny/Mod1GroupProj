@@ -97,7 +97,7 @@ inline void CGCObjTileLayer::SetResetPosition( cocos2d::Vec2 bArgPosition )
 //////////////////////////////////////////////////////////////////////////
 inline void CGCObjTileLayer::SetPosition( cocos2d::Vec2 bArgPosition )
 {
-	CCAssert( m_pTMXMap, "m_pTMXMap is NULL. Have you called CreateSprite?" );
+	CCAssert( m_pTMXMap, "m_pTMXMap is nullptr. Have you called CreateSprite?" );
 	m_pTMXMap->setPosition( cocos2d::Point( bArgPosition.x, bArgPosition.y ) );
 }
 
@@ -107,7 +107,7 @@ inline void CGCObjTileLayer::SetPosition( cocos2d::Vec2 bArgPosition )
 //////////////////////////////////////////////////////////////////////////
 inline cocos2d::Vec2 CGCObjTileLayer::GetPosition() const
 {
-	CCAssert( m_pTMXMap, "m_pcSpm_pTMXMaprite is NULL. Have you called CreateSprite?" );	
+	CCAssert( m_pTMXMap, "m_pcSpm_pTMXMaprite is nullptr. Have you called CreateSprite?" );	
 	return m_pTMXMap->getPosition();
 }
 

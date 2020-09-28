@@ -48,11 +48,11 @@ USING_NS_CC;
 ///////////////////////////////////////////////////////////////////////////////
 CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 : IGCGameLayer					( GetGCTypeIDOf( CGCGameLayerPlatformer ) ) 
-, m_pcGCGroupItem				( NULL )
-, m_pcGCGroupInvader			( NULL )
-, m_pcGCGroupProjectilePlayer	( NULL )
-, m_pcGCSprBackGround			( NULL )
-, m_pcGCOPlayer					( NULL )
+, m_pcGCGroupItem				( nullptr )
+, m_pcGCGroupInvader			( nullptr )
+, m_pcGCGroupProjectilePlayer	( nullptr )
+, m_pcGCSprBackGround			( nullptr )
+, m_pcGCOPlayer					( nullptr )
 , m_bResetWasRequested			( false )
 , m_bQuitWasRequested			( false )
 {
@@ -173,7 +173,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 									( ( visibleSize.height - ( pQuitItem->getContentSize().height * 0.5f ) ) + origin.y ) ) );
 
     // create menu, it's an autorelease object
-    Menu* pMenu = Menu::create( pResetItem, pQuitItem, NULL );
+    Menu* pMenu = Menu::create( pResetItem, pQuitItem, nullptr );
     pMenu->setPosition( Vec2::ZERO );
     this->addChild( pMenu, 1 );
 
@@ -359,13 +359,13 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	// clean up anything we allocated in opposite order to creation
 	///////////////////////////////////////////////////////////////////////////	
 	delete m_pcGCOPlayer;
-	m_pcGCOPlayer = NULL;
+	m_pcGCOPlayer = nullptr;
 
 	// clean up the level
 	m_cLevelLoader.DestroyObjects();
 
 	delete m_pcGCSprBackGround;
-	m_pcGCSprBackGround = NULL;
+	m_pcGCSprBackGround = nullptr;
 
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. because object groups must register manually, 
@@ -373,19 +373,19 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	///////////////////////////////////////////////////////////////////////////
 	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupPlatform );
 	delete m_pcGCGroupPlatform;
-	m_pcGCGroupPlatform = NULL;
+	m_pcGCGroupPlatform = nullptr;
 
 	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupProjectilePlayer );
 	delete m_pcGCGroupProjectilePlayer;
-	m_pcGCGroupProjectilePlayer = NULL;
+	m_pcGCGroupProjectilePlayer = nullptr;
 
 	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupInvader );
 	delete m_pcGCGroupInvader;
-	m_pcGCGroupInvader = NULL;
+	m_pcGCGroupInvader = nullptr;
 
 	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupItem );
 	delete m_pcGCGroupItem;
-	m_pcGCGroupItem = NULL;
+	m_pcGCGroupItem = nullptr;
 
 	IGCGameLayer::VOnDestroy();
 }
@@ -447,14 +447,14 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 
 	CGCObjSpritePhysics* pGcSprPhysA = (CGCObjSpritePhysics*) pBodyA->GetUserData();
 	// if( this is not a GC object )
-	if( pGcSprPhysA == NULL )
+	if( pGcSprPhysA == nullptr )
 	{
 		return;
 	}
 
 	CGCObjSpritePhysics* pGcSprPhysB = (CGCObjSpritePhysics*) pBodyB->GetUserData();
 	// if( this is not a GC object )
-	if( pGcSprPhysB == NULL )
+	if( pGcSprPhysB == nullptr )
 	{
 		return;
 	}
@@ -501,9 +501,9 @@ void CGCGameLayerPlatformer::PostSolve( b2Contact* pB2Contact, const b2ContactIm
 void CGCGameLayerPlatformer::HandleCollisions()
 {
 	// check for collisions
-	b2Body* pBodyToDestroy = NULL;
+	b2Body* pBodyToDestroy = nullptr;
 	for(	const b2Contact* pB2Contact	= IGCGameLayer::ActiveInstance()->B2dGetWorld()->GetContactList();
-			NULL						!= pB2Contact;
+			nullptr						!= pB2Contact;
 			pB2Contact					= pB2Contact->GetNext() )
 	{
 		const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A( pB2Contact );

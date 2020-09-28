@@ -14,8 +14,8 @@ using namespace std;
 //////////////////////////////////////////////////////////////////////////
 // GamerCamp Edit
 // static 
-CGCKeyboardManager*		AppDelegate::sm_pcKeyboardManager	= NULL;
-CGCControllerManager*	AppDelegate::sm_pcControllerManager = NULL;
+CGCKeyboardManager*		AppDelegate::sm_pcKeyboardManager	= nullptr;
+CGCControllerManager*	AppDelegate::sm_pcControllerManager = nullptr;
 // GamerCamp Edit
 //////////////////////////////////////////////////////////////////////////
 
@@ -30,10 +30,10 @@ AppDelegate::~AppDelegate()
 // GamerCamp Edit
 	// clean up win32 input 
 	delete sm_pcKeyboardManager;
-	sm_pcKeyboardManager = NULL;
+	sm_pcKeyboardManager = nullptr;
 
 	delete sm_pcControllerManager;
-	sm_pcControllerManager = NULL;
+	sm_pcControllerManager = nullptr;
 // GamerCamp Edit
 //////////////////////////////////////////////////////////////////////////
 }

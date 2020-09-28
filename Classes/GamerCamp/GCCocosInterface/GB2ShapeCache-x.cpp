@@ -55,7 +55,7 @@ public:
 
 
 	FixtureDef( const b2FixtureDef& rFixDef, const char* pszIdText )
-		: next( NULL )
+		: next( nullptr )
 		, fixture( rFixDef )
 	{
 		sUserData.iMagicNumber = k_iMagicNumber;
@@ -71,7 +71,7 @@ public:
 
 	static const std::string* RetrieveIdText( const b2Fixture* pb2Fixture )
 	{
-		const std::string*	pstrReturn = NULL;
+		const std::string*	pstrReturn = nullptr;
 		const SUserData*	pUserData = reinterpret_cast<const SUserData*>( pb2Fixture->GetUserData() );
 
 		if( pUserData->iMagicNumber == k_iMagicNumber )
@@ -91,7 +91,7 @@ class BodyDef
 {
 public:
 	BodyDef()
-		: fixtures( NULL )
+		: fixtures( nullptr )
 	{}
 
 	~BodyDef()
@@ -104,7 +104,7 @@ public:
 	cocos2d::Vec2	anchorPoint;
 };
 
-static GB2ShapeCache *_sharedGB2ShapeCache = NULL;
+static GB2ShapeCache *_sharedGB2ShapeCache = nullptr;
 
 GB2ShapeCache* GB2ShapeCache::sharedGB2ShapeCache( void )
 {

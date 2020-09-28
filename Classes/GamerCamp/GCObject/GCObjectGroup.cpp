@@ -95,17 +95,17 @@ void CGCObjectGroup::OnObjectUnRegister( CGCObject* pArgObject )
 
 
 //////////////////////////////////////////////////////////////////////////
-// find a named object in this group - return NULL on not found.
+// find a named object in this group - return nullptr on not found.
 //
 // Allows CGCObjectGroups to be used as an object registries.
 // 
-// N.B. if pstrObjectName is NULL will return the 1st object of 
+// N.B. if pstrObjectName is nullptr will return the 1st object of 
 // idObjectClass found called from static CGCObjectManager::FindObject -> 
 // CGCObjectManager::OnFindObject
 //////////////////////////////////////////////////////////////////////////
 CGCObject* CGCObjectGroup::OnFindObject( const char* pstrObjectName, GCTypeID idObjectClass )
 {
-	CGCObject* pcReturn = NULL;
+	CGCObject* pcReturn = nullptr;
 
 	// no point even looking if we don't handle this type
 	if( VHandlesThisTypeId( idObjectClass ) )

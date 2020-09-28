@@ -15,7 +15,7 @@ void CGCCollisionManager::HandleCollisions( b2World& rcb2World )
 	u32 uNumHandlers = m_vecCollisionPairHandlers.size();
 
 	for( const b2Contact* pB2Contact = rcb2World.GetContactList();
-		NULL != pB2Contact;
+		nullptr != pB2Contact;
 		pB2Contact = pB2Contact->GetNext() )
 	{
 		const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A( pB2Contact );

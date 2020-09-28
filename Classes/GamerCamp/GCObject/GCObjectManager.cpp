@@ -11,7 +11,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // initialisation of static class variables
 // private
-CGCObjectManager* CGCObjectManager::sm_pActiveObjectManager = NULL;
+CGCObjectManager* CGCObjectManager::sm_pActiveObjectManager = nullptr;
 
 
 
@@ -45,7 +45,7 @@ void CGCObjectManager::OnObjectGroupUnRegister( CGCObjectGroup* pArgObjGroup )
 {
 	if( pArgObjGroup == m_pDefaultObjectGroup )
 	{
-		m_pDefaultObjectGroup = NULL;
+		m_pDefaultObjectGroup = nullptr;
 	}
 	else
 	{
@@ -58,17 +58,17 @@ void CGCObjectManager::OnObjectGroupUnRegister( CGCObjectGroup* pArgObjGroup )
 //////////////////////////////////////////////////////////////////////////
 // called by static fn FindObject
 // allows CGCObjectManager to be used as an object registry
-// if pstrObjectName is NULL will return the 1st object of idObjectClass found
-// returns NULL if not found
+// if pstrObjectName is nullptr will return the 1st object of idObjectClass found
+// returns nullptr if not found
 //////////////////////////////////////////////////////////////////////////
 // private
 CGCObject* CGCObjectManager::OnFindObject( const char* pstrObjectName, GCTypeID idObjectClass )
 {
-	CGCObject* pcReturn = NULL;
+	CGCObject* pcReturn = nullptr;
 	
 	if( m_pDefaultObjectGroup )
 	{
-		// CGCObjectGroup::OnFindObject returns NULL if not found
+		// CGCObjectGroup::OnFindObject returns nullptr if not found
 		pcReturn = m_pDefaultObjectGroup->OnFindObject( pstrObjectName, idObjectClass );
 	}
 
@@ -122,7 +122,7 @@ CGCObjectGroup* CGCObjectManager::GetObjectGroupThatHandles( GCTypeID idManagedT
 // private
 CGCObjectGroup* CGCObjectManager::GetObjectGroupByID( GCTypeID idOfObjectGroup )
 {
-	CGCObjectGroup* pObjectGroup = NULL;
+	CGCObjectGroup* pObjectGroup = nullptr;
 
 	// n.b. lazy && checks pointer and only uses it if it's valid
 	if( m_pDefaultObjectGroup && ( m_pDefaultObjectGroup->VGetTypeId() == idOfObjectGroup ) )
@@ -166,7 +166,7 @@ CGCObjectManager::~CGCObjectManager()
 	// make sure we don't leave ActiveInstance as a dangling pointer...
 	if( sm_pActiveObjectManager == this )
 	{
-		sm_pActiveObjectManager = NULL;
+		sm_pActiveObjectManager = nullptr;
 	}
 }
 
@@ -351,7 +351,7 @@ void CGCObjectManager::OnResourceRelease( void )
 //static 
 void CGCObjectManager::ObjectGroupRegister( CGCObjectGroup* pArgGroup )
 {
-	if( NULL != ActiveInstance() )
+	if( nullptr != ActiveInstance() )
 	{
 		ActiveInstance()->OnObjectGroupRegister( pArgGroup );
 	}
@@ -369,7 +369,7 @@ void CGCObjectManager::ObjectGroupRegister( CGCObjectGroup* pArgGroup )
 //static 
 void CGCObjectManager::ObjectGroupUnRegister( CGCObjectGroup* pArgGroup )
 {
-	if( NULL != ActiveInstance() )
+	if( nullptr != ActiveInstance() )
 	{
 		ActiveInstance()->OnObjectGroupUnRegister( pArgGroup );
 	}
@@ -387,8 +387,8 @@ void CGCObjectManager::ObjectGroupUnRegister( CGCObjectGroup* pArgGroup )
 //static 
 CGCObjectGroup* CGCObjectManager::FindObjectGroupThatHandles( GCTypeID idManagedByGroup )
 {
-	CGCObjectGroup* pcReturn = NULL;
-	if( NULL != ActiveInstance() )
+	CGCObjectGroup* pcReturn = nullptr;
+	if( nullptr != ActiveInstance() )
 	{
 		pcReturn = ActiveInstance()->GetObjectGroupThatHandles( idManagedByGroup );
 	}
@@ -408,8 +408,8 @@ CGCObjectGroup* CGCObjectManager::FindObjectGroupThatHandles( GCTypeID idManaged
 //static 
 CGCObjectGroup* CGCObjectManager::FindObjectGroupByID( GCTypeID idOfObjectGroup )
 {
-	CGCObjectGroup* pcReturn = NULL;
-	if( NULL != ActiveInstance() )
+	CGCObjectGroup* pcReturn = nullptr;
+	if( nullptr != ActiveInstance() )
 	{
 		pcReturn = ActiveInstance()->GetObjectGroupByID( idOfObjectGroup );
 	}
@@ -429,7 +429,7 @@ CGCObjectGroup* CGCObjectManager::FindObjectGroupByID( GCTypeID idOfObjectGroup 
 //static 
 void CGCObjectManager::ObjectRegister( CGCObject* pArgObject )
 {
-	if( NULL != ActiveInstance() )
+	if( nullptr != ActiveInstance() )
 	{
 		CCAssert( pArgObject, "CGCObjectManager::ObjectRegister - pArgObject is a bad pointer!" );
 		CCAssert(	ActiveInstance()->m_pDefaultObjectGroup, 
@@ -450,7 +450,7 @@ void CGCObjectManager::ObjectRegister( CGCObject* pArgObject )
 //static 
 void CGCObjectManager::ObjectUnRegister( CGCObject* pArgObject )
 {
-	if( NULL != ActiveInstance() )
+	if( nullptr != ActiveInstance() )
 	{
 		CCAssert( pArgObject, "CGCObjectManager::ObjectUnRegister - pArgObject is a bad pointer!" );
 		CCAssert(	ActiveInstance()->m_pDefaultObjectGroup, 
@@ -471,9 +471,9 @@ void CGCObjectManager::ObjectUnRegister( CGCObject* pArgObject )
 //static 
 CGCObject* CGCObjectManager::FindObject( const char* pstrObjectName, GCTypeID idObjectClass )
 {
-	CGCObject* pcReturn = NULL;
+	CGCObject* pcReturn = nullptr;
 
-	if( NULL != ActiveInstance() )
+	if( nullptr != ActiveInstance() )
 	{
 		pcReturn = ActiveInstance()->OnFindObject( pstrObjectName, idObjectClass );
 	}
@@ -493,7 +493,7 @@ CGCObject* CGCObjectManager::FindObject( const char* pstrObjectName, GCTypeID id
 //static 
 void CGCObjectManager::ObjectKill( CGCObject* pArgObject )
 {
-	if( NULL != ActiveInstance() )
+	if( nullptr != ActiveInstance() )
 	{
 		CCAssert( pArgObject, "CGCObjectManager::ObjectKill - pArgObject is a bad pointer!" );
 		CCAssert(	ActiveInstance()->m_pDefaultObjectGroup, 
@@ -513,7 +513,7 @@ void CGCObjectManager::ObjectKill( CGCObject* pArgObject )
 //static 
 void CGCObjectManager::Update( f32 fArgTimeStep )
 {
-	if( NULL != ActiveInstance() )
+	if( nullptr != ActiveInstance() )
 	{
 		// ITickable::smTickSec is the system variable for the time between ticks
 		ActiveInstance()->OnUpdate( fArgTimeStep );

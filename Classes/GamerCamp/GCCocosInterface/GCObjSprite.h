@@ -123,7 +123,7 @@ public:
 //////////////////////////////////////////////////////////////////////////
 inline void CGCObjSprite::SetVisible( bool bIsVisible )
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
 	m_pcSprite->setVisible( bIsVisible );
 }
 
@@ -133,7 +133,7 @@ inline void CGCObjSprite::SetVisible( bool bIsVisible )
 //////////////////////////////////////////////////////////////////////////
 inline bool CGCObjSprite::IsVisible()
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
 	return m_pcSprite->isVisible();
 }
 
@@ -143,7 +143,7 @@ inline bool CGCObjSprite::IsVisible()
 //////////////////////////////////////////////////////////////////////////
 inline void CGCObjSprite::SetFlippedX( bool bIsFlipped )
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
 	m_pcSprite->setFlippedX( bIsFlipped );
 }
 
@@ -153,7 +153,7 @@ inline void CGCObjSprite::SetFlippedX( bool bIsFlipped )
 //////////////////////////////////////////////////////////////////////////
 inline bool CGCObjSprite::IsFlippedX()
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
 	return m_pcSprite->isFlippedX();
 }
 
@@ -163,7 +163,7 @@ inline bool CGCObjSprite::IsFlippedX()
 //////////////////////////////////////////////////////////////////////////
 inline void CGCObjSprite::SetFlippedY( bool bIsFlipped )
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
 	m_pcSprite->setFlippedY( bIsFlipped );
 }
 
@@ -173,7 +173,7 @@ inline void CGCObjSprite::SetFlippedY( bool bIsFlipped )
 //////////////////////////////////////////////////////////////////////////
 inline bool CGCObjSprite::IsFlippedY()
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
 	return m_pcSprite->isFlippedY();
 }
 
@@ -219,7 +219,7 @@ inline float CGCObjSprite::GetSpriteRotation() const
 //////////////////////////////////////////////////////////////////////////
 inline void CGCObjSprite::SetSpritePosition( cocos2d::Vec2 bArgPosition )
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
 	m_pcSprite->setPosition( cocos2d::Point( bArgPosition.x, bArgPosition.y ) );
 }
 
@@ -229,7 +229,7 @@ inline void CGCObjSprite::SetSpritePosition( cocos2d::Vec2 bArgPosition )
 //////////////////////////////////////////////////////////////////////////
 inline cocos2d::Vec2 CGCObjSprite::GetSpritePosition() const
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
 	cocos2d::Point cPosition = m_pcSprite->getPosition();
 	return cocos2d::Vec2( cPosition.x, cPosition.y );
 }
@@ -240,7 +240,7 @@ inline cocos2d::Vec2 CGCObjSprite::GetSpritePosition() const
 //////////////////////////////////////////////////////////////////////////
 inline cocos2d::Rect CGCObjSprite::GetBoundingBox() const
 {
-	CCAssert( m_pcSprite, "m_pcSprite is NULL. Have you called CreateSprite?" );
+	CCAssert( m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?" );
 	return m_pcSprite->getBoundingBox();
 }
 

@@ -31,8 +31,8 @@ CGCFactory_ObjSpritePhysics& CGCFactory_ObjSpritePhysics::GetFactory( void )
 void CGCFactory_ObjSpritePhysics::RegisterCreatableClass( const char* pszClassName, pfnFactoryFunction pfnClassFactoryFunction )
 {
 	CCAssert( m_uNumRegisteredClasses < EMaxRegisteredClasses,	"too many classes registered with the factory!" );
-	CCAssert( pszClassName,										"pszClassName is NULL" );
-	CCAssert( pfnClassFactoryFunction,							"pfnClassFactoryFunction is NULL" );
+	CCAssert( pszClassName,										"pszClassName is nullptr" );
+	CCAssert( pfnClassFactoryFunction,							"pfnClassFactoryFunction is nullptr" );
 
 	m_asRegisteredClasses[ m_uNumRegisteredClasses ].pszClassName		= pszClassName;
 	m_asRegisteredClasses[ m_uNumRegisteredClasses ].pfnClassFactory	= pfnClassFactoryFunction;
@@ -45,7 +45,7 @@ void CGCFactory_ObjSpritePhysics::RegisterCreatableClass( const char* pszClassNa
 //////////////////////////////////////////////////////////////////////////
 CGCObjSpritePhysics* CGCFactory_ObjSpritePhysics::CreateInstance( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition )
 {
-	CGCObjSpritePhysics*	pReturn			= NULL;
+	CGCObjSpritePhysics*	pReturn			= nullptr;
 
 	// find the class creator corresponding to the class name passed and use it to create the instance to return
 	for( u32 uLoop = 0; uLoop < m_uNumRegisteredClasses; ++uLoop )

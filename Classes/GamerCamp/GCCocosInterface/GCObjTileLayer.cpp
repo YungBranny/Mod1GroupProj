@@ -28,7 +28,7 @@ using namespace cocos2d;
 //////////////////////////////////////////////////////////////////////////
 CGCObjTileLayer::CGCObjTileLayer( GCTypeID idDerivedType )
 : CGCObject	( idDerivedType )
-, m_pTMXMap	( NULL )
+, m_pTMXMap	( nullptr )
 {
 }
 
@@ -38,7 +38,7 @@ CGCObjTileLayer::CGCObjTileLayer( GCTypeID idDerivedType )
 //////////////////////////////////////////////////////////////////////////
 CGCObjTileLayer::CGCObjTileLayer()
 : CGCObject				( GetGCTypeIDOf( CGCObjTileLayer ) )
-, m_pTMXMap				( NULL )
+, m_pTMXMap				( nullptr )
 , m_v2InitialPosition	( Vec2( 0.0f, 0.0f ) )
 {
 }
@@ -75,7 +75,7 @@ void CGCObjTileLayer::CreateTileLayer( const char* pszTMXFile )
 //////////////////////////////////////////////////////////////////////////
 void CGCObjTileLayer::DestroyTileLayer()
 {
-	// this macro calls release on m_pTMXMap then sets it to NULL
+	// this macro calls release on m_pTMXMap then sets it to nullptr
 	CC_SAFE_RELEASE_NULL( m_pTMXMap );
 }
 
@@ -86,8 +86,8 @@ void CGCObjTileLayer::DestroyTileLayer()
 //////////////////////////////////////////////////////////////////////////
 void CGCObjTileLayer::SetParent( cocos2d::Node* pNewParent )
 {
-	CCAssert( m_pTMXMap, "m_pTMXMap is NULL. Have you called CreateTileLayer?" );
-	CCAssert( pNewParent, "pNewParent is NULL" );
+	CCAssert( m_pTMXMap, "m_pTMXMap is nullptr. Have you called CreateTileLayer?" );
+	CCAssert( pNewParent, "pNewParent is nullptr" );
 	// n.b. this does nothing if the CCNode derived type has no parent...
 	m_pTMXMap->removeFromParentAndCleanup( false );
 	pNewParent->addChild( m_pTMXMap );
@@ -104,7 +104,7 @@ CGCObjTileLayer::EGetObjPosErr CGCObjTileLayer::GetObjectPosition(	const char* p
 {
 	// get the object group ...
 	TMXObjectGroup* pObjGroup = m_pTMXMap->getObjectGroup( pszObjectGroupName );
-	if( NULL == pObjGroup )
+	if( nullptr == pObjGroup )
 	{
 		return EGetObjPosErr_GroupNotFound;
 	}
