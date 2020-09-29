@@ -165,6 +165,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjGroupProjectilePlayer.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjPlayer.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjProjectilePlayer.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GB2ShapeCache-x.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCCallFuncStatic.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCCocosHelpers.cpp" />
@@ -200,6 +201,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjGroupProjectilePlayer.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjPlayer.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjProjectilePlayer.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.h" />
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GB2ShapeCache-x.h" />
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCCallFuncStatic.h" />
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCCocosHelpers.h" />

@@ -96,8 +96,8 @@ void CGCObjGroupProjectilePlayer::DestroyProjectiles()
 //////////////////////////////////////////////////////////////////////////
 void CGCObjGroupProjectilePlayer::SpawnProjectile( Vec2 v2Position, Vec2 v2Velocity, f32 fMaxLifeTime )
 {
-	// check we have a projectile to spawn...
-	if( GetCountDead() )
+	// check we have a projectile to spawn & non are currently active
+	if( GetCountDead() && ( GetCountLive() == 0 ) )
 	{
 		// this case is safe because we know what type this group manages
 		CGCObjProjectilePlayer* pProjectile = static_cast< CGCObjProjectilePlayer* >( GetDeadObject() );

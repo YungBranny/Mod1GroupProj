@@ -3,8 +3,10 @@
 #include <string>
 
 #include "AppMacros.h"
+#include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCObject/GCObjGroupDefault.h"
+#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "MenuScene.h"
 
 
@@ -121,15 +123,11 @@ bool AppDelegate::applicationDidFinishLaunching()
 		sm_pcControllerManager	= new CGCControllerManager();
 		InitialiseControllerManager();
 
-		// create the initial GameScene
-		Scene* pScene = CMenuLayer::scene();
-
-
 	// GamerCamp Edit
 	//////////////////////////////////////////////////////////////////////////
 
 	// run
-    pDirector->runWithScene( pScene );
+    pDirector->runWithScene( TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene() );
 
     return true;
 }

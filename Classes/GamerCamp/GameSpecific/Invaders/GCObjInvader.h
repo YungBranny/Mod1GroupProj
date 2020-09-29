@@ -31,9 +31,9 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////
 	// overridden virtuals from the game object interface
-	virtual void VOnResourceAcquire	( void ) override;
-
-	virtual void VOnResurrected		( void ) override;
+	virtual void VOnResourceAcquire	( void )			override;
+	virtual void VOnResurrected		( void )			override;
+	virtual void VOnUpdate			( f32 fTimestep )	override;
 
 };
 #endif // #ifndef _GCOBJINVADER_H_

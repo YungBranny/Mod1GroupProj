@@ -8,6 +8,7 @@
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 
+#include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
 #include "GCObjProjectilePlayer.h"
@@ -39,6 +40,19 @@ void CGCObjProjectilePlayer::VOnResourceAcquire()
 {
 	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjProjectilePlayer );
 	CGCObjSpritePhysics::VOnResourceAcquire();
+
+	// kill projectiles if they hit the top of the screen
+	IGCGameLayer::ActiveInstance()->GetCollisionManager().AddCollisionHandler
+	(
+		[] 
+		( CGCObjProjectilePlayer& rcProjectile, CGCObjScreenBound& rcScreenBound, const b2Contact& rcContact ) -> void
+		{
+			if( CGCObjScreenBound::EScreenBoundType::Top == rcScreenBound.GetScreenBoundType() )
+			{
+				CGCObjectManager::ObjectKill( &rcProjectile );
+			}
+		} 
+	);
 }
 
 
@@ -67,10 +81,7 @@ void CGCObjProjectilePlayer::VOnUpdate( f32 fTimeStep )
 	Vec2 v2RequiredForce = GetPhysicsBody()->GetMass() * ( ( 1.0f / fTimeStep ) * v2DesiredVelocityDelta );
 	ApplyForceToCenter( v2RequiredForce );
 
-	// handle lifetime
-	m_fRemainingLifetime -= fTimeStep;
-	if( m_fRemainingLifetime < 0.0f )
-	{
-		CGCObjectManager::ObjectKill( this );
-	}
+	// N.B.we ignore lifetime management - the projectile will hit either an invader or the top of the screen and be killed
+	// see: CGCObjProjectilePlayer::VOnResourceAcquire() 
+	// and the bottom of CGCGameLayerPlatformer::VOnCreate()
 }

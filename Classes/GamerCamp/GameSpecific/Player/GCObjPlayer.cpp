@@ -130,8 +130,9 @@ f32	g_CGCObjPlayer_fDragCoefficient_Linear		= 0.25f;	// unitless
 f32	g_CGCObjPlayer_fDragCoefficient_Square		= 0.2f;		// unitless
 f32 g_CGCObjPlayer_m_fNoInput_ExtraDrag_Square	= 0.2f;		// unitless
 f32 g_CGCObjPlayer_fNoInput_VelocityThreshold	= 0.25f;	// m/s
-f32 g_GCGameLayer_fPixelsPerMetre				= 20.0f;	// pixels / metre
 f32 g_GCGameLayer_fDamping						= 0.999f;	// unitless
+f32 g_GCGameLayer_fProjectileVelocity			= 20.0f;	// m/s
+f32 g_GCGameLayer_fProjectileLifetime			= 2.5f;		// s
 //
 //////////////////////////////////////////////////////////////////////////
 void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
@@ -276,8 +277,8 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	{
 		// supply initial position, velocity, lifetime
 		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + Vec2( 0.0f, 20.0f ),
-												Vec2( 0.0f, 10.0f ),
-												3.0f );
+												Vec2( 0.0f, g_GCGameLayer_fProjectileVelocity),
+												g_GCGameLayer_fProjectileLifetime );
 	}
 }
 

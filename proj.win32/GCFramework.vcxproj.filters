@@ -49,6 +49,9 @@
     <Filter Include="Classes\GamerCamp\GameController">
       <UniqueIdentifier>{4ae41667-3df5-4816-b3c8-f6aa92570597}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\ScreenBounds">
+      <UniqueIdentifier>{c0fa1bf2-9733-4542-bc0a-d9c4d43e74b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -140,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GCCollisionManager.cpp">
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GCCollisionManager.h">
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.h">
+      <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

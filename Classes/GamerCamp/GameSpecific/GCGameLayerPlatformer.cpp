@@ -20,6 +20,8 @@
 #include "GamerCamp/GameSpecific/Invaders/GCObjInvader.h"
 #include "GamerCamp/GameSpecific/Invaders/GCObjGroupInvader.h"
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
+#include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
+#include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 
 #include "AppDelegate.h"
 
@@ -141,7 +143,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupItem );
 	
 	// create and register the object group for the invader objects
-	m_pcGCGroupInvader = new CGCObjGroupInvader();
+	m_pcGCGroupInvader = new CGCObjGroupInvader( 64 );
 	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupInvader );
 
 	// create and register the object group for the player projectile objects
@@ -209,49 +211,24 @@ void CGCGameLayerPlatformer::VOnCreate()
 	// load the physics shapes from the plist created with PhysicsEditor
 	B2dLoadShapesFromPlist( "PhysicsEditor/GameShapes.plist" );	
 
-	///////////////////////////////////////////////////////////////////////////
-	// stop mario from leaving the screen
-	///////////////////////////////////////////////////////////////////////////
 
-	// get window size
-	//Size s = Director::getInstance()->getWinSize();
-
-	// PTM_RATIO
-	f32 PTM_RATIO = IGCGAMELAYER_B2D_PIXELS_PER_METER;
-	
-	b2Vec2	b2v2ScreenCentre_Pixels( ( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ) );
+	///////////////////////////////////////////////////////////////////////////
+	// add screen bounds - note these are now derived from CGCObjSpritePhysics
+	// this is to allow callback based collision handling with them etc.
+	///////////////////////////////////////////////////////////////////////////
 	Vec2	v2ScreenCentre_Pixels( ( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ) );
+	Vec2	v2ScreenCentre_B2d = B2dPixelsToWorld( v2ScreenCentre_Pixels );
 
+	f32 fScreenWidthB2d			= B2dPixelsToWorld( visibleSize.width );
+	f32 fHalfScreenWidthB2d		= ( fScreenWidthB2d / 2.0f );
 
+	f32 fScreenHeightB2d		= B2dPixelsToWorld( visibleSize.height );
+	f32 fHalfScreenHeightB2d	= ( fScreenHeightB2d / 2.0f);
 
-	// define the ground body
-	b2BodyDef groundBodyDef;
-	groundBodyDef.position	=	IGCGameLayer::B2dPixelsToWorld( b2v2ScreenCentre_Pixels );
-	groundBodyDef.type		=	b2_kinematicBody;
-
-	// Call the body factory which allocates memory for the ground body
-	// from a pool and creates the ground box shape (also from a pool).
-	// The body is also added to the world.
-	b2Body* groundBody = B2dGetWorld()->CreateBody( &groundBodyDef );
-
-	// Define the ground box shape.
-	b2PolygonShape groundBox;
-
-	// bottom
-	groundBox.SetAsBox( ( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.5f, b2Vec2( 0.0f, - ( ( visibleSize.height * 0.5f ) / PTM_RATIO ) ), 0.0f );
-	groundBody->CreateFixture(&groundBox, 0);
-
-	// top
-	groundBox.SetAsBox( ( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.5f, b2Vec2( 0.0f, ( ( visibleSize.height * 0.5f ) / PTM_RATIO ) ), 0.0f );
-	groundBody->CreateFixture( &groundBox, 0 );
-
-	// left
-	groundBox.SetAsBox( 0.5f, ( ( visibleSize.height * 0.5f ) / PTM_RATIO ), b2Vec2( -( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.0f ), 0.0f );
-	groundBody->CreateFixture( &groundBox, 0 );
-
-	// right
-	groundBox.SetAsBox( 0.5f, ( ( visibleSize.height * 0.5f ) / PTM_RATIO ), b2Vec2( ( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.0f ), 0.0f );
-	groundBody->CreateFixture( &groundBox, 0 );
+	new CGCObjScreenBound( CGCObjScreenBound::EScreenBoundType::Bottom, ( v2ScreenCentre_B2d + Vec2( 0.0f, -fHalfScreenHeightB2d ) ), fScreenWidthB2d, 0.5f, 0.0f );
+	new CGCObjScreenBound( CGCObjScreenBound::EScreenBoundType::Top,	( v2ScreenCentre_B2d + Vec2( 0.0f, fHalfScreenHeightB2d ) ), fScreenWidthB2d, 0.5f, 0.0f );
+	new CGCObjScreenBound( CGCObjScreenBound::EScreenBoundType::Left,	( v2ScreenCentre_B2d + Vec2( -fHalfScreenWidthB2d, 0.0f ) ), 0.5f, fScreenHeightB2d, 0.0f );
+	new CGCObjScreenBound( CGCObjScreenBound::EScreenBoundType::Right,	( v2ScreenCentre_B2d + Vec2( fHalfScreenWidthB2d, 0.0f ) ), 0.5f, fScreenHeightB2d, 0.0f );
 
 
 	///////////////////////////////////////////////////////////////////////////
@@ -259,69 +236,39 @@ void CGCGameLayerPlatformer::VOnCreate()
 	///////////////////////////////////////////////////////////////////////////
 
 	// starting position
-	Vec2 v2MarioStartPos = v2ScreenCentre_Pixels;
+	Vec2 v2MarioStartPos = ( v2ScreenCentre_Pixels - Vec2( 0.0f, ( visibleSize.height * 0.45f ) ) );
 
 	// create player object
 	m_pcGCOPlayer = new CGCObjPlayer();
 	m_pcGCOPlayer->SetResetPosition( v2MarioStartPos );
 
+
 	///////////////////////////////////////////////////////////////////////////
-	// N.B. invaders are added by the invader object group
+	// N.B. invaders are created by m_pcGCGroupInvader in OnResourceAcquire
 	///////////////////////////////////////////////////////////////////////////
 	m_pcGCGroupInvader->SetFormationOrigin( v2ScreenCentre_Pixels + Vec2( -( visibleSize.width * 0.3f ), ( visibleSize.height * 0.25f ) ) );
-
-	///////////////////////////////////////////////////////////////////////////
-	// add platforms & items
-	///////////////////////////////////////////////////////////////////////////
-	// CGCObjGroupItem & CGCObjGroupPlatform clean up all contained objects during VOnGroupResourceRelease(), so we can be 
-	// very laissez faire about creating items & platforms
-	const u32 uNumColumns		= 3;
-	const u32 uNumRows			= 4;
-
-	float fColumnSpacing		= ( visibleSize.width / ( ((float) uNumColumns ) + 1.0f ) );
-	float fRowSpacing			= ( visibleSize.height / ( ((float) uNumRows ) + 1.0f ) );
-
-	float fNextPlatformPos_x	= fColumnSpacing;
-	float fRowStartPos_y		= fRowSpacing;
-
-	for( u32 uColumn = 0; uColumn < uNumColumns; ++uColumn )
-	{ 
-		Vec2 v2NextPlatformPos( fNextPlatformPos_x, fRowStartPos_y );
-
-		for( u32 uRow = 0; uRow < uNumRows; ++uRow )
-		{
-			CGCObjPlatform* pPlatform	= new CGCObjPlatform();
-			CGCObjItem*		pItem		= new CGCObjItem();
-
-			pPlatform->SetResetPosition	( v2NextPlatformPos );
-			pItem->SetResetPosition		( v2NextPlatformPos + Vec2( 0.0f, 30.0f ) );
-
-			v2NextPlatformPos.y += fRowSpacing;
-		}
-
-		fNextPlatformPos_x += fColumnSpacing;
-	}
+	m_pcGCGroupInvader->SetRowsAndColumns( 6, 8, -60.0f, 40.0f );
 
 
-	//////////////////////////////////////////////////////////////////////////
-	// test new collision handler code
-	// 
-	// this is proof of concept code which could be used to replace the 
-	// function HandleCollisions()
-	// 
-	// note it will need a little additional polish (simple & noted in the 
-	// header...) before it's properly ready to be used in a game :)
-	// 
 	//////////////////////////////////////////////////////////////////////////
 	//
-	// you can also pass a regular (non member) function:
+	// you can also pass regular (static) function:
 	// GetCollisionManager().AddCollisionHandler( CB_TestCollisionHandler );
 	// 
+	// NOTE: in general rather than executing game logic in handler we should cache data we need to respond to this and do it in the next update
+	// e.g. if we wanted to award score, make the player lose a life, or similar we should set a state flag and respond in update
 
-	GetCollisionManager().AddCollisionHandler( [] ( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact ) -> void
-	{
-		COLLISIONTESTLOG( "(lambda) the player hit an item!" );
-	} );
+
+	// handle collisions between invader and projectile - both are killed
+	GetCollisionManager().AddCollisionHandler
+	( 
+		[] 
+		( CGCObjProjectilePlayer& rcProjectile, CGCObjInvader& rcInvader, const b2Contact& rcContact ) -> void
+		{
+			CGCObjectManager::ObjectKill( &rcProjectile );
+			CGCObjectManager::ObjectKill( &rcInvader );
+		} 
+	);
 
 
 }// void CGCGameLayerPlatformer::VOnCreate() { ...
@@ -336,7 +283,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	IGCGameLayer::VOnUpdate( fTimeStep );
 	
 	// this shows how to iterate and respond to the box2d collision info
-	HandleCollisions();	
+	ManuallyHandleCollisions();	
 
 	if( ResetWasRequested() )
 	{
@@ -492,10 +439,8 @@ void CGCGameLayerPlatformer::PostSolve( b2Contact* pB2Contact, const b2ContactIm
 // e.g. for gamplay reasons like jumping up through a platform
 // 
 ///////////////////////////////////////////////////////////////////////////////
-void CGCGameLayerPlatformer::HandleCollisions()
+void CGCGameLayerPlatformer::ManuallyHandleCollisions()
 {
-	// check for collisions
-	b2Body* pBodyToDestroy = nullptr;
 	for(	const b2Contact* pB2Contact	= IGCGameLayer::ActiveInstance()->B2dGetWorld()->GetContactList();
 			nullptr						!= pB2Contact;
 			pB2Contact					= pB2Contact->GetNext() )
@@ -520,13 +465,14 @@ void CGCGameLayerPlatformer::HandleCollisions()
 		// in the text box immediately below the 'Is Sensor?' checkbox
 		// 
 		// Mario has a fixture that is a sensor with id 'bottom_left' 
-		// and this is what we're checking for :)
+		// and this is what we're checking for - put a breakpoint on 
 		const std::string*	pstrCheckMe		= cocos2d::GB2ShapeCache::getFixtureIdText( pFixtureA );
 		bool				bNameMatches	= ( 0 == pstrCheckMe->compare( "bottom_left" ) );
 		bool				bIsASensor		= pFixtureA->IsSensor();
 
 		if(	pstrCheckMe && bNameMatches && bIsASensor )
 		{
+			// put a breakpoint on the next line to see the sensor detection
 			int i = 0;
 			++i;			
 		}
@@ -538,28 +484,6 @@ void CGCGameLayerPlatformer::HandleCollisions()
 		{
 			int i = 0;
 			++i;
-		}
-
-		// is this collision an invader and a projectile?
-		// if so, kill the invader
-		if(	   pB2Contact->IsEnabled()
-			&& ( pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() ) )
-		{
-			// returns a valid ptr if instance's EXACT type matches or nullptr if not
-			CGCObjInvader* pInvaderA = CGCObject::SafeCastToDerived< CGCObjInvader* >( pGcSprPhysA );
-			CGCObjInvader* pInvaderB = CGCObject::SafeCastToDerived< CGCObjInvader* >( pGcSprPhysB );
-
-			// at least one of them is an invader?
-			if(	pInvaderA || pInvaderB )
-			{
-				CGCObjInvader*	pKillMe			= ( pInvaderA ? pInvaderA : pInvaderB );
-				GCTypeID		tidNotInvader	= ( pInvaderA ? pGcSprPhysB->GetGCTypeID() : pGcSprPhysA->GetGCTypeID() );
-			
-				if( GetGCTypeIDOf( CGCObjProjectilePlayer ) == tidNotInvader )
-				{
-					CGCObjectManager::ObjectKill( pKillMe );
-				}
-			}
 		}
 	}
 }

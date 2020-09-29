@@ -64,7 +64,7 @@ public:
     void Callback_OnResetButton	( Ref* pSender );
 
 	// called from VOnUpdate
-	void HandleCollisions( void );
+	void ManuallyHandleCollisions( void );
 
 	//////////////////////////////////////////////////////////////////////////
 	// CCNode interface...

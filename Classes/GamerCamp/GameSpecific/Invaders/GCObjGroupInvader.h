@@ -18,7 +18,7 @@
 // forward declare
 class CGCObjSprite;
 class CGCObjInvader;
-
+class CGCObjScreenBound;
 
 //////////////////////////////////////////////////////////////////////////
 // responsible for newing, managing, & deleting the invaders
@@ -30,19 +30,37 @@ class CGCObjGroupInvader
 : public CGCObjectGroup
 {
 private:
+	enum EMoveDirection
+	{
+		Left,
+		Right,
+		DownBeforeLeft,
+		DownBeforeRight,
+	};
+
+	int				m_iMaxInvaders;
+	int				m_iNumRows;
+	int				m_iNumColumns;
+	f32				m_fSpacingRow;
+	f32				m_fSpacingColumn;
+
 	cocos2d::Vec2	m_v2FormationOrigin; // origin of the formation
+	EMoveDirection	m_eMoveDirection;
+	float			m_fTimeInCurrentMoveDirection;
+	bool			m_bAtLeastOneInvaderTouchedTheEdgeOfTheScreenLastFrame;
 
 	void	CreateInvaders	();
 	void	DestroyInvaders	();
 
-public:
-	// number of invaders
-	static const u32 k_uNumProjectiles = 16;
+	void	CheckForGroupWallCollisionInCurrentMoveDirection( const CGCObjScreenBound& pScreenBound );
 
-	CGCObjGroupInvader();		
+public:
+	CGCObjGroupInvader( int iMaxNumInvaders );		
 	virtual ~CGCObjGroupInvader() override;
 
 	void SetFormationOrigin( cocos2d::Vec2 m_v2FormationOrigin );
+
+	void SetRowsAndColumns( f32 iNumRows, int iNumColumns, f32 fPixelSpacingRow, f32 fPixelSpacingColumn );
 
 //////////////////////////////////////////////////////////////////////////
 // overrides for CGCObjectGroup public interface
@@ -55,9 +73,11 @@ public:
 
 	virtual void		VOnGroupResourceAcquire				() override;
 	virtual void		VOnGroupResourceAcquire_PostObject	() override;
+	virtual void		VOnGroupReset						() override;
+	virtual void		VOnObjectReset						() override;
+	virtual void		VOnGroupUpdate						( f32 fTimeStep ) override;
 	virtual void		VOnGroupResourceRelease				() override;
-
-// CGCObjectGroup public interface
+	// CGCObjectGroup public interface
 //////////////////////////////////////////////////////////////////////////
 };
 

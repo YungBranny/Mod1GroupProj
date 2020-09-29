@@ -11,8 +11,9 @@
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "GamerCamp/Core/GCTypes.h"
 #include "GamerCamp/GCObject/GCObject.h"
-#include "GamerCamp/GameSpecific/Invaders/GCObjInvader.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
+#include "GamerCamp/GameSpecific/Invaders/GCObjInvader.h"
+#include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -24,9 +25,16 @@ using namespace cocos2d;
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
-CGCObjGroupInvader::CGCObjGroupInvader()
+CGCObjGroupInvader::CGCObjGroupInvader( int iMaxNumInvaders )
+: m_iMaxInvaders										( iMaxNumInvaders )
+, m_iNumRows											( 1 )
+, m_iNumColumns											( 1 )
+, m_fSpacingRow											( 0.0f )
+, m_fSpacingColumn										( 0.0f )
+, m_v2FormationOrigin									( Vec2::ZERO )
+, m_eMoveDirection										( EMoveDirection::Right )
+, m_bAtLeastOneInvaderTouchedTheEdgeOfTheScreenLastFrame( false )
 {
-	m_v2FormationOrigin = Vec2::ZERO;
 }
 										
 
@@ -45,6 +53,17 @@ CGCObjGroupInvader::~CGCObjGroupInvader()
 void CGCObjGroupInvader::SetFormationOrigin( Vec2 v2FormationOrigin )
 {
 	m_v2FormationOrigin = v2FormationOrigin;
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
+void CGCObjGroupInvader::SetRowsAndColumns( f32 iNumRows, int iNumColumns, f32 fPixelSpacingRow, f32 fPixelSpacingColumn )
+{
+	m_iNumRows			= iNumRows;
+	m_iNumColumns		= iNumColumns;
+	m_fSpacingRow		= fPixelSpacingRow;
+	m_fSpacingColumn	= fPixelSpacingColumn;
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -76,8 +95,21 @@ GCTypeID CGCObjGroupInvader::VGetTypeId()
 void CGCObjGroupInvader::VOnGroupResourceAcquire()
 {
 	CreateInvaders();
+	IGCGameLayer::ActiveInstance()->GetCollisionManager().AddCollisionHandler
+	(
+		[this]
+		( CGCObjInvader& rcInvader, CGCObjScreenBound& rcEdgeOfScreen, const b2Contact& rcContact) -> void
+		{
+			CheckForGroupWallCollisionInCurrentMoveDirection( rcEdgeOfScreen );
+		}
+	);
+
+	SetResetBehaviour( CGCObjectGroup::EResetBehaviour::EResetDead );
+
 	CGCObjectGroup::VOnGroupResourceAcquire();
 }
+
+
 
 //////////////////////////////////////////////////////////////////////////
 //
@@ -109,6 +141,151 @@ void CGCObjGroupInvader::VOnGroupResourceAcquire_PostObject()
 	} );
 }
 
+
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
+//virtual override
+void CGCObjGroupInvader::VOnGroupReset()
+{
+	CGCObjectGroup::VOnGroupReset();
+
+	m_eMoveDirection										= EMoveDirection::Right;
+	m_bAtLeastOneInvaderTouchedTheEdgeOfTheScreenLastFrame	= false;
+	m_fTimeInCurrentMoveDirection							= 0.0f;
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
+//virtual override
+void CGCObjGroupInvader::VOnObjectReset()
+{
+	CGCObjectGroup::VOnObjectReset();
+
+	int iRow	= 0;
+	int iColumn = 0; 
+
+	ForEachObject
+	(
+		[&, this]
+		( CGCObject* pInvaderAsObject ) -> bool
+		{	
+			CGCObjInvader* pInvader = CGCObject::SafeCastToDerived< CGCObjInvader* >( pInvaderAsObject );
+			CCAssert( ( nullptr != pInvader ), "Aiiieeeee!! Houston we have a problem!" );
+
+			VOnObjectResurrect( pInvader );
+			pInvader->SetResetPosition( Vec2( ( m_v2FormationOrigin.x + ( m_fSpacingColumn * iColumn++ ) ), ( m_v2FormationOrigin.y + ( m_fSpacingRow * iRow ) ) ) );
+			pInvader->VOnReset();
+
+			if( iColumn >= m_iNumColumns )
+			{
+				iColumn = 0;
+				iRow++;
+			}
+
+			if( iRow >= m_iNumRows )
+			{
+				return false;
+			}
+
+			return true;
+		}
+	);
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+Vec2	s_InvaderGroup_v2VelocityRight	= Vec2( 5.0f, 0.0f );
+Vec2	s_InvaderGroup_v2VelocityLeft	= ( -s_InvaderGroup_v2VelocityRight );
+
+Vec2	s_InvaderGroup_v2VelocityDown	= Vec2( 0.0f, -6.0f );
+f32		s_InvaderGroup_fMoveDownTime	= 0.2f;
+//////////////////////////////////////////////////////////////////////////
+//virtual override
+void CGCObjGroupInvader::VOnGroupUpdate( f32 fTimeStep )
+{
+	CGCObjectGroup::VOnGroupUpdate( fTimeStep );
+
+	// group movement logic
+
+	m_fTimeInCurrentMoveDirection += fTimeStep;
+
+	EMoveDirection eMoveDirBeforeDirectionLogic = m_eMoveDirection;
+
+	switch( m_eMoveDirection )
+	{
+	case EMoveDirection::Right:
+		if( m_bAtLeastOneInvaderTouchedTheEdgeOfTheScreenLastFrame )
+		{
+			m_eMoveDirection = EMoveDirection::DownBeforeLeft;
+		}
+		break;
+
+	case EMoveDirection::DownBeforeLeft:
+		if( m_fTimeInCurrentMoveDirection >= s_InvaderGroup_fMoveDownTime )
+		{
+			m_eMoveDirection = EMoveDirection::Left;
+		}
+		break;
+
+	case EMoveDirection::Left:
+		if( m_bAtLeastOneInvaderTouchedTheEdgeOfTheScreenLastFrame )
+		{
+			m_eMoveDirection = EMoveDirection::DownBeforeRight;			
+		}
+		break;
+
+	case EMoveDirection::DownBeforeRight:
+		if( m_fTimeInCurrentMoveDirection >= s_InvaderGroup_fMoveDownTime )
+		{
+			m_eMoveDirection = EMoveDirection::Right;
+		}
+		break;
+	}
+
+	m_bAtLeastOneInvaderTouchedTheEdgeOfTheScreenLastFrame = false;
+
+	if( eMoveDirBeforeDirectionLogic != m_eMoveDirection )
+	{
+		m_fTimeInCurrentMoveDirection = 0.0f;
+	}
+
+
+	// update invaders
+
+	Vec2 v2CurrentGroupVelocity = Vec2::ZERO;
+
+	switch( m_eMoveDirection )
+	{
+	case EMoveDirection::DownBeforeLeft:
+	case EMoveDirection::DownBeforeRight:
+		v2CurrentGroupVelocity = s_InvaderGroup_v2VelocityDown;
+		break;
+
+	case EMoveDirection::Left:
+		v2CurrentGroupVelocity = s_InvaderGroup_v2VelocityLeft;
+		break;
+
+	case EMoveDirection::Right:
+		v2CurrentGroupVelocity = s_InvaderGroup_v2VelocityRight;
+		break;
+	}
+
+	ForEachObjectIn_LiveList
+	(	
+		[&]										// capture locals by ref
+		( CGCObject* pInvaderAsGcObj ) -> bool	// return true to keep iterating
+		{
+			CGCObjInvader* pInvader = CGCObject::SafeCastToDerived< CGCObjInvader* >( pInvaderAsGcObj );
+			CCAssert( ( nullptr != pInvader ), "Aiiieeeee!! Houston we have a problem!" );
+			pInvader->SetVelocity( v2CurrentGroupVelocity );
+			return true;
+		}
+	);
+}
+
+
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
@@ -124,15 +301,36 @@ void CGCObjGroupInvader::VOnGroupResourceRelease()
 //////////////////////////////////////////////////////////////////////////
 //
 //////////////////////////////////////////////////////////////////////////
+void CGCObjGroupInvader::CheckForGroupWallCollisionInCurrentMoveDirection( const CGCObjScreenBound& pScreenBound )
+{
+	switch( m_eMoveDirection )
+	{
+	case EMoveDirection::Left:
+		if( pScreenBound.GetScreenBoundType() == CGCObjScreenBound::EScreenBoundType::Left )
+		{		
+			m_bAtLeastOneInvaderTouchedTheEdgeOfTheScreenLastFrame = true;
+		}
+		break;
+
+	case EMoveDirection::Right:
+		if( pScreenBound.GetScreenBoundType() == CGCObjScreenBound::EScreenBoundType::Right )
+		{		
+			m_bAtLeastOneInvaderTouchedTheEdgeOfTheScreenLastFrame = true;
+		}
+		break;
+	}
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
 void CGCObjGroupInvader::CreateInvaders()
 {
-	i32	iOffsetX = 40;
-	i32	iOffsetY = 100;
-	for( u32 uLoop = 0; uLoop < k_uNumProjectiles; ++uLoop )
+	for( i32 iLoop = 0; iLoop < m_iMaxInvaders; ++iLoop )
 	{	
 		// n.b. these register themselves with this class on creation
 		CGCObjInvader* pInvader = new CGCObjInvader(); 
-		pInvader->SetResetPosition( Vec2( m_v2FormationOrigin.x + ( iOffsetX * uLoop ), ( m_v2FormationOrigin.y + iOffsetY ) ) );
 		pInvader->SetName( "Derek" );
 	}
 }
