@@ -45,31 +45,44 @@ private:
 	b2Body*			m_pb2Body;
 	b2BodyDef		m_b2BodyDef;
 	std::string		m_strShapeName;
+	cocos2d::Vec2	m_v2LastMoveVelocity;
 
 protected:
 	CGCObjSpritePhysics( GCTypeID idDerivedType );
 
 	inline b2Body* GetPhysicsBody();
 
-public:	
-	inline const CGCFactoryCreationParams* GetFactoryCreationParams( void )	const;
+public:
+	inline const CGCFactoryCreationParams* GetFactoryCreationParams()	const;
 
-					CGCObjSpritePhysics	( void );
-	virtual			~CGCObjSpritePhysics( void );
+							CGCObjSpritePhysics();
+	virtual					~CGCObjSpritePhysics();
 
 	void					InitBox2DParams( const b2BodyDef& rBodyDef, const char* pszShapeName );
 
 	virtual void			VHandleFactoryParams( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition ); 
 
+	// called once per game frame to update gfx posiitons from b2d
 	virtual void			VUpdateSpriteFromBody( const b2Body* pcb2Body );
 
 	inline cocos2d::Vec2	GetVelocity() const;
 	inline void				SetVelocity( cocos2d::Vec2 v2NewVelocity );
 
-	inline void				ApplyForceToCenter( cocos2d::Vec2 v2Force );
+	// applying a force to the center of an object guarantees no torques (rotational accelerations) are introduced
+	inline void				ApplyForceToCenter( cocos2d::Vec2 v2Force );	
 
 	inline b2Transform		GetPhysicsTransform() const;
+
+	// don't use this to implement movement! this is for resetting / intialising etc.
 	inline void				SetPhysicsTransform( const cocos2d::Vec2& rv2Pos, float fAngle );
+
+	// in general you should use forces or velocity to move an object.
+	// if you have a kinematic rigidbody (which is part of the physics simulation but 
+	// doesn't have its forces / velocity / rotation / position updated by the engine)
+	// then you can should this function to move the object.
+	// this function sets the object's velocity to move it to the required position in 1 frame
+	// note: this requires a little upkeep in object state: see m_v2LastMoveVelocity
+	void					MoveToPixelPosition( const cocos2d::Vec2& rv2Pos );
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -156,6 +169,7 @@ inline void	CGCObjSpritePhysics::SetPhysicsTransform( const cocos2d::Vec2& rv2Po
 //static 
 inline const b2Fixture* CGCObjSpritePhysics::FromB2DContactGetFixture_A( const b2Contact* pcContact )
 {
+	CCAssert( ( nullptr != pcContact ), "pcContact is nullptr" );
 	return pcContact->GetFixtureA();
 }
 
@@ -165,6 +179,7 @@ inline const b2Fixture* CGCObjSpritePhysics::FromB2DContactGetFixture_A( const b
 //static 
 inline const b2Fixture* CGCObjSpritePhysics::FromB2DContactGetFixture_B( const b2Contact* pcContact )
 {
+	CCAssert( ( nullptr != pcContact ), "pcContact is nullptr" );
 	return pcContact->GetFixtureB();
 }
 
@@ -175,9 +190,12 @@ inline const b2Fixture* CGCObjSpritePhysics::FromB2DContactGetFixture_B( const b
 //static 
 inline CGCObjSpritePhysics* CGCObjSpritePhysics::FromB2DFixtureGetSpritePhysics( const b2Fixture* pFixture )
 {
+	CCAssert( ( nullptr != pFixture ), "pFixture is nullptr" );
+
 	const b2Body* pBody = pFixture->GetBody();
 
-	if( nullptr != pBody->GetUserData() )
+	if(		( nullptr != pBody )
+		&&	( nullptr != pBody->GetUserData() ) )
 	{
 		return (CGCObjSpritePhysics*) pBody->GetUserData();
 	}

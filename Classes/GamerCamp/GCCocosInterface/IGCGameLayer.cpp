@@ -406,7 +406,6 @@ void IGCGameLayer::B2dWorldDestroy()
 
 //////////////////////////////////////////////////////////////////////////
 // updates box 2d world
-f32 k_fTimeStep				= 1.0f / 60.f;
 i32 k_iVelocityIterations	= 8;
 i32 k_iPositionIterations	= 3;
 //////////////////////////////////////////////////////////////////////////
@@ -414,7 +413,7 @@ i32 k_iPositionIterations	= 3;
 void IGCGameLayer::VB2dWorldUpdate()
 {
 	// step the world
-	m_pBox2DWorld->Step( k_fTimeStep, k_iVelocityIterations, k_iPositionIterations );
+	m_pBox2DWorld->Step( B2dGetTimestep(), k_iVelocityIterations, k_iPositionIterations );
 	m_pBox2DWorld->ClearForces();
 
 	// update graphical positions based on body movement

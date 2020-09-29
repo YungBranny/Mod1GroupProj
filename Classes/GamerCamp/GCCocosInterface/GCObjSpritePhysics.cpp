@@ -30,9 +30,10 @@ using namespace cocos2d;
 // protected version to pass through id to GCObject
 //////////////////////////////////////////////////////////////////////////
 CGCObjSpritePhysics::CGCObjSpritePhysics( GCTypeID idDerivedType )
-: CGCObjSprite		( idDerivedType )
-, m_psCreateParams	( nullptr )
-, m_pb2Body			( nullptr )
+: CGCObjSprite			( idDerivedType )
+, m_psCreateParams		( nullptr )
+, m_pb2Body				( nullptr )
+, m_v2LastMoveVelocity	( cocos2d::Vec2::ZERO )
 {
 }
 
@@ -81,7 +82,7 @@ void CGCObjSpritePhysics::VHandleFactoryParams( const CGCFactoryCreationParams& 
 
 
 //////////////////////////////////////////////////////////////////////////
-//
+// called once per game frame to update sprite positions from b2d
 //////////////////////////////////////////////////////////////////////////
 //virtual 
 void CGCObjSpritePhysics::VUpdateSpriteFromBody( const b2Body* pcb2Body )
@@ -89,6 +90,28 @@ void CGCObjSpritePhysics::VUpdateSpriteFromBody( const b2Body* pcb2Body )
 	CCAssert( pcb2Body == m_pb2Body, "called back for a body that we did not expect to be!" );
 	b2Vec2 b2v2Pos = IGCGameLayer::B2dWorldToPixels( pcb2Body->GetPosition() );
 	SetSpritePosition( Vec2( b2v2Pos.x, b2v2Pos.y ) );
+
+	cocos2d::Vec2 v2Current = GetVelocity();
+	SetVelocity( v2Current - m_v2LastMoveVelocity );
+	m_v2LastMoveVelocity = cocos2d::Vec2::ZERO;
+}
+
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
+void CGCObjSpritePhysics::MoveToPixelPosition( const cocos2d::Vec2& rv2NewPosPixels )
+{
+	// convert pixel position delta into b2d world space
+	cocos2d::Vec2 v2PosDeltaPixels	= ( rv2NewPosPixels - GetSpritePosition() );
+	cocos2d::Vec2 v2PosDeltaB2d		= IGCGameLayer::B2dPixelsToWorld( v2PosDeltaPixels );
+
+	// v = ( p1 - p0 ) / t
+	cocos2d::Vec2 v2VelocityToMoveByDeltaInOneFrame = ( v2PosDeltaB2d / IGCGameLayer::ActiveInstance()->B2dGetTimestep() );
+	SetVelocity( v2VelocityToMoveByDeltaInOneFrame );
+
+	// n.b. need to cache this so we can remove it from the velocity after the 
+	// physics simulation has stepped handily we can do this in 
+	m_v2LastMoveVelocity = v2VelocityToMoveByDeltaInOneFrame;
 }
 
 
@@ -126,6 +149,7 @@ void CGCObjSpritePhysics::VOnResourceAcquire()
 void CGCObjSpritePhysics::VOnReset()
 {
 	CGCObjSprite::VOnReset();
+	m_v2LastMoveVelocity = cocos2d::Vec2::ZERO;
 }
 
 
@@ -137,7 +161,8 @@ void CGCObjSpritePhysics::VOnKilled()
 {
 	CGCObjSprite::VOnKilled();
 	IGCGameLayer::ActiveInstance()->B2dGetWorld()->DestroyBody( m_pb2Body );
-	m_pb2Body = nullptr;
+	m_pb2Body				= nullptr;
+	m_v2LastMoveVelocity	= cocos2d::Vec2::ZERO;
 }
 
 
@@ -156,6 +181,8 @@ void CGCObjSpritePhysics::VOnResurrected()
 
 	Vec2 v2Position = GetSpritePosition();
 	m_pb2Body->SetTransform( IGCGameLayer::B2dPixelsToWorld( b2Vec2( v2Position.x, v2Position.y ) ), 0.0f );
+
+	m_v2LastMoveVelocity = cocos2d::Vec2::ZERO;
 }
 
 

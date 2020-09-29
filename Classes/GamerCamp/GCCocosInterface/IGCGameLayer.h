@@ -208,6 +208,7 @@ public:
 		#define IGCGAMELAYER_B2D_PIXELS_PER_METER	(20.0f)
 
 		inline b2World*	B2dGetWorld				();
+		inline f32		B2dGetTimestep			();
 		inline void		B2dLoadShapesFromPlist	( const char* pszPlistFile ); 
 		inline bool		B2dIsDebugDrawing		();
 
@@ -428,6 +429,15 @@ inline IGCGameLayer* IGCGameLayer::GetGameLayerByID( const GCTypeID kidOfGameLay
 inline b2World* IGCGameLayer::B2dGetWorld()
 {
 	return m_pBox2DWorld;
+}
+
+
+//////////////////////////////////////////////////////////////////////////
+//
+//////////////////////////////////////////////////////////////////////////
+inline f32 IGCGameLayer::B2dGetTimestep()
+{
+	return ( 1.0f / 60.f );
 }
 
 
