@@ -183,7 +183,6 @@ protected:
 	inline u32				GetCountDead( void );
 	inline u32				GetCountRegistered( void );
 
-	inline const CGCObject*	GetRegisteredObjectAtIndex( unsigned int iIndex );
 
 	// get a dead object to resurrect
 	inline CGCObject*		GetDeadObject( void );
@@ -217,9 +216,9 @@ public:
 	// the derived class, since they implement key functionality 
 	virtual void VOnGroupResourceAcquire			( void );			// called b4 VOnObjectResourceAcquire from CGCObjectManager::Initialise 
 	virtual void VOnGroupResourceAcquire_PostObject	( void );			// called after VOnObjectResourceAcquire from CGCObjectManager::Initialise 
-	virtual void VOnGroupReset						( void );			// called b4 VOnObjectResourceAcquire from CGCObjectManager::Reset
-	virtual void VOnGroupUpdate						( f32 fTimeStep );	// called b4 VOnObjectResourceAcquire from CGCObjectManager::OnUpdate
-	virtual void VOnGroupResourceRelease			( void );			// called AFTER VOnObjectResourceAcquire from CGCObjectManager::ShutDown
+	virtual void VOnGroupReset						( void );			// called b4 VOnObjectReset from CGCObjectManager::Reset
+	virtual void VOnGroupUpdate						( f32 fTimeStep );	// called b4 VOnObjectUpdate from CGCObjectManager::OnUpdate
+	virtual void VOnGroupResourceRelease			( void );			// called AFTER VOnObjectResourceRelease from CGCObjectManager::ShutDown
 
 	virtual void VOnObjectResourceAcquire	( void );			// called after VOnGroupResourceAcquire from CGCObjectManager::Initialise
 	virtual void VOnObjectReset				( void );			// called after VOnGroupResourceAcquire from CGCObjectManager::Reset
@@ -536,20 +535,6 @@ inline u32 CGCObjectGroup::GetCountDead( void )
 inline u32 CGCObjectGroup::GetCountRegistered( void )
 {
 	return m_uNumGCObjects;
-}
-
-
-//////////////////////////////////////////////////////////////////////////
-// get iIndex-th registered object
-//////////////////////////////////////////////////////////////////////////
-// protected
-inline const CGCObject*	CGCObjectGroup::GetRegisteredObjectAtIndex( unsigned int uIndex )
-{
-	if( uIndex < m_uNumGCObjects )
-	{
-		return m_apGCObjects[ uIndex ];
-	}
-	return nullptr;
 }
 
 #endif
