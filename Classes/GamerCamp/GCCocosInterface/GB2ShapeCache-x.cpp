@@ -45,7 +45,8 @@ using namespace cocos2d;
 class FixtureDef
 {
 public:
-	static const int k_iMagicNumber = 0x0C0FFEE0;
+	static const int	k_iMagicNumber = 0x0C0FFEE0;
+	static std::string 	k_strShapeNotFromGB2ShapeCache;
 
 	struct SUserData
 	{
@@ -71,21 +72,24 @@ public:
 
 	static const std::string* RetrieveIdText( const b2Fixture* pb2Fixture )
 	{
-		const std::string*	pstrReturn = nullptr;
-		const SUserData*	pUserData = reinterpret_cast<const SUserData*>( pb2Fixture->GetUserData() );
+		const SUserData* pUserData = reinterpret_cast<const SUserData*>( pb2Fixture->GetUserData() );
 
-		if( pUserData->iMagicNumber == k_iMagicNumber )
+		if(		( nullptr != pUserData )
+			&&	( pUserData->iMagicNumber == k_iMagicNumber ) )
 		{
-			pstrReturn = &( pUserData->strIdText );
+			return &( pUserData->strIdText );
 		}
 
-		return pstrReturn;
+		return &k_strShapeNotFromGB2ShapeCache;
 	}
 
 	FixtureDef*		next;
 	b2FixtureDef	fixture;
 	SUserData		sUserData;
 };
+
+std::string FixtureDef::k_strShapeNotFromGB2ShapeCache = std::string( "ShapeNotFromGB2ShapeCache" );
+
 
 class BodyDef
 {
