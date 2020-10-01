@@ -26,6 +26,7 @@ Content of (/SystemDiagrams):
 - hand-drawn overview of cocos' system  (SystemDiagrams/CocosArchitectureOverview.jpg)
 - hand-drawn overview of the way in which the GCFramework works with Cocos (SystemDiagrams/GCTemplateClassDiagram.jpg)
 - hand-drawn overview of cocos' "memory management" paradigm (SystemDiagrams/CocosMemoryManagement.jpg)
+- *new* improved hand-drawn overview of main class relations in GCFramework & how it relates to cocos and box2d (SystemDiagrams/GCFrameworkClassRelationsOverview.jpg)
 
 Content of (GamerCampDocs/)
 
