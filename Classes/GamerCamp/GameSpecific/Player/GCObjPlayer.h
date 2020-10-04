@@ -48,6 +48,7 @@ private:
 	f32		m_fNoInput_VelocityThreshold;
 
 	// action map for controllers
+	//test comment
 	TGCActionToKeyMap< EPlayerActions >* m_pcControllerActionToKeyMap;
 
 public:
