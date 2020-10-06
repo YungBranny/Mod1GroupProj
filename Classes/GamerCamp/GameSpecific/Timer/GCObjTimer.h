@@ -1,9 +1,5 @@
 #ifndef	_GCOBJTIMER_H_
 #define	_GCOBJTIMER_H_
-
-#ifndef	_GCOBJECTGROUP_H_
-#include "GamerCamp/GCObject/GCObjectGroup.h"
-#endif
 #include "2d/CCLabel.h"
 
 
@@ -14,19 +10,18 @@ class CGCObjSprite;
 
 
 class CGCObjTimer
-	: public CGCObjectGroup
 {
 private:
 
 	float m_fTotalTimerDuration;
 	float m_fCurrentTime;
 	float m_fTimerDecreaseValue;
+	float m_fTimeBuffer;
 
 	
-	cocos2d::Label* pTimerText;
-	
-	
-	
+
+
+	cocos2d::Label* m_pTimerText;
 
 public:
 
@@ -37,32 +32,25 @@ public:
 	float getCurrentTime()               { return  m_fCurrentTime;         };
 	void  setCurrentTime(float f)        { m_fCurrentTime = f;             };
 
-	/*cocos2d::Label* getTimerText()       { return pTimerText; }
-	void setTimerText(cocos2d::Label*  t) { pTimerText = t; };*/
+	float getTimerDecreaseValue()        { return m_fTimerDecreaseValue;   };
+	void setTimerDercreaseValue(float f) { m_fTimerDecreaseValue = f;      };
 
+	float getTimeBuffer()                { return  m_fTimeBuffer;          };
+	void setTimeBuffer(float f)          { m_fTimeBuffer = f;              };
 
+	cocos2d::Label* getTimerText()       { return m_pTimerText; }
+	void setTimerText(cocos2d::Label*  t) { m_pTimerText = t; };
+
+	void DecreaseTimer();
+	
+	void Update();
+
+	void ResetTimer();
+	
 	
 	CGCObjTimer();
 
-	   ~CGCObjTimer();
-	
-//
-////////////////////////////////////////////////////////////////////////////
-//// overrides for CGCObjectGroup public interface
-//
-//
-//	// must return the typeid of the CGCObjectGroup derived class
-//	virtual GCTypeID	VGetTypeId() override;
-//
-//	virtual void		VOnGroupResourceAcquire() override;
-//	virtual void		VOnGroupResourceAcquire_PostObject() override;
-//	virtual void		VOnGroupReset() override;
-//	virtual void		VOnObjectReset() override;
-//	virtual void		VOnGroupUpdate(f32 fTimeStep) override;
-//	virtual void		VOnGroupResourceRelease() override;
-//	// CGCObjectGroup public interface
-////////////////////////////////////////////////////////////////////////////
-
+   ~CGCObjTimer();
 	
 };
 #endif // #ifndef _GCOBJTIMER_H_

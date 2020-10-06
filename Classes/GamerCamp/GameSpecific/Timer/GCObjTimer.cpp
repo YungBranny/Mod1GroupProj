@@ -1,5 +1,6 @@
 #include <string.h>
 
+
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
 
 #include "GamerCamp/GCObject/GCObjectManager.h"
@@ -15,32 +16,72 @@
 using namespace cocos2d;
 
 
-
-
 /////////////////////////////////////////////////////////////////////////////////////
-CGCObjTimer::CGCObjTimer()
+ CGCObjTimer::CGCObjTimer()
 	:m_fTotalTimerDuration                ( 30.0f )
-	,m_fCurrentTime                       ( m_fCurrentTime )
-    ,m_fTimerDecreaseValue                ( 1.0f  )
-    //,pTimerText(nullptr)
+    ,m_fTimerDecreaseValue                ( 0.02f )
+    ,m_fTimeBuffer                        ( 30.0f )
+    
 {
-
+	 setCurrentTime(getTotalTimerDuration());
+ 	
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
-
-    //pTimerText = Label::createWithTTF(" ", "fonts/arial.ttf", 24);
-
-	pTimerText->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 50));
-
-	pTimerText->setColor(Color3B:: MAGENTA);
-
-	pTimerText->setString(std::to_string(m_fCurrentTime));
-
 	
+	setTimerText(Label::createWithTTF("Hello world ", "fonts/arial.ttf", 24.0f));
+
+	getTimerText()->setColor(Color3B::MAGENTA);
+
+	getTimerText()->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 100));
+	
+	getTimerText()->setString(std::to_string(getCurrentTime() ));
+
 	
 }
 
+ void CGCObjTimer::DecreaseTimer()
+ {
 
+ 	//if(getTimeBuffer()> 0)
+ 	//{
+		//setTimeBuffer(getTimeBuffer()-1);
+ 	//}
+ 	
+	/*else if(getTimeBuffer()<= 0)
+	{*/
+		
+	if (getCurrentTime() >= 0)
+	{
+
+
+		setCurrentTime(getCurrentTime() - getTimerDecreaseValue());
+
+		getTimerText()->setString(std::to_string(getCurrentTime()));
+
+	}
+	else
+	{
+		setCurrentTime(0.0f);
+	}
+		
+		
+		/*setTimeBuffer(60);*/
+	/*}*/
+ 
+ }
+
+
+void CGCObjTimer::ResetTimer()
+{
+	setCurrentTime(getTotalTimerDuration());
+}
+
+ void CGCObjTimer::Update()
+{
+	 DecreaseTimer();
+}
+
+ 
 
 CGCObjTimer::~CGCObjTimer()
 {}

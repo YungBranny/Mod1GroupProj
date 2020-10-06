@@ -55,7 +55,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGroupProjectilePlayer	( nullptr )
 , m_pcGCSprBackGround			( nullptr )
 , m_pcGCOPlayer					( nullptr )
-, m_pcGCGroupTimer              ( nullptr )
+, m_pcGCGTimer              ( nullptr )
 , m_bResetWasRequested			( false )
 
 {
@@ -183,11 +183,13 @@ void CGCGameLayerPlatformer::VOnCreate()
     pMenu->setPosition( Vec2::ZERO );
     this->addChild( pMenu, 1 );
 
+	//////////////////////////////////////////////////////////////////////////////////////////
+	m_pcGCGTimer = new CGCObjTimer();
 	
 	
-	/*m_pcGCGroupTimer->setTimerText(Label::createWithTTF("Hello world ", "fonts/arial.ttf", 24.0f));
 	
-	this->addChild(m_pcGCGroupTimer->getTimerText(), 1);*/
+	
+	this->addChild(m_pcGCGTimer->getTimerText(), 1);
 	
 	
     ///////////////////////////////////////////////////////////////////////////
@@ -298,6 +300,8 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	// this shows how to iterate and respond to the box2d collision info
 	ManuallyHandleCollisions();	
 
+	m_pcGCGTimer->Update();
+	
 	if( ResetWasRequested() )
 	{
 		VOnReset();
@@ -360,7 +364,9 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 {
+	m_pcGCGTimer->ResetTimer();
 	RequestReset();
+	
 }
 
 
