@@ -52,6 +52,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\ScreenBounds">
       <UniqueIdentifier>{c0fa1bf2-9733-4542-bc0a-d9c4d43e74b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Test">
+      <UniqueIdentifier>{77c1f0e1-9f3f-4273-b24d-900f844ce0ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -146,6 +149,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
+    </ClCompile>
+    <ClCompile Include="GCTimer.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Test</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.h">
       <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
+    </ClInclude>
+    <ClInclude Include="GCTimer.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Test</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
