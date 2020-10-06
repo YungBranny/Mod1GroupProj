@@ -22,6 +22,7 @@
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
+#include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
 
 #include "AppDelegate.h"
 
@@ -54,7 +55,9 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGroupProjectilePlayer	( nullptr )
 , m_pcGCSprBackGround			( nullptr )
 , m_pcGCOPlayer					( nullptr )
+, m_pcGCGroupTimer              ( nullptr )
 , m_bResetWasRequested			( false )
+
 {
 }
 
@@ -151,6 +154,9 @@ void CGCGameLayerPlatformer::VOnCreate()
 	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupProjectilePlayer );
 
 
+	
+
+
     ///////////////////////////////////////////////////////////////////////////
     // add menu
 	///////////////////////////////////////////////////////////////////////////
@@ -177,7 +183,13 @@ void CGCGameLayerPlatformer::VOnCreate()
     pMenu->setPosition( Vec2::ZERO );
     this->addChild( pMenu, 1 );
 
-
+	
+	
+	/*m_pcGCGroupTimer->setTimerText(Label::createWithTTF("Hello world ", "fonts/arial.ttf", 24.0f));
+	
+	this->addChild(m_pcGCGroupTimer->getTimerText(), 1);*/
+	
+	
     ///////////////////////////////////////////////////////////////////////////
     // add label
 	///////////////////////////////////////////////////////////////////////////
@@ -242,7 +254,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOPlayer = new CGCObjPlayer();
 	m_pcGCOPlayer->SetResetPosition( v2MarioStartPos );
 
-
+	
+	//
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. invaders are created by m_pcGCGroupInvader in OnResourceAcquire
 	///////////////////////////////////////////////////////////////////////////

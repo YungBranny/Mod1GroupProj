@@ -19,6 +19,7 @@ class CGCObjGroupItem;
 class CGCObjInvader;
 class CGCObjGroupInvader;
 class CGCObjGroupProjectilePlayer;
+class CGCObjTimer;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -34,6 +35,7 @@ private:
 	CGCObjGroupItem*				m_pcGCGroupItem;
 	CGCObjGroupInvader*				m_pcGCGroupInvader;
 	CGCObjGroupProjectilePlayer*	m_pcGCGroupProjectilePlayer;
+	CGCObjTimer*					m_pcGCGroupTimer;
 
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;

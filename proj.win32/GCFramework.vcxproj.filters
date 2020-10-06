@@ -55,6 +55,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Test">
       <UniqueIdentifier>{77c1f0e1-9f3f-4273-b24d-900f844ce0ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Timer">
+      <UniqueIdentifier>{30b9ba71-22e2-47c9-83ef-6599b4c1eb09}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -150,8 +153,8 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
     </ClCompile>
-    <ClCompile Include="GCTimer.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\Test</Filter>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimer.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -260,8 +263,8 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.h">
       <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
     </ClInclude>
-    <ClInclude Include="GCTimer.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Test</Filter>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimer.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
