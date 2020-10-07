@@ -25,6 +25,7 @@
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
 #include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
+//#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
 
 #include "AppDelegate.h"
 
@@ -60,7 +61,8 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGTimer					( nullptr )
 , m_pcGCOKeys                   ( nullptr )
 , m_pcGCBasicEnemies			( nullptr )
-, m_pcGCBasicEnemies2			(nullptr)
+, m_pcGCBasicEnemies2			( nullptr )
+//, m_pcGCMovingEnemies			( nullptr )
 , m_bResetWasRequested			( false )
 
 {
@@ -284,6 +286,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCBasicEnemies2 = new CGCBasicEnemies ();
 	m_pcGCBasicEnemies2->SetResetPosition (v2Enemy1StartPos);
 	m_pcGCBasicEnemies2->setGravity (0.0f);
+
+	//m_pcGCMovingEnemies = new CGCMovingEnemies ();
 	
 	//
 	///////////////////////////////////////////////////////////////////////////
@@ -365,6 +369,9 @@ void CGCGameLayerPlatformer::VOnDestroy()
 
 	delete m_pcGCBasicEnemies;
 	m_pcGCBasicEnemies = nullptr;
+
+	delete m_pcGCBasicEnemies2;
+	m_pcGCBasicEnemies2 = nullptr;
 
 	delete m_pcGCSprBackGround;
 	m_pcGCSprBackGround = nullptr;
