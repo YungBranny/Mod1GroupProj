@@ -16,8 +16,7 @@ CGCBasicEnemies::CGCBasicEnemies()
 	
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE( CGCBasicEnemies, "TexturePacker/Sprites/BasicEnemy/BasicEnemy.plist", "mario", b2_dynamicBody, true );
-
+IN_CPP_CREATION_PARAMS_DECLARE( CGCBasicEnemies, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true);
 void CGCBasicEnemies::VOnResourceAcquire()
 {
 
