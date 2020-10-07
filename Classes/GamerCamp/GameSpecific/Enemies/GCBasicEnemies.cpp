@@ -16,7 +16,7 @@ CGCBasicEnemies::CGCBasicEnemies()
 	
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE( CGCBasicEnemies, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true );
+IN_CPP_CREATION_PARAMS_DECLARE( CGCBasicEnemies, "TexturePacker/Sprites/SiSmallTest/SiSmallTest.plist", "mario", b2_dynamicBody, true );
 
 void CGCBasicEnemies::VOnResourceAcquire()
 {
@@ -25,11 +25,11 @@ void CGCBasicEnemies::VOnResourceAcquire()
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
 
-	const char* pszAnim_marioJog = "Jog";
+	//const char* pszAnim_marioJog = "Jog";
 
 	// animate!
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
-	RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_marioJog)));
+	//RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_marioJog)));
 
 }
 
