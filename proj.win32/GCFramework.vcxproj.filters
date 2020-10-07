@@ -61,6 +61,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Keys">
       <UniqueIdentifier>{9a343c04-2a7a-4169-b829-bc3712b902f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Enemies">
+      <UniqueIdentifier>{55f9c181-6b9a-43cc-b7af-2ffec0605587}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -161,6 +164,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\BasicEnemies.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.h">
       <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\BasicEnemies.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
