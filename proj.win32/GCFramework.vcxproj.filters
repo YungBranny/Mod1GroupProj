@@ -59,7 +59,7 @@
       <UniqueIdentifier>{30b9ba71-22e2-47c9-83ef-6599b4c1eb09}</UniqueIdentifier>
     </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\Keys">
-      <UniqueIdentifier>{b31805eb-34b0-4b0f-aae8-77e7f801b454}</UniqueIdentifier>
+      <UniqueIdentifier>{9a343c04-2a7a-4169-b829-bc3712b902f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +159,7 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimer.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PickUps\GCObjKeys.cpp">
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
     </ClCompile>
   </ItemGroup>
@@ -272,7 +272,7 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimer.h">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PickUps\GCObjKeys.h">
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.h">
       <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
     </ClInclude>
   </ItemGroup>
