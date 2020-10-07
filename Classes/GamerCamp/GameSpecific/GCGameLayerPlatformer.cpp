@@ -320,6 +320,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 		{
 
 			RequestReset ();
+			m_pcGCGTimer->ResetTimer ();
 			CGCObjectManager::ObjectKill (&rcEnemies);
 			//CGCObjectManager::ObjectKill (&rcInvader);
 		}
@@ -340,7 +341,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	// this shows how to iterate and respond to the box2d collision info
 	ManuallyHandleCollisions();	
 
-	//m_pcGCGTimer->Update();
+	m_pcGCGTimer->Update();
 	
 	if( ResetWasRequested() )
 	{
