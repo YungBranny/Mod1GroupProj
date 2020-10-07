@@ -11,6 +11,7 @@ USING_NS_CC;
 
 CGCBasicEnemies::CGCBasicEnemies()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCBasicEnemies))
+	,m_fGravity		(-1.0f)
 {
 	
 }
@@ -63,7 +64,7 @@ void CGCBasicEnemies::VOnResourceRelease()
 void CGCBasicEnemies::VOnResurrected()
 {
 	CGCObjSpritePhysics::VOnResurrected();
-	GetPhysicsBody ()->SetGravityScale (1.0f);
+	GetPhysicsBody ()->SetGravityScale (getGravity());
 }
 
 

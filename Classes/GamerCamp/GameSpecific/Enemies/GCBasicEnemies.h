@@ -9,12 +9,17 @@ class CGCBasicEnemies
 :	public CGCObjSpritePhysics
 {
 private:
-
+	float m_fGravity;
 
 public:
 	CGCBasicEnemies ();
-											  
 	virtual ~CGCBasicEnemies () {};
+
+	float getGravity ()			{ return m_fGravity;	}
+	void  setGravity (float i)  { m_fGravity = i;		}
+
+											  
+
 								
 	virtual void VOnResourceAcquire (void)	;
 	virtual void VOnResurrected		(void)	;

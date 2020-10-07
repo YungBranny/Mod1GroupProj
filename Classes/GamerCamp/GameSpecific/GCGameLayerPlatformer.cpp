@@ -60,6 +60,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGTimer					( nullptr )
 , m_pcGCOKeys                   ( nullptr )
 , m_pcGCBasicEnemies			( nullptr )
+, m_pcGCBasicEnemies2			(nullptr)
 , m_bResetWasRequested			( false )
 
 {
@@ -276,8 +277,13 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 
 	//enemy
+	Vec2 v2Enemy1StartPos = ( v2ScreenCentre_Pixels - Vec2 (0.0f, ( visibleSize.height * 0.1f )) );
 	m_pcGCBasicEnemies = new CGCBasicEnemies ();
-	m_pcGCBasicEnemies->SetResetPosition (v2MarioStartPos);
+	m_pcGCBasicEnemies->SetResetPosition (v2Enemy1StartPos);
+
+	m_pcGCBasicEnemies2 = new CGCBasicEnemies ();
+	m_pcGCBasicEnemies2->SetResetPosition (v2Enemy1StartPos);
+	m_pcGCBasicEnemies2->setGravity (0.0f);
 	
 	//
 	///////////////////////////////////////////////////////////////////////////
@@ -307,6 +313,18 @@ void CGCGameLayerPlatformer::VOnCreate()
 		} 
 	);
 
+	GetCollisionManager ().AddCollisionHandler
+	(
+		[this]
+	(CGCBasicEnemies& rcEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+		{
+
+			RequestReset ();
+			CGCObjectManager::ObjectKill (&rcEnemies);
+			//CGCObjectManager::ObjectKill (&rcInvader);
+		}
+	);
+
 
 }// void CGCGameLayerPlatformer::VOnCreate() { ...
 
@@ -322,7 +340,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	// this shows how to iterate and respond to the box2d collision info
 	ManuallyHandleCollisions();	
 
-	m_pcGCGTimer->Update();
+	//m_pcGCGTimer->Update();
 	
 	if( ResetWasRequested() )
 	{
@@ -343,6 +361,9 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	///////////////////////////////////////////////////////////////////////////	
 	delete m_pcGCOPlayer;
 	m_pcGCOPlayer = nullptr;
+
+	delete m_pcGCBasicEnemies;
+	m_pcGCBasicEnemies = nullptr;
 
 	delete m_pcGCSprBackGround;
 	m_pcGCSprBackGround = nullptr;

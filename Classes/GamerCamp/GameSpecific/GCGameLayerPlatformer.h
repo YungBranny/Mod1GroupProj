@@ -42,6 +42,7 @@ private:
 	CGCObjKeys*                     m_pcGCOKeys;
 
 	CGCBasicEnemies*				m_pcGCBasicEnemies;
+	CGCBasicEnemies*				m_pcGCBasicEnemies2;
 
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;
