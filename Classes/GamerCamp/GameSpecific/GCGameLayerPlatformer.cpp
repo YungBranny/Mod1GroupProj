@@ -24,6 +24,7 @@
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
 #include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
+#include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 
 #include "AppDelegate.h"
 
@@ -56,8 +57,9 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGroupProjectilePlayer	( nullptr )
 , m_pcGCSprBackGround			( nullptr )
 , m_pcGCOPlayer					( nullptr )
-, m_pcGCGTimer              ( nullptr )
+, m_pcGCGTimer					( nullptr )
 , m_pcGCOKeys                   ( nullptr )
+, m_pcGCBasicEnemies			( nullptr )
 , m_bResetWasRequested			( false )
 
 {
@@ -272,6 +274,10 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOPlayer = new CGCObjPlayer();
 	m_pcGCOPlayer->SetResetPosition( v2MarioStartPos );
 
+
+	//enemy
+	m_pcGCBasicEnemies = new CGCBasicEnemies ();
+	m_pcGCBasicEnemies->SetResetPosition (v2MarioStartPos);
 	
 	//
 	///////////////////////////////////////////////////////////////////////////

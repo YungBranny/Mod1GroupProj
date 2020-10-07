@@ -1,33 +1,47 @@
+#include <memory.h>
 
+//#include "AppDelegate.h"
+#include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
 #include "GCBasicEnemies.h"
 
-CGCBasicEnemies::CGCBasicEnemies ()
+USING_NS_CC;
+
+CGCBasicEnemies::CGCBasicEnemies()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCBasicEnemies))
 {
+	
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE (CGCBasicEnemies, "TexturePacker/Sprites/KoopaTrooper/KoopaTrooper.plist", "koopa", b2_dynamicBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE( CGCBasicEnemies, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true );
 
-void CGCBasicEnemies::VOnResourceAcquire( void )
+void CGCBasicEnemies::VOnResourceAcquire()
 {
+
 	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCBasicEnemies);
 
-	CGCObjSpritePhysics::VOnResourceAcquire ();
+	CGCObjSpritePhysics::VOnResourceAcquire();
+
+	const char* pszAnim_marioJog = "Jog";
+
+	// animate!
+	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
+	RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_marioJog)));
+
 }
 
-void CGCBasicEnemies::VOnResurrected( void )
-{
-	CGCBasicEnemies::VOnResurrected ();
-	GetPhysicsBody ()->SetGravityScale (1.0f);
-}
 
-void CGCBasicEnemies::VOnReset (void)
+
+void CGCBasicEnemies::VOnReset()
 {
-	//CGCBasicEnemies::VOnReset ();
+	CGCObjSpritePhysics::VOnReset();
 	// reset
+	SetFlippedX (false);
+	SetFlippedY (false);
+
+	SetResetPosition (cocos2d::Vec2(100, 100));
 	if (GetPhysicsBody ())
 	{
 		cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
@@ -37,14 +51,22 @@ void CGCBasicEnemies::VOnReset (void)
 	}
 
 }
-
-void CGCBasicEnemies::VOnResourceRelease ()
-{
-	CGCBasicEnemies::VOnResourceRelease ();
-}
-
 void CGCBasicEnemies::VOnUpdate(f32 fTimestep)
 {
-	
 }
+
+void CGCBasicEnemies::VOnResourceRelease()
+{
+	CGCObjSpritePhysics::VOnResourceRelease();
+
+}
+void CGCBasicEnemies::VOnResurrected()
+{
+	CGCObjSpritePhysics::VOnResurrected();
+	GetPhysicsBody ()->SetGravityScale (1.0f);
+}
+
+
+
+
 

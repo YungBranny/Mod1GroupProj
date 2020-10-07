@@ -21,6 +21,7 @@ class CGCObjGroupInvader;
 class CGCObjGroupProjectilePlayer;
 class CGCObjTimer;
 class CGCObjKeys;
+class CGCBasicEnemies;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -39,6 +40,8 @@ private:
 	CGCObjTimer*					m_pcGCGTimer;
 
 	CGCObjKeys*                     m_pcGCOKeys;
+
+	CGCBasicEnemies*				m_pcGCBasicEnemies;
 
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;
