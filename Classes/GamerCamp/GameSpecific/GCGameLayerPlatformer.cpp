@@ -23,6 +23,7 @@
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
+#include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
 
 #include "AppDelegate.h"
 
