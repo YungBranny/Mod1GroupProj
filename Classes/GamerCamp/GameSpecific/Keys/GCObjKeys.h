@@ -13,7 +13,6 @@ private:
 
 public:
 	CGCObjKeys();
-
 	~CGCObjKeys();
 
 };

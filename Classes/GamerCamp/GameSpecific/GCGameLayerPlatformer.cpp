@@ -57,6 +57,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCSprBackGround			( nullptr )
 , m_pcGCOPlayer					( nullptr )
 , m_pcGCGTimer              ( nullptr )
+, m_pcGCGKeys                   ( nullptr )
 , m_bResetWasRequested			( false )
 
 {
