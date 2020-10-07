@@ -37,7 +37,8 @@ private:
 	CGCObjGroupInvader*				m_pcGCGroupInvader;
 	CGCObjGroupProjectilePlayer*	m_pcGCGroupProjectilePlayer;
 	CGCObjTimer*					m_pcGCGTimer;
-	CGCObjKeys*                     m_pcGCGKeys;
+
+	CGCObjKeys*                     m_pcGCOKeys;
 
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;

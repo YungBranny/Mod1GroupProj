@@ -57,7 +57,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCSprBackGround			( nullptr )
 , m_pcGCOPlayer					( nullptr )
 , m_pcGCGTimer              ( nullptr )
-, m_pcGCGKeys                   ( nullptr )
+, m_pcGCOKeys                   ( nullptr )
 , m_bResetWasRequested			( false )
 
 {
@@ -192,6 +192,9 @@ void CGCGameLayerPlatformer::VOnCreate()
 	
 	
 	this->addChild(m_pcGCGTimer->getTimerText(), 1);
+
+	//m_pcGCOKeys = new CGCObjKeys();
+	//m_pcGCOKeys->CreateSprite("TexturePacker/Sprites/Coin/Coin.png");
 	
 	
     ///////////////////////////////////////////////////////////////////////////
