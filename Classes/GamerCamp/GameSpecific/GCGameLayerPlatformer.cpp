@@ -193,7 +193,18 @@ void CGCGameLayerPlatformer::VOnCreate()
 	
 	this->addChild(m_pcGCGTimer->getTimerText(), 1);
 
+	const char* keysSprite = "TexturePacker/Sprites/Coin/Coin.plist";
+	{
+		m_pcGCOKeys = new CGCObjKeys();
+		m_pcGCOKeys->CreateSprite(keysSprite);
+		m_pcGCOKeys->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		m_pcGCOKeys->SetParent(IGCGameLayer::ActiveInstance());
+	}
+
 	//m_pcGCOKeys = new CGCObjKeys();
+	//m_pcGCOKeys->CreateSprite("TexturePacker/Sprites/Coin/Coin.plist");
+	//m_pcGCOKeys->SetSpritePosition(Vec2(visibleSize.width * 0.1, visibleSize.height * 0.5));
+	//this->addChild();
 	//m_pcGCOKeys->CreateSprite("TexturePacker/Sprites/Coin/Coin.png");
 	
 	
