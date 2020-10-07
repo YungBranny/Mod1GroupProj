@@ -165,7 +165,7 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\BasicEnemies.cpp">
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
@@ -281,7 +281,7 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.h">
       <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\BasicEnemies.h">
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
