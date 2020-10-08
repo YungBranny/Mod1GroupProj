@@ -52,19 +52,14 @@ using namespace cocos2d;
 		
 	if (getCurrentTime() >= 0)
 	{
-
-
 		setCurrentTime(getCurrentTime() - getTimerDecreaseValue());
 
 		getTimerText()->setString(std::to_string(getCurrentTime()));
-
 	}
 	else
 	{
 		setCurrentTime(0.0f);
-	}
-		
-		
+	}	
 		/*setTimeBuffer(60);*/
 	/*}*/
  

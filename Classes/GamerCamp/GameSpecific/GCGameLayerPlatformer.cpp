@@ -355,6 +355,13 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		VOnReset();
 		ResetRequestWasHandled();
 	}
+
+	if(m_pcGCGTimer->getCurrentTime() <= 0)
+	{
+		m_pcGCGTimer->setCurrentTime(m_pcGCGTimer->getTotalTimerDuration());
+		
+		RequestReset();
+	}
 }
 
 
