@@ -25,7 +25,7 @@
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
 #include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
-//#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
+#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
 
 #include "AppDelegate.h"
 
@@ -62,7 +62,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCOKeys                   ( nullptr )
 , m_pcGCBasicEnemies			( nullptr )
 , m_pcGCBasicEnemies2			( nullptr )
-//, m_pcGCMovingEnemies			( nullptr )
+, m_pcGCMovingEnemies			( nullptr )
 , m_bResetWasRequested			( false )
 
 {
@@ -153,8 +153,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupItem );
 	
 	// create and register the object group for the invader objects
-	m_pcGCGroupInvader = new CGCObjGroupInvader( 64 );
-	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupInvader );
+	//m_pcGCGroupInvader = new CGCObjGroupInvader( 64 );
+	//CGCObjectManager::ObjectGroupRegister( m_pcGCGroupInvader );
 
 	// create and register the object group for the player projectile objects
 	m_pcGCGroupProjectilePlayer = new CGCObjGroupProjectilePlayer();
@@ -287,14 +287,16 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCBasicEnemies2->SetResetPosition (v2Enemy1StartPos);
 	m_pcGCBasicEnemies2->setGravity (0.0f);
 
-	//m_pcGCMovingEnemies = new CGCMovingEnemies ();
+	m_pcGCMovingEnemies = new CGCMovingEnemies ();
+	m_pcGCMovingEnemies->SetResetPosition (v2MarioStartPos);
+	m_pcGCMovingEnemies->setGravity (1.0f);
 	
 	//
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. invaders are created by m_pcGCGroupInvader in OnResourceAcquire
 	///////////////////////////////////////////////////////////////////////////
-	m_pcGCGroupInvader->SetFormationOrigin( v2ScreenCentre_Pixels + Vec2( -( visibleSize.width * 0.3f ), ( visibleSize.height * 0.25f ) ) );
-	m_pcGCGroupInvader->SetRowsAndColumns( 6, 8, -60.0f, 40.0f );
+	//m_pcGCGroupInvader->SetFormationOrigin( v2ScreenCentre_Pixels + Vec2( -( visibleSize.width * 0.3f ), ( visibleSize.height * 0.25f ) ) );
+	//m_pcGCGroupInvader->SetRowsAndColumns( 6, 8, -60.0f, 40.0f );
 
 
 	//////////////////////////////////////////////////////////////////////////
@@ -346,6 +348,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	ManuallyHandleCollisions();	
 
 	m_pcGCGTimer->Update();
+	m_pcGCMovingEnemies->VOnUpdate (fTimeStep);
 	
 	if( ResetWasRequested() )
 	{
@@ -388,9 +391,9 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	delete m_pcGCGroupProjectilePlayer;
 	m_pcGCGroupProjectilePlayer = nullptr;
 
-	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupInvader );
-	delete m_pcGCGroupInvader;
-	m_pcGCGroupInvader = nullptr;
+	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupInvader );
+	//delete m_pcGCGroupInvader;
+	//m_pcGCGroupInvader = nullptr;
 
 	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupItem );
 	delete m_pcGCGroupItem;
