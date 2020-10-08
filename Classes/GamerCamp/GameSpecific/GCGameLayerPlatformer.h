@@ -38,7 +38,9 @@ private:
 	CGCObjGroupItem*				m_pcGCGroupItem;
 	CGCObjGroupInvader*				m_pcGCGroupInvader;
 	CGCObjGroupProjectilePlayer*	m_pcGCGroupProjectilePlayer;
-	CGCObjTimer*					m_pcGCGTimer;
+
+	
+	CGCObjTimer*					m_pcGCTimer;
 
 	CGCObjKeys*                     m_pcGCOKeys;
 
@@ -48,6 +50,7 @@ private:
 
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;
+	
 
 	// mario
 	CGCObjPlayer*					m_pcGCOPlayer;

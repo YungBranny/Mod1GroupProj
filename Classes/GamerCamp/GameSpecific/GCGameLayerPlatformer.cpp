@@ -58,7 +58,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGroupProjectilePlayer	( nullptr )
 , m_pcGCSprBackGround			( nullptr )
 , m_pcGCOPlayer					( nullptr )
-, m_pcGCGTimer					( nullptr )
+, m_pcGCTimer					( nullptr )
 , m_pcGCOKeys                   ( nullptr )
 , m_pcGCBasicEnemies			( nullptr )
 , m_pcGCBasicEnemies2			( nullptr )
@@ -191,12 +191,12 @@ void CGCGameLayerPlatformer::VOnCreate()
     this->addChild( pMenu, 1 );
 
 	//////////////////////////////////////////////////////////////////////////////////////////
-	m_pcGCGTimer = new CGCObjTimer();
+	m_pcGCTimer = new CGCObjTimer();
 	
 	
 	
 	
-	this->addChild(m_pcGCGTimer->getTimerText(), 1);
+	this->addChild(m_pcGCTimer->getTimerText(), 1);
 
 	//const char* keysSprite = "TexturePacker/Sprites/Coin/Coin.plist";
 	//{
@@ -279,7 +279,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	m_pcGCOKeys = new CGCObjKeys();
 
-
+	
 	//enemy
 	Vec2 v2Enemy1StartPos = ( v2ScreenCentre_Pixels - Vec2 (0.0f, ( visibleSize.height * 0.1f )) );
 	m_pcGCBasicEnemies = new CGCBasicEnemies ();
@@ -338,7 +338,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 		{
 
 			RequestReset ();
-			m_pcGCGTimer->ResetTimer ();
+			m_pcGCTimer->ResetTimer ();
 			CGCObjectManager::ObjectKill (&rcEnemies);
 			//CGCObjectManager::ObjectKill (&rcInvader);
 		}
@@ -359,7 +359,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	// this shows how to iterate and respond to the box2d collision info
 	ManuallyHandleCollisions();	
 
-	m_pcGCGTimer->Update();
+	m_pcGCTimer->Update();
 	m_pcGCMovingEnemies->VOnUpdate (fTimeStep);
 	
 	if( ResetWasRequested() )
@@ -368,9 +368,9 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		ResetRequestWasHandled();
 	}
 
-	if(m_pcGCGTimer->getCurrentTime() <= 0)
+	if(m_pcGCTimer->getCurrentTime() <= 0)
 	{
-		m_pcGCGTimer->setCurrentTime(m_pcGCGTimer->getTotalTimerDuration());
+		m_pcGCTimer->setCurrentTime(m_pcGCTimer->getTotalTimerDuration());
 		
 		RequestReset();
 	}
@@ -437,7 +437,7 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 {
-	m_pcGCGTimer->ResetTimer();
+	m_pcGCTimer->ResetTimer();
 	RequestReset();
 	
 }

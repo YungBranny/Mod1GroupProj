@@ -1,15 +1,17 @@
 #ifndef	_GCOBJTIMER_H_
 #define	_GCOBJTIMER_H_
+
 #include "2d/CCLabel.h"
 
 
-///////////////////////////////////////////////////////////////////////////
-// Forward Declare
-class CGCObjSprite;
+#include "GamerCamp/GameSpecific/Items/GCObjItem.h"
+#include "../../GCCocosInterface/GCObjSpritePhysics.h"
+#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 
 
 
 class CGCObjTimer
+	//:CGCObjSprite
 {
 private:
 
@@ -18,29 +20,33 @@ private:
 	int m_fTimerDecreaseValue;
 	float m_fTimeBuffer;
 
-	
-
-
 	cocos2d::Label* m_pTimerText;
+
+	
 
 public:
 
+	//CGCObjSprite* m_pcGCOTimerBar;
 	
-	int getTotalTimerDuration()        { return m_fTotalTimerDuration;   }
-	void  setTotalTimerDuration(int f) { m_fTotalTimerDuration = f;      }
+	int getTotalTimerDuration()			  { return m_fTotalTimerDuration;   }
+	void  setTotalTimerDuration(int f)	  { m_fTotalTimerDuration = f;      }
 
-	int getCurrentTime()               { return  m_fCurrentTime;         }
-	void  setCurrentTime(int f)        { m_fCurrentTime = f;             }
+	int getCurrentTime()				  { return  m_fCurrentTime;         }
+	void  setCurrentTime(int f)           { m_fCurrentTime = f;             }
 
-	int getTimerDecreaseValue()        { return m_fTimerDecreaseValue;   }
-	void setTimerDercreaseValue(int f) { m_fTimerDecreaseValue = f;      }
+	int getTimerDecreaseValue()           { return m_fTimerDecreaseValue;   }
+	void setTimerDercreaseValue(int f)    { m_fTimerDecreaseValue = f;      }
 
-	float getTimeBuffer()                { return  m_fTimeBuffer;          };
-	void setTimeBuffer(float f)          { m_fTimeBuffer = f;              };
+	float getTimeBuffer()                 { return  m_fTimeBuffer;          }
+	void setTimeBuffer(float f)           { m_fTimeBuffer = f;              }
 
-	cocos2d::Label* getTimerText()       { return m_pTimerText; }
-	void setTimerText(cocos2d::Label*  t) { m_pTimerText = t; }
+	cocos2d::Label* getTimerText()        { return m_pTimerText;			}
+	void setTimerText(cocos2d::Label*  t) { m_pTimerText = t;				}
 
+	//CGCObjSprite* getTimerBar()			  { return m_pcGCOTimerBar;			}
+	//void setTimerBar(CGCObjSprite* t)     { m_pcGCOTimerBar = t;		    }
+
+	
 	void DecreaseTimer();
 	
 	void Update();
