@@ -198,13 +198,13 @@ void CGCGameLayerPlatformer::VOnCreate()
 	
 	this->addChild(m_pcGCGTimer->getTimerText(), 1);
 
-	const char* keysSprite = "TexturePacker/Sprites/Coin/Coin.plist";
-	{
-		m_pcGCOKeys = new CGCObjKeys();
-		m_pcGCOKeys->CreateSprite(keysSprite);
-		m_pcGCOKeys->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-		m_pcGCOKeys->SetParent(IGCGameLayer::ActiveInstance());
-	}
+	//const char* keysSprite = "TexturePacker/Sprites/Coin/Coin.plist";
+	//{
+	//	m_pcGCOKeys = new CGCObjKeys();
+	//	m_pcGCOKeys->CreateSprite(keysSprite);
+	//	m_pcGCOKeys->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	//	m_pcGCOKeys->SetParent(IGCGameLayer::ActiveInstance());
+	//}
 
 	//m_pcGCOKeys = new CGCObjKeys();
 	//m_pcGCOKeys->CreateSprite("TexturePacker/Sprites/Coin/Coin.plist");
@@ -277,6 +277,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOPlayer = new CGCObjPlayer();
 	m_pcGCOPlayer->SetResetPosition( v2MarioStartPos );
 
+	m_pcGCOKeys = new CGCObjKeys();
+
 
 	//enemy
 	Vec2 v2Enemy1StartPos = ( v2ScreenCentre_Pixels - Vec2 (0.0f, ( visibleSize.height * 0.1f )) );
@@ -317,6 +319,16 @@ void CGCGameLayerPlatformer::VOnCreate()
 			CGCObjectManager::ObjectKill( &rcProjectile );
 			CGCObjectManager::ObjectKill( &rcInvader );
 		} 
+	);
+
+	GetCollisionManager().AddCollisionHandler
+	(
+		[this]
+	(CGCObjItem& rcItem, CGCObjPlayer &rcPlayer, const b2Contact& rcContact) -> void
+	{
+		ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
+		CGCObjectManager::ObjectKill(&rcItem);
+	}
 	);
 
 	GetCollisionManager ().AddCollisionHandler

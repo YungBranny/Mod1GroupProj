@@ -5,6 +5,7 @@
 
 #include "GamerCamp/GameSpecific/Items/GCObjItem.h" // We use header files to pull in declarations from another file.
 #include "../../GCCocosInterface/GCObjSpritePhysics.h"
+#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 
 class CGCObjKeys
 	: public CGCObjItem
@@ -15,6 +16,8 @@ private:
 public:
 	CGCObjKeys();
 	~CGCObjKeys();
+
+	CGCObjItem* m_pcGCOKeys;
 
 	float getGravity() { return m_fGravity; }
 	void  setGravity(float i) { m_fGravity = i; }
