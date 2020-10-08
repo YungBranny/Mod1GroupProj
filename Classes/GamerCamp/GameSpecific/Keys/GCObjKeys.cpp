@@ -12,10 +12,16 @@ using namespace cocos2d;
 
 CGCObjKeys::CGCObjKeys()
 {
-
+	m_fGravity = 0.0f;
 }
 
 CGCObjKeys::~CGCObjKeys()
 {
 
+}
+
+void CGCObjKeys::VOnResurrected()
+{
+	CGCObjSpritePhysics::VOnResurrected();
+	GetPhysicsBody()->SetGravityScale(getGravity());
 }
