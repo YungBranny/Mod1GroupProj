@@ -20,6 +20,7 @@ class CGCObjInvader;
 class CGCObjGroupInvader;
 class CGCObjGroupProjectilePlayer;
 class CGCObjTimer;
+class CGCObjTimerBar;
 class CGCObjKeys;
 class CGCBasicEnemies;
 class CGCMovingEnemies;
@@ -41,6 +42,7 @@ private:
 
 	
 	CGCObjTimer*					m_pcGCTimer;
+	CGCObjTimerBar*					m_pcGCTimerBar;
 
 	CGCObjKeys*                     m_pcGCOKeys;
 

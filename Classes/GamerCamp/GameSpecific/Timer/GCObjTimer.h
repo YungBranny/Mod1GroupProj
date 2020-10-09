@@ -11,14 +11,15 @@
 
 
 class CGCObjTimer
-	//:CGCObjSprite
+	/*:CGCObjSprite*/
 {
 private:
 
 	int m_fTotalTimerDuration;
 	int m_fCurrentTime;
 	int m_fTimerDecreaseValue;
-	float m_fTimeBuffer;
+	float m_fCurrentTimeBuffer;
+	float m_fMaxTimeBuffer;
 
 	cocos2d::Label* m_pTimerText;
 
@@ -26,7 +27,7 @@ private:
 
 public:
 
-	//CGCObjSprite* m_pcGCOTimerBar;
+	/*CGCObjSprite* m_pcGCOTimerBar;*/
 	
 	int getTotalTimerDuration()			  { return m_fTotalTimerDuration;   }
 	void  setTotalTimerDuration(int f)	  { m_fTotalTimerDuration = f;      }
@@ -37,15 +38,20 @@ public:
 	int getTimerDecreaseValue()           { return m_fTimerDecreaseValue;   }
 	void setTimerDercreaseValue(int f)    { m_fTimerDecreaseValue = f;      }
 
-	float getTimeBuffer()                 { return  m_fTimeBuffer;          }
-	void setTimeBuffer(float f)           { m_fTimeBuffer = f;              }
+	float getMaxTimeBuffer()              { return  m_fMaxTimeBuffer;       }
+	void setMaxTimeBuffer(float f)        { m_fMaxTimeBuffer = f;           }
 
 	cocos2d::Label* getTimerText()        { return m_pTimerText;			}
 	void setTimerText(cocos2d::Label*  t) { m_pTimerText = t;				}
 
+	float getCurrentTimeBuffer()		  { return m_fCurrentTimeBuffer;	}
+	void setCurrentTimeBuffer(float f)	  { m_fCurrentTimeBuffer = f;		}
+
 	//CGCObjSprite* getTimerBar()			  { return m_pcGCOTimerBar;			}
 	//void setTimerBar(CGCObjSprite* t)     { m_pcGCOTimerBar = t;		    }
 
+
+	/*virtual void VOnResourceAcquire(void) override;*/
 	
 	void DecreaseTimer();
 	

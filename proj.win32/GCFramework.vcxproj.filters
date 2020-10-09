@@ -171,6 +171,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimerBar.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -289,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimerBar.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

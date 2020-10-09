@@ -15,11 +15,15 @@
 
 using namespace cocos2d;
 
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
  CGCObjTimer::CGCObjTimer()
-	:m_fTotalTimerDuration                ( 100 )		//Max value for the timer
-    ,m_fTimerDecreaseValue                (  1  )		// The Amount decremented each time
-    ,m_fTimeBuffer                        ( 100.0f )	// higher the value  slower the timer is 
+	:m_fTotalTimerDuration		 ( 100			    )   //Max value for the timer
+    ,m_fTimerDecreaseValue		 (  1				)	// The Amount decremented each time
+    ,m_fMaxTimeBuffer			 ( 100.0f			)	// Max value timer resets too
+	,m_fCurrentTimeBuffer        ( m_fMaxTimeBuffer )	// higher the value  slower the timer is
+	
     
 {
  	//Set Current time to the max Time
@@ -39,50 +43,55 @@ using namespace cocos2d;
  	
 	getTimerText()->enableOutline(Color4B::BLACK, 1);
 	
-	getTimerText()->setPosition(Vec2(visibleSize.width / 2 - 450 , visibleSize.height +  10));
+	getTimerText()->setPosition(Vec2(visibleSize.width / 2 - 420 , visibleSize.height +  10));
 
-	getTimerText()->setString(std::to_string(getCurrentTime()) + "%"  );
+	getTimerText()->setString("Air " + std::to_string( getCurrentTime()) + "%"  );
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 	//const char* timerBarSprite = "TexturePacker/Sprites/Coin/Coin.plist";
 	//{
 	//	m_pcGCOTimerBar = new CGCObjSprite();
 
-	//	if(nullptr != m_pcGCOTimerBar)
-	//	{
-	//		m_pcGCOTimerBar->CreateSprite(timerBarSprite);
-	//		//m_pcGCOTimerBar->SetSpritePosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-	//		m_pcGCOTimerBar->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-	//		m_pcGCOTimerBar->SetParent(IGCGameLayer::ActiveInstance());
-	//	}
+	//	m_pcGCOTimerBar->CreateSprite(timerBarSprite);
+	//	//m_pcGCOTimerBar->SetSpritePosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	//	m_pcGCOTimerBar->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	//	m_pcGCOTimerBar->SetParent(IGCGameLayer::ActiveInstance());
+
 	//}
 }
 
  void CGCObjTimer::DecreaseTimer()
  {
 
- 	if(getTimeBuffer()> 0)
+ 	if(getCurrentTimeBuffer()> 0)
  	{
-		setTimeBuffer(getTimeBuffer()-1);
+		setCurrentTimeBuffer(getCurrentTimeBuffer()-1);
  	}
-    else if (getTimeBuffer() <= 0)
+    else if (getCurrentTimeBuffer() <= 0)
 	{
 
 		if (getCurrentTime() >= 0)
 		{
 			setCurrentTime(getCurrentTime() - getTimerDecreaseValue());
 
-			getTimerText()->setString(std::to_string(getCurrentTime()) + "%" );
+			getTimerText()->setString("Air "+ std::to_string(getCurrentTime()) + "%" );
 		}
 		else
 		{
 			setCurrentTime(0.0f);
 		}
 		
-		setTimeBuffer(60);
+		setCurrentTimeBuffer(m_fMaxTimeBuffer);
 	}
  }
+//
+//void CGCObjTimer::VOnResourceAcquire()
+//{
+//	
+//	CGCObjSprite::VOnResourceAcquire();
+//}
 
 
 void CGCObjTimer::ResetTimer()
