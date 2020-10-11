@@ -1,9 +1,8 @@
 #ifndef _GCBASICENEMIES_
 #define _GCBASICENEMIES_
 
-#ifndef _GCOBJSPRITEPHYSICS_H_
-#include "../../GCCocosInterface/GCObjSpritePhysics.h"
-#endif
+
+#include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
 class CGCBasicEnemies
 :	public CGCObjSpritePhysics
@@ -12,6 +11,7 @@ private:
 	float m_fGravity;
 
 public:
+	
 	CGCBasicEnemies ();
 	virtual ~CGCBasicEnemies () {};
 

@@ -2,12 +2,15 @@
 #define _GCMOVINGENEMIES_
 
 
-#ifndef _GCOBJSPRITEPHYSICS_H_
-#include "../../GCCocosInterface/GCObjSpritePhysics.h"
-#endif
+//#include "Classes/GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
+
+#include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+
+
 
 class CGCMovingEnemies
 	:public CGCObjSpritePhysics
+
 {
 private:
 	enum EMoveDirection

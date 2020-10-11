@@ -11,7 +11,7 @@ USING_NS_CC;
 
 CGCBasicEnemies::CGCBasicEnemies()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCBasicEnemies))
-	,m_fGravity		(-1.0f)
+	,m_fGravity		(- 1.0f)
 {
 	
 }
@@ -45,7 +45,7 @@ void CGCBasicEnemies::VOnReset()
 	if (GetPhysicsBody ())
 	{
 		cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
-		GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (0.0f, 0.0f));
+		//GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (0.0f, 0.0f));
 		GetPhysicsBody ()->SetTransform (IGCGameLayer::B2dPixelsToWorld (b2Vec2 (v2SpritePos.x, v2SpritePos.y)), 0.0f);
 		GetPhysicsBody ()->SetFixedRotation (true);
 	}

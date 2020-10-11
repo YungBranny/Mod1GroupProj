@@ -287,13 +287,13 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCBasicEnemies = new CGCBasicEnemies ();
 	m_pcGCBasicEnemies->SetResetPosition (v2Enemy1StartPos);
 
-	m_pcGCBasicEnemies2 = new CGCBasicEnemies ();
-	m_pcGCBasicEnemies2->SetResetPosition (v2Enemy1StartPos);
-	m_pcGCBasicEnemies2->setGravity (0.0f);
+	//m_pcGCBasicEnemies2 = new CGCBasicEnemies ();
+	//m_pcGCBasicEnemies2->SetResetPosition (v2Enemy1StartPos);
+	//m_pcGCBasicEnemies2->setGravity (0.0f);
 
 	m_pcGCMovingEnemies = new CGCMovingEnemies ();
 	m_pcGCMovingEnemies->SetResetPosition (v2MarioStartPos);
-	m_pcGCMovingEnemies->setGravity (1.0f);
+	m_pcGCMovingEnemies->setGravity (0.0f);
 	
 	//
 	///////////////////////////////////////////////////////////////////////////
@@ -346,6 +346,19 @@ void CGCGameLayerPlatformer::VOnCreate()
 		}
 	);
 
+	GetCollisionManager ().AddCollisionHandler
+	(
+		[this]
+	(CGCMovingEnemies& rcMEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+		{
+
+			RequestReset ();
+			m_pcGCTimer->ResetTimer ();
+			//CGCObjectManager::ObjectKill (&rcMEnemies);
+			CGCObjectManager::ObjectKill (&rcPlayer);
+		}
+	);
+
 
 }// void CGCGameLayerPlatformer::VOnCreate() { ...
 
@@ -363,6 +376,9 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	m_pcGCTimer->Update();
 	m_pcGCMovingEnemies->VOnUpdate (fTimeStep);
+	
+	//m_pcGCBasicEnemies->SetVelocity (cocos2d::Vec2(1,0));
+	//m_pcGCBasicEnemies->SetVelocity (cocos2d::Vec2 (10, 0));
 	
 	if( ResetWasRequested() )
 	{
