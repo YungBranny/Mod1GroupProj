@@ -14,7 +14,7 @@ CGCMovingEnemies::CGCMovingEnemies ()
 //not letting me inherit from basic enemies
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCMovingEnemies))
 	//, m_eMoveDirection (EMoveDirection::Right)
-	, m_bMovingLeftAndRight (true)
+	, m_bMovingLeftAndRight (false)
 	, m_fEndDestination1	(400,400)
 	, m_fEndDesitnation2	(100,100)
 {
