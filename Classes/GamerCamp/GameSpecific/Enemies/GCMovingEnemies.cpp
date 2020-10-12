@@ -8,28 +8,22 @@
 
 #include "GCMovingEnemies.h"
 
-using namespace cocos2d;
+//using namespace cocos2d;
 
 CGCMovingEnemies::CGCMovingEnemies ()
 //not letting me inherit from basic enemies
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCMovingEnemies))
 	//, m_eMoveDirection (EMoveDirection::Right)
-	, m_bMovingLeftAndRight (false)
-	, m_fEndDestination1	(400,400)
-	, m_fEndDesitnation2	(100,100)
+	, m_bMovingLeftAndRight			(false)
+	, m_vEndDestination1			(400,400)
+	, m_vEndDesitnation2			(100,100)
+	, m_vMovingRightVelocity		(cocos2d::Vec2 (30, 0.0f))
+	, m_vMovingLeftVelocity			(-m_vMovingRightVelocity)
+	, m_vMovingUpVelocity			(cocos2d::Vec2 (0.0f, 10.0f))
+	, m_vMovingDownVelocity			(-m_vMovingUpVelocity)
 {
-	if (m_bMovingLeftAndRight == true)
-	{
-		m_eMoveDirection = Right;
-	}
-	else if (m_bMovingLeftAndRight == false)
-	{
-		m_eMoveDirection = Up;
-	};
+	InitialiseMovementDirection ();
 }
-
-
-
 
 
 IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true);
@@ -43,11 +37,22 @@ void CGCMovingEnemies::VOnResourceAcquire ()
 	//const char* pszAnim_marioJog = "Jog";
 
 	// animate!
-	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
+	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
 	//RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_marioJog)));
 
 }
 
+void CGCMovingEnemies::InitialiseMovementDirection ()
+{
+	if (m_bMovingLeftAndRight == true)
+	{
+		m_eMoveDirection = Right;
+	}
+	else if (m_bMovingLeftAndRight == false)
+	{
+		m_eMoveDirection = Up;
+	};
+}
 
 void CGCMovingEnemies::VOnReset ()
 {
@@ -57,13 +62,13 @@ void CGCMovingEnemies::VOnReset ()
 	SetFlippedY (false);
 
 	SetResetPosition (cocos2d::Vec2 (100, 100));
-	if (GetPhysicsBody ())
-	{
-		cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
-		GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (0, 0.0f));
-		GetPhysicsBody ()->SetTransform (IGCGameLayer::B2dPixelsToWorld (b2Vec2 (v2SpritePos.x, v2SpritePos.y)), 0.0f);
-		GetPhysicsBody ()->SetFixedRotation (true);
-	}
+	//if (GetPhysicsBody ())
+	//{
+	//	cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
+	//	GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (0, 0.0f));
+	//	GetPhysicsBody ()->SetTransform (IGCGameLayer::B2dPixelsToWorld (b2Vec2 (v2SpritePos.x, v2SpritePos.y)), 0.0f);
+	//	GetPhysicsBody ()->SetFixedRotation (true);
+	//}
 
 }
 
@@ -71,73 +76,57 @@ void CGCMovingEnemies::VOnReset ()
 void CGCMovingEnemies::VOnResourceRelease ()
 {
 	CGCObjSpritePhysics::VOnResourceRelease ();
-
 }
+
 void CGCMovingEnemies::VOnResurrected ()
 {
 	CGCObjSpritePhysics::VOnResurrected ();
 	GetPhysicsBody ()->SetGravityScale (getGravity ());
 }
 
-cocos2d::Vec2	MovingEnemyRight = cocos2d::Vec2 (30, 0.0f);
-cocos2d::Vec2	MovingEnemyLeft = ( -MovingEnemyRight );
 
-cocos2d::Vec2	MovingEnemyUp = cocos2d::Vec2 (0.0f, 10.0f);
-cocos2d::Vec2	MovingEnemyDown = ( -MovingEnemyUp );
-
-
-
-void CGCMovingEnemies::VOnUpdate (f32 fTimeStep)
+void CGCMovingEnemies::ChangeDirection ()
 {
-	//m_fTimeInCurrentMoveDirection += fTimeStep;
-	//CGCObjSpritePhysics::VOnUpdate (fTimeStep);
-	//
-	//GetPhysicsBody ()->ApplyForceToCenter (b2Vec2 (100, 0),true );
-	if (m_bMovingLeftAndRight == true) 
+	if (m_bMovingLeftAndRight == true)
 	{
-		//m_eMoveDirection = Right;
 		switch (m_eMoveDirection)
 		{
 		case EMoveDirection::Right:
 		{
-			if (GetSpritePosition ().x >= m_fEndDestination1.x)
+			if (GetSpritePosition ().x >= m_vEndDestination1.x)
 			{
 				m_eMoveDirection = EMoveDirection::Left;
 			}
 		}
-			break;
-		
-		
+		break;
+
 		case EMoveDirection::Left:
 		{
-			if (GetSpritePosition ().x <= m_fEndDesitnation2.x)
+			if (GetSpritePosition ().x <= m_vEndDesitnation2.x)
 			{
 				m_eMoveDirection = EMoveDirection::Right;
 			}
 		}
-			break;
-	
+		break;
 		}
 	}
-	
+
 	if (m_bMovingLeftAndRight == false)
 	{
-		//m_eMoveDirection = Up;
 		switch (m_eMoveDirection)
 		{
 		case EMoveDirection::Up:
 		{
-			if (GetSpritePosition ().y >= m_fEndDestination1.y)
+			if (GetSpritePosition ().y >= m_vEndDestination1.y)
 			{
 				m_eMoveDirection = EMoveDirection::Down;
 			}
 		}
 		break;
 
-
 		case EMoveDirection::Down:
 		{
-			if (GetSpritePosition ().y <= m_fEndDesitnation2.y)
+			if (GetSpritePosition ().y <= m_vEndDesitnation2.y)
 			{
 				m_eMoveDirection = EMoveDirection::Up;
 			}
@@ -145,44 +134,41 @@ void CGCMovingEnemies::VOnUpdate (f32 fTimeStep)
 		break;
 		}
 	}
-	
+}
+
+void CGCMovingEnemies::Movement ()
+{
 	switch (m_eMoveDirection)
 	{
 	case EMoveDirection::Right:
 	{
-		this->SetVelocity (MovingEnemyRight);
-		//this->GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (400, 0));
+		this->SetVelocity (m_vMovingRightVelocity);
 	}
 	break;
 
 	case EMoveDirection::Left:
 	{
-		//MovingEnemyRight = cocos2d::Vec2 (-30, 0.0f);
-
-		this->SetVelocity (MovingEnemyLeft);
-		//this->GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (100, 0));
+		this->SetVelocity (m_vMovingLeftVelocity);
 	}
 	break;
-	
+
 	case EMoveDirection::Up:
 	{
-		this->SetVelocity (MovingEnemyUp);
-		//this->GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (400, 0));
+		this->SetVelocity (m_vMovingUpVelocity);
 	}
 	break;
 
 	case EMoveDirection::Down:
 	{
-		//MovingEnemyRight = cocos2d::Vec2 (-30, 0.0f);
-
-		this->SetVelocity (MovingEnemyDown);
+		this->SetVelocity (m_vMovingDownVelocity);
 		//this->GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (100, 0));
 	}
 	break;
 	}
+}
 
-
-	
-
-	//this->SetVelocity (MovingEnemyRight);
+void CGCMovingEnemies::VOnUpdate (f32 fTimeStep)
+{
+	ChangeDirection ();
+	Movement ();
 }
