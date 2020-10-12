@@ -20,7 +20,10 @@ private:
 		Up,
 		Down
 	};
-			
+
+	unsigned short int		m_iCollisionBuffer;
+
+
 	EMoveDirection			m_eMoveDirection;
 	float					m_fTimeInCurrentMoveDirection;
 	float					m_fGravity;
@@ -34,18 +37,25 @@ private:
 	cocos2d::Vec2			m_vMovingDownVelocity;
 
 	bool					m_bMovingLeftAndRight;
-
+	bool					m_bJustCollided;
 
 	void					InitialiseMovementDirection ();
+	void					CollisionChecker ();
 
 public:
 
 	CGCMovingEnemies ();
 	virtual ~CGCMovingEnemies () {};
 
+	unsigned short int getCollisionBuffer () { return m_iCollisionBuffer; }
+	void  setCollisionBuffer (unsigned short int i) { m_iCollisionBuffer = i; }
+
 
 	float getGravity () { return m_fGravity; }
 	void  setGravity (float i) { m_fGravity = i; }
+
+	bool  getJustCollided ()		{return m_bJustCollided;}
+	void  setJustCollided (bool i)	{ m_bJustCollided = i;	}
 
 
 	cocos2d::Vec2	getEndDestination1		()	{ return m_vEndDestination1;	}

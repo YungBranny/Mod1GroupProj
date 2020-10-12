@@ -49,7 +49,7 @@ private:
 	CGCBasicEnemies*				m_pcGCBasicEnemies;
 	CGCBasicEnemies*				m_pcGCBasicEnemies2;
 	CGCMovingEnemies*				m_pcGCMovingEnemies;
-
+	
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;
 	

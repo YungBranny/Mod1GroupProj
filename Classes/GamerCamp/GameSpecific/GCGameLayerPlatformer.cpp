@@ -68,6 +68,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_bResetWasRequested			( false )
 
 {
+	
 }
 
 
@@ -292,8 +293,9 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCBasicEnemies2->setGravity (0.0f);
 
 	m_pcGCMovingEnemies = new CGCMovingEnemies ();
-	m_pcGCMovingEnemies->SetResetPosition (v2MarioStartPos);
+	m_pcGCMovingEnemies->SetResetPosition (v2Enemy1StartPos);
 	m_pcGCMovingEnemies->setGravity (0.0f);
+	
 	
 	//
 	///////////////////////////////////////////////////////////////////////////
@@ -342,20 +344,27 @@ void CGCGameLayerPlatformer::VOnCreate()
 			RequestReset ();
 			m_pcGCTimer->ResetTimer ();
 			CGCObjectManager::ObjectKill (&rcEnemies);
+			CCLOG ("Player Died.");
 			//CGCObjectManager::ObjectKill (&rcInvader);
 		}
 	);
+
+	
 
 	GetCollisionManager ().AddCollisionHandler
 	(
 		[this]
 	(CGCMovingEnemies& rcMEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
-
-			RequestReset ();
-			m_pcGCTimer->ResetTimer ();
-			//CGCObjectManager::ObjectKill (&rcMEnemies);
-			CGCObjectManager::ObjectKill (&rcPlayer);
+			if (rcMEnemies.getJustCollided() == false)
+			{
+				rcMEnemies.setJustCollided (true);
+				RequestReset ();
+				m_pcGCTimer->ResetTimer ();
+				//CGCObjectManager::ObjectKill (&rcMEnemies);
+				CCLOG ("Player wacked.");
+				CGCObjectManager::ObjectKill (&rcPlayer);
+			}
 		}
 	);
 

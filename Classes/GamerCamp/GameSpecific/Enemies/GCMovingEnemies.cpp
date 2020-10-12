@@ -21,10 +21,23 @@ CGCMovingEnemies::CGCMovingEnemies ()
 	, m_vMovingLeftVelocity			(-m_vMovingRightVelocity)
 	, m_vMovingUpVelocity			(cocos2d::Vec2 (0.0f, 10.0f))
 	, m_vMovingDownVelocity			(-m_vMovingUpVelocity)
+	, m_bJustCollided				(false)
+	, m_iCollisionBuffer			(60)
 {
 	InitialiseMovementDirection ();
 }
 
+void CGCMovingEnemies::InitialiseMovementDirection ()
+{
+	if (m_bMovingLeftAndRight == true)
+	{
+		m_eMoveDirection = Right;
+	}
+	else if (m_bMovingLeftAndRight == false)
+	{
+		m_eMoveDirection = Up;
+	};
+}
 
 IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true);
 void CGCMovingEnemies::VOnResourceAcquire ()
@@ -42,17 +55,7 @@ void CGCMovingEnemies::VOnResourceAcquire ()
 
 }
 
-void CGCMovingEnemies::InitialiseMovementDirection ()
-{
-	if (m_bMovingLeftAndRight == true)
-	{
-		m_eMoveDirection = Right;
-	}
-	else if (m_bMovingLeftAndRight == false)
-	{
-		m_eMoveDirection = Up;
-	};
-}
+
 
 void CGCMovingEnemies::VOnReset ()
 {
@@ -167,8 +170,29 @@ void CGCMovingEnemies::Movement ()
 	}
 }
 
+
+
+void CGCMovingEnemies::CollisionChecker ()
+{
+	if (m_bJustCollided == true)
+	{
+		if (m_iCollisionBuffer >= 0)
+		{
+			m_iCollisionBuffer--;
+		}
+
+		if (m_iCollisionBuffer <= 0)
+		{
+			m_bJustCollided = false;
+			m_iCollisionBuffer = 60;
+		}
+	}
+}
+
 void CGCMovingEnemies::VOnUpdate (f32 fTimeStep)
 {
 	ChangeDirection ();
 	Movement ();
+	CollisionChecker ();
+	
 }
