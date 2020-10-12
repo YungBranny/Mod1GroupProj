@@ -4,26 +4,31 @@
 //Header File for 'CGCObjKeys' created by Mehak Hussain on 6/10/2020.
 
 #include "GamerCamp/GameSpecific/Items/GCObjItem.h" // We use header files to pull in declarations from another file.
-#include "../../GCCocosInterface/GCObjSpritePhysics.h"
-#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
+#include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+//#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 
 class CGCObjKeys
-	: public CGCObjItem
+	: public CGCObjSpritePhysics
 {
 private:
-	float m_fGravity;
+	float m_fgGravity;
 
 public:
-	CGCObjKeys();
-	~CGCObjKeys();
+	CGCObjKeys(void);
+	virtual ~CGCObjKeys();
 
 	CGCObjItem* m_pcGCOKeys;
 
-	float getGravity() { return m_fGravity; }
-	void  setGravity(float i) { m_fGravity = i; }
+	float getGravity() { return m_fgGravity; }
+	void  setGravity(float i) { m_fgGravity = i; }
 
+
+	virtual void VOnResourceAcquire(void);
 	virtual void VOnResurrected(void);
+	virtual void VOnResourceRelease(void);
+	virtual void VOnReset(void);
 
+	virtual void VOnUpdate(f32 fTimestep);
 };
 
 #endif
