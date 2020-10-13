@@ -13,7 +13,7 @@ class CGCMovingEnemies
 
 {
 private:
-	enum EMoveDirection
+	enum class EMoveDirection
 	{
 		Left,
 		Right,
@@ -51,7 +51,7 @@ public:
 	void  setCollisionBuffer (unsigned short int i) { m_iCollisionBuffer = i; }
 
 
-	float getGravity () { return m_fGravity; }
+	float getGravity () const { return m_fGravity; }
 	void  setGravity (float i) { m_fGravity = i; }
 
 	bool  getJustCollided ()		{return m_bJustCollided;}
