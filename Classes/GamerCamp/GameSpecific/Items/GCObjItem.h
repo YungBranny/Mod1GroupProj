@@ -16,6 +16,10 @@ public:
 	: CGCObjSpritePhysics( GetGCTypeIDOf( CGCObjItem ) )
 	{}
 
+	void setGravity();
+
+	float m_setGravity;
+
 	virtual void VOnResourceAcquire( void ) override;
 };
 

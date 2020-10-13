@@ -19,13 +19,19 @@ CGCObjKeys::CGCObjKeys(void)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	const char* keysSprite = "TexturePacker/Sprites/Coin/Coin.plist";
 	{
-		m_pcGCOKeys = new CGCObjItem();
-		if( nullptr != m_pcGCOKeys )
-		{
-			m_pcGCOKeys->CreateSprite(keysSprite);
-			m_pcGCOKeys->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-			m_pcGCOKeys->SetParent(IGCGameLayer::ActiveInstance());
-		}
+		//m_pcGCOKeys = new CGCObjItem();
+		//if( nullptr != m_pcGCOKeys )
+		//{
+		//	m_pcGCOKeys->CreateSprite(keysSprite);
+		//	m_pcGCOKeys->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		//	m_pcGCOKeys->SetParent(IGCGameLayer::ActiveInstance());
+		//	m_pcGCOKeys->GetPhysicsBody()->SetGravityScale(0.0f);
+		//}
+
+		CreateSprite(keysSprite);
+		SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		SetParent(IGCGameLayer::ActiveInstance());
+		//GetPhysicsBody()->SetGravityScale(0.0f);
 	}
 }
 

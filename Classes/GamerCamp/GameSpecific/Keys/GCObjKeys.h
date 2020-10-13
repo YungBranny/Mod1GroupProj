@@ -8,7 +8,7 @@
 //#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 
 class CGCObjKeys
-	: public CGCObjSpritePhysics
+	: public CGCObjSpritePhysics // chnange to item and in platformer if we have more than just keys
 {
 private:
 	float m_fgGravity;
@@ -17,7 +17,7 @@ public:
 	CGCObjKeys(void);
 	virtual ~CGCObjKeys();
 
-	CGCObjItem* m_pcGCOKeys;
+	//CGCObjItem* m_pcGCOKeys;
 
 	float getGravity() { return m_fgGravity; }
 	void  setGravity(float i) { m_fgGravity = i; }

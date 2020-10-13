@@ -328,10 +328,10 @@ void CGCGameLayerPlatformer::VOnCreate()
 	GetCollisionManager().AddCollisionHandler
 	(
 		[this]
-	(CGCObjItem& rcItem, CGCObjPlayer &rcPlayer, const b2Contact& rcContact) -> void
+	(CGCObjKeys& rcKeys, CGCObjPlayer &rcPlayer, const b2Contact& rcContact) -> void
 	{
 		ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
-		CGCObjectManager::ObjectKill(&rcItem);
+		CGCObjectManager::ObjectKill(&rcKeys);
 	}
 	);
 
