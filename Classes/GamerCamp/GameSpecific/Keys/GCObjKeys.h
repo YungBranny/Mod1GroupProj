@@ -11,7 +11,7 @@ class CGCObjKeys
 	: public CGCObjSpritePhysics // chnange to item and in platformer if we have more than just keys
 {
 private:
-	float m_fgGravity;
+	float m_keysGravity;
 
 public:
 	CGCObjKeys(void);
@@ -19,8 +19,8 @@ public:
 
 	//CGCObjItem* m_pcGCOKeys;
 
-	float getGravity() { return m_fgGravity; }
-	void  setGravity(float i) { m_fgGravity = i; }
+	float getGravity() { return m_keysGravity; } // use const and put in cpp
+	void  setGravity(float i) { m_keysGravity = i; }
 
 
 	virtual void VOnResourceAcquire(void);
