@@ -14,7 +14,7 @@ CGCMovingEnemies::CGCMovingEnemies ()
 //not letting me inherit from basic enemies
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCMovingEnemies))
 	//, m_eMoveDirection (EMoveDirection::Right)
-	, m_bMovingLeftAndRight			(false)
+	, m_bMovingLeftAndRight			(true)
 	, m_vEndDestination1			(400,400)
 	, m_vEndDesitnation2			(100,100)
 	, m_vMovingRightVelocity		(cocos2d::Vec2 (30, 0.0f))
@@ -31,11 +31,11 @@ void CGCMovingEnemies::InitialiseMovementDirection ()
 {
 	if (m_bMovingLeftAndRight == true)
 	{
-		m_eMoveDirection = Right;
+		m_eMoveDirection = EMoveDirection::Right;
 	}
 	else if (m_bMovingLeftAndRight == false)
 	{
-		m_eMoveDirection = Up;
+		m_eMoveDirection = EMoveDirection::Up;
 	};
 }
 
