@@ -58,6 +58,7 @@ public:
 	void Update();
 
 	void ResetTimer();
+
 	
 	
 	CGCObjTimer();
