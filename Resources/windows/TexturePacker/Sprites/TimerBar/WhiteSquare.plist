@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>BasicEnemy.png</key>
+            <key>Frames/WhiteSquare.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{60,50}}</string>
+                <string>{{1,1},{290,280}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,5},{60,50}}</string>
+                <string>{{0,0},{290,280}}</string>
                 <key>sourceSize</key>
-                <string>{60,60}</string>
+                <string>{290,280}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>BasicEnemy.png</string>
+            <string>WhiteSquare.png</string>
             <key>size</key>
-            <string>{62,52}</string>
+            <string>{292,282}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:705b394b0b515dfc6fe91a2511e42dad:0b8bfd3e11ea6b528be056717fa05a5b:3c0b3d36776f536e09d42824f9891a0a$</string>
+            <string>$TexturePacker:SmartUpdate:37e736d21a35613a92c0449439b81307:fe94be182c5317f2285e2b988b67f1cd:16b33dffb7a68852153b5c4b1e58f0ae$</string>
             <key>textureFileName</key>
-            <string>BasicEnemy.png</string>
+            <string>WhiteSquare.png</string>
         </dict>
     </dict>
 </plist>
