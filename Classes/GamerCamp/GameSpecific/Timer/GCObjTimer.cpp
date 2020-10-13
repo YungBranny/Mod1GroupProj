@@ -19,8 +19,9 @@ using namespace cocos2d;
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
  CGCObjTimer::CGCObjTimer()
-	:m_fTotalTimerDuration		 ( 100			    )   //Max value for the timer
-    ,m_fTimerDecreaseValue		 (  1				)	// The Amount decremented each time
+	:CGCObjSprite(GetGCTypeIDOf(CGCObjTimer))
+	,m_iTotalTimerDuration		 ( 100			    )   //Max value for the timer
+    ,m_iTimerDecreaseValue		 (  1				)	// The Amount decremented each time
     ,m_fMaxTimeBuffer			 ( 100.0f			)	// Max value timer resets too
 	,m_fCurrentTimeBuffer        ( m_fMaxTimeBuffer )	// higher the value  slower the timer is
 	
@@ -39,7 +40,7 @@ using namespace cocos2d;
 
 	getTimerText()->setColor(Color3B::WHITE);
 
-	//getTimerText()->enableGlow(Color4B::RED);
+	//getTimerText()->enableGlow(Color4B::RED); // Enable outline overrides Glow
  	
 	getTimerText()->enableOutline(Color4B::BLACK, 1);
 	
@@ -50,17 +51,17 @@ using namespace cocos2d;
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	//const char* timerBarSprite = "TexturePacker/Sprites/TimerBar/WhiteSquare.plist";
-	//{
-	//	m_pcGCOTimerBar = new CGCObjSprite();
+	const char* pszTimerBarSprite = "TexturePacker/Sprites/TimerBar/WhiteSquare.plist";
+	{
+		CreateSprite(pszTimerBarSprite);
+		SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		SetParent(IGCGameLayer::ActiveInstance());
 
-	//	m_pcGCOTimerBar->CreateSprite(timerBarSprite);
-	//	//m_pcGCOTimerBar->SetSpritePosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-	//	m_pcGCOTimerBar->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-	//	m_pcGCOTimerBar->SetParent(IGCGameLayer::ActiveInstance());
+	}
 
-	//}
 }
+
+ //IN_CPP_CREATION_PARAMS_DECLARE(CGCObjTimer, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true);
 
  void CGCObjTimer::DecreaseTimer()
  {
@@ -86,11 +87,12 @@ using namespace cocos2d;
 		setCurrentTimeBuffer(m_fMaxTimeBuffer);
 	}
  }
-//
-//void CGCObjTimer::VOnResourceAcquire()
+
+//void CGCObjTimer::VOnResourceAcquire(void)
 //{
+// 	CGCObjSprite::VOnResourceAcquire();
 //	
-//	CGCObjSprite::VOnResourceAcquire();
+//	
 //}
 
 
