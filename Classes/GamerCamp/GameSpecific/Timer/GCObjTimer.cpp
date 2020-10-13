@@ -50,7 +50,7 @@ using namespace cocos2d;
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-	//const char* timerBarSprite = "TexturePacker/Sprites/Coin/Coin.plist";
+	//const char* timerBarSprite = "TexturePacker/Sprites/TimerBar/WhiteSquare.plist";
 	//{
 	//	m_pcGCOTimerBar = new CGCObjSprite();
 
