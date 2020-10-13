@@ -12,9 +12,9 @@ using namespace cocos2d;
 
 CGCObjKeys::CGCObjKeys(void)
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjKeys))
-	, m_fgGravity (0.0f)
+	, m_keysGravity (0.0f)
 {
-	//m_fgGravity = 0.0f;
+	//m_keysGravity = 0.0f;
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	const char* keysSprite = "TexturePacker/Sprites/Coin/Coin.plist";

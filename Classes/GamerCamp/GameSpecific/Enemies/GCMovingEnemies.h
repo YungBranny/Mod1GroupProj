@@ -13,7 +13,7 @@ class CGCMovingEnemies
 
 {
 private:
-	enum EMoveDirection
+	enum class EMoveDirection
 	{
 		Left,
 		Right,
@@ -47,24 +47,24 @@ public:
 	CGCMovingEnemies ();
 	virtual ~CGCMovingEnemies () {};
 
-	unsigned short int getCollisionBuffer () { return m_iCollisionBuffer; }
+	unsigned short int getCollisionBuffer () const { return m_iCollisionBuffer; }
 	void  setCollisionBuffer (unsigned short int i) { m_iCollisionBuffer = i; }
 
 
-	float getGravity () { return m_fGravity; }
+	float getGravity () const { return m_fGravity; }
 	void  setGravity (float i) { m_fGravity = i; }
 
-	bool  getJustCollided ()		{return m_bJustCollided;}
+	bool  getJustCollided () const {return m_bJustCollided;}
 	void  setJustCollided (bool i)	{ m_bJustCollided = i;	}
 
 
-	cocos2d::Vec2	getEndDestination1		()	{ return m_vEndDestination1;	}
-	cocos2d::Vec2	getEndDesination2		()	{ return m_vEndDesitnation2;	}
-	cocos2d::Vec2	getMovingRightVelocity	()	{ return m_vMovingRightVelocity;}
-	cocos2d::Vec2	getMovingLeftVelocity	()	{ return m_vMovingRightVelocity;}
-	cocos2d::Vec2	getMovingUpVelocity		()	{ return m_vMovingUpVelocity;	}
-	cocos2d::Vec2	getMovingDownVelocity	()	{ return m_vMovingDownVelocity;	}
-
+	cocos2d::Vec2	getEndDestination1		()	const	{ return m_vEndDestination1;	}
+	cocos2d::Vec2	getEndDesination2		()	const	{ return m_vEndDesitnation2;	}
+	cocos2d::Vec2	getMovingRightVelocity	()	const	{ return m_vMovingRightVelocity;}
+	cocos2d::Vec2	getMovingLeftVelocity	()	const	{ return m_vMovingRightVelocity;}
+	cocos2d::Vec2	getMovingUpVelocity		()	const	{ return m_vMovingUpVelocity;	}
+	cocos2d::Vec2	getMovingDownVelocity	()	const	{ return m_vMovingDownVelocity;	}
+											
 	void setEndDesination1			(cocos2d::Vec2 i) { m_vEndDestination1 = i;		}
 	void setEndDesination2			(cocos2d::Vec2 i) { m_vEndDesitnation2 = i;		}
 	void setMovingRightVelocity		(cocos2d::Vec2 i) { m_vMovingRightVelocity = i; }
