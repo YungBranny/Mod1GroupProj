@@ -72,6 +72,10 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_bResetWasRequested			( false )
 
 {
+
+	m_totalKeys = 3;
+
+	m_keysCollected = 0;
 	
 }
 
@@ -81,6 +85,16 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 //////////////////////////////////////////////////////////////////////////
 CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
 {
+}
+
+void CGCGameLayerPlatformer::keyCollected()
+{
+	m_keysCollected++;
+	CCLOG("Key Collected");
+	if( m_keysCollected >= m_totalKeys)
+	{
+		ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
+	}
 }
 
 
@@ -342,8 +356,12 @@ void CGCGameLayerPlatformer::VOnCreate()
 		[this]
 	(CGCObjKeys& rcKeys, CGCObjPlayer &rcPlayer, const b2Contact& rcContact) -> void
 	{
-		ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
-		CGCObjectManager::ObjectKill(&rcKeys);
+		if( rcKeys.getJustCollided() == false )
+		{
+			rcKeys.setJustCollided(true);
+			CGCObjectManager::ObjectKill(&rcKeys);
+			keyCollected();
+		}
 	}
 	);
 

@@ -13,6 +13,8 @@ using namespace cocos2d;
 CGCObjKeys::CGCObjKeys(void)
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjKeys))
 	, m_keysGravity (0.0f)
+	, m_bJustCollided(false)
+	, m_iCollisionBuffer(60)
 {
 	//m_keysGravity = 0.0f;
 
@@ -58,9 +60,28 @@ void CGCObjKeys::VOnReset()
 
 
 }
+
+void CGCObjKeys::CollisionChecker()
+{
+	if( m_bJustCollided == true )
+	{
+		if( m_iCollisionBuffer >= 0 )
+		{
+			m_iCollisionBuffer--;
+		}
+
+		if( m_iCollisionBuffer <= 0 )
+		{
+			m_bJustCollided = false;
+			m_iCollisionBuffer = 60;
+		}
+	}
+}
+
 void CGCObjKeys::VOnUpdate(f32 fTimestep)
 {
 	SetSpriteRotation(GetSpriteRotation() + 0.1f);
+	CollisionChecker();
 }
 
 void CGCObjKeys::VOnResourceRelease()

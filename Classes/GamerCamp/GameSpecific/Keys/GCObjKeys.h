@@ -13,6 +13,12 @@ class CGCObjKeys
 private:
 	float m_keysGravity;
 
+	unsigned short int		m_iCollisionBuffer;
+
+	bool					m_bJustCollided;
+
+	void					CollisionChecker();
+
 public:
 	CGCObjKeys(void);
 	virtual ~CGCObjKeys();
@@ -21,6 +27,12 @@ public:
 
 	float getGravity() { return m_keysGravity; } // use const and put in cpp
 	void  setGravity(float i) { m_keysGravity = i; }
+
+	unsigned short int getCollisionBuffer() const { return m_iCollisionBuffer; }
+	void  setCollisionBuffer(unsigned short int i) { m_iCollisionBuffer = i; }
+
+	bool  getJustCollided() const { return m_bJustCollided; }
+	void  setJustCollided(bool i) { m_bJustCollided = i; }
 
 
 	virtual void VOnResourceAcquire(void);

@@ -64,9 +64,16 @@ private:
 	// mario
 	CGCObjPlayer*					m_pcGCOPlayer;
 
+	int m_keysCollected;
+
+	int m_totalKeys;
+
 public:
 	CGCGameLayerPlatformer	( void );
 	~CGCGameLayerPlatformer	( void );
+
+	void keyCollected();
+
 
 	//////////////////////////////////////////////////////////////////////////
 	// player actions 
