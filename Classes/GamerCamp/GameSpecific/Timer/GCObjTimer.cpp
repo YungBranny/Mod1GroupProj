@@ -54,8 +54,9 @@ using namespace cocos2d;
 	const char* pszTimerBarSprite = "TexturePacker/Sprites/TimerBar/WhiteSquare.plist";
 	{
 		CreateSprite(pszTimerBarSprite);
-		SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		SetResetPosition(Vec2(500, 695));
 		SetParent(IGCGameLayer::ActiveInstance());
+		SetScale(2.0f, 0.1f);
 
 	}
 

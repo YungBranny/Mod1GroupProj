@@ -23,7 +23,7 @@
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
-#include "GamerCamp/GameSpecific/Timer/GCObjTimerBar.h"
+//#include "GamerCamp/GameSpecific/Timer/GCObjTimerBar.h"
 #include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
@@ -61,9 +61,10 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGroupInvader			( nullptr )
 , m_pcGCGroupProjectilePlayer	( nullptr )
 , m_pcGCSprBackGround			( nullptr )
+//, m_pcGCsprTimerBar				( nullptr )
 , m_pcGCOPlayer					( nullptr )
 , m_pcGCTimer					( nullptr )
-, m_pcGCTimerBar				( nullptr )
+//, m_pcGCTimerBar				( nullptr )
 , m_pcGCOKeys                   ( nullptr )
 , m_pcGCOKeys1                  ( nullptr )
 , m_pcGCOKeys2                  ( nullptr )
@@ -220,14 +221,16 @@ void CGCGameLayerPlatformer::VOnCreate()
     this->addChild( pMenu, 1 );
 
 	//////////////////////////////////////////////////////////////////////////////////////////
-	m_pcGCTimer = new CGCObjTimer();
+	
+
+	
 
 
 	
-	m_pcGCTimerBar = new CGCObjTimerBar();
+	//m_pcGCTimerBar = new CGCObjTimerBar();
 	
 	
-	this->addChild(m_pcGCTimer->getTimerText(), 1);
+	
 
 	//const char* keysSprite = "TexturePacker/Sprites/Coin/Coin.plist";
 	//{
@@ -257,16 +260,33 @@ void CGCGameLayerPlatformer::VOnCreate()
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
 
+	//"TexturePacker/Backgrounds/Placeholder/background.plist"
+    //
     // add "CGCGameLayerPlatformer" splash screen"
+
+	/*const char* pszPlist_TimerBar = "TexturePacker/Sprites/TimerBar/WhiteSquare.plist";
+	{
+		m_pcGCsprTimerBar = new CGCObjSprite();
+		
+		m_pcGCsprTimerBar->CreateSprite(pszPlist_TimerBar);
+		m_pcGCsprTimerBar->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2) );
+		m_pcGCsprTimerBar->SetParent(IGCGameLayer::ActiveInstance());
+		m_pcGCsprTimerBar->SetScale(0.1f, 0.1f);
+	}*/
+	
 	const char* pszPlist_background = "TexturePacker/Backgrounds/Placeholder/background.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite();
 		m_pcGCSprBackGround->CreateSprite( pszPlist_background );
 		m_pcGCSprBackGround->SetResetPosition( Vec2( visibleSize.width/2, visibleSize.height/2 ) );
 		m_pcGCSprBackGround->SetParent( IGCGameLayer::ActiveInstance() );
+		
  	}
 
-
+	m_pcGCTimer = new CGCObjTimer();
+	
+   this->addChild(m_pcGCTimer->getTimerText(), 10);
+	
 	///////////////////////////////////////////////////////////////////////////
 	// set up physics 
 	///////////////////////////////////////////////////////////////////////////
@@ -521,6 +541,9 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	delete m_pcGCSprBackGround;
 	m_pcGCSprBackGround = nullptr;
 
+	/*delete m_pcGCsprTimerBar;
+	m_pcGCsprTimerBar = nullptr;*/
+	
 	delete m_pcGCODoor;
 	m_pcGCODoor = nullptr;
 
