@@ -46,6 +46,8 @@ private:
 	CGCObjTimerBar*					m_pcGCTimerBar;
 
 	CGCObjKeys*                     m_pcGCOKeys;
+	CGCObjKeys*                     m_pcGCOKeys1;
+	CGCObjKeys*                     m_pcGCOKeys2;
 
 	CGCBasicEnemies*				m_pcGCBasicEnemies;
 	CGCBasicEnemies*				m_pcGCBasicEnemies2;

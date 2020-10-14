@@ -63,6 +63,8 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCTimer					( nullptr )
 , m_pcGCTimerBar				( nullptr )
 , m_pcGCOKeys                   ( nullptr )
+, m_pcGCOKeys1                  ( nullptr )
+, m_pcGCOKeys2                  ( nullptr )
 , m_pcGCBasicEnemies			( nullptr )
 , m_pcGCBasicEnemies2			( nullptr )
 , m_pcGCMovingEnemies			( nullptr )
@@ -285,6 +287,10 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOPlayer->SetResetPosition( v2MarioStartPos );
 
 	m_pcGCOKeys = new CGCObjKeys();
+	m_pcGCOKeys1 = new CGCObjKeys();
+	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(600, 120));
+	m_pcGCOKeys2 = new CGCObjKeys();
+	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(700, 120));
 
 	m_pcGCPlatformTest1 = new CGCObjPlatformTest ();
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
