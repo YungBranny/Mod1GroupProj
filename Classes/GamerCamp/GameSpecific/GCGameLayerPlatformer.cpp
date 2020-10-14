@@ -342,7 +342,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
 	
 	//enemy
-	Vec2 v2Enemy1StartPos = ( v2ScreenCentre_Pixels - Vec2 (0.0f, ( visibleSize.height * 0.1f )) );
+	Vec2 v2Enemy1StartPos = ( cocos2d::Vec2(570,120) );
 	m_pcGCBasicEnemies = new CGCBasicEnemies ();
 	m_pcGCBasicEnemies->SetResetPosition (v2Enemy1StartPos);
 	m_pcGCBasicEnemies->setGravity(1.0);
