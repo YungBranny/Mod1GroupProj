@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>Frames/Door.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{24,24}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{24,24}}</string>
+                <key>sourceSize</key>
+                <string>{24,24}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>Door.png</string>
+            <key>size</key>
+            <string>{26,26}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:ec127c2d66c0f272308e63da101948e5:e1a73164e5590acf67eb6309023acd83:cda7c2666d2827883042e1c152d14b51$</string>
+            <key>textureFileName</key>
+            <string>Door.png</string>
+        </dict>
+    </dict>
+</plist>
