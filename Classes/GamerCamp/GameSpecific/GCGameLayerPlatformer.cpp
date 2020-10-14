@@ -29,6 +29,7 @@
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjLongPlatformTest.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjShortPlatformTest.h"
+#include "GamerCamp/GameSpecific/Door/GCObjDoor.h"
 
 #include "AppDelegate.h"
 
@@ -66,6 +67,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCOKeys                   ( nullptr )
 , m_pcGCOKeys1                  ( nullptr )
 , m_pcGCOKeys2                  ( nullptr )
+, m_pcGCODoor                   ( nullptr )
 , m_pcGCBasicEnemies			( nullptr )
 , m_pcGCBasicEnemies2			( nullptr )
 , m_pcGCMovingEnemies			( nullptr )
@@ -101,10 +103,6 @@ void CGCGameLayerPlatformer::keyCollected()
 {
 	m_keysCollected++;
 	CCLOG("Key Collected");
-	if( m_keysCollected >= m_totalKeys)
-	{
-		ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
-	}
 }
 
 
@@ -308,13 +306,15 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	// create player object
 	m_pcGCOPlayer = new CGCObjPlayer();
-	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(20,130) );
+	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(50,130) );
 
 	m_pcGCOKeys = new CGCObjKeys();
 	m_pcGCOKeys1 = new CGCObjKeys();
 	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(570, 300));
 	m_pcGCOKeys2 = new CGCObjKeys();
 	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(750, 220));
+
+	m_pcGCODoor = new CGCObjDoor();
 
 	///////// Platforms
 
@@ -381,6 +381,18 @@ void CGCGameLayerPlatformer::VOnCreate()
 			CGCObjectManager::ObjectKill( &rcProjectile );
 			CGCObjectManager::ObjectKill( &rcInvader );
 		} 
+	);
+
+	GetCollisionManager().AddCollisionHandler
+	(
+		[this]
+	(CGCObjDoor& rcDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+	{
+		if( m_keysCollected >= m_totalKeys )
+		{
+			ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
+		}
+	}
 	);
 
 	GetCollisionManager().AddCollisionHandler
@@ -489,6 +501,9 @@ void CGCGameLayerPlatformer::VOnDestroy()
 
 	delete m_pcGCSprBackGround;
 	m_pcGCSprBackGround = nullptr;
+
+	delete m_pcGCODoor;
+	m_pcGCODoor = nullptr;
 
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. because object groups must register manually, 

@@ -186,7 +186,7 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjShortPlatformTest.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\Door.cpp">
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.cpp">
       <Filter>Classes\GamerCamp\Door</Filter>
     </ClCompile>
   </ItemGroup>
@@ -317,7 +317,7 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjShortPlatformTest.h">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\Door.h">
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.h">
       <Filter>Classes\GamerCamp\Door</Filter>
     </ClInclude>
   </ItemGroup>

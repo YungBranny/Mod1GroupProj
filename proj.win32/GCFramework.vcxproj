@@ -155,7 +155,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\Debug\GLES-Render.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameController\GCController.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameController\GCControllerManager.cpp" />
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\Door.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GCGameLayerPlatformer.cpp" />
@@ -199,7 +199,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\Debug\GLES-Render.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameController\GCController.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameController\GCControllerManager.h" />
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\Door.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GCGameLayerPlatformer.h" />

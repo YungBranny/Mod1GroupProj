@@ -34,7 +34,7 @@
         <key>dataFormat</key>
         <string>cocos2d-v2</string>
         <key>textureFileName</key>
-        <filename></filename>
+        <filename>../../Resources/windows/Door/Door.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
