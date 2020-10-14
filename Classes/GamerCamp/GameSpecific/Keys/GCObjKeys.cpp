@@ -29,18 +29,21 @@ CGCObjKeys::CGCObjKeys(void)
 		//}
 
 		CreateSprite(keysSprite);
-		SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		//SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		SetResetPosition(cocos2d::Vec2(500, 120));
 		SetParent(IGCGameLayer::ActiveInstance());
 		//GetPhysicsBody()->SetGravityScale(0.0f);
+
 	}
 }
+
 
 CGCObjKeys::~CGCObjKeys()
 {
 
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE(CGCObjKeys, "TexturePacker/Sprites/Coin/Coin.plist", "coin", b2_dynamicBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE(CGCObjKeys, "TexturePacker/Sprites/Key/Key.plist", "coin", b2_staticBody, true);
 //virtual 
 void CGCObjKeys::VOnResourceAcquire(void)
 {
