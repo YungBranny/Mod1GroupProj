@@ -64,6 +64,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Enemies">
       <UniqueIdentifier>{55f9c181-6b9a-43cc-b7af-2ffec0605587}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\PlatformTest">
+      <UniqueIdentifier>{79b3e979-a75a-49f0-a2d2-03586f091a02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -173,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimerBar.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjPlatformTest.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimerBar.h">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjPlatformTest.h">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -27,6 +27,7 @@
 #include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
+#include "GamerCamp/GameSpecific/PlatformTest/GCObjPlatformTest.h"
 
 #include "AppDelegate.h"
 
@@ -65,6 +66,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCBasicEnemies			( nullptr )
 , m_pcGCBasicEnemies2			( nullptr )
 , m_pcGCMovingEnemies			( nullptr )
+, m_pcGCPlatformTest1			( nullptr )
 , m_bResetWasRequested			( false )
 
 {
@@ -195,6 +197,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 	m_pcGCTimer = new CGCObjTimer();
+
+
 	
 	/*m_pcGCTimerBar = new CGCObjTimerBar();*/
 	
@@ -282,6 +286,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	m_pcGCOKeys = new CGCObjKeys();
 
+	m_pcGCPlatformTest1 = new CGCObjPlatformTest ();
+	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
 	
 	//enemy
 	Vec2 v2Enemy1StartPos = ( v2ScreenCentre_Pixels - Vec2 (0.0f, ( visibleSize.height * 0.1f )) );

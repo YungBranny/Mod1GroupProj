@@ -24,6 +24,7 @@ class CGCObjTimerBar;
 class CGCObjKeys;
 class CGCBasicEnemies;
 class CGCMovingEnemies;
+class CGCObjPlatformTest;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -49,10 +50,14 @@ private:
 	CGCBasicEnemies*				m_pcGCBasicEnemies;
 	CGCBasicEnemies*				m_pcGCBasicEnemies2;
 	CGCMovingEnemies*				m_pcGCMovingEnemies;
+
+	//platforms
+	CGCObjPlatformTest*				m_pcGCPlatformTest1;
 	
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;
 	
+
 
 	// mario
 	CGCObjPlayer*					m_pcGCOPlayer;
