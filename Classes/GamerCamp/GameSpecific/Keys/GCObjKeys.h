@@ -8,7 +8,7 @@
 //#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 
 class CGCObjKeys
-	: public CGCObjSpritePhysics // chnange to item and in platformer if we have more than just keys
+	: public CGCObjSpritePhysics // change to item and in platformer if we have more than just keys
 {
 private:
 	float m_keysGravity;
