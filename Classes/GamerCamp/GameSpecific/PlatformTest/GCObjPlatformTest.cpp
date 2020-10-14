@@ -16,7 +16,7 @@ CGCObjPlatformTest::CGCObjPlatformTest ()
 	
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE (CGCObjPlatformTest, "TexturePacker/Sprites/Platform/Platform.plist", "platform", b2_staticBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE (CGCObjPlatformTest, "TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist", "LongPlatformTest", b2_staticBody, true);
 void CGCObjPlatformTest::VOnResourceAcquire ()
 {
 
