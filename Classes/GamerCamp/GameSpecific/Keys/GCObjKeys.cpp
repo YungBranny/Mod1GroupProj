@@ -43,7 +43,7 @@ CGCObjKeys::~CGCObjKeys()
 
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE(CGCObjKeys, "TexturePacker/Sprites/Key/Key.plist", "coin", b2_staticBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE(CGCObjKeys, "TexturePacker/Sprites/Key/Key.plist", "Key", b2_staticBody, true);
 //virtual 
 void CGCObjKeys::VOnResourceAcquire(void)
 {
@@ -60,6 +60,7 @@ void CGCObjKeys::VOnReset()
 }
 void CGCObjKeys::VOnUpdate(f32 fTimestep)
 {
+	SetSpriteRotation(GetSpriteRotation() + 0.1f);
 }
 
 void CGCObjKeys::VOnResourceRelease()

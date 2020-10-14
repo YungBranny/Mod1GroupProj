@@ -396,7 +396,9 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	ManuallyHandleCollisions();	
 
 	m_pcGCTimer->Update();
-	m_pcGCMovingEnemies->VOnUpdate (fTimeStep);
+	//m_pcGCMovingEnemies->VOnUpdate (fTimeStep);
+
+	//m_pcGCOKeys->VOnUpdate(fTimeStep);
 	
 	//m_pcGCBasicEnemies->SetVelocity (cocos2d::Vec2(1,0));
 	//m_pcGCBasicEnemies->SetVelocity (cocos2d::Vec2 (10, 0));
