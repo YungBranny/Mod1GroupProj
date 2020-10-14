@@ -13,6 +13,7 @@ CGCObjPlatformTest::CGCObjPlatformTest ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjPlatformTest))
 {
 	SetResetPosition (cocos2d::Vec2(400, 400));
+	
 }
 
 IN_CPP_CREATION_PARAMS_DECLARE (CGCObjPlatformTest, "TexturePacker/Sprites/Platform/Platform.plist", "platform", b2_staticBody, true);

@@ -39,7 +39,7 @@ void CGCMovingEnemies::InitialiseMovementDirection ()
 	};
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/BasicEnemy/BasicEnemy.plist", "mario", b2_dynamicBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/BasicEnemy/BasicEnemy.plist", "BasicEnemy", b2_dynamicBody, true);
 void CGCMovingEnemies::VOnResourceAcquire ()
 {
 
