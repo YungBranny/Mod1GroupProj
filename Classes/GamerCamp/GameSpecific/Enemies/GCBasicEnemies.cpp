@@ -11,12 +11,12 @@ USING_NS_CC;
 
 CGCBasicEnemies::CGCBasicEnemies()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCBasicEnemies))
-	,m_fGravity		(- 1.0f)
+	//,m_fGravity		(1.0f)
 {
 	
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE( CGCBasicEnemies, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE( CGCBasicEnemies, "TexturePacker/Sprites/Spike/Spike.plist", "Spike", b2_staticBody, true);
 void CGCBasicEnemies::VOnResourceAcquire()
 {
 
@@ -41,7 +41,7 @@ void CGCBasicEnemies::VOnReset()
 	SetFlippedX (false);
 	SetFlippedY (false);
 
-	SetResetPosition (cocos2d::Vec2(100, 100));
+	//SetResetPosition (cocos2d::Vec2(100, 100));
 	if (GetPhysicsBody ())
 	{
 		cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
@@ -63,7 +63,7 @@ void CGCBasicEnemies::VOnResourceRelease()
 void CGCBasicEnemies::VOnResurrected()
 {
 	CGCObjSpritePhysics::VOnResurrected();
-	GetPhysicsBody ()->SetGravityScale (getGravity());
+	//GetPhysicsBody ()->SetGravityScale (getGravity());
 }
 
 
