@@ -30,6 +30,7 @@ CGCObjSprite::CGCObjSprite( GCTypeID idDerivedType )
 : CGCObject		( idDerivedType )
 , m_pcSprite	( nullptr )
 {
+	
 }
 
 

@@ -55,6 +55,9 @@ public:
 	CGCObjSprite();
 	virtual ~CGCObjSprite();
 
+	 
+
+	
 	// explicit constructor & destructor 
 	void			CreateSprite( const char* pszPlist );
 	void			CreateSpriteFast( cocos2d::ValueMap dicSpriteInfo );
@@ -77,6 +80,10 @@ public:
 	// reset position is where the sprite will go back to when reset
 	inline void				SetResetPosition( cocos2d::Vec2 v2Position );
 	inline cocos2d::Vec2	GetResetPosition();
+
+	
+	inline void SetScale(float bArgScaleX, float bArgScaleY);
+	inline float GetScale() const;
 
 	// rotation accessors
 	inline void		SetSpriteRotation( float fRotationRadians );
@@ -187,6 +194,7 @@ inline void CGCObjSprite::SetResetPosition( cocos2d::Vec2 bArgPosition )
 }
 
 
+
 //////////////////////////////////////////////////////////////////////////
 // 
 //////////////////////////////////////////////////////////////////////////
@@ -194,7 +202,20 @@ inline cocos2d::Vec2 CGCObjSprite::GetResetPosition()
 {
 	return m_v2InitialPosition;
 }
+//////////////////////////////////////////////////////////////////////////
+// 
+//////////////////////////////////////////////////////////////////////////
 
+inline void CGCObjSprite::SetScale(float bArgScaleX,  float bArgScaleY)
+{
+	m_pcSprite->setScale(bArgScaleX,bArgScaleY);
+	
+}
+
+inline float CGCObjSprite::GetScale() const
+{
+	return m_pcSprite->getScale();
+}
 
 //////////////////////////////////////////////////////////////////////////
 // 

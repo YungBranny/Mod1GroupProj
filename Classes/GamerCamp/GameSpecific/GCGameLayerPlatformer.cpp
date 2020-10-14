@@ -23,7 +23,7 @@
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
-//#include "GamerCamp/GameSpecific/Timer/GCObjTimerBar.h"
+#include "GamerCamp/GameSpecific/Timer/GCObjTimerBar.h"
 #include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
@@ -61,7 +61,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCSprBackGround			( nullptr )
 , m_pcGCOPlayer					( nullptr )
 , m_pcGCTimer					( nullptr )
-//, m_pcGCTimerBar				( nullptr )
+, m_pcGCTimerBar				( nullptr )
 , m_pcGCOKeys                   ( nullptr )
 , m_pcGCBasicEnemies			( nullptr )
 , m_pcGCBasicEnemies2			( nullptr )
@@ -200,7 +200,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 
 	
-	/*m_pcGCTimerBar = new CGCObjTimerBar();*/
+	m_pcGCTimerBar = new CGCObjTimerBar();
 	
 	
 	this->addChild(m_pcGCTimer->getTimerText(), 1);
