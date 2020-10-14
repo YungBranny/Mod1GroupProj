@@ -24,7 +24,8 @@ class CGCObjTimerBar;
 class CGCObjKeys;
 class CGCBasicEnemies;
 class CGCMovingEnemies;
-class CGCObjPlatformTest;
+class CGCObjLongPlatformTest;
+class CGCObjShortPlatformTest;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -54,7 +55,18 @@ private:
 	CGCMovingEnemies*				m_pcGCMovingEnemies;
 
 	//platforms
-	CGCObjPlatformTest*				m_pcGCPlatformTest1;
+	CGCObjLongPlatformTest*			m_pcGCLongPlatformTest1;
+	CGCObjLongPlatformTest*			m_pcGCLongPlatformTest2;
+	CGCObjLongPlatformTest*			m_pcGCLongPlatformTest3;
+	CGCObjLongPlatformTest*			m_pcGCLongPlatformTest4;
+	CGCObjLongPlatformTest*			m_pcGCLongPlatformTest5;
+
+	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest1;
+	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest2;
+	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest3;
+	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest4;
+	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest5;
+
 	
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;

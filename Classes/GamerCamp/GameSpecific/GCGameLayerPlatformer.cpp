@@ -27,7 +27,8 @@
 #include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
-#include "GamerCamp/GameSpecific/PlatformTest/GCObjPlatformTest.h"
+#include "GamerCamp/GameSpecific/PlatformTest/GCObjLongPlatformTest.h"
+#include "GamerCamp/GameSpecific/PlatformTest/GCObjShortPlatformTest.h"
 
 #include "AppDelegate.h"
 
@@ -68,7 +69,16 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCBasicEnemies			( nullptr )
 , m_pcGCBasicEnemies2			( nullptr )
 , m_pcGCMovingEnemies			( nullptr )
-, m_pcGCPlatformTest1			( nullptr )
+, m_pcGCLongPlatformTest1		( nullptr )
+, m_pcGCShortPlatformTest1      ( nullptr )
+, m_pcGCLongPlatformTest2		( nullptr )
+, m_pcGCShortPlatformTest2		( nullptr )
+, m_pcGCLongPlatformTest3		( nullptr )
+, m_pcGCShortPlatformTest3		( nullptr )
+, m_pcGCLongPlatformTest4		( nullptr )
+, m_pcGCShortPlatformTest4		( nullptr )
+, m_pcGCLongPlatformTest5		( nullptr )
+, m_pcGCShortPlatformTest5		( nullptr )
 , m_bResetWasRequested			( false )
 
 {
@@ -298,15 +308,37 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	// create player object
 	m_pcGCOPlayer = new CGCObjPlayer();
-	m_pcGCOPlayer->SetResetPosition( v2MarioStartPos );
+	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(20,130) );
 
 	m_pcGCOKeys = new CGCObjKeys();
 	m_pcGCOKeys1 = new CGCObjKeys();
-	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(600, 120));
+	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(570, 300));
 	m_pcGCOKeys2 = new CGCObjKeys();
-	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(700, 120));
+	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(750, 220));
 
-	m_pcGCPlatformTest1 = new CGCObjPlatformTest ();
+	///////// Platforms
+
+	m_pcGCLongPlatformTest1		=	new CGCObjLongPlatformTest	();
+	m_pcGCLongPlatformTest1->SetStartPos (cocos2d::Vec2 (0, 100));
+	m_pcGCLongPlatformTest2		=	new CGCObjLongPlatformTest	();
+	m_pcGCLongPlatformTest2->SetStartPos (cocos2d::Vec2 (130, 100));
+	m_pcGCLongPlatformTest3		=	new CGCObjLongPlatformTest	();
+	m_pcGCLongPlatformTest3->SetStartPos (cocos2d::Vec2 (260, 100));
+	m_pcGCLongPlatformTest4		=	new CGCObjLongPlatformTest	();
+	m_pcGCLongPlatformTest4->SetStartPos (cocos2d::Vec2 (390, 100));
+	m_pcGCLongPlatformTest5		=	new CGCObjLongPlatformTest	();
+	m_pcGCLongPlatformTest5->SetStartPos (cocos2d::Vec2 (520, 100));
+
+	m_pcGCShortPlatformTest1	=	new CGCObjShortPlatformTest ();
+	m_pcGCShortPlatformTest1->SetStartPos (cocos2d::Vec2 (650, 150));
+	m_pcGCShortPlatformTest2	=	new CGCObjShortPlatformTest ();
+	m_pcGCShortPlatformTest2->SetStartPos (cocos2d::Vec2 (750, 200));
+	m_pcGCShortPlatformTest3	=	new CGCObjShortPlatformTest ();
+	m_pcGCShortPlatformTest3->SetStartPos (cocos2d::Vec2 (830, 250));
+	m_pcGCShortPlatformTest4	=	new CGCObjShortPlatformTest ();
+	m_pcGCShortPlatformTest4->SetStartPos (cocos2d::Vec2 (700, 300));
+	m_pcGCShortPlatformTest5	=	new CGCObjShortPlatformTest	();
+	m_pcGCShortPlatformTest5->SetStartPos (cocos2d::Vec2 (570, 250));
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
 	
 	//enemy
@@ -319,8 +351,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCBasicEnemies2->setGravity (0.0f);
 
 	m_pcGCMovingEnemies = new CGCMovingEnemies ();
-	m_pcGCMovingEnemies->SetResetPosition (v2Enemy1StartPos);
-	m_pcGCMovingEnemies->setGravity (0.0f);
+	m_pcGCMovingEnemies->SetResetPosition (cocos2d::Vec2(250,130));
+	m_pcGCMovingEnemies->setGravity (10.0f);
 	
 	
 	//
@@ -424,6 +456,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	if( ResetWasRequested() )
 	{
 		VOnReset();
+		m_keysCollected = 0;
 		ResetRequestWasHandled();
 	}
 

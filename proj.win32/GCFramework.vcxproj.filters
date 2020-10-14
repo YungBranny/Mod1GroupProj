@@ -67,6 +67,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\PlatformTest">
       <UniqueIdentifier>{79b3e979-a75a-49f0-a2d2-03586f091a02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\Door">
+      <UniqueIdentifier>{10000651-36f5-4c58-9abf-6b2a6684158b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -177,8 +180,14 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimerBar.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjPlatformTest.cpp">
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjLongPlatformTest.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjShortPlatformTest.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\Door.cpp">
+      <Filter>Classes\GamerCamp\Door</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -302,8 +311,14 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimerBar.h">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjPlatformTest.h">
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjLongPlatformTest.h">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjShortPlatformTest.h">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\Door.h">
+      <Filter>Classes\GamerCamp\Door</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

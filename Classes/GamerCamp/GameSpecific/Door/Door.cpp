@@ -1,3 +1,4 @@
+
 #include <memory.h>
 
 //#include "AppDelegate.h"
@@ -5,39 +6,43 @@
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
-#include "GCObjPlatformTest.h"
+#include "Door.h"
 
 
 
-CGCObjPlatformTest::CGCObjPlatformTest ()
-	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjPlatformTest))
+CGCObjDoor::CGCObjDoor ()
+	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjLongPlatformTest))
+	, m_v2StartPos (400, 400)
 {
-	SetResetPosition (cocos2d::Vec2(400, 400));
-	
+	SetResetPosition (GetStartPos ());
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE (CGCObjPlatformTest, "TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist", "LongPlatformTest", b2_staticBody, true);
-void CGCObjPlatformTest::VOnResourceAcquire ()
+
+
+
+IN_CPP_CREATION_PARAMS_DECLARE (CGCObjDoor, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_staticBody, true);
+void CGCObjDoor::VOnResourceAcquire ()
 {
 
-	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjPlatformTest);
+	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjDoor);
 
 	CGCObjSpritePhysics::VOnResourceAcquire ();
+	SetResetPosition (GetStartPos ());
 	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
-	
+
 
 }
 
 
 
-void CGCObjPlatformTest::VOnReset ()
+void CGCObjDoor::VOnReset ()
 {
 	CGCObjSpritePhysics::VOnReset ();
 	// reset
 	SetFlippedX (false);
 	SetFlippedY (false);
 
-	SetResetPosition (cocos2d::Vec2 (300, 500));
+	SetResetPosition (GetStartPos ());
 	if (GetPhysicsBody ())
 	{
 		cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
@@ -46,16 +51,16 @@ void CGCObjPlatformTest::VOnReset ()
 	}
 
 }
-void CGCObjPlatformTest::VOnUpdate (f32 fTimestep)
+void CGCObjDoor::VOnUpdate (f32 fTimestep)
 {
 }
 
-void CGCObjPlatformTest::VOnResourceRelease ()
+void CGCObjDoor::VOnResourceRelease ()
 {
 	CGCObjSpritePhysics::VOnResourceRelease ();
 
 }
-void CGCObjPlatformTest::VOnResurrected ()
+void CGCObjDoor::VOnResurrected ()
 {
 	CGCObjSpritePhysics::VOnResurrected ();
 

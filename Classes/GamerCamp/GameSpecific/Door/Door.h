@@ -1,21 +1,25 @@
-#ifndef _CGCOBJPLATFORMTEST_
-#define _CGCOBJPLATFORMTEST__
+
+#ifndef _CGCOBJDOOR_
+#define _CGCOBJDOOR__
 
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
-class CGCObjPlatformTest
+class CGCObjDoor
 	: public CGCObjSpritePhysics
 {
 private:
 
+	cocos2d::Vec2 m_v2StartPos;
+
+
 public:
 
-	CGCObjPlatformTest ();
-	virtual ~CGCObjPlatformTest () {};
+	CGCObjDoor ();
+	virtual ~CGCObjDoor () {};
 
-
-
+	cocos2d::Vec2 GetStartPos () { return m_v2StartPos; }
+	void SetStartPos (cocos2d::Vec2 i) { m_v2StartPos = i; }
 
 	virtual void VOnResourceAcquire (void);
 	virtual void VOnResurrected (void);
