@@ -47,6 +47,8 @@ private:
 	f32		m_fNoInput_ExtraDrag_Square;
 	f32		m_fNoInput_VelocityThreshold;
 
+	bool	m_bCanJump;
+
 	// action map for controllers
 	//test comment
 	TGCActionToKeyMap< EPlayerActions >* m_pcControllerActionToKeyMap;
@@ -88,5 +90,9 @@ public:
 
     // this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
     void NotifyOfCollisionWithInvader();
+
+	bool GetCanJump() { return m_bCanJump; }
+
+	void SetCanJump(bool i) { m_bCanJump = i; }
 };
 #endif // #ifndef _GCOBJPLAYER_H_

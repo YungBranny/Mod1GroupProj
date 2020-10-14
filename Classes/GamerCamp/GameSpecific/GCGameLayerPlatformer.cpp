@@ -345,6 +345,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	Vec2 v2Enemy1StartPos = ( v2ScreenCentre_Pixels - Vec2 (0.0f, ( visibleSize.height * 0.1f )) );
 	m_pcGCBasicEnemies = new CGCBasicEnemies ();
 	m_pcGCBasicEnemies->SetResetPosition (v2Enemy1StartPos);
+	m_pcGCBasicEnemies->setGravity(1.0);
 
 	//m_pcGCBasicEnemies2 = new CGCBasicEnemies ();
 	//m_pcGCBasicEnemies2->SetResetPosition (v2Enemy1StartPos);
@@ -381,6 +382,24 @@ void CGCGameLayerPlatformer::VOnCreate()
 			CGCObjectManager::ObjectKill( &rcProjectile );
 			CGCObjectManager::ObjectKill( &rcInvader );
 		} 
+	);
+
+	GetCollisionManager().AddCollisionHandler
+	(
+		[]
+	(CGCObjPlayer& rcPlayer, CGCObjShortPlatformTest& rcShortPlatformTest, const b2Contact& rcContact) -> void
+		{
+			rcPlayer.SetCanJump(true);
+		}
+	);
+
+	GetCollisionManager().AddCollisionHandler
+	(
+		[]
+	(CGCObjPlayer& rcPlayer, CGCObjLongPlatformTest& rcLongPlatformTest, const b2Contact& rcContact) -> void
+		{
+			rcPlayer.SetCanJump(true);
+		}
 	);
 
 	GetCollisionManager().AddCollisionHandler

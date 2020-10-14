@@ -35,6 +35,7 @@ CGCObjPlayer::CGCObjPlayer()
 , m_fNoInput_ExtraDrag_Square	( 0.2f )
 , m_fNoInput_VelocityThreshold	( 0.25f )
 , m_pcControllerActionToKeyMap	( nullptr )
+, m_bCanJump (true)
 {
 }
 
@@ -123,10 +124,10 @@ void CGCObjPlayer::VOnResourceRelease()
 //
 // N.B. globals that we can edit in the debugger used to override the 
 // values of the members for debugging control code
-f32 g_CGCObjPlayer_fMass						= 1.0f;		// kg
-f32	g_CGCObjPlayer_fMaximumMoveForce_Horizontal	= 20.0f;	// newton
-f32	g_CGCObjPlayer_fMaximumMoveForce_Vertical	= 40.0f;	// newton
-f32	g_CGCObjPlayer_fDragCoefficient_Linear		= 0.25f;	// unitless
+f32 g_CGCObjPlayer_fMass						= 100.0f;		// kg
+f32	g_CGCObjPlayer_fMaximumMoveForce_Horizontal	= 50.0f;	// newton
+f32	g_CGCObjPlayer_fMaximumMoveForce_Vertical	= 1.0f;	// newton
+f32	g_CGCObjPlayer_fDragCoefficient_Linear		= 40.0f;	// unitless
 f32	g_CGCObjPlayer_fDragCoefficient_Square		= 0.2f;		// unitless
 f32 g_CGCObjPlayer_m_fNoInput_ExtraDrag_Square	= 0.2f;		// unitless
 f32 g_CGCObjPlayer_fNoInput_VelocityThreshold	= 0.25f;	// m/s
@@ -165,7 +166,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	{
 		Vec2 v2LeftStickRaw			= cController.GetCurrentStickValueRaw( EPA_AxisMove_X, EPA_AxisMove_Y );
 		v2ControlForceDirection.x	= v2LeftStickRaw.x;
-		v2ControlForceDirection.y	= v2LeftStickRaw.y;
+	//	v2ControlForceDirection.y	= v2LeftStickRaw.y;
 
 		if( v2ControlForceDirection.length() > 0.0f )
 		{
@@ -174,16 +175,16 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	}
 	else
 	{
-		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Up ) )
-		{
-			v2ControlForceDirection.y   = 1.0f;
-			fIsInputInactive            = 0.0f;
-		}
-		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Down ) )
-		{
-			v2ControlForceDirection.y	= -1.0f;
-			fIsInputInactive            = 0.0f;
-		}
+	//	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Up ) )
+	//	{
+	//		v2ControlForceDirection.y   = 1.0f;
+	//		fIsInputInactive            = 0.0f;
+	//	}
+	//	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Down ) )
+	//	{
+	//		v2ControlForceDirection.y	= -1.0f;
+	//		fIsInputInactive            = 0.0f;
+	//	}
 
 		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Left ) )
 		{
@@ -199,15 +200,15 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	// normalise the control vector and multiply by movement force
 	v2ControlForceDirection.x *= m_fMaximumMoveForce_Horizontal;
-	v2ControlForceDirection.y *= m_fMaximumMoveForce_Vertical;
+//	v2ControlForceDirection.y *= m_fMaximumMoveForce_Vertical;
 
 	// accumulate the force
 	v2TotalForce += v2ControlForceDirection;
 
 
 	// * calculate drag force
-	Vec2 v2Velocity_Unit	= GetVelocity();
-	f32 fVelocity			= v2Velocity_Unit.normalize();
+//	Vec2 v2Velocity_Unit	= GetVelocity();
+//	f32 fVelocity			= v2Velocity_Unit.normalize();
 	
 	// This is not the real equation for drag.
 	// This is a simple mathematical function that approximates the behaviour 
@@ -220,14 +221,14 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	// N.B. the last term evaluates to 0.0f if there is controller input
 
-	f32 fDragForce = (		( m_fDragCoefficient_Linear * fVelocity ) 
-						+	( m_fDragCoefficient_Square * ( fVelocity * fVelocity ) ) 
-						+	( m_fNoInput_ExtraDrag_Square * ( fVelocity * fVelocity ) * fIsInputInactive ) );
+//	f32 fDragForce = (		( m_fDragCoefficient_Linear * fVelocity ) 
+//						+	( m_fDragCoefficient_Square * ( fVelocity * fVelocity ) ) 
+//					+	( m_fNoInput_ExtraDrag_Square * ( fVelocity * fVelocity ) * fIsInputInactive ) );
 
 	// drag is applied in the opposite direction to the current velocity of the object
 	// so scale out unit version of the object's velocity by -fDragForce
 	// N.B. operator* is only defined for (float, Vec2) and not for (Vec2, float) !?!
-	v2TotalForce += ( -fDragForce * v2Velocity_Unit );
+//	v2TotalForce += ( -fDragForce * v2Velocity_Unit );
 
 
 	// physics calcs handled by box 2d based on force applied
@@ -273,12 +274,10 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 		}
 	}
 
-	if( bFireWasPressed )
+	if( bFireWasPressed && m_bCanJump)
 	{
-		// supply initial position, velocity, lifetime
-		m_pProjectileManager->SpawnProjectile(	GetSpritePosition() + Vec2( 0.0f, 20.0f ),
-												Vec2( 0.0f, g_GCGameLayer_fProjectileVelocity),
-												g_GCGameLayer_fProjectileLifetime );
+			GetPhysicsBody()->ApplyForceToCenter(b2Vec2(0, 1000.0f), true);
+			m_bCanJump = false;
 	}
 }
 
