@@ -24,6 +24,8 @@ using namespace cocos2d;
     ,m_iTimerDecreaseValue		 (  1				)	// The Amount decremented each time
     ,m_fMaxTimeBuffer			 ( 100.0f			)	// Max value timer resets too
 	,m_fCurrentTimeBuffer        ( m_fMaxTimeBuffer )	// higher the value  slower the timer is
+	,m_fScaleX					 (     2.0f			)
+	,m_fCurrentXScale			 (    m_fScaleX		)
 	
     
 {
@@ -56,7 +58,7 @@ using namespace cocos2d;
 		CreateSprite(pszTimerBarSprite);
 		SetResetPosition(Vec2(500, 695));
 		SetParent(IGCGameLayer::ActiveInstance());
-		SetScale(2.0f, 0.1f);
+		SetScale(m_fScaleX, 0.1f);
 
 	}
 
@@ -77,6 +79,9 @@ using namespace cocos2d;
 		if (getCurrentTime() >= 0)
 		{
 			setCurrentTime(getCurrentTime() - getTimerDecreaseValue());
+
+			
+			SetScale(getCurrentTime() / 40.0f, 0.1f);
 
 			getTimerText()->setString("Air "+ std::to_string(getCurrentTime()) + "%" );
 		}
@@ -105,6 +110,9 @@ void CGCObjTimer::ResetTimer()
  void CGCObjTimer::Update()
 {
 	 DecreaseTimer();
+ 	
+	
+
 }
 
  

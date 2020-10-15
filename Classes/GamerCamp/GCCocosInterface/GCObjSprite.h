@@ -215,6 +215,8 @@ inline void CGCObjSprite::SetScale(float bArgScaleX,  float bArgScaleY)
 inline float CGCObjSprite::GetScale() const
 {
 	return m_pcSprite->getScale();
+	
+	
 }
 
 //////////////////////////////////////////////////////////////////////////

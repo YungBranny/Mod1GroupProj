@@ -20,6 +20,8 @@ private:
 	int m_iTimerDecreaseValue;
 	float m_fCurrentTimeBuffer;
 	float m_fMaxTimeBuffer;
+	float m_fScaleX;
+	float m_fCurrentXScale;
 
 	cocos2d::Label* m_pTimerText;
 
