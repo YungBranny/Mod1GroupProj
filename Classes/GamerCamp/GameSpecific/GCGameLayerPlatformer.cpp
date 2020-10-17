@@ -30,6 +30,7 @@
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjLongPlatformTest.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjShortPlatformTest.h"
 #include "GamerCamp/GameSpecific/Door/GCObjDoor.h"
+#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 
 #include "AppDelegate.h"
 
@@ -429,7 +430,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	{
 		if( m_keysCollected >= m_totalKeys )
 		{
-			ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
+			Director::getInstance ()->replaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene ()));
+			//ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
 		}
 	}
 	);

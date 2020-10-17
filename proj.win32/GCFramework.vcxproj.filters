@@ -70,6 +70,9 @@
     <Filter Include="Classes\GamerCamp\Door">
       <UniqueIdentifier>{10000651-36f5-4c58-9abf-6b2a6684158b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\MainMenu">
+      <UniqueIdentifier>{28e07512-8747-4640-9163-cedb7b616234}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -188,6 +191,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.cpp">
       <Filter>Classes\GamerCamp\Door</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -319,6 +325,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.h">
       <Filter>Classes\GamerCamp\Door</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.h">
+      <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
