@@ -337,6 +337,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOKeys2 = new CGCObjKeys();
 	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(750, 220));
 
+	m_pcGCOTimePickUp - new CGCObjTimePickUp();
+
 	m_pcGCODoor = new CGCObjDoor();
 
 	///////// Platforms
