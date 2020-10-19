@@ -67,11 +67,16 @@
     <Filter Include="Classes\GamerCamp\Door">
       <UniqueIdentifier>{10000651-36f5-4c58-9abf-6b2a6684158b}</UniqueIdentifier>
     </Filter>
+<<<<<<< Updated upstream
     <Filter Include="Classes\GamerCamp\GameSpecific\MainMenu">
       <UniqueIdentifier>{28e07512-8747-4640-9163-cedb7b616234}</UniqueIdentifier>
     </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\GameWinLossScenes">
       <UniqueIdentifier>{b4a53eb8-7027-4ec1-82d2-7cc9f5845542}</UniqueIdentifier>
+=======
+    <Filter Include="Classes\GamerCamp\GameSpecific\NewPlayer">
+      <UniqueIdentifier>{86b1201a-6017-4f26-b9d2-33567e3c5e39}</UniqueIdentifier>
+>>>>>>> Stashed changes
     </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\Player\ScreenBounds">
       <UniqueIdentifier>{c0fa1bf2-9733-4542-bc0a-d9c4d43e74b2}</UniqueIdentifier>
@@ -195,6 +200,7 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.cpp">
       <Filter>Classes\GamerCamp\Door</Filter>
     </ClCompile>
+<<<<<<< Updated upstream
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClCompile>
@@ -209,6 +215,10 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
+=======
+    <ClCompile Include="GCObjNewPlayer.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlayer</Filter>
+>>>>>>> Stashed changes
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -341,6 +351,7 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.h">
       <Filter>Classes\GamerCamp\Door</Filter>
     </ClInclude>
+<<<<<<< Updated upstream
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.h">
       <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClInclude>
@@ -355,6 +366,10 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.h">
       <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
+=======
+    <ClInclude Include="GCObjNewPlayer.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlayer</Filter>
+>>>>>>> Stashed changes
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
