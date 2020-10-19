@@ -198,6 +198,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjFallingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -334,6 +337,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.h">
       <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjFallingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

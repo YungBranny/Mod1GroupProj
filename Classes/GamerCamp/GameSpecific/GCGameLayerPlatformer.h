@@ -26,9 +26,9 @@ class CGCBasicEnemies;
 class CGCMovingEnemies;
 class CGCObjLongPlatformTest;
 class CGCObjShortPlatformTest;
+class CGCObjFallingPlatform;
 class CGCObjDoor;
 class CGCObjTimePickUp;
-
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer
@@ -72,6 +72,8 @@ private:
 	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest3;
 	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest4;
 	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest5;
+
+	CGCObjFallingPlatform*			m_pcGCFallingPlatform1;
 
 	
 	// backgrounds

@@ -29,6 +29,7 @@
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjLongPlatformTest.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjShortPlatformTest.h"
+#include "GamerCamp/GameSpecific/PlatformTest/GCObjFallingPlatform.h"
 #include "GamerCamp/GameSpecific/Door/GCObjDoor.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 #include "GamerCamp/GameSpecific/Keys/GCObjTimePickUp.h"
@@ -85,6 +86,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCShortPlatformTest4		( nullptr )
 , m_pcGCLongPlatformTest5		( nullptr )
 , m_pcGCShortPlatformTest5		( nullptr )
+, m_pcGCFallingPlatform1		( nullptr )
 , m_bResetWasRequested			( false )
 
 {
@@ -364,6 +366,10 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCShortPlatformTest4->SetStartPos (cocos2d::Vec2 (700, 300));
 	m_pcGCShortPlatformTest5	=	new CGCObjShortPlatformTest	();
 	m_pcGCShortPlatformTest5->SetStartPos (cocos2d::Vec2 (570, 250));
+
+
+	m_pcGCFallingPlatform1 = new CGCObjFallingPlatform ();
+	m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
 	
 	//enemy
@@ -500,6 +506,29 @@ void CGCGameLayerPlatformer::VOnCreate()
 				CGCObjectManager::ObjectKill (&rcPlayer);
 			}
 		}
+	);
+
+	GetCollisionManager ().AddCollisionHandler
+	(
+		[this]
+	(CGCObjFallingPlatform& rcFallingPlatforms,  CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+
+		{
+			if (rcContact.IsTouching())
+			{
+				if (rcFallingPlatforms.GetContactWithPlayer () == false)
+				{
+					rcFallingPlatforms.SetContactWithPlayer (true);
+				}
+			}
+
+			else if (rcContact.IsTouching () == false)
+			{
+				rcFallingPlatforms.SetContactWithPlayer (false);
+			}
+		}
+
+
 	);
 
 
