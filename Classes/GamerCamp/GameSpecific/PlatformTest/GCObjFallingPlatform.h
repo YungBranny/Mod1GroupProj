@@ -10,11 +10,15 @@ class CGCObjFallingPlatform
 private:
 	cocos2d::Vec2 m_v2StartPos;
 
+	cocos2d::Vec2 m_v2EndPos;
+
 	cocos2d::Vec2 m_v2FallingVelocity;
 
 	cocos2d::Vec2 m_v2DefaultVelocity;
 
 	bool m_bContactWithPlayer;
+
+	float m_fDestroyPlatformTick;
 
 public:
 
@@ -23,6 +27,9 @@ public:
 
 	cocos2d::Vec2 GetStartPos () { return m_v2StartPos; }
 	void SetStartPos (cocos2d::Vec2 i) { m_v2StartPos = i; }
+
+	cocos2d::Vec2 GetEndPos () { return m_v2EndPos; }
+	void SetEndPos (cocos2d::Vec2 i) { m_v2EndPos = i; }
 
 	cocos2d::Vec2 GetCurrentVelocity () { return m_v2FallingVelocity; }
 	void SetCurrentVelocity (cocos2d::Vec2 i) { m_v2FallingVelocity = i; }
