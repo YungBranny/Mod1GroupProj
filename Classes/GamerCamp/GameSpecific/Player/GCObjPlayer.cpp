@@ -124,14 +124,14 @@ void CGCObjPlayer::VOnResourceRelease()
 //
 // N.B. globals that we can edit in the debugger used to override the 
 // values of the members for debugging control code
-f32 g_CGCObjPlayer_fMass						= 100.0f;		// kg
-f32	g_CGCObjPlayer_fMaximumMoveForce_Horizontal	= 50.0f;	// newton
+f32 g_CGCObjPlayer_fMass						= 1.0f;		// kg
+f32	g_CGCObjPlayer_fMaximumMoveForce_Horizontal	= 100.0f;	// newton
 f32	g_CGCObjPlayer_fMaximumMoveForce_Vertical	= 1.0f;	// newton
-f32	g_CGCObjPlayer_fDragCoefficient_Linear		= 40.0f;	// unitless
-f32	g_CGCObjPlayer_fDragCoefficient_Square		= 0.2f;		// unitless
-f32 g_CGCObjPlayer_m_fNoInput_ExtraDrag_Square	= 0.2f;		// unitless
-f32 g_CGCObjPlayer_fNoInput_VelocityThreshold	= 0.25f;	// m/s
-f32 g_GCGameLayer_fDamping						= 0.999f;	// unitless
+f32	g_CGCObjPlayer_fDragCoefficient_Linear		= 1.0f;	// unitless
+f32	g_CGCObjPlayer_fDragCoefficient_Square		= 1.0f;		// unitless
+f32 g_CGCObjPlayer_m_fNoInput_ExtraDrag_Square	= 1.0f;		// unitless
+f32 g_CGCObjPlayer_fNoInput_VelocityThreshold	= 1.0f;	// m/s
+f32 g_GCGameLayer_fDamping						= 1.0f;	// unitless
 f32 g_GCGameLayer_fProjectileVelocity			= 20.0f;	// m/s
 f32 g_GCGameLayer_fProjectileLifetime			= 2.5f;		// s
 //
@@ -200,15 +200,15 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	// normalise the control vector and multiply by movement force
 	v2ControlForceDirection.x *= m_fMaximumMoveForce_Horizontal;
-//	v2ControlForceDirection.y *= m_fMaximumMoveForce_Vertical;
+	v2ControlForceDirection.y *= m_fMaximumMoveForce_Vertical;
 
 	// accumulate the force
 	v2TotalForce += v2ControlForceDirection;
 
 
 	// * calculate drag force
-//	Vec2 v2Velocity_Unit	= GetVelocity();
-//	f32 fVelocity			= v2Velocity_Unit.normalize();
+	Vec2 v2Velocity_Unit	= GetVelocity();
+	f32 fVelocity			= v2Velocity_Unit.normalize();
 	
 	// This is not the real equation for drag.
 	// This is a simple mathematical function that approximates the behaviour 
@@ -221,14 +221,14 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	// N.B. the last term evaluates to 0.0f if there is controller input
 
-//	f32 fDragForce = (		( m_fDragCoefficient_Linear * fVelocity ) 
-//						+	( m_fDragCoefficient_Square * ( fVelocity * fVelocity ) ) 
-//					+	( m_fNoInput_ExtraDrag_Square * ( fVelocity * fVelocity ) * fIsInputInactive ) );
+	f32 fDragForce = (		( m_fDragCoefficient_Linear * fVelocity ) 
+				//	+	( m_fDragCoefficient_Square * ( fVelocity * fVelocity ) ) 
+				+	( m_fNoInput_ExtraDrag_Square * ( fVelocity * fVelocity ) * fIsInputInactive ) );
 
 	// drag is applied in the opposite direction to the current velocity of the object
 	// so scale out unit version of the object's velocity by -fDragForce
 	// N.B. operator* is only defined for (float, Vec2) and not for (Vec2, float) !?!
-//	v2TotalForce += ( -fDragForce * v2Velocity_Unit );
+	v2TotalForce += ( -fDragForce * v2Velocity_Unit );
 
 
 	// physics calcs handled by box 2d based on force applied
@@ -276,7 +276,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	if( bFireWasPressed && m_bCanJump)
 	{
-			GetPhysicsBody()->ApplyForceToCenter(b2Vec2(0, 1000.0f), true);
+			GetPhysicsBody()->ApplyForceToCenter(b2Vec2(0,10000.0f), true);
 			m_bCanJump = false;
 	}
 }
