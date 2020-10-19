@@ -32,6 +32,8 @@
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjFallingPlatform.h"
 #include "GamerCamp/GameSpecific/Door/GCObjDoor.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
+#include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
+#include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
 #include "GamerCamp/GameSpecific/Keys/GCObjTimePickUp.h"
 
 #include "AppDelegate.h"
@@ -440,8 +442,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	{
 		if( m_keysCollected >= m_totalKeys )
 		{
-			Director::getInstance ()->replaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene ()));
-			//ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
+			//ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCWinScene >::CreateScene ()));
+			ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
 		}
 	}
 	);
@@ -486,6 +488,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 			CGCObjectManager::ObjectKill (&rcEnemies);
 			CCLOG ("Player Died.");
 			//CGCObjectManager::ObjectKill (&rcInvader);
+			
+			//ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
 		}
 	);
 
@@ -590,6 +594,9 @@ void CGCGameLayerPlatformer::VOnDestroy()
 
 	delete m_pcGCSprBackGround;
 	m_pcGCSprBackGround = nullptr;
+
+	delete m_pcGCTimer;
+	m_pcGCTimer = nullptr;
 
 	/*delete m_pcGCsprTimerBar;
 	m_pcGCsprTimerBar = nullptr;*/

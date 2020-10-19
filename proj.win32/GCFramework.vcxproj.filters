@@ -73,6 +73,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\MainMenu">
       <UniqueIdentifier>{28e07512-8747-4640-9163-cedb7b616234}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\GameWinLossScenes">
+      <UniqueIdentifier>{b4a53eb8-7027-4ec1-82d2-7cc9f5845542}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -200,6 +203,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjFallingPlatform.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -340,6 +349,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjFallingPlatform.h">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.h">
+      <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.h">
+      <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
