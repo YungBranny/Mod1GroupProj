@@ -422,7 +422,15 @@ void CGCGameLayerPlatformer::VOnCreate()
 		[]
 	(CGCObjPlayer& rcPlayer, CGCObjShortPlatformTest& rcShortPlatformTest, const b2Contact& rcContact) -> void
 		{
-			rcPlayer.SetCanJump(true);
+			if(rcContact.IsTouching())
+			{
+				rcPlayer.SetCanJump(true);
+			}
+			else if (rcContact.IsTouching() == false)
+			{
+				rcPlayer.SetCanJump(false);
+			}
+			
 		}
 	);
 
@@ -431,7 +439,15 @@ void CGCGameLayerPlatformer::VOnCreate()
 		[]
 	(CGCObjPlayer& rcPlayer, CGCObjLongPlatformTest& rcLongPlatformTest, const b2Contact& rcContact) -> void
 		{
-			rcPlayer.SetCanJump(true);
+			if (rcContact.IsTouching())
+			{
+				rcPlayer.SetCanJump(true);
+			}
+			else if (rcContact.IsTouching() == false)
+			{
+				rcPlayer.SetCanJump(false);
+			}
+			
 		}
 	);
 

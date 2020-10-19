@@ -49,9 +49,6 @@
     <Filter Include="Classes\GamerCamp\GameController">
       <UniqueIdentifier>{4ae41667-3df5-4816-b3c8-f6aa92570597}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\GamerCamp\GameSpecific\ScreenBounds">
-      <UniqueIdentifier>{c0fa1bf2-9733-4542-bc0a-d9c4d43e74b2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\Test">
       <UniqueIdentifier>{77c1f0e1-9f3f-4273-b24d-900f844ce0ca}</UniqueIdentifier>
     </Filter>
@@ -75,6 +72,9 @@
     </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\GameWinLossScenes">
       <UniqueIdentifier>{b4a53eb8-7027-4ec1-82d2-7cc9f5845542}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Player\ScreenBounds">
+      <UniqueIdentifier>{c0fa1bf2-9733-4542-bc0a-d9c4d43e74b2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +169,7 @@
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
+      <Filter>Classes\GamerCamp\GameSpecific\Player\ScreenBounds</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimer.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
@@ -315,7 +315,7 @@
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.h">
-      <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
+      <Filter>Classes\GamerCamp\GameSpecific\Player\ScreenBounds</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimer.h">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>

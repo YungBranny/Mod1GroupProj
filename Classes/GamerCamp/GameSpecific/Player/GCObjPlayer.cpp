@@ -188,13 +188,35 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Left ) )
 		{
-			v2ControlForceDirection.x   = -1.0f;
-			fIsInputInactive            = 0.0f;
-		}    
-		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Right ) )
+			
+
+			if (m_bCanJump == true)
+			{
+
+				v2ControlForceDirection.x = -1.0f;
+				fIsInputInactive = 0.0f;
+
+			}
+			
+		}
+		else if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Right ) )
 		{
-			v2ControlForceDirection.x	= 1.0f;
-			fIsInputInactive			= 0.0f;
+			
+
+			if (m_bCanJump == true)
+			{
+				v2ControlForceDirection.x = 1.0f;
+				fIsInputInactive = 0.0f;
+			}
+		}
+		
+		else
+		{
+			
+			if (m_bCanJump == true)
+			{
+				SetVelocity(cocos2d::Vec2(0, 0));
+			}
 		}
 	}
 
@@ -276,7 +298,9 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	if( bFireWasPressed && m_bCanJump)
 	{
-			GetPhysicsBody()->ApplyForceToCenter(b2Vec2(0, 1000.0f), true);
+			//GetPhysicsBody()->ApplyForceToCenter(b2Vec2(0, 900.0f), true);
+			GetPhysicsBody()->ApplyLinearImpulse(b2Vec2(0, 15.0f),b2Vec2(0,0.0f), true);
+		
 			m_bCanJump = false;
 	}
 }
