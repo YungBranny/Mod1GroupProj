@@ -22,6 +22,7 @@ using namespace cocos2d;
 	:CGCObjSprite(GetGCTypeIDOf(CGCObjTimer))
 	,m_iTotalTimerDuration		 (		100			)   //Max value for the timer
     ,m_iTimerDecreaseValue		 (		 1			)	// The Amount decremented each time
+	,m_iTimerIncreaseValue     (       2          )
     ,m_fMaxTimeBuffer			 (		100.0f		)	// Max value timer resets too
 	,m_fCurrentTimeBuffer        ( m_fMaxTimeBuffer )	// higher the value  slower the timer is
 	,m_fScaleX					 (     2.0f			)

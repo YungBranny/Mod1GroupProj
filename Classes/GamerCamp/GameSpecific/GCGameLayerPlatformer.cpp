@@ -454,6 +454,21 @@ void CGCGameLayerPlatformer::VOnCreate()
 	}
 	);
 
+	GetCollisionManager().AddCollisionHandler
+	(
+		[this]
+	(CGCObjTimePickUp& rcPickUp, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+	{
+		if( m_pcGCTimer->getCurrentTime() >= 0 )
+		{
+			rcPickUp.setJustCollided(true);
+			CGCObjectManager::ObjectKill(&rcPickUp);
+			//m_pcGCTimer->setCurrentTime(m_pcGCTimer->getTimerIncreaseValue());
+			m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
+		}
+		}
+		);
+
 	GetCollisionManager ().AddCollisionHandler
 	(
 		[this]

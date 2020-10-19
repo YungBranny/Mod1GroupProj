@@ -18,6 +18,7 @@ private:
 	int m_iTotalTimerDuration; 
 	int m_iCurrentTime;
 	int m_iTimerDecreaseValue;
+	int m_iTimerIncreaseValue;
 	float m_fCurrentTimeBuffer;
 	float m_fMaxTimeBuffer;
 	float m_fScaleX;
@@ -42,6 +43,9 @@ public:
 
 	int getTimerDecreaseValue() const     { return m_iTimerDecreaseValue;   }
 	void setTimerDercreaseValue(int f)    { m_iTimerDecreaseValue = f;      }
+
+	int getTimerIncreaseValue() const     { return m_iTimerIncreaseValue;   }
+	void setTimerIncreaseValue(int f)     { m_iTimerIncreaseValue = f;      }
 
 	float getMaxTimeBuffer() const		  { return  m_fMaxTimeBuffer;       }
 	void setMaxTimeBuffer(float f)        { m_fMaxTimeBuffer = f;           }

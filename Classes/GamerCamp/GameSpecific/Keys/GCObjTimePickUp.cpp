@@ -15,8 +15,8 @@ using namespace cocos2d;
 CGCObjTimePickUp::CGCObjTimePickUp(void)
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjTimePickUp))
 	, m_timeGravity(0.0f)
-	//, m_bJustCollided(false)
-	//, m_iCollisionBuffer(60)
+	, m_bJustCollided(false)
+	, m_iCollisionBuffer(60)
 {
 	//m_keysGravity = 0.0f;
 
