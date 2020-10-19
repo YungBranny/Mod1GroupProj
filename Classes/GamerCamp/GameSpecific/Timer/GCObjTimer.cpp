@@ -20,12 +20,14 @@ using namespace cocos2d;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
  CGCObjTimer::CGCObjTimer()
 	:CGCObjSprite(GetGCTypeIDOf(CGCObjTimer))
-	,m_iTotalTimerDuration		 ( 100			    )   //Max value for the timer
-    ,m_iTimerDecreaseValue		 (  1				)	// The Amount decremented each time
-    ,m_fMaxTimeBuffer			 ( 100.0f			)	// Max value timer resets too
+	,m_iTotalTimerDuration		 (		100			)   //Max value for the timer
+    ,m_iTimerDecreaseValue		 (		 1			)	// The Amount decremented each time
+    ,m_fMaxTimeBuffer			 (		100.0f		)	// Max value timer resets too
 	,m_fCurrentTimeBuffer        ( m_fMaxTimeBuffer )	// higher the value  slower the timer is
 	,m_fScaleX					 (     2.0f			)
 	,m_fCurrentXScale			 (    m_fScaleX		)
+	,m_fScaleDecreaseX			 (		40.0f		)
+	,m_fScaleDecreaseY			 (		0.1f		)
 	
     
 {
@@ -81,7 +83,7 @@ using namespace cocos2d;
 			setCurrentTime(getCurrentTime() - getTimerDecreaseValue());
 
 			
-			SetScale(getCurrentTime() / 40.0f, 0.1f);
+			SetScale(getCurrentTime() / m_fScaleDecreaseX, m_fScaleDecreaseY);
 
 			getTimerText()->setString("Air "+ std::to_string(getCurrentTime()) + "%" );
 		}

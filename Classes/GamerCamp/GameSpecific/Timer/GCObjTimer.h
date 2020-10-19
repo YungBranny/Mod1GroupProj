@@ -22,6 +22,8 @@ private:
 	float m_fMaxTimeBuffer;
 	float m_fScaleX;
 	float m_fCurrentXScale;
+	float m_fScaleDecreaseX;
+	float m_fScaleDecreaseY;
 
 	cocos2d::Label* m_pTimerText;
 
