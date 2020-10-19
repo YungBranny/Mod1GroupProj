@@ -195,6 +195,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -328,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.h">
       <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

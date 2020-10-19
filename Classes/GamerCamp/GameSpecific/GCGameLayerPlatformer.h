@@ -27,6 +27,7 @@ class CGCMovingEnemies;
 class CGCObjLongPlatformTest;
 class CGCObjShortPlatformTest;
 class CGCObjDoor;
+class CGCObjTimePickUp;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -50,6 +51,8 @@ private:
 	CGCObjKeys*                     m_pcGCOKeys;
 	CGCObjKeys*                     m_pcGCOKeys1;
 	CGCObjKeys*                     m_pcGCOKeys2;
+
+	CGCObjTimePickUp*               m_pcGCOTimePickUp;
 
 	CGCObjDoor*                     m_pcGCODoor;
 

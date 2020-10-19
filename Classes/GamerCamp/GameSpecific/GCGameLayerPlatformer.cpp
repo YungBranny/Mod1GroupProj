@@ -31,6 +31,7 @@
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjShortPlatformTest.h"
 #include "GamerCamp/GameSpecific/Door/GCObjDoor.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
+#include "GamerCamp/GameSpecific/Keys/GCObjTimePickUp.h"
 
 #include "AppDelegate.h"
 
@@ -69,6 +70,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCOKeys                   ( nullptr )
 , m_pcGCOKeys1                  ( nullptr )
 , m_pcGCOKeys2                  ( nullptr )
+, m_pcGCOTimePickUp             ( nullptr )
 , m_pcGCODoor                   ( nullptr )
 , m_pcGCBasicEnemies			( nullptr )
 , m_pcGCBasicEnemies2			( nullptr )
