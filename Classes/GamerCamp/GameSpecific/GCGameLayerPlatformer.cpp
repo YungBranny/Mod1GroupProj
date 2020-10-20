@@ -607,6 +607,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 				//CGCObjectManager::ObjectKill (&rcMEnemies);
 				CCLOG ("Player wacked.");
 				CGCObjectManager::ObjectKill (&rcPlayer);
+
+				m_bPlayerHitHostile = true;
 			}
 		}
 	);
