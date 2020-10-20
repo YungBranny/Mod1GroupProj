@@ -12,22 +12,22 @@ class CGCMainMenu
 {
 private:
 
-	bool m_bResetWasRequested;
+	//bool m_bResetWasRequested;
 
-	void RequestReset ()
-	{
-		m_bResetWasRequested = true;
-	}
+	//void RequestReset ()
+	//{
+	//	m_bResetWasRequested = true;
+	//}
 
-	void ResetRequestWasHandled ()
-	{
-		m_bResetWasRequested = false;
-	}
+	//void ResetRequestWasHandled ()
+	//{
+	//	m_bResetWasRequested = false;
+	//}
 
-	bool ResetWasRequested ()
-	{
-		return m_bResetWasRequested;
-	}
+	//bool ResetWasRequested ()
+	//{
+	//	return m_bResetWasRequested;
+	//}
 
 	CGCObjSprite* m_pcGCSprBackGround;
 
@@ -38,8 +38,11 @@ public:
 
 
 	// 'selector' callbacks for menu buttons
-	void Callback_OnQuitButton (Ref* pSender);
-	void Callback_OnResetButton (Ref* pSender);
+//	void Callback_OnQuitButton (Ref* pSender);
+	//void Callback_OnResetButton (Ref* pSender);
+
+	void QuitGame (Ref* pSender);
+	void LoadLevel (Ref* pSender);
 
 	// called from VOnUpdate
 	//void ManuallyHandleCollisions (void);
@@ -54,7 +57,7 @@ public:
 	// IGCGameLayer interface
 
 	virtual	void VOnCreate (void);
-	virtual void VOnUpdate (f32 fTimeStep);
+//	virtual void VOnUpdate (f32 fTimeStep);
 	virtual	void VOnDestroy (void);
 
 	// IGCGameLayer interface

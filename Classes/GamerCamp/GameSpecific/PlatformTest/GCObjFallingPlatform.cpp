@@ -19,7 +19,6 @@ CGCObjFallingPlatform::CGCObjFallingPlatform ()
 	, m_fDestroyPlatformTick(300.0f)
 {
 	SetResetPosition (GetStartPos ());
-	
 }
 
 
@@ -34,9 +33,6 @@ void CGCObjFallingPlatform::VOnResourceAcquire ()
 	CGCObjSpritePhysics::VOnResourceAcquire ();
 	SetResetPosition (GetStartPos ());
 	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
-	
-
-
 }
 
 
@@ -54,7 +50,6 @@ void CGCObjFallingPlatform::VOnReset ()
 		cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
 		GetPhysicsBody ()->SetTransform (IGCGameLayer::B2dPixelsToWorld (b2Vec2 (v2SpritePos.x, v2SpritePos.y)), 0.0f);
 		GetPhysicsBody ()->SetFixedRotation (true);
-		
 	}
 
 }
@@ -73,16 +68,13 @@ void CGCObjFallingPlatform::MoveDownOnContact ()
 		{
 			SetVelocity (cocos2d::Vec2(10,0));
 		}
-
 	}
 	else
 	{
 		SetVelocity (m_v2DefaultVelocity);
 	}
-
-
-
 }
+
 void CGCObjFallingPlatform::VOnUpdate (f32 fTimestep)
 {
    MoveDownOnContact ();
@@ -91,8 +83,8 @@ void CGCObjFallingPlatform::VOnUpdate (f32 fTimestep)
 void CGCObjFallingPlatform::VOnResourceRelease ()
 {
 	CGCObjSpritePhysics::VOnResourceRelease ();
-
 }
+
 void CGCObjFallingPlatform::VOnResurrected ()
 {
 	CGCObjSpritePhysics::VOnResurrected ();

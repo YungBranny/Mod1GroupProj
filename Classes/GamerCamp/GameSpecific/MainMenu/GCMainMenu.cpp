@@ -7,6 +7,7 @@
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "MenuScene.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
+#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
 #include "AppDelegate.h"
 
@@ -54,48 +55,24 @@ void CGCMainMenu::VOnCreate ()
 
 
 	///////////////////////////////////////////////////////////////////////////
-	// custom object groups
-	//
-	// N.B. Cannot do this in CGCObjectGroup internally on construction, 
-	// because ObjectGroupRegister calls a virtual function 
-	// in the CGCObjectManager interface to check the 
-	// types of objects that the group handles
-	///////////////////////////////////////////////////////////////////////////
-
-	// create and register the object group for the platform objects
-
-
-	// create and register the object group for the item objects
-
-
-	// create and register the object group for the invader objects
-	//m_pcGCGroupInvader = new CGCObjGroupInvader( 64 );
-	//CGCObjectManager::ObjectGroupRegister( m_pcGCGroupInvader );
-
-	// create and register the object group for the player projectile objects
-
-
-
-
-
-
-	///////////////////////////////////////////////////////////////////////////
 	// add menu
 	///////////////////////////////////////////////////////////////////////////
 
 	// add a "close" icon to exit the progress. it's an autorelease object
 	cocos2d::MenuItemImage* pResetItem
-		= cocos2d::MenuItemImage::create ("Loose/CloseNormal.png",
-			"Loose/CloseSelected.png",
-			CC_CALLBACK_1 (CGCMainMenu::Callback_OnResetButton, this));
+		= cocos2d::MenuItemImage::create ("Buttons/PlayButtonUnClicked.png",
+			"Buttons/PlayButtonClicked.png",
+			CC_CALLBACK_1 (CGCMainMenu::LoadLevel, this));
 
 	pResetItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width - ( pResetItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( ( pResetItem->getContentSize ().height * 0.5f ) + origin.y ) )));
 
+
+
 	cocos2d::MenuItemImage* pQuitItem
-		= cocos2d::MenuItemImage::create ("Loose/CloseNormal.png",
-			"Loose/CloseSelected.png",
-		CC_CALLBACK_1 (CGCMainMenu::Callback_OnQuitButton, this));
+		= cocos2d::MenuItemImage::create ("Buttons/QuitButtonUnClicked.png",
+			"Buttons/QuitButtonClicked.png",
+		CC_CALLBACK_1 (CGCMainMenu::QuitGame, this));
 
 	pQuitItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width - ( pQuitItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( visibleSize.height - ( pQuitItem->getContentSize ().height * 0.5f ) ) + origin.y )));
@@ -105,14 +82,10 @@ void CGCMainMenu::VOnCreate ()
 	pMenu->setPosition (cocos2d::Vec2::ZERO);
 	this->addChild (pMenu, 1);
 
-	//////////////////////////////////////////////////////////////////////////////////////////
 
-	///////////////////////////////////////////////////////////////////////////
-	// add label
-	///////////////////////////////////////////////////////////////////////////
 
 	// create and initialize a label
-	cocos2d::Label* pLabel = cocos2d::Label::createWithTTF ("Game - Top button to Quit, bottom button to Reset", "fonts/arial.ttf", 24);
+	cocos2d::Label* pLabel = cocos2d::Label::createWithTTF ("THIS IS JUST A TEST", "fonts/arial.ttf", 24);
 
 	// position the label on the center of the screen
 	pLabel->setPosition (cocos2d::Vec2 (visibleSize.width / 2, visibleSize.height - 50));
@@ -120,21 +93,9 @@ void CGCMainMenu::VOnCreate ()
 	// add the label as a child to this layer
 	this->addChild (pLabel, 1);
 
-	//"TexturePacker/Backgrounds/Placeholder/background.plist"
-	//
-	// add "CGCGameLayerPlatformer" splash screen"
 
-	/*const char* pszPlist_TimerBar = "TexturePacker/Sprites/TimerBar/WhiteSquare.plist";
-	{
-		m_pcGCsprTimerBar = new CGCObjSprite();
 
-		m_pcGCsprTimerBar->CreateSprite(pszPlist_TimerBar);
-		m_pcGCsprTimerBar->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2) );
-		m_pcGCsprTimerBar->SetParent(IGCGameLayer::ActiveInstance());
-		m_pcGCsprTimerBar->SetScale(0.1f, 0.1f);
-	}*/
-
-	const char* pszPlist_background = "TexturePacker/Backgrounds/Placeholder/background.plist";
+	const char* pszPlist_background = "TexturePacker/TestBackground/BackgroundTest.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite ();
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
@@ -184,19 +145,19 @@ void CGCMainMenu::VOnCreate ()
 // on update
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCMainMenu::VOnUpdate (f32 fTimeStep)
-{
-	IGCGameLayer::VOnUpdate (fTimeStep);
-
-	// this shows how to iterate and respond to the box2d collision info
-	
-
-	if (ResetWasRequested ())
-	{
-		VOnReset ();
-		ResetRequestWasHandled ();
-	}
-}
+//void CGCMainMenu::VOnUpdate (f32 fTimeStep)
+//{
+//	IGCGameLayer::VOnUpdate (fTimeStep);
+//
+//	// this shows how to iterate and respond to the box2d collision info
+//	
+//
+//	//if (ResetWasRequested ())
+//	//{
+//	//	VOnReset ();
+//	//	ResetRequestWasHandled ();
+//	//}
+//}
 
 
 void CGCMainMenu::VOnDestroy ()
@@ -211,20 +172,31 @@ void CGCMainMenu::VOnDestroy ()
 ///////////////////////////////////////////////////////////////////////////////
 // on quit button
 ///////////////////////////////////////////////////////////////////////////////
-void CGCMainMenu::Callback_OnQuitButton (Ref* pSender)
+//void CGCMainMenu::Callback_OnQuitButton (Ref* pSender)
+//{
+//	ReplaceScene (TransitionRotoZoom::create (1.0f, CMenuLayer::scene ()));
+//}
+//
+//
+//
+/////////////////////////////////////////////////////////////////////////////////
+//// on reset button
+/////////////////////////////////////////////////////////////////////////////////
+//void CGCMainMenu::Callback_OnResetButton (Ref* pSender)
+//{
+//	RequestReset ();
+//
+//}
+
+void CGCMainMenu::QuitGame (Ref* pSender)
 {
 	ReplaceScene (TransitionRotoZoom::create (1.0f, CMenuLayer::scene ()));
 }
 
-
-
-///////////////////////////////////////////////////////////////////////////////
-// on reset button
-///////////////////////////////////////////////////////////////////////////////
-void CGCMainMenu::Callback_OnResetButton (Ref* pSender)
+void CGCMainMenu::LoadLevel (Ref* pSender)
 {
-	RequestReset ();
-
+	Director::getInstance ()->replaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+	//ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 }
 
 

@@ -8,6 +8,7 @@
 #include "GamerCamp/GCObject/GCObjGroupDefault.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "MenuScene.h"
+#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 
 
 USING_NS_CC;
@@ -127,7 +128,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	//////////////////////////////////////////////////////////////////////////
 
 	// run
-    pDirector->runWithScene( TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene() );
+    pDirector->runWithScene( TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene() );
 
     return true;
 }
