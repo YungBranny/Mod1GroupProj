@@ -100,6 +100,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 }
 
 
+
 //////////////////////////////////////////////////////////////////////////
 // Destructor
 //////////////////////////////////////////////////////////////////////////
@@ -228,15 +229,40 @@ void CGCGameLayerPlatformer::VOnCreate()
     this->addChild( pMenu, 1 );
 
 	//////////////////////////////////////////////////////////////////////////////////////////
-	
+
+	switch(mState)
+	{
+	case ECGameStates::EState_Menu:
+			{
+
+
+			break;
+			}
+	case ECGameStates::EState_Playing:
+			{
+				
+
+			break;
+			}
+	case ECGameStates::EState_GameLost:
+			{
+
+
+			break;
+			}
+	case ECGameStates::EState_GameWon:
+			{
+
+
+			break;
+			}
+	}
 
 	
 
 
-	
+	//////////////////////////////////////////////////////////////////////////////////////////
 	//m_pcGCTimerBar = new CGCObjTimerBar();
-	
-	
 	
 
 	//const char* keysSprite = "TexturePacker/Sprites/Coin/Coin.plist";

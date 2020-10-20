@@ -76,6 +76,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Player\ScreenBounds">
       <UniqueIdentifier>{c0fa1bf2-9733-4542-bc0a-d9c4d43e74b2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\GameStates">
+      <UniqueIdentifier>{a79c280a-d713-4ec0-ab30-02c44c6e57ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -209,6 +212,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameStates\GameStateManager.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -355,6 +361,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.h">
       <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameStates\GameStateManager.h">
+      <Filter>Classes\GamerCamp\GameSpecific\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

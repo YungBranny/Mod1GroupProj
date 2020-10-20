@@ -30,6 +30,18 @@ class CGCObjFallingPlatform;
 class CGCObjDoor;
 class CGCObjTimePickUp;
 
+
+enum class ECGameStates
+{
+	EState_Playing = 0,
+	EState_Menu,
+	EState_GameWon,
+	EState_GameLost,
+	
+};
+
+
+
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer
 //////////////////////////////////////////////////////////////////////////
@@ -90,6 +102,10 @@ private:
 	int m_totalKeys;
 
 public:
+
+	ECGameStates mState;
+
+	
 	CGCGameLayerPlatformer	( void );
 	~CGCGameLayerPlatformer	( void );
 
