@@ -96,6 +96,8 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 	m_totalKeys = 3;
 
 	m_keysCollected = 0;
+
+	m_timerPickedUp = 0;
 	
 }
 
@@ -112,6 +114,12 @@ void CGCGameLayerPlatformer::keyCollected()
 {
 	m_keysCollected++;
 	CCLOG("Key Collected");
+}
+
+void CGCGameLayerPlatformer::addOnTime()
+{
+	m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
+	CCLOG("Time PickUp Collected");
 }
 
 
@@ -516,14 +524,17 @@ void CGCGameLayerPlatformer::VOnCreate()
 		[this]
 	(CGCObjTimePickUp& rcPickUp, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 	{
-		if( m_pcGCTimer->getCurrentTime() >= 0 )
+		if( rcPickUp.getJustCollided() == false )
 		{
-			rcPickUp.setJustCollided(true);
-			CGCObjectManager::ObjectKill(&rcPickUp);
-			//m_pcGCTimer->setCurrentTime(m_pcGCTimer->getTimerIncreaseValue());
-			m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
+			if( m_pcGCTimer->getCurrentTime() >= 0 )
+			{
+				rcPickUp.setJustCollided(true);
+				CGCObjectManager::ObjectKill(&rcPickUp);
+				//m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
+				addOnTime();
+			}
 		}
-		}
+	}
 		);
 
 	GetCollisionManager ().AddCollisionHandler
@@ -650,6 +661,9 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	
 	delete m_pcGCODoor;
 	m_pcGCODoor = nullptr;
+
+	delete m_pcGCOTimePickUp;
+	m_pcGCOTimePickUp = nullptr;
 
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. because object groups must register manually, 

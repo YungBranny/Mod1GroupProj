@@ -101,6 +101,8 @@ private:
 
 	int m_totalKeys;
 
+	int m_timerPickedUp;
+
 public:
 
 	ECGameStates mState;
@@ -110,6 +112,8 @@ public:
 	~CGCGameLayerPlatformer	( void );
 
 	void keyCollected();
+
+	void addOnTime();
 
 
 	//////////////////////////////////////////////////////////////////////////
