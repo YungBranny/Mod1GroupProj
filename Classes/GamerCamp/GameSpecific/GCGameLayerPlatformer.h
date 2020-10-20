@@ -103,6 +103,10 @@ private:
 
 	int m_timerPickedUp;
 
+	bool m_bPlayerHitHostile;
+
+	bool m_bPlayerKeysGathered;
+
 public:
 
 	ECGameStates mState;
@@ -115,7 +119,13 @@ public:
 
 	void addOnTime();
 
+	void replaceSceneWin();
 
+	void replaceSceneLose();
+
+	void replaceSceneMenu();
+
+	//
 	//////////////////////////////////////////////////////////////////////////
 	// player actions 
 	enum EPlayerActions

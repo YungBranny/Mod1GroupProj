@@ -98,6 +98,10 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 	m_keysCollected = 0;
 
 	m_timerPickedUp = 0;
+
+	m_bPlayerHitHostile = false;
+
+	m_bPlayerKeysGathered = false;
 	
 }
 
@@ -120,6 +124,34 @@ void CGCGameLayerPlatformer::addOnTime()
 {
 	m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
 	CCLOG("Time PickUp Collected");
+}
+
+void CGCGameLayerPlatformer::replaceSceneWin()
+{
+
+	//needs a bool
+	if(m_bPlayerKeysGathered == true)
+	{
+		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCWinScene >::CreateScene()));
+	}
+	
+	
+}
+
+void CGCGameLayerPlatformer::replaceSceneLose()
+{
+	if (m_bPlayerHitHostile == true)
+	{
+		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
+	}
+	
+}
+
+void CGCGameLayerPlatformer::replaceSceneMenu()
+{
+	
+	//ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
+	
 }
 
 
@@ -500,9 +532,13 @@ void CGCGameLayerPlatformer::VOnCreate()
 		if( m_keysCollected >= m_totalKeys )
 		{
 			//ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCWinScene >::CreateScene ()));
-			ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
+
+			m_bPlayerKeysGathered = true;
+			
+			//ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
 		}
 	}
+
 	);
 
 	GetCollisionManager().AddCollisionHandler
@@ -543,13 +579,16 @@ void CGCGameLayerPlatformer::VOnCreate()
 	(CGCBasicEnemies& rcEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
 
-			RequestReset ();
-			m_pcGCTimer->ResetTimer ();
-			CGCObjectManager::ObjectKill (&rcEnemies);
-			CCLOG ("Player Died.");
-			//CGCObjectManager::ObjectKill (&rcInvader);
+			//RequestReset ();
 			
-			//ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
+			m_pcGCTimer->ResetTimer ();
+			
+			CGCObjectManager::ObjectKill (&rcEnemies);
+			
+			CCLOG ("Player Died.");
+
+			m_bPlayerHitHostile = true;
+
 		}
 	);
 
@@ -629,6 +668,15 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		
 		RequestReset();
 	}
+
+	//Move to Lives function when made 
+	replaceSceneWin();
+
+	replaceSceneLose();
+
+	replaceSceneMenu();
+
+	////////////////////////////////
 }
 
 
