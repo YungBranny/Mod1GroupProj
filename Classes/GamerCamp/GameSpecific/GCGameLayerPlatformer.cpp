@@ -154,7 +154,14 @@ void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const 
 //////////////////////////////////////////////////////////////////////////
 //virtual
 void CGCGameLayerPlatformer::VOnCreate()
-{ 
+{
+
+	/*static_cast<GLViewImpl*>(cocos2d::Director::getInstance()->getOpenGLView())->setFullscreen();
+
+	Director::getInstance()->getOpenGLView()->setFrameSize(1920, 1080);
+
+	Director::getInstance()->getOpenGLView()->setDesignResolutionSize(1920, 1080, ResolutionPolicy::EXACT_FIT);*/
+	
 	///////////////////////////////////////////////////////////////////////////
 	// cache some useful values 
 	///////////////////////////////////////////////////////////////////////////
@@ -573,8 +580,6 @@ void CGCGameLayerPlatformer::VOnCreate()
 				rcFallingPlatforms.SetContactWithPlayer (false);
 			}
 		}
-
-
 	);
 
 
