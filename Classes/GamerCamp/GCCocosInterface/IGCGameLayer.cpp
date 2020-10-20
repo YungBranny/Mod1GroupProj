@@ -307,7 +307,7 @@ void IGCGameLayer::VOnUpdate( f32 fTimeStep )
 void IGCGameLayer::VOnResourceRelease( void)
 {
 	CGCObjectManager::OnResourceRelease();
-	GB2ShapeCache::sharedGB2ShapeCache()->reset();
+	//GB2ShapeCache::sharedGB2ShapeCache()->reset();
 }
 
 
