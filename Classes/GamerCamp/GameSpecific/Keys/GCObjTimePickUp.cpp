@@ -21,11 +21,11 @@ CGCObjTimePickUp::CGCObjTimePickUp(void)
 	//m_keysGravity = 0.0f;
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	const char* timeSprite = "TexturePacker/Sprites/Coin/Coin.plist";
+	const char* timeSprite = "TexturePacker/Sprites/TimerPickUp/TimerPickUp.plist";
 	{
 		CreateSprite(timeSprite);
-		SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-		SetResetPosition(cocos2d::Vec2(70, 130));
+		//SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		SetResetPosition(cocos2d::Vec2(100, 130));
 		SetParent(IGCGameLayer::ActiveInstance());
 		//GetPhysicsBody()->SetGravityScale(0.0f);
 	}
@@ -37,7 +37,7 @@ CGCObjTimePickUp::~CGCObjTimePickUp()
 
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE(CGCObjTimePickUp, "TexturePacker/Sprites/Coin/Coin.plist", "coin", b2_staticBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE(CGCObjTimePickUp, "TexturePacker/Sprites/TimerPickUp/TimerPickUp.plist", "TimerPickUp", b2_staticBody, true);
 //virtual 
 void CGCObjTimePickUp::VOnResourceAcquire(void)
 {
