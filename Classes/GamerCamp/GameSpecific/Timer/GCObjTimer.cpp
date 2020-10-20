@@ -97,6 +97,14 @@ using namespace cocos2d;
 	}
  }
 
+void CGCObjTimer::ClampTimer()
+{
+	if(getCurrentTime()> getMaxTimeBuffer())
+	{
+		setCurrentTime(getMaxTimeBuffer());
+	}
+}
+
 //void CGCObjTimer::VOnResourceAcquire(void)
 //{
 // 	CGCObjSprite::VOnResourceAcquire();
@@ -114,7 +122,7 @@ void CGCObjTimer::ResetTimer()
 {
 	 DecreaseTimer();
  	
-	
+	 ClampTimer();
 
 }
 
