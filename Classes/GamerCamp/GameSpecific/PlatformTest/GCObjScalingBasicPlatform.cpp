@@ -16,7 +16,7 @@ CGCObjScalingBasicPlatform::CGCObjScalingBasicPlatform ()
 {
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingBasicPlatform, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_staticBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingBasicPlatform, "TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist", "BasicScalingPlatform", b2_staticBody, true);
 
 void CGCObjScalingBasicPlatform::VOnResourceAcquire ()
 {

@@ -38,6 +38,8 @@
 #include "GamerCamp/GameSpecific/Keys/GCObjTimePickUp.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingBasicPlatformManager.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingBasicPlatform.h"
+#include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingFallingPlatformManager.h"
+#include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingFallingPlatform.h"
 
 #include "AppDelegate.h"
 
@@ -93,7 +95,8 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCShortPlatformTest5		( nullptr )
 , m_pcGCTravelatorPlatform1		( nullptr )
 , m_pcGCFallingPlatform1		( nullptr )
-, m_pcGCSCalingBasicPlatformManager ( nullptr )
+, m_pcGCScalingBasicPlatformManager ( nullptr )
+, m_pcGCScalingFallingPlatformManager (nullptr)
 , m_bResetWasRequested			( false )
 
 {
@@ -250,8 +253,11 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCGroupProjectilePlayer = new CGCObjGroupProjectilePlayer();
 	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupProjectilePlayer );
 
-	m_pcGCSCalingBasicPlatformManager = new CGCObjScalingBasicPlatformManager ();
-	CGCObjectManager::ObjectGroupRegister (m_pcGCSCalingBasicPlatformManager);
+	//m_pcGCScalingBasicPlatformManager = new CGCObjScalingBasicPlatformManager ();
+	//CGCObjectManager::ObjectGroupRegister (m_pcGCScalingBasicPlatformManager);
+
+	m_pcGCScalingFallingPlatformManager = new CGCObjScalingFallingPlatformManager ();
+	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingFallingPlatformManager);
 
 	
 
@@ -413,7 +419,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	// create player object
 	m_pcGCOPlayer = new CGCObjPlayer();
-	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(500, 510) );
+	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(200, 600) );
 
 
 
@@ -668,6 +674,41 @@ void CGCGameLayerPlatformer::VOnCreate()
 			}
 
 			if (rcFallingPlatforms.GetCanDelete() == true)
+			{
+				CGCObjectManager::ObjectKill (&rcFallingPlatforms);
+			}
+
+			if (rcContact.IsTouching ())
+			{
+				rcPlayer.SetCanJump (true);
+			}
+			else if (rcContact.IsTouching () == false)
+			{
+				rcPlayer.SetCanJump (false);
+			}
+		}
+	);
+
+	GetCollisionManager ().AddCollisionHandler
+	(
+		[this]
+	(CGCObjScalingFallingPlatform& rcFallingPlatforms, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+
+		{
+			if (rcContact.IsTouching ())
+			{
+				if (rcFallingPlatforms.GetContactWithPlayer () == false)
+				{
+					rcFallingPlatforms.SetContactWithPlayer (true);
+				}
+			}
+
+			else if (rcContact.IsTouching () == false)
+			{
+				rcFallingPlatforms.SetContactWithPlayer (false);
+			}
+
+			if (rcFallingPlatforms.GetCanDelete () == true)
 			{
 				CGCObjectManager::ObjectKill (&rcFallingPlatforms);
 			}

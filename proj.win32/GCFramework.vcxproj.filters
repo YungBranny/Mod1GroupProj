@@ -225,6 +225,12 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingBasicPlatformManager.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingFallingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingFallingPlatformManager.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -381,6 +387,12 @@
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingBasicPlatformManager.h">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingFallingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingFallingPlatformManager.h">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClInclude>
   </ItemGroup>

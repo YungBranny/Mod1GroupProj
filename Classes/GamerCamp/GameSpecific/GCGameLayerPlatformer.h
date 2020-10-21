@@ -31,6 +31,7 @@ class CGCObjFallingPlatform;
 class CGCObjDoor;
 class CGCObjTimePickUp;
 class CGCObjScalingBasicPlatformManager;
+class CGCObjScalingFallingPlatformManager;
 
 
 enum class ECGameStates
@@ -91,7 +92,8 @@ private:
 
 	CGCObjTravelatorPlatform*		m_pcGCTravelatorPlatform1;
 
-	CGCObjScalingBasicPlatformManager* m_pcGCSCalingBasicPlatformManager;
+	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManager;
+	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager;
 
 	
 	// backgrounds
