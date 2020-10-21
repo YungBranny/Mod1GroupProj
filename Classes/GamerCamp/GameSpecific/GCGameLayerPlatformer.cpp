@@ -30,6 +30,7 @@
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjLongPlatformTest.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjShortPlatformTest.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjFallingPlatform.h"
+#include "GamerCamp/GameSpecific/PlatformTest/GCObjTravelatorPlatform.h"
 #include "GamerCamp/GameSpecific/Door/GCObjDoor.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
@@ -66,7 +67,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGroupInvader			( nullptr )
 , m_pcGCGroupProjectilePlayer	( nullptr )
 , m_pcGCSprBackGround			( nullptr )
-//, m_pcGCsprTimerBar				( nullptr )
+//, m_pcGCsprTimerBar			( nullptr )
 , m_pcGCOPlayer					( nullptr )
 , m_pcGCTimer					( nullptr )
 //, m_pcGCTimerBar				( nullptr )
@@ -88,6 +89,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCShortPlatformTest4		( nullptr )
 , m_pcGCLongPlatformTest5		( nullptr )
 , m_pcGCShortPlatformTest5		( nullptr )
+, m_pcGCTravelatorPlatform1		( nullptr )
 , m_pcGCFallingPlatform1		( nullptr )
 , m_bResetWasRequested			( false )
 
@@ -445,6 +447,9 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	m_pcGCFallingPlatform1 = new CGCObjFallingPlatform ();
 	m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
+
+	m_pcGCTravelatorPlatform1 = new CGCObjTravelatorPlatform();
+	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(500, 500));
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
 	
 	//enemy

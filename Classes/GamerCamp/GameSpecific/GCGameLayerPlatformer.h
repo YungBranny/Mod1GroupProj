@@ -26,6 +26,7 @@ class CGCBasicEnemies;
 class CGCMovingEnemies;
 class CGCObjLongPlatformTest;
 class CGCObjShortPlatformTest;
+class CGCObjTravelatorPlatform;
 class CGCObjFallingPlatform;
 class CGCObjDoor;
 class CGCObjTimePickUp;
@@ -86,6 +87,8 @@ private:
 	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest5;
 
 	CGCObjFallingPlatform*			m_pcGCFallingPlatform1;
+
+	CGCObjTravelatorPlatform*		m_pcGCTravelatorPlatform1;
 
 	
 	// backgrounds
