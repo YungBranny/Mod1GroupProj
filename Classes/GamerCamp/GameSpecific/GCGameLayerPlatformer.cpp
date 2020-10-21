@@ -448,6 +448,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(860, 220));
 
 	m_pcGCOTimePickUp - new CGCObjTimePickUp();
+	m_pcGCOTimePickUp->SetResetPosition (cocos2d::Vec2 (200, 200));
 
 	m_pcGCODoor = new CGCObjDoor();
 	m_pcGCODoor->SetResetPosition (cocos2d::Vec2(950, 120));
