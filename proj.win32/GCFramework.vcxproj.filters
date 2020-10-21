@@ -219,6 +219,12 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjTravelatorPlatform.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingBasicPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingBasicPlatformManager.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -369,6 +375,12 @@
       <Filter>Classes\GamerCamp\GameSpecific\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjTravelatorPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingBasicPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingBasicPlatformManager.h">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClInclude>
   </ItemGroup>

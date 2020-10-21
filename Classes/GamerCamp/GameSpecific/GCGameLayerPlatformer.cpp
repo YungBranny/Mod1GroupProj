@@ -36,6 +36,8 @@
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
 #include "GamerCamp/GameSpecific/Keys/GCObjTimePickUp.h"
+#include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingBasicPlatformManager.h"
+#include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingBasicPlatform.h"
 
 #include "AppDelegate.h"
 
@@ -91,6 +93,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCShortPlatformTest5		( nullptr )
 , m_pcGCTravelatorPlatform1		( nullptr )
 , m_pcGCFallingPlatform1		( nullptr )
+, m_pcGCSCalingBasicPlatformManager ( nullptr )
 , m_bResetWasRequested			( false )
 
 {
@@ -247,6 +250,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCGroupProjectilePlayer = new CGCObjGroupProjectilePlayer();
 	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupProjectilePlayer );
 
+	m_pcGCSCalingBasicPlatformManager = new CGCObjScalingBasicPlatformManager ();
+	CGCObjectManager::ObjectGroupRegister (m_pcGCSCalingBasicPlatformManager);
 
 	
 
@@ -409,6 +414,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	// create player object
 	m_pcGCOPlayer = new CGCObjPlayer();
 	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(500, 510) );
+
+
 
 	m_pcGCOKeys = new CGCObjKeys();
 	m_pcGCOKeys1 = new CGCObjKeys();
