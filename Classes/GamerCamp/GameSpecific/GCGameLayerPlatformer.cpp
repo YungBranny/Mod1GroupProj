@@ -253,10 +253,12 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCGroupProjectilePlayer = new CGCObjGroupProjectilePlayer();
 	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupProjectilePlayer );
 
-	//m_pcGCScalingBasicPlatformManager = new CGCObjScalingBasicPlatformManager ();
-	//CGCObjectManager::ObjectGroupRegister (m_pcGCScalingBasicPlatformManager);
+	m_pcGCScalingBasicPlatformManager = new CGCObjScalingBasicPlatformManager ();
+	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingBasicPlatformManager);
 
 	m_pcGCScalingFallingPlatformManager = new CGCObjScalingFallingPlatformManager ();
+	m_pcGCScalingFallingPlatformManager->SetMaxPlatforms (10);
+	m_pcGCScalingFallingPlatformManager->SetStartY (100);
 	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingFallingPlatformManager);
 
 	

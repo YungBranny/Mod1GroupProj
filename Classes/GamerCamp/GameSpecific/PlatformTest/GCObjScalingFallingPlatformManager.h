@@ -51,6 +51,26 @@ public:
 
 	void SetFormationOrigin (cocos2d::Vec2 m_v2FormationOrigin);
 
+
+	int 	GetMaxPlatforms () { return m_iMaxPlatforms; };
+
+	void SetMaxPlatforms (int i) { m_iMaxPlatforms = i; }
+
+	float 	GetStartX () { return m_fStartX; };
+	float 	GetStartY () { return m_fStartY; };
+	float 	GetSpacingX () { return m_fSpacingX; };
+
+	void SetStartX (float i) {m_fStartX = i; }
+	void SetStartY (float i) {m_fStartY = i; }
+	void SetSpacingX (float i) { m_fSpacingX = i; }
+
+	cocos2d::Vec2 GetPlatformStartPos () const { return m_v2PlatformStartPos; }
+	void SetPlatformStartPos (cocos2d::Vec2 i) { m_v2PlatformStartPos = i; }
+
+
+
+
+
 	void SetColumns (int iNumColumns, f32 fPixelSpacingRow, f32 fPixelSpacingColumn);
 
 	//////////////////////////////////////////////////////////////////////////

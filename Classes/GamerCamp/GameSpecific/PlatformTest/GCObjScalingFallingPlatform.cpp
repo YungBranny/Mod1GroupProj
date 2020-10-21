@@ -21,7 +21,7 @@ CGCObjScalingFallingPlatform::CGCObjScalingFallingPlatform ()
 {
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingFallingPlatform, "TexturePacker/Sprites/FallingScalingPlatform/FallingScalingPlatform.plist", "FallingScalingPlatform", b2_dynamicBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingFallingPlatform, "TexturePacker/Sprites/FallingScalingPlatform/FallingScalingPlatform.plist", "FallingScalingPlatform", b2_kinematicBody, true);
 
 void CGCObjScalingFallingPlatform::VOnResourceAcquire ()
 {
@@ -29,6 +29,7 @@ void CGCObjScalingFallingPlatform::VOnResourceAcquire ()
 	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjScalingFallingPlatform);
 
 	CGCObjSpritePhysics::VOnResourceAcquire ();
+
 }
 
 
@@ -54,6 +55,12 @@ void CGCObjScalingFallingPlatform::MoveDownOnContact ()
 	}
 }
 
+
+//void CGCObjScalingFallingPlatform::VOnResurrected ()
+//{
+//	CGCObjSpritePhysics::VOnResurrected ();
+//	GetPhysicsBody ()->SetGravityScale (0.0f);
+//}
 
 void CGCObjScalingFallingPlatform::VOnUpdate (f32 fTimestep)
 {

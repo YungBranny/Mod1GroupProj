@@ -37,6 +37,7 @@ public:
 
 
 	virtual void VOnResourceAcquire (void);
+	//virtual void VOnResurrected (void);
 
 	void MoveDownOnContact ();
 	virtual void VOnUpdate (f32 fTimestep);
