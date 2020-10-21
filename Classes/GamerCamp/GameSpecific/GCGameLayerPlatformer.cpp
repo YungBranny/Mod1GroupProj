@@ -408,7 +408,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	// create player object
 	m_pcGCOPlayer = new CGCObjPlayer();
-	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(800, 150) );
+	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(500, 510) );
 
 	m_pcGCOKeys = new CGCObjKeys();
 	m_pcGCOKeys1 = new CGCObjKeys();
@@ -504,6 +504,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 			{
 				rcPlayer.SetCanJump(true);
 			}
+			
 			else if (rcContact.IsTouching() == false)
 			{
 				rcPlayer.SetCanJump(false);
@@ -512,6 +513,28 @@ void CGCGameLayerPlatformer::VOnCreate()
 		}
 	);
 
+	GetCollisionManager().AddCollisionHandler
+	(
+		[]
+		(CGCObjPlayer& rcPlayer, CGCObjTravelatorPlatform& rcTravelatorPlatform, const b2Contact& rcContact) -> void
+		{
+			if (rcContact.IsTouching())
+			{
+				rcPlayer.m_bOnTravelator = true;
+
+				rcPlayer.SetCanJump(true);
+				
+				rcPlayer.SetVelocity(rcTravelatorPlatform.getVelocity());
+			}
+			else if(rcContact.IsTouching() == false )
+			{
+				rcPlayer.m_bOnTravelator = false;
+
+				rcPlayer.SetCanJump(false);
+			}
+		}
+	);
+	
 	GetCollisionManager().AddCollisionHandler
 	(
 		[]

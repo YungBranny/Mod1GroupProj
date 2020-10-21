@@ -11,7 +11,8 @@
 
 CGCObjTravelatorPlatform::CGCObjTravelatorPlatform()
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjTravelatorPlatform))
-	, m_v2StartPos(600, 600)
+	, m_v2StartPos	(600, 600)
+	, m_v2Velocity	(-10.0f, 0.0f )
 {
 	SetResetPosition(GetStartPos());
 }
