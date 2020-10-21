@@ -46,8 +46,11 @@ private:
 	f32		m_fDragCoefficient_Square;
 	f32		m_fNoInput_ExtraDrag_Square;
 	f32		m_fNoInput_VelocityThreshold;
+	int		m_iNumberOfLives;
 
 	bool	m_bCanJump;
+
+	cocos2d::Label* m_pLivesText;
 
 	// action map for controllers
 	//test comment
@@ -94,5 +97,17 @@ public:
 	bool GetCanJump() { return m_bCanJump; }
 
 	void SetCanJump(bool i) { m_bCanJump = i; }
+
+	int GetNumberOfLives() { return m_iNumberOfLives; }
+
+	void DecrementLives();
+
+	void ResetLives();
+
+	void UpdateLives();
+
+	cocos2d::Label* getLivesText() const { return m_pLivesText; }
+
+	void setLivesText(cocos2d::Label* t) { m_pLivesText = t; }
 };
 #endif // #ifndef _GCOBJPLAYER_H_
