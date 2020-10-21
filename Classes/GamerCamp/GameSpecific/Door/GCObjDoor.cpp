@@ -20,7 +20,7 @@ CGCObjDoor::CGCObjDoor ()
 	//SetResetPosition (GetStartPos ());
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	const char* doorSprite = "TexturePacker/Sprites/Coin/Coin.plist";
+	const char* doorSprite = "TexturePacker/Sprites/Door/Door.plist";
 	{
 		//m_pcGCOKeys = new CGCObjItem();
 		//if( nullptr != m_pcGCOKeys )
@@ -43,7 +43,7 @@ CGCObjDoor::CGCObjDoor ()
 
 
 
-IN_CPP_CREATION_PARAMS_DECLARE (CGCObjDoor, "TexturePacker/Sprites/Coin/Coin.plist", "coin", b2_staticBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE (CGCObjDoor, "TexturePacker/Sprites/Door/Door.plist", "Door", b2_staticBody, true);
 void CGCObjDoor::VOnResourceAcquire ()
 {
 
