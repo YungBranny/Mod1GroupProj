@@ -16,7 +16,8 @@ CGCObjFallingPlatform::CGCObjFallingPlatform ()
 	, m_v2DefaultVelocity (0.0f, 0.0f)
 	, m_bContactWithPlayer (false)
 	, m_v2EndPos (m_v2StartPos.x, m_v2StartPos.y - (- 1.0f))
-	, m_fDestroyPlatformTick(300.0f)
+	, m_fDestroyPlatformTick(120.0f)
+	, m_bCanDelete (false)
 {
 	SetResetPosition (GetStartPos ());
 }
@@ -66,7 +67,7 @@ void CGCObjFallingPlatform::MoveDownOnContact ()
 
 		if (m_fDestroyPlatformTick <= 0)
 		{
-			SetVelocity (cocos2d::Vec2(10,0));
+			m_bCanDelete = true;
 		}
 	}
 	else

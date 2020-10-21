@@ -17,6 +17,7 @@ private:
 	cocos2d::Vec2 m_v2DefaultVelocity;
 
 	bool m_bContactWithPlayer;
+	bool m_bCanDelete;
 
 	float m_fDestroyPlatformTick;
 
@@ -39,6 +40,9 @@ public:
 
 	bool GetContactWithPlayer () const { return m_bContactWithPlayer; }
 	void SetContactWithPlayer (bool i) { m_bContactWithPlayer = i; }
+
+	bool GetCanDelete () const { return m_bCanDelete; }
+	void SetCanDelete (bool i) { m_bCanDelete = i; }
 
 
 	virtual void VOnResourceAcquire (void);

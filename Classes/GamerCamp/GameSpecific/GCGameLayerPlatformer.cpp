@@ -408,7 +408,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	// create player object
 	m_pcGCOPlayer = new CGCObjPlayer();
-	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(50,130) );
+	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(800, 150) );
 
 	m_pcGCOKeys = new CGCObjKeys();
 	m_pcGCOKeys1 = new CGCObjKeys();
@@ -635,6 +635,20 @@ void CGCGameLayerPlatformer::VOnCreate()
 			else if (rcContact.IsTouching () == false)
 			{
 				rcFallingPlatforms.SetContactWithPlayer (false);
+			}
+
+			if (rcFallingPlatforms.GetCanDelete() == true)
+			{
+				CGCObjectManager::ObjectKill (&rcFallingPlatforms);
+			}
+
+			if (rcContact.IsTouching ())
+			{
+				rcPlayer.SetCanJump (true);
+			}
+			else if (rcContact.IsTouching () == false)
+			{
+				rcPlayer.SetCanJump (false);
 			}
 		}
 	);
