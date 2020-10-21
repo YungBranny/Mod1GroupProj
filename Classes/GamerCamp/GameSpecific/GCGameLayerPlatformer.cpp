@@ -97,6 +97,10 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCFallingPlatform1		( nullptr )
 , m_pcGCScalingBasicPlatformManager ( nullptr )
 , m_pcGCScalingFallingPlatformManager (nullptr)
+, m_pcGCScalingBasicPlatformManager1 (nullptr)
+, m_pcGCScalingFallingPlatformManager1 (nullptr)
+, m_pcGCScalingBasicPlatformManager2 (nullptr)
+, m_pcGCScalingFallingPlatformManager2 (nullptr)
 , m_bResetWasRequested			( false )
 
 {
@@ -254,11 +258,22 @@ void CGCGameLayerPlatformer::VOnCreate()
 	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupProjectilePlayer );
 
 	m_pcGCScalingBasicPlatformManager = new CGCObjScalingBasicPlatformManager ();
+	m_pcGCScalingBasicPlatformManager->SetMaxPlatforms (18);
+	m_pcGCScalingBasicPlatformManager->SetStartX (0);
+	m_pcGCScalingBasicPlatformManager->SetStartY (60);
 	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingBasicPlatformManager);
 
+	m_pcGCScalingBasicPlatformManager1 = new CGCObjScalingBasicPlatformManager ();
+	m_pcGCScalingBasicPlatformManager1->SetMaxPlatforms (2);
+	m_pcGCScalingBasicPlatformManager1->SetSpacingX (240);
+	m_pcGCScalingBasicPlatformManager1->SetStartX (240);
+	m_pcGCScalingBasicPlatformManager1->SetStartY (120);
+	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingBasicPlatformManager1);
+
 	m_pcGCScalingFallingPlatformManager = new CGCObjScalingFallingPlatformManager ();
-	m_pcGCScalingFallingPlatformManager->SetMaxPlatforms (10);
-	m_pcGCScalingFallingPlatformManager->SetStartY (100);
+	m_pcGCScalingFallingPlatformManager->SetMaxPlatforms (3);
+	m_pcGCScalingFallingPlatformManager->SetStartY (160);
+	m_pcGCScalingFallingPlatformManager->SetStartX (540);
 	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingFallingPlatformManager);
 
 	
@@ -421,54 +436,56 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	// create player object
 	m_pcGCOPlayer = new CGCObjPlayer();
-	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(200, 600) );
+	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(150, 100) );
 
 
 
 	m_pcGCOKeys = new CGCObjKeys();
+	m_pcGCOKeys->SetResetPosition (cocos2d::Vec2 (450, 200));
 	m_pcGCOKeys1 = new CGCObjKeys();
-	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(570, 300));
+	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(630, 200));
 	m_pcGCOKeys2 = new CGCObjKeys();
-	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(750, 220));
+	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(860, 220));
 
 	m_pcGCOTimePickUp - new CGCObjTimePickUp();
 
 	m_pcGCODoor = new CGCObjDoor();
+	m_pcGCODoor->SetResetPosition (cocos2d::Vec2(950, 120));
 
 	///////// Platforms
 
-	m_pcGCLongPlatformTest1		=	new CGCObjLongPlatformTest	();
-	m_pcGCLongPlatformTest1->SetStartPos (cocos2d::Vec2 (0, 100));
-	m_pcGCLongPlatformTest2		=	new CGCObjLongPlatformTest	();
-	m_pcGCLongPlatformTest2->SetStartPos (cocos2d::Vec2 (130, 100));
-	m_pcGCLongPlatformTest3		=	new CGCObjLongPlatformTest	();
-	m_pcGCLongPlatformTest3->SetStartPos (cocos2d::Vec2 (260, 100));
-	m_pcGCLongPlatformTest4		=	new CGCObjLongPlatformTest	();
-	m_pcGCLongPlatformTest4->SetStartPos (cocos2d::Vec2 (390, 100));
-	m_pcGCLongPlatformTest5		=	new CGCObjLongPlatformTest	();
-	m_pcGCLongPlatformTest5->SetStartPos (cocos2d::Vec2 (520, 100));
+	//m_pcGCLongPlatformTest1		=	new CGCObjLongPlatformTest	();
+	//m_pcGCLongPlatformTest1->SetStartPos (cocos2d::Vec2 (0, 100));
+	//m_pcGCLongPlatformTest2		=	new CGCObjLongPlatformTest	();
+	//m_pcGCLongPlatformTest2->SetStartPos (cocos2d::Vec2 (130, 100));
+	//m_pcGCLongPlatformTest3		=	new CGCObjLongPlatformTest	();
+	//m_pcGCLongPlatformTest3->SetStartPos (cocos2d::Vec2 (260, 100));
+	//m_pcGCLongPlatformTest4		=	new CGCObjLongPlatformTest	();
+	//m_pcGCLongPlatformTest4->SetStartPos (cocos2d::Vec2 (390, 100));
+	//m_pcGCLongPlatformTest5		=	new CGCObjLongPlatformTest	();
+	//m_pcGCLongPlatformTest5->SetStartPos (cocos2d::Vec2 (520, 100));
 
-	m_pcGCShortPlatformTest1	=	new CGCObjShortPlatformTest ();
-	m_pcGCShortPlatformTest1->SetStartPos (cocos2d::Vec2 (650, 150));
-	m_pcGCShortPlatformTest2	=	new CGCObjShortPlatformTest ();
-	m_pcGCShortPlatformTest2->SetStartPos (cocos2d::Vec2 (750, 200));
-	m_pcGCShortPlatformTest3	=	new CGCObjShortPlatformTest ();
-	m_pcGCShortPlatformTest3->SetStartPos (cocos2d::Vec2 (830, 250));
-	m_pcGCShortPlatformTest4	=	new CGCObjShortPlatformTest ();
-	m_pcGCShortPlatformTest4->SetStartPos (cocos2d::Vec2 (700, 300));
-	m_pcGCShortPlatformTest5	=	new CGCObjShortPlatformTest	();
-	m_pcGCShortPlatformTest5->SetStartPos (cocos2d::Vec2 (570, 250));
+	//m_pcGCShortPlatformTest1	=	new CGCObjShortPlatformTest ();
+	//m_pcGCShortPlatformTest1->SetStartPos (cocos2d::Vec2 (650, 150));
+	//m_pcGCShortPlatformTest2	=	new CGCObjShortPlatformTest ();
+	//m_pcGCShortPlatformTest2->SetStartPos (cocos2d::Vec2 (750, 200));
+	//m_pcGCShortPlatformTest3	=	new CGCObjShortPlatformTest ();
+	//m_pcGCShortPlatformTest3->SetStartPos (cocos2d::Vec2 (830, 250));
+	//m_pcGCShortPlatformTest4	=	new CGCObjShortPlatformTest ();
+	//m_pcGCShortPlatformTest4->SetStartPos (cocos2d::Vec2 (700, 300));
+	//m_pcGCShortPlatformTest5	=	new CGCObjShortPlatformTest	();
+	//m_pcGCShortPlatformTest5->SetStartPos (cocos2d::Vec2 (570, 250));
 
 
-	m_pcGCFallingPlatform1 = new CGCObjFallingPlatform ();
-	m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
+	//m_pcGCFallingPlatform1 = new CGCObjFallingPlatform ();
+	//m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
 
 	m_pcGCTravelatorPlatform1 = new CGCObjTravelatorPlatform();
-	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(500, 500));
+	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(840, 170));
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
 	
 	//enemy
-	Vec2 v2Enemy1StartPos = ( cocos2d::Vec2(570,120) );
+	Vec2 v2Enemy1StartPos = ( cocos2d::Vec2(720,100) );
 	m_pcGCBasicEnemies = new CGCBasicEnemies ();
 	m_pcGCBasicEnemies->SetResetPosition (v2Enemy1StartPos);
 	m_pcGCBasicEnemies->setGravity(1.0);
@@ -478,7 +495,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCBasicEnemies2->setGravity (0.0f);
 
 	m_pcGCMovingEnemies = new CGCMovingEnemies ();
-	m_pcGCMovingEnemies->SetResetPosition (cocos2d::Vec2(250,130));
+	m_pcGCMovingEnemies->SetResetPosition (cocos2d::Vec2(400,130));
 	m_pcGCMovingEnemies->setGravity (10.0f);
 	
 	
@@ -528,6 +545,25 @@ void CGCGameLayerPlatformer::VOnCreate()
 		}
 	);
 
+
+	GetCollisionManager ().AddCollisionHandler
+	(
+		[]
+	(CGCObjPlayer& rcPlayer, CGCObjScalingBasicPlatform& rcPlatform, const b2Contact& rcContact) -> void
+		{
+			if (rcContact.IsTouching ())
+			{
+				rcPlayer.SetCanJump (true);
+			}
+
+			else if (rcContact.IsTouching () == false)
+			{
+				rcPlayer.SetCanJump (false);
+			}
+
+		}
+	);
+
 	GetCollisionManager().AddCollisionHandler
 	(
 		[]
@@ -543,7 +579,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 			}
 			else if(rcContact.IsTouching() == false )
 			{
-				rcPlayer.setOnTravelator(true);
+				rcPlayer.setOnTravelator(false);
 
 				rcPlayer.SetCanJump(false);
 			}

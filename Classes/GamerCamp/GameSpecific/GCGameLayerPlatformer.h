@@ -95,6 +95,10 @@ private:
 	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManager;
 	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager;
 
+	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManager1;
+	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager1;
+	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManager2;
+	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager2;
 	
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;

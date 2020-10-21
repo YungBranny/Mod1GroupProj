@@ -288,7 +288,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	}
 	else if( GetVelocity().y < 0.0f )
 	{
-		SetFlippedY( true );
+		SetFlippedY( false );
 	}
 
 	if( GetVelocity().x >= 0.0f )
@@ -320,8 +320,9 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	if( bFireWasPressed && m_bCanJump)
 	{
-			//GetPhysicsBody()->ApplyForceToCenter(b2Vec2(0, 900.0f), true);
-			GetPhysicsBody()->ApplyLinearImpulse(b2Vec2(0, 15.0f),b2Vec2(0,0.0f), true);
+
+			GetPhysicsBody()->ApplyForceToCenter(b2Vec2(0, 900.0f), true);
+			//GetPhysicsBody()->ApplyLinearImpulse(b2Vec2(0, 15.0f),b2Vec2(0,0.0f), true);
 		
 			m_bCanJump = false;
 	}
