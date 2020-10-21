@@ -216,6 +216,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameStates\GameStateManager.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjTravelatorPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -364,6 +367,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameStates\GameStateManager.h">
       <Filter>Classes\GamerCamp\GameSpecific\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjTravelatorPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
