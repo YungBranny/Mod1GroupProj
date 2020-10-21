@@ -56,9 +56,18 @@ private:
 	//test comment
 	TGCActionToKeyMap< EPlayerActions >* m_pcControllerActionToKeyMap;
 
+
+	bool m_bOnTravelator;
+
+	
 public:
 	CGCObjPlayer();
 
+	bool getOnTravelator() const { return m_bOnTravelator; }
+	void setOnTravelator(bool b) { m_bOnTravelator = b; }
+
+	
+	
 	//////////////////////////////////////////////////////////////////////////
 	// we need a virtual destructor since delete will be called on pointers of 
 	// this class to delete derived types.

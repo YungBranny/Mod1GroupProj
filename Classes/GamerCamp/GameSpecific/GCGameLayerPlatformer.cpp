@@ -520,7 +520,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 		{
 			if (rcContact.IsTouching())
 			{
-				rcPlayer.m_bOnTravelator = true;
+				rcPlayer.setOnTravelator(true);
 
 				rcPlayer.SetCanJump(true);
 				
@@ -528,7 +528,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 			}
 			else if(rcContact.IsTouching() == false )
 			{
-				rcPlayer.m_bOnTravelator = false;
+				rcPlayer.setOnTravelator(true);
 
 				rcPlayer.SetCanJump(false);
 			}

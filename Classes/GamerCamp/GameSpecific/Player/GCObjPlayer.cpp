@@ -36,6 +36,7 @@ CGCObjPlayer::CGCObjPlayer()
 , m_fNoInput_VelocityThreshold	( 0.25f )
 , m_pcControllerActionToKeyMap	( nullptr )
 , m_bCanJump (true)
+, m_bOnTravelator(false)
 , m_iNumberOfLives(3)
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -200,37 +201,43 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	//		v2ControlForceDirection.y	= -1.0f;
 	//		fIsInputInactive            = 0.0f;
 	//	}
-
-		if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Left ) )
+		if (m_bOnTravelator != true)
 		{
-			
 
-			if (m_bCanJump == true)
+
+
+
+			if (pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Left))
 			{
 
-				v2ControlForceDirection.x = -1.0f;
-				fIsInputInactive = 0.0f;
+
+				if (m_bCanJump == true)
+				{
+
+					v2ControlForceDirection.x = -1.0f;
+					fIsInputInactive = 0.0f;
+
+				}
 
 			}
-			
-		}
-		else if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Right ) )
-		{
-			
+			else if (pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Right))
+			{
 
-			if (m_bCanJump == true)
-			{
-				v2ControlForceDirection.x = 1.0f;
-				fIsInputInactive = 0.0f;
+
+				if (m_bCanJump == true)
+				{
+					v2ControlForceDirection.x = 1.0f;
+					fIsInputInactive = 0.0f;
+				}
 			}
-		}
-		
-		else
-		{
-			
-			if (m_bCanJump == true)
+
+			else
 			{
-				SetVelocity(cocos2d::Vec2(0, 0));
+
+				if (m_bCanJump == true)
+				{
+					SetVelocity(cocos2d::Vec2(0, 0));
+				}
 			}
 		}
 	}
