@@ -36,7 +36,22 @@ CGCObjPlayer::CGCObjPlayer()
 , m_fNoInput_VelocityThreshold	( 0.25f )
 , m_pcControllerActionToKeyMap	( nullptr )
 , m_bCanJump (true)
+, m_iNumberOfLives(3)
 {
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Point origin = Director::getInstance()->getVisibleOrigin();
+
+	setLivesText(Label::createWithTTF(" ", "fonts/arial.ttf", 35.0f));
+
+	getLivesText()->setColor(Color3B::RED);
+
+	//getTimerText()->enableGlow(Color4B::RED); // Enable outline overrides Glow
+
+	getLivesText()->enableOutline(Color4B::BLACK, 1);
+
+	getLivesText()->setPosition(Vec2(visibleSize.width / 2 - 420, visibleSize.height / 2 - 270));
+
+	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
 }
 
 
@@ -303,6 +318,17 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 		
 			m_bCanJump = false;
 	}
+
+}
+
+void CGCObjPlayer::DecrementLives()
+{
+	m_iNumberOfLives--;
+}
+
+void CGCObjPlayer::ResetLives()
+{
+	m_iNumberOfLives = 3;
 }
 
 //////////////////////////////////////////////////////////////////////////
