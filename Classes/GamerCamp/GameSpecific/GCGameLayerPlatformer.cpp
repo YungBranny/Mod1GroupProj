@@ -272,22 +272,29 @@ void CGCGameLayerPlatformer::VOnCreate()
 	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManagerMiddle);
 
 	m_pcGCScalingBasicPlatformManagerTop = new CGCObjScalingBasicPlatformManager();
-	m_pcGCScalingBasicPlatformManagerTop->SetMaxPlatforms(16);
+	m_pcGCScalingBasicPlatformManagerTop->SetMaxPlatforms(7);
 	m_pcGCScalingBasicPlatformManagerTop->SetStartX(400);
-	m_pcGCScalingBasicPlatformManagerTop->SetStartY(480);
+	m_pcGCScalingBasicPlatformManagerTop->SetStartY(460);
 	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManagerTop);
 
 	m_pcGCScalingBasicPlatformManager1 = new CGCObjScalingBasicPlatformManager ();
-	m_pcGCScalingBasicPlatformManager1->SetMaxPlatforms (2);
-	m_pcGCScalingBasicPlatformManager1->SetSpacingX (240);
-	m_pcGCScalingBasicPlatformManager1->SetStartX (240);
-	m_pcGCScalingBasicPlatformManager1->SetStartY (120);
+	m_pcGCScalingBasicPlatformManager1->SetMaxPlatforms (1);
+	//m_pcGCScalingBasicPlatformManager1->SetSpacingX (100);
+	m_pcGCScalingBasicPlatformManager1->SetStartX (20);
+	m_pcGCScalingBasicPlatformManager1->SetStartY (340);
 	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingBasicPlatformManager1);
+
+	m_pcGCScalingBasicPlatformManager2 = new CGCObjScalingBasicPlatformManager();
+	m_pcGCScalingBasicPlatformManager2->SetMaxPlatforms (1);
+	//m_pcGCScalingBasicPlatformManager1->SetSpacingX (100);
+	m_pcGCScalingBasicPlatformManager2->SetStartX(110);
+	m_pcGCScalingBasicPlatformManager2->SetStartY(400);
+	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManager2);
 
 	m_pcGCScalingFallingPlatformManager = new CGCObjScalingFallingPlatformManager ();
 	m_pcGCScalingFallingPlatformManager->SetMaxPlatforms (3);
-	m_pcGCScalingFallingPlatformManager->SetStartY (160);
-	m_pcGCScalingFallingPlatformManager->SetStartX (540);
+	m_pcGCScalingFallingPlatformManager->SetStartY (460);
+	m_pcGCScalingFallingPlatformManager->SetStartX (200);
 	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingFallingPlatformManager);
 
 	
@@ -465,7 +472,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCOTimePickUp->SetResetPosition (cocos2d::Vec2 (200, 200));
 
 	m_pcGCODoor = new CGCObjDoor();
-	m_pcGCODoor->SetResetPosition (cocos2d::Vec2(950, 120));
+	m_pcGCODoor->SetResetPosition (cocos2d::Vec2(50, 115));
 
 	///////// Platforms
 
@@ -496,7 +503,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
 
 	m_pcGCTravelatorPlatform1 = new CGCObjTravelatorPlatform();
-	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(840, 170));
+	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(900, 380));
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
 	
 	//enemy
