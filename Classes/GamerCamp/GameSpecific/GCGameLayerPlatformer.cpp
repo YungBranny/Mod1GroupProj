@@ -504,9 +504,10 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
 
 	m_pcGCOMovingPlatform = new CGCMovingPlatform();
+	m_pcGCOMovingPlatform->SetResetPosition(cocos2d::Vec2(970, 280));
 
 	m_pcGCTravelatorPlatform1 = new CGCObjTravelatorPlatform();
-	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(900, 380));
+	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(900, 400));
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
 	
 	//enemy
