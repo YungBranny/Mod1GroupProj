@@ -40,6 +40,7 @@
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingBasicPlatform.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingFallingPlatformManager.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingFallingPlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjMovingPlatform.h"
 
 #include "AppDelegate.h"
 
@@ -502,6 +503,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCFallingPlatform1 = new CGCObjFallingPlatform ();
 	//m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
 
+	m_pcGCOMovingPlatform = new CGCMovingPlatform();
+
 	m_pcGCTravelatorPlatform1 = new CGCObjTravelatorPlatform();
 	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(900, 380));
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
@@ -864,6 +867,9 @@ void CGCGameLayerPlatformer::VOnDestroy()
 
 	delete m_pcGCOTimePickUp;
 	m_pcGCOTimePickUp = nullptr;
+
+	delete m_pcGCOMovingPlatform;
+	m_pcGCOMovingPlatform = nullptr;
 
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. because object groups must register manually, 

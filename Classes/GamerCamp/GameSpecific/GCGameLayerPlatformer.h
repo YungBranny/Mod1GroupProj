@@ -32,6 +32,7 @@ class CGCObjDoor;
 class CGCObjTimePickUp;
 class CGCObjScalingBasicPlatformManager;
 class CGCObjScalingFallingPlatformManager;
+class CGCMovingPlatform
 
 
 enum class ECGameStates
@@ -88,6 +89,8 @@ private:
 	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest4;
 	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest5;
 
+	CGCMovingPlatform*              m_pcGCOMovingPlatform;
+
 	CGCObjFallingPlatform*			m_pcGCFallingPlatform1;
 
 	CGCObjTravelatorPlatform*		m_pcGCTravelatorPlatform1;
@@ -103,7 +106,8 @@ private:
 	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager1;
 	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManager2;
 	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager2;
-	
+
+
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;
 	//CGCObjSprite*					m_pcGCsprTimerBar;
