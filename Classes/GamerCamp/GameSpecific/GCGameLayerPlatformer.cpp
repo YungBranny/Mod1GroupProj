@@ -462,11 +462,11 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 
 	m_pcGCOKeys = new CGCObjKeys();
-	m_pcGCOKeys->SetResetPosition (cocos2d::Vec2 (450, 200));
+	m_pcGCOKeys->SetResetPosition (cocos2d::Vec2 (715, 160));
 	m_pcGCOKeys1 = new CGCObjKeys();
-	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(630, 200));
+	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(500, 370));
 	m_pcGCOKeys2 = new CGCObjKeys();
-	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(860, 220));
+	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(700, 550));
 
 	m_pcGCOTimePickUp - new CGCObjTimePickUp();
 	//m_pcGCOTimePickUp->SetResetPosition (cocos2d::Vec2 (200, 200));
