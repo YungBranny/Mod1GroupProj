@@ -101,6 +101,8 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCScalingFallingPlatformManager1 (nullptr)
 , m_pcGCScalingBasicPlatformManager2 (nullptr)
 , m_pcGCScalingFallingPlatformManager2 (nullptr)
+, m_pcGCScalingBasicPlatformManagerMiddle (nullptr)
+, m_pcGCScalingBasicPlatformManagerTop (nullptr)
 , m_bResetWasRequested			( false )
 
 {
@@ -262,6 +264,18 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCScalingBasicPlatformManager->SetStartX (0);
 	m_pcGCScalingBasicPlatformManager->SetStartY (60);
 	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingBasicPlatformManager);
+
+	m_pcGCScalingBasicPlatformManagerMiddle = new CGCObjScalingBasicPlatformManager();
+	m_pcGCScalingBasicPlatformManagerMiddle->SetMaxPlatforms(16);
+	m_pcGCScalingBasicPlatformManagerMiddle->SetStartX(0);
+	m_pcGCScalingBasicPlatformManagerMiddle->SetStartY(280);
+	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManagerMiddle);
+
+	m_pcGCScalingBasicPlatformManagerTop = new CGCObjScalingBasicPlatformManager();
+	m_pcGCScalingBasicPlatformManagerTop->SetMaxPlatforms(16);
+	m_pcGCScalingBasicPlatformManagerTop->SetStartX(400);
+	m_pcGCScalingBasicPlatformManagerTop->SetStartY(480);
+	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManagerTop);
 
 	m_pcGCScalingBasicPlatformManager1 = new CGCObjScalingBasicPlatformManager ();
 	m_pcGCScalingBasicPlatformManager1->SetMaxPlatforms (2);
