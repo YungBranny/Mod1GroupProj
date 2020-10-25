@@ -12,10 +12,10 @@ CGCMovingPlatform::CGCMovingPlatform()
 
 }
 
-CGCMovingPlatform::~CGCMovingPlatform()
-{
-
-}
+//CGCMovingPlatform::~CGCMovingPlatform()
+//{
+//
+//}
 
 IN_CPP_CREATION_PARAMS_DECLARE(CGCMovingPlatform, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_dynamicBody, true);
 void CGCMovingPlatform::VOnResourceAcquire()

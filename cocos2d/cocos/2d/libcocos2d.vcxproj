@@ -1418,6 +1418,7 @@ xcopy /Y /Q "$(ProjectDir)..\..\external\openssl\prebuilt\win32\*.*" "$(OutDir)"
     <None Include="..\math\Vec3.inl" />
     <None Include="..\math\Vec4.inl" />
     <None Include="cocos2d.def" />
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\external\Box2D\proj.win32\libbox2d.vcxproj">

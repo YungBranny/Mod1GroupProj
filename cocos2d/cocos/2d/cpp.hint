@@ -1,0 +1,13 @@
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define CC_DEPRECATED_ATTRIBUTE __attribute__((deprecated))
+#define CC_DEPRECATED_ATTRIBUTE __declspec(deprecated)
+#define CC_DEPRECATED_ATTRIBUTE
+// Hint files help the Visual Studio IDE interpret Visual C++ identifiers
+// such as names of functions and macros.
+// For more information see https://go.microsoft.com/fwlink/?linkid=865984
+#define CC_DLL
+#define CC_DLL __declspec(dllexport)
+#define CC_DLL __declspec(dllimport)
+#define CC_DLL __attribute__ ((visibility("default")))

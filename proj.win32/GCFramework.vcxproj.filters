@@ -232,7 +232,7 @@
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjMovingPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

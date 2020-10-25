@@ -32,7 +32,7 @@ class CGCObjDoor;
 class CGCObjTimePickUp;
 class CGCObjScalingBasicPlatformManager;
 class CGCObjScalingFallingPlatformManager;
-class CGCMovingPlatform
+class CGCMovingPlatform;
 
 
 enum class ECGameStates

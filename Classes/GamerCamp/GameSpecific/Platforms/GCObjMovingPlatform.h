@@ -13,7 +13,7 @@ private:
 public:
 
 	CGCMovingPlatform();
-	virtual ~CGCMovingPlatform() {};
+	//virtual ~CGCMovingPlatform() {};
 
 	virtual void VOnResourceAcquire(void);
 
