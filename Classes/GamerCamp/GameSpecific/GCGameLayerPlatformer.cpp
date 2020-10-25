@@ -405,11 +405,11 @@ void CGCGameLayerPlatformer::VOnCreate()
 		m_pcGCsprTimerBar->SetScale(0.1f, 0.1f);
 	}*/
 	
-	const char* pszPlist_background = "TexturePacker/Backgrounds/Placeholder/background.plist";
+	const char* pszPlist_background = "TexturePacker/Sprites/Background/Background.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite();
 		m_pcGCSprBackGround->CreateSprite( pszPlist_background );
-		m_pcGCSprBackGround->SetResetPosition( Vec2( visibleSize.width/2, visibleSize.height/2 ) );
+		m_pcGCSprBackGround->SetResetPosition(cocos2d::Vec2(500, 400));
 		m_pcGCSprBackGround->SetParent( IGCGameLayer::ActiveInstance() );
 		
  	}
