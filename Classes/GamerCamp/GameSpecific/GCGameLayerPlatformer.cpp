@@ -288,7 +288,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCScalingBasicPlatformManager2->SetMaxPlatforms (1);
 	//m_pcGCScalingBasicPlatformManager1->SetSpacingX (100);
 	m_pcGCScalingBasicPlatformManager2->SetStartX(110);
-	m_pcGCScalingBasicPlatformManager2->SetStartY(400);
+	m_pcGCScalingBasicPlatformManager2->SetStartY(420);
 	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManager2);
 
 	m_pcGCScalingFallingPlatformManager = new CGCObjScalingFallingPlatformManager ();
@@ -517,7 +517,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCBasicEnemies2->setGravity (0.0f);
 
 	m_pcGCMovingEnemies = new CGCMovingEnemies ();
-	m_pcGCMovingEnemies->SetResetPosition (cocos2d::Vec2(400,130));
+	m_pcGCMovingEnemies->SetResetPosition (cocos2d::Vec2(500,333));
 	m_pcGCMovingEnemies->setGravity (10.0f);
 	
 	

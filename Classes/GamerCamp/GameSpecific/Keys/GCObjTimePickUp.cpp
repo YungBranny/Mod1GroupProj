@@ -25,7 +25,7 @@ CGCObjTimePickUp::CGCObjTimePickUp(void)
 	{
 		CreateSprite(timeSprite);
 		//SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-		SetResetPosition(cocos2d::Vec2(100, 130));
+		SetResetPosition(cocos2d::Vec2(860, 500));
 		SetParent(IGCGameLayer::ActiveInstance());
 		//GetPhysicsBody()->SetGravityScale(0.0f);
 	}
