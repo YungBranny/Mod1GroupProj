@@ -13,20 +13,20 @@
 
 CGCObjFallingPlatform::CGCObjFallingPlatform ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjFallingPlatform))
-	, m_v2StartPos			(400, 400)										
-	, m_v2FallingVelocity	(0.0f, -10.0f)
-	, m_v2DefaultVelocity	(0.0f, 0.0f)
-	, m_bContactWithPlayer	(false)
-	, m_fDestroyPlatformTick(120.0f)
-	, m_bCanDelete			(false)
-	, m_v2EndPos			(m_v2StartPos.x, m_v2StartPos.y - ( -1.0f ))
+	, m_v2StartPos			(400, 400)									  //Initalises the variable with a default value
+	, m_v2FallingVelocity	(0.0f, -10.0f)								  //Initalises the variable with a default value
+	, m_v2DefaultVelocity	(0.0f, 0.0f)								  //Initalises the variable with a default value
+	, m_bContactWithPlayer	(false)										  //Initalises the variable with a default value
+	, m_fDestroyPlatformTick(120.0f)									  //Initalises the variable with a default value
+	, m_bCanDelete			(false)										  //Initalises the variable with a default value
+	, m_v2EndPos			(m_v2StartPos.x, m_v2StartPos.y - ( -1.0f ))  //Initalises the variable with a default value
 {
-	SetResetPosition (GetStartPos ());
+	SetResetPosition (GetStartPos ()); // sets the reset position to be the start position
 }
 
 
 
-
+//sets the sprite 
 IN_CPP_CREATION_PARAMS_DECLARE (CGCObjFallingPlatform, "TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist", "LongPlatformTest", b2_dynamicBody, true);
 void CGCObjFallingPlatform::VOnResourceAcquire ()
 {
@@ -39,7 +39,7 @@ void CGCObjFallingPlatform::VOnResourceAcquire ()
 }
 
 
-
+//default sprite physics 
 void CGCObjFallingPlatform::VOnReset ()
 {
 	CGCObjSpritePhysics::VOnReset ();
@@ -56,9 +56,11 @@ void CGCObjFallingPlatform::VOnReset ()
 	}
 
 }
+
+//Calls the function that moves the platform down
 void CGCObjFallingPlatform::MoveDownOnContact ()
 {
-	if (GetContactWithPlayer() == true)
+	if (GetContactWithPlayer() == true) //if this boolean gets set to true it starts decreasing the platform tick and changes the velocity of the platform so it moves down
 	{
 		SetVelocity (m_v2FallingVelocity);
 
@@ -72,17 +74,18 @@ void CGCObjFallingPlatform::MoveDownOnContact ()
 			m_bCanDelete = true;
 		}
 	}
-	else
+	else // changes the velocity to 0 so it stops moving
 	{
 		SetVelocity (m_v2DefaultVelocity);
 	}
 }
 
-void CGCObjFallingPlatform::VOnUpdate (f32 fTimestep)
+void CGCObjFallingPlatform::VOnUpdate (f32 fTimestep) //update function
 {
    MoveDownOnContact ();
 }
 
+//standard spritephysics functions
 void CGCObjFallingPlatform::VOnResourceRelease ()
 {
 	CGCObjSpritePhysics::VOnResourceRelease ();

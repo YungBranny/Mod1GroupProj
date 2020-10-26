@@ -2,6 +2,9 @@
 #define _CGCOBJSCALINGBASICPLATFORM__
 
 
+//Brandon Middleton
+//This class draws a single platform which will be thrown into a platform manager to make it scaleable
+
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
 //#include "SimpleAudioEngine.h"
@@ -17,11 +20,9 @@ private:
 	//cocos2d::experimental::AudioEngine* m_audio1;
 public:
 
-	CGCObjScalingBasicPlatform ();
-	virtual ~CGCObjScalingBasicPlatform () {};
+	CGCObjScalingBasicPlatform ();				//constructor
+	virtual ~CGCObjScalingBasicPlatform () {};	//deconstuctor
 
-
-	void createScalingPlatforms ();
 
 	virtual void VOnResourceAcquire (void);
 

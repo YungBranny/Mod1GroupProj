@@ -17,7 +17,7 @@ class CGCObjLongPlatformTest
 	: public CGCObjSpritePhysics
 {
 private:
-	cocos2d::Vec2 m_v2StartPos; // This just gets a vector 2 which is set as the start and reset position for the platform
+	cocos2d::Vec2 m_v2StartPos;									// This just gets a vector 2 which is set as the start and reset position for the platform
 
 public:
 

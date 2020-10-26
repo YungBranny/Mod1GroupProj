@@ -12,23 +12,23 @@ class CGCObjFallingPlatform
 	: public CGCObjSpritePhysics
 {
 private:
-	cocos2d::Vec2 m_v2StartPos; //Vector2 which will be set as the start/reset position
+	cocos2d::Vec2 m_v2StartPos;			//Vector2 which will be set as the start/reset position
 
-	cocos2d::Vec2 m_v2EndPos; //vector2 for the endposition which is no longer needed
+	cocos2d::Vec2 m_v2EndPos;			//vector2 for the endposition which is no longer needed
 
-	cocos2d::Vec2 m_v2FallingVelocity; //vector2 for the Falling velocity/speed which is no longer needed
+	cocos2d::Vec2 m_v2FallingVelocity;	//vector2 for the Falling velocity/speed which is no longer needed
 
-	cocos2d::Vec2 m_v2DefaultVelocity; //vector2 for the Velocity which is no longer needed
+	cocos2d::Vec2 m_v2DefaultVelocity;	//vector2 for the Velocity which is no longer needed
+		
+	bool m_bContactWithPlayer;			//Bool which needs to be set to true if the player is colliding with this platform
+	bool m_bCanDelete;					// Bool that needs to be set to true once the destroyplatform tick has reached 0 which will then allow the platform to be delete
 
-	bool m_bContactWithPlayer; //Bool which needs to be set to true if the player is colliding with this platform
-	bool m_bCanDelete; // Bool that needs to be set to true once the destroyplatform tick has reached 0 which will then allow the platform to be delete
-
-	float m_fDestroyPlatformTick; // A float that counts down to 0, once it has reached 0 it will set the can delete bool to true
+	float m_fDestroyPlatformTick;		// A float that counts down to 0, once it has reached 0 it will set the can delete bool to true
 
 public:
 
-	CGCObjFallingPlatform (); //constructor
-	virtual ~CGCObjFallingPlatform () {}; //deconstructor
+	CGCObjFallingPlatform ();													//constructor
+	virtual ~CGCObjFallingPlatform () {};										//deconstructor
 
 	cocos2d::Vec2 GetStartPos () const { return m_v2StartPos; }					//getter for the start pos
 	void SetStartPos (cocos2d::Vec2 i) { m_v2StartPos = i; }					//setter fro the start pos
@@ -49,15 +49,15 @@ public:
 	void SetCanDelete (bool i) { m_bCanDelete = i; }							//setter fro the Can delete float
 
 
-	virtual void VOnResourceAcquire (void);	  //Default functions needed
-	virtual void VOnResurrected (void);		  //Default functions needed
-	virtual void VOnResourceRelease (void);	  //Default functions needed
-	virtual void VOnReset (void);			  //Default functions needed
+	virtual void VOnResourceAcquire (void);										//Default functions needed
+	virtual void VOnResurrected (void);											//Default functions needed
+	virtual void VOnResourceRelease (void);										//Default functions needed
+	virtual void VOnReset (void);												//Default functions needed
 
 
-	void MoveDownOnContact (); //Function that moved the platform down on contact, no longer needed but will be refactored
+	void MoveDownOnContact ();													//Function that moved the platform down on contact, no longer needed but will be refactored
 
-	virtual void VOnUpdate (f32 fTimestep); //Update
+	virtual void VOnUpdate (f32 fTimestep);										//Update
 }; 
 
 #endif

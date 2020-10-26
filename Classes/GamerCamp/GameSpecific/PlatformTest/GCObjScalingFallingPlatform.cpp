@@ -1,5 +1,3 @@
-
-
 #include <memory.h>
 
 //#include "AppDelegate.h"
@@ -13,14 +11,15 @@
 
 CGCObjScalingFallingPlatform::CGCObjScalingFallingPlatform ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjScalingFallingPlatform))
-	, m_v2FallingVelocity (0.0f, -1.0f)
-	, m_v2DefaultVelocity (0.0f, 0.0f)
-	, m_bContactWithPlayer (false)
-	, m_fDestroyPlatformTick (120.0f)
-	, m_bCanDelete (false)
-{
-}
+	, m_v2FallingVelocity (0.0f, -1.0f)									  //Initalises the variable with a default value
+	, m_v2DefaultVelocity (0.0f, 0.0f)									  //Initalises the variable with a default value
+	, m_bContactWithPlayer (false)										  //Initalises the variable with a default value
+	, m_fDestroyPlatformTick (120.0f)									  //Initalises the variable with a default value
+	, m_bCanDelete (false)												  //Initalises the variable with a default value
+{																		 
+}																		 
 
+//Sets the sprite
 IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingFallingPlatform, "TexturePacker/Sprites/FallingScalingPlatform/FallingScalingPlatform.plist", "FallingScalingPlatform", b2_kinematicBody, true);
 
 void CGCObjScalingFallingPlatform::VOnResourceAcquire ()
@@ -32,10 +31,10 @@ void CGCObjScalingFallingPlatform::VOnResourceAcquire ()
 
 }
 
-
+//Calls the function that moves the platform down
 void CGCObjScalingFallingPlatform::MoveDownOnContact ()
 {
-	if (GetContactWithPlayer () == true)
+	if (GetContactWithPlayer () == true)	//if this boolean gets set to true it starts decreasing the platform tick and changes the velocity of the platform so it moves down
 	{
 		SetVelocity (m_v2FallingVelocity);
 
@@ -49,19 +48,12 @@ void CGCObjScalingFallingPlatform::MoveDownOnContact ()
 			m_bCanDelete = true;
 		}
 	}
-	else
+	else  // changes the velocity to 0 so it stops moving
 	{
 		SetVelocity (m_v2DefaultVelocity);
 	}
 }
-
-
-//void CGCObjScalingFallingPlatform::VOnResurrected ()
-//{
-//	CGCObjSpritePhysics::VOnResurrected ();
-//	GetPhysicsBody ()->SetGravityScale (0.0f);
-//}
-
+//update function
 void CGCObjScalingFallingPlatform::VOnUpdate (f32 fTimestep)
 {
 	MoveDownOnContact ();

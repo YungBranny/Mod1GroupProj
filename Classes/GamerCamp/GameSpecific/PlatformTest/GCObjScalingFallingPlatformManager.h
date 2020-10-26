@@ -1,8 +1,3 @@
-#pragma once
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// (C) Gamer Camp / Alex Darby 2018
-// Distributed under the MIT license - see readme.md
-////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #ifndef	_GCOBJSCALINGFallingPLATFORMMANAGER_H_
 #define	_GCOBJSCALINGFallingPLATFORMMANAGER_H_
 
@@ -16,12 +11,10 @@
 
 
 
-//////////////////////////////////////////////////////////////////////////
-// responsible for newing, managing, & deleting the invaders
-//
-// This shows how an object group can be used as an allocation pool.
-//
-//////////////////////////////////////////////////////////////////////////
+//Brandon Middleton
+//This class is for managing and drawing multiple falling platforms and grouping them together
+//The way the class is designed can make it look like the platforms are scaled so its longer
+
 class CGCObjScalingFallingPlatform;
 
 class CGCObjScalingFallingPlatformManager
@@ -30,66 +23,53 @@ class CGCObjScalingFallingPlatformManager
 private:
 
 
-	CGCObjScalingFallingPlatform* m_pcGCScalingFallingPlatform;
+	CGCObjScalingFallingPlatform* m_pcGCScalingFallingPlatform;	//pointer to the default fallingplatform class
 
-	int				m_iMaxPlatforms;
-	cocos2d::Vec2	m_v2FormationOrigin; // origin of the formation
+	int				m_iMaxPlatforms;							//sets how many platforms should spawn
 
-	float m_fStartX;
-	float m_fStartY;
-	float m_fSpacingX;
+	float m_fStartX;											//Start Positions
+	float m_fStartY;											//Start Positions
+	float m_fSpacingX;											//Spacing inbetween each platform on the x axis
 
-	cocos2d::Vec2 m_v2PlatformStartPos;
+	cocos2d::Vec2 m_v2PlatformStartPos;							//Start vec2
 
 
-	void	CreatePlatforms ();
-	void	DestroyPlatforms ();
+	void	CreatePlatforms ();									//Function to create  the platforms
+	void	DestroyPlatforms ();								//Function to destroy the platforms
 
 public:
-	CGCObjScalingFallingPlatformManager ();
-	virtual ~CGCObjScalingFallingPlatformManager () override;
-
-	void SetFormationOrigin (cocos2d::Vec2 m_v2FormationOrigin);
+	CGCObjScalingFallingPlatformManager ();						//Constructor
+	virtual ~CGCObjScalingFallingPlatformManager () override;	//Deconstructor
 
 
-	int 	GetMaxPlatforms () { return m_iMaxPlatforms; };
+	int		GetMaxPlatforms () { return m_iMaxPlatforms; };		//Getter and setter for the MaxPlatforms
+	void	SetMaxPlatforms (int i) { m_iMaxPlatforms = i; }	//Getter and setter for the MaxPlatforms
 
-	void SetMaxPlatforms (int i) { m_iMaxPlatforms = i; }
+	float 	GetStartX () { return m_fStartX; };					//Getter for StartX
+	float 	GetStartY () { return m_fStartY; };					//Getter for StartY
+	float 	GetSpacingX () { return m_fSpacingX; };				//Getter for SpacingX
 
-	float 	GetStartX () { return m_fStartX; };
-	float 	GetStartY () { return m_fStartY; };
-	float 	GetSpacingX () { return m_fSpacingX; };
+	void	SetStartX (float i) {m_fStartX = i; }				//Setting for StartX
+	void	SetStartY (float i) {m_fStartY = i; }				//Setting for StartY
+	void	SetSpacingX (float i) { m_fSpacingX = i; }			//Setting for SpacingX
 
-	void SetStartX (float i) {m_fStartX = i; }
-	void SetStartY (float i) {m_fStartY = i; }
-	void SetSpacingX (float i) { m_fSpacingX = i; }
+	cocos2d::Vec2 GetPlatformStartPos () const { return m_v2PlatformStartPos; }	//Getter and setter for the platform start pos	
+	void	SetPlatformStartPos (cocos2d::Vec2 i) { m_v2PlatformStartPos = i; }	//Getter and setter for the platform start pos
 
-	cocos2d::Vec2 GetPlatformStartPos () const { return m_v2PlatformStartPos; }
-	void SetPlatformStartPos (cocos2d::Vec2 i) { m_v2PlatformStartPos = i; }
-
-
-
-
-
-	void SetColumns (int iNumColumns, f32 fPixelSpacingRow, f32 fPixelSpacingColumn);
-
-	//////////////////////////////////////////////////////////////////////////
 	// overrides for CGCObjectGroup public interface
 
-		// handles GCObjInvader
-	virtual bool		VHandlesThisTypeId (GCTypeID idQueryType) override;
+	// handles the platform
+	virtual bool		VHandlesThisTypeId (GCTypeID idQueryType) override;		//Default functions needed
+																				//Default functions needed
+	virtual GCTypeID	VGetTypeId () override;									//Default functions needed
+																				//Default functions needed
+	virtual void		VOnGroupResourceAcquire () override;					//Default functions needed
+	virtual void		VOnGroupResourceAcquire_PostObject () override;			//Default functions needed
+	virtual void		VOnGroupReset () override;								//Default functions needed
+	virtual void		VOnObjectReset () override;								//Default functions needed
+	virtual void		VOnGroupUpdate (f32 fTimeStep) override;				//Default functions needed
+	virtual void		VOnGroupResourceRelease () override;					//Default functions needed
 
-	// must return the typeid of the CGCObjectGroup derived class
-	virtual GCTypeID	VGetTypeId () override;
-
-	virtual void		VOnGroupResourceAcquire () override;
-	virtual void		VOnGroupResourceAcquire_PostObject () override;
-	virtual void		VOnGroupReset () override;
-	virtual void		VOnObjectReset () override;
-	virtual void		VOnGroupUpdate (f32 fTimeStep) override;
-	virtual void		VOnGroupResourceRelease () override;
-	// CGCObjectGroup public interface
-//////////////////////////////////////////////////////////////////////////
 };
 
 #endif
