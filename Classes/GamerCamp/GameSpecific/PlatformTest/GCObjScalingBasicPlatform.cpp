@@ -14,6 +14,8 @@
 CGCObjScalingBasicPlatform::CGCObjScalingBasicPlatform ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjScalingBasicPlatform))
 {
+	//m_audio->playBackgroundMusic ("", true);
+
 }
 
 IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingBasicPlatform, "TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist", "BasicScalingPlatform", b2_staticBody, true);

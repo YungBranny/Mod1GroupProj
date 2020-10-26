@@ -117,6 +117,9 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 	m_bPlayerHitHostile = false;
 
 	m_bPlayerKeysGathered = false;
+
+	//test audio
+	m_audio1->play2d ("Sounds/ManicMiner.mp3", true, 0.3f);
 	
 }
 
