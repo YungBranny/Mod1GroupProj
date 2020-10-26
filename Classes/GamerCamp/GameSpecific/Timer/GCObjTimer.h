@@ -19,13 +19,19 @@ private:
 	int m_iCurrentTime;
 	int m_iTimerDecreaseValue;
 	int m_iTimerIncreaseValue;
+	int m_iTimerTextOutlineSize;
 	float m_fCurrentTimeBuffer;
 	float m_fMaxTimeBuffer;
 	float m_fScaleX;
+	float m_fScaleY;
 	float m_fCurrentXScale;
 	float m_fScaleDecreaseX;
 	float m_fScaleDecreaseY;
+	float m_fTimerTextFontSize;
+	float m_fTimerBarStartPosY;
+	float m_fTimerBarStartPosX;
 
+	
 	cocos2d::Label* m_pTimerText;
 
 public:

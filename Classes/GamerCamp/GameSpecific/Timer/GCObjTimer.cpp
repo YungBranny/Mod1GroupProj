@@ -22,14 +22,18 @@ using namespace cocos2d;
 	:CGCObjSprite(GetGCTypeIDOf(CGCObjTimer))
 	,m_iTotalTimerDuration		 (		100			)   //Max value for the timer
     ,m_iTimerDecreaseValue		 (		 1			)	// The Amount decremented each time
-	,m_iTimerIncreaseValue       (       20          )
+	,m_iTimerIncreaseValue       (       20         )	// The Amount the Timer increases when the Timer pickup is picked up
     ,m_fMaxTimeBuffer			 (		100.0f		)	// Max value timer resets too
 	,m_fCurrentTimeBuffer        ( m_fMaxTimeBuffer )	// higher the value  slower the timer is
 	,m_fScaleX					 (     2.0f			)
+	,m_fScaleY					 (		0.1f		)
 	,m_fCurrentXScale			 (    m_fScaleX		)
 	,m_fScaleDecreaseX			 (		40.0f		)
 	,m_fScaleDecreaseY			 (		0.1f		)
-	
+	,m_iTimerTextOutlineSize	 (		1	     	)	
+	,m_fTimerTextFontSize		 (		35.0f		)
+	,m_fTimerBarStartPosY		 (		695			)
+	,m_fTimerBarStartPosX		 (		500			)
     
 {
  	//Set Current time to the max Time
@@ -41,13 +45,13 @@ using namespace cocos2d;
 
 	/// /////////////////////////////////////////////////////////////////////////////////////////////////
 	/// Timer Text Label
-	setTimerText(Label::createWithTTF(" ", "fonts/arial.ttf", 35.0f));
+	setTimerText(Label::createWithTTF(" ", "fonts/arial.ttf", m_fTimerTextFontSize));
 
 	getTimerText()->setColor(Color3B::WHITE);
 
 	//getTimerText()->enableGlow(Color4B::RED); // Enable outline overrides Glow
  	
-	getTimerText()->enableOutline(Color4B::BLACK, 1);
+	getTimerText()->enableOutline(Color4B::BLACK, m_iTimerTextOutlineSize);
 	
 	getTimerText()->setPosition(Vec2(visibleSize.width / 2 - 420 , visibleSize.height +  10));
 
@@ -59,9 +63,9 @@ using namespace cocos2d;
 	const char* pszTimerBarSprite = "TexturePacker/Sprites/TimerBar/WhiteSquare.plist";
 	{
 		CreateSprite(pszTimerBarSprite);
-		SetResetPosition(Vec2(500, 695));
+		SetResetPosition(Vec2(m_fTimerBarStartPosX, m_fTimerBarStartPosY));
 		SetParent(IGCGameLayer::ActiveInstance());
-		SetScale(m_fScaleX, 0.1f);
+		SetScale(m_fScaleX, m_fScaleY);
 
 	}
 
