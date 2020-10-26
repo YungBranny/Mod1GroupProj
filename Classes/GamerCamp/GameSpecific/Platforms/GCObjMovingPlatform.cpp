@@ -4,16 +4,22 @@
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
+
+
 #include "GCObjMovingPlatform.h"
 
+//using namespace cocos2d;
+
 CGCMovingPlatform::CGCMovingPlatform()
+//not letting me inherit from basic enemies
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCMovingPlatform))
-	, m_moveUpAndDown(true)
-	, m_endPosition(970, 900)
-	, m_endPosition1(900, 970)
-	, m_vMovingRightVelocity(cocos2d::Vec2(0.0f, 10.0f))
+	//, m_eMoveDirection (EMoveDirection::Right)
+	, m_bMovingLeftAndRight(false)
+	, m_vEndDestination1(800, 200)
+	, m_vEndDesitnation2(500, 160)
+	, m_vMovingRightVelocity(cocos2d::Vec2(9.0f, 0.0f))
 	, m_vMovingLeftVelocity(-m_vMovingRightVelocity)
-	, m_vMovingUpVelocity(cocos2d::Vec2(9.0f, 0.0f))
+	, m_vMovingUpVelocity(cocos2d::Vec2(0.0f, 10.0f))
 	, m_vMovingDownVelocity(-m_vMovingUpVelocity)
 	, m_bJustCollided(false)
 	, m_iCollisionBuffer(60)
@@ -23,20 +29,15 @@ CGCMovingPlatform::CGCMovingPlatform()
 
 void CGCMovingPlatform::InitialiseMovementDirection()
 {
-	if( m_moveUpAndDown == true )
+	if( m_bMovingLeftAndRight == true )
 	{
 		m_eMoveDirection = EMoveDirection::Right;
 	}
-	else if( m_moveUpAndDown == false )
+	else if( m_bMovingLeftAndRight == false )
 	{
 		m_eMoveDirection = EMoveDirection::Up;
 	};
 }
-
-//CGCMovingPlatform::~CGCMovingPlatform()
-//{
-//
-//}
 
 IN_CPP_CREATION_PARAMS_DECLARE(CGCMovingPlatform, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_dynamicBody, true);
 void CGCMovingPlatform::VOnResourceAcquire()
@@ -46,11 +47,15 @@ void CGCMovingPlatform::VOnResourceAcquire()
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
 
+	//const char* pszAnim_marioJog = "Jog";
+
 	// animate!
 	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
 	//RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_marioJog)));
 
 }
+
+
 
 void CGCMovingPlatform::VOnReset()
 {
@@ -60,6 +65,14 @@ void CGCMovingPlatform::VOnReset()
 	SetFlippedY(false);
 
 	SetResetPosition(cocos2d::Vec2(100, 100));
+	//if (GetPhysicsBody ())
+	//{
+	//	cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
+	//	GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (0, 0.0f));
+	//	GetPhysicsBody ()->SetTransform (IGCGameLayer::B2dPixelsToWorld (b2Vec2 (v2SpritePos.x, v2SpritePos.y)), 0.0f);
+	//	GetPhysicsBody ()->SetFixedRotation (true);
+	//}
+
 }
 
 
@@ -71,19 +84,19 @@ void CGCMovingPlatform::VOnResourceRelease()
 void CGCMovingPlatform::VOnResurrected()
 {
 	CGCObjSpritePhysics::VOnResurrected();
-	//GetPhysicsBody()->SetGravityScale(getGravity());
+	GetPhysicsBody()->SetGravityScale(getGravity());
 }
 
 
 void CGCMovingPlatform::ChangeDirection()
 {
-	if( m_moveUpAndDown == true )
+	if( m_bMovingLeftAndRight == true )
 	{
 		switch( m_eMoveDirection )
 		{
 		case EMoveDirection::Right:
 		{
-			if( GetSpritePosition().x >= m_endPosition.x )
+			if( GetSpritePosition().x >= m_vEndDestination1.x )
 			{
 				m_eMoveDirection = EMoveDirection::Left;
 			}
@@ -92,7 +105,7 @@ void CGCMovingPlatform::ChangeDirection()
 
 		case EMoveDirection::Left:
 		{
-			if( GetSpritePosition().x <= m_endPosition1.x )
+			if( GetSpritePosition().x <= m_vEndDesitnation2.x )
 			{
 				m_eMoveDirection = EMoveDirection::Right;
 			}
@@ -101,13 +114,13 @@ void CGCMovingPlatform::ChangeDirection()
 		}
 	}
 
-	if( m_moveUpAndDown == true )
+	if( m_bMovingLeftAndRight == false )
 	{
 		switch( m_eMoveDirection )
 		{
 		case EMoveDirection::Up:
 		{
-			if( GetSpritePosition().y >= m_endPosition.y )
+			if( GetSpritePosition().y >= m_vEndDestination1.y )
 			{
 				m_eMoveDirection = EMoveDirection::Down;
 			}
@@ -116,7 +129,7 @@ void CGCMovingPlatform::ChangeDirection()
 
 		case EMoveDirection::Down:
 		{
-			if( GetSpritePosition().y <= m_endPosition1.y )
+			if( GetSpritePosition().y <= m_vEndDesitnation2.y )
 			{
 				m_eMoveDirection = EMoveDirection::Up;
 			}
