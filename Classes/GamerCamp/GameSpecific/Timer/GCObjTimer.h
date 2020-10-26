@@ -40,6 +40,7 @@ public:
 
    ~CGCObjTimer();
 	
+   ///////////////////////////////////////////////////////////////////////////////
 	
 	int getTotalTimerDuration() const	  { return m_iTotalTimerDuration;   } 
 	void  setTotalTimerDuration(int f)	  { m_iTotalTimerDuration = f;      }
