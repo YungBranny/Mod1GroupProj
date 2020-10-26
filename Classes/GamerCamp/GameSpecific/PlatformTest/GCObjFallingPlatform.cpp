@@ -8,22 +8,18 @@
 #include "GCObjFallingPlatform.h"
 
 
-//Brandon Middleton
-//This class draws a platform when falls when it is stood on
-//I will no longer use the class as the platform isnt needed in the game and will
-//refactoring it in the scalable 
+
 
 
 CGCObjFallingPlatform::CGCObjFallingPlatform ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjFallingPlatform))
-	, m_v2StartPos (400, 400)
-	, m_v2FallingVelocity (0.0f, -10.0f)
-	, m_v2DefaultVelocity (0.0f, 0.0f)
-	, m_bContactWithPlayer (false)
+	, m_v2StartPos			(400, 400)										
+	, m_v2FallingVelocity	(0.0f, -10.0f)
+	, m_v2DefaultVelocity	(0.0f, 0.0f)
+	, m_bContactWithPlayer	(false)
 	, m_fDestroyPlatformTick(120.0f)
-	, m_bCanDelete (false)
-
-	, m_v2EndPos (m_v2StartPos.x, m_v2StartPos.y - ( -1.0f ))
+	, m_bCanDelete			(false)
+	, m_v2EndPos			(m_v2StartPos.x, m_v2StartPos.y - ( -1.0f ))
 {
 	SetResetPosition (GetStartPos ());
 }

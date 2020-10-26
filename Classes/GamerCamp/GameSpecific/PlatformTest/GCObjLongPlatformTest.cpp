@@ -7,8 +7,6 @@
 
 #include "GCObjLongPlatformTest.h"
 
-#include "AudioEngine.h"
-
 
 
 CGCObjLongPlatformTest::CGCObjLongPlatformTest ()
@@ -18,9 +16,7 @@ CGCObjLongPlatformTest::CGCObjLongPlatformTest ()
 	SetResetPosition (GetStartPos ());		//sets the start position to the v2start pos
 }	
 
-
-
-	
+	//sets the sprite and gets the physics body
 IN_CPP_CREATION_PARAMS_DECLARE (CGCObjLongPlatformTest, "TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist", "LongPlatformTest", b2_staticBody, true);
 void CGCObjLongPlatformTest::VOnResourceAcquire()
 {
@@ -28,43 +24,26 @@ void CGCObjLongPlatformTest::VOnResourceAcquire()
 	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjLongPlatformTest);
 
 	CGCObjSpritePhysics::VOnResourceAcquire ();
-	SetResetPosition (GetStartPos ());
+	SetResetPosition (GetStartPos ()); //sets the reset position
 	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
 	
 
 }
 
-
-
-void CGCObjLongPlatformTest::VOnReset ()
+void CGCObjLongPlatformTest::VOnReset () //Defaults for spritephysicsobj 
 {
 	CGCObjSpritePhysics::VOnReset ();
-	// reset
-	SetFlippedX (false);
-	SetFlippedY (false);
-
-	SetResetPosition (GetStartPos ());
-	if (GetPhysicsBody ())
-	{
-		cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
-		GetPhysicsBody ()->SetTransform (IGCGameLayer::B2dPixelsToWorld (b2Vec2 (v2SpritePos.x, v2SpritePos.y)), 0.0f);
-		GetPhysicsBody ()->SetFixedRotation (true);
-	}
-
 }
 void CGCObjLongPlatformTest::VOnUpdate (f32 fTimestep)
 {
 }
-
 void CGCObjLongPlatformTest::VOnResourceRelease ()
 {
 	CGCObjSpritePhysics::VOnResourceRelease ();
-
 }
 void CGCObjLongPlatformTest::VOnResurrected ()
 {
 	CGCObjSpritePhysics::VOnResurrected ();
-
 }
 
 
