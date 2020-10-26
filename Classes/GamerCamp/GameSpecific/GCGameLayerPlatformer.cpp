@@ -524,7 +524,6 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCMovingEnemies->SetResetPosition (cocos2d::Vec2(500,333));
 	m_pcGCMovingEnemies->setGravity (10.0f);
 	
-	
 	//
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. invaders are created by m_pcGCGroupInvader in OnResourceAcquire
