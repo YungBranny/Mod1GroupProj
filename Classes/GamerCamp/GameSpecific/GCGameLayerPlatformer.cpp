@@ -107,11 +107,11 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_bResetWasRequested			( false )
 
 {
-	m_totalKeys = 3;
+	m_iTotalKeys = 3;
 
-	m_keysCollected = 0;
+	m_iKeysCollected = 0;
 
-	m_timerPickedUp = 0;
+	m_iTimerPickedUp = 0;
 
 	m_bPlayerHitHostile = false;
 
@@ -130,14 +130,14 @@ CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
 
 void CGCGameLayerPlatformer::keyCollected()
 {
-	m_keysCollected++;
-	CCLOG("Key Collected");
+	m_iTimerPickedUp++;
+	CCLOG("Key Collected.");
 }
 
 void CGCGameLayerPlatformer::addOnTime()
 {
 	m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
-	CCLOG("Time PickUp Collected");
+	CCLOG("Time PickUp Collected.");
 }
 
 void CGCGameLayerPlatformer::replaceSceneWin()
@@ -507,7 +507,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCFallingPlatform1 = new CGCObjFallingPlatform ();
 	//m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
 
-	m_pcGCOMovingPlatform = new CGCMovingPlatform();
+	m_pcGCOMovingPlatform = new CGCObjMovingPlatform();
 	m_pcGCOMovingPlatform->SetResetPosition(cocos2d::Vec2(970, 280));
 	m_pcGCOMovingPlatform->setGravity(3.0f);
 
@@ -575,6 +575,24 @@ void CGCGameLayerPlatformer::VOnCreate()
 		}
 	);
 
+	GetCollisionManager().AddCollisionHandler
+	(
+		[]
+	(CGCObjPlayer& rcPlayer, CGCObjMovingPlatform& rcMovingPlatform, const b2Contact& rcContact) -> void
+	{
+		if( rcContact.IsTouching() )
+		{
+			rcPlayer.SetCanJump(true);
+		}
+
+		else if( rcContact.IsTouching() == false )
+		{
+			rcPlayer.SetCanJump(false);
+		}
+
+	}
+	);
+
 
 	GetCollisionManager ().AddCollisionHandler
 	(
@@ -638,7 +656,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 		[this]
 	(CGCObjDoor& rcDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 	{
-		if( m_keysCollected >= m_totalKeys )
+		if( m_iKeysCollected >= m_iTotalKeys )
 		{
 			//ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCWinScene >::CreateScene ()));
 
@@ -818,7 +836,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	if( ResetWasRequested() )
 	{
 		VOnReset();
-		m_keysCollected = 0;
+		m_iKeysCollected = 0;
 		ResetRequestWasHandled();
 	}
 

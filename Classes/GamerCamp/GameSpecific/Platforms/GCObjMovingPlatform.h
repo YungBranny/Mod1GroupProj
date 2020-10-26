@@ -3,7 +3,7 @@
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
-class CGCMovingPlatform
+class CGCObjMovingPlatform
 	:public CGCObjSpritePhysics
 {
 private:
@@ -38,8 +38,8 @@ private:
 
 public:
 
-	CGCMovingPlatform();
-	virtual ~CGCMovingPlatform() {};
+	CGCObjMovingPlatform();
+	virtual ~CGCObjMovingPlatform() {};
 
 	unsigned short int getCollisionBuffer() const { return m_iCollisionBuffer; }
 	void  setCollisionBuffer(unsigned short int i) { m_iCollisionBuffer = i; }

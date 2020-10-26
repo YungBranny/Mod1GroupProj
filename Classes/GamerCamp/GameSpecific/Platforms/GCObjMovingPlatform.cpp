@@ -4,8 +4,8 @@
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
 
-CGCMovingPlatform::CGCMovingPlatform()
-	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCMovingPlatform))
+CGCObjMovingPlatform::CGCObjMovingPlatform()
+	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjMovingPlatform))
 	, m_bMoveUpAndDown(false)
 	, m_bJustCollided(false)
 	, m_v2StartPosition(800, 280)
@@ -17,7 +17,7 @@ CGCMovingPlatform::CGCMovingPlatform()
 	InitialiseMovementDirection();
 }
 
-void CGCMovingPlatform::InitialiseMovementDirection()
+void CGCObjMovingPlatform::InitialiseMovementDirection()
 {
 	if( m_bMoveUpAndDown == true )
 	{
@@ -29,21 +29,21 @@ void CGCMovingPlatform::InitialiseMovementDirection()
 	};
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE(CGCMovingPlatform, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_dynamicBody, true);
-void CGCMovingPlatform::VOnResourceAcquire()
+IN_CPP_CREATION_PARAMS_DECLARE(CGCObjMovingPlatform, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_dynamicBody, true);
+void CGCObjMovingPlatform::VOnResourceAcquire()
 {
-	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCMovingPlatform);
+	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCObjMovingPlatform);
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
 }
 
-void CGCMovingPlatform::VOnResurrected()
+void CGCObjMovingPlatform::VOnResurrected()
 {
 	CGCObjSpritePhysics::VOnResurrected();
 	GetPhysicsBody()->SetGravityScale(getGravity());
 }
 
-void CGCMovingPlatform::Movement()
+void CGCObjMovingPlatform::Movement()
 {
 	if( m_bMoveUpAndDown == true )
 	{
@@ -94,7 +94,7 @@ void CGCMovingPlatform::Movement()
 	}
 }
 
-void CGCMovingPlatform::SettingVelocity()
+void CGCObjMovingPlatform::SettingVelocity()
 {
 	switch( m_eMoveDirection )
 	{
@@ -124,7 +124,7 @@ void CGCMovingPlatform::SettingVelocity()
 	}
 }
 
-void CGCMovingPlatform::CollisionChecker()
+void CGCObjMovingPlatform::CollisionChecker()
 {
 	if( m_bJustCollided == true )
 	{
@@ -141,7 +141,7 @@ void CGCMovingPlatform::CollisionChecker()
 	}
 }
 
-void CGCMovingPlatform::VOnUpdate(f32 fTimeStep)
+void CGCObjMovingPlatform::VOnUpdate(f32 fTimeStep)
 {
 	Movement();
 	SettingVelocity();

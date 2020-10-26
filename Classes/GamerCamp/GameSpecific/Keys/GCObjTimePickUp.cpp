@@ -1,7 +1,4 @@
 #include "GamerCamp/GameSpecific/Keys/GCObjTimePickUp.h"
-
-#include <memory.h>
-
 #include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
 #include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
@@ -14,23 +11,18 @@ using namespace cocos2d;
 
 CGCObjTimePickUp::CGCObjTimePickUp(void)
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjTimePickUp))
-	, m_timeGravity(0.0f)
+	, m_fTimeGravity(0.0f)
 	, m_bJustCollided(false)
 	, m_iCollisionBuffer(60)
 {
-	//m_keysGravity = 0.0f;
-
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	const char* timeSprite = "TexturePacker/Sprites/TimerPickUp/TimerPickUp.plist";
 	{
 		CreateSprite(timeSprite);
-		//SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
 		SetResetPosition(cocos2d::Vec2(860, 500));
 		SetParent(IGCGameLayer::ActiveInstance());
-		//GetPhysicsBody()->SetGravityScale(0.0f);
 	}
 }
-
 
 CGCObjTimePickUp::~CGCObjTimePickUp()
 {
@@ -45,12 +37,9 @@ void CGCObjTimePickUp::VOnResourceAcquire(void)
 	CGCObjSpritePhysics::VOnResourceAcquire();
 }
 
-
 void CGCObjTimePickUp::VOnReset()
 {
 	CGCObjSpritePhysics::VOnReset();
-
-
 }
 
 void CGCObjTimePickUp::CollisionChecker()
@@ -81,6 +70,7 @@ void CGCObjTimePickUp::VOnResourceRelease()
 	CGCObjSpritePhysics::VOnResourceRelease();
 
 }
+
 void CGCObjTimePickUp::VOnResurrected()
 {
 	CGCObjSpritePhysics::VOnResurrected();

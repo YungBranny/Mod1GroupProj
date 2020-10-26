@@ -3,15 +3,14 @@
 
 //Header File for 'CGCObjTimePickUp' created by Mehak Hussain on 19/10/2020.
 
-#include "GamerCamp/GameSpecific/Items/GCObjItem.h" // We use header files to pull in declarations from another file.
+#include "GamerCamp/GameSpecific/Items/GCObjItem.h"
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
-//#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 
 class CGCObjTimePickUp
-	: public CGCObjSpritePhysics // change to item and in platformer if we have more than just keys
+	: public CGCObjSpritePhysics
 {
 private:
-	float m_timeGravity;
+	float					m_fTimeGravity;
 
 	unsigned short int		m_iCollisionBuffer;
 
@@ -25,8 +24,8 @@ public:
 
 	//CGCObjItem* m_pcGCOKeys;
 
-	float getGravity() { return m_timeGravity; } // use const and put in cpp
-	void  setGravity(float i) { m_timeGravity = i; }
+	float getGravity() { return m_fTimeGravity; } // use const and put in cpp
+	void  setGravity(float i) { m_fTimeGravity = i; }
 
 	unsigned short int getCollisionBuffer() const { return m_iCollisionBuffer; }
 	void  setCollisionBuffer(unsigned short int i) { m_iCollisionBuffer = i; }
@@ -39,7 +38,6 @@ public:
 	virtual void VOnResurrected(void);
 	virtual void VOnResourceRelease(void);
 	virtual void VOnReset(void);
-
 	virtual void VOnUpdate(f32 fTimestep);
 };
 

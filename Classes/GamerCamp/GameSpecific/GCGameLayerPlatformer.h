@@ -33,7 +33,7 @@ class CGCObjDoor;
 class CGCObjTimePickUp;
 class CGCObjScalingBasicPlatformManager;
 class CGCObjScalingFallingPlatformManager;
-class CGCMovingPlatform;
+class CGCObjMovingPlatform;
 
 
 enum class ECGameStates
@@ -90,18 +90,18 @@ private:
 	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest4;
 	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest5;
 
-	CGCMovingPlatform*              m_pcGCOMovingPlatform;
+	CGCObjMovingPlatform*           m_pcGCOMovingPlatform;
 
 	CGCObjFallingPlatform*			m_pcGCFallingPlatform1;
 
 	CGCObjTravelatorPlatform*		m_pcGCTravelatorPlatform1;
 
-	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManager;
+	CGCObjScalingBasicPlatformManager*	m_pcGCScalingBasicPlatformManager;
 	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager;
 
-	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManagerMiddle;
+	CGCObjScalingBasicPlatformManager*	m_pcGCScalingBasicPlatformManagerMiddle;
 
-	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManagerTop;
+	CGCObjScalingBasicPlatformManager*	m_pcGCScalingBasicPlatformManagerTop;
 
 	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManager1;
 	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager1;
@@ -114,16 +114,16 @@ private:
 	//CGCObjSprite*					m_pcGCsprTimerBar;
 
 	//test audio
-	cocos2d::experimental::AudioEngine* m_pcGCBackgroundAudio;
+	cocos2d::experimental::AudioEngine*		m_pcGCBackgroundAudio;
 
 	// mario
 	CGCObjPlayer*					m_pcGCOPlayer;
 
-	int m_keysCollected;
+	int m_iKeysCollected;
 
-	int m_totalKeys;
+	int m_iTotalKeys;
 
-	int m_timerPickedUp;
+	int m_iTimerPickedUp;
 
 	bool m_bPlayerHitHostile;
 
