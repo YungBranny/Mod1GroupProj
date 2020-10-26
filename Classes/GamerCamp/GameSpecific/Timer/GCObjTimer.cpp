@@ -15,25 +15,23 @@
 
 using namespace cocos2d;
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
  CGCObjTimer::CGCObjTimer()
 	:CGCObjSprite(GetGCTypeIDOf(CGCObjTimer))
-	,m_iTotalTimerDuration		 (		100			)   //Max value for the timer
+	,m_iTotalTimerDuration		 (		100			)   // Max value for the timer
     ,m_iTimerDecreaseValue		 (		 1			)	// The Amount decremented each time
 	,m_iTimerIncreaseValue       (       20         )	// The Amount the Timer increases when the Timer pickup is picked up
     ,m_fMaxTimeBuffer			 (		100.0f		)	// Max value timer resets too
 	,m_fCurrentTimeBuffer        ( m_fMaxTimeBuffer )	// higher the value  slower the timer is
-	,m_fScaleX					 (     2.0f			)
-	,m_fScaleY					 (		0.1f		)
-	,m_fCurrentXScale			 (    m_fScaleX		)
-	,m_fScaleDecreaseX			 (		40.0f		)
-	,m_fScaleDecreaseY			 (		0.1f		)
-	,m_iTimerTextOutlineSize	 (		1	     	)	
-	,m_fTimerTextFontSize		 (		35.0f		)
-	,m_fTimerBarStartPosY		 (		695			)
-	,m_fTimerBarStartPosX		 (		500			)
+	,m_fScaleX					 (     2.0f			)	// Scale X for Timer bar
+	,m_fScaleY					 (		0.1f		)	// Scale Y for Timer bar
+	,m_fCurrentXScale			 (    m_fScaleX		)	// Current scale
+	,m_fScaleDecreaseX			 (		40.0f		)	// Scale Decrease X
+	,m_fScaleDecreaseY			 (		0.1f		)	// Scale Decrease Y
+	,m_iTimerTextOutlineSize	 (		1	     	)	// Text outline width
+	,m_fTimerTextFontSize		 (		35.0f		)	// Text font size
+	,m_fTimerBarStartPosY		 (		695			)	// Timer bar start pos Y
+	,m_fTimerBarStartPosX		 (		500			)	// Timer bar start pos X
     
 {
  	//Set Current time to the max Time
@@ -59,18 +57,19 @@ using namespace cocos2d;
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
+	//Getting texture file path for timer bar sprite
 	const char* pszTimerBarSprite = "TexturePacker/Sprites/TimerBar/WhiteSquare.plist";
 	{
 		CreateSprite(pszTimerBarSprite);
 		SetResetPosition(Vec2(m_fTimerBarStartPosX, m_fTimerBarStartPosY));
 		SetParent(IGCGameLayer::ActiveInstance());
 		SetScale(m_fScaleX, m_fScaleY);
-
+		
 	}
 
 }
 
+ //test
  //IN_CPP_CREATION_PARAMS_DECLARE(CGCObjTimer, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true);
 
  void CGCObjTimer::DecreaseTimer()
@@ -79,25 +78,26 @@ using namespace cocos2d;
  	if(getCurrentTimeBuffer()> 0)
  	{
 		setCurrentTimeBuffer(getCurrentTimeBuffer()-1);
+ 		//Decreases the timer buffer by 1 each update
  	}
     else if (getCurrentTimeBuffer() <= 0)
 	{
 
 		if (getCurrentTime() >= 0)
 		{
-			setCurrentTime(getCurrentTime() - getTimerDecreaseValue());
+			setCurrentTime(getCurrentTime() - getTimerDecreaseValue()); //Starting at 100% this counts down in 1's to 0
 
 			
-			SetScale(getCurrentTime() / m_fScaleDecreaseX, m_fScaleDecreaseY);
+			SetScale(getCurrentTime() / m_fScaleDecreaseX, m_fScaleDecreaseY);// Scale for the timer bar being decremented
 
-			getTimerText()->setString("Air "+ std::to_string(getCurrentTime()) + "%" );
+			getTimerText()->setString("Air "+ std::to_string(getCurrentTime()) + "%" ); //Setting Current time to text to be shown on the screen
 		}
 		else
 		{
-			setCurrentTime(0.0f);
+			setCurrentTime(0.0f); //sets time to 0 when at 0 to prevent going into negative values
 		}
 		
-		setCurrentTimeBuffer(m_fMaxTimeBuffer);
+		setCurrentTimeBuffer(m_fMaxTimeBuffer);// sets timer buffer back to 100
 	}
  }
 
@@ -106,6 +106,7 @@ void CGCObjTimer::ClampTimer()
 	if(getCurrentTime()> getMaxTimeBuffer())
 	{
 		setCurrentTime(getMaxTimeBuffer());
+		//Timer can't go over 100
 	}
 }
 
@@ -120,6 +121,7 @@ void CGCObjTimer::ClampTimer()
 void CGCObjTimer::ResetTimer()
 {
 	setCurrentTime(getTotalTimerDuration());
+ 	//on reset set timer back to max
 }
 
  void CGCObjTimer::Update()
