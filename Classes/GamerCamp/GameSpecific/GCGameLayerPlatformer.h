@@ -114,7 +114,7 @@ private:
 	//CGCObjSprite*					m_pcGCsprTimerBar;
 
 	//test audio
-	cocos2d::experimental::AudioEngine* m_audio1;
+	cocos2d::experimental::AudioEngine* m_pcGCBackgroundAudio;
 
 	// mario
 	CGCObjPlayer*					m_pcGCOPlayer;
@@ -147,7 +147,7 @@ public:
 
 	void replaceSceneMenu();
 
-	void backgroundmusic();
+	void backgroundMusic();
 
 	//
 	//////////////////////////////////////////////////////////////////////////

@@ -107,7 +107,6 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_bResetWasRequested			( false )
 
 {
-
 	m_totalKeys = 3;
 
 	m_keysCollected = 0;
@@ -117,8 +116,6 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 	m_bPlayerHitHostile = false;
 
 	m_bPlayerKeysGathered = false;
-
-	//test audio
 	
 }
 
@@ -171,9 +168,9 @@ void CGCGameLayerPlatformer::replaceSceneMenu()
 	
 }
 
-void CGCGameLayerPlatformer::backgroundmusic()
+void CGCGameLayerPlatformer::backgroundMusic()
 {
-	m_audio1->play2d("Sounds/Background.mp3", true, 0.3f);
+	m_pcGCBackgroundAudio->play2d("Sounds/BackgroundMusic.mp3", true, 0.3f);
 }
 
 
@@ -419,7 +416,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 		m_pcGCSprBackGround->CreateSprite( pszPlist_background );
 		m_pcGCSprBackGround->SetResetPosition(cocos2d::Vec2(500, 400));
 		m_pcGCSprBackGround->SetParent( IGCGameLayer::ActiveInstance() );
-		backgroundmusic();
+		backgroundMusic();
  	}
 
 	m_pcGCTimer = new CGCObjTimer();
