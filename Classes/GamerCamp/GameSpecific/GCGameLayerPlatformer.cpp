@@ -384,7 +384,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	///////////////////////////////////////////////////////////////////////////
 
  	// create and initialize a label
-    Label* pLabel = Label::createWithTTF( "Game - Top button to Quit, bottom button to Reset", "fonts/arial.ttf", 24);
+    Label* pLabel = Label::createWithTTF( "Collect the three Keys to open the Door before the Air Timer runs out!", "fonts/SaltyOcean.ttf", 35);
 
     // position the label on the center of the screen
     pLabel->setPosition( Vec2( visibleSize.width/2, visibleSize.height - 50 ) );
