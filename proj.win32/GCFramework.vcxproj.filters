@@ -55,9 +55,6 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Timer">
       <UniqueIdentifier>{30b9ba71-22e2-47c9-83ef-6599b4c1eb09}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\GamerCamp\GameSpecific\Keys">
-      <UniqueIdentifier>{9a343c04-2a7a-4169-b829-bc3712b902f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\Enemies">
       <UniqueIdentifier>{55f9c181-6b9a-43cc-b7af-2ffec0605587}</UniqueIdentifier>
     </Filter>
@@ -78,6 +75,9 @@
     </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\GameStates">
       <UniqueIdentifier>{a79c280a-d713-4ec0-ab30-02c44c6e57ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Collectables">
+      <UniqueIdentifier>{9a343c04-2a7a-4169-b829-bc3712b902f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -178,7 +178,7 @@
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
+      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
@@ -202,7 +202,7 @@
       <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
+      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjFallingPlatform.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
@@ -345,7 +345,7 @@
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
+      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
@@ -369,7 +369,7 @@
       <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Keys</Filter>
+      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjFallingPlatform.h">
       <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>

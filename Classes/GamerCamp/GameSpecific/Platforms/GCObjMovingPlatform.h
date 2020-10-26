@@ -1,16 +1,10 @@
 #ifndef _GCOBJMOVINGPLATFORM_
 #define _GCOBJMOVINGPLATFORM_
 
-
-//#include "Classes/GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
-
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
-
-
 
 class CGCMovingPlatform
 	:public CGCObjSpritePhysics
-
 {
 private:
 	enum class EMoveDirection
@@ -25,18 +19,18 @@ private:
 
 
 	EMoveDirection			m_eMoveDirection;
+
 	float					m_fTimeInCurrentMoveDirection;
 	float					m_fGravity;
 
-	cocos2d::Vec2			m_vEndDestination1;
-	cocos2d::Vec2			m_vEndDesitnation2;
-
+	cocos2d::Vec2			m_v2StartPosition;
+	cocos2d::Vec2			m_v2EndPosition;
 	cocos2d::Vec2			m_vMovingRightVelocity;
 	cocos2d::Vec2			m_vMovingLeftVelocity;
 	cocos2d::Vec2			m_vMovingUpVelocity;
 	cocos2d::Vec2			m_vMovingDownVelocity;
 
-	bool					m_bMovingLeftAndRight;
+	bool					m_bMoveUpAndDown;
 	bool					m_bJustCollided;
 
 	void					InitialiseMovementDirection();
@@ -58,32 +52,29 @@ public:
 	void  setJustCollided(bool i) { m_bJustCollided = i; }
 
 
-	cocos2d::Vec2	getEndDestination1()	const { return m_vEndDestination1; }
-	cocos2d::Vec2	getEndDesination2()	const { return m_vEndDesitnation2; }
+	cocos2d::Vec2	getStartPosition()	        const { return m_v2StartPosition; }
+	cocos2d::Vec2	getEndPosition()	        const { return m_v2EndPosition; }
 	cocos2d::Vec2	getMovingRightVelocity()	const { return m_vMovingRightVelocity; }
-	cocos2d::Vec2	getMovingLeftVelocity()	const { return m_vMovingRightVelocity; }
-	cocos2d::Vec2	getMovingUpVelocity()	const { return m_vMovingUpVelocity; }
-	cocos2d::Vec2	getMovingDownVelocity()	const { return m_vMovingDownVelocity; }
+	cocos2d::Vec2	getMovingLeftVelocity()	    const { return m_vMovingRightVelocity; }
+	cocos2d::Vec2	getMovingUpVelocity()	    const { return m_vMovingUpVelocity; }
+	cocos2d::Vec2	getMovingDownVelocity()	    const { return m_vMovingDownVelocity; }
 
-	void setEndDesination1(cocos2d::Vec2 i) { m_vEndDestination1 = i; }
-	void setEndDesination2(cocos2d::Vec2 i) { m_vEndDesitnation2 = i; }
-	void setMovingRightVelocity(cocos2d::Vec2 i) { m_vMovingRightVelocity = i; }
-	void setMovingLeftVelocity(cocos2d::Vec2 i) { m_vMovingLeftVelocity = i; }
-	void setMovingUpVelocity(cocos2d::Vec2 i) { m_vMovingUpVelocity = i; }
-	void setMovingDownVelocity(cocos2d::Vec2 i) { m_vMovingDownVelocity = i; }
+	void setStartPosition       (cocos2d::Vec2 i) { m_v2StartPosition = i; }
+	void setEndPosition         (cocos2d::Vec2 i) { m_v2EndPosition = i; }
+	void setMovingRightVelocity (cocos2d::Vec2 i) { m_vMovingRightVelocity = i; }
+	void setMovingLeftVelocity  (cocos2d::Vec2 i) { m_vMovingLeftVelocity = i; }
+	void setMovingUpVelocity    (cocos2d::Vec2 i) { m_vMovingUpVelocity = i; }
+	void setMovingDownVelocityz (cocos2d::Vec2 i) { m_vMovingDownVelocity = i; }
 
-	void ChangeDirection();
 	void Movement();
+	void SettingVelocity();
 
 	virtual void VOnResourceAcquire(void);
 	virtual void VOnResurrected(void);
-	virtual void VOnResourceRelease(void);
-	virtual void VOnReset(void);
-
-
 	virtual void VOnUpdate(f32 fTimestep);
 
 
 
 };
+
 #endif
