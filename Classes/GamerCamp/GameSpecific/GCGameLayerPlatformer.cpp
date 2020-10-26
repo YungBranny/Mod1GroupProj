@@ -119,7 +119,6 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 	m_bPlayerKeysGathered = false;
 
 	//test audio
-	m_audio1->play2d ("Sounds/ManicMiner.mp3", true, 0.3f);
 	
 }
 
@@ -170,6 +169,11 @@ void CGCGameLayerPlatformer::replaceSceneMenu()
 	
 	//ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
 	
+}
+
+void CGCGameLayerPlatformer::backgroundmusic()
+{
+	m_audio1->play2d("Sounds/Background.mp3", true, 0.3f);
 }
 
 
@@ -415,7 +419,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 		m_pcGCSprBackGround->CreateSprite( pszPlist_background );
 		m_pcGCSprBackGround->SetResetPosition(cocos2d::Vec2(500, 400));
 		m_pcGCSprBackGround->SetParent( IGCGameLayer::ActiveInstance() );
-		
+		backgroundmusic();
  	}
 
 	m_pcGCTimer = new CGCObjTimer();
