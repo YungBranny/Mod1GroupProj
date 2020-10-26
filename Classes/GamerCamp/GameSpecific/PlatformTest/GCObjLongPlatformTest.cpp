@@ -7,14 +7,16 @@
 
 #include "GCObjLongPlatformTest.h"
 
+#include "AudioEngine.h"
+
 
 
 CGCObjLongPlatformTest::CGCObjLongPlatformTest ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjLongPlatformTest))
-	, m_v2StartPos (400, 400)
+	, m_v2StartPos (400, 400)				//default start position
 {
-	SetResetPosition (GetStartPos ());
-}
+	SetResetPosition (GetStartPos ());		//sets the start position to the v2start pos
+}	
 
 
 
