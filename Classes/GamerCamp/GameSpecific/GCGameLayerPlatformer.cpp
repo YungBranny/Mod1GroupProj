@@ -505,6 +505,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	m_pcGCOMovingPlatform = new CGCMovingPlatform();
 	m_pcGCOMovingPlatform->SetResetPosition(cocos2d::Vec2(970, 280));
+	m_pcGCOMovingPlatform->setGravity(3.0f);
 
 	m_pcGCTravelatorPlatform1 = new CGCObjTravelatorPlatform();
 	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(900, 400));
