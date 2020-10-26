@@ -4,8 +4,8 @@
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
-#include "SimpleAudioEngine.h"
-#include "AudioEngine.h"
+//#include "SimpleAudioEngine.h"
+//#include "AudioEngine.h"
 
 
 
@@ -13,8 +13,8 @@ class CGCObjScalingBasicPlatform
 	: public CGCObjSpritePhysics
 {
 private:
-	CocosDenshion::SimpleAudioEngine* m_audio;
-	cocos2d::experimental::AudioEngine* m_audio1;
+	//CocosDenshion::SimpleAudioEngine* m_audio;
+	//cocos2d::experimental::AudioEngine* m_audio1;
 public:
 
 	CGCObjScalingBasicPlatform ();

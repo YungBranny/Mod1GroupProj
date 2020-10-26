@@ -8,6 +8,11 @@
 #include "GCObjFallingPlatform.h"
 
 
+//Brandon Middleton
+//This class draws a platform when falls when it is stood on
+//I will no longer use the class as the platform isnt needed in the game and will
+//refactoring it in the scalable 
+
 
 CGCObjFallingPlatform::CGCObjFallingPlatform ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjFallingPlatform))
