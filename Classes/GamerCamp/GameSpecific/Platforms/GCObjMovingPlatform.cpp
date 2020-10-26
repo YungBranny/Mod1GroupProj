@@ -5,7 +5,6 @@
 
 
 CGCMovingPlatform::CGCMovingPlatform()
-//not letting me inherit from basic enemies
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCMovingPlatform))
 	, m_bMoveUpAndDown(false)
 	, m_bJustCollided(false)
