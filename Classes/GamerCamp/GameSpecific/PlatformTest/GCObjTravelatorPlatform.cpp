@@ -17,8 +17,31 @@ CGCObjTravelatorPlatform::CGCObjTravelatorPlatform()
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//What this call does in the main game layer (i.e its functionality)
 
+//GetCollisionManager().AddCollisionHandler
+//(
+//	[]
+//(CGCObjPlayer& rcPlayer, CGCObjTravelatorPlatform& rcTravelatorPlatform, const b2Contact& rcContact) -> void
+//	{
+//		if (rcContact.IsTouching())
+//		{
+//			rcPlayer.setOnTravelator(true);
+//
+//			rcPlayer.SetCanJump(true);
+//
+//			rcPlayer.SetVelocity(rcTravelatorPlatform.getVelocity());
+//		}
+//		else if (rcContact.IsTouching() == false)
+//		{
+//			rcPlayer.setOnTravelator(false);
+//
+//			rcPlayer.SetCanJump(false);
+//		}
+//	}
+//);
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 IN_CPP_CREATION_PARAMS_DECLARE(CGCObjTravelatorPlatform, "TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist", "LongPlatformTest", b2_staticBody, true); //file path and physics body for the travelator
 
 void CGCObjTravelatorPlatform::VOnResourceAcquire()

@@ -16,7 +16,7 @@
 
 CGCWinScene::CGCWinScene()
 	: IGCGameLayer(GetGCTypeIDOf(CGCWinScene))
-	, m_pcGCSprBackGround(nullptr)
+	, m_pcGCSprBackGround(nullptr) //background sprite
 {
 
 }
@@ -36,55 +36,22 @@ void CGCWinScene::onEnter()
 
 void CGCWinScene::VOnCreate()
 {
-	///////////////////////////////////////////////////////////////////////////
-	// cache some useful values 
-	///////////////////////////////////////////////////////////////////////////
-
-	//////////////////////////////////////////////////////////////////////////
-	// cache some useful values 
+	
 	cocos2d::Size visibleSize = cocos2d::Director::getInstance()->getVisibleSize();
 	cocos2d::Point origin = cocos2d::Director::getInstance()->getVisibleOrigin();
 
-
 	///////////////////////////////////////////////////////////////////////////
-	// default object group
-	///////////////////////////////////////////////////////////////////////////
-
+	
 	// create the default object group
 	IGCGameLayer::VOnCreate();
-
-
-	///////////////////////////////////////////////////////////////////////////
-	// custom object groups
-	//
-	// N.B. Cannot do this in CGCObjectGroup internally on construction, 
-	// because ObjectGroupRegister calls a virtual function 
-	// in the CGCObjectManager interface to check the 
-	// types of objects that the group handles
-	///////////////////////////////////////////////////////////////////////////
-
-	// create and register the object group for the platform objects
-
-
-	// create and register the object group for the item objects
-
-
-	// create and register the object group for the invader objects
-	//m_pcGCGroupInvader = new CGCObjGroupInvader( 64 );
-	//CGCObjectManager::ObjectGroupRegister( m_pcGCGroupInvader );
-
-	// create and register the object group for the player projectile objects
-
-
-
 
 
 
 	///////////////////////////////////////////////////////////////////////////
 	// add menu
 	///////////////////////////////////////////////////////////////////////////
-
-	// add a "close" icon to exit the progress. it's an autorelease object
+	//reset button
+	
 	cocos2d::MenuItemImage* pResetItem
 		= cocos2d::MenuItemImage::create("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
@@ -93,6 +60,9 @@ void CGCWinScene::VOnCreate()
 	pResetItem->setPosition(cocos2d::Vec2(((visibleSize.width - (pResetItem->getContentSize().width * 0.5f)) + origin.x),
 		(((pResetItem->getContentSize().height * 0.5f) + origin.y))));
 
+	///////////////////////////////////////////////////////////////////////////
+	//Quit button
+	
 	cocos2d::MenuItemImage* pQuitItem
 		= cocos2d::MenuItemImage::create("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
@@ -101,17 +71,17 @@ void CGCWinScene::VOnCreate()
 	pQuitItem->setPosition(cocos2d::Vec2(((visibleSize.width - (pQuitItem->getContentSize().width * 0.5f)) + origin.x),
 		((visibleSize.height - (pQuitItem->getContentSize().height * 0.5f)) + origin.y)));
 
-	// create menu, it's an autorelease object
+	///////////////////////////////////////////////////////////////////////////
+	// group the reset and quit buttons together 
+	
 	cocos2d::Menu* pMenu = cocos2d::Menu::create(pResetItem, pQuitItem, nullptr);
 	pMenu->setPosition(cocos2d::Vec2::ZERO);
 	this->addChild(pMenu, 1);
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 
-	///////////////////////////////////////////////////////////////////////////
-	// add label
-	///////////////////////////////////////////////////////////////////////////
-
+	//Text label
+	
 	// create and initialize a label
 	cocos2d::Label* pLabel = cocos2d::Label::createWithTTF("Winner!", "fonts/arial.ttf", 100);
 
@@ -123,6 +93,11 @@ void CGCWinScene::VOnCreate()
 	// add the label as a child to this layer
 	this->addChild(pLabel, 1);
 
+	///////////////////////////////////////////////////////////////////////////
+
+	
+	//Background sprite plist
+	
 	const char* pszPlist_background = "TexturePacker/Backgrounds/Placeholder/background.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite();
@@ -132,10 +107,8 @@ void CGCWinScene::VOnCreate()
 
 	}
 
-
 	///////////////////////////////////////////////////////////////////////////
-	// set up physics 
-	///////////////////////////////////////////////////////////////////////////
+	//Here is collisions are required 
 
 	// set "self" as contact listener
 	B2dGetWorld()->SetContactListener(this);
@@ -200,7 +173,7 @@ void CGCWinScene::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCWinScene::Callback_OnQuitButton(Ref* pSender)
 {
-	ReplaceScene(TransitionRotoZoom::create(1.0f, CMenuLayer::scene()));
+	ReplaceScene(TransitionRotoZoom::create(1.0f, CMenuLayer::scene()));//goes back to the menu scene
 }
 
 
@@ -211,7 +184,7 @@ void CGCWinScene::Callback_OnQuitButton(Ref* pSender)
 void CGCWinScene::Callback_OnResetButton(Ref* pSender)
 {
 	
-	Director::getInstance()->replaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));
+	Director::getInstance()->replaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));//Goes to the main game layer
 }
 
 

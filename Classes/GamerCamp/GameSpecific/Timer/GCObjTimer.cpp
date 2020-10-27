@@ -32,6 +32,8 @@ using namespace cocos2d;
 	,m_fTimerTextFontSize		 (		35.0f		)	// Text font size
 	,m_fTimerBarStartPosY		 (		695			)	// Timer bar start pos Y
 	,m_fTimerBarStartPosX		 (		500			)	// Timer bar start pos X
+	,m_iTimerBarHeightX			 (		420			)	// Timer bar Height on Screen
+	,m_iTimerBarHeightY			 (		10			)	// Timer bar Height on Screen
     
 {
  	//Set Current time to the max Time
@@ -51,7 +53,7 @@ using namespace cocos2d;
  	
 	getTimerText()->enableOutline(Color4B::BLACK, m_iTimerTextOutlineSize);
 	
-	getTimerText()->setPosition(Vec2(visibleSize.width / 2 - 420 , visibleSize.height +  10));
+	getTimerText()->setPosition(Vec2(visibleSize.width / 2 - m_iTimerBarHeightX , visibleSize.height +  m_iTimerBarHeightY));
 
 	getTimerText()->setString("Air " + std::to_string( getCurrentTime()) + "%"  );
 
