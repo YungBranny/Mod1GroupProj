@@ -13,21 +13,22 @@
 CGCMovingEnemies::CGCMovingEnemies ()
 //not letting me inherit from basic enemies
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCMovingEnemies))
-	//, m_eMoveDirection (EMoveDirection::Right)
-	, m_bMovingLeftAndRight			(true)
-	, m_vEndDestination1			(800,400)
-	, m_vEndDesitnation2			(500,100)
-	, m_vMovingRightVelocity		(cocos2d::Vec2 (9.0f, 0.0f))
-	, m_vMovingLeftVelocity			(-m_vMovingRightVelocity)
-	, m_vMovingUpVelocity			(cocos2d::Vec2 (0.0f, 10.0f))
-	, m_vMovingDownVelocity			(-m_vMovingUpVelocity)
-	, m_bJustCollided				(false)
-	, m_iCollisionBuffer			(60)
+	, m_bMovingLeftAndRight			(true)							//Default values for the variables
+	, m_vEndDestination1			(800,400)						//Default values for the variables
+	, m_vEndDesitnation2			(500,100)						//Default values for the variables
+	, m_vMovingRightVelocity		(cocos2d::Vec2 (9.0f, 0.0f))	//Default values for the variables
+	, m_vMovingLeftVelocity			(-m_vMovingRightVelocity)		//Default values for the variables
+	, m_vMovingUpVelocity			(cocos2d::Vec2 (0.0f, 10.0f))	//Default values for the variables
+	, m_vMovingDownVelocity			(-m_vMovingUpVelocity)			//Default values for the variables
+	, m_bJustCollided				(false)							//Default values for the variables
+	, m_iCollisionBuffer			(60)							//Default values for the variables
 {
-	InitialiseMovementDirection ();
+	InitialiseMovementDirection (); //calls the function when this class is initalised
 }
 
-void CGCMovingEnemies::InitialiseMovementDirection ()
+//this function checks if the bool"m_bMovingLeftAndRight  is true it sets the starting direction to right, if not it is set to up
+//If the default starting direction is right then  the only other direction it can go is left, if the defualt position is up then the only other direction it can go is down
+void CGCMovingEnemies::InitialiseMovementDirection () 
 {
 	if (m_bMovingLeftAndRight == true)
 	{
@@ -39,6 +40,7 @@ void CGCMovingEnemies::InitialiseMovementDirection ()
 	};
 }
 
+//Sets the sprite
 IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist", "Enemy", b2_dynamicBody, true);
 void CGCMovingEnemies::VOnResourceAcquire ()
 {
@@ -47,12 +49,7 @@ void CGCMovingEnemies::VOnResourceAcquire ()
 
 	CGCObjSpritePhysics::VOnResourceAcquire ();
 
-	//const char* pszAnim_marioJog = "Jog";
-
-	// animate!
 	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
-	//RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_marioJog)));
-
 }
 
 
@@ -60,21 +57,7 @@ void CGCMovingEnemies::VOnResourceAcquire ()
 void CGCMovingEnemies::VOnReset ()
 {
 	CGCObjSpritePhysics::VOnReset ();
-	// reset
-	SetFlippedX (false);
-	SetFlippedY (false);
-
-	SetResetPosition (cocos2d::Vec2 (100, 100));
-	//if (GetPhysicsBody ())
-	//{
-	//	cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
-	//	GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (0, 0.0f));
-	//	GetPhysicsBody ()->SetTransform (IGCGameLayer::B2dPixelsToWorld (b2Vec2 (v2SpritePos.x, v2SpritePos.y)), 0.0f);
-	//	GetPhysicsBody ()->SetFixedRotation (true);
-	//}
-
 }
-
 
 void CGCMovingEnemies::VOnResourceRelease ()
 {
@@ -87,8 +70,8 @@ void CGCMovingEnemies::VOnResurrected ()
 	GetPhysicsBody ()->SetGravityScale (getGravity ());
 }
 
-
-void CGCMovingEnemies::ChangeDirection ()
+//changes the direction if the current position has reached the end desitination 
+void CGCMovingEnemies::ChangeDirection () 
 {
 	if (m_bMovingLeftAndRight == true)
 	{
@@ -139,7 +122,7 @@ void CGCMovingEnemies::ChangeDirection ()
 	}
 }
 
-void CGCMovingEnemies::Movement ()
+void CGCMovingEnemies::Movement () //changes the velocity depending on the direction it is going
 {
 	switch (m_eMoveDirection)
 	{
@@ -164,15 +147,15 @@ void CGCMovingEnemies::Movement ()
 	case EMoveDirection::Down:
 	{
 		this->SetVelocity (m_vMovingDownVelocity);
-		//this->GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (100, 0));
 	}
 	break;
 	}
 }
 
 
-
-void CGCMovingEnemies::CollisionChecker ()
+//checks to see if the just collided bool is true, if it is then the collision buffer counts down, once it has reached 0 it sets the bool back to false
+//Once its false it can be collided with again
+void CGCMovingEnemies::CollisionChecker () 
 {
 	if (m_bJustCollided == true)
 	{
@@ -194,5 +177,4 @@ void CGCMovingEnemies::VOnUpdate (f32 fTimeStep)
 	ChangeDirection ();
 	Movement ();
 	CollisionChecker ();
-	
 }
