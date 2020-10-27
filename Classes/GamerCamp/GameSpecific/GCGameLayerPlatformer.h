@@ -115,6 +115,8 @@ private:
 
 	//test audio
 	cocos2d::experimental::AudioEngine*		m_pcGCBackgroundAudio;
+	cocos2d::experimental::AudioEngine*		m_pcGCCollectKeyAudio;
+	cocos2d::experimental::AudioEngine*		m_pcGCTimerPickUpAudio;
 
 	// mario
 	CGCObjPlayer*					m_pcGCOPlayer;
@@ -148,6 +150,10 @@ public:
 	void replaceSceneMenu();
 
 	void backgroundMusic();
+
+	void playKeyAudio();
+
+	void playTimerPickUpAudio();
 
 	//
 	//////////////////////////////////////////////////////////////////////////

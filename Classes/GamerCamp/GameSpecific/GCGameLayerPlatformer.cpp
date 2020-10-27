@@ -173,6 +173,16 @@ void CGCGameLayerPlatformer::backgroundMusic()
 	m_pcGCBackgroundAudio->play2d("Sounds/BackgroundMusic.mp3", true, 0.3f);
 }
 
+void CGCGameLayerPlatformer::playKeyAudio()
+{
+	m_pcGCCollectKeyAudio->play2d("Sounds/CollectKey.mp3", false, 0.1f);
+}
+
+void CGCGameLayerPlatformer::playTimerPickUpAudio()
+{
+	m_pcGCTimerPickUpAudio->play2d("Sounds/TimerPickUp.mp3", false, 0.1f);
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // in order to guarantee the actions this layer expects we need to 
@@ -469,7 +479,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOKeys = new CGCObjKeys();
 	m_pcGCOKeys->SetResetPosition (cocos2d::Vec2 (715, 160));
 	m_pcGCOKeys1 = new CGCObjKeys();
-	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(500, 370));
+	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(500, 420));
 	m_pcGCOKeys2 = new CGCObjKeys();
 	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(700, 550));
 
@@ -678,6 +688,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 			rcKeys.setJustCollided(true);
 			CGCObjectManager::ObjectKill(&rcKeys);
 			keyCollected();
+			playKeyAudio();
 		}
 	}
 	);
@@ -695,6 +706,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 				CGCObjectManager::ObjectKill(&rcPickUp);
 				//m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
 				addOnTime();
+				playTimerPickUpAudio();
 			}
 		}
 	}
