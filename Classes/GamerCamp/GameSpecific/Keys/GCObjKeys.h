@@ -1,11 +1,11 @@
 #ifndef	_GCOBJKEYS_H_
 #define	_GCOBJKEYS_H_
 
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
-// This 'GCObjKeys' Header File and Class File was created and is managed by Mehak Hussain.
-// The purpose of this Class is to create the Key Collectables for the Player to collect one by one.
-// In this Class, I set the physics and creation of the Keys.
-///////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// This 'GCObjKeys' Header File and Class File was created and is managed by Mehak Hussain.          //
+// The purpose of this Class is to create the Key Collectables for the Player to collect one by one. //
+// In this Class, I set the physics and creation of the Keys.                                        //
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 

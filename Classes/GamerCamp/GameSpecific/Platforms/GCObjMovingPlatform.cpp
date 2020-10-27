@@ -1,38 +1,34 @@
 #include "GamerCamp/GameSpecific/Platforms/GCObjMovingPlatform.h"
-#include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
-#include "GamerCamp/GCObject/GCObjectManager.h"
-#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
-
 
 CGCObjMovingPlatform::CGCObjMovingPlatform()
-	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjMovingPlatform))
-	, m_bMoveUpAndDown(false)
-	, m_bJustCollided(false)
-	, m_v2StartPosition(800, 280)
-	, m_v2EndPosition(500, 110)
-	, m_vMovingUpVelocity(cocos2d::Vec2(0.0f, 3.0f))
-	, m_vMovingDownVelocity(-m_vMovingUpVelocity)
-	, m_iCollisionBuffer(60)
+	: CGCObjSpritePhysics ( GetGCTypeIDOf(CGCObjMovingPlatform) ) // We are inheriting from CGCObjSpritePhysics, so we can use physics on the Platform
+	, m_bMoveUpAndDown								(	  false		)
+	, m_bJustCollided								(	  false		)
+	, m_v2StartPosition								(	 800, 280	)
+	, m_v2EndPosition								(	 500, 110	)
+	, m_v2MoveUpVelocity							( cocos2d::Vec2(0.0f, 3.0f) )
+	, m_v2MoveDownVelocity							(	-m_v2MoveUpVelocity	)
+	, m_iCollisionBuffer							(	60	)
 {
 	InitialiseMovementDirection();
 }
 
-void CGCObjMovingPlatform::InitialiseMovementDirection()
+void CGCObjMovingPlatform::InitialiseMovementDirection() 
 {
-	if( m_bMoveUpAndDown == true )
+	if( m_bMoveUpAndDown == true ) // If default is set to 'true', then the platform may go Right and in the opposite direction, which is Left. This may be used for future levels
 	{
 		m_eMoveDirection = EMoveDirection::Right;
 	}
-	else if( m_bMoveUpAndDown == false )
+	else if( m_bMoveUpAndDown == false ) // The default 'm_bMoveUpAndDown' is set to 'false', therefore platform can only go up and in the opposite direction, which is down
 	{
 		m_eMoveDirection = EMoveDirection::Up;
 	};
 }
 
-IN_CPP_CREATION_PARAMS_DECLARE(CGCObjMovingPlatform, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_dynamicBody, true);
+IN_CPP_CREATION_PARAMS_DECLARE( CGCObjMovingPlatform, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_dynamicBody, true );
 void CGCObjMovingPlatform::VOnResourceAcquire()
 {
-	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCObjMovingPlatform);
+	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE ( CGCObjMovingPlatform );
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
 }
@@ -40,7 +36,7 @@ void CGCObjMovingPlatform::VOnResourceAcquire()
 void CGCObjMovingPlatform::VOnResurrected()
 {
 	CGCObjSpritePhysics::VOnResurrected();
-	GetPhysicsBody()->SetGravityScale(getGravity());
+	GetPhysicsBody()->SetGravityScale ( getGravity() );
 }
 
 void CGCObjMovingPlatform::Movement()
@@ -100,25 +96,25 @@ void CGCObjMovingPlatform::SettingVelocity()
 	{
 	case EMoveDirection::Right:
 	{
-		this->SetVelocity(m_vMovingRightVelocity);
+		this->SetVelocity(m_v2MoveRightVelocity);
 	}
 	break;
 
 	case EMoveDirection::Left:
 	{
-		this->SetVelocity(m_vMovingLeftVelocity);
+		this->SetVelocity(m_v2MoveLeftVelocity);
 	}
 	break;
 
 	case EMoveDirection::Up:
 	{
-		this->SetVelocity(m_vMovingUpVelocity);
+		this->SetVelocity(m_v2MoveUpVelocity);
 	}
 	break;
 
 	case EMoveDirection::Down:
 	{
-		this->SetVelocity(m_vMovingDownVelocity);
+		this->SetVelocity(m_v2MoveDownVelocity);
 	}
 	break;
 	}
