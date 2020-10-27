@@ -35,6 +35,7 @@
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
+#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 #include "GamerCamp/GameSpecific/Keys/GCObjTimePickUp.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingBasicPlatformManager.h"
 #include "GamerCamp/GameSpecific/PlatformTest/GCObjScalingBasicPlatform.h"
@@ -959,7 +960,7 @@ void CGCGameLayerPlatformer::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 {
-	ReplaceScene( TransitionRotoZoom::create( 1.0f, CMenuLayer::scene() ) );
+	ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene ()));
 }
 
 
