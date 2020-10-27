@@ -174,7 +174,7 @@ void CGCGameLayerPlatformer::replaceSceneMenu()
 
 void CGCGameLayerPlatformer::backgroundMusic()
 {
-	m_pcGCBackgroundAudio->play2d("Sounds/BackgroundMusic.mp3", true, 0.3f);
+	m_pcGCBackgroundAudio->play2d("Sounds/BackgroundMusic.mp3", true, 0.2f);
 }
 
 void CGCGameLayerPlatformer::playKeyAudio()
@@ -861,6 +861,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		VOnReset();
 		m_iKeysCollected = 0;
 		ResetRequestWasHandled();
+		m_pcGCBackgroundAudio->stopAll();
 	}
 
 	if(m_pcGCTimer->getCurrentTime() <= 0)
