@@ -117,6 +117,7 @@ private:
 	cocos2d::experimental::AudioEngine*		m_pcGCBackgroundAudio;
 	cocos2d::experimental::AudioEngine*		m_pcGCCollectKeyAudio;
 	cocos2d::experimental::AudioEngine*		m_pcGCTimerPickUpAudio;
+	cocos2d::experimental::AudioEngine*		m_pcGCDoorOpeningAudio;
 
 	// mario
 	CGCObjPlayer*					m_pcGCOPlayer;
@@ -154,6 +155,8 @@ public:
 	void playKeyAudio();
 
 	void playTimerPickUpAudio();
+
+	void playDoorOpeningAudio();
 
 	//
 	//////////////////////////////////////////////////////////////////////////

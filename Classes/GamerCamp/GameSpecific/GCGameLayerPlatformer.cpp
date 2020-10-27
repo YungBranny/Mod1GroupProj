@@ -104,7 +104,11 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCScalingFallingPlatformManager2 (nullptr)
 , m_pcGCScalingBasicPlatformManagerMiddle (nullptr)
 , m_pcGCScalingBasicPlatformManagerTop (nullptr)
-, m_bResetWasRequested			( false )
+, m_pcGCBackgroundAudio			(	nullptr	)
+, m_pcGCCollectKeyAudio			(	nullptr	)
+, m_pcGCTimerPickUpAudio		(	nullptr	)
+, m_pcGCDoorOpeningAudio		(	nullptr	)
+, m_bResetWasRequested			(	false	)
 
 {
 	m_iTotalKeys = 3;
@@ -181,6 +185,11 @@ void CGCGameLayerPlatformer::playKeyAudio()
 void CGCGameLayerPlatformer::playTimerPickUpAudio()
 {
 	m_pcGCTimerPickUpAudio->play2d("Sounds/TimerPickUp.mp3", false, 0.1f);
+}
+
+void CGCGameLayerPlatformer::playDoorOpeningAudio()
+{
+	m_pcGCDoorOpeningAudio->play2d("Sounds/OpeningDoor.mp3", false, 0.1f);
 }
 
 
@@ -671,6 +680,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 			//ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCWinScene >::CreateScene ()));
 
 			m_bPlayerKeysGathered = true;
+
+			playDoorOpeningAudio();
 			
 			//ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
 		}
@@ -905,6 +916,18 @@ void CGCGameLayerPlatformer::VOnDestroy()
 
 	delete m_pcGCOMovingPlatform;
 	m_pcGCOMovingPlatform = nullptr;
+
+	delete m_pcGCBackgroundAudio;
+	m_pcGCBackgroundAudio = nullptr;
+
+	delete m_pcGCCollectKeyAudio;
+	m_pcGCCollectKeyAudio = nullptr;
+
+	delete m_pcGCTimerPickUpAudio;
+	m_pcGCTimerPickUpAudio = nullptr;
+
+	delete m_pcGCDoorOpeningAudio;
+	m_pcGCDoorOpeningAudio = nullptr;
 
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. because object groups must register manually, 
