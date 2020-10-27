@@ -149,6 +149,7 @@ void CGCGameLayerPlatformer::replaceSceneWin()
 	//needs a bool
 	if(m_bPlayerKeysGathered == true)
 	{
+		m_pcGCBackgroundAudio->stopAll ();
 		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCWinScene >::CreateScene()));
 	}
 	
@@ -159,6 +160,7 @@ void CGCGameLayerPlatformer::replaceSceneLose()
 {
 	if (m_bPlayerHitHostile == true)
 	{
+		m_pcGCBackgroundAudio->stopAll ();
 		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
 	}
 	
@@ -166,7 +168,7 @@ void CGCGameLayerPlatformer::replaceSceneLose()
 
 void CGCGameLayerPlatformer::replaceSceneMenu()
 {
-	
+	//m_pcGCBackgroundAudio->stopAll ();
 	//ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
 	
 }
@@ -860,6 +862,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		m_iKeysCollected = 0;
 		ResetRequestWasHandled();
 		m_pcGCBackgroundAudio->stopAll();
+		backgroundMusic ();
 	}
 
 	if(m_pcGCTimer->getCurrentTime() <= 0)
@@ -874,7 +877,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	replaceSceneLose();
 
-	replaceSceneMenu();
+	//replaceSceneMenu();
 
 	////////////////////////////////
 }
@@ -957,6 +960,7 @@ void CGCGameLayerPlatformer::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 {
+	m_pcGCBackgroundAudio->stopAll ();
 	ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene ()));
 }
 
@@ -967,6 +971,7 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 {
+	m_pcGCBackgroundAudio->stopAll ();
 	m_pcGCTimer->ResetTimer();
 	RequestReset();
 	
