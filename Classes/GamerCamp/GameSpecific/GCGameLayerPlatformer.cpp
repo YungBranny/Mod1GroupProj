@@ -106,13 +106,13 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCScalingBasicPlatformManagerMiddle (nullptr)
 , m_pcGCScalingBasicPlatformManagerTop (nullptr)
 , m_pcGCBackgroundAudio			(	nullptr	)
-, m_pcGCCollectKeyAudio			(	nullptr	)
-, m_pcGCTimerPickUpAudio		(	nullptr	)
-, m_pcGCDoorOpeningAudio		(	nullptr	)
+, m_pcGCSoundEffectsAudio		(	nullptr	)
+//, m_pcGCTimerPickUpAudio		(	nullptr	)
+//, m_pcGCDoorOpeningAudio		(	nullptr	)
 , m_bResetWasRequested			(	false	)
 
 {
-	m_iTotalKeys = 3;
+	m_iTotalKeys = 1;
 
 	m_iKeysCollected = 0;
 
@@ -135,7 +135,7 @@ CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
 
 void CGCGameLayerPlatformer::keyCollected()
 {
-	m_iTimerPickedUp++;
+	m_iKeysCollected++;
 	CCLOG("Key Collected.");
 }
 
@@ -180,17 +180,22 @@ void CGCGameLayerPlatformer::backgroundMusic()
 
 void CGCGameLayerPlatformer::playKeyAudio()
 {
-	m_pcGCCollectKeyAudio->play2d("Sounds/CollectKey.mp3", false, 0.1f);
+	m_pcGCSoundEffectsAudio->play2d("Sounds/CollectKey.mp3", false, 0.1f);
 }
 
 void CGCGameLayerPlatformer::playTimerPickUpAudio()
 {
-	m_pcGCTimerPickUpAudio->play2d("Sounds/TimerPickUp.mp3", false, 0.1f);
+	m_pcGCSoundEffectsAudio->play2d("Sounds/TimerPickUp.mp3", false, 0.1f);
 }
 
 void CGCGameLayerPlatformer::playDoorOpeningAudio()
 {
-	m_pcGCDoorOpeningAudio->play2d("Sounds/OpeningDoor.mp3", false, 0.1f);
+	m_pcGCSoundEffectsAudio->play2d("Sounds/OpeningDoor.mp3", false, 0.4f);
+}
+
+void CGCGameLayerPlatformer::playAllKeysCollectedAudio()
+{
+	m_pcGCSoundEffectsAudio->play2d("Sounds/AllKeysCollected.mp3", false, 0.7f);
 }
 
 
@@ -683,6 +688,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 			m_bPlayerKeysGathered = true;
 
 			playDoorOpeningAudio();
+
+			playAllKeysCollectedAudio();
 			
 			//ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
 		}
@@ -922,14 +929,14 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	delete m_pcGCBackgroundAudio;
 	m_pcGCBackgroundAudio = nullptr;
 
-	delete m_pcGCCollectKeyAudio;
-	m_pcGCCollectKeyAudio = nullptr;
+	delete m_pcGCSoundEffectsAudio;
+	m_pcGCSoundEffectsAudio = nullptr;
 
-	delete m_pcGCTimerPickUpAudio;
-	m_pcGCTimerPickUpAudio = nullptr;
+	//delete m_pcGCTimerPickUpAudio;
+	//m_pcGCTimerPickUpAudio = nullptr;
 
-	delete m_pcGCDoorOpeningAudio;
-	m_pcGCDoorOpeningAudio = nullptr;
+	//delete m_pcGCDoorOpeningAudio;
+	//m_pcGCDoorOpeningAudio = nullptr;
 
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. because object groups must register manually, 

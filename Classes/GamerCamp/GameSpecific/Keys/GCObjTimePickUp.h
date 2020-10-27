@@ -3,7 +3,6 @@
 
 //Header File for 'CGCObjTimePickUp' created by Mehak Hussain on 19/10/2020.
 
-#include "GamerCamp/GameSpecific/Items/GCObjItem.h"
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
 class CGCObjTimePickUp
@@ -22,9 +21,7 @@ public:
 	CGCObjTimePickUp(void);
 	virtual ~CGCObjTimePickUp();
 
-	//CGCObjItem* m_pcGCOKeys;
-
-	float getGravity() { return m_fTimeGravity; } // use const and put in cpp
+	float getGravity() { return m_fTimeGravity; }
 	void  setGravity(float i) { m_fTimeGravity = i; }
 
 	unsigned short int getCollisionBuffer() const { return m_iCollisionBuffer; }

@@ -5,13 +5,10 @@
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 
-//Class File for 'CGCObjTimePickUp' created by Mehak Hussain on 19/10/2020.
-
 using namespace cocos2d;
 
 CGCObjTimePickUp::CGCObjTimePickUp(void)
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjTimePickUp))
-	, m_fTimeGravity(0.0f)
 	, m_bJustCollided(false)
 	, m_iCollisionBuffer(60)
 {
@@ -68,7 +65,6 @@ void CGCObjTimePickUp::VOnUpdate(f32 fTimestep)
 void CGCObjTimePickUp::VOnResourceRelease()
 {
 	CGCObjSpritePhysics::VOnResourceRelease();
-
 }
 
 void CGCObjTimePickUp::VOnResurrected()
