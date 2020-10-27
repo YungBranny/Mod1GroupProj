@@ -12,7 +12,7 @@ class CGCLossScene
 {
 private:
 
-	bool m_bResetWasRequested;
+	bool m_bResetWasRequested; //Reset
 
 	void RequestReset()
 	{
@@ -29,58 +29,34 @@ private:
 		return m_bResetWasRequested;
 	}
 
-	CGCObjSprite* m_pcGCSprBackGround;
+	CGCObjSprite* m_pcGCSprBackGround;// background sprite
 
 
 public:
+	
 	CGCLossScene();
    ~CGCLossScene();
+   //////////////////////////////////////////////////////////////////////////
 
-
-	// 'selector' callbacks for menu buttons
+	//Buttons on the Menu
 	void Callback_OnQuitButton(Ref* pSender);
 	void Callback_OnResetButton(Ref* pSender);
 
-	// called from VOnUpdate
-	//void ManuallyHandleCollisions (void);
 
 	//////////////////////////////////////////////////////////////////////////
-	// CCNode interface...
+	
 	virtual void onEnter();
-	// CCNode interface...
-	//////////////////////////////////////////////////////////////////////////
-
-	//////////////////////////////////////////////////////////////////////////
-	// IGCGameLayer interface
-
 	virtual	void VOnCreate(void);
 	virtual void VOnUpdate(f32 fTimeStep);
 	virtual	void VOnDestroy(void);
 
-	// IGCGameLayer interface
 	//////////////////////////////////////////////////////////////////////////
-
-
-	//////////////////////////////////////////////////////////////////////////
-	// b2ContactListener interface - see b2ContactListener for details of 
-	// when these get called and what they are
-
+	//if collisions are needed
+	
 	virtual void BeginContact(b2Contact* pB2Contact);
 	virtual void EndContact(b2Contact* pB2Contact);
-	//virtual void PreSolve (b2Contact* pB2Contact, const b2Manifold* pOldManifold);
-	//virtual void PostSolve (b2Contact* pB2Contact, const b2ContactImpulse* pImpulse);
-
-	// b2ContactListener interface - see b2ContactListener for details of 
-	// when these get called and what they are
+	
 	//////////////////////////////////////////////////////////////////////////
-
-	////////////////////////////////////////////////////////////////////////// 
-	// reset handling
-
-
-
-
-
 };
 
 

@@ -42,26 +42,26 @@ public:
 	
    ///////////////////////////////////////////////////////////////////////////////
 	
-	int getTotalTimerDuration() const	  { return m_iTotalTimerDuration;   } 
-	void  setTotalTimerDuration(int f)	  { m_iTotalTimerDuration = f;      }
-
-	int getCurrentTime() const			  { return  m_iCurrentTime;         }
-	void  setCurrentTime(int f)           { m_iCurrentTime = f;             }
-
-	int getTimerDecreaseValue() const     { return m_iTimerDecreaseValue;   }
-	void setTimerDercreaseValue(int f)    { m_iTimerDecreaseValue = f;      }
-
-	int getTimerIncreaseValue() const     { return m_iTimerIncreaseValue;   }
-	void setTimerIncreaseValue(int f)     { m_iTimerIncreaseValue = f;      }
-
-	float getMaxTimeBuffer() const		  { return  m_fMaxTimeBuffer;       }
-	void setMaxTimeBuffer(float f)        { m_fMaxTimeBuffer = f;           }
-
-	cocos2d::Label* getTimerText() const  { return m_pTimerText;			}
-	void setTimerText(cocos2d::Label*  t) { m_pTimerText = t;				}
-
-	float getCurrentTimeBuffer() const	  { return m_fCurrentTimeBuffer;	}
-	void setCurrentTimeBuffer(float f)	  { m_fCurrentTimeBuffer = f;		}
+	int getTotalTimerDuration() const	  { return m_iTotalTimerDuration;   } 	//Getter and Setter for getting the Total timer duration
+	void  setTotalTimerDuration(int f)	  { m_iTotalTimerDuration = f;      }	
+																				
+	int getCurrentTime() const			  { return  m_iCurrentTime;         }	//Getter and Setter for getting the current time
+	void  setCurrentTime(int f)           { m_iCurrentTime = f;             }	
+																				
+	int getTimerDecreaseValue() const     { return m_iTimerDecreaseValue;   }	//Getter and Setter for getting the timer decrease amount 
+	void setTimerDercreaseValue(int f)    { m_iTimerDecreaseValue = f;      }	
+																				
+	int getTimerIncreaseValue() const     { return m_iTimerIncreaseValue;   }	//Getter and Setter for getting the timer increase amount
+	void setTimerIncreaseValue(int f)     { m_iTimerIncreaseValue = f;      }	
+																				
+	float getMaxTimeBuffer() const		  { return  m_fMaxTimeBuffer;       }	//Getter and Setter for Getting the maximum time buffer
+	void setMaxTimeBuffer(float f)        { m_fMaxTimeBuffer = f;           }	
+																				
+	cocos2d::Label* getTimerText() const  { return m_pTimerText;			}	//Getter and Setter for getting the timer text component
+	void setTimerText(cocos2d::Label*  t) { m_pTimerText = t;				}	
+																				
+	float getCurrentTimeBuffer() const	  { return m_fCurrentTimeBuffer;	}	//Getter and Setter for getting the current timer buffer
+	void setCurrentTimeBuffer(float f)	  { m_fCurrentTimeBuffer = f;		}	
 
 	//virtual void VOnResourceAcquire(void) override;
 
