@@ -107,8 +107,6 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCScalingBasicPlatformManagerTop (nullptr)
 , m_pcGCBackgroundAudio			(	nullptr	)
 , m_pcGCSoundEffectsAudio		(	nullptr	)
-//, m_pcGCTimerPickUpAudio		(	nullptr	)
-//, m_pcGCDoorOpeningAudio		(	nullptr	)
 , m_bResetWasRequested			(	false	)
 
 {
@@ -192,12 +190,6 @@ void CGCGameLayerPlatformer::playDoorOpeningAudio()
 {
 	m_pcGCSoundEffectsAudio->play2d("Sounds/OpeningDoor.mp3", false, 0.4f);
 }
-
-void CGCGameLayerPlatformer::playAllKeysCollectedAudio()
-{
-	m_pcGCSoundEffectsAudio->play2d("Sounds/AllKeysCollected.mp3", false, 0.7f);
-}
-
 
 //////////////////////////////////////////////////////////////////////////
 // in order to guarantee the actions this layer expects we need to 
@@ -499,7 +491,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(700, 550));
 
 	m_pcGCOTimePickUp = new CGCObjTimePickUp();
-	//m_pcGCOTimePickUp->SetResetPosition (cocos2d::Vec2 (200, 200));
+	m_pcGCOTimePickUp->SetResetPosition(cocos2d::Vec2(860, 500));
 
 	m_pcGCODoor = new CGCObjDoor();
 	m_pcGCODoor->SetResetPosition (cocos2d::Vec2(50, 115));
@@ -688,8 +680,6 @@ void CGCGameLayerPlatformer::VOnCreate()
 			m_bPlayerKeysGathered = true;
 
 			playDoorOpeningAudio();
-
-			playAllKeysCollectedAudio();
 			
 			//ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
 		}

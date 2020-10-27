@@ -158,8 +158,6 @@ public:
 
 	void playDoorOpeningAudio();
 
-	void playAllKeysCollectedAudio();
-
 	//
 	//////////////////////////////////////////////////////////////////////////
 	// player actions 
