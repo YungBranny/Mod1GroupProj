@@ -54,7 +54,7 @@ public:
 	bool  getJustCollided ()							const		{ return m_bJustCollided;	 }
 	void  setJustCollided ( bool i )								{ m_bJustCollided = i;	     }
 
-
+	// Setting up Getters
 	cocos2d::Vec2	getStartPosition ()					const		{ return m_v2StartPosition;     }
 	cocos2d::Vec2	getEndPosition ()					const		{ return m_v2EndPosition;       }
 	cocos2d::Vec2	getMovingRightVelocity()			const		{ return m_v2MoveRightVelocity; }
@@ -62,6 +62,7 @@ public:
 	cocos2d::Vec2	getMovingUpVelocity()				const		{ return m_v2MoveUpVelocity;    }
 	cocos2d::Vec2	getMovingDownVelocity()				const		{ return m_v2MoveDownVelocity;  }
 
+	// Setting up Setters
 	void setStartPosition       ( cocos2d::Vec2 i )					{ m_v2StartPosition = i;	    }
 	void setEndPosition         ( cocos2d::Vec2 i )					{ m_v2EndPosition = i;			}
 	void setMovingRightVelocity ( cocos2d::Vec2 i )					{ m_v2MoveRightVelocity = i;	}
@@ -69,11 +70,10 @@ public:
 	void setMovingUpVelocity    ( cocos2d::Vec2 i )					{ m_v2MoveUpVelocity = i;		}
 	void setMovingDownVelocityz ( cocos2d::Vec2 i )					{ m_v2MoveDownVelocity = i;		}
 
-	void Movement();
+	void OppositeDirection();
 	void SettingVelocity();
 
 	virtual void VOnResourceAcquire ( void );
-	virtual void VOnResurrected ( void );
 	virtual void VOnUpdate ( f32 fTimestep );
 };
 
