@@ -34,17 +34,20 @@ using namespace cocos2d;
 	,m_fTimerBarStartPosX		 (		500			)	// Timer bar start pos X
 	,m_iTimerBarHeightX			 (		420			)	// Timer bar Height on Screen
 	,m_iTimerBarHeightY			 (		10			)	// Timer bar Height on Screen
-	,m_iTimerBufferDecrease		 (		  1			)
+	,m_iTimerBufferDecrease		 (		  1			)	// Timer buffer decrease value
     
-{
+{	/////////////////////////////////////////////////////////////////////////////////////////////////
+ 	
  	//Set Current time to the max Time
 	setCurrentTime(getTotalTimerDuration());
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+ 	
  	//Get Screen size & Width
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	/// /////////////////////////////////////////////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// Timer Text Label
 	setTimerText(Label::createWithTTF(" ", "fonts/arial.ttf", m_fTimerTextFontSize));
 
