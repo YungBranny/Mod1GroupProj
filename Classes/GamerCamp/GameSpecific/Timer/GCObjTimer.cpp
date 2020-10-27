@@ -34,6 +34,7 @@ using namespace cocos2d;
 	,m_fTimerBarStartPosX		 (		500			)	// Timer bar start pos X
 	,m_iTimerBarHeightX			 (		420			)	// Timer bar Height on Screen
 	,m_iTimerBarHeightY			 (		10			)	// Timer bar Height on Screen
+	,m_iTimerBufferDecrease		 (		  1			)
     
 {
  	//Set Current time to the max Time
@@ -79,7 +80,7 @@ using namespace cocos2d;
 
  	if(getCurrentTimeBuffer()> 0)
  	{
-		setCurrentTimeBuffer(getCurrentTimeBuffer()-1);
+		setCurrentTimeBuffer(getCurrentTimeBuffer()-m_iTimerBufferDecrease);
  		//Decreases the timer buffer by 1 each update
  	}
     else if (getCurrentTimeBuffer() <= 0)

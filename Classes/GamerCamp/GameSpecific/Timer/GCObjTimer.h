@@ -22,6 +22,7 @@ private:
 	int m_iTimerTextOutlineSize;
 	int m_iTimerBarHeightX;
 	int m_iTimerBarHeightY;
+	int m_iTimerBufferDecrease;
 	float m_fCurrentTimeBuffer;
 	float m_fMaxTimeBuffer;
 	float m_fScaleX;
