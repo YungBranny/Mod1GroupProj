@@ -1,4 +1,4 @@
-#include "GamerCamp/GameSpecific/Platforms/GCObjMovingPlatform.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjMovingPlatform.h"
 
 CGCObjMovingPlatform::CGCObjMovingPlatform()
 	: CGCObjSpritePhysics ( GetGCTypeIDOf(CGCObjMovingPlatform) ) // We are inheriting from CGCObjSpritePhysics, so we can use physics on the Platform

@@ -58,12 +58,6 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Enemies">
       <UniqueIdentifier>{55f9c181-6b9a-43cc-b7af-2ffec0605587}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\GamerCamp\GameSpecific\PlatformTest">
-      <UniqueIdentifier>{79b3e979-a75a-49f0-a2d2-03586f091a02}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\GamerCamp\Door">
-      <UniqueIdentifier>{10000651-36f5-4c58-9abf-6b2a6684158b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\MainMenu">
       <UniqueIdentifier>{28e07512-8747-4640-9163-cedb7b616234}</UniqueIdentifier>
     </Filter>
@@ -78,6 +72,12 @@
     </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\Collectables">
       <UniqueIdentifier>{9a343c04-2a7a-4169-b829-bc3712b902f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Door">
+      <UniqueIdentifier>{10000651-36f5-4c58-9abf-6b2a6684158b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\NewPlatforms">
+      <UniqueIdentifier>{79b3e979-a75a-49f0-a2d2-03586f091a02}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -189,23 +189,11 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimerBar.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjLongPlatformTest.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjShortPlatformTest.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.cpp">
-      <Filter>Classes\GamerCamp\Door</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjFallingPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
@@ -216,23 +204,35 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameStates\GameStateManager.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\GameStates</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjTravelatorPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Door</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingBasicPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingBasicPlatformManager.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingFallingPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjMovingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingFallingPlatformManager.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjMovingPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatformManager.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatformManager.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjShortPlatformTest.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTravelatorPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -356,23 +356,11 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimerBar.h">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjLongPlatformTest.h">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjShortPlatformTest.h">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.h">
-      <Filter>Classes\GamerCamp\Door</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.h">
       <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.h">
       <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjFallingPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.h">
       <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
@@ -383,23 +371,35 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameStates\GameStateManager.h">
       <Filter>Classes\GamerCamp\GameSpecific\GameStates</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjTravelatorPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Door</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingBasicPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingBasicPlatformManager.h">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingFallingPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjMovingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\PlatformTest\GCObjScalingFallingPlatformManager.h">
-      <Filter>Classes\GamerCamp\GameSpecific\PlatformTest</Filter>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjMovingPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatformManager.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatformManager.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjShortPlatformTest.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTravelatorPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
