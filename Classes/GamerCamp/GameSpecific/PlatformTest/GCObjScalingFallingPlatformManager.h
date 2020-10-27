@@ -25,11 +25,11 @@ private:
 
 	CGCObjScalingFallingPlatform* m_pcGCScalingFallingPlatform;	//pointer to the default fallingplatform class
 
-	int				m_iMaxPlatforms;							//sets how many platforms should spawn
+	int		m_iMaxPlatforms;									//sets how many platforms should spawn
 
-	float m_fStartX;											//Start Positions
-	float m_fStartY;											//Start Positions
-	float m_fSpacingX;											//Spacing inbetween each platform on the x axis
+	float	m_fStartX;											//Start Positions
+	float	m_fStartY;											//Start Positions
+	float	m_fSpacingX;										//Spacing inbetween each platform on the x axis
 
 	cocos2d::Vec2 m_v2PlatformStartPos;							//Start vec2
 
@@ -49,9 +49,9 @@ public:
 	float 	GetStartY () { return m_fStartY; };					//Getter for StartY
 	float 	GetSpacingX () { return m_fSpacingX; };				//Getter for SpacingX
 
-	void	SetStartX (float i) {m_fStartX = i; }				//Setting for StartX
-	void	SetStartY (float i) {m_fStartY = i; }				//Setting for StartY
-	void	SetSpacingX (float i) { m_fSpacingX = i; }			//Setting for SpacingX
+	void	SetStartX (float i) {m_fStartX = i; }				//Setter for StartX
+	void	SetStartY (float i) {m_fStartY = i; }				//Setter for StartY
+	void	SetSpacingX (float i) { m_fSpacingX = i; }			//Setter for SpacingX
 
 	cocos2d::Vec2 GetPlatformStartPos () const { return m_v2PlatformStartPos; }	//Getter and setter for the platform start pos	
 	void	SetPlatformStartPos (cocos2d::Vec2 i) { m_v2PlatformStartPos = i; }	//Getter and setter for the platform start pos

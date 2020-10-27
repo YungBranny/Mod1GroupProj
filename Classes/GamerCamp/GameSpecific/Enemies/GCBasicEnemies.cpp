@@ -11,7 +11,6 @@ USING_NS_CC;
 
 CGCBasicEnemies::CGCBasicEnemies()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCBasicEnemies))
-	//,m_fGravity		(1.0f)
 {
 	
 }

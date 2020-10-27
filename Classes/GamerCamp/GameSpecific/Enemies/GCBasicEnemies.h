@@ -2,42 +2,35 @@
 #define _GCBASICENEMIES_
 
 
+//Brandon Middleton
+//This class is used for a basic enemy (spike/Hazard)
+
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
 class CGCBasicEnemies
 :	public CGCObjSpritePhysics
 {
 private:
-	float m_fGravity;
+	float m_fGravity;										//float for gravity
 
 public:
 	
-	CGCBasicEnemies ();
-	virtual ~CGCBasicEnemies () {};
+	CGCBasicEnemies ();										//constructor
+	virtual ~CGCBasicEnemies () {};							//deconstructor
 
-	float getGravity ()			{ return m_fGravity;	}
-	void  setGravity (float i)  { m_fGravity = i;		}
+	float getGravity ()			{ return m_fGravity;	}	//Getter and setter for gravity
+	void  setGravity (float i)  { m_fGravity = i;		}	//Getter and setter for gravity
 
 											  
 
 								
-	virtual void VOnResourceAcquire (void)	;
-	virtual void VOnResurrected		(void)	;
-	virtual void VOnResourceRelease (void)	;
-	virtual void VOnReset			(void)	;
+	virtual void VOnResourceAcquire (void)	;				//Default Functions
+	virtual void VOnResurrected		(void)	;				//Default Functions
+	virtual void VOnResourceRelease (void)	;				//Default Functions
+	virtual void VOnReset			(void)	;				//Default Functions
 							  
-	virtual void VOnUpdate (f32 fTimestep);
-
-	// this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
-	//void NotifyOfCollisionWithPlayer ();
-
-
-
-
+	virtual void VOnUpdate (f32 fTimestep);					//Update
 	
 };
-
-
-
 
 #endif

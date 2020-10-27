@@ -58,13 +58,11 @@ void CGCObjScalingFallingPlatformManager::VOnGroupResourceAcquire_PostObject ()
 void CGCObjScalingFallingPlatformManager::VOnGroupReset ()
 {
 	CGCObjectGroup::VOnGroupReset ();
-
 }
 
 void CGCObjScalingFallingPlatformManager::VOnObjectReset ()
 {
 	CGCObjectGroup::VOnObjectReset ();
-
 }
 
 void CGCObjScalingFallingPlatformManager::VOnGroupUpdate (f32 fTimeStep)
@@ -91,7 +89,6 @@ void CGCObjScalingFallingPlatformManager::CreatePlatforms ()
 		m_pcGCScalingFallingPlatform = new CGCObjScalingFallingPlatform[ m_iMaxPlatforms ];
 		m_pcGCScalingFallingPlatform[iLoop].SetResetPosition (m_v2PlatformStartPos);
 		m_fStartX += m_fSpacingX;
-
 	}
 }
 
