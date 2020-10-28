@@ -97,29 +97,28 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCShortPlatformTest5		( nullptr )
 , m_pcGCTravelatorPlatform1		( nullptr )
 , m_pcGCFallingPlatform1		( nullptr )
-, m_pcGCScalingBasicPlatformManager ( nullptr )
-, m_pcGCScalingFallingPlatformManager (nullptr)
-, m_pcGCScalingBasicPlatformManager1 (nullptr)
-, m_pcGCScalingFallingPlatformManager1 (nullptr)
-, m_pcGCScalingBasicPlatformManager2 (nullptr)
-, m_pcGCScalingFallingPlatformManager2 (nullptr)
-, m_pcGCScalingBasicPlatformManagerMiddle (nullptr)
-, m_pcGCScalingBasicPlatformManagerTop (nullptr)
-, m_pcGCBackgroundAudio			(	nullptr	)
-, m_pcGCSoundEffectsAudio		(	nullptr	)
-, m_bResetWasRequested			(	false	)
+, m_pcGCBackgroundAudio			( nullptr )
+, m_pcGCSoundEffectsAudio		( nullptr )
+, m_bResetWasRequested			(  false  )
+, m_pcGCScalingBasicPlatformManager			( nullptr )
+, m_pcGCScalingFallingPlatformManager		( nullptr )
+, m_pcGCScalingBasicPlatformManager1		( nullptr )
+, m_pcGCScalingFallingPlatformManager1		( nullptr )
+, m_pcGCScalingBasicPlatformManager2		( nullptr )
+, m_pcGCScalingFallingPlatformManager2		( nullptr )
+, m_pcGCScalingBasicPlatformManagerMiddle	( nullptr )
+, m_pcGCScalingBasicPlatformManagerTop		( nullptr )
 
 {
-	m_iTotalKeys = 1;
+	m_iTotalKeys		= 3; // Sets the total amount of Keys the Player needs to obtain to mbe able to unlock the Exit Door and move on to 3
 
-	m_iKeysCollected = 0;
+	m_iKeysCollected	= 0; // Sets Default Keys to 0, so we can add 1 more on as Player collects them
 
-	m_iTimerPickedUp = 0;
+	m_iTimerPickedUp	= 0; // Sets Default Timer Pick Up to 0
 
 	m_bPlayerHitHostile = false;
 
 	m_bPlayerKeysGathered = false;
-	
 }
 
 
@@ -131,16 +130,18 @@ CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
 {
 }
 
-void CGCGameLayerPlatformer::keyCollected()
+void CGCGameLayerPlatformer::keyCollected() // This function adds one more Key onto how many the Player obtains
 {
-	m_iKeysCollected++;
-	CCLOG("Key Collected.");
+	m_iKeysCollected++; // Adds a Key
+	CCLOG ( "Key Collected." ); // Check to make sure Player has picked up Key only once
 }
 
-void CGCGameLayerPlatformer::addOnTime()
+void CGCGameLayerPlatformer::addOnTime() // This function adds on Air Time
 {
+	// Replaces Current Air Time when Player picks up Timer PickUp by Getting Current Air Time and
+	// Calling the Increase Value (of 20) that I created in Dan's 'GCObjTimer.cpp'
 	m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
-	CCLOG("Time PickUp Collected.");
+	CCLOG ( "Time PickUp Collected." ); // Check to make sure Player has picked up Timer Pick Up only once
 }
 
 void CGCGameLayerPlatformer::replaceSceneWin()
@@ -149,7 +150,7 @@ void CGCGameLayerPlatformer::replaceSceneWin()
 	//needs a bool
 	if(m_bPlayerKeysGathered == true)
 	{
-		m_pcGCBackgroundAudio->stopAll ();
+		m_pcGCBackgroundAudio->stopAll (); // Stops all Background Audio when Win Scene is used
 		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCWinScene >::CreateScene()));
 	}
 	
@@ -160,7 +161,7 @@ void CGCGameLayerPlatformer::replaceSceneLose()
 {
 	if (m_bPlayerHitHostile == true)
 	{
-		m_pcGCBackgroundAudio->stopAll ();
+		m_pcGCBackgroundAudio->stopAll (); // Stops all Background Audio when Lose Scene is used
 		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
 	}
 	
@@ -173,23 +174,27 @@ void CGCGameLayerPlatformer::replaceSceneMenu()
 	
 }
 
-void CGCGameLayerPlatformer::backgroundMusic()
+void CGCGameLayerPlatformer::backgroundMusic() // Function that is called when we want the Background Music to play
 {
+	// Play Audio by locating File, set to 'True' to loop, and set Volume to 0.2f
 	m_pcGCBackgroundAudio->play2d("Sounds/BackgroundMusic.mp3", true, 0.2f);
 }
 
-void CGCGameLayerPlatformer::playKeyAudio()
+void CGCGameLayerPlatformer::playKeyAudio() // Function that is called when we want the Collected Key Sound Effect to play
 {
+	// Play Audio by locating File, set to 'False' to not loop, and set Volume to 0.1f
 	m_pcGCSoundEffectsAudio->play2d("Sounds/CollectKey.mp3", false, 0.1f);
 }
 
-void CGCGameLayerPlatformer::playTimerPickUpAudio()
+void CGCGameLayerPlatformer::playTimerPickUpAudio() // Function that is called when we want the Timer PickUp Sound Effect to play
 {
+	// Play Audio by locating File, set to 'False' to not loop, and set Volume to 0.1f
 	m_pcGCSoundEffectsAudio->play2d("Sounds/TimerPickUp.mp3", false, 0.1f);
 }
 
-void CGCGameLayerPlatformer::playDoorOpeningAudio()
+void CGCGameLayerPlatformer::playDoorOpeningAudio() // Function that is called when we want the Door Opened Sound Effect to play
 {
+	// Play Audio by locating File, set to 'False' to not loop, and set Volume to 0.4f
 	m_pcGCSoundEffectsAudio->play2d("Sounds/OpeningDoor.mp3", false, 0.4f);
 }
 
@@ -289,17 +294,19 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCScalingBasicPlatformManager->SetStartY (60);
 	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingBasicPlatformManager);
 
+	// Creating a new Object for 'm_pcGCScalingBasicPlatformManagerMiddle'
 	m_pcGCScalingBasicPlatformManagerMiddle = new CGCObjScalingBasicPlatformManager();
-	m_pcGCScalingBasicPlatformManagerMiddle->SetMaxPlatforms(16);
-	m_pcGCScalingBasicPlatformManagerMiddle->SetStartX(0);
-	m_pcGCScalingBasicPlatformManagerMiddle->SetStartY(280);
-	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManagerMiddle);
+	m_pcGCScalingBasicPlatformManagerMiddle->SetMaxPlatforms(16); // Setting the Max Platforms for the Middle Row to '16'
+	m_pcGCScalingBasicPlatformManagerMiddle->SetStartX(0); // The X Position is set to '0'
+	m_pcGCScalingBasicPlatformManagerMiddle->SetStartY(280); // The Y Position is set to '280'
+	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManagerMiddle); // Register the object group for the Middle Platforms
 
+	// Creating a new Object for 'm_pcGCScalingBasicPlatformManagerTop'
 	m_pcGCScalingBasicPlatformManagerTop = new CGCObjScalingBasicPlatformManager();
-	m_pcGCScalingBasicPlatformManagerTop->SetMaxPlatforms(7);
-	m_pcGCScalingBasicPlatformManagerTop->SetStartX(400);
-	m_pcGCScalingBasicPlatformManagerTop->SetStartY(460);
-	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManagerTop);
+	m_pcGCScalingBasicPlatformManagerTop->SetMaxPlatforms(7); // Setting the Max Platforms for the Top Row to '7'
+	m_pcGCScalingBasicPlatformManagerTop->SetStartX(400); // The X Position is set to '400'
+	m_pcGCScalingBasicPlatformManagerTop->SetStartY(460); // The Y Position is set to '460'
+	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManagerTop); // Register the object group for the Top Platforms
 
 	m_pcGCScalingBasicPlatformManager1 = new CGCObjScalingBasicPlatformManager ();
 	m_pcGCScalingBasicPlatformManager1->SetMaxPlatforms (1);
@@ -386,33 +393,17 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//////////////////////////////////////////////////////////////////////////////////////////
 	//m_pcGCTimerBar = new CGCObjTimerBar();
 	
-
-	//const char* keysSprite = "TexturePacker/Sprites/Coin/Coin.plist";
-	//{
-	//	m_pcGCOKeys = new CGCObjKeys();
-	//	m_pcGCOKeys->CreateSprite(keysSprite);
-	//	m_pcGCOKeys->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-	//	m_pcGCOKeys->SetParent(IGCGameLayer::ActiveInstance());
-	//}
-
-	//m_pcGCOKeys = new CGCObjKeys();
-	//m_pcGCOKeys->CreateSprite("TexturePacker/Sprites/Coin/Coin.plist");
-	//m_pcGCOKeys->SetSpritePosition(Vec2(visibleSize.width * 0.1, visibleSize.height * 0.5));
-	//this->addChild();
-	//m_pcGCOKeys->CreateSprite("TexturePacker/Sprites/Coin/Coin.png");
-	
-	
     ///////////////////////////////////////////////////////////////////////////
     // add label
 	///////////////////////////////////////////////////////////////////////////
 
- 	// create and initialize a label
+ 	// Create and initialize the Label with instructions, then set the Font and then the Size
     Label* pLabel = Label::createWithTTF( "Collect the three Keys to open the Door before the Air Timer runs out!", "fonts/SaltyOcean.ttf", 35);
 
-    // position the label on the center of the screen
+    // Position the label on the center of the screen
     pLabel->setPosition( Vec2( visibleSize.width/2, visibleSize.height - 50 ) );
 
-    // add the label as a child to this layer
+    // Add the label as a child to this Game Layer
     this->addChild(pLabel, 1);
 
 	//"TexturePacker/Backgrounds/Placeholder/background.plist"
@@ -429,13 +420,14 @@ void CGCGameLayerPlatformer::VOnCreate()
 		m_pcGCsprTimerBar->SetScale(0.1f, 0.1f);
 	}*/
 	
+	// Setting up the Background Sprite
 	const char* pszPlist_background = "TexturePacker/Sprites/Background/Background.plist";
 	{
-		m_pcGCSprBackGround = new CGCObjSprite();
-		m_pcGCSprBackGround->CreateSprite( pszPlist_background );
-		m_pcGCSprBackGround->SetResetPosition(cocos2d::Vec2(500, 400));
-		m_pcGCSprBackGround->SetParent( IGCGameLayer::ActiveInstance() );
-		backgroundMusic();
+		m_pcGCSprBackGround = new CGCObjSprite(); // Crate a new Object for Background
+		m_pcGCSprBackGround->CreateSprite( pszPlist_background ); // Create the Sprite for Background by calling it
+		m_pcGCSprBackGround->SetResetPosition(cocos2d::Vec2(500, 400)); // Setting the x and y Positions
+		m_pcGCSprBackGround->SetParent( IGCGameLayer::ActiveInstance() ); // Adding Sprite to this Game Layer
+		backgroundMusic(); // Calling 'backgroundMusic' Function, so the Audio plays as soon as level loads
  	}
 
 	m_pcGCTimer = new CGCObjTimer();
@@ -483,20 +475,20 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOPlayer = new CGCObjPlayer();
 	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(150, 100) );
 
+	m_pcGCOKeys = new CGCObjKeys(); // Create Keys Object
+	m_pcGCOKeys->SetResetPosition (cocos2d::Vec2 (715, 160)); // Setting the x and y Positions
 
+	m_pcGCOKeys1 = new CGCObjKeys(); // Create other Keys Object
+	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(500, 380)); // Setting the x and y Positions
 
-	m_pcGCOKeys = new CGCObjKeys();
-	m_pcGCOKeys->SetResetPosition (cocos2d::Vec2 (715, 160));
-	m_pcGCOKeys1 = new CGCObjKeys();
-	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(500, 420));
-	m_pcGCOKeys2 = new CGCObjKeys();
-	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(700, 550));
+	m_pcGCOKeys2 = new CGCObjKeys(); // Create last Keys Object
+	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(700, 550)); // Setting the x and y Positions
 
-	m_pcGCOTimePickUp = new CGCObjTimePickUp();
-	m_pcGCOTimePickUp->SetResetPosition(cocos2d::Vec2(860, 500));
-
-	m_pcGCODoor = new CGCObjDoor();
-	m_pcGCODoor->SetResetPosition (cocos2d::Vec2(50, 115));
+	m_pcGCOTimePickUp = new CGCObjTimePickUp(); // Create Time PickUp Object
+	m_pcGCOTimePickUp->SetResetPosition(cocos2d::Vec2(860, 500)); // Setting the x and y Positions
+	
+	m_pcGCODoor = new CGCObjDoor(); // Create Exit Door Object
+	m_pcGCODoor->SetResetPosition (cocos2d::Vec2(50, 115)); // Setting the x and y Positions
 
 	///////// Platforms
 
@@ -526,12 +518,12 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCFallingPlatform1 = new CGCObjFallingPlatform ();
 	//m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
 
-	m_pcGCOMovingPlatform = new CGCObjMovingPlatform();
-	m_pcGCOMovingPlatform->SetResetPosition(cocos2d::Vec2(970, 280));
-	m_pcGCOMovingPlatform->setGravity(3.0f);
+	m_pcGCOMovingPlatform = new CGCObjMovingPlatform(); // Create Moving Platform Object
+	m_pcGCOMovingPlatform->SetResetPosition(cocos2d::Vec2(970, 280));  // Setting the x and y Positions
+	m_pcGCOMovingPlatform->setGravity(3.0f); // Setting the Gravity
 
 	m_pcGCTravelatorPlatform1 = new CGCObjTravelatorPlatform();
-	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(900, 400));
+	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(900, 430));
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
 	
 	//enemy
@@ -594,6 +586,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 		}
 	);
 
+	// Setting up the Collision between the Player and the Moving Platform
 	GetCollisionManager().AddCollisionHandler
 	(
 		[]
@@ -608,10 +601,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 		{
 			rcPlayer.SetCanJump(false);
 		}
-
 	}
 	);
-
 
 	GetCollisionManager ().AddCollisionHandler
 	(
@@ -670,25 +661,22 @@ void CGCGameLayerPlatformer::VOnCreate()
 		}
 	);
 
+	// Setting up the Collision between the Player and the Exit Door
 	GetCollisionManager().AddCollisionHandler
 	(
 		[this]
 	(CGCObjDoor& rcDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 	{
-		if( m_iKeysCollected >= m_iTotalKeys )
+		if( m_iKeysCollected >= m_iTotalKeys ) // If the Keys Collected by Player is more equal than to the Total Keys Collected
 		{
-			//ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCWinScene >::CreateScene ()));
-
 			m_bPlayerKeysGathered = true;
 
-			playDoorOpeningAudio();
-			
-			//ReplaceScene(TransitionCrossFade::create(1.0f, CMenuLayer::scene()));
+			playDoorOpeningAudio(); // Calls the Function which plays the Door Opening Audio
 		}
 	}
-
 	);
 
+	// Setting up the Collision between the Player and the Keys
 	GetCollisionManager().AddCollisionHandler
 	(
 		[this]
@@ -696,14 +684,15 @@ void CGCGameLayerPlatformer::VOnCreate()
 	{
 		if( rcKeys.getJustCollided() == false )
 		{
-			rcKeys.setJustCollided(true);
-			CGCObjectManager::ObjectKill(&rcKeys);
-			keyCollected();
-			playKeyAudio();
+			rcKeys.setJustCollided ( true ); // When player has collided with a Key
+			CGCObjectManager::ObjectKill ( &rcKeys ); // Destroy the Key Object Sprite
+			keyCollected(); // Calls Function which adds on one Key to how many Player has obtained
+			playKeyAudio(); // Then calls Function which plays Key Collected Audio
 		}
 	}
 	);
 
+	// Setting up the Collision between the Player and the Time PickUp
 	GetCollisionManager().AddCollisionHandler
 	(
 		[this]
@@ -711,13 +700,12 @@ void CGCGameLayerPlatformer::VOnCreate()
 	{
 		if( rcPickUp.getJustCollided() == false )
 		{
-			if( m_pcGCTimer->getCurrentTime() >= 0 )
+			if( m_pcGCTimer->getCurrentTime() >= 0 ) // If Current Time is greater or equal to zero
 			{
-				rcPickUp.setJustCollided(true);
-				CGCObjectManager::ObjectKill(&rcPickUp);
-				//m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
-				addOnTime();
-				playTimerPickUpAudio();
+				rcPickUp.setJustCollided ( true ); // When player has collided with a Timer PickUp
+				CGCObjectManager::ObjectKill(&rcPickUp); // Destroy the Timer PickUp Object Sprite
+				addOnTime(); // Calls the Function which add on Timer Increase Value to whatever is the current Air Time
+				playTimerPickUpAudio(); // Calls the Function which player Timer PickUp Audio
 			}
 		}
 	}
@@ -859,10 +847,10 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	if( ResetWasRequested() )
 	{
 		VOnReset();
-		m_iKeysCollected = 0;
+		m_iKeysCollected = 0; // Resets Keys Collected
 		ResetRequestWasHandled();
-		m_pcGCBackgroundAudio->stopAll();
-		backgroundMusic ();
+		m_pcGCBackgroundAudio->stopAll(); // Stops all Background Audio on Reset
+		backgroundMusic (); // Calls this Function, so it doesn't overlay
 	}
 
 	if(m_pcGCTimer->getCurrentTime() <= 0)
@@ -925,12 +913,6 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	delete m_pcGCSoundEffectsAudio;
 	m_pcGCSoundEffectsAudio = nullptr;
 
-	//delete m_pcGCTimerPickUpAudio;
-	//m_pcGCTimerPickUpAudio = nullptr;
-
-	//delete m_pcGCDoorOpeningAudio;
-	//m_pcGCDoorOpeningAudio = nullptr;
-
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. because object groups must register manually, 
 	// we also unregister them manually
@@ -960,7 +942,7 @@ void CGCGameLayerPlatformer::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 {
-	m_pcGCBackgroundAudio->stopAll ();
+	m_pcGCBackgroundAudio->stopAll (); // Stops all Background Audio when Quit Button is used
 	ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene ()));
 }
 
@@ -971,10 +953,9 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 {
-	m_pcGCBackgroundAudio->stopAll ();
+	m_pcGCBackgroundAudio->stopAll (); // Stops all Background Audio when Reset Button is used
 	m_pcGCTimer->ResetTimer();
 	RequestReset();
-	
 }
 
 

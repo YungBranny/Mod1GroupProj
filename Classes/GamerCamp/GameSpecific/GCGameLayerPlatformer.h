@@ -113,24 +113,21 @@ private:
 	CGCObjSprite*					m_pcGCSprBackGround;
 	//CGCObjSprite*					m_pcGCsprTimerBar;
 
-	//test audio
 	cocos2d::experimental::AudioEngine*		m_pcGCBackgroundAudio;
 	cocos2d::experimental::AudioEngine*		m_pcGCSoundEffectsAudio;
-	//cocos2d::experimental::AudioEngine*		m_pcGCTimerPickUpAudio;
-	//cocos2d::experimental::AudioEngine*		m_pcGCDoorOpeningAudio;
 
 	// mario
 	CGCObjPlayer*					m_pcGCOPlayer;
 
-	int m_iKeysCollected;
+	int		m_iKeysCollected;
 
-	int m_iTotalKeys;
+	int		m_iTotalKeys;
 
-	int m_iTimerPickedUp;
+	int		m_iTimerPickedUp;
 
-	bool m_bPlayerHitHostile;
+	bool	m_bPlayerHitHostile;
 
-	bool m_bPlayerKeysGathered;
+	bool	m_bPlayerKeysGathered;
 
 public:
 
@@ -140,23 +137,23 @@ public:
 	CGCGameLayerPlatformer	( void );
 	~CGCGameLayerPlatformer	( void );
 
-	void keyCollected();
+	void	keyCollected();
 
-	void addOnTime();
+	void	addOnTime();
 
-	void replaceSceneWin();
+	void	replaceSceneWin();
 
-	void replaceSceneLose();
+	void	replaceSceneLose();
 
-	void replaceSceneMenu();
+	void	replaceSceneMenu();
 
-	void backgroundMusic();
+	void	backgroundMusic();
 
-	void playKeyAudio();
+	void	playKeyAudio();
 
-	void playTimerPickUpAudio();
+	void	playTimerPickUpAudio();
 
-	void playDoorOpeningAudio();
+	void	playDoorOpeningAudio();
 
 	//
 	//////////////////////////////////////////////////////////////////////////
