@@ -110,7 +110,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCScalingBasicPlatformManagerTop		( nullptr )
 
 {
-	m_iTotalKeys		= 1; // Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
+	m_iTotalKeys		= 3; // Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
 
 	m_iKeysCollected	= 0; // Sets Default Keys to 0, so we can add 1 more on as Player collects them
 
