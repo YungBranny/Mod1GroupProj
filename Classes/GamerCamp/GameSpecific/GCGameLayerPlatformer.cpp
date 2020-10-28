@@ -485,7 +485,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOKeys2->SetResetPosition ( cocos2d::Vec2(700, 550) ); // Setting the X and Y Positions
 
 	m_pcGCOTimePickUp	= new CGCObjTimePickUp (); // Create Time PickUp Object
-	m_pcGCOTimePickUp->SetResetPosition ( cocos2d::Vec2(860, 500) ); // Setting the X and Y Positions
+	m_pcGCOTimePickUp->SetResetPosition ( cocos2d::Vec2(880, 500) ); // Setting the X and Y Positions
 	
 	m_pcGCOExitDoor		= new CGCObjExitDoor (); // Create Exit Door Object
 	m_pcGCOExitDoor->SetResetPosition ( cocos2d::Vec2(50, 115) ); // Setting the X and Y Positions
@@ -523,7 +523,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOMovingPlatform->setGravity(3.0f); // Setting the Gravity
 
 	m_pcGCTravelatorPlatform1 = new CGCObjTravelatorPlatform();
-	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(900, 430));
+	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(920, 450));
 	//m_pcGCPlatformTest1->SetResetPosition (v2MarioStartPos);
 	
 	//enemy
