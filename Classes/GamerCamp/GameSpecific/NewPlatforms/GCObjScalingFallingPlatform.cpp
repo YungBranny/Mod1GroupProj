@@ -34,7 +34,9 @@ void CGCObjScalingFallingPlatform::VOnResourceAcquire ()
 //Calls the function that moves the platform down
 void CGCObjScalingFallingPlatform::MoveDownOnContact ()
 {
-	if (GetContactWithPlayer () == true)	//if this boolean gets set to true it starts decreasing the platform tick and changes the velocity of the platform so it moves down
+	//if this boolean gets set to true it starts decreasing the platform tick 
+	//and changes the velocity of the platform so it moves down
+	if (GetContactWithPlayer () == true)	
 	{
 		SetVelocity (m_v2FallingVelocity);
 

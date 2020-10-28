@@ -84,7 +84,8 @@ void CGCObjScalingBasicPlatformManager::VOnGroupResourceRelease ()
 	DestroyPlatforms ();
 }
 
-//creates a forloop which loops for the amount of platforms being made and draws each platform changing the position of each one on the x axis by the varible spacingX
+//creates a forloop which loops for the amount of platforms being made and
+//draws each platform changing the position of each one on the x axis by the varible spacingX
 void CGCObjScalingBasicPlatformManager::CreatePlatforms ()
 {
 	for (i32 iLoop = 0; iLoop < m_iMaxPlatforms; ++iLoop)

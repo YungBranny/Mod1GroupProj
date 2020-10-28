@@ -26,8 +26,11 @@ CGCMovingEnemies::CGCMovingEnemies ()
 	InitialiseMovementDirection (); //calls the function when this class is initalised
 }
 
-//this function checks if the bool"m_bMovingLeftAndRight  is true it sets the starting direction to right, if not it is set to up
-//If the default starting direction is right then  the only other direction it can go is left, if the defualt position is up then the only other direction it can go is down
+//this function checks if the bool"m_bMovingLeftAndRight  is true it 
+//sets the starting direction to right, if not it is set to up
+//If the default starting direction is right then 
+//the only other direction it can go is left, if the default position
+//is up then the only other direction it can go is down
 void CGCMovingEnemies::InitialiseMovementDirection () 
 {
 	if (m_bMovingLeftAndRight == true)
