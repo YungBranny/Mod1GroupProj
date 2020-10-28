@@ -24,19 +24,19 @@
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
 //#include "GamerCamp/GameSpecific/Timer/GCObjTimerBar.h"
-#include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
+#include "GamerCamp/GameSpecific/Collectables/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjLongPlatformTest.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjShortPlatformTest.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjFallingPlatform.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjTravelatorPlatform.h"
-#include "GamerCamp/GameSpecific/Door/GCObjDoor.h"
+#include "GamerCamp/GameSpecific/ExitDoor/GCObjExitDoor.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
-#include "GamerCamp/GameSpecific/Keys/GCObjTimePickUp.h"
+#include "GamerCamp/GameSpecific/Collectables/GCObjTimePickUp.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatformManager.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatform.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatformManager.h"
@@ -81,7 +81,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCOKeys1                  ( nullptr )
 , m_pcGCOKeys2                  ( nullptr )
 , m_pcGCOTimePickUp             ( nullptr )
-, m_pcGCODoor                   ( nullptr )
+, m_pcGCOExitDoor               ( nullptr )
 , m_pcGCBasicEnemies			( nullptr )
 , m_pcGCBasicEnemies2			( nullptr )
 , m_pcGCMovingEnemies			( nullptr )
@@ -110,7 +110,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCScalingBasicPlatformManagerTop		( nullptr )
 
 {
-	m_iTotalKeys		= 3; // Sets the total amount of Keys the Player needs to obtain to mbe able to unlock the Exit Door and move on to 3
+	m_iTotalKeys		= 1; // Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
 
 	m_iKeysCollected	= 0; // Sets Default Keys to 0, so we can add 1 more on as Player collects them
 
@@ -133,7 +133,7 @@ CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
 void CGCGameLayerPlatformer::keyCollected() // This function adds one more Key onto how many the Player obtains
 {
 	m_iKeysCollected++; // Adds a Key
-	CCLOG ( "Key Collected." ); // Check to make sure Player has picked up Key only once
+	CCLOG ( "Key Collected." ); // Checks to make sure Player has picked up Key only once
 }
 
 void CGCGameLayerPlatformer::addOnTime() // This function adds on Air Time
@@ -423,9 +423,9 @@ void CGCGameLayerPlatformer::VOnCreate()
 	// Setting up the Background Sprite
 	const char* pszPlist_background = "TexturePacker/Sprites/Background/Background.plist";
 	{
-		m_pcGCSprBackGround = new CGCObjSprite(); // Crate a new Object for Background
+		m_pcGCSprBackGround = new CGCObjSprite(); // Create a new Object for Background
 		m_pcGCSprBackGround->CreateSprite( pszPlist_background ); // Create the Sprite for Background by calling it
-		m_pcGCSprBackGround->SetResetPosition(cocos2d::Vec2(500, 400)); // Setting the x and y Positions
+		m_pcGCSprBackGround->SetResetPosition(cocos2d::Vec2(500, 400)); // Setting the X and Y Positions
 		m_pcGCSprBackGround->SetParent( IGCGameLayer::ActiveInstance() ); // Adding Sprite to this Game Layer
 		backgroundMusic(); // Calling 'backgroundMusic' Function, so the Audio plays as soon as level loads
  	}
@@ -475,20 +475,20 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOPlayer = new CGCObjPlayer();
 	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(150, 100) );
 
-	m_pcGCOKeys = new CGCObjKeys(); // Create Keys Object
-	m_pcGCOKeys->SetResetPosition (cocos2d::Vec2 (715, 160)); // Setting the x and y Positions
+	m_pcGCOKeys			= new CGCObjKeys (); // Create Keys Object
+	m_pcGCOKeys->SetResetPosition ( cocos2d::Vec2 (715, 160) ); // Setting the X and Y Positions
 
-	m_pcGCOKeys1 = new CGCObjKeys(); // Create other Keys Object
-	m_pcGCOKeys1->SetResetPosition(cocos2d::Vec2(500, 380)); // Setting the x and y Positions
+	m_pcGCOKeys1		= new CGCObjKeys (); // Create other Keys Object
+	m_pcGCOKeys1->SetResetPosition ( cocos2d::Vec2(500, 380) ); // Setting the X and Y Positions
 
-	m_pcGCOKeys2 = new CGCObjKeys(); // Create last Keys Object
-	m_pcGCOKeys2->SetResetPosition(cocos2d::Vec2(700, 550)); // Setting the x and y Positions
+	m_pcGCOKeys2		= new CGCObjKeys (); // Create last Keys Object
+	m_pcGCOKeys2->SetResetPosition ( cocos2d::Vec2(700, 550) ); // Setting the X and Y Positions
 
-	m_pcGCOTimePickUp = new CGCObjTimePickUp(); // Create Time PickUp Object
-	m_pcGCOTimePickUp->SetResetPosition(cocos2d::Vec2(860, 500)); // Setting the x and y Positions
+	m_pcGCOTimePickUp	= new CGCObjTimePickUp (); // Create Time PickUp Object
+	m_pcGCOTimePickUp->SetResetPosition ( cocos2d::Vec2(860, 500) ); // Setting the X and Y Positions
 	
-	m_pcGCODoor = new CGCObjDoor(); // Create Exit Door Object
-	m_pcGCODoor->SetResetPosition (cocos2d::Vec2(50, 115)); // Setting the x and y Positions
+	m_pcGCOExitDoor		= new CGCObjExitDoor (); // Create Exit Door Object
+	m_pcGCOExitDoor->SetResetPosition ( cocos2d::Vec2(50, 115) ); // Setting the X and Y Positions
 
 	///////// Platforms
 
@@ -519,7 +519,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
 
 	m_pcGCOMovingPlatform = new CGCObjMovingPlatform(); // Create Moving Platform Object
-	m_pcGCOMovingPlatform->SetResetPosition(cocos2d::Vec2(970, 280));  // Setting the x and y Positions
+	m_pcGCOMovingPlatform->SetResetPosition(cocos2d::Vec2(970, 280));  // Setting the X and Y Positions
 	m_pcGCOMovingPlatform->setGravity(3.0f); // Setting the Gravity
 
 	m_pcGCTravelatorPlatform1 = new CGCObjTravelatorPlatform();
@@ -665,7 +665,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	GetCollisionManager().AddCollisionHandler
 	(
 		[this]
-	(CGCObjDoor& rcDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+	(CGCObjExitDoor& rcExitDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 	{
 		if( m_iKeysCollected >= m_iTotalKeys ) // If the Keys Collected by Player is more equal than to the Total Keys Collected
 		{
@@ -898,8 +898,8 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	/*delete m_pcGCsprTimerBar;
 	m_pcGCsprTimerBar = nullptr;*/
 	
-	delete m_pcGCODoor;
-	m_pcGCODoor = nullptr;
+	delete m_pcGCOExitDoor;
+	m_pcGCOExitDoor = nullptr;
 
 	delete m_pcGCOTimePickUp;
 	m_pcGCOTimePickUp = nullptr;

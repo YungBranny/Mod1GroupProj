@@ -1,5 +1,5 @@
-#ifndef _CGCOBJDOOR_
-#define _CGCOBJDOOR__
+#ifndef _CGCOBJEXITDOOR_
+#define _CGCOBJEXITDOOR__
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 // This 'GCObjDoor' Header File and Class File was created and is managed by Mehak Hussain.        //
@@ -10,14 +10,14 @@
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
-class CGCObjDoor
+class CGCObjExitDoor
 	: public CGCObjSpritePhysics
 {
 private:
 
 public:
-	CGCObjDoor ( void );
-	virtual ~CGCObjDoor () {};
+	CGCObjExitDoor ( void );
+	virtual ~CGCObjExitDoor () {};
 
 	virtual void VOnResourceAcquire ( void );
 };

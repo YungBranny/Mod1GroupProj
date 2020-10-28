@@ -1,4 +1,4 @@
-#include "GamerCamp/GameSpecific/Keys/GCObjTimePickUp.h"
+#include "GamerCamp/GameSpecific/Collectables/GCObjTimePickUp.h"
 
 CGCObjTimePickUp::CGCObjTimePickUp ( void )
 	: CGCObjSpritePhysics ( GetGCTypeIDOf(CGCObjTimePickUp) ) // We are inheriting from CGCObjSpritePhysics, so we can use physics on the Timer PickUp

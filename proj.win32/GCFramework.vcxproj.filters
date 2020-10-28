@@ -73,11 +73,11 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Collectables">
       <UniqueIdentifier>{9a343c04-2a7a-4169-b829-bc3712b902f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\GamerCamp\GameSpecific\Door">
-      <UniqueIdentifier>{10000651-36f5-4c58-9abf-6b2a6684158b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\NewPlatforms">
       <UniqueIdentifier>{79b3e979-a75a-49f0-a2d2-03586f091a02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\ExitDoor">
+      <UniqueIdentifier>{10000651-36f5-4c58-9abf-6b2a6684158b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -177,9 +177,6 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimer.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
@@ -192,9 +189,6 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
     </ClCompile>
@@ -203,9 +197,6 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameStates\GameStateManager.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\Door</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
@@ -233,6 +224,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTravelatorPlatform.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ExitDoor\GCObjExitDoor.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\ExitDoor</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -344,9 +344,6 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimer.h">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
@@ -359,9 +356,6 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.h">
       <Filter>Classes\GamerCamp\GameSpecific\MainMenu</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.h">
       <Filter>Classes\GamerCamp\GameSpecific\GameWinLossScenes</Filter>
     </ClInclude>
@@ -370,9 +364,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameStates\GameStateManager.h">
       <Filter>Classes\GamerCamp\GameSpecific\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Door</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.h">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
@@ -400,6 +391,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTravelatorPlatform.h">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ExitDoor\GCObjExitDoor.h">
+      <Filter>Classes\GamerCamp\GameSpecific\ExitDoor</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

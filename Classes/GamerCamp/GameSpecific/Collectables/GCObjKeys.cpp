@@ -1,4 +1,4 @@
-#include "GamerCamp/GameSpecific/Keys/GCObjKeys.h"
+#include "GamerCamp/GameSpecific/Collectables/GCObjKeys.h"
 
 CGCObjKeys::CGCObjKeys ( void )
 	: CGCObjSpritePhysics (GetGCTypeIDOf(CGCObjKeys) ) // We are inheriting from CGCObjSpritePhysics, so we can use physics on the Keys

@@ -29,7 +29,7 @@ class CGCObjLongPlatformTest;
 class CGCObjShortPlatformTest;
 class CGCObjTravelatorPlatform;
 class CGCObjFallingPlatform;
-class CGCObjDoor;
+class CGCObjExitDoor;
 class CGCObjTimePickUp;
 class CGCObjScalingBasicPlatformManager;
 class CGCObjScalingFallingPlatformManager;
@@ -71,7 +71,7 @@ private:
 
 	CGCObjTimePickUp*               m_pcGCOTimePickUp;
 
-	CGCObjDoor*                     m_pcGCODoor;
+	CGCObjExitDoor*                 m_pcGCOExitDoor;
 
 	CGCBasicEnemies*				m_pcGCBasicEnemies;
 	CGCBasicEnemies*				m_pcGCBasicEnemies2;

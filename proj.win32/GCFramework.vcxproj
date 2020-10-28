@@ -155,9 +155,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\Debug\GLES-Render.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameController\GCController.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameController\GCControllerManager.cpp" />
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ExitDoor\GCObjExitDoor.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameStates\GameStateManager.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.cpp" />
@@ -166,8 +168,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Invaders\GCObjInvader.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjGroupItem.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjItem.cpp" />
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.cpp" />
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.cpp" />
@@ -211,9 +211,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\Debug\GLES-Render.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameController\GCController.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameController\GCControllerManager.h" />
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Door\GCObjDoor.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ExitDoor\GCObjExitDoor.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameStates\GameStateManager.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.h" />
@@ -222,8 +224,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Invaders\GCObjInvader.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjGroupItem.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjItem.h" />
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjKeys.h" />
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Keys\GCObjTimePickUp.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.h" />
