@@ -27,7 +27,7 @@ public:
 	void  setCollisionBuffer ( unsigned short int i )	{	m_iCollisionBuffer = i;	    }
 
 	bool  getJustCollided ()			        const	{	return m_bJustCollided;	    }
-	void  setJustCollided ( bool i )					{	  m_bJustCollided = i;	    }
+	void  setJustCollided	 (		  bool i        )	{	  m_bJustCollided = i;	    }
 
 	virtual void VOnResourceAcquire ( void );
 	virtual void VOnUpdate ( f32 fTimestep );

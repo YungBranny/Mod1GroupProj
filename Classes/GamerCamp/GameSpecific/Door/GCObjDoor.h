@@ -1,7 +1,12 @@
-
 #ifndef _CGCOBJDOOR_
 #define _CGCOBJDOOR__
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// This 'GCObjDoor' Header File and Class File was created and is managed by Mehak Hussain.        //
+// The purpose of this Class is to create the Exit Door that the Player is able to use after they  //
+// collect the amount of Keys needed to progress. The Exit Door is locked until the Player obtains //
+// the Keys needed to unlock it. In this Class, I set the physics and creation of the Exit Door.   //     
+/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
@@ -10,35 +15,11 @@ class CGCObjDoor
 {
 private:
 
-	cocos2d::Vec2 m_v2StartPos;
-
-	float m_keysGravity;
-
 public:
-
-	CGCObjDoor ();
+	CGCObjDoor ( void );
 	virtual ~CGCObjDoor () {};
 
-	//cocos2d::Vec2 GetStartPos () { return m_v2StartPos; }
-	//void SetStartPos (cocos2d::Vec2 i) { m_v2StartPos = i; }
-
-	float getGravity() { return m_keysGravity; } // use const and put in cpp
-	void  setGravity(float i) { m_keysGravity = i; }
-
-	virtual void VOnResourceAcquire (void);
-	virtual void VOnResurrected (void);
-	virtual void VOnResourceRelease (void);
-	virtual void VOnReset (void);
-
-	virtual void VOnUpdate (f32 fTimestep);
-
-	// this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
-	//void NotifyOfCollisionWithPlayer ();
-
-
-
-
-
+	virtual void VOnResourceAcquire ( void );
 };
 
 #endif
