@@ -847,7 +847,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	
 	// this shows how to iterate and respond to the box2d collision info
 	ManuallyHandleCollisions();	
-
+	
 	m_pcGCTimer->Update();
 	//m_pcGCMovingEnemies->VOnUpdate (fTimeStep);
 

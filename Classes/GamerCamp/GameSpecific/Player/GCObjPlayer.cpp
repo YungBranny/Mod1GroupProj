@@ -140,7 +140,7 @@ void CGCObjPlayer::VOnResourceRelease()
 //
 // N.B. globals that we can edit in the debugger used to override the 
 // values of the members for debugging control code
-f32 g_CGCObjPlayer_fMass						= 100.0f;		// kg
+f32 g_CGCObjPlayer_fMass						= 1.0f;		// kg
 f32	g_CGCObjPlayer_fMaximumMoveForce_Horizontal	= 50.0f;	// newton
 f32	g_CGCObjPlayer_fMaximumMoveForce_Vertical	= 1.0f;	// newton
 f32	g_CGCObjPlayer_fDragCoefficient_Linear		= 40.0f;	// unitless
@@ -162,15 +162,15 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	m_fNoInput_VelocityThreshold	= g_CGCObjPlayer_fNoInput_VelocityThreshold;
 
 	// we accumulate total force over the frame and apply it at the end
-	Vec2 v2TotalForce( 0.0f, 0.0f);
+	//Vec2 v2TotalForce( 0.0f, 0.0f);
 
 
 	// * calculate the control force direction
-	Vec2 v2ControlForceDirection( 0.0f, 0.0f );
+	//Vec2 v2ControlForceDirection( 0.0f, 0.0f );
 
 	// this float is used to add / remove the effect of various terms 
 	// in equations based on whether input has been applied this frame
-	f32 fIsInputInactive = 1.0f;
+	//f32 fIsInputInactive = 1.0f;
 
 	// instantiating templates is one of the few use cases where auto is a big improvement & arguably the best thing to do
 	// e.g.
@@ -178,19 +178,19 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	const CGCKeyboardManager*		pKeyManager = AppDelegate::GetKeyboardManager();
 	TGCController< EPlayerActions > cController = TGetActionMappedController( CGCControllerManager::eControllerOne, (*m_pcControllerActionToKeyMap ) );
 
-	if( cController.IsActive() )
-	{
-		Vec2 v2LeftStickRaw			= cController.GetCurrentStickValueRaw( EPA_AxisMove_X, EPA_AxisMove_Y );
-		v2ControlForceDirection.x	= v2LeftStickRaw.x;
+//	if( cController.IsActive() )
+	//{
+	//	Vec2 v2LeftStickRaw			= cController.GetCurrentStickValueRaw( EPA_AxisMove_X, EPA_AxisMove_Y );
+		//v2ControlForceDirection.x	= v2LeftStickRaw.x;
 	//	v2ControlForceDirection.y	= v2LeftStickRaw.y;
 
-		if( v2ControlForceDirection.length() > 0.0f )
+		//if( v2ControlForceDirection.length() > 0.0f )
 		{
-			fIsInputInactive = 0.0f;
+			//fIsInputInactive = 0.0f;
 		}
-	}
-	else
-	{
+	//}
+	//else
+//	{
 	//	if( pKeyManager->ActionIsPressed( CGCGameLayerPlatformer::EPA_Up ) )
 	//	{
 	//		v2ControlForceDirection.y   = 1.0f;
@@ -204,9 +204,6 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 		if (m_bOnTravelator != true)
 		{
 
-
-
-
 			if (pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Left))
 			{
 
@@ -214,8 +211,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 				if (m_bCanJump == true)
 				{
 
-					v2ControlForceDirection.x = -1.0f;
-					fIsInputInactive = 0.0f;
+					GetPhysicsBody()->ApplyForce(b2Vec2(-10, 0), GetPhysicsBody()->GetWorldCenter(), true);
 
 				}
 
@@ -226,8 +222,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 				if (m_bCanJump == true)
 				{
-					v2ControlForceDirection.x = 1.0f;
-					fIsInputInactive = 0.0f;
+					GetPhysicsBody()->ApplyForce(b2Vec2(10, 0), GetPhysicsBody()->GetWorldCenter(), true);
 				}
 			}
 
@@ -240,14 +235,14 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 				}
 			}
 		}
-	}
+	//}
 
 	// normalise the control vector and multiply by movement force
-	v2ControlForceDirection.x *= m_fMaximumMoveForce_Horizontal;
+	//v2ControlForceDirection.x *= m_fMaximumMoveForce_Horizontal;
 //	v2ControlForceDirection.y *= m_fMaximumMoveForce_Vertical;
 
 	// accumulate the force
-	v2TotalForce += v2ControlForceDirection;
+	//v2TotalForce += v2ControlForceDirection;
 
 
 	// * calculate drag force
@@ -276,7 +271,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 
 	// physics calcs handled by box 2d based on force applied
-	ApplyForceToCenter( v2TotalForce );
+	//ApplyForceToCenter( v2TotalForce );
 
 
 	// * set sprite flip based on velocity
@@ -321,9 +316,9 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	if( bFireWasPressed && m_bCanJump)
 	{
 
-			GetPhysicsBody()->ApplyForceToCenter(b2Vec2(0, 900.0f), true);
+			//GetPhysicsBody()->ApplyForceToCenter(b2Vec2(0, 900.0f), true);
 			//GetPhysicsBody()->ApplyLinearImpulse(b2Vec2(0, 15.0f),b2Vec2(0,0.0f), true);
-		
+			GetPhysicsBody()->ApplyForce(b2Vec2(0, 1000), GetPhysicsBody()->GetWorldCenter(), true);
 			m_bCanJump = false;
 	}
 
