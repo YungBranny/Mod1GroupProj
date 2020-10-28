@@ -586,7 +586,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 		}
 	);
 
-	// Setting up the Collision between the Player and the Moving Platform
+	// Handles the Collision between the Player and the Moving Platform
 	GetCollisionManager().AddCollisionHandler
 	(
 		[]
@@ -661,13 +661,13 @@ void CGCGameLayerPlatformer::VOnCreate()
 		}
 	);
 
-	// Setting up the Collision between the Player and the Exit Door
+	// Handles the Collision between the Player and the Exit Door
 	GetCollisionManager().AddCollisionHandler
 	(
 		[this]
 	(CGCObjExitDoor& rcExitDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 	{
-		if( m_iKeysCollected >= m_iTotalKeys ) // If the Keys Collected by Player is more equal than to the Total Keys Collected
+		if( m_iKeysCollected >= m_iTotalKeys ) // If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 		{
 			m_bPlayerKeysGathered = true;
 
@@ -676,7 +676,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	}
 	);
 
-	// Setting up the Collision between the Player and the Keys
+	// Handles the Collision between the Player and the Keys
 	GetCollisionManager().AddCollisionHandler
 	(
 		[this]
@@ -692,7 +692,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	}
 	);
 
-	// Setting up the Collision between the Player and the Time PickUp
+	// Handles the Collision between the Player and the Time PickUp
 	GetCollisionManager().AddCollisionHandler
 	(
 		[this]
@@ -704,8 +704,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 			{
 				rcPickUp.setJustCollided ( true ); // When player has collided with a Timer PickUp
 				CGCObjectManager::ObjectKill(&rcPickUp); // Destroy the Timer PickUp Object Sprite
-				addOnTime(); // Calls the Function which add on Timer Increase Value to whatever is the current Air Time
-				playTimerPickUpAudio(); // Calls the Function which player Timer PickUp Audio
+				addOnTime(); // Calls the Function which adds on Timer Increase Value (20) to whatever is the current Air Time
+				playTimerPickUpAudio(); // Calls the Function which plays Timer PickUp Audio
 			}
 		}
 	}
@@ -838,8 +838,6 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	
 	m_pcGCTimer->Update();
 	//m_pcGCMovingEnemies->VOnUpdate (fTimeStep);
-
-	//m_pcGCOKeys->VOnUpdate(fTimeStep);
 	
 	//m_pcGCBasicEnemies->SetVelocity (cocos2d::Vec2(1,0));
 	//m_pcGCBasicEnemies->SetVelocity (cocos2d::Vec2 (10, 0));
