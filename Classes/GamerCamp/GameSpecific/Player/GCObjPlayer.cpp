@@ -18,8 +18,8 @@ USING_NS_CC;
 
 
 // action map arrays must match in length - in the templated controller class we use they map from the user define enum to cocos2d::Controller::Key 
-static EPlayerActions			s_aePlayerActions[]	= { EPA_AxisMove_X,								EPA_AxisMove_Y,								EPA_ButtonFire };
-static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYSTICK_LEFT_X,	cocos2d::Controller::Key::JOYSTICK_LEFT_Y,	cocos2d::Controller::Key::BUTTON_A };
+static EPlayerActions			s_aePlayerActions[]	= { EPA_AxisMove_X,								EPA_ButtonJump };
+static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYSTICK_LEFT_X,	cocos2d::Controller::Key::BUTTON_A };
 
 
 
@@ -28,7 +28,6 @@ static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYST
 // this type - need this to construct our base type
 CGCObjPlayer::CGCObjPlayer()
 : CGCObjSpritePhysics			( GetGCTypeIDOf( CGCObjPlayer ) )
-, m_pProjectileManager			( nullptr )
 , m_fMaximumMoveForce_Horizontal( 20.0f )
 , m_fDragCoefficient_Linear		( 0.25f )
 , m_fDragCoefficient_Square		( 0.2f )
@@ -72,11 +71,6 @@ void CGCObjPlayer::VOnResourceAcquire()
 	// animate!
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( GetFactoryCreationParams()->strPlistFile );
 	RunAction( GCCocosHelpers::CreateAnimationActionLoop( GCCocosHelpers::CreateAnimation( dicPList, pszAnim_marioJog ) ) );
-
-	// find the player projectile group 
-	// N.B. we know this cast is safe because we're checking the typeID
-	m_pProjectileManager = static_cast< CGCObjGroupProjectilePlayer* >
-		( CGCObjectManager::FindObjectGroupByID( GetGCTypeIDOf( CGCObjGroupProjectilePlayer ) ));
 
 	// because we're just storing a vanilla pointer we must call delete on it in VOnResourceRelease or leak memory 
 	// 
@@ -140,26 +134,29 @@ void CGCObjPlayer::VOnResourceRelease()
 //
 // N.B. globals that we can edit in the debugger used to override the 
 // values of the members for debugging control code
-f32 g_CGCObjPlayer_fMass						= 1.0f;		// kg
-f32	g_CGCObjPlayer_fMaximumMoveForce_Horizontal	= 50.0f;	// newton
-f32	g_CGCObjPlayer_fMaximumMoveForce_Vertical	= 1.0f;	// newton
-f32	g_CGCObjPlayer_fDragCoefficient_Linear		= 40.0f;	// unitless
-f32	g_CGCObjPlayer_fDragCoefficient_Square		= 0.2f;		// unitless
-f32 g_CGCObjPlayer_m_fNoInput_ExtraDrag_Square	= 0.2f;		// unitless
-f32 g_CGCObjPlayer_fNoInput_VelocityThreshold	= 0.25f;	// m/s
-f32 g_GCGameLayer_fDamping						= 0.999f;	// unitless
-f32 g_GCGameLayer_fProjectileVelocity			= 20.0f;	// m/s
-f32 g_GCGameLayer_fProjectileLifetime			= 2.5f;		// s
+//f32 g_CGCObjPlayer_fMass						= 1.0f;		// kg
+//f32	g_CGCObjPlayer_fMaximumMoveForce_Horizontal	= 50.0f;	// newton
+//f32	g_CGCObjPlayer_fMaximumMoveForce_Vertical	= 1.0f;	// newton
+//f32	g_CGCObjPlayer_fDragCoefficient_Linear		= 40.0f;	// unitless
+//f32	g_CGCObjPlayer_fDragCoefficient_Square		= 0.2f;		// unitless
+//f32 g_CGCObjPlayer_m_fNoInput_ExtraDrag_Square	= 0.2f;		// unitless
+//f32 g_CGCObjPlayer_fNoInput_VelocityThreshold	= 0.25f;	// m/s
+//f32 g_GCGameLayer_fDamping						= 0.999f;	// unitless
+//f32 g_GCGameLayer_fProjectileVelocity			= 20.0f;	// m/s
+//f32 g_GCGameLayer_fProjectileLifetime			= 2.5f;		// s
 //
 //////////////////////////////////////////////////////////////////////////
 void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 {
-	m_fMaximumMoveForce_Horizontal	= g_CGCObjPlayer_fMaximumMoveForce_Horizontal;
-	m_fMaximumMoveForce_Vertical	= g_CGCObjPlayer_fMaximumMoveForce_Vertical;
-	m_fDragCoefficient_Linear		= g_CGCObjPlayer_fDragCoefficient_Linear;
-	m_fDragCoefficient_Square		= g_CGCObjPlayer_fDragCoefficient_Square;
-	m_fNoInput_ExtraDrag_Square		= g_CGCObjPlayer_m_fNoInput_ExtraDrag_Square;
-	m_fNoInput_VelocityThreshold	= g_CGCObjPlayer_fNoInput_VelocityThreshold;
+////////////////////////////////////////////////////////////////////////////////
+///// VARIABLES NOT USED
+////////////////////////////////////////////////////////////////////////////////
+	//m_fMaximumMoveForce_Horizontal	= g_CGCObjPlayer_fMaximumMoveForce_Horizontal;
+	//m_fMaximumMoveForce_Vertical	= g_CGCObjPlayer_fMaximumMoveForce_Vertical;
+	//m_fDragCoefficient_Linear		= g_CGCObjPlayer_fDragCoefficient_Linear;
+	//m_fDragCoefficient_Square		= g_CGCObjPlayer_fDragCoefficient_Square;
+	//m_fNoInput_ExtraDrag_Square		= g_CGCObjPlayer_m_fNoInput_ExtraDrag_Square;
+	//m_fNoInput_VelocityThreshold	= g_CGCObjPlayer_fNoInput_VelocityThreshold;
 
 	// we accumulate total force over the frame and apply it at the end
 	//Vec2 v2TotalForce( 0.0f, 0.0f);
@@ -175,9 +172,16 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	// instantiating templates is one of the few use cases where auto is a big improvement & arguably the best thing to do
 	// e.g.
 	//	auto cController = ... ;
+////////////////////////////////////////////////////////////////////////////////
+///// VARIABLES NOT USED
+////////////////////////////////////////////////////////////////////////////////
+
 	const CGCKeyboardManager*		pKeyManager = AppDelegate::GetKeyboardManager();
 	TGCController< EPlayerActions > cController = TGetActionMappedController( CGCControllerManager::eControllerOne, (*m_pcControllerActionToKeyMap ) );
 
+////////////////////////////////////////////////////////////////////////////////
+///// START OLD CODE
+////////////////////////////////////////////////////////////////////////////////
 //	if( cController.IsActive() )
 	//{
 	//	Vec2 v2LeftStickRaw			= cController.GetCurrentStickValueRaw( EPA_AxisMove_X, EPA_AxisMove_Y );
@@ -185,9 +189,9 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	//	v2ControlForceDirection.y	= v2LeftStickRaw.y;
 
 		//if( v2ControlForceDirection.length() > 0.0f )
-		{
+		//{
 			//fIsInputInactive = 0.0f;
-		}
+		//}
 	//}
 	//else
 //	{
@@ -201,6 +205,10 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	//		v2ControlForceDirection.y	= -1.0f;
 	//		fIsInputInactive            = 0.0f;
 	//	}
+////////////////////////////////////////////////////////////////////////////////
+///// END OLD CODE
+////////////////////////////////////////////////////////////////////////////////
+
 		if (m_bOnTravelator != true)
 		{
 
@@ -235,6 +243,9 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 				}
 			}
 		}
+////////////////////////////////////////////////////////////////////////////////
+///// Start OLD CODE
+////////////////////////////////////////////////////////////////////////////////
 	//}
 
 	// normalise the control vector and multiply by movement force
@@ -272,6 +283,9 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	// physics calcs handled by box 2d based on force applied
 	//ApplyForceToCenter( v2TotalForce );
+////////////////////////////////////////////////////////////////////////////////
+///// END OLD CODE
+////////////////////////////////////////////////////////////////////////////////
 
 
 	// * set sprite flip based on velocity
@@ -300,7 +314,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 	if( cController.IsActive() )
 	{
-		if( cController.ButtonHasJustBeenPressed( EPA_ButtonFire ) )
+		if( cController.ButtonHasJustBeenPressed(EPA_ButtonJump) )
 		{
 			bFireWasPressed = true;
 		}
@@ -324,11 +338,12 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 }
 
+//Function to be called when losing a life
 void CGCObjPlayer::DecrementLives()
 {
 	m_iNumberOfLives--;
 }
-
+//Function to reset lives
 void CGCObjPlayer::ResetLives()
 {
 	m_iNumberOfLives = 3;

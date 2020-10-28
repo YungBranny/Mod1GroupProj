@@ -19,8 +19,7 @@ template< typename TActionType > class TGCActionToKeyMap;
 enum EPlayerActions
 {
 	EPA_AxisMove_X,
-	EPA_AxisMove_Y,
-	EPA_ButtonFire
+	EPA_ButtonJump
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -35,8 +34,6 @@ class CGCObjPlayer
 : public CGCObjSpritePhysics
 {
 private:
-	// used to fire projectiles
-	CGCObjGroupProjectilePlayer* m_pProjectileManager; 
 
 	// member variables for 'physicsy' handling
 	// N.B. uses sprite to store position and has no rotation
