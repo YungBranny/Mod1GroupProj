@@ -26,18 +26,22 @@ static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYST
 //////////////////////////////////////////////////////////////////////////
 // GetGCTypeIDOf uses the template in GCTypeID to generate a unique ID for 
 // this type - need this to construct our base type
-CGCObjPlayer::CGCObjPlayer()
-: CGCObjSpritePhysics			( GetGCTypeIDOf( CGCObjPlayer ) )
-, m_fMaximumMoveForce_Horizontal( 20.0f )
-, m_fDragCoefficient_Linear		( 0.25f )
-, m_fDragCoefficient_Square		( 0.2f )
-, m_fNoInput_ExtraDrag_Square	( 0.2f )
-, m_fNoInput_VelocityThreshold	( 0.25f )
-, m_pcControllerActionToKeyMap	( nullptr )
-, m_bCanJump (true)
-, m_bOnTravelator(false)
-, m_iNumberOfLives(1)
+CGCObjPlayer::CGCObjPlayer ()
+	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjPlayer))
+	, m_fMaximumMoveForce_Horizontal (20.0f)
+	, m_fDragCoefficient_Linear (0.25f)
+	, m_fDragCoefficient_Square (0.2f)
+	, m_fNoInput_ExtraDrag_Square (0.2f)
+	, m_fNoInput_VelocityThreshold (0.25f)
+	, m_pcControllerActionToKeyMap (nullptr)
+	, m_bCanJump (true)
+	, m_bOnTravelator (false)
+	, m_iNumberOfLives (1)
+	, m_v2MovingRightVelocity (6.0f, 0)
+	, m_v2MovingLeftVelocity (-m_v2MovingRightVelocity)
+	, m_v2StopMovingVelocity (0, 0)
 {
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
@@ -52,6 +56,7 @@ CGCObjPlayer::CGCObjPlayer()
 	getLivesText()->setPosition(Vec2(visibleSize.width / 2 - 420, visibleSize.height / 2 - 270));
 
 	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
+	m_eMoveDirection = EMoveDirection::StandingStill;
 }
 
 
@@ -65,6 +70,7 @@ void CGCObjPlayer::VOnResourceAcquire()
 	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE( CGCObjPlayer );
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
+
 
 	const char* pszAnim_marioJog = "Jog";
 
@@ -93,15 +99,6 @@ void CGCObjPlayer::VOnReset()
 	// reset velocity and flip state
 	SetFlippedX( false );
 	SetFlippedY( false );
-
-	// reset
-	if( GetPhysicsBody() )
-	{
-		Vec2 v2SpritePos = GetSpritePosition();
-		GetPhysicsBody()->SetLinearVelocity( b2Vec2( 0.0f, 0.0f ) );
-		GetPhysicsBody()->SetTransform( IGCGameLayer::B2dPixelsToWorld( b2Vec2( v2SpritePos.x, v2SpritePos.y ) ), 0.0f );
-		GetPhysicsBody()->SetFixedRotation( true );
-	}
 }
 
 
@@ -114,6 +111,8 @@ void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 {
 	// handle movement
 	UpdateMovement( fTimeStep );
+	//ChangeDirection ();
+	//Movement ();
 }
 
 
@@ -128,6 +127,216 @@ void CGCObjPlayer::VOnResourceRelease()
 	m_pcControllerActionToKeyMap = nullptr;
 }
 
+void CGCObjPlayer::VOnResurrected (void)
+{
+	CGCObjSpritePhysics::VOnResurrected ();
+	m_bv2jumpVel = b2Vec2 (GetPhysicsBody ()->GetLinearVelocity ().x, 8);
+}
+
+//void CGCObjPlayer::ChangeDirection ()
+//{
+//	const CGCKeyboardManager* pKeyManager = AppDelegate::GetKeyboardManager ();
+//	TGCController< EPlayerActions > cController = TGetActionMappedController (CGCControllerManager::eControllerOne, ( *m_pcControllerActionToKeyMap ));
+//
+//	if (m_bOnTravelator != true)
+//	{
+//		switch (m_eMoveDirection)
+//		{
+//		case EMoveDirection::Right:
+//		{
+//
+//			if (pKeyManager->ActionIsPressed (CGCGameLayerPlatformer::EPA_Left))
+//			{
+//				if (m_bCanJump == true)
+//				{
+//					m_eMoveDirection = EMoveDirection::Left;
+//
+//				}
+//			}
+//
+//			else if (pKeyManager->ActionHasJustBeenReleased (CGCGameLayerPlatformer::EPA_Right))
+//			{
+//				if (m_bCanJump == true)
+//				{
+//
+//					m_eMoveDirection = EMoveDirection::StandingStill;
+//
+//				}
+//			}
+//
+//			else if (pKeyManager->ActionIsPressed (CGCGameLayerPlatformer::EPA_Fire))
+//			{
+//				if (m_bCanJump == true)
+//				{
+//
+//
+//					b2Vec2 jumpVel = GetPhysicsBody ()->GetLinearVelocity ();
+//					jumpVel.y = 100;
+//					GetPhysicsBody ()->SetLinearVelocity (jumpVel);
+//
+//					//m_eMoveDirection = EMoveDirection::Jump;
+//					//for(int i = 0; i>100; i++)
+//					//{  
+//					//	m_eMoveDirection = EMoveDirection::StandingStill;
+//					//	m_bCanJump = true;
+//					//}
+//				}
+//			}
+//
+//			break;
+//		}
+//
+//		case EMoveDirection::Left:
+//		{
+//			if (pKeyManager->ActionIsPressed (CGCGameLayerPlatformer::EPA_Right))
+//
+//			{
+//				if (m_bCanJump == true)
+//				{
+//
+//					m_eMoveDirection = EMoveDirection::Right;
+//
+//				}
+//			}
+//
+//			else if (pKeyManager->ActionHasJustBeenReleased (CGCGameLayerPlatformer::EPA_Left))
+//			{
+//				if (m_bCanJump == true)
+//				{
+//
+//					m_eMoveDirection = EMoveDirection::StandingStill;
+//
+//				}
+//			}
+//
+//			else if (pKeyManager->ActionIsPressed (CGCGameLayerPlatformer::EPA_Fire))
+//			{
+//				if (m_bCanJump == true)
+//				{
+//
+//					b2Vec2 jumpVel = GetPhysicsBody ()->GetLinearVelocity ();
+//					jumpVel.y = 100;
+//					GetPhysicsBody ()->SetLinearVelocity (jumpVel);
+//					//m_eMoveDirection = EMoveDirection::Jump;
+//					//for(int i = 0; i>100; i++)
+//					//{  
+//					//	m_eMoveDirection = EMoveDirection::StandingStill;
+//					//	m_bCanJump = true;
+//					//}
+//				}
+//			}
+//
+//
+//			break;
+//		}
+//
+//		case EMoveDirection::StandingStill:
+//		{
+//			if (pKeyManager->ActionIsPressed (CGCGameLayerPlatformer::EPA_Right))
+//
+//			{
+//				if (m_bCanJump == true)
+//				{
+//
+//					m_eMoveDirection = EMoveDirection::Right;
+//
+//				}
+//			}
+//
+//			else if (pKeyManager->ActionHasJustBeenReleased (CGCGameLayerPlatformer::EPA_Right))
+//			{
+//				if (m_bCanJump == true)
+//				{
+//
+//					m_eMoveDirection = EMoveDirection::StandingStill;
+//
+//				}
+//			}
+//
+//			else if (pKeyManager->ActionIsPressed (CGCGameLayerPlatformer::EPA_Left))
+//			{
+//				if (m_bCanJump == true)
+//				{
+//					m_eMoveDirection = EMoveDirection::Left;
+//
+//				}
+//			}
+//
+//			else if (pKeyManager->ActionHasJustBeenReleased (CGCGameLayerPlatformer::EPA_Left))
+//			{
+//				if (m_bCanJump == true)
+//				{
+//
+//					m_eMoveDirection = EMoveDirection::StandingStill;
+//
+//				}
+//			}
+//
+//			else if (pKeyManager->ActionIsPressed (CGCGameLayerPlatformer::EPA_Fire))
+//			{
+//				if (m_bCanJump == true)
+//				{
+//
+//				}
+//			}
+//
+//			else if (pKeyManager->ActionHasJustBeenReleased (CGCGameLayerPlatformer::EPA_Fire))
+//			{
+//				if (m_bCanJump == false)
+//				{
+//
+//				}
+//			}
+//			break;
+//		}
+//
+//
+//
+//		}
+//
+//	}
+//}
+//
+//void CGCObjPlayer::Movement ()
+//{
+//	switch (m_eMoveDirection)
+//	{
+//	case EMoveDirection::Right:
+//	{
+//		this->SetVelocity (m_v2MovingRightVelocity);
+//		SetFlippedX (true);
+//
+//	}
+//	break;
+//
+//	case EMoveDirection::Left:
+//	{
+//		this->SetVelocity (m_v2MovingLeftVelocity);
+//		SetFlippedX (false);
+//	}
+//	break;
+//
+//	case EMoveDirection::StandingStill:
+//	{
+//		this->SetVelocity (m_v2StopMovingVelocity);
+//	}
+//	break;
+//
+//	case EMoveDirection::Jump:
+//	{
+//		//b2Vec2 jumpVel = GetPhysicsBody ()->GetLinearVelocity ();
+//		//jumpVel.y = 100;
+//		//GetPhysicsBody ()->SetLinearVelocity (jumpVel);
+//	/*	this->ApplyForceToCenter (cocos2d::Vec2 (0, 30));
+//		m_eMoveDirection = EMoveDirection::StandingStill;
+//		m_bCanJump = true;*/
+//
+//		//GetPhysicsBody ()->ApplyForce (b2Vec2 (0, 500), GetPhysicsBody ()->GetWorldCenter (), true);
+//		//m_bCanJump = false;
+//	}
+//
+//	}
+//}
 
 //////////////////////////////////////////////////////////////////////////
 // updates the movement of the CCSprite owned by this instance
@@ -219,7 +428,8 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 				if (m_bCanJump == true)
 				{
 
-					GetPhysicsBody()->ApplyForce(b2Vec2(-10, 0), GetPhysicsBody()->GetWorldCenter(), true);
+					SetVelocity (cocos2d::Vec2 (m_v2MovingLeftVelocity.x, GetVelocity ().y));
+					SetFlippedX (true);
 
 				}
 
@@ -230,7 +440,9 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 				if (m_bCanJump == true)
 				{
-					GetPhysicsBody()->ApplyForce(b2Vec2(10, 0), GetPhysicsBody()->GetWorldCenter(), true);
+					
+					SetVelocity (cocos2d::Vec2(m_v2MovingRightVelocity.x, GetVelocity ().y));
+					SetFlippedX (true);
 				}
 			}
 
@@ -239,7 +451,8 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 				if (m_bCanJump == true)
 				{
-					SetVelocity(cocos2d::Vec2(0, 0));
+					//GetPhysicsBody ()->ApplyForce (b2Vec2 (0, 500), GetPhysicsBody ()->GetWorldCenter (), true);
+					SetVelocity (cocos2d::Vec2 (0, GetVelocity ().y));
 				}
 			}
 		}
@@ -332,8 +545,11 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 
 			//GetPhysicsBody()->ApplyForceToCenter(b2Vec2(0, 900.0f), true);
 			//GetPhysicsBody()->ApplyLinearImpulse(b2Vec2(0, 15.0f),b2Vec2(0,0.0f), true);
-			GetPhysicsBody()->ApplyForce(b2Vec2(0, 1000), GetPhysicsBody()->GetWorldCenter(), true);
-			m_bCanJump = false;
+
+		//GetPhysicsBody ()->ApplyForce (b2Vec2 (0, 500), GetPhysicsBody ()->GetWorldCenter (), true);
+			GetPhysicsBody()->SetLinearVelocity (m_bv2jumpVel);
+			/*GetPhysicsBody()->ApplyForce(b2Vec2(0, 600), GetPhysicsBody()->GetWorldCenter(), true);
+			m_bCanJump = false;*/
 	}
 
 }

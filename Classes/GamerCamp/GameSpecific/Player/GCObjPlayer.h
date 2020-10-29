@@ -56,14 +56,29 @@ private:
 
 	bool m_bOnTravelator;
 
-	
+	enum class EMoveDirection
+	{
+		StandingStill,
+		Left,
+		Right,
+		Jump
+	};
+
+	EMoveDirection			m_eMoveDirection;
+
+	cocos2d::Vec2			m_v2MovingRightVelocity;			 //The velocitys for how fast the enemy should move
+	cocos2d::Vec2			m_v2MovingLeftVelocity;				 //The velocitys for how fast the enemy should move
+	cocos2d::Vec2			m_v2StopMovingVelocity;				 //The velocitys for how fast the enemy should move
+	b2Vec2					m_bv2jumpVel;
+
 public:
 	CGCObjPlayer();
 
 	bool getOnTravelator() const { return m_bOnTravelator; }
 	void setOnTravelator(bool b) { m_bOnTravelator = b; }
 
-	
+	void ChangeDirection ();
+	void Movement ();
 	
 	//////////////////////////////////////////////////////////////////////////
 	// we need a virtual destructor since delete will be called on pointers of 
@@ -90,6 +105,8 @@ public:
 
         // called immediately before the managing object group releases its own assets
         virtual void VOnResourceRelease( void );
+
+		virtual void VOnResurrected (void);
 
 	// overridden virtuals from the game object interface
 	//////////////////////////////////////////////////////////////////////////

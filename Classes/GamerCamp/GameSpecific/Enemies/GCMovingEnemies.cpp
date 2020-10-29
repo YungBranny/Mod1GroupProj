@@ -14,9 +14,9 @@ CGCMovingEnemies::CGCMovingEnemies ()
 //not letting me inherit from basic enemies
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCMovingEnemies))
 	, m_bMovingLeftAndRight			(true)							//Default values for the variables
-	, m_vEndDestination1			(800,400)						//Default values for the variables
-	, m_vEndDesitnation2			(500,100)						//Default values for the variables
-	, m_vMovingRightVelocity		(cocos2d::Vec2 (9.0f, 0.0f))	//Default values for the variables
+	, m_vEndDestination1			(600,400)						//Default values for the variables
+	, m_vEndDesitnation2			(450,100)						//Default values for the variables
+	, m_vMovingRightVelocity		(cocos2d::Vec2 (4.0f, 0.0f))	//Default values for the variables
 	, m_vMovingLeftVelocity			(-m_vMovingRightVelocity)		//Default values for the variables
 	, m_vMovingUpVelocity			(cocos2d::Vec2 (0.0f, 10.0f))	//Default values for the variables
 	, m_vMovingDownVelocity			(-m_vMovingUpVelocity)			//Default values for the variables

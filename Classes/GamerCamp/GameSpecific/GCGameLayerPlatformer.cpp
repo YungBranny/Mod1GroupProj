@@ -885,9 +885,10 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 {
+	ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene ()));
 	m_pcGCBackgroundAudio->stopAll (); // Stops all Background Audio when Reset Button is used
-	m_pcGCTimer->ResetTimer();
-	RequestReset();
+	//m_pcGCTimer->ResetTimer();
+	//RequestReset();
 }
 
 
