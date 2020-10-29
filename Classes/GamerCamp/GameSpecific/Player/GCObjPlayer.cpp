@@ -36,7 +36,7 @@ CGCObjPlayer::CGCObjPlayer()
 , m_pcControllerActionToKeyMap	( nullptr )
 , m_bCanJump (true)
 , m_bOnTravelator(false)
-, m_iNumberOfLives(3)
+, m_iNumberOfLives(1)
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();

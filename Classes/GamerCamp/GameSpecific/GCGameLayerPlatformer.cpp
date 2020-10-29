@@ -408,8 +408,14 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//Timer
 	m_pcGCTimer = new CGCObjTimer();
 
+	//Lives
+	m_pcGCOPlayer = new CGCObjPlayer();
+
 	//Timer Layer
 	this->addChild(m_pcGCTimer->getTimerText(), 10);
+
+	//Lives Layer
+	this->addChild(m_pcGCOPlayer->getLivesText(), 10);
 	
 	///////////////////////////////////////////////////////////////////////////
 	// set up physics 
@@ -631,6 +637,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 			//CGCObjectManager::ObjectKill (&rcEnemies);
 			CCLOG ("Player Died.");
 			m_bPlayerHitHostile = true;
+			rcPlayer.DecrementLives();
 		}
 	);
 
@@ -652,6 +659,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 				CCLOG ("Player wacked.");
 				//CGCObjectManager::ObjectKill (&rcPlayer);
 				m_bPlayerHitHostile = true;
+				rcPlayer.DecrementLives();
 			}
 		}
 	);
@@ -738,6 +746,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	replaceSceneLose();
 
+	//onDeath(); (This Will Replace The Replace Scene Lose Function)
 	//These will be called when the scene needs to be replaced
 	////////////////////////////////
 }
@@ -847,6 +856,18 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	IGCGameLayer::VOnDestroy();
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// on death (REPLACEMENT FOR LATER)
+///////////////////////////////////////////////////////////////////////////////
+//void CGCGameLayerPlatformer::onDeath()
+//{
+	//if (m_pcGCOPlayer->GetNumberOfLives() <= 0)
+	//{
+	//	m_pcGCBackgroundAudio->stopAll(); // Stops all Background Audio when Lose Scene is used
+		//ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
+		//m_pcGCOPlayer->ResetLives();
+	//}
+//}
 
 ///////////////////////////////////////////////////////////////////////////////
 // on quit button
