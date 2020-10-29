@@ -156,22 +156,19 @@ void CGCGameLayerPlatformer::replaceSceneMenu()
 	
 }
 
-
+// Mia: I had to change from using AudioEngine.h to SimpleAudioEngine.h for sounds as when we tried the Release Build, Audio would not work.
+// Switching to SimpleAudioEngine.h fixed this issue, but wouldn't let me set the Volume, which I soon found out that setVolume isn't
+// Supported in Windows. I ended up just changing Sound Volume through Audacity and reuploading.
 void CGCGameLayerPlatformer::backgroundMusic() // Mia: Function that is called when we want the Background Music to play
 {
-	// Mia: Play Audio by locating File, set to 'True' to loop
 	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-//	m_pcGCBackgroundAudio->getInstance ()->setBackgroundMusicVolume (0.1f);
-	CocosDenshion::SimpleAudioEngine::getInstance ()->setBackgroundMusicVolume (0.1f);
-	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true);
-
+	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
 }
 
 void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
-	// Mia: Play Audio by locating File, set to 'False' to not loop
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Key/CollectKey.wav", false);
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Key/CollectKey.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 void CGCGameLayerPlatformer::playTimerPickUpAudio() // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
