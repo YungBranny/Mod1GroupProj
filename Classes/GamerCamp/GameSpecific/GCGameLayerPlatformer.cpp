@@ -79,15 +79,13 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCBasicEnemies						( nullptr )
 , m_pcGCMovingEnemies						( nullptr )
 , m_pcGCTravelatorPlatform1					( nullptr )
-//, m_pcGCBackgroundAudio						( nullptr )
-//, m_pcGCSoundEffectsAudio					( nullptr )
 , m_pcGCScalingBasicPlatformManager			( nullptr )
 , m_pcGCScalingFallingPlatformManager		( nullptr )
 , m_pcGCScalingBasicPlatformManager1		( nullptr )
 , m_pcGCScalingBasicPlatformManager2		( nullptr )
 , m_pcGCScalingBasicPlatformManagerMiddle	( nullptr )
 , m_pcGCScalingBasicPlatformManagerTop		( nullptr )
-, m_bResetWasRequested (false)
+, m_bResetWasRequested						( false   )
 
 {
 	m_iTotalKeys		= 3; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
@@ -159,6 +157,7 @@ void CGCGameLayerPlatformer::replaceSceneMenu()
 // Mia: I had to change from using AudioEngine.h to SimpleAudioEngine.h for sounds as when we tried the Release Build, Audio would not work.
 // Switching to SimpleAudioEngine.h fixed this issue, but wouldn't let me set the Volume, which I soon found out that setVolume isn't
 // Supported in Windows. I ended up just changing Sound Volume through Audacity and reuploading.
+
 void CGCGameLayerPlatformer::backgroundMusic() // Mia: Function that is called when we want the Background Music to play
 {
 	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
@@ -173,16 +172,14 @@ void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when
 
 void CGCGameLayerPlatformer::playTimerPickUpAudio() // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
 {
-	// Mia: Play Audio by locating File, set to 'False' to not loop
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/TimerPickUp.wav", false);
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/TimerPickUp.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is called when we want the Door Opened Sound Effect to play
 {
-	// Mia: Play Audio by locating File, set to 'False' to not loop
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/OpeningDoor.wav", false);
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/OpeningDoor.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -513,9 +510,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	// NOTE: in general rather than executing game logic in handler we should cache data we need to respond to this and do it in the next update
 	// e.g. if we wanted to award score, make the player lose a life, or similar we should set a state flag and respond in update
 
-
-	// handle collisions between invader and projectile - both are killed
-	// Handles the Collision between the Player and the Moving Platform
+	// Mia: Handles the Collision between the Player and the Moving Platform
 	GetCollisionManager().AddCollisionHandler
 	(
 
@@ -524,12 +519,12 @@ void CGCGameLayerPlatformer::VOnCreate()
 	{
 		if( rcContact.IsTouching() )
 		{
-			rcPlayer.SetCanJump(true);
+			rcPlayer.SetCanJump(true); // // Mia: If is touching Platform, the Player can jump
 		}
 
 		else if( rcContact.IsTouching() == false )
 		{
-			rcPlayer.SetCanJump(false);
+			rcPlayer.SetCanJump(false); // Mia: If not touching, the Player cannot jump
 		}
 	}
 	);
@@ -790,12 +785,6 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	delete m_pcGCOMovingPlatform;
 	m_pcGCOMovingPlatform = nullptr;
 
-	//delete m_pcGCBackgroundAudio;
-	//m_pcGCBackgroundAudio = nullptr;
-
-	//delete m_pcGCSoundEffectsAudio;
-	//m_pcGCSoundEffectsAudio = nullptr;
-
 	delete m_pcGCOKeys;
 	m_pcGCOKeys = nullptr;
 
@@ -807,9 +796,6 @@ void CGCGameLayerPlatformer::VOnDestroy()
 
 	delete m_pcGCTravelatorPlatform1;
 	m_pcGCTravelatorPlatform1 = nullptr;
-
-
-
 
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. because object groups must register manually, 
