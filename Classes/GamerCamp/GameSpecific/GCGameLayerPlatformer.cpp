@@ -162,6 +162,7 @@ void CGCGameLayerPlatformer::backgroundMusic() // Mia: Function that is called w
 	// Mia: Play Audio by locating File, set to 'True' to loop
 	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
 //	m_pcGCBackgroundAudio->getInstance ()->setBackgroundMusicVolume (0.1f);
+	CocosDenshion::SimpleAudioEngine::getInstance ()->setBackgroundMusicVolume (0.1f);
 	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true);
 
 }
