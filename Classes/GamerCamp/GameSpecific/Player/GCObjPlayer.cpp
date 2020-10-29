@@ -45,7 +45,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	setLivesText(Label::createWithTTF(" ", "fonts/arial.ttf", 35.0f));
+	setLivesText(Label::createWithTTF(" ", "fonts/SaltyOcean.ttf", 35.0f));
 
 	getLivesText()->setColor(Color3B::RED);
 
@@ -53,7 +53,7 @@ CGCObjPlayer::CGCObjPlayer ()
 
 	getLivesText()->enableOutline(Color4B::BLACK, 1);
 
-	getLivesText()->setPosition(Vec2(visibleSize.width / 2 - 420, visibleSize.height / 2 - 270));
+	getLivesText()->setPosition(Vec2(visibleSize.width / 2 - 420, visibleSize.height / 2 - 275));
 
 	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
 	m_eMoveDirection = EMoveDirection::StandingStill;
