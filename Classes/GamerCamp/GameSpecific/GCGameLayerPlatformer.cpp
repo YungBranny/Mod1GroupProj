@@ -173,7 +173,7 @@ void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when
 void CGCGameLayerPlatformer::playTimerPickUpAudio() // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
 {
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/TimerPickUp.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/TimerPickUp.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is called when we want the Door Opened Sound Effect to play
@@ -300,13 +300,13 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCScalingBasicPlatformManager2->SetMaxPlatforms (1);
 	//m_pcGCScalingBasicPlatformManager1->SetSpacingX (100);
 	m_pcGCScalingBasicPlatformManager2->SetStartX(110);
-	m_pcGCScalingBasicPlatformManager2->SetStartY(420);
+	m_pcGCScalingBasicPlatformManager2->SetStartY(380);
 	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManager2);
 
 	m_pcGCScalingFallingPlatformManager = new CGCObjScalingFallingPlatformManager ();
 	m_pcGCScalingFallingPlatformManager->SetMaxPlatforms (3);
-	m_pcGCScalingFallingPlatformManager->SetStartY (460);
-	m_pcGCScalingFallingPlatformManager->SetStartX (200);
+	m_pcGCScalingFallingPlatformManager->SetStartY (450);
+	m_pcGCScalingFallingPlatformManager->SetStartX (170);
 	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingFallingPlatformManager);
 
 	
@@ -691,7 +691,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 			if (rcFallingPlatforms.GetCanDelete () == true)
 			{
-				CGCObjectManager::ObjectKill (&rcFallingPlatforms); //checks if the platform can be delted, if it can then it will delete itself
+				rcFallingPlatforms.SetPhysicsTransform(cocos2d::Vec2(-300, -300), 0); //checks if the platform can be delted, if it can then it will delete itself
 			}
 
 			if (rcContact.IsTouching ())							//checks if it is touching
