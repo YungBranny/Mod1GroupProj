@@ -79,8 +79,8 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCBasicEnemies						( nullptr )
 , m_pcGCMovingEnemies						( nullptr )
 , m_pcGCTravelatorPlatform1					( nullptr )
-, m_pcGCBackgroundAudio						( nullptr )
-, m_pcGCSoundEffectsAudio					( nullptr )
+//, m_pcGCBackgroundAudio						( nullptr )
+//, m_pcGCSoundEffectsAudio					( nullptr )
 , m_pcGCScalingBasicPlatformManager			( nullptr )
 , m_pcGCScalingFallingPlatformManager		( nullptr )
 , m_pcGCScalingBasicPlatformManager1		( nullptr )
@@ -130,7 +130,7 @@ void CGCGameLayerPlatformer::replaceSceneWin()
 	//in the future this will transition to the next level
 	if(m_bPlayerKeysGathered == true)
 	{
-		m_pcGCBackgroundAudio->stopAll (); // Mia: Stops all Background Audio when Win Scene is used
+		m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio when Win Scene is used
 		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCWinScene >::CreateScene()));
 	}
 	
@@ -142,7 +142,7 @@ void CGCGameLayerPlatformer::replaceSceneLose()
 	//When the player collides with a hostile this bool becomes true and will transition the the win screen
 	if (m_bPlayerHitHostile == true)
 	{
-		m_pcGCBackgroundAudio->stopAll (); // Mia: Stops all Background Audio when Lose Scene is used
+		m_pcGCBackgroundAudio->stopBackgroundMusic (); // Mia: Stops all Background Audio when Lose Scene is used
 		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
 	}
 	
@@ -156,28 +156,33 @@ void CGCGameLayerPlatformer::replaceSceneMenu()
 	
 }
 
+
 void CGCGameLayerPlatformer::backgroundMusic() // Mia: Function that is called when we want the Background Music to play
 {
-	// Mia: Play Audio by locating File, set to 'True' to loop, and set Volume to 0.2f
-	m_pcGCBackgroundAudio->play2d("Sounds/BackgroundMusic.wav", true, 0.2f);
+	// Mia: Play Audio by locating File, set to 'True' to loop
+	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true);
 }
 
 void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
-	// Mia: Play Audio by locating File, set to 'False' to not loop, and set Volume to 0.1f
-	m_pcGCSoundEffectsAudio->play2d("Sounds/CollectKey.wav", false, 0.1f);
+	// Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/CollectKey.wav", false);
 }
 
 void CGCGameLayerPlatformer::playTimerPickUpAudio() // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
 {
-	// Mia: Play Audio by locating File, set to 'False' to not loop, and set Volume to 0.1f
-	m_pcGCSoundEffectsAudio->play2d("Sounds/TimerPickUp.wav", false, 0.1f);
+	// Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/TimerPickUp.wav", false);
 }
 
 void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is called when we want the Door Opened Sound Effect to play
 {
-	// Mia: Play Audio by locating File, set to 'False' to not loop, and set Volume to 0.4f
-	m_pcGCSoundEffectsAudio->play2d("Sounds/OpeningDoor.wav", false, 0.4f);
+	// Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/OpeningDoor.wav", false);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -728,7 +733,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		VOnReset();
 		m_iKeysCollected = 0; // Mia: Resets Keys Collected
 		ResetRequestWasHandled();
-		m_pcGCBackgroundAudio->stopAll(); // Mia: Stops all Background Audio on Reset
+		m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Reset
 		backgroundMusic (); // Mia: Calls this Function, so it doesn't overlay
 	}
 
@@ -785,11 +790,11 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	delete m_pcGCOMovingPlatform;
 	m_pcGCOMovingPlatform = nullptr;
 
-	delete m_pcGCBackgroundAudio;
-	m_pcGCBackgroundAudio = nullptr;
+	//delete m_pcGCBackgroundAudio;
+	//m_pcGCBackgroundAudio = nullptr;
 
-	delete m_pcGCSoundEffectsAudio;
-	m_pcGCSoundEffectsAudio = nullptr;
+	//delete m_pcGCSoundEffectsAudio;
+	//m_pcGCSoundEffectsAudio = nullptr;
 
 	delete m_pcGCOKeys;
 	m_pcGCOKeys = nullptr;
@@ -874,7 +879,7 @@ void CGCGameLayerPlatformer::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 {
-	m_pcGCBackgroundAudio->stopAll (); // Mia: Stops all Background Audio when Quit Button is used
+	m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio when Quit Button is used
 	ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene ()));
 }
 
@@ -886,7 +891,7 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 {
 	ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene ()));
-	m_pcGCBackgroundAudio->stopAll (); // Mia: Stops all Background Audio when Reset Button is used
+	m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio when Reset Button is used
 	//m_pcGCTimer->ResetTimer();
 	//RequestReset();
 }

@@ -7,7 +7,7 @@
 
 #include "../GCCocosInterface/IGCGameLayer.h"
 
-#include "AudioEngine.h"
+#include "SimpleAudioEngine.h"
 
 //////////////////////////////////////////////////////////////////////////
 // fwd decl
@@ -91,9 +91,8 @@ private:
 	// backgrounds
 	CGCObjSprite*							m_pcGCSprBackGround;
 	
-
-	cocos2d::experimental::AudioEngine*		m_pcGCBackgroundAudio;
-	cocos2d::experimental::AudioEngine*		m_pcGCSoundEffectsAudio;
+	CocosDenshion::SimpleAudioEngine*		m_pcGCBackgroundAudio;
+	CocosDenshion::SimpleAudioEngine*		m_pcGCSoundEffectsAudio;
 
 	// mario
 	CGCObjPlayer*							m_pcGCOPlayer;
