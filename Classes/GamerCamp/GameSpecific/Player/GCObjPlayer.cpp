@@ -522,7 +522,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 	//	SetFlippedX( false );
 	//}
 
-	// fire!
+	// Jump
 	bool bFireWasPressed = false;
 
 	if( cController.IsActive() )

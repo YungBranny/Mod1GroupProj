@@ -410,13 +410,13 @@ void CGCGameLayerPlatformer::VOnCreate()
 	//Timer
 	m_pcGCTimer = new CGCObjTimer();
 
-	//Lives
+	//Puia: Lives
 	m_pcGCOPlayer = new CGCObjPlayer();
 
 	//Timer Layer
 	this->addChild(m_pcGCTimer->getTimerText(), 10);
 
-	//Lives Layer
+	//Puia Lives Layer
 	this->addChild(m_pcGCOPlayer->getLivesText(), 10);
 	
 	///////////////////////////////////////////////////////////////////////////
@@ -637,7 +637,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 			//CGCObjectManager::ObjectKill (&rcEnemies);
 			CCLOG ("Player Died.");
 			m_bPlayerHitHostile = true;
-			rcPlayer.DecrementLives();
+			rcPlayer.DecrementLives(); //Puia Lose a life when colliding
 		}
 	);
 
@@ -659,7 +659,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 				CCLOG ("Player wacked.");
 				//CGCObjectManager::ObjectKill (&rcPlayer);
 				m_bPlayerHitHostile = true;
-				rcPlayer.DecrementLives();
+				rcPlayer.DecrementLives(); //Puia Lose a life when colliding
 			}
 		}
 	);
@@ -746,7 +746,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	replaceSceneLose();
 
-	//onDeath(); (This Will Replace The Replace Scene Lose Function)
+	//onDeath(); Puia (This Will Replace The Replace Scene Lose Function)
 	//These will be called when the scene needs to be replaced
 	////////////////////////////////
 }
@@ -848,7 +848,7 @@ void CGCGameLayerPlatformer::VOnDestroy()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
-// on death (REPLACEMENT FOR LATER)
+// Puia: on death (REPLACEMENT FOR LATER) 
 ///////////////////////////////////////////////////////////////////////////////
 //void CGCGameLayerPlatformer::onDeath()
 //{
