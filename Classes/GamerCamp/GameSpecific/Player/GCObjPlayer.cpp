@@ -429,7 +429,7 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 				{
 
 					SetVelocity (cocos2d::Vec2 (m_v2MovingLeftVelocity.x, GetVelocity ().y));
-					SetFlippedX (true);
+					SetFlippedX (false);
 
 				}
 
@@ -513,14 +513,14 @@ void CGCObjPlayer::UpdateMovement( f32 fTimeStep )
 		SetFlippedY( false );
 	}
 
-	if( GetVelocity().x >= 0.0f )
-	{
-		SetFlippedX( true );
-	}
-	else if( GetVelocity().x < 0.0f )
-	{
-		SetFlippedX( false );
-	}
+	//if( GetVelocity().x >= 0.0f )
+	//{
+	//	SetFlippedX( true );
+	//}
+	//else if( GetVelocity().x < 0.0f )
+	//{
+	//	SetFlippedX( false );
+	//}
 
 	// fire!
 	bool bFireWasPressed = false;
