@@ -23,7 +23,6 @@
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
-//#include "GamerCamp/GameSpecific/Timer/GCObjTimerBar.h"
 #include "GamerCamp/GameSpecific/Collectables/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
@@ -69,37 +68,35 @@ USING_NS_CC;
 ///////////////////////////////////////////////////////////////////////////////
 CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 : IGCGameLayer					( GetGCTypeIDOf( CGCGameLayerPlatformer ) ) 
-, m_pcGCGroupItem				( nullptr )
-, m_pcGCGroupInvader			( nullptr )
-, m_pcGCGroupProjectilePlayer	( nullptr )
-, m_pcGCSprBackGround			( nullptr )
-//, m_pcGCsprTimerBar			( nullptr )
-, m_pcGCOPlayer					( nullptr )
-, m_pcGCTimer					( nullptr )
-//, m_pcGCTimerBar				( nullptr )
-, m_pcGCOKeys                   ( nullptr )
-, m_pcGCOKeys1                  ( nullptr )
-, m_pcGCOKeys2                  ( nullptr )
-, m_pcGCOTimePickUp             ( nullptr )
-, m_pcGCOExitDoor               ( nullptr )
-, m_pcGCBasicEnemies			( nullptr )
-, m_pcGCBasicEnemies2			( nullptr )
-, m_pcGCMovingEnemies			( nullptr )
-, m_pcGCLongPlatformTest1		( nullptr )
-, m_pcGCShortPlatformTest1      ( nullptr )
-, m_pcGCLongPlatformTest2		( nullptr )
-, m_pcGCShortPlatformTest2		( nullptr )
-, m_pcGCLongPlatformTest3		( nullptr )
-, m_pcGCShortPlatformTest3		( nullptr )
-, m_pcGCLongPlatformTest4		( nullptr )
-, m_pcGCShortPlatformTest4		( nullptr )
-, m_pcGCLongPlatformTest5		( nullptr )
-, m_pcGCShortPlatformTest5		( nullptr )
-, m_pcGCTravelatorPlatform1		( nullptr )
-, m_pcGCFallingPlatform1		( nullptr )
-, m_pcGCBackgroundAudio			( nullptr )
-, m_pcGCSoundEffectsAudio		( nullptr )
-, m_bResetWasRequested			(  false  )
+, m_pcGCGroupItem							( nullptr )
+, m_pcGCGroupInvader						( nullptr )
+, m_pcGCGroupProjectilePlayer				( nullptr )
+, m_pcGCSprBackGround						( nullptr )
+, m_pcGCOPlayer								( nullptr )
+, m_pcGCTimer								( nullptr )
+, m_pcGCOKeys								( nullptr )
+, m_pcGCOKeys1								( nullptr )
+, m_pcGCOKeys2								( nullptr )
+, m_pcGCOTimePickUp							( nullptr )
+, m_pcGCOExitDoor							( nullptr )
+, m_pcGCBasicEnemies						( nullptr )
+, m_pcGCBasicEnemies2						( nullptr )
+, m_pcGCMovingEnemies						( nullptr )
+, m_pcGCLongPlatformTest1					( nullptr )
+, m_pcGCShortPlatformTest1					( nullptr )
+, m_pcGCLongPlatformTest2					( nullptr )
+, m_pcGCShortPlatformTest2					( nullptr )
+, m_pcGCLongPlatformTest3					( nullptr )
+, m_pcGCShortPlatformTest3					( nullptr )
+, m_pcGCLongPlatformTest4					( nullptr )
+, m_pcGCShortPlatformTest4					( nullptr )
+, m_pcGCLongPlatformTest5					( nullptr )
+, m_pcGCShortPlatformTest5					( nullptr )
+, m_pcGCTravelatorPlatform1					( nullptr )
+, m_pcGCFallingPlatform1					( nullptr )
+, m_pcGCBackgroundAudio						( nullptr )
+, m_pcGCSoundEffectsAudio					( nullptr )
+, m_bResetWasRequested						(  false  )
 , m_pcGCScalingBasicPlatformManager			( nullptr )
 , m_pcGCScalingFallingPlatformManager		( nullptr )
 , m_pcGCScalingBasicPlatformManager1		( nullptr )
@@ -116,7 +113,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 
 	m_iTimerPickedUp	= 0; // Sets Default Timer Pick Up to 0
 
-	m_bPlayerHitHostile = false;
+	m_bPlayerHitHostile = false; // sets the default value for if the player has hit a hostile to false
 
 	m_bPlayerKeysGathered = false;
 }
@@ -146,8 +143,8 @@ void CGCGameLayerPlatformer::addOnTime() // This function adds on Air Time
 
 void CGCGameLayerPlatformer::replaceSceneWin()
 {
-
-	//needs a bool
+	//If all the keys required are gathered this will become true and the scene will be replaced with the win screen/
+	//in the future this will transition to the next level
 	if(m_bPlayerKeysGathered == true)
 	{
 		m_pcGCBackgroundAudio->stopAll (); // Stops all Background Audio when Win Scene is used
@@ -159,6 +156,7 @@ void CGCGameLayerPlatformer::replaceSceneWin()
 
 void CGCGameLayerPlatformer::replaceSceneLose()
 {
+	//When the player collides with a hostile this bool becomes true and will transition the the win screen
 	if (m_bPlayerHitHostile == true)
 	{
 		m_pcGCBackgroundAudio->stopAll (); // Stops all Background Audio when Lose Scene is used
@@ -169,6 +167,7 @@ void CGCGameLayerPlatformer::replaceSceneLose()
 
 void CGCGameLayerPlatformer::replaceSceneMenu()
 {
+	//Not in use yet will be used to go back to the main menu when required
 	//m_pcGCBackgroundAudio->stopAll ();
 	//ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
 	
@@ -359,7 +358,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 
-	switch(mState)
+	//Not in use yet 
+	/*switch(mState)
 	{
 	case ECGameStates::EState_Menu:
 			{
@@ -385,14 +385,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 			break;
 			}
-	}
+	}*/
 
-	
-
-
-	//////////////////////////////////////////////////////////////////////////////////////////
-	//m_pcGCTimerBar = new CGCObjTimerBar();
-	
     ///////////////////////////////////////////////////////////////////////////
     // add label
 	///////////////////////////////////////////////////////////////////////////
@@ -410,6 +404,7 @@ void CGCGameLayerPlatformer::VOnCreate()
     //
     // add "CGCGameLayerPlatformer" splash screen"
 
+	//Old code
 	/*const char* pszPlist_TimerBar = "TexturePacker/Sprites/TimerBar/WhiteSquare.plist";
 	{
 		m_pcGCsprTimerBar = new CGCObjSprite();
@@ -430,9 +425,11 @@ void CGCGameLayerPlatformer::VOnCreate()
 		backgroundMusic(); // Calling 'backgroundMusic' Function, so the Audio plays as soon as level loads
  	}
 
+	//Timer
 	m_pcGCTimer = new CGCObjTimer();
-	
-   this->addChild(m_pcGCTimer->getTimerText(), 10);
+
+	//Timer Layer
+	this->addChild(m_pcGCTimer->getTimerText(), 10);
 	
 	///////////////////////////////////////////////////////////////////////////
 	// set up physics 
@@ -629,17 +626,20 @@ void CGCGameLayerPlatformer::VOnCreate()
 		{
 			if (rcContact.IsTouching())
 			{
+				
 				rcPlayer.setOnTravelator(true);
 
-				rcPlayer.SetCanJump(true);
+				rcPlayer.SetCanJump(true);// Setting jump to true so the player can jump when on the travelator(i.e. ground check)
 				
 				rcPlayer.SetVelocity(rcTravelatorPlatform.getVelocity());
+				// When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
+				
 			}
 			else if(rcContact.IsTouching() == false )
 			{
-				rcPlayer.setOnTravelator(false);
+				rcPlayer.setOnTravelator(false);//Sets the players velocity back to normal when the player is no longer touching the platfrom
 
-				rcPlayer.SetCanJump(false);
+				rcPlayer.SetCanJump(false);// making sure that the player cant jump while in the air when they are falling off the platform
 			}
 		}
 	);
@@ -851,6 +851,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		backgroundMusic (); // Calls this Function, so it doesn't overlay
 	}
 
+	//This is a check for the timer, When the timer reaches 0 the timer is reset and the current level is also reset
 	if(m_pcGCTimer->getCurrentTime() <= 0)
 	{
 		m_pcGCTimer->setCurrentTime(m_pcGCTimer->getTotalTimerDuration());
@@ -858,13 +859,14 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		RequestReset();
 	}
 
+	////////////////////////////////
 	//Move to Lives function when made 
 	replaceSceneWin();
 
 	replaceSceneLose();
 
 	//replaceSceneMenu();
-
+	//These will be called when the scene needs to be replaced
 	////////////////////////////////
 }
 
@@ -892,9 +894,6 @@ void CGCGameLayerPlatformer::VOnDestroy()
 
 	delete m_pcGCTimer;
 	m_pcGCTimer = nullptr;
-
-	/*delete m_pcGCsprTimerBar;
-	m_pcGCsprTimerBar = nullptr;*/
 	
 	delete m_pcGCOExitDoor;
 	m_pcGCOExitDoor = nullptr;
