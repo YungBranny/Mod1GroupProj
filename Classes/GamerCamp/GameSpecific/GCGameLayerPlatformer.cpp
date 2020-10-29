@@ -299,14 +299,14 @@ void CGCGameLayerPlatformer::VOnCreate()
 	// Mia: Creating a new Object for 'm_pcGCScalingBasicPlatformManager2'. This is for the other left single platform
 	m_pcGCScalingBasicPlatformManager2 = new CGCObjScalingBasicPlatformManager();
 	m_pcGCScalingBasicPlatformManager2->SetMaxPlatforms (1); // Mia: Setting the Max Platforms for the Single Platform to '1'
-	m_pcGCScalingBasicPlatformManager2->SetStartX(110); // Mia: The X Position is set to '110'
-	m_pcGCScalingBasicPlatformManager2->SetStartY(380); // Mia: The Y Position is set to '380'
+	m_pcGCScalingBasicPlatformManager2->SetStartX(130); // Mia: The X Position is set to '110'
+	m_pcGCScalingBasicPlatformManager2->SetStartY(390); // Mia: The Y Position is set to '380'
 	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManager2); // Mia: Register the object group for the Single Platform
 
 	m_pcGCScalingFallingPlatformManager = new CGCObjScalingFallingPlatformManager ();
 	m_pcGCScalingFallingPlatformManager->SetMaxPlatforms (3);
 	m_pcGCScalingFallingPlatformManager->SetStartY (450);
-	m_pcGCScalingFallingPlatformManager->SetStartX (170);
+	m_pcGCScalingFallingPlatformManager->SetStartX (210);
 	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingFallingPlatformManager);
 
 	
