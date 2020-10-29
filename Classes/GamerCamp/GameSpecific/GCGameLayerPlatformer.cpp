@@ -173,13 +173,13 @@ void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when
 void CGCGameLayerPlatformer::playTimerPickUpAudio() // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
 {
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/TimerPickUp.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Timer/TimerPickUp.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is called when we want the Door Opened Sound Effect to play
 {
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/OpeningDoor.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/Door/OpeningDoor.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 //////////////////////////////////////////////////////////////////////////
