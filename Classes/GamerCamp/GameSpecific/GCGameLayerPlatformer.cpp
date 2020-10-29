@@ -452,25 +452,25 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOPlayer = new CGCObjPlayer();
 	m_pcGCOPlayer->SetResetPosition( cocos2d::Vec2(150, 100) );
 
-	m_pcGCOKeys			= new CGCObjKeys (); // Create Keys Object
-	m_pcGCOKeys->SetResetPosition ( cocos2d::Vec2 (715, 160) ); // Setting the X and Y Positions
+	m_pcGCOKeys				= new CGCObjKeys (); // Create Keys Object
+	m_pcGCOKeys->SetResetPosition			( cocos2d::Vec2 (715, 160) ); // Setting the X and Y Positions
 
-	m_pcGCOKeys1		= new CGCObjKeys (); // Create other Keys Object
-	m_pcGCOKeys1->SetResetPosition ( cocos2d::Vec2(500, 380) ); // Setting the X and Y Positions
+	m_pcGCOKeys1			= new CGCObjKeys (); // Create other Keys Object
+	m_pcGCOKeys1->SetResetPosition			( cocos2d::Vec2(500, 380) ); // Setting the X and Y Positions
 
-	m_pcGCOKeys2		= new CGCObjKeys (); // Create last Keys Object
-	m_pcGCOKeys2->SetResetPosition ( cocos2d::Vec2(700, 550) ); // Setting the X and Y Positions
+	m_pcGCOKeys2			= new CGCObjKeys (); // Create last Keys Object
+	m_pcGCOKeys2->SetResetPosition			( cocos2d::Vec2(700, 550) ); // Setting the X and Y Positions
 
-	m_pcGCOTimePickUp	= new CGCObjTimePickUp (); // Create Time PickUp Object
-	m_pcGCOTimePickUp->SetResetPosition ( cocos2d::Vec2(880, 500) ); // Setting the X and Y Positions
+	m_pcGCOTimePickUp		= new CGCObjTimePickUp (); // Create Time PickUp Object
+	m_pcGCOTimePickUp->SetResetPosition		( cocos2d::Vec2(880, 500) ); // Setting the X and Y Positions
 	
-	m_pcGCOExitDoor		= new CGCObjExitDoor (); // Create Exit Door Object
-	m_pcGCOExitDoor->SetResetPosition ( cocos2d::Vec2(50, 115) ); // Setting the X and Y Positions
+	m_pcGCOExitDoor			= new CGCObjExitDoor (); // Create Exit Door Object
+	m_pcGCOExitDoor->SetResetPosition		( cocos2d::Vec2(60, 120) ); // Setting the X and Y Positions
 
 
-	m_pcGCOMovingPlatform = new CGCObjMovingPlatform(); // Create Moving Platform Object
-	m_pcGCOMovingPlatform->SetResetPosition(cocos2d::Vec2(970, 280));  // Setting the X and Y Positions
-	m_pcGCOMovingPlatform->setGravity(3.0f); // Setting the Gravity
+	m_pcGCOMovingPlatform	= new CGCObjMovingPlatform (); // Create Moving Platform Object
+	m_pcGCOMovingPlatform->SetResetPosition ( cocos2d::Vec2 (970, 280) );  // Setting the X and Y Positions
+	m_pcGCOMovingPlatform->setGravity		( 3.0f ); // Setting the Gravity
 
 	m_pcGCTravelatorPlatform1 = new CGCObjTravelatorPlatform();
 	m_pcGCTravelatorPlatform1->SetStartPos(cocos2d::Vec2(920, 450));
