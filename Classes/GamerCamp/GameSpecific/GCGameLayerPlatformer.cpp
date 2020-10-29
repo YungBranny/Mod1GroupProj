@@ -94,7 +94,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 
 	m_iTimerPickedUp	= 0; // Mia: Sets Default Timer Pick Up to 0
 
-	m_bPlayerHitHostile = false; // sets the default value for if the player has hit a hostile to false
+	m_bPlayerHitHostile = false; //Dan: sets the default value for if the player has hit a hostile to false
 
 	m_bPlayerKeysGathered = false;
 }
@@ -124,7 +124,7 @@ void CGCGameLayerPlatformer::addOnTime() // Mia: This function adds on Air Time
 
 void CGCGameLayerPlatformer::replaceSceneWin()
 {
-	//If all the keys required are gathered this will become true and the scene will be replaced with the win screen/
+	// Dan:If all the keys required are gathered this will become true and the scene will be replaced with the win screen/
 	//in the future this will transition to the next level
 	if(m_bPlayerKeysGathered == true)
 	{
@@ -148,7 +148,7 @@ void CGCGameLayerPlatformer::replaceSceneLose()
 
 void CGCGameLayerPlatformer::replaceSceneMenu()
 {
-	//Not in use yet will be used to go back to the main menu when required
+	// Dan:Not in use yet will be used to go back to the main menu when required
 	//m_pcGCBackgroundAudio->stopAll ();
 	//ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
 	
@@ -549,7 +549,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 		}
 	);
-
+	//Dan: Handle collision with the payer and the travelator 
 	GetCollisionManager().AddCollisionHandler
 	(
 		[]
@@ -560,17 +560,17 @@ void CGCGameLayerPlatformer::VOnCreate()
 				
 				rcPlayer.setOnTravelator(true);
 
-				rcPlayer.SetCanJump(true);// Setting jump to true so the player can jump when on the travelator(i.e. ground check)
+				rcPlayer.SetCanJump(true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
 				
 				rcPlayer.SetVelocity(rcTravelatorPlatform.getVelocity());
-				// When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
+				// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
 				
 			}
 			else if(rcContact.IsTouching() == false )
 			{
-				rcPlayer.setOnTravelator(false);//Sets the players velocity back to normal when the player is no longer touching the platfrom
+				rcPlayer.setOnTravelator(false);//Dan :Sets the players velocity back to normal when the player is no longer touching the platform
 
-				rcPlayer.SetCanJump(false);// making sure that the player cant jump while in the air when they are falling off the platform
+				rcPlayer.SetCanJump(false);//Dan : making sure that the player cant jump while in the air when they are falling off the platform
 			}
 		}
 	);
