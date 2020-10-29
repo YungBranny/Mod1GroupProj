@@ -289,19 +289,19 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCScalingBasicPlatformManagerTop->SetStartY(460); // Mia: The Y Position is set to '460'
 	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManagerTop); // Mia: Register the object group for the Top Platforms
 
+	// Mia: Creating a new Object for 'm_pcGCScalingBasicPlatformManager1'. This is for the left single platform
 	m_pcGCScalingBasicPlatformManager1 = new CGCObjScalingBasicPlatformManager ();
-	m_pcGCScalingBasicPlatformManager1->SetMaxPlatforms (1);
-	//m_pcGCScalingBasicPlatformManager1->SetSpacingX (100);
-	m_pcGCScalingBasicPlatformManager1->SetStartX (20);
-	m_pcGCScalingBasicPlatformManager1->SetStartY (340);
-	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingBasicPlatformManager1);
+	m_pcGCScalingBasicPlatformManager1->SetMaxPlatforms (1); // Mia: Setting the Max Platforms for the Single Platform to '1'
+	m_pcGCScalingBasicPlatformManager1->SetStartX (20); // Mia: The X Position is set to '20'
+	m_pcGCScalingBasicPlatformManager1->SetStartY (340); // Mia: The Y Position is set to '340'
+	CGCObjectManager::ObjectGroupRegister (m_pcGCScalingBasicPlatformManager1); // Mia: Register the object group for the Single Platform
 
+	// Mia: Creating a new Object for 'm_pcGCScalingBasicPlatformManager2'. This is for the other left single platform
 	m_pcGCScalingBasicPlatformManager2 = new CGCObjScalingBasicPlatformManager();
-	m_pcGCScalingBasicPlatformManager2->SetMaxPlatforms (1);
-	//m_pcGCScalingBasicPlatformManager1->SetSpacingX (100);
-	m_pcGCScalingBasicPlatformManager2->SetStartX(110);
-	m_pcGCScalingBasicPlatformManager2->SetStartY(380);
-	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManager2);
+	m_pcGCScalingBasicPlatformManager2->SetMaxPlatforms (1); // Mia: Setting the Max Platforms for the Single Platform to '1'
+	m_pcGCScalingBasicPlatformManager2->SetStartX(110); // Mia: The X Position is set to '110'
+	m_pcGCScalingBasicPlatformManager2->SetStartY(380); // Mia: The Y Position is set to '380'
+	CGCObjectManager::ObjectGroupRegister(m_pcGCScalingBasicPlatformManager2); // Mia: Register the object group for the Single Platform
 
 	m_pcGCScalingFallingPlatformManager = new CGCObjScalingFallingPlatformManager ();
 	m_pcGCScalingFallingPlatformManager->SetMaxPlatforms (3);
