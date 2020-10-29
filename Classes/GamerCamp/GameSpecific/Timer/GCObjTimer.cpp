@@ -49,7 +49,7 @@ using namespace cocos2d;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// Timer Text Label
-	setTimerText(Label::createWithTTF(" ", "fonts/arial.ttf", m_fTimerTextFontSize));
+	setTimerText(Label::createWithTTF(" ", "fonts/SaltyOcean.ttf", m_fTimerTextFontSize));
 
 	getTimerText()->setColor(Color3B::WHITE);
 
