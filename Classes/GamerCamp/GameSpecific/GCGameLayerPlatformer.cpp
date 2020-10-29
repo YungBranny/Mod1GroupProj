@@ -26,9 +26,6 @@
 #include "GamerCamp/GameSpecific/Collectables/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjLongPlatformTest.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjShortPlatformTest.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjFallingPlatform.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjTravelatorPlatform.h"
 #include "GamerCamp/GameSpecific/ExitDoor/GCObjExitDoor.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
@@ -80,31 +77,17 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCOTimePickUp							( nullptr )
 , m_pcGCOExitDoor							( nullptr )
 , m_pcGCBasicEnemies						( nullptr )
-, m_pcGCBasicEnemies2						( nullptr )
 , m_pcGCMovingEnemies						( nullptr )
-, m_pcGCLongPlatformTest1					( nullptr )
-, m_pcGCShortPlatformTest1					( nullptr )
-, m_pcGCLongPlatformTest2					( nullptr )
-, m_pcGCShortPlatformTest2					( nullptr )
-, m_pcGCLongPlatformTest3					( nullptr )
-, m_pcGCShortPlatformTest3					( nullptr )
-, m_pcGCLongPlatformTest4					( nullptr )
-, m_pcGCShortPlatformTest4					( nullptr )
-, m_pcGCLongPlatformTest5					( nullptr )
-, m_pcGCShortPlatformTest5					( nullptr )
 , m_pcGCTravelatorPlatform1					( nullptr )
-, m_pcGCFallingPlatform1					( nullptr )
 , m_pcGCBackgroundAudio						( nullptr )
 , m_pcGCSoundEffectsAudio					( nullptr )
-, m_bResetWasRequested						(  false  )
 , m_pcGCScalingBasicPlatformManager			( nullptr )
 , m_pcGCScalingFallingPlatformManager		( nullptr )
 , m_pcGCScalingBasicPlatformManager1		( nullptr )
-, m_pcGCScalingFallingPlatformManager1		( nullptr )
 , m_pcGCScalingBasicPlatformManager2		( nullptr )
-, m_pcGCScalingFallingPlatformManager2		( nullptr )
 , m_pcGCScalingBasicPlatformManagerMiddle	( nullptr )
 , m_pcGCScalingBasicPlatformManagerTop		( nullptr )
+, m_bResetWasRequested (false)
 
 {
 	m_iTotalKeys		= 3; // Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
@@ -279,9 +262,6 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCGroupItem = new CGCObjGroupItem();
 	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupItem );
 	
-	// create and register the object group for the invader objects
-	//m_pcGCGroupInvader = new CGCObjGroupInvader( 64 );
-	//CGCObjectManager::ObjectGroupRegister( m_pcGCGroupInvader );
 
 	// create and register the object group for the player projectile objects
 	m_pcGCGroupProjectilePlayer = new CGCObjGroupProjectilePlayer();
@@ -487,33 +467,6 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCOExitDoor		= new CGCObjExitDoor (); // Create Exit Door Object
 	m_pcGCOExitDoor->SetResetPosition ( cocos2d::Vec2(50, 115) ); // Setting the X and Y Positions
 
-	///////// Platforms
-
-	//m_pcGCLongPlatformTest1		=	new CGCObjLongPlatformTest	();
-	//m_pcGCLongPlatformTest1->SetStartPos (cocos2d::Vec2 (0, 100));
-	//m_pcGCLongPlatformTest2		=	new CGCObjLongPlatformTest	();
-	//m_pcGCLongPlatformTest2->SetStartPos (cocos2d::Vec2 (130, 100));
-	//m_pcGCLongPlatformTest3		=	new CGCObjLongPlatformTest	();
-	//m_pcGCLongPlatformTest3->SetStartPos (cocos2d::Vec2 (260, 100));
-	//m_pcGCLongPlatformTest4		=	new CGCObjLongPlatformTest	();
-	//m_pcGCLongPlatformTest4->SetStartPos (cocos2d::Vec2 (390, 100));
-	//m_pcGCLongPlatformTest5		=	new CGCObjLongPlatformTest	();
-	//m_pcGCLongPlatformTest5->SetStartPos (cocos2d::Vec2 (520, 100));
-
-	//m_pcGCShortPlatformTest1	=	new CGCObjShortPlatformTest ();
-	//m_pcGCShortPlatformTest1->SetStartPos (cocos2d::Vec2 (650, 150));
-	//m_pcGCShortPlatformTest2	=	new CGCObjShortPlatformTest ();
-	//m_pcGCShortPlatformTest2->SetStartPos (cocos2d::Vec2 (750, 200));
-	//m_pcGCShortPlatformTest3	=	new CGCObjShortPlatformTest ();
-	//m_pcGCShortPlatformTest3->SetStartPos (cocos2d::Vec2 (830, 250));
-	//m_pcGCShortPlatformTest4	=	new CGCObjShortPlatformTest ();
-	//m_pcGCShortPlatformTest4->SetStartPos (cocos2d::Vec2 (700, 300));
-	//m_pcGCShortPlatformTest5	=	new CGCObjShortPlatformTest	();
-	//m_pcGCShortPlatformTest5->SetStartPos (cocos2d::Vec2 (570, 250));
-
-
-	//m_pcGCFallingPlatform1 = new CGCObjFallingPlatform ();
-	//m_pcGCFallingPlatform1->SetStartPos (cocos2d::Vec2 (800, 100));
 
 	m_pcGCOMovingPlatform = new CGCObjMovingPlatform(); // Create Moving Platform Object
 	m_pcGCOMovingPlatform->SetResetPosition(cocos2d::Vec2(970, 280));  // Setting the X and Y Positions
@@ -528,10 +481,6 @@ void CGCGameLayerPlatformer::VOnCreate()
 	m_pcGCBasicEnemies = new CGCBasicEnemies ();
 	m_pcGCBasicEnemies->SetResetPosition (v2Enemy1StartPos);
 	m_pcGCBasicEnemies->setGravity(1.0);
-
-	//m_pcGCBasicEnemies2 = new CGCBasicEnemies ();
-	//m_pcGCBasicEnemies2->SetResetPosition (v2Enemy1StartPos);
-	//m_pcGCBasicEnemies2->setGravity (0.0f);
 
 	m_pcGCMovingEnemies = new CGCMovingEnemies ();
 	m_pcGCMovingEnemies->SetResetPosition (cocos2d::Vec2(500,333));
@@ -555,37 +504,10 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 
 	// handle collisions between invader and projectile - both are killed
-	GetCollisionManager().AddCollisionHandler
-	( 
-		[] 
-		( CGCObjProjectilePlayer& rcProjectile, CGCObjInvader& rcInvader, const b2Contact& rcContact ) -> void
-		{
-			CGCObjectManager::ObjectKill( &rcProjectile );
-			CGCObjectManager::ObjectKill( &rcInvader );
-		} 
-	);
-
-	GetCollisionManager().AddCollisionHandler
-	(
-		[]
-	(CGCObjPlayer& rcPlayer, CGCObjShortPlatformTest& rcShortPlatformTest, const b2Contact& rcContact) -> void
-		{
-			if(rcContact.IsTouching())
-			{
-				rcPlayer.SetCanJump(true);
-			}
-			
-			else if (rcContact.IsTouching() == false)
-			{
-				rcPlayer.SetCanJump(false);
-			}
-			
-		}
-	);
-
 	// Handles the Collision between the Player and the Moving Platform
 	GetCollisionManager().AddCollisionHandler
 	(
+
 		[]
 	(CGCObjPlayer& rcPlayer, CGCObjMovingPlatform& rcMovingPlatform, const b2Contact& rcContact) -> void
 	{
@@ -603,17 +525,20 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	GetCollisionManager ().AddCollisionHandler
 	(
+		//Brandon Middleton
+		//This collision checks if the player is touching a platform or not, if it is touching it gives the player the ability to jump
+		// if it not touching then the player cannot jump
 		[]
 	(CGCObjPlayer& rcPlayer, CGCObjScalingBasicPlatform& rcPlatform, const b2Contact& rcContact) -> void
 		{
-			if (rcContact.IsTouching ())
+			if (rcContact.IsTouching ()) //checks if it is touching
 			{
-				rcPlayer.SetCanJump (true);
+				rcPlayer.SetCanJump (true);  //sets the bool can jump to true if it touching
 			}
 
 			else if (rcContact.IsTouching () == false)
 			{
-				rcPlayer.SetCanJump (false);
+				rcPlayer.SetCanJump (false); // sets the bool to false if it is not touching
 			}
 
 		}
@@ -644,23 +569,6 @@ void CGCGameLayerPlatformer::VOnCreate()
 		}
 	);
 	
-	GetCollisionManager().AddCollisionHandler
-	(
-		[]
-	(CGCObjPlayer& rcPlayer, CGCObjLongPlatformTest& rcLongPlatformTest, const b2Contact& rcContact) -> void
-		{
-			if (rcContact.IsTouching())
-			{
-				rcPlayer.SetCanJump(true);
-			}
-			else if (rcContact.IsTouching() == false)
-			{
-				rcPlayer.SetCanJump(false);
-			}
-			
-		}
-	);
-
 	// Handles the Collision between the Player and the Exit Door
 	GetCollisionManager().AddCollisionHandler
 	(
@@ -713,20 +621,16 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	GetCollisionManager ().AddCollisionHandler
 	(
+		//Brandon Middleton
+		//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
+		//it will reset the level from the start
 		[this]
 	(CGCBasicEnemies& rcEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
-
-			//RequestReset ();
-			
-			m_pcGCTimer->ResetTimer ();
-			
-			CGCObjectManager::ObjectKill (&rcEnemies);
-			
+			//m_pcGCTimer->ResetTimer ();
+			//CGCObjectManager::ObjectKill (&rcEnemies);
 			CCLOG ("Player Died.");
-
 			m_bPlayerHitHostile = true;
-
 		}
 	);
 
@@ -734,18 +638,19 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	GetCollisionManager ().AddCollisionHandler
 	(
+		//Brandon Middleton
+		//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
+		//it will reset the level from the start
 		[this]
 	(CGCMovingEnemies& rcMEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
 			if (rcMEnemies.getJustCollided() == false)
 			{
 				rcMEnemies.setJustCollided (true);
-				RequestReset ();
-				m_pcGCTimer->ResetTimer ();
-				//CGCObjectManager::ObjectKill (&rcMEnemies);
+				//RequestReset ();
+				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");
-				CGCObjectManager::ObjectKill (&rcPlayer);
-
+				//CGCObjectManager::ObjectKill (&rcPlayer);
 				m_bPlayerHitHostile = true;
 			}
 		}
@@ -753,76 +658,48 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	GetCollisionManager ().AddCollisionHandler
 	(
-		[this]
-	(CGCObjFallingPlatform& rcFallingPlatforms,  CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
-
-		{
-			if (rcContact.IsTouching())
-			{
-				if (rcFallingPlatforms.GetContactWithPlayer () == false)
-				{
-					rcFallingPlatforms.SetContactWithPlayer (true);
-				}
-			}
-
-			else if (rcContact.IsTouching () == false)
-			{
-				rcFallingPlatforms.SetContactWithPlayer (false);
-			}
-
-			if (rcFallingPlatforms.GetCanDelete() == true)
-			{
-				CGCObjectManager::ObjectKill (&rcFallingPlatforms);
-			}
-
-			if (rcContact.IsTouching ())
-			{
-				rcPlayer.SetCanJump (true);
-			}
-			else if (rcContact.IsTouching () == false)
-			{
-				rcPlayer.SetCanJump (false);
-			}
-		}
-	);
-
-	GetCollisionManager ().AddCollisionHandler
-	(
+		//Brandon Middleton
+		//This collision checks if the player is touching the falling platforms or not
+		//If the player is touching the falling platforms it will then set a bool to true
+		//when this happens the platform has some code to make its self move down and then after
+		//x amount of time delete itself
+		//It also can decide if the player is allowed to jump or not
 		[this]
 	(CGCObjScalingFallingPlatform& rcFallingPlatforms, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 
 		{
 			if (rcContact.IsTouching ())
 			{
-				if (rcFallingPlatforms.GetContactWithPlayer () == false)
+				if (rcFallingPlatforms.GetContactWithPlayer () == false)	
 				{
-					rcFallingPlatforms.SetContactWithPlayer (true);
+					rcFallingPlatforms.SetContactWithPlayer (true);	//Starts moving when the player is on the platform		
 				}
 			}
 
-			else if (rcContact.IsTouching () == false)
+			else if (rcContact.IsTouching () == false)				//stops moving when the player is off it
 			{
 				rcFallingPlatforms.SetContactWithPlayer (false);
 			}
 
 			if (rcFallingPlatforms.GetCanDelete () == true)
 			{
-				CGCObjectManager::ObjectKill (&rcFallingPlatforms);
+				CGCObjectManager::ObjectKill (&rcFallingPlatforms); //checks if the platform can be delted, if it can then it will delete itself
 			}
 
-			if (rcContact.IsTouching ())
+			if (rcContact.IsTouching ())							//checks if it is touching
 			{
-				rcPlayer.SetCanJump (true);
+				rcPlayer.SetCanJump (true);							//sets the bool can jump to true if it touching);
 			}
+
 			else if (rcContact.IsTouching () == false)
 			{
-				rcPlayer.SetCanJump (false);
+				rcPlayer.SetCanJump (false);						//Sets it to false if it is not touching 
 			}
 		}
 	);
+}
 
 
-}// void CGCGameLayerPlatformer::VOnCreate() { ...
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -837,11 +714,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	ManuallyHandleCollisions();	
 	
 	m_pcGCTimer->Update();
-	//m_pcGCMovingEnemies->VOnUpdate (fTimeStep);
-	
-	//m_pcGCBasicEnemies->SetVelocity (cocos2d::Vec2(1,0));
-	//m_pcGCBasicEnemies->SetVelocity (cocos2d::Vec2 (10, 0));
-	
+
 	if( ResetWasRequested() )
 	{
 		VOnReset();
@@ -865,7 +738,6 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	replaceSceneLose();
 
-	//replaceSceneMenu();
 	//These will be called when the scene needs to be replaced
 	////////////////////////////////
 }
@@ -886,8 +758,8 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	delete m_pcGCBasicEnemies;
 	m_pcGCBasicEnemies = nullptr;
 
-	delete m_pcGCBasicEnemies2;
-	m_pcGCBasicEnemies2 = nullptr;
+	delete m_pcGCMovingEnemies;
+	m_pcGCMovingEnemies = nullptr;
 
 	delete m_pcGCSprBackGround;
 	m_pcGCSprBackGround = nullptr;
@@ -910,25 +782,67 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	delete m_pcGCSoundEffectsAudio;
 	m_pcGCSoundEffectsAudio = nullptr;
 
+	delete m_pcGCOKeys;
+	m_pcGCOKeys = nullptr;
+
+	delete m_pcGCOKeys1;
+	m_pcGCOKeys1 = nullptr;
+
+	delete m_pcGCOKeys2;
+	m_pcGCOKeys2 = nullptr;
+
+	delete m_pcGCTravelatorPlatform1;
+	m_pcGCTravelatorPlatform1 = nullptr;
+
+
+
+
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. because object groups must register manually, 
 	// we also unregister them manually
 	///////////////////////////////////////////////////////////////////////////
-	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupPlatform );
-	delete m_pcGCGroupPlatform;
-	m_pcGCGroupPlatform = nullptr;
+	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupPlatform );
+	//delete m_pcGCGroupPlatform;
+	//m_pcGCGroupPlatform = nullptr;
 
-	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupProjectilePlayer );
-	delete m_pcGCGroupProjectilePlayer;
-	m_pcGCGroupProjectilePlayer = nullptr;
+	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupProjectilePlayer );
+	//delete m_pcGCGroupProjectilePlayer;
+	//m_pcGCGroupProjectilePlayer = nullptr;
 
 	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupInvader );
 	//delete m_pcGCGroupInvader;
 	//m_pcGCGroupInvader = nullptr;
 
-	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupItem );
-	delete m_pcGCGroupItem;
-	m_pcGCGroupItem = nullptr;
+	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupItem );
+	//delete m_pcGCGroupItem;
+	//m_pcGCGroupItem = nullptr;
+
+	CGCObjectManager::ObjectGroupUnRegister (m_pcGCScalingBasicPlatformManager);
+	delete m_pcGCScalingBasicPlatformManager;
+	m_pcGCScalingBasicPlatformManager = nullptr;
+
+	CGCObjectManager::ObjectGroupUnRegister (m_pcGCScalingFallingPlatformManager);
+	delete m_pcGCScalingFallingPlatformManager;
+	m_pcGCScalingFallingPlatformManager = nullptr;
+
+	CGCObjectManager::ObjectGroupUnRegister (m_pcGCScalingBasicPlatformManagerMiddle);
+	delete m_pcGCScalingBasicPlatformManagerMiddle;
+	m_pcGCScalingBasicPlatformManagerMiddle = nullptr;
+
+	CGCObjectManager::ObjectGroupUnRegister (m_pcGCScalingBasicPlatformManagerTop);
+	delete m_pcGCScalingBasicPlatformManagerTop;
+	m_pcGCScalingBasicPlatformManagerTop = nullptr;
+
+	CGCObjectManager::ObjectGroupUnRegister (m_pcGCScalingBasicPlatformManager1);
+	delete m_pcGCScalingBasicPlatformManager1;
+	m_pcGCScalingBasicPlatformManager1 = nullptr;
+
+
+	CGCObjectManager::ObjectGroupUnRegister (m_pcGCScalingBasicPlatformManager2);
+	delete m_pcGCScalingBasicPlatformManager2;
+	m_pcGCScalingBasicPlatformManager2 = nullptr;
+
+
 
 	IGCGameLayer::VOnDestroy();
 }

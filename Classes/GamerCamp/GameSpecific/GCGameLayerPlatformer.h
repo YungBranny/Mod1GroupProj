@@ -24,10 +24,7 @@ class CGCObjTimer;
 class CGCObjKeys;
 class CGCBasicEnemies;
 class CGCMovingEnemies;
-class CGCObjLongPlatformTest;
-class CGCObjShortPlatformTest;
 class CGCObjTravelatorPlatform;
-class CGCObjFallingPlatform;
 class CGCObjExitDoor;
 class CGCObjTimePickUp;
 class CGCObjScalingBasicPlatformManager;
@@ -55,68 +52,51 @@ class CGCGameLayerPlatformer
 {
 private:
 	// object groups
-	CGCObjGroupPlatform*			m_pcGCGroupPlatform;
-	CGCObjGroupItem*				m_pcGCGroupItem;
-	CGCObjGroupInvader*				m_pcGCGroupInvader;
-	CGCObjGroupProjectilePlayer*	m_pcGCGroupProjectilePlayer;
+	CGCObjGroupPlatform*					m_pcGCGroupPlatform;
+	CGCObjGroupItem*						m_pcGCGroupItem;
+	CGCObjGroupInvader*						m_pcGCGroupInvader;
+	CGCObjGroupProjectilePlayer*			m_pcGCGroupProjectilePlayer;
 
 	
-	CGCObjTimer*					m_pcGCTimer;
+	CGCObjTimer*							m_pcGCTimer;
 	
 
-	CGCObjKeys*                     m_pcGCOKeys;
-	CGCObjKeys*                     m_pcGCOKeys1;
-	CGCObjKeys*                     m_pcGCOKeys2;
+	CGCObjKeys*								m_pcGCOKeys;
+	CGCObjKeys*								m_pcGCOKeys1;
+	CGCObjKeys*								m_pcGCOKeys2;
 
-	CGCObjTimePickUp*               m_pcGCOTimePickUp;
+	CGCObjTimePickUp*						m_pcGCOTimePickUp;
 
-	CGCObjExitDoor*                 m_pcGCOExitDoor;
+	CGCObjExitDoor*							m_pcGCOExitDoor;
 
-	CGCBasicEnemies*				m_pcGCBasicEnemies;
-	CGCBasicEnemies*				m_pcGCBasicEnemies2;
-	CGCMovingEnemies*				m_pcGCMovingEnemies;
+	CGCBasicEnemies*						m_pcGCBasicEnemies;
+	CGCMovingEnemies*						m_pcGCMovingEnemies;
 
-	//platforms
-	CGCObjLongPlatformTest*			m_pcGCLongPlatformTest1;
-	CGCObjLongPlatformTest*			m_pcGCLongPlatformTest2;
-	CGCObjLongPlatformTest*			m_pcGCLongPlatformTest3;
-	CGCObjLongPlatformTest*			m_pcGCLongPlatformTest4;
-	CGCObjLongPlatformTest*			m_pcGCLongPlatformTest5;
+	//Platforms
+	////////////////////////////////////////////////////////////////////////////////////////
+	CGCObjMovingPlatform*					m_pcGCOMovingPlatform;
 
-	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest1;
-	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest2;
-	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest3;
-	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest4;
-	CGCObjShortPlatformTest*		m_pcGCShortPlatformTest5;
+	CGCObjTravelatorPlatform*				m_pcGCTravelatorPlatform1;
 
-	CGCObjMovingPlatform*           m_pcGCOMovingPlatform;
+	CGCObjScalingBasicPlatformManager*		m_pcGCScalingBasicPlatformManager;
+	CGCObjScalingBasicPlatformManager*		m_pcGCScalingBasicPlatformManagerMiddle;
+	CGCObjScalingBasicPlatformManager*		m_pcGCScalingBasicPlatformManagerTop;
 
-	CGCObjFallingPlatform*			m_pcGCFallingPlatform1;
+	CGCObjScalingBasicPlatformManager*		m_pcGCScalingBasicPlatformManager1;
+	CGCObjScalingBasicPlatformManager*		m_pcGCScalingBasicPlatformManager2;
 
-	CGCObjTravelatorPlatform*		m_pcGCTravelatorPlatform1;
-
-	CGCObjScalingBasicPlatformManager*	m_pcGCScalingBasicPlatformManager;
 	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager;
-
-	CGCObjScalingBasicPlatformManager*	m_pcGCScalingBasicPlatformManagerMiddle;
-
-	CGCObjScalingBasicPlatformManager*	m_pcGCScalingBasicPlatformManagerTop;
-
-	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManager1;
-	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager1;
-	CGCObjScalingBasicPlatformManager* m_pcGCScalingBasicPlatformManager2;
-	CGCObjScalingFallingPlatformManager* m_pcGCScalingFallingPlatformManager2;
-
+	////////////////////////////////////////////////////////////////////////////////////////
 
 	// backgrounds
-	CGCObjSprite*					m_pcGCSprBackGround;
+	CGCObjSprite*							m_pcGCSprBackGround;
 	
 
 	cocos2d::experimental::AudioEngine*		m_pcGCBackgroundAudio;
 	cocos2d::experimental::AudioEngine*		m_pcGCSoundEffectsAudio;
 
 	// mario
-	CGCObjPlayer*					m_pcGCOPlayer;
+	CGCObjPlayer*							m_pcGCOPlayer;
 
 	int		m_iKeysCollected;
 

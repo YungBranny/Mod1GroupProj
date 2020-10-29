@@ -12,7 +12,7 @@
 
 
 CGCObjShortPlatformTest::CGCObjShortPlatformTest ()
-	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjLongPlatformTest))
+	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjShortPlatformTest))
 	, m_v2StartPos (400, 400)				  //default start position
 {
 	SetResetPosition (GetStartPos ());		  //sets the start position to the v2start pos
