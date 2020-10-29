@@ -159,25 +159,25 @@ void CGCGameLayerPlatformer::replaceSceneMenu()
 void CGCGameLayerPlatformer::backgroundMusic() // Mia: Function that is called when we want the Background Music to play
 {
 	// Mia: Play Audio by locating File, set to 'True' to loop, and set Volume to 0.2f
-	m_pcGCBackgroundAudio->play2d("Sounds/BackgroundMusic.mp3", true, 0.2f);
+	m_pcGCBackgroundAudio->play2d("Sounds/BackgroundMusic.wav", true, 0.2f);
 }
 
 void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
 	// Mia: Play Audio by locating File, set to 'False' to not loop, and set Volume to 0.1f
-	m_pcGCSoundEffectsAudio->play2d("Sounds/CollectKey.mp3", false, 0.1f);
+	m_pcGCSoundEffectsAudio->play2d("Sounds/CollectKey.wav", false, 0.1f);
 }
 
 void CGCGameLayerPlatformer::playTimerPickUpAudio() // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
 {
 	// Mia: Play Audio by locating File, set to 'False' to not loop, and set Volume to 0.1f
-	m_pcGCSoundEffectsAudio->play2d("Sounds/TimerPickUp.mp3", false, 0.1f);
+	m_pcGCSoundEffectsAudio->play2d("Sounds/TimerPickUp.wav", false, 0.1f);
 }
 
 void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is called when we want the Door Opened Sound Effect to play
 {
 	// Mia: Play Audio by locating File, set to 'False' to not loop, and set Volume to 0.4f
-	m_pcGCSoundEffectsAudio->play2d("Sounds/OpeningDoor.mp3", false, 0.4f);
+	m_pcGCSoundEffectsAudio->play2d("Sounds/OpeningDoor.wav", false, 0.4f);
 }
 
 //////////////////////////////////////////////////////////////////////////
