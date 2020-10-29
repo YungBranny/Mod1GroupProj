@@ -161,14 +161,16 @@ void CGCGameLayerPlatformer::backgroundMusic() // Mia: Function that is called w
 {
 	// Mia: Play Audio by locating File, set to 'True' to loop
 	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+//	m_pcGCBackgroundAudio->getInstance ()->setBackgroundMusicVolume (0.1f);
 	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true);
+
 }
 
 void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
 	// Mia: Play Audio by locating File, set to 'False' to not loop
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/CollectKey.wav", false);
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Key/CollectKey.wav", false);
 }
 
 void CGCGameLayerPlatformer::playTimerPickUpAudio() // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
