@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>FallingScalingPlatform.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{60,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>FallingScalingPlatform.png</string>
+            <key>size</key>
+            <string>{62,62}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:ae11a1fbdc2c0edce52a4f8b168ed5c8:45aa64b3dd9e38090a7d7542419016c8:20e616ed777b912fe71fcbab131f8c12$</string>
+            <key>textureFileName</key>
+            <string>FallingScalingPlatform.png</string>
+        </dict>
+    </dict>
+</plist>
