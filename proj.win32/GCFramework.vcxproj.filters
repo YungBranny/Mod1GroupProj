@@ -52,6 +52,12 @@
     <Filter Include="Classes\GamerCamp\GCCocosInterface\LevelLoader">
       <UniqueIdentifier>{dc3fe9f1-371d-46a8-98ad-a1216f6a7390}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Timer">
+      <UniqueIdentifier>{2714bfdd-c475-46ca-a31a-d330cfcb196b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\NewPlatforms">
+      <UniqueIdentifier>{a25a1afa-aa75-4455-b681-47a246ee700c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
