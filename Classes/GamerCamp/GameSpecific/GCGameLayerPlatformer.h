@@ -139,5 +139,5 @@ private:
 		return m_bQuitWasRequested; 
 	}
 };
-
+//
 #endif // __CGCGameLayerPlatformer_SCENE_H__
