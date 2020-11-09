@@ -2,7 +2,7 @@
 *.tlog
 *.db
 *.opendb
-Resources/
+
 
 *.user
 *.obj
