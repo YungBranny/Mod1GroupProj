@@ -82,6 +82,11 @@ public:
 	inline void		SetSpriteRotation( float fRotationRadians );
 	inline float	GetSpriteRotation() const;
 
+
+
+	inline void SetScale(float bArgScaleX, float bArgScaleY);
+	inline float GetScale() const;
+	
 	// accessor for the sprite's rect
 	inline cocos2d::Rect GetBoundingBox() const;
 
@@ -206,7 +211,18 @@ inline void CGCObjSprite::SetSpriteRotation( float fRotationRadians )
 
 
 //////////////////////////////////////////////////////////////////////////
-// 
+inline void CGCObjSprite::SetScale(float bArgScaleX, float bArgScaleY)
+{
+	m_pcSprite->setScale(bArgScaleX, bArgScaleY);
+
+}
+
+inline float CGCObjSprite::GetScale() const
+{
+	return m_pcSprite->getScale();
+
+
+}
 //////////////////////////////////////////////////////////////////////////
 inline float CGCObjSprite::GetSpriteRotation() const
 {
