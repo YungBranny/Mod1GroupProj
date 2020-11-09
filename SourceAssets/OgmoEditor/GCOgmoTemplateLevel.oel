@@ -1,11 +1,11 @@
 <level width="1024" height="768">
   <enemies>
-    <MovingEnemy id="0" x="480" y="688" class="CGCObjMovingEnemies" shape="Enemy" Plistfile="TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <MovingEnemy id="1" x="528" y="672" class="CGCObjMovingEnemies" shape="Enemy" Plistfile="TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <coin id="2" x="640" y="560" class="CGCObjItem" shape="coin" PlistFile="TexturePacker/Sprites/Coin/Coin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <coin id="3" x="656" y="528" class="CGCObjItem" shape="coin" PlistFile="TexturePacker/Sprites/Coin/Coin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <coin id="4" x="704" y="528" class="CGCObjItem" shape="coin" PlistFile="TexturePacker/Sprites/Coin/Coin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <coin id="5" x="608" y="416" class="CGCObjItem" shape="coin" PlistFile="TexturePacker/Sprites/Coin/Coin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <MovingEnemy id="0" x="432" y="688" class="CGCMovingEnemies" shape="Enemy" Plistfile="TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <MovingEnemy id="1" x="496" y="672" class="CGCMovingEnemies" shape="Enemy" Plistfile="TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>

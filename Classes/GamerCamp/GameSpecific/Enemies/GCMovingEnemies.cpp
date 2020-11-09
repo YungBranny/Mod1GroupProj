@@ -3,19 +3,21 @@
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
-
+#include "../../GCCocosInterface/GB2ShapeCache-x.h"
 
 
 #include "GCMovingEnemies.h"
 
 //using namespace cocos2d;
 
+GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCMovingEnemies);
+
 CGCMovingEnemies::CGCMovingEnemies ()
 //not letting me inherit from basic enemies
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCMovingEnemies))
 	, m_bMovingLeftAndRight			(true)							//Default values for the variables
-	, m_vEndDestination1			(600,400)						//Default values for the variables
-	, m_vEndDesitnation2			(450,100)						//Default values for the variables
+	//, m_vEndDestination1			(600,400)						//Default values for the variables
+	//, m_vEndDesitnation2			(450,100)						//Default values for the variables
 	, m_vMovingRightVelocity		(cocos2d::Vec2 (4.0f, 0.0f))	//Default values for the variables
 	, m_vMovingLeftVelocity			(-m_vMovingRightVelocity)		//Default values for the variables
 	, m_vMovingUpVelocity			(cocos2d::Vec2 (0.0f, 10.0f))	//Default values for the variables
@@ -44,11 +46,11 @@ void CGCMovingEnemies::InitialiseMovementDirection ()
 }
 
 //Sets the sprite
-IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist", "Enemy", b2_dynamicBody, true);
+//IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist", "Enemy", b2_dynamicBody, true);
 void CGCMovingEnemies::VOnResourceAcquire ()
 {
 
-	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCMovingEnemies);
+	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCMovingEnemies);
 
 	CGCObjSpritePhysics::VOnResourceAcquire ();
 

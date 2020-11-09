@@ -22,6 +22,7 @@ class CGCObjGroupItem;
 class CGCObjInvader;
 class CGCObjGroupInvader;
 class CGCObjGroupProjectilePlayer;
+class CGCMovingEnemies;
 
 
 //////////////////////////////////////////////////////////////////////////

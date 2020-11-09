@@ -21,6 +21,7 @@
 #include "GamerCamp/GameSpecific/Invaders/GCObjGroupInvader.h"
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 #include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
+#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
 
 #include "AppDelegate.h"
 

@@ -8,6 +8,9 @@
 //Inside this class are two end desitnations which need to be set for the enemy to move too
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
+#include "../../GCCocosInterface/GCObjSpritePhysics.h"
+
 
 
 
@@ -45,7 +48,9 @@ private:
 	void					CollisionChecker ();			 //Function which checks if the just collided bool is true or false
 
 public:
-
+	
+	GCFACTORY_DECLARE_CREATABLECLASS (CGCMovingEnemies);
+	
 	CGCMovingEnemies ();
 	virtual ~CGCMovingEnemies () {};
 
