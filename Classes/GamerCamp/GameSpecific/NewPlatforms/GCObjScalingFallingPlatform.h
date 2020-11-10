@@ -8,6 +8,7 @@
 //Refactoring needs to be done so the platform doesnt move down but just deletes after a while
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 class CGCObjScalingFallingPlatform
 	: public CGCObjSpritePhysics
@@ -28,6 +29,8 @@ public:
 	CGCObjScalingFallingPlatform ();												//constructor
 	virtual ~CGCObjScalingFallingPlatform () {};									//deconstructor
 
+	GCFACTORY_DECLARE_CREATABLECLASS (CGCObjScalingFallingPlatform);
+
 	cocos2d::Vec2 GetFallingVelocity () const { return m_v2FallingVelocity; }		//getter for the Current velocity
 	void SetFallingVelocity (cocos2d::Vec2 i) { m_v2FallingVelocity = i; }			//setter for the Current velocity
 
@@ -41,7 +44,7 @@ public:
 	void SetCanDelete (bool i) { m_bCanDelete = i; }								//setter for the Can delete float
 
 
-	virtual void VOnResourceAcquire (void);											//Default Function
+	//virtual void VOnResourceAcquire (void);											//Default Function
 
 	void MoveDownOnContact ();														//Function that moved the platform down on contact, no longer needed but will be refactored
 	virtual void VOnUpdate (f32 fTimestep);											//UpdateFunction

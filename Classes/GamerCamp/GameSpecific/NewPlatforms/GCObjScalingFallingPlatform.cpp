@@ -7,6 +7,9 @@
 
 #include "GCObjScalingFallingPlatform.h"
 
+#include "../../GCCocosInterface/GB2ShapeCache-x.h"
+
+GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCObjScalingFallingPlatform);
 
 
 CGCObjScalingFallingPlatform::CGCObjScalingFallingPlatform ()
@@ -20,16 +23,16 @@ CGCObjScalingFallingPlatform::CGCObjScalingFallingPlatform ()
 }																		 
 
 //Sets the sprite
-IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingFallingPlatform, "TexturePacker/Sprites/FallingScalingPlatform/FallingScalingPlatform.plist", "FallingScalingPlatform", b2_kinematicBody, true);
+//IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingFallingPlatform, "TexturePacker/Sprites/FallingScalingPlatform/FallingScalingPlatform.plist", "FallingScalingPlatform", b2_kinematicBody, true);
 
-void CGCObjScalingFallingPlatform::VOnResourceAcquire ()
-{
-
-	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjScalingFallingPlatform);
-
-	CGCObjSpritePhysics::VOnResourceAcquire ();
-
-}
+//void CGCObjScalingFallingPlatform::VOnResourceAcquire ()
+//{
+//
+//	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjScalingFallingPlatform);
+//
+//	CGCObjSpritePhysics::VOnResourceAcquire ();
+//
+//}
 
 //Calls the function that moves the platform down
 void CGCObjScalingFallingPlatform::MoveDownOnContact ()

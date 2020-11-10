@@ -49,10 +49,12 @@ private:
 
 public:
 	
-	GCFACTORY_DECLARE_CREATABLECLASS (CGCMovingEnemies);
+
 	
 	CGCMovingEnemies ();
 	virtual ~CGCMovingEnemies () {};
+
+	GCFACTORY_DECLARE_CREATABLECLASS (CGCMovingEnemies);
 
 	unsigned short int getCollisionBuffer ()	const   { return m_iCollisionBuffer;	}	//Getter for CollisionBuffer
 	void  setCollisionBuffer (unsigned short int i)	    { m_iCollisionBuffer = i;		}	//Setter for CollisionBuffer
@@ -81,10 +83,10 @@ public:
 	void ChangeDirection ();					  //Function which contains the logic to change direction
 	void Movement ();							  //Function which 
 
-	virtual void VOnResourceAcquire (void);		  //Default functions for spritephysics
-	virtual void VOnResurrected (void);			  //Default functions for spritephysics
-	virtual void VOnResourceRelease (void);		  //Default functions for spritephysics
-	virtual void VOnReset (void);				  //Default functions for spritephysics
+	//virtual void VOnResourceAcquire (void);		  //Default functions for spritephysics
+	//virtual void VOnResurrected (void);			  //Default functions for spritephysics
+	//virtual void VOnResourceRelease (void);		  //Default functions for spritephysics
+	//virtual void VOnReset (void);				  //Default functions for spritephysics
 	virtual void VOnUpdate (f32 fTimestep);		  //Default functions for spritephysics
 
 

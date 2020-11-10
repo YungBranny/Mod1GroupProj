@@ -16,11 +16,11 @@ CGCMovingEnemies::CGCMovingEnemies ()
 //not letting me inherit from basic enemies
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCMovingEnemies))
 	, m_bMovingLeftAndRight			(true)							//Default values for the variables
-	//, m_vEndDestination1			(600,400)						//Default values for the variables
-	//, m_vEndDesitnation2			(450,100)						//Default values for the variables
+	, m_vEndDestination1			(600,400)						//Default values for the variables
+	, m_vEndDesitnation2			(450,100)						//Default values for the variables
 	, m_vMovingRightVelocity		(cocos2d::Vec2 (4.0f, 0.0f))	//Default values for the variables
 	, m_vMovingLeftVelocity			(-m_vMovingRightVelocity)		//Default values for the variables
-	, m_vMovingUpVelocity			(cocos2d::Vec2 (0.0f, 10.0f))	//Default values for the variables
+	, m_vMovingUpVelocity			(cocos2d::Vec2 (0.0f, 3.0f))	//Default values for the variables
 	, m_vMovingDownVelocity			(-m_vMovingUpVelocity)			//Default values for the variables
 	, m_bJustCollided				(false)							//Default values for the variables
 	, m_iCollisionBuffer			(60)							//Default values for the variables
@@ -47,33 +47,33 @@ void CGCMovingEnemies::InitialiseMovementDirection ()
 
 //Sets the sprite
 //IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist", "Enemy", b2_dynamicBody, true);
-void CGCMovingEnemies::VOnResourceAcquire ()
-{
+//void CGCMovingEnemies::VOnResourceAcquire ()
+//{
+//
+//	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCMovingEnemies);
+//
+//	CGCObjSpritePhysics::VOnResourceAcquire ();
+//
+//	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
+//}
 
-	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCMovingEnemies);
 
-	CGCObjSpritePhysics::VOnResourceAcquire ();
+//
+//void CGCMovingEnemies::VOnReset ()
+//{
+//	CGCObjSpritePhysics::VOnReset ();
+//}
 
-	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
-}
+//void CGCMovingEnemies::VOnResourceRelease ()
+//{
+//	CGCObjSpritePhysics::VOnResourceRelease ();
+//}
 
-
-
-void CGCMovingEnemies::VOnReset ()
-{
-	CGCObjSpritePhysics::VOnReset ();
-}
-
-void CGCMovingEnemies::VOnResourceRelease ()
-{
-	CGCObjSpritePhysics::VOnResourceRelease ();
-}
-
-void CGCMovingEnemies::VOnResurrected ()
-{
-	CGCObjSpritePhysics::VOnResurrected ();
-	GetPhysicsBody ()->SetGravityScale (getGravity ());
-}
+//void CGCMovingEnemies::VOnResurrected ()
+//{
+//	CGCObjSpritePhysics::VOnResurrected ();
+//	GetPhysicsBody ()->SetGravityScale (getGravity ());
+//}
 
 //changes the direction if the current position has reached the end desitination 
 void CGCMovingEnemies::ChangeDirection () 
