@@ -4,6 +4,11 @@
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
+#include "GamerCamp/GCCocosInterface/GB2ShapeCache-x.h"
+#include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
+
+
+
 class CGCObjTravelatorPlatform
 	: public CGCObjSpritePhysics
 {
@@ -17,7 +22,7 @@ public:
 	CGCObjTravelatorPlatform();
 	virtual ~CGCObjTravelatorPlatform() {};
 	
-
+	GCFACTORY_DECLARE_CREATABLECLASS(CGCObjTravelatorPlatform);
 	
 	/////////////////////////////////////////////////////////////////////////////
 	

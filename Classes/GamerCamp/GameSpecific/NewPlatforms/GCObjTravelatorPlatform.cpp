@@ -3,17 +3,21 @@
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "GamerCamp/GCCocosInterface/GB2ShapeCache-x.h"
 
 #include "GCObjTravelatorPlatform.h"
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
+GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjTravelatorPlatform);
+
 CGCObjTravelatorPlatform::CGCObjTravelatorPlatform()
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjTravelatorPlatform))
-	, m_v2StartPos	(600, 600)  // Start position
+	//, m_v2StartPos	(600, 600)  // Start position
 	, m_v2Velocity	(-8.0f, 0.0f ) //Speed and direction the player is sent in 
 {
-	SetResetPosition(GetStartPos()); //reset position
+	//SetResetPosition(GetStartPos()); //reset position
 }
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,12 +46,12 @@ CGCObjTravelatorPlatform::CGCObjTravelatorPlatform()
 //);
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-IN_CPP_CREATION_PARAMS_DECLARE(CGCObjTravelatorPlatform, "TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist", "LongPlatformTest", b2_staticBody, true); //file path and physics body for the travelator
+//IN_CPP_CREATION_PARAMS_DECLARE(CGCObjTravelatorPlatform, "TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist", "LongPlatformTest", b2_staticBody, true); //file path and physics body for the travelator
 
 void CGCObjTravelatorPlatform::VOnResourceAcquire()
 {
 
-	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCObjTravelatorPlatform);
+	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCObjTravelatorPlatform);
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
 	
