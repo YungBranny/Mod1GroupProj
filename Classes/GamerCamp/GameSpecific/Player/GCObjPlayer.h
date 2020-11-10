@@ -5,6 +5,9 @@
 #ifndef _GCOBJPLAYER_H_
 #define _GCOBJPLAYER_H_
 
+#include "2d/CCLabel.h"
+#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
+
 #ifndef _GCOBJSPRITEPHYSICS_H_
 	#include "../../GCCocosInterface/GCObjSpritePhysics.h"
 #endif
@@ -23,8 +26,7 @@ template< typename TActionType > class TGCActionToKeyMap;
 enum EPlayerActions
 {
 	EPA_AxisMove_X,
-	EPA_AxisMove_Y,
-	EPA_ButtonFire
+	EPA_ButtonJump
 };
 
 //////////////////////////////////////////////////////////////////////////
@@ -37,11 +39,9 @@ enum EPlayerActions
 //////////////////////////////////////////////////////////////////////////
 class CGCObjPlayer 
 : public CGCObjSpritePhysics
+//, CGCObjSprite
 {
 private:
-	// used to fire projectiles
-	CGCObjGroupProjectilePlayer* m_pProjectileManager; 
-
 	// member variables for 'physicsy' handling
 	// N.B. uses sprite to store position and has no rotation
 	f32		m_fMaximumMoveForce_Horizontal;
@@ -51,12 +51,31 @@ private:
 	f32		m_fNoInput_ExtraDrag_Square;
 	f32		m_fNoInput_VelocityThreshold;
 
+	float	m_fLivesFontSize;
+	float	m_iLivesTextOutlineSize;
+	float	m_iLivesBarHeightX;
+	float	m_iLivesBarHeightY;
+
+	int		m_iNumberOfLives;
+
+	bool	m_bCanJump;
+	bool	m_bOnTravelator;
+
+	cocos2d::Label* m_pLivesText;
+
 	// action map for controllers
 	TGCActionToKeyMap< EPlayerActions >* m_pcControllerActionToKeyMap;
+
+	cocos2d::Vec2			m_v2MovingRightVelocity;			 //The velocitys for how fast the enemy should move
+	cocos2d::Vec2			m_v2MovingLeftVelocity;				 //The velocitys for how fast the enemy should move
+	cocos2d::Vec2			m_v2StopMovingVelocity;				 //The velocitys for how fast the enemy should move
+	b2Vec2					m_bv2jumpVel;
 
 public:
 	CGCObjPlayer();
 
+	bool getOnTravelator() const { return m_bOnTravelator; }
+	void setOnTravelator(bool b) { m_bOnTravelator = b; }
 	//////////////////////////////////////////////////////////////////////////
 	// declare the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
 	GCFACTORY_DECLARE_CREATABLECLASS( CGCObjPlayer );
@@ -87,6 +106,8 @@ public:
         // called immediately before the managing object group releases its own assets
         virtual void VOnResourceRelease( void );
 
+		virtual void VOnResurrected(void);
+
 	// overridden virtuals from the game object interface
 	//////////////////////////////////////////////////////////////////////////
 
@@ -95,5 +116,21 @@ public:
 
     // this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
     void NotifyOfCollisionWithInvader();
+
+	bool GetCanJump() { return m_bCanJump; }
+
+	void SetCanJump(bool i) { m_bCanJump = i; }
+
+	int GetNumberOfLives() { return m_iNumberOfLives; }
+
+	void DecrementLives();
+
+	void ResetLives();
+
+	void UpdateLives();
+
+	cocos2d::Label* getLivesText() const { return m_pLivesText; }
+
+	void setLivesText(cocos2d::Label* t) { m_pLivesText = t; }
 };
 #endif // #ifndef _GCOBJPLAYER_H_
