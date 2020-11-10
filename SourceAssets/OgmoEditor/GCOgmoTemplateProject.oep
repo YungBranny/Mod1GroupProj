@@ -16,7 +16,7 @@
     <Width>1024</Width>
     <Height>768</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Dan\Documents\GitHub\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
+  <Filename>D:\Masters\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -264,21 +264,21 @@
     </EntityDefinition>
     <EntityDefinition Name="TravelatorPlatform" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>120</Width>
-        <Height>60</Height>
+        <Width>148</Width>
+        <Height>26</Height>
       </Size>
       <Origin>
-        <X>0</X>
-        <Y>0</Y>
+        <X>174</X>
+        <Y>13</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\LongPlaformTest\Frames\LongPlatformTest.png" Tiled="false">
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\LongPlatformTest\LongPlatformTest.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
         <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjTravelatorPlatform" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="LongPlatformTest" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist" MaxChars="-1" MultiLine="false" />
-        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodytype">
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
           <Elements>
             <string>b2_staticBody</string>
             <string>b2_kinematicBody</string>
