@@ -9,6 +9,7 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 class CGCObjExitDoor
 	: public CGCObjSpritePhysics
@@ -18,6 +19,8 @@ private:
 public:
 	CGCObjExitDoor ( void );
 	virtual ~CGCObjExitDoor () {};
+
+	GCFACTORY_DECLARE_CREATABLECLASS(CGCObjExitDoor);
 
 	virtual void VOnResourceAcquire ( void );
 };
