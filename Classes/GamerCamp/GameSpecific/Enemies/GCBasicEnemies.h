@@ -6,6 +6,7 @@
 //This class is used for a basic enemy (spike/Hazard)
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 class CGCBasicEnemies
 :	public CGCObjSpritePhysics
@@ -17,7 +18,10 @@ public:
 	
 	CGCBasicEnemies ();										//constructor
 	virtual ~CGCBasicEnemies () {};							//deconstructor
-
+	
+	GCFACTORY_DECLARE_CREATABLECLASS (CGCBasicEnemies);
+	
+	
 	float getGravity ()			{ return m_fGravity;	}	//Getter and setter for gravity
 	void  setGravity (float i)  { m_fGravity = i;		}	//Getter and setter for gravity
 
