@@ -13,6 +13,7 @@
     <MovingEnemy id="1" x="624" y="672" class="CGCMovingEnemies" shape="Enemy" PlistFile="TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <MovingEnemy id="11" x="528" y="576" class="CGCMovingEnemies" shape="Enemy" PlistFile="TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist" B2DBodyType="b2_kinematicBody" HasFixedRotation="True" />
     <coin id="12" x="608" y="416" class="CGCObjItem" shape="coin" PlistFile="TexturePacker/Sprites/Coin/Coin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <TravelatorPlatform id="13" x="800" y="528" class="CGCObjTravelatorPlatform" shape="LongPlatformTest" PlistFile="TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist" B2DBodytype="b2_staticBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>
