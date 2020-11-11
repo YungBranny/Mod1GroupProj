@@ -16,7 +16,7 @@
     <Width>1024</Width>
     <Height>768</Height>
   </LevelMaximumSize>
-  <Filename>D:\Masters\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
+  <Filename>C:\Users\-\Documents\GitHub\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -278,6 +278,33 @@
         <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjTravelatorPlatform" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="LongPlatformTest" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="Keys" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\Key\Key.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjKeys" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="Key" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/Key/Key.plist" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
           <Elements>
             <string>b2_staticBody</string>

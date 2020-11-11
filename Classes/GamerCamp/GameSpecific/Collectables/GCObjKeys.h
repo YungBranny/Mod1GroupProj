@@ -8,6 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 class CGCObjKeys
 	: public CGCObjSpritePhysics
@@ -22,6 +23,8 @@ private:
 public:
 	CGCObjKeys ( void );
 	virtual ~CGCObjKeys ();
+
+	GCFACTORY_DECLARE_CREATABLECLASS(CGCObjKeys);
 
 	unsigned short int getCollisionBuffer ()	const	{	return m_iCollisionBuffer;	}
 	void  setCollisionBuffer ( unsigned short int i )	{	m_iCollisionBuffer = i;	    }
