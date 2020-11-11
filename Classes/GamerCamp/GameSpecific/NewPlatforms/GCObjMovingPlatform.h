@@ -8,6 +8,7 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 class CGCObjMovingPlatform
 	: public CGCObjSpritePhysics
@@ -44,6 +45,8 @@ public:
 
 	CGCObjMovingPlatform();
 	virtual ~CGCObjMovingPlatform() {};
+
+	GCFACTORY_DECLARE_CREATABLECLASS(CGCObjMovingPlatform);
 
 	unsigned short int getCollisionBuffer ()			const		{ return m_iCollisionBuffer; }
 	void  setCollisionBuffer ( unsigned short int i )				{ m_iCollisionBuffer = i;	 }

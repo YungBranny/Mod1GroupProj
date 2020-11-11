@@ -1,4 +1,8 @@
+#include "../../GCCocosInterface/GB2ShapeCache-x.h"
+
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjMovingPlatform.h"
+
+GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjMovingPlatform);
 
 CGCObjMovingPlatform::CGCObjMovingPlatform()
 	: CGCObjSpritePhysics ( GetGCTypeIDOf(CGCObjMovingPlatform) ) // We are inheriting from CGCObjSpritePhysics, so we can use physics on the Platform
@@ -26,10 +30,10 @@ void CGCObjMovingPlatform::InitialiseMovementDirection()
 }
 
 // Create the Platform Sprite, give it a Kinematic Physics Body which means it only moves when code tells it too and then set fixed rotation to 'True'
-IN_CPP_CREATION_PARAMS_DECLARE( CGCObjMovingPlatform, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_kinematicBody, true );
+//IN_CPP_CREATION_PARAMS_DECLARE( CGCObjMovingPlatform, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_kinematicBody, true );
 void CGCObjMovingPlatform::VOnResourceAcquire()
 {
-	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE ( CGCObjMovingPlatform );
+	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE ( CGCObjMovingPlatform );
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
 }

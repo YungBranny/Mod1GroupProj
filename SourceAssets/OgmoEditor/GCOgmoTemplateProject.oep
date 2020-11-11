@@ -291,12 +291,12 @@
     </EntityDefinition>
     <EntityDefinition Name="Keys" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>18</Width>
+        <Height>18</Height>
       </Size>
       <Origin>
-        <X>0</X>
-        <Y>0</Y>
+        <X>9</X>
+        <Y>9</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\Key\Key.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
@@ -318,12 +318,12 @@
     </EntityDefinition>
     <EntityDefinition Name="TimerPickUp" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>22</Width>
+        <Height>26</Height>
       </Size>
       <Origin>
-        <X>0</X>
-        <Y>0</Y>
+        <X>11</X>
+        <Y>13</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\TimerPickUp\TimerPickUp.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
@@ -332,6 +332,33 @@
         <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjTimePickUp" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="TimerPickUp" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/TimerPickUp/TimerPickUp.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="MovingPlatform" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>64</Width>
+        <Height>28</Height>
+      </Size>
+      <Origin>
+        <X>32</X>
+        <Y>14</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\Platform\Platform.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjMovingPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="platform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/Platform/platform.plist" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
           <Elements>
             <string>b2_staticBody</string>
