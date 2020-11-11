@@ -346,11 +346,11 @@
     <EntityDefinition Name="MovingPlatform" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
         <Width>64</Width>
-        <Height>28</Height>
+        <Height>128</Height>
       </Size>
       <Origin>
         <X>32</X>
-        <Y>14</Y>
+        <Y>64</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\Platform\Platform.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
