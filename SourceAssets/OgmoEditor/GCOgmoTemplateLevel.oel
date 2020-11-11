@@ -16,6 +16,7 @@
     <Keys id="13" x="336" y="672" class="CGCObjKeys" shape="Key" PlistFile="TexturePacker/Sprites/Key/Key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Keys id="14" x="384" y="672" class="CGCObjKeys" shape="Key" PlistFile="TexturePacker/Sprites/Key/Key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Keys id="15" x="432" y="672" class="CGCObjKeys" shape="Key" PlistFile="TexturePacker/Sprites/Key/Key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <TimerPickUp id="16" x="192" y="656" class="CGCObjTimePickUp" shape="TimerPickUp" PlistFile="TexturePacker/Sprites/TimerPickUp/TimerPickUp.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>

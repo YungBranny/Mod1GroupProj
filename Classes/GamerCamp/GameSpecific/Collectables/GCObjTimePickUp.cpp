@@ -1,4 +1,8 @@
+#include "../../GCCocosInterface/GB2ShapeCache-x.h"
+
 #include "GamerCamp/GameSpecific/Collectables/GCObjTimePickUp.h"
+
+GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjTimePickUp);
 
 CGCObjTimePickUp::CGCObjTimePickUp ( void )
 	: CGCObjSpritePhysics ( GetGCTypeIDOf(CGCObjTimePickUp) ) // We are inheriting from CGCObjSpritePhysics, so we can use physics on the Timer PickUp
@@ -14,10 +18,11 @@ CGCObjTimePickUp::~CGCObjTimePickUp()
 }
 
 // Create the Timer PickUp Sprite, give it a physics body and then set fixed rotation to 'True'
-IN_CPP_CREATION_PARAMS_DECLARE(CGCObjTimePickUp, "TexturePacker/Sprites/TimerPickUp/TimerPickUp.plist", "TimerPickUp", b2_staticBody, true);
+//IN_CPP_CREATION_PARAMS_DECLARE(CGCObjTimePickUp, "TexturePacker/Sprites/TimerPickUp/TimerPickUp.plist", "TimerPickUp", b2_staticBody, true);
 void CGCObjTimePickUp::VOnResourceAcquire ( void )
 {
-	IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCObjTimePickUp);
+	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCObjTimePickUp);
+
 	CGCObjSpritePhysics::VOnResourceAcquire();
 }
 

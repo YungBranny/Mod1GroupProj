@@ -8,6 +8,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 class CGCObjTimePickUp
 	: public CGCObjSpritePhysics
@@ -22,6 +23,8 @@ private:
 public:
 	CGCObjTimePickUp ( void );
 	virtual ~CGCObjTimePickUp ();
+
+	GCFACTORY_DECLARE_CREATABLECLASS(CGCObjTimePickUp);
 
 	unsigned short int getCollisionBuffer ()		const		{ return m_iCollisionBuffer; }
 	void  setCollisionBuffer ( unsigned short int i )		{ m_iCollisionBuffer = i;    }
