@@ -73,8 +73,8 @@ CGCObjPlayer::CGCObjPlayer()
 //virtual 
 void CGCObjPlayer::VOnResourceAcquire()
 {
-	const char* pszPlist_mario		= "TexturePacker/Sprites/Mario/Mario.plist";
-	const char* pszAnim_marioJog	= "Jog";
+	//const char* pszPlist_mario		= "TexturePacker/Sprites/Mario/Mario.plist";
+	//const char* pszAnim_marioJog	= "Jog";
 
 	SetName( "Mario!!" );
 
@@ -82,7 +82,7 @@ void CGCObjPlayer::VOnResourceAcquire()
 
 	// animate!
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( GetFactoryCreationParams()->strPlistFile );
-	RunAction( GCCocosHelpers::CreateAnimationActionLoop( GCCocosHelpers::CreateAnimation( dicPList, pszAnim_marioJog ) ) );
+	//RunAction( GCCocosHelpers::CreateAnimationActionLoop( GCCocosHelpers::CreateAnimation( dicPList, pszAnim_marioJog ) ) );
 
 	// because we're just storing a vanilla pointer we must call delete on it in VOnResourceRelease or leak memory 
 	// 
