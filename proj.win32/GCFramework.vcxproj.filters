@@ -398,6 +398,9 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.h">
       <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
     </ClInclude>
+    <ClInclude Include="needs to be deleted.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

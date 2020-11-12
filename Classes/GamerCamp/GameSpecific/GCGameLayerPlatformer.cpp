@@ -22,6 +22,7 @@
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 #include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatform.h"
 
 #include "AppDelegate.h"
 
@@ -322,6 +323,21 @@ void CGCGameLayerPlatformer::VOnCreate()
 	{
 		COLLISIONTESTLOG( "(lambda) the player hit an item!" );
 	} );
+
+	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjScalingFallingPlatform& rcItem, const b2Contact& rcContact) -> void
+		{
+		//	const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A (pB2Contact);
+		//	const b2Fixture* pFixtureB = CGCObjSpritePhysics::FromB2DContactGetFixture_B (pB2Contact);
+		
+			//const std::string* PlayerSesnor = cocos2d::GB2ShapeCache::getFixtureIdText (pFixtureA);
+		//rcPlayer.FromB2DContactGetFixture_A(CGCObjPlayer)->IsSensor()
+		//
+
+		
+		
+			
+		});
+	
 }
 
 
@@ -419,6 +435,56 @@ void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 //virtual 
 void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 {
+	const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
+	const b2Fixture* pFixtureB = pB2Contact->GetFixtureB ();
+
+	const b2Body* pBodyA = pFixtureA->GetBody ();
+	const b2Body* pBodyB = pFixtureB->GetBody ();
+
+	CGCObjSpritePhysics* pGcSprPhysA = (CGCObjSpritePhysics*) pBodyA->GetUserData ();
+	// if( this is not a GC object )
+	if (pGcSprPhysA == nullptr)
+	{
+		return;
+	}
+
+	CGCObjSpritePhysics* pGcSprPhysB = (CGCObjSpritePhysics*) pBodyB->GetUserData ();
+	// if( this is not a GC object )
+	if (pGcSprPhysB == nullptr)
+	{
+		return;
+	}
+
+	// ignore contact between player projectile and item for collision resolution purposes
+	if (pGcSprPhysA->GetGCTypeID () != pGcSprPhysB->GetGCTypeID ())
+	{
+			//CGCObjScalingFallingPlatform* test;
+		if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
+		{
+
+			
+			if (pFixtureA->IsSensor () && pFixtureB->IsSensor ())
+			{
+				// ignore the collision!
+				pB2Contact->SetEnabled (true);
+			}
+
+			else if (pFixtureA->IsSensor () && !pFixtureB->IsSensor ())
+			{
+				// ignore the collision!
+				pB2Contact->SetEnabled (false);
+			}
+			
+			 //insert logic relating to this collision here
+			
+			
+
+
+		}
+	}
 }
 
 
@@ -463,17 +529,21 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 	// ignore contact between player projectile and item for collision resolution purposes
 	if(	pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() )
 	{
-		if(		(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjProjectilePlayer ) )
-				 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf( CGCObjItem ) ) )
-			||	(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjItem ) )
-				 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf( CGCObjProjectilePlayer ) ) ) )
+		if(		(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjPlayer ) )
+				 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) ) )
+			||	(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) )
+				 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer) ) ) )
 		{
 			// ignore the collision!
-			pB2Contact->SetEnabled( false );
+			pB2Contact->SetEnabled( true );
+
 			
 			//
 			// insert logic relating to this collision here
 			//
+			//
+
+			
 		}
 	}
 }
@@ -529,7 +599,7 @@ void CGCGameLayerPlatformer::HandleCollisions()
 		// Mario has a fixture that is a sensor with id 'bottom_left' 
 		// and this is what we're checking for :)
 		const std::string*	pstrCheckMe		= cocos2d::GB2ShapeCache::getFixtureIdText( pFixtureA );
-		bool				bNameMatches	= ( 0 == pstrCheckMe->compare( "bottom_left" ) );
+		bool				bNameMatches	= ( 0 == pstrCheckMe->compare( "WillyBottomSensor" ) );
 		bool				bIsASensor		= pFixtureA->IsSensor();
 
 		if(	pstrCheckMe && bNameMatches && bIsASensor )

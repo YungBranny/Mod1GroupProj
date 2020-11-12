@@ -259,6 +259,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.h" />
     <ClInclude Include="..\Classes\MenuScene.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="needs to be deleted.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">

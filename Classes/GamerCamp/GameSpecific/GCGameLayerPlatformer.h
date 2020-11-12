@@ -23,7 +23,7 @@ class CGCObjInvader;
 class CGCObjGroupInvader;
 class CGCObjGroupProjectilePlayer;
 class CGCMovingEnemies;
-
+class CGCObjScalingFallingPlatform;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer
@@ -48,6 +48,8 @@ private:
 
 	// level loader
 	CGCLevelLoader_Ogmo		m_cLevelLoader;
+
+	bool					m_bCheckIfPlayerIsAbovePlatform;
 
 public:
 	CGCGameLayerPlatformer	( void );
