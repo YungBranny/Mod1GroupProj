@@ -61,6 +61,8 @@ private:
 	bool	m_bCanJump;
 	bool	m_bOnTravelator;
 
+	bool	m_bOnLadder;
+
 	cocos2d::Label* m_pLivesText;
 
 	// action map for controllers
@@ -76,6 +78,10 @@ public:
 
 	bool getOnTravelator() const { return m_bOnTravelator; }
 	void setOnTravelator(bool b) { m_bOnTravelator = b; }
+
+	bool getOnLadder() const { return m_bOnLadder; }
+	void setOnLadder(bool i) { m_bOnLadder = i; }
+
 	//////////////////////////////////////////////////////////////////////////
 	// declare the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
 	GCFACTORY_DECLARE_CREATABLECLASS( CGCObjPlayer );

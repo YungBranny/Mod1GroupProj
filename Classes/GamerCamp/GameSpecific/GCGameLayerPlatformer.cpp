@@ -350,9 +350,19 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			//	
 		});
 
-	GetCollisionManager().AddCollisionHandler([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcItem, const b2Contact& rcContact) -> void
+	GetCollisionManager().AddCollisionHandler([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcLadder, const b2Contact& rcContact) -> void
 	{
 		COLLISIONTESTLOG("Collided with Ladder.");
+
+		if( rcContact.IsTouching() )
+			{
+				rcPlayer.setOnLadder(true);
+			}
+
+		else if (rcContact.IsTouching () == false)
+		{
+			rcPlayer.setOnLadder(false);
+		}
 	});
 
 

@@ -49,6 +49,7 @@ CGCObjPlayer::CGCObjPlayer()
 	, m_v2MovingRightVelocity(6.0f, 0)
 	, m_v2MovingLeftVelocity(-m_v2MovingRightVelocity)
 	, m_v2StopMovingVelocity(0, 0)
+	, m_bOnLadder(false)
 {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -194,7 +195,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 	////////////////////////////////////////////////////////////////////////////////
 
 	const CGCKeyboardManager* pKeyManager = AppDelegate::GetKeyboardManager();
-	TGCController< EPlayerActions > cController = TGetActionMappedController(CGCControllerManager::eControllerOne, (*m_pcControllerActionToKeyMap));
+	TGCController< EPlayerActions > cController = TGetActionMappedController(CGCControllerManager::eControllerOne, ( *m_pcControllerActionToKeyMap ));
 
 	////////////////////////////////////////////////////////////////////////////////
 	///// START OLD CODE
@@ -225,6 +226,16 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 	////////////////////////////////////////////////////////////////////////////////
 	///// END OLD CODE
 	////////////////////////////////////////////////////////////////////////////////
+
+	if ( m_bOnLadder == true )
+	{
+		pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Up);
+	}
+
+	else if ( m_bOnLadder == true )
+	{
+		pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Down);
+	}
 
 	if (m_bOnTravelator != true)
 	{
