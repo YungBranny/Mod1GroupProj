@@ -39,15 +39,17 @@ CGCObjPlayer::CGCObjPlayer()
 	, m_fNoInput_ExtraDrag_Square(0.2f)
 	, m_fNoInput_VelocityThreshold(0.25f)
 	, m_pcControllerActionToKeyMap(nullptr)
-	, m_fLivesFontSize (35.0f)
-	, m_iLivesTextOutlineSize (1)
-	, m_iLivesBarHeightX (695)
-	, m_iLivesBarHeightY (500)
+	, m_fLivesFontSize(35.0f)
+	, m_iLivesTextOutlineSize(1)
+	, m_iLivesBarHeightX(695)
+	, m_iLivesBarHeightY(500)
 	, m_bCanJump(true)
 	, m_bOnTravelator(false)
 	, m_iNumberOfLives(1)
 	, m_v2MovingRightVelocity(6.0f, 0)
 	, m_v2MovingLeftVelocity(-m_v2MovingRightVelocity)
+	, m_v2MovingUpVelocity(3.0f, 0)
+	, m_v2MovingDownVelocity(-m_v2MovingUpVelocity)
 	, m_v2StopMovingVelocity(0, 0)
 	, m_bOnLadder(false)
 {
@@ -227,16 +229,6 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 	///// END OLD CODE
 	////////////////////////////////////////////////////////////////////////////////
 
-	if ( m_bOnLadder == true )
-	{
-		pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Up);
-	}
-
-	else if ( m_bOnLadder == true )
-	{
-		pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Down);
-	}
-
 	if (m_bOnTravelator != true)
 	{
 
@@ -262,6 +254,22 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 
 				SetVelocity(cocos2d::Vec2(m_v2MovingRightVelocity.x, GetVelocity().y));
 				SetFlippedX(true);
+			}
+		}
+
+		else if( pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Up) )
+		{
+			if( m_bOnLadder == true )
+			{
+				SetVelocity(cocos2d::Vec2(GetVelocity().x, m_v2MovingUpVelocity.x));
+			}
+		}
+
+		else if( pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Down) )
+		{
+			if( m_bOnLadder == true )
+			{
+				SetVelocity(cocos2d::Vec2(GetVelocity().x, m_v2MovingDownVelocity.x));
 			}
 		}
 
