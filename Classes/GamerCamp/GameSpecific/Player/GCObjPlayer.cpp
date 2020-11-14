@@ -257,19 +257,19 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			}
 		}
 
-		else if( pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Up) )
+		else if( pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Up) ) // Mia: Once Player presses Up
 		{
-			if( m_bOnLadder == true )
+			if( m_bOnLadder == true ) // Mia: If Player is on Ladder
 			{
-				SetVelocity(cocos2d::Vec2(GetVelocity().x, m_v2MovingUpVelocity.x));
+				SetVelocity(cocos2d::Vec2(GetVelocity().x, m_v2MovingUpVelocity.x)); // Mia: The Player is able to move upwards
 			}
 		}
 
-		else if( pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Down) )
+		else if( pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Down) ) // Mia: Once Player presses Down
 		{
-			if( m_bOnLadder == true )
+			if( m_bOnLadder == true ) // Mia: If Player is on Ladder
 			{
-				SetVelocity(cocos2d::Vec2(GetVelocity().x, m_v2MovingDownVelocity.x));
+				SetVelocity(cocos2d::Vec2(GetVelocity().x, m_v2MovingDownVelocity.x)); // Mia: The Player is able to move downwards
 			}
 		}
 

@@ -70,8 +70,8 @@ private:
 
 	cocos2d::Vec2			m_v2MovingRightVelocity;			 //The velocitys for how fast the enemy should move
 	cocos2d::Vec2			m_v2MovingLeftVelocity;				 //The velocitys for how fast the enemy should move
-	cocos2d::Vec2			m_v2MovingUpVelocity;
-	cocos2d::Vec2			m_v2MovingDownVelocity;
+	cocos2d::Vec2			m_v2MovingUpVelocity;				 // Mia: Up Velocity for when Player interacts with a Ladder.
+	cocos2d::Vec2			m_v2MovingDownVelocity;				 // Mia: Down Velocity for when Player interacts with a Ladder.
 	cocos2d::Vec2			m_v2StopMovingVelocity;				 //The velocitys for how fast the enemy should move
 	b2Vec2					m_bv2jumpVel;
 
