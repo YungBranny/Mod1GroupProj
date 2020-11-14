@@ -234,7 +234,7 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Ladder\Ladder.cpp">
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Ladder</Filter>
     </ClCompile>
   </ItemGroup>
@@ -407,7 +407,7 @@
     <ClInclude Include="needs to be deleted.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Ladder\Ladder.h">
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.h">
       <Filter>Classes\GamerCamp\GameSpecific\Ladder</Filter>
     </ClInclude>
   </ItemGroup>
