@@ -33,6 +33,7 @@ class CGCObjTimePickUp;
 class CGCObjScalingBasicPlatformManager;
 class CGCObjScalingFallingPlatformManager;
 class CGCObjMovingPlatform;
+class CGCObjLadder;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer

@@ -38,6 +38,7 @@
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatformManager.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatform.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjMovingPlatform.h"
+#include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
 
 #include "AppDelegate.h"
 
@@ -348,6 +349,11 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			//rcPlayer.FromB2DContactGetFixture_A(CGCObjPlayer)->IsSensor()
 			//	
 		});
+
+	GetCollisionManager().AddCollisionHandler([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcItem, const b2Contact& rcContact) -> void
+	{
+		COLLISIONTESTLOG("Collided with Ladder.");
+	});
 
 
 

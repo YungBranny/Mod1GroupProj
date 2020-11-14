@@ -41,4 +41,7 @@
   <ExitDoor>
     <ExitDoor id="0" x="48" y="688" class="CGCObjExitDoor" shape="Door" PlistFile="TexturePacker/Sprites/Door/Door.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </ExitDoor>
+  <Ladder>
+    <Ladder id="0" x="672" y="704" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladder/Ladder.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </Ladder>
 </level>
