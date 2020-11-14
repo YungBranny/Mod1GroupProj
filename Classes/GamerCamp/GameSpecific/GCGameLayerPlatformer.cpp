@@ -762,9 +762,20 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 				 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer) ) ) )
 		{
 			// ignore the collision!
-			pB2Contact->SetEnabled( true );
 
-			
+			if (m_pcGCOPlayer->GetVelocity ().y > 0)
+			{
+				// ignore the collision!
+				pB2Contact->SetEnabled (false);
+			}
+
+			if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+			{
+				// ignore the collision!
+				pB2Contact->SetEnabled (true);
+			}
+			// ignore the collision!
+			//pB2Contact->SetEnabled( true );
 			//
 			// insert logic relating to this collision here
 			//
