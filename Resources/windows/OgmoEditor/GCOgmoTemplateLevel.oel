@@ -167,11 +167,19 @@
     <BasicPlatform id="156" x="1500" y="420" class="CGCObjScalingBasicPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BasicPlatform id="157" x="1380" y="420" class="CGCObjScalingBasicPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BasicPlatform id="158" x="1440" y="420" class="CGCObjScalingBasicPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <MovingPlatform id="159" x="1140" y="780" class="CGCObjMovingPlatform" shape="platform" PlistFile="TexturePacker/Sprites/Platform/platform.plist" B2DBodyType="b2_kinematicBody" HasFixedRotation="True" />
   </platforms>
   <ExitDoor>
     <ExitDoor id="0" x="1740" y="900" class="CGCObjExitDoor" shape="Door" PlistFile="TexturePacker/Sprites/Door/Door.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </ExitDoor>
-  <Ladder />
+  <Ladder>
+    <Ladder id="0" x="1280" y="976" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladder/Ladder.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Ladder id="1" x="1280" y="960" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladder/Ladder.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Ladder id="2" x="1280" y="944" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladder/Ladder.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Ladder id="3" x="1280" y="928" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladder/Ladder.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Ladder id="4" x="1280" y="912" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladder/Ladder.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Ladder id="5" x="1280" y="896" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladder/Ladder.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </Ladder>
   <Hazards>
     <BasicEnemy id="0" x="720" y="840" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BasicEnemy id="1" x="660" y="60" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />

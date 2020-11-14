@@ -73,8 +73,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>Ladder</Name>
       <Grid>
-        <Width>120</Width>
-        <Height>120</Height>
+        <Width>16</Width>
+        <Height>16</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -398,8 +398,8 @@
         <Height>34</Height>
       </Size>
       <Origin>
-        <X>11</X>
-        <Y>17</Y>
+        <X>0</X>
+        <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\Ladder\Ladder.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
