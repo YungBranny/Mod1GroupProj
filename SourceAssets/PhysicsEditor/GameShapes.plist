@@ -536,10 +536,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ 30.000,20.000 }</string>	
-								<string>{ 30.000,30.000 }</string>	
 								<string>{ -30.000,30.000 }</string>	
-								<string>{ -30.000,20.000 }</string>
+								<string>{ -30.000,20.000 }</string>	
+								<string>{ 30.000,20.000 }</string>	
+								<string>{ 30.000,30.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -616,34 +616,10 @@
 								<string>{ -2.000,-53.000 }</string>
 							</array>
 							<array>	
-								<string>{ -17.000,41.000 }</string>	
-								<string>{ -6.000,41.000 }</string>	
-								<string>{ -3.000,46.000 }</string>	
-								<string>{ -4.000,53.000 }</string>	
-								<string>{ -17.000,59.000 }</string>	
-								<string>{ -20.000,47.000 }</string>
-							</array>
-							<array>	
 								<string>{ -22.000,-53.000 }</string>	
 								<string>{ -22.000,-56.000 }</string>	
 								<string>{ -15.000,-59.000 }</string>	
 								<string>{ -17.000,-53.000 }</string>
-							</array>
-							<array>	
-								<string>{ -8.000,59.000 }</string>	
-								<string>{ -17.000,59.000 }</string>	
-								<string>{ -4.000,53.000 }</string>
-							</array>
-							<array>	
-								<string>{ -21.000,54.000 }</string>	
-								<string>{ -20.000,47.000 }</string>	
-								<string>{ -17.000,59.000 }</string>
-							</array>
-							<array>	
-								<string>{ -6.000,41.000 }</string>	
-								<string>{ -10.000,41.000 }</string>	
-								<string>{ -3.000,29.000 }</string>	
-								<string>{ -3.000,35.000 }</string>
 							</array>
 							<array>	
 								<string>{ 15.000,-38.000 }</string>	
@@ -656,12 +632,6 @@
 								<string>{ -20.000,-44.000 }</string>	
 								<string>{ -20.000,-35.000 }</string>	
 								<string>{ -31.000,-39.000 }</string>
-							</array>
-							<array>	
-								<string>{ -3.000,35.000 }</string>	
-								<string>{ -3.000,8.000 }</string>	
-								<string>{ 2.000,9.000 }</string>	
-								<string>{ 0.000,34.000 }</string>
 							</array>
 							<array>	
 								<string>{ 28.000,3.000 }</string>	
@@ -699,10 +669,26 @@
 								<string>{ -20.000,-35.000 }</string>
 							</array>
 							<array>	
+								<string>{ -9.000,43.000 }</string>	
+								<string>{ -3.000,29.000 }</string>	
+								<string>{ -4.000,36.000 }</string>
+							</array>
+							<array>	
 								<string>{ -17.000,-53.000 }</string>	
 								<string>{ -15.000,-59.000 }</string>	
 								<string>{ 13.000,-26.000 }</string>	
 								<string>{ -17.000,-29.000 }</string>
+							</array>
+							<array>	
+								<string>{ -4.000,36.000 }</string>	
+								<string>{ -3.000,29.000 }</string>	
+								<string>{ -3.000,35.000 }</string>
+							</array>
+							<array>	
+								<string>{ -3.000,35.000 }</string>	
+								<string>{ -3.000,8.000 }</string>	
+								<string>{ 2.000,9.000 }</string>	
+								<string>{ 0.000,34.000 }</string>
 							</array>
 							<array>	
 								<string>{ -28.000,-9.000 }</string>	
