@@ -6,6 +6,7 @@
 //This class draws a single platform which will be thrown into a platform manager to make it scaleable
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+#include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 //#include "SimpleAudioEngine.h"
 //#include "AudioEngine.h"
@@ -20,6 +21,8 @@ private:
 	//cocos2d::experimental::AudioEngine* m_audio1;
 public:
 
+	GCFACTORY_DECLARE_CREATABLECLASS(CGCObjScalingBasicPlatform);
+	
 	CGCObjScalingBasicPlatform ();				//constructor
 	virtual ~CGCObjScalingBasicPlatform () {};	//deconstuctor
 

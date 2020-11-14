@@ -29,11 +29,11 @@ using namespace cocos2d;
 	,m_fScaleDecreaseX			 (		40.0f		)	// Scale Decrease X
 	,m_fScaleDecreaseY			 (		0.1f		)	// Scale Decrease Y
 	,m_iTimerTextOutlineSize	 (		1	     	)	// Text outline width
-	,m_fTimerTextFontSize		 (		35.0f		)	// Text font size
-	,m_fTimerBarStartPosY		 (		695			)	// Timer bar start pos Y
-	,m_fTimerBarStartPosX		 (		500			)	// Timer bar start pos X
-	,m_iTimerBarHeightX			 (		420			)	// Timer bar Height on Screen
-	,m_iTimerBarHeightY			 (		10			)	// Timer bar Height on Screen
+	,m_fTimerTextFontSize		 (		50.0f		)	// Text font size
+	,m_fTimerBarStartPosX		 (		1000			)	// Timer bar start pos X
+	,m_fTimerBarStartPosY		 (		1000		)	// Timer bar start pos Y
+	,m_iTimerBarHeightX			 (		500			)	// Timer bar Height on Screen
+	,m_iTimerBarHeightY			 (		1000		)	// Timer bar Height on Screen
 	,m_iTimerBufferDecrease		 (		  1			)	// Timer buffer decrease value
     
 {	/////////////////////////////////////////////////////////////////////////////////////////////////
@@ -57,7 +57,7 @@ using namespace cocos2d;
  	
 	getTimerText()->enableOutline(Color4B::BLACK, m_iTimerTextOutlineSize);
 	
-	getTimerText()->setPosition(Vec2(visibleSize.width / 2 - m_iTimerBarHeightX , visibleSize.height +  m_iTimerBarHeightY));
+	getTimerText()->setPosition(Vec2(  m_iTimerBarHeightX ,   m_iTimerBarHeightY));
 
 	getTimerText()->setString("Air " + std::to_string( getCurrentTime()) + "%"  );
 

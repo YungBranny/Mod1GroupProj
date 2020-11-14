@@ -5,18 +5,18 @@
   <BackgroundColor A="255" R="223" G="232" B="255" />
   <GridColor A="255" R="209" G="209" B="209" />
   <LevelDefaultSize>
-    <Width>1024</Width>
-    <Height>768</Height>
+    <Width>1920</Width>
+    <Height>1080</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
-    <Width>1024</Width>
-    <Height>768</Height>
+    <Width>1920</Width>
+    <Height>1080</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
-    <Width>1024</Width>
-    <Height>768</Height>
+    <Width>1920</Width>
+    <Height>1080</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\-\Documents\GitHub\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
+  <Filename>C:\Users\Dan\Documents\GitHub\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -40,8 +40,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>items</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>60</Width>
+        <Height>60</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -51,8 +51,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>platforms</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>60</Width>
+        <Height>60</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -62,8 +62,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>ExitDoor</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>60</Width>
+        <Height>60</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -73,8 +73,19 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>Ladder</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>120</Width>
+        <Height>120</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
+    </LayerDefinition>
+    <LayerDefinition xsi:type="EntityLayerDefinition">
+      <Name>Hazards</Name>
+      <Grid>
+        <Width>60</Width>
+        <Height>60</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -171,8 +182,8 @@
         <Height>60</Height>
       </Size>
       <Origin>
-        <X>30</X>
-        <Y>30</Y>
+        <X>0</X>
+        <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\FallingScalingPlatform\FallingScalingPlatform.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
@@ -221,8 +232,8 @@
     </EntityDefinition>
     <EntityDefinition Name="BasicEnemy" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>60</Width>
+        <Height>60</Height>
       </Size>
       <Origin>
         <X>0</X>
@@ -248,12 +259,12 @@
     </EntityDefinition>
     <EntityDefinition Name="ExitDoor" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>66</Width>
-        <Height>66</Height>
+        <Width>120</Width>
+        <Height>120</Height>
       </Size>
       <Origin>
-        <X>33</X>
-        <Y>33</Y>
+        <X>0</X>
+        <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\Door\Door.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
@@ -302,12 +313,12 @@
     </EntityDefinition>
     <EntityDefinition Name="Keys" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>18</Width>
-        <Height>18</Height>
+        <Width>60</Width>
+        <Height>60</Height>
       </Size>
       <Origin>
-        <X>9</X>
-        <Y>9</Y>
+        <X>0</X>
+        <Y>0</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\Key\Key.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
@@ -402,6 +413,33 @@
             <string>b2_staticBody</string>
             <string>b2_kinematicBody</string>
             <string>b2_dynamicBod</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="BasicPlatform" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\BasicScalingPlatform\BasicScalingPlatform.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="BasicScalingPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
           </Elements>
         </ValueDefinition>
         <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
