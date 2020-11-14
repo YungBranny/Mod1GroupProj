@@ -69,6 +69,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGroupItem				( nullptr )
 , m_pcGCGroupInvader			( nullptr )
 , m_pcGCGroupProjectilePlayer	( nullptr )
+, m_pcGCTimer					(nullptr)
 , m_pcGCSprBackGround			( nullptr )
 , m_pcGCOPlayer					( nullptr )
 , m_bResetWasRequested			( false )
@@ -218,6 +219,10 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
 	}
 
+	m_pcGCTimer = new CGCObjTimer();
+
+	this->addChild(m_pcGCTimer->getTimerText(), 10);
+	
 
 	///////////////////////////////////////////////////////////////////////////
 	// set up physics 
@@ -579,6 +584,9 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	// this shows how to iterate and respond to the box2d collision info
 	HandleCollisions();	
 
+
+	m_pcGCTimer->Update();
+	
 	if( ResetWasRequested() )
 	{
 		VOnReset();
@@ -589,6 +597,14 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	{
 		QuitRequestWasHandled();
 		ReplaceScene( TransitionRotoZoom::create( 1.0f, CMenuLayer::scene() ) );
+	}
+
+
+	if (m_pcGCTimer->getCurrentTime() <= 0)
+	{
+		m_pcGCTimer->setCurrentTime(m_pcGCTimer->getTotalTimerDuration());
+
+		RequestReset();
 	}
 }
 
@@ -762,9 +778,20 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 				 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer) ) ) )
 		{
 			// ignore the collision!
-			pB2Contact->SetEnabled( true );
 
-			
+			if (m_pcGCOPlayer->GetVelocity ().y > 0)
+			{
+				// ignore the collision!
+				pB2Contact->SetEnabled (false);
+			}
+
+			if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+			{
+				// ignore the collision!
+				pB2Contact->SetEnabled (true);
+			}
+			// ignore the collision!
+			//pB2Contact->SetEnabled( true );
 			//
 			// insert logic relating to this collision here
 			//

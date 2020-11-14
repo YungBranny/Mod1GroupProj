@@ -49,6 +49,9 @@ private:
 	CGCObjGroupInvader*				m_pcGCGroupInvader;
 	CGCObjGroupProjectilePlayer*	m_pcGCGroupProjectilePlayer;
 
+	//UI
+	CGCObjTimer*					m_pcGCTimer;
+	
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;
 
