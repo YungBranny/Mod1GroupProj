@@ -32,6 +32,8 @@ class CGCObjExitDoor;
 class CGCObjTimePickUp;
 class CGCObjScalingBasicPlatformManager;
 class CGCObjScalingFallingPlatformManager;
+class CGCObjScalingBasicPlatform;
+class CGCObjScalingFallingPlatform;
 class CGCObjMovingPlatform;
 class CGCObjLadder;
 

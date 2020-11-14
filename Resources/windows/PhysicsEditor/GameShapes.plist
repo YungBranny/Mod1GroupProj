@@ -319,10 +319,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -62.000,-11.000 }</string>	
-								<string>{ 62.000,-9.000 }</string>	
-								<string>{ 70.000,11.000 }</string>	
-								<string>{ -70.000,11.000 }</string>
+								<string>{ 71.000,10.000 }</string>	
+								<string>{ -69.000,10.000 }</string>	
+								<string>{ -68.000,7.000 }</string>	
+								<string>{ 69.000,7.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -509,31 +509,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ 30.000,-30.000 }</string>	
+								<string>{ 30.000,23.000 }</string>	
 								<string>{ 30.000,30.000 }</string>	
 								<string>{ -30.000,30.000 }</string>	
-								<string>{ -30.000,-30.000 }</string>
-							</array>
-						</array>
-                    </dict>
-					<dict>
-                        <key>density</key> <real>2</real>
-                        <key>friction</key> <real>0</real>
-                        <key>restitution</key> <real>0</real>
-                        <key>filter_categoryBits</key> <integer>1</integer>
-                        <key>filter_groupIndex</key> <integer>0</integer>
-                        <key>filter_maskBits</key> <integer>65535</integer>
-                        <key>isSensor</key> <true/>
-                        <key>id</key> <string>PlatformSensor</string>
-                        <key>fixture_type</key> <string>POLYGON</string>
-
-						<key>polygons</key>
-						<array>
-							<array>	
-								<string>{ -30.000,30.000 }</string>	
-								<string>{ -30.000,20.000 }</string>	
-								<string>{ 30.000,20.000 }</string>	
-								<string>{ 30.000,30.000 }</string>
+								<string>{ -30.000,23.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -560,31 +539,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -30.000,-26.000 }</string>	
-								<string>{ 29.000,-26.000 }</string>	
-								<string>{ 30.000,26.000 }</string>	
-								<string>{ -30.000,26.000 }</string>
-							</array>
-						</array>
-                    </dict>
-					<dict>
-                        <key>density</key> <real>2</real>
-                        <key>friction</key> <real>0</real>
-                        <key>restitution</key> <real>0</real>
-                        <key>filter_categoryBits</key> <integer>1</integer>
-                        <key>filter_groupIndex</key> <integer>0</integer>
-                        <key>filter_maskBits</key> <integer>65535</integer>
-                        <key>isSensor</key> <true/>
-                        <key>id</key> <string>PlatformSensor</string>
-                        <key>fixture_type</key> <string>POLYGON</string>
-
-						<key>polygons</key>
-						<array>
-							<array>	
-								<string>{ -30.000,39.000 }</string>	
-								<string>{ -30.000,27.000 }</string>	
-								<string>{ 30.000,27.000 }</string>	
-								<string>{ 30.000,39.000 }</string>
+								<string>{ 30.000,20.000 }</string>	
+								<string>{ 30.000,30.000 }</string>	
+								<string>{ -30.000,30.000 }</string>	
+								<string>{ -30.000,20.000 }</string>
 							</array>
 						</array>
                     </dict>

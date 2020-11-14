@@ -17,7 +17,7 @@ CGCObjScalingFallingPlatform::CGCObjScalingFallingPlatform ()
 	, m_v2FallingVelocity (0.0f, -1.0f)									  //Initalises the variable with a default value
 	, m_v2DefaultVelocity (0.0f, 0.0f)									  //Initalises the variable with a default value
 	, m_bContactWithPlayer (false)										  //Initalises the variable with a default value
-	, m_fDestroyPlatformTick (120.0f)									  //Initalises the variable with a default value
+	, m_fDestroyPlatformTick (60.0f)									  //Initalises the variable with a default value
 	, m_bCanDelete (false)												  //Initalises the variable with a default value
 {																		 
 }																		 
@@ -41,7 +41,7 @@ void CGCObjScalingFallingPlatform::MoveDownOnContact ()
 	//and changes the velocity of the platform so it moves down
 	if (GetContactWithPlayer () == true)	
 	{
-		SetVelocity (m_v2FallingVelocity);
+		//SetVelocity (m_v2FallingVelocity);
 
 		if (m_fDestroyPlatformTick >= 0)
 		{
@@ -55,7 +55,7 @@ void CGCObjScalingFallingPlatform::MoveDownOnContact ()
 	}
 	else  // changes the velocity to 0 so it stops moving
 	{
-		SetVelocity (m_v2DefaultVelocity);
+		//SetVelocity (m_v2DefaultVelocity);
 	}
 }
 //update function
