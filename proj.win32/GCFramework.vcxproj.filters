@@ -76,6 +76,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\ScreenBounds">
       <UniqueIdentifier>{873414dc-8139-4b8b-aebd-212493ac9b61}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Ladder">
+      <UniqueIdentifier>{95a2c300-3c7b-4780-a848-bb600954fc7b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -230,6 +233,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ScreenBounds\GCObjScreenBound.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\ScreenBounds</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Ladder\Ladder.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Ladder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -400,6 +406,9 @@
     </ClInclude>
     <ClInclude Include="needs to be deleted.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Ladder\Ladder.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Ladder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
