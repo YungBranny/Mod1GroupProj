@@ -40,8 +40,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>items</Name>
       <Grid>
-        <Width>60</Width>
-        <Height>60</Height>
+        <Width>30</Width>
+        <Height>30</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -51,8 +51,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>platforms</Name>
       <Grid>
-        <Width>60</Width>
-        <Height>60</Height>
+        <Width>30</Width>
+        <Height>30</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -84,8 +84,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>Hazards</Name>
       <Grid>
-        <Width>60</Width>
-        <Height>60</Height>
+        <Width>30</Width>
+        <Height>30</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -182,8 +182,8 @@
         <Height>60</Height>
       </Size>
       <Origin>
-        <X>0</X>
-        <Y>0</Y>
+        <X>30</X>
+        <Y>30</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\FallingScalingPlatform\FallingScalingPlatform.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
@@ -236,8 +236,8 @@
         <Height>60</Height>
       </Size>
       <Origin>
-        <X>0</X>
-        <Y>0</Y>
+        <X>30</X>
+        <Y>30</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\Spike\Spike.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
@@ -317,8 +317,8 @@
         <Height>60</Height>
       </Size>
       <Origin>
-        <X>0</X>
-        <Y>0</Y>
+        <X>30</X>
+        <Y>30</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\Key\Key.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
@@ -425,8 +425,8 @@
         <Height>60</Height>
       </Size>
       <Origin>
-        <X>0</X>
-        <Y>0</Y>
+        <X>30</X>
+        <Y>30</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\BasicScalingPlatform\BasicScalingPlatform.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
