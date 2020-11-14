@@ -22,8 +22,17 @@ class CGCObjGroupItem;
 class CGCObjInvader;
 class CGCObjGroupInvader;
 class CGCObjGroupProjectilePlayer;
+class CGCObjGroupProjectilePlayer;
+class CGCObjTimer;
+class CGCObjKeys;
+class CGCBasicEnemies;
 class CGCMovingEnemies;
-class CGCObjScalingFallingPlatform;
+class CGCObjTravelatorPlatform;
+class CGCObjExitDoor;
+class CGCObjTimePickUp;
+class CGCObjScalingBasicPlatformManager;
+class CGCObjScalingFallingPlatformManager;
+class CGCObjMovingPlatform;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer

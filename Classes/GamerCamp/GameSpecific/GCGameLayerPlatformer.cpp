@@ -21,8 +21,23 @@
 #include "GamerCamp/GameSpecific/Invaders/GCObjGroupInvader.h"
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 #include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
+
+#include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
+#include "GamerCamp/GameSpecific/Collectables/GCObjKeys.h"
+#include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjTravelatorPlatform.h"
+#include "GamerCamp/GameSpecific/ExitDoor/GCObjExitDoor.h"
+#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
+#include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
+#include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
+#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
+#include "GamerCamp/GameSpecific/Collectables/GCObjTimePickUp.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatformManager.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatform.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatformManager.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatform.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjMovingPlatform.h"
 
 #include "AppDelegate.h"
 
@@ -107,16 +122,16 @@ void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const 
 // on create
 //////////////////////////////////////////////////////////////////////////
 //virtual
-void CGCGameLayerPlatformer::VOnCreate()
-{ 
+void CGCGameLayerPlatformer::VOnCreate ()
+{
 	///////////////////////////////////////////////////////////////////////////
 	// cache some useful values 
 	///////////////////////////////////////////////////////////////////////////
 
 	//////////////////////////////////////////////////////////////////////////
 	// cache some useful values 
-	Size visibleSize	= Director::getInstance()->getVisibleSize();
-	Point origin		= Director::getInstance()->getVisibleOrigin();
+	Size visibleSize = Director::getInstance ()->getVisibleSize ();
+	Point origin = Director::getInstance ()->getVisibleOrigin ();
 
 
 	///////////////////////////////////////////////////////////////////////////
@@ -124,7 +139,7 @@ void CGCGameLayerPlatformer::VOnCreate()
 	///////////////////////////////////////////////////////////////////////////
 
 	// create the default object group
-	IGCGameLayer::VOnCreate();
+	IGCGameLayer::VOnCreate ();
 
 
 	///////////////////////////////////////////////////////////////////////////
@@ -137,70 +152,70 @@ void CGCGameLayerPlatformer::VOnCreate()
 	///////////////////////////////////////////////////////////////////////////
 
 	// create and register the object group for the platform objects
-	m_pcGCGroupPlatform = new CGCObjGroupPlatform();
-	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupPlatform );
+	m_pcGCGroupPlatform = new CGCObjGroupPlatform ();
+	CGCObjectManager::ObjectGroupRegister (m_pcGCGroupPlatform);
 
 	// create and register the object group for the item objects
-	m_pcGCGroupItem = new CGCObjGroupItem();
-	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupItem );
-	
+	m_pcGCGroupItem = new CGCObjGroupItem ();
+	CGCObjectManager::ObjectGroupRegister (m_pcGCGroupItem);
+
 	// create and register the object group for the invader objects
-	m_pcGCGroupInvader = new CGCObjGroupInvader();
-	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupInvader );
+	m_pcGCGroupInvader = new CGCObjGroupInvader ();
+	CGCObjectManager::ObjectGroupRegister (m_pcGCGroupInvader);
 
 	// create and register the object group for the player projectile objects
-	m_pcGCGroupProjectilePlayer = new CGCObjGroupProjectilePlayer();
-	CGCObjectManager::ObjectGroupRegister( m_pcGCGroupProjectilePlayer );
+	m_pcGCGroupProjectilePlayer = new CGCObjGroupProjectilePlayer ();
+	CGCObjectManager::ObjectGroupRegister (m_pcGCGroupProjectilePlayer);
 
 
-    ///////////////////////////////////////////////////////////////////////////
-    // add menu
+	///////////////////////////////////////////////////////////////////////////
+	// add menu
 	///////////////////////////////////////////////////////////////////////////
 
-    // add a "close" icon to exit the progress. it's an autorelease object
-    MenuItemImage* pResetItem 
-		= MenuItemImage::create(	"Loose/CloseNormal.png",
-									"Loose/CloseSelected.png",
-									CC_CALLBACK_1( CGCGameLayerPlatformer::Callback_OnResetButton, this));
-    
-	pResetItem->setPosition( Vec2(	( ( visibleSize.width - ( pResetItem->getContentSize().width * 0.5f ) ) + origin.x ),
-									( ( ( pResetItem->getContentSize().height * 0.5f ) + origin.y ) ) ) );
- 
-    MenuItemImage* pQuitItem 
-		= MenuItemImage::create(	"Loose/CloseNormal.png",
-									"Loose/CloseSelected.png",
-									CC_CALLBACK_1( CGCGameLayerPlatformer::Callback_OnQuitButton, this ));
-    
-	pQuitItem->setPosition( Vec2(	( ( visibleSize.width - ( pQuitItem->getContentSize().width * 0.5f ) ) + origin.x ),
-									( ( visibleSize.height - ( pQuitItem->getContentSize().height * 0.5f ) ) + origin.y ) ) );
+	// add a "close" icon to exit the progress. it's an autorelease object
+	MenuItemImage* pResetItem
+		= MenuItemImage::create ("Loose/CloseNormal.png",
+			"Loose/CloseSelected.png",
+			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnResetButton, this));
 
-    // create menu, it's an autorelease object
-    Menu* pMenu = Menu::create( pResetItem, pQuitItem, nullptr );
-    pMenu->setPosition( Vec2::ZERO );
-    this->addChild( pMenu, 1 );
+	pResetItem->setPosition (Vec2 (( ( visibleSize.width - ( pResetItem->getContentSize ().width * 0.5f ) ) + origin.x ),
+		( ( ( pResetItem->getContentSize ().height * 0.5f ) + origin.y ) )));
+
+	MenuItemImage* pQuitItem
+		= MenuItemImage::create ("Loose/CloseNormal.png",
+			"Loose/CloseSelected.png",
+			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnQuitButton, this));
+
+	pQuitItem->setPosition (Vec2 (( ( visibleSize.width - ( pQuitItem->getContentSize ().width * 0.5f ) ) + origin.x ),
+		( ( visibleSize.height - ( pQuitItem->getContentSize ().height * 0.5f ) ) + origin.y )));
+
+	// create menu, it's an autorelease object
+	Menu* pMenu = Menu::create (pResetItem, pQuitItem, nullptr);
+	pMenu->setPosition (Vec2::ZERO);
+	this->addChild (pMenu, 1);
 
 
-    ///////////////////////////////////////////////////////////////////////////
-    // add label
+	///////////////////////////////////////////////////////////////////////////
+	// add label
 	///////////////////////////////////////////////////////////////////////////
 
- 	// create and initialize a label
-    Label* pLabel = Label::createWithTTF( "Game - Top button to Quit, bottom button to Reset", "fonts/arial.ttf", 24);
+	// create and initialize a label
+	Label* pLabel = Label::createWithTTF ("Game - Top button to Quit, bottom button to Reset", "fonts/arial.ttf", 24);
 
-    // position the label on the center of the screen
-    pLabel->setPosition( Vec2( visibleSize.width/2, visibleSize.height - 50 ) );
+	// position the label on the center of the screen
+	pLabel->setPosition (Vec2 (visibleSize.width / 2, visibleSize.height - 50));
 
-    // add the label as a child to this layer
-    this->addChild(pLabel, 1);
+	// add the label as a child to this layer
+	this->addChild (pLabel, 1);
 
-    // add "CGCGameLayerPlatformer" splash screen"
+	// add "CGCGameLayerPlatformer" splash screen"
 	const char* pszPlist_background = "TexturePacker/Backgrounds/Placeholder/background.plist";
 	{
-		m_pcGCSprBackGround = new CGCObjSprite();
-		m_pcGCSprBackGround->CreateSprite( pszPlist_background );
-		m_pcGCSprBackGround->SetResetPosition( Vec2( visibleSize.width/2, visibleSize.height/2 ) );
-		m_pcGCSprBackGround->SetParent( IGCGameLayer::ActiveInstance() );
- 	}
+		m_pcGCSprBackGround = new CGCObjSprite ();
+		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
+		m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
+		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
+	}
 
 
 	///////////////////////////////////////////////////////////////////////////
@@ -208,10 +223,10 @@ void CGCGameLayerPlatformer::VOnCreate()
 	///////////////////////////////////////////////////////////////////////////
 
 	// set "self" as contact listener
-	B2dGetWorld()->SetContactListener( this ); 
+	B2dGetWorld ()->SetContactListener (this);
 
 	// load the physics shapes from the plist created with PhysicsEditor
-	B2dLoadShapesFromPlist( "PhysicsEditor/GameShapes.plist" );	
+	B2dLoadShapesFromPlist ("PhysicsEditor/GameShapes.plist");
 
 	///////////////////////////////////////////////////////////////////////////
 	// stop mario from leaving the screen
@@ -222,40 +237,40 @@ void CGCGameLayerPlatformer::VOnCreate()
 
 	// PTM_RATIO
 	f32 PTM_RATIO = IGCGAMELAYER_B2D_PIXELS_PER_METER;
-	
-	b2Vec2	b2v2ScreenCentre_Pixels( ( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ) );
-	Vec2	v2ScreenCentre_Pixels( ( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ) );
+
+	b2Vec2	b2v2ScreenCentre_Pixels (( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ));
+	Vec2	v2ScreenCentre_Pixels (( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ));
 
 
 
 	// define the ground body
 	b2BodyDef groundBodyDef;
-	groundBodyDef.position	=	IGCGameLayer::B2dPixelsToWorld( b2v2ScreenCentre_Pixels );
-	groundBodyDef.type		=	b2_kinematicBody;
+	groundBodyDef.position = IGCGameLayer::B2dPixelsToWorld (b2v2ScreenCentre_Pixels);
+	groundBodyDef.type = b2_kinematicBody;
 
 	// Call the body factory which allocates memory for the ground body
 	// from a pool and creates the ground box shape (also from a pool).
 	// The body is also added to the world.
-	b2Body* groundBody = B2dGetWorld()->CreateBody( &groundBodyDef );
+	b2Body* groundBody = B2dGetWorld ()->CreateBody (&groundBodyDef);
 
 	// Define the ground box shape.
 	b2PolygonShape groundBox;
 
 	// bottom
-	groundBox.SetAsBox( ( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.5f, b2Vec2( 0.0f, - ( ( visibleSize.height * 0.5f ) / PTM_RATIO ) ), 0.0f );
-	groundBody->CreateFixture(&groundBox, 0);
+	groundBox.SetAsBox (( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.5f, b2Vec2 (0.0f, -( ( visibleSize.height * 0.5f ) / PTM_RATIO )), 0.0f);
+	groundBody->CreateFixture (&groundBox, 0);
 
 	// top
-	groundBox.SetAsBox( ( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.5f, b2Vec2( 0.0f, ( ( visibleSize.height * 0.5f ) / PTM_RATIO ) ), 0.0f );
-	groundBody->CreateFixture( &groundBox, 0 );
+	groundBox.SetAsBox (( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.5f, b2Vec2 (0.0f, ( ( visibleSize.height * 0.5f ) / PTM_RATIO )), 0.0f);
+	groundBody->CreateFixture (&groundBox, 0);
 
 	// left
-	groundBox.SetAsBox( 0.5f, ( ( visibleSize.height * 0.5f ) / PTM_RATIO ), b2Vec2( -( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.0f ), 0.0f );
-	groundBody->CreateFixture( &groundBox, 0 );
+	groundBox.SetAsBox (0.5f, ( ( visibleSize.height * 0.5f ) / PTM_RATIO ), b2Vec2 (-( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.0f), 0.0f);
+	groundBody->CreateFixture (&groundBox, 0);
 
 	// right
-	groundBox.SetAsBox( 0.5f, ( ( visibleSize.height * 0.5f ) / PTM_RATIO ), b2Vec2( ( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.0f ), 0.0f );
-	groundBody->CreateFixture( &groundBox, 0 );
+	groundBox.SetAsBox (0.5f, ( ( visibleSize.height * 0.5f ) / PTM_RATIO ), b2Vec2 (( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.0f), 0.0f);
+	groundBody->CreateFixture (&groundBox, 0);
 
 
 	///////////////////////////////////////////////////////////////////////////
@@ -277,8 +292,8 @@ void CGCGameLayerPlatformer::VOnCreate()
 	// load level data from Ogmo Editor
 
 	// read the oel file for level 0
-	m_cLevelLoader.LoadLevelFile( FileUtils::getInstance()->fullPathForFilename( std::string( "OgmoEditor/GCOgmoTemplateLevel.oel" ) ).c_str() );
-	m_cLevelLoader.CreateObjects( CGCFactory_ObjSpritePhysics::GetFactory() );
+	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/GCOgmoTemplateLevel.oel")).c_str ());
+	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// note: we have now created all the items, platforms, & invaders specified in the level file
 
@@ -288,22 +303,22 @@ void CGCGameLayerPlatformer::VOnCreate()
 	///////////////////////////////////////////////////////////////////////////
 
 	// starting position
-	cocos2d::Vec2 v2MarioStartPos(	( origin.x + ( visibleSize.width * 0.5f) ),
-									( origin.y + ( visibleSize.height * 0.5f ) ) );
+	cocos2d::Vec2 v2MarioStartPos (( origin.x + ( visibleSize.width * 0.5f ) ),
+		( origin.y + ( visibleSize.height * 0.5f ) ));
 
 	// factory creation parameters
 	// N.B. note m_sPlayerCreateParams is a member variable of this class which will stay in scope whilst mario is in scope
-	CGCFactoryCreationParams& sParams	= m_sPlayerCreateParams;
-	sParams.strClassName				= "CGCObjPlayer";
-	sParams.strPlistFile				= "TexturePacker/Sprites/Willy/Willy.plist";
-	sParams.strPhysicsShape				= "Willy";
-	sParams.eB2dBody_BodyType			= b2_dynamicBody;
-	sParams.bB2dBody_FixedRotation		= true;
+	CGCFactoryCreationParams& sParams = m_sPlayerCreateParams;
+	sParams.strClassName = "CGCObjPlayer";
+	sParams.strPlistFile = "TexturePacker/Sprites/Willy/Willy.plist";
+	sParams.strPhysicsShape = "Willy";
+	sParams.eB2dBody_BodyType = b2_dynamicBody;
+	sParams.bB2dBody_FixedRotation = true;
 
 	// create player object
-	m_pcGCOPlayer = static_cast< CGCObjPlayer* >( CGCFactory_ObjSpritePhysics::GetFactory().CreateInstance( sParams, v2MarioStartPos ) );
+	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory ().CreateInstance (sParams, v2MarioStartPos) );
 
-	
+
 	//////////////////////////////////////////////////////////////////////////
 	// test new collision handler code
 	// 
@@ -319,25 +334,221 @@ void CGCGameLayerPlatformer::VOnCreate()
 	// GetCollisionManager().AddCollisionHandler( CB_TestCollisionHandler );
 	// 
 
-	GetCollisionManager().AddCollisionHandler( [] ( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact ) -> void
-	{
-		COLLISIONTESTLOG( "(lambda) the player hit an item!" );
-	} );
+	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact) -> void
+		{
+			COLLISIONTESTLOG ("(lambda) the player hit an item!");
+		});
 
 	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjScalingFallingPlatform& rcItem, const b2Contact& rcContact) -> void
 		{
-		//	const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A (pB2Contact);
-		//	const b2Fixture* pFixtureB = CGCObjSpritePhysics::FromB2DContactGetFixture_B (pB2Contact);
-		
-			//const std::string* PlayerSesnor = cocos2d::GB2ShapeCache::getFixtureIdText (pFixtureA);
-		//rcPlayer.FromB2DContactGetFixture_A(CGCObjPlayer)->IsSensor()
-		//
+			//	const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A (pB2Contact);
+			//	const b2Fixture* pFixtureB = CGCObjSpritePhysics::FromB2DContactGetFixture_B (pB2Contact);
 
-		
-		
-			
+				//const std::string* PlayerSesnor = cocos2d::GB2ShapeCache::getFixtureIdText (pFixtureA);
+			//rcPlayer.FromB2DContactGetFixture_A(CGCObjPlayer)->IsSensor()
+			//	
 		});
-	
+
+
+
+	//GetCollisionManager ().AddCollisionHandler
+	//(
+
+	//	[]
+	//(CGCObjPlayer& rcPlayer, CGCObjMovingPlatform& rcMovingPlatform, const b2Contact& rcContact) -> void
+	//	{
+	//		if (rcContact.IsTouching ())
+	//		{
+	//			rcPlayer.SetCanJump (true); // // Mia: If is touching Platform, the Player can jump
+	//		}
+
+	//		else if (rcContact.IsTouching () == false)
+	//		{
+	//			rcPlayer.SetCanJump (false); // Mia: If not touching, the Player cannot jump
+	//		}
+	//	}
+	//);
+
+	GetCollisionManager ().AddCollisionHandler
+	(
+		//Brandon Middleton
+		//This collision checks if the player is touching a platform or not, if it is touching it gives the player the ability to jump
+		// if it not touching then the player cannot jump
+		[]
+	(CGCObjPlayer& rcPlayer, CGCObjScalingBasicPlatform& rcPlatform, const b2Contact& rcContact) -> void
+		{
+			//if (rcContact.IsTouching ()) //checks if it is touching
+			//{
+			//	rcPlayer.SetCanJump (true);  //sets the bool can jump to true if it touching
+			//}
+
+			//else if (rcContact.IsTouching () == false)
+			//{
+			//	rcPlayer.SetCanJump (false); // sets the bool to false if it is not touching
+			//}
+
+		}
+	);
+
+	//Dan: Handle collision with the payer and the travelator 
+	GetCollisionManager ().AddCollisionHandler
+	(
+		[]
+	(CGCObjPlayer& rcPlayer, CGCObjTravelatorPlatform& rcTravelatorPlatform, const b2Contact& rcContact) -> void
+		{
+			//if (rcContact.IsTouching ())
+			//{
+
+			//	rcPlayer.setOnTravelator (true);
+
+			//	rcPlayer.SetCanJump (true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
+
+			//	rcPlayer.SetVelocity (rcTravelatorPlatform.getVelocity ());
+			//	// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
+
+			//}
+			//else if (rcContact.IsTouching () == false)
+			//{
+			//	rcPlayer.setOnTravelator (false);//Dan :Sets the players velocity back to normal when the player is no longer touching the platform
+
+			//	rcPlayer.SetCanJump (false);//Dan : making sure that the player cant jump while in the air when they are falling off the platform
+			//}
+		}
+	);
+
+
+	// Mia: Handles the Collision between the Player and the Exit Door
+	GetCollisionManager ().AddCollisionHandler
+	(
+		[this]
+	(CGCObjExitDoor& rcExitDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+		{
+			//if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
+			//{
+			//	m_bPlayerKeysGathered = true;
+
+			//	playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
+			//}
+		}
+	);
+
+	// Mia: Handles the Collision between the Player and the Keys
+	GetCollisionManager ().AddCollisionHandler
+	(
+		[this]
+	(CGCObjKeys& rcKeys, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+		{
+			if (rcKeys.getJustCollided () == false)
+			{
+				rcKeys.setJustCollided (true); // Mia: When player has collided with a Key
+				CGCObjectManager::ObjectKill (&rcKeys); // Mia: Destroy the Key Object Sprite
+				//keyCollected (); // Mia: Calls Function which adds on one Key to how many Player has obtained
+				//playKeyAudio (); // Mia: Then calls Function which plays Key Collected Audio
+			}
+		}
+	);
+
+	// Mia: Handles the Collision between the Player and the Time PickUp
+	GetCollisionManager ().AddCollisionHandler
+	(
+		[this]
+	(CGCObjTimePickUp& rcPickUp, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+		{
+			if (rcPickUp.getJustCollided () == false)
+			{
+				//if (m_pcGCTimer->getCurrentTime () >= 0) // Mia: If Current Time is greater or equal to zero
+				//{
+				//	rcPickUp.setJustCollided (true); // Mia: When player has collided with a Timer PickUp
+				//	CGCObjectManager::ObjectKill (&rcPickUp); // Mia: Destroy the Timer PickUp Object Sprite
+				//	addOnTime (); // Mia: Calls the Function which adds on Timer Increase Value (20) to whatever is the current Air Time
+				//	playTimerPickUpAudio (); // Mia: Calls the Function which plays Timer PickUp Audio
+				//}
+			}
+		}
+	);
+
+	GetCollisionManager ().AddCollisionHandler
+	(
+		//Brandon Middleton
+		//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
+		//it will reset the level from the start
+		[this]
+	(CGCBasicEnemies& rcEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+		{
+			CGCObjectManager::ObjectKill (&rcEnemies);
+			//m_pcGCTimer->ResetTimer ();
+			//CGCObjectManager::ObjectKill (&rcEnemies);
+			CCLOG ("Player Died.");
+			//m_bPlayerHitHostile = true;
+			rcPlayer.DecrementLives (); //Puia Lose a life when colliding
+		}
+	);
+
+
+
+	GetCollisionManager ().AddCollisionHandler
+	(
+		//Brandon Middleton
+		//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
+		//it will reset the level from the start
+		[this]
+	(CGCMovingEnemies& rcMEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+		{
+			CGCObjectManager::ObjectKill (&rcMEnemies);
+			CCLOG("HEUFH");
+			if (rcMEnemies.getJustCollided () == false)
+			{
+				rcMEnemies.setJustCollided (true);
+				//RequestReset ();
+				//m_pcGCTimer->ResetTimer ();
+				CCLOG ("Player wacked.");
+				//CGCObjectManager::ObjectKill (&rcPlayer);
+				//m_bPlayerHitHostile = true;
+				rcPlayer.DecrementLives (); //Puia Lose a life when colliding
+			}
+		}
+	);
+
+
+	GetCollisionManager ().AddCollisionHandler
+	(
+		//Brandon Middleton
+		//This collision checks if the player is touching the falling platforms or not
+		//If the player is touching the falling platforms it will then set a bool to true
+		//when this happens the platform has some code to make its self move down and then after
+		//x amount of time delete itself
+		//It also can decide if the player is allowed to jump or not
+		[this]
+	(CGCObjScalingFallingPlatform& rcFallingPlatforms, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+
+		{
+			//if (rcContact.IsTouching ())
+			//{
+			//	if (rcFallingPlatforms.GetContactWithPlayer () == false)
+			//	{
+			//		rcFallingPlatforms.SetContactWithPlayer (true);	//Starts moving when the player is on the platform		
+			//	}
+			//}
+
+			//else if (rcContact.IsTouching () == false)				//stops moving when the player is off it
+			//{
+			//	rcFallingPlatforms.SetContactWithPlayer (false);
+			//}
+
+			//if (rcFallingPlatforms.GetCanDelete () == true)
+			//{
+			//	rcFallingPlatforms.SetPhysicsTransform (cocos2d::Vec2 (-300, -300), 0); //checks if the platform can be delted, if it can then it will delete itself
+			//}
+
+			//if (rcContact.IsTouching ())							//checks if it is touching
+			//{
+			//	rcPlayer.SetCanJump (true);							//sets the bool can jump to true if it touching);
+			//}
+
+			//else if (rcContact.IsTouching () == false)
+			//{
+			//	rcPlayer.SetCanJump (false);						//Sets it to false if it is not touching 
+		});
 }
 
 
