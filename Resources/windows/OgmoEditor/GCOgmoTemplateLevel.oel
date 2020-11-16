@@ -1,11 +1,7 @@
 <level width="1920" height="1080">
   <enemies />
   <items>
-    <Keys id="0" x="1830" y="510" class="CGCObjKeys" shape="Key" PlistFile="TexturePacker/Sprites/Key/Key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Keys id="1" x="1470" y="390" class="CGCObjKeys" shape="Key" PlistFile="TexturePacker/Sprites/Key/Key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Keys id="2" x="1770" y="90" class="CGCObjKeys" shape="Key" PlistFile="TexturePacker/Sprites/Key/Key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Keys id="3" x="990" y="150" class="CGCObjKeys" shape="Key" PlistFile="TexturePacker/Sprites/Key/Key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Keys id="4" x="570" y="90" class="CGCObjKeys" shape="Key" PlistFile="TexturePacker/Sprites/Key/Key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="0" x="1800" y="510" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </items>
   <platforms>
     <BasicPlatform id="0" x="30" y="1050" class="CGCObjScalingBasicPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -189,6 +185,6 @@
     <BasicEnemy id="5" x="1290" y="630" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Hazards>
   <Keys>
-    <Keys id="0" x="960" y="816" class="CGCObjKeys" shape="Key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="0" x="960" y="816" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Keys>
 </level>
