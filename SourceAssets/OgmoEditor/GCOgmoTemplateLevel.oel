@@ -1,5 +1,7 @@
 <level width="1920" height="1080">
-  <enemies />
+  <enemies>
+    <MovingEnemy id="0" x="576" y="624" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_kinematicBody" HasFixedRotation="True" />
+  </enemies>
   <items>
     <Keys id="0" x="1800" y="510" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </items>
