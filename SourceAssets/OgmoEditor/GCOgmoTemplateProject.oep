@@ -297,20 +297,20 @@
     </EntityDefinition>
     <EntityDefinition Name="TravelatorPlatform" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>148</Width>
-        <Height>26</Height>
+        <Width>1200</Width>
+        <Height>60</Height>
       </Size>
       <Origin>
-        <X>174</X>
-        <Y>13</Y>
+        <X>600</X>
+        <Y>30</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\LongPlatformTest\LongPlatformTest.png" Tiled="false">
+      <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\TravelatorPlatform\TravelatorPlatform.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
         <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjTravelatorPlatform" MaxChars="-1" MultiLine="false" />
-        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="LongPlatformTest" MaxChars="-1" MultiLine="false" />
-        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/LongPlatformTest/LongPlatformTest.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="TravelatorPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/TravelatorPlatform/TravelatorPlatform.plist" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
           <Elements>
             <string>b2_staticBody</string>

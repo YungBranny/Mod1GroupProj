@@ -164,6 +164,7 @@
     <BasicPlatform id="157" x="1410" y="450" class="CGCObjScalingBasicPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BasicPlatform id="158" x="1470" y="450" class="CGCObjScalingBasicPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <MovingPlatform id="159" x="1170" y="810" class="CGCObjMovingPlatform" shape="platform" PlistFile="TexturePacker/Sprites/Platform/platform.plist" B2DBodyType="b2_kinematicBody" HasFixedRotation="True" />
+    <TravelatorPlatform id="160" x="1050" y="690" class="CGCObjTravelatorPlatform" shape="TravelatorPlatform" PlistFile="TexturePacker/Sprites/TravelatorPlatform/TravelatorPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </platforms>
   <ExitDoor>
     <ExitDoor id="0" x="1800" y="960" class="CGCObjExitDoor" shape="Door" PlistFile="TexturePacker/Sprites/Door/Door.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />

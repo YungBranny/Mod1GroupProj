@@ -2,9 +2,7 @@
   <enemies>
     <MovingEnemy id="0" x="576" y="624" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_kinematicBody" HasFixedRotation="True" />
   </enemies>
-  <items>
-    <Keys id="0" x="1800" y="510" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-  </items>
+  <items />
   <platforms>
     <BasicPlatform id="0" x="30" y="1050" class="CGCObjScalingBasicPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BasicPlatform id="1" x="90" y="1050" class="CGCObjScalingBasicPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -166,9 +164,10 @@
     <BasicPlatform id="157" x="1410" y="450" class="CGCObjScalingBasicPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BasicPlatform id="158" x="1470" y="450" class="CGCObjScalingBasicPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <MovingPlatform id="159" x="1170" y="810" class="CGCObjMovingPlatform" shape="platform" PlistFile="TexturePacker/Sprites/Platform/platform.plist" B2DBodyType="b2_kinematicBody" HasFixedRotation="True" />
+    <TravelatorPlatform id="160" x="1050" y="690" class="CGCObjTravelatorPlatform" shape="TravelatorPlatform" PlistFile="TexturePacker/Sprites/TravelatorPlatform/TravelatorPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </platforms>
   <ExitDoor>
-    <ExitDoor id="0" x="1740" y="900" class="CGCObjExitDoor" shape="Door" PlistFile="TexturePacker/Sprites/Door/Door.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <ExitDoor id="0" x="1800" y="960" class="CGCObjExitDoor" shape="Door" PlistFile="TexturePacker/Sprites/Door/Door.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </ExitDoor>
   <Ladder>
     <Ladder id="0" x="1280" y="976" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladder/Ladder.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -187,6 +186,10 @@
     <BasicEnemy id="5" x="1290" y="630" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Hazards>
   <Keys>
-    <Keys id="0" x="960" y="816" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="0" x="1830" y="510" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="1" x="1470" y="390" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="2" x="1770" y="90" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="3" x="990" y="150" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="4" x="570" y="90" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Keys>
 </level>
