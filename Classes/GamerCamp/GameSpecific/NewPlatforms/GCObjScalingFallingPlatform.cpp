@@ -46,6 +46,7 @@ void CGCObjScalingFallingPlatform::MoveDownOnContact ()
 		if (m_fDestroyPlatformTick >= 0)
 		{
 			m_fDestroyPlatformTick--;
+			SetSpritePosition (cocos2d::Vec2 (GetSpritePosition ().x, GetSpritePosition ().y -0.3f));
 		}
 
 		if (m_fDestroyPlatformTick <= 0)

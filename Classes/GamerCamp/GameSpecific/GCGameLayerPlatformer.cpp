@@ -418,23 +418,23 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		[]
 	(CGCObjPlayer& rcPlayer, CGCObjTravelatorPlatform& rcTravelatorPlatform, const b2Contact& rcContact) -> void
 		{
-			if (rcContact.IsTouching ())
-			{
+			//if (rcContact.IsTouching ())
+			//{
 
-				rcPlayer.setOnTravelator (true);
+			//	rcPlayer.setOnTravelator (true);
 
-				rcPlayer.SetCanJump (true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
+			//	rcPlayer.SetCanJump (true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
 
-				rcPlayer.SetVelocity (rcTravelatorPlatform.getVelocity ());
-				// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
+			//	rcPlayer.SetVelocity (rcTravelatorPlatform.getVelocity ());
+			//	// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
 
-			}
-			else if (rcContact.IsTouching () == false)
-			{
-				rcPlayer.setOnTravelator (false);//Dan :Sets the players velocity back to normal when the player is no longer touching the platform
+			//}
+			//else if (rcContact.IsTouching () == false)
+			//{
+			//	rcPlayer.setOnTravelator (false);//Dan :Sets the players velocity back to normal when the player is no longer touching the platform
 
-				rcPlayer.SetCanJump (false);//Dan : making sure that the player cant jump while in the air when they are falling off the platform
-			}
+			//	rcPlayer.SetCanJump (false);//Dan : making sure that the player cant jump while in the air when they are falling off the platform
+			//}
 		}
 	);
 
@@ -559,7 +559,8 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 			if (rcFallingPlatforms.GetCanDelete () == true)
 			{
-				rcFallingPlatforms.SetPhysicsTransform (cocos2d::Vec2 (-300, -300), 0); //checks if the platform can be delted, if it can then it will delete itself
+				CGCObjectManager::ObjectKill (&rcFallingPlatforms);
+				//rcFallingPlatforms.SetPhysicsTransform (cocos2d::Vec2 (-300, -300), 0); //checks if the platform can be delted, if it can then it will delete itself
 			}
 
 			//if (rcContact.IsTouching ())							//checks if it is touching
