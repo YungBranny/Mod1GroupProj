@@ -317,7 +317,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// N.B. note m_sPlayerCreateParams is a member variable of this class which will stay in scope whilst mario is in scope
 	CGCFactoryCreationParams& sParams = m_sPlayerCreateParams;
 	sParams.strClassName = "CGCObjPlayer";
-	sParams.strPlistFile = "TexturePacker/Sprites/Willy/Willy.plist";
+	sParams.strPlistFile = "TexturePacker/Sprites/Willy/mm_character_willy.plist";
 	sParams.strPhysicsShape = "Willy";
 	sParams.eB2dBody_BodyType = b2_dynamicBody;
 	sParams.bB2dBody_FixedRotation = true;

@@ -4,23 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Frames/Willy.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1,1},{60,120}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{60,120}}</string>
-                <key>sourceSize</key>
-                <string>{60,120}</string>
-            </dict>
             <key>mm_character_willy.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,123},{60,120}}</string>
+                <string>{{1,1},{60,120}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -40,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>Willy.png</string>
+            <string>mm_character_willy.png</string>
             <key>size</key>
-            <string>{62,244}</string>
+            <string>{62,122}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4eb96c532ce7ffc2bdb134ff8912d7fe:8fa769cd3af48b48b37914ecc67a447f:976c9ec243753c6eb2269fc972d0cd09$</string>
+            <string>$TexturePacker:SmartUpdate:652ebdf2bdf05c1ef269a0f33156aee5:fc77c8292a85abef772a8826e2991e28:ad37444d7fa03b499db977acb10f8a4a$</string>
             <key>textureFileName</key>
-            <string>Willy.png</string>
+            <string>mm_character_willy.png</string>
         </dict>
     </dict>
 </plist>
