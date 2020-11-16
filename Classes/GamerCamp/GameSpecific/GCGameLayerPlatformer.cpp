@@ -211,7 +211,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	this->addChild (pLabel, 1);
 
 	// add "CGCGameLayerPlatformer" splash screen"
-	const char* pszPlist_background = "TexturePacker/Sprites/Background/Background.plist";
+	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite ();
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
