@@ -53,7 +53,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	pDirector->setOpenGLView(glview);
 
-	static_cast<GLViewImpl*>(cocos2d::Director::getInstance()->getOpenGLView())->setFullscreen();
+	//static_cast<GLViewImpl*>(cocos2d::Director::getInstance()->getOpenGLView())->setFullscreen();
 
 	Director::getInstance()->getOpenGLView()->setFrameSize(1920, 1080);
 
