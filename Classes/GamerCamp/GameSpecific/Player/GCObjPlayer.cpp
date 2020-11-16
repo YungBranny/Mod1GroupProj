@@ -240,7 +240,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			{
 
 				SetVelocity(cocos2d::Vec2(m_v2MovingLeftVelocity.x, GetVelocity().y));
-				SetFlippedX(false);
+				SetFlippedX(true);
 
 			}
 
@@ -253,7 +253,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			{
 
 				SetVelocity(cocos2d::Vec2(m_v2MovingRightVelocity.x, GetVelocity().y));
-				SetFlippedX(true);
+				SetFlippedX(false);
 			}
 		}
 
