@@ -16,7 +16,7 @@
     <Width>1920</Width>
     <Height>1080</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\-\Documents\GitHub\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
+  <Filename>C:\Users\Dan\Documents\GitHub\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -95,8 +95,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>Keys</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>30</Width>
+        <Height>30</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
