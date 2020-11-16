@@ -188,4 +188,7 @@
     <BasicEnemy id="4" x="1650" y="390" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BasicEnemy id="5" x="1290" y="630" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Hazards>
+  <Keys>
+    <Keys id="0" x="960" y="816" class="CGCObjKeys" shape="Key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </Keys>
 </level>

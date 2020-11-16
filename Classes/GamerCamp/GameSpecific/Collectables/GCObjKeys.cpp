@@ -17,7 +17,7 @@ CGCObjKeys::~CGCObjKeys()
 }
 
 // Create the Key Sprite, give it a Static Physics Body which means it won't move and then set fixed rotation to 'True'
-//IN_CPP_CREATION_PARAMS_DECLARE ( CGCObjKeys, "TexturePacker/Sprites/Key/Key.plist", "Key", b2_staticBody, true );
+//IN_CPP_CREATION_PARAMS_DECLARE ( CGCObjKeys, "TexturePacker/Sprites/Key/cc_collectible_key.plist", "Key", b2_staticBody, true );
 void CGCObjKeys::VOnResourceAcquire ( void )
 {
 	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCObjKeys);
