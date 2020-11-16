@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Frames/Key.png</key>
+            <key>cc_exit.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{16,16}}</string>
+                <string>{{1,1},{116,120}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{16,16}}</string>
+                <string>{{2,0},{116,120}}</string>
                 <key>sourceSize</key>
-                <string>{16,16}</string>
+                <string>{120,120}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>Key.png</string>
+            <string>cc_exit.png</string>
             <key>size</key>
-            <string>{18,18}</string>
+            <string>{118,122}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:017e8be2fd03cf748f2534605696f485:bc1e097401e061abe75f29537551f649:97f99da776b4ec2d3a7b3d024735617d$</string>
+            <string>$TexturePacker:SmartUpdate:9dcd588bda534cb7faaf53a50ed8e035:a9cc7eab8e216f12d95790074afe3bdc:a2cddae9742ae298cb2d1bbe44222e7f$</string>
             <key>textureFileName</key>
-            <string>Key.png</string>
+            <string>cc_exit.png</string>
         </dict>
     </dict>
 </plist>
