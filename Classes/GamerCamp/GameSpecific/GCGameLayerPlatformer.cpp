@@ -215,7 +215,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	{
 		m_pcGCSprBackGround = new CGCObjSprite ();
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
-		m_pcGCSprBackGround->SetScale(2, 2);
+		m_pcGCSprBackGround->SetScale(1, 1);
 		m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
 	}
