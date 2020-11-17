@@ -726,56 +726,7 @@ void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 //virtual 
 void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 {
-	//const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
-	//const b2Fixture* pFixtureB = pB2Contact->GetFixtureB ();
 
-	//const b2Body* pBodyA = pFixtureA->GetBody ();
-	//const b2Body* pBodyB = pFixtureB->GetBody ();
-
-	//CGCObjSpritePhysics* pGcSprPhysA = (CGCObjSpritePhysics*) pBodyA->GetUserData ();
-	//// if( this is not a GC object )
-	//if (pGcSprPhysA == nullptr)
-	//{
-	//	return;
-	//}
-
-	//CGCObjSpritePhysics* pGcSprPhysB = (CGCObjSpritePhysics*) pBodyB->GetUserData ();
-	//// if( this is not a GC object )
-	//if (pGcSprPhysB == nullptr)
-	//{
-	//	return;
-	//}
-
-	//// ignore contact between player projectile and item for collision resolution purposes
-	//if (pGcSprPhysA->GetGCTypeID () != pGcSprPhysB->GetGCTypeID ())
-	//{
-	//		//CGCObjScalingFallingPlatform* test;
-	//	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) ) )
-	//		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )
-	//			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
-	//	{
-
-	//		
-	//		if (pFixtureA->IsSensor () && pFixtureB->IsSensor ())
-	//		{
-	//			// ignore the collision!
-	//			pB2Contact->SetEnabled (true);
-	//		}
-
-	//		else if (pFixtureA->IsSensor () && !pFixtureB->IsSensor ())
-	//		{
-	//			// ignore the collision!
-	//			pB2Contact->SetEnabled (false);
-	//		}
-	//		
-	//		 //insert logic relating to this collision here
-	//		
-	//		
-
-
-	//	}
-	//}
 }
 
 
@@ -785,8 +736,54 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 // contact exists
 ///////////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCGameLayerPlatformer::EndContact( b2Contact* pB2Contact )
+void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 {
+	{
+		const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
+		const b2Fixture* pFixtureB = pB2Contact->GetFixtureB ();
+
+		const b2Body* pBodyA = pFixtureA->GetBody ();
+		const b2Body* pBodyB = pFixtureB->GetBody ();
+
+		CGCObjSpritePhysics* pGcSprPhysA = (CGCObjSpritePhysics*) pBodyA->GetUserData ();
+		// if( this is not a GC object )
+		if (pGcSprPhysA == nullptr)
+		{
+			return;
+		}
+
+		CGCObjSpritePhysics* pGcSprPhysB = (CGCObjSpritePhysics*) pBodyB->GetUserData ();
+		// if( this is not a GC object )
+		if (pGcSprPhysB == nullptr)
+		{
+			return;
+		}
+
+		if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) ) )
+			)
+		{
+			m_pcGCOPlayer->SetCanJump (false);
+		}
+	}
 }
 
 
@@ -932,6 +929,31 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 		//
 
 
+	}
+
+	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) ) )
+		)
+	{
+		m_pcGCOPlayer->SetCanJump (true);
 	}
 }
 
