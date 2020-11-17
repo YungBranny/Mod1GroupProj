@@ -15,7 +15,7 @@ GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCMovingEnemies);
 CGCMovingEnemies::CGCMovingEnemies ()
 //not letting me inherit from basic enemies
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCMovingEnemies))
-	, m_bMovingLeftAndRight			(false)							//Default values for the variables
+	, m_bMovingLeftAndRight			(true)							//Default values for the variables
 	, m_vEndDestination1			(600,400)						//Default values for the variables
 	, m_vEndDesitnation2			(450,100)						//Default values for the variables
 	, m_vMovingRightVelocity		(cocos2d::Vec2 (4.0f, 0.0f))	//Default values for the variables
