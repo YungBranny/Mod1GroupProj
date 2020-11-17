@@ -38,6 +38,7 @@ class CGCObjScalingFallingPlatform;
 class CGCObjMovingPlatform;
 class GCObjBrickPlatform;
 class CGCObjLadder;
+class CGCObjKeys;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer
@@ -53,6 +54,10 @@ private:
 	CGCObjGroupInvader*				m_pcGCGroupInvader;
 	CGCObjGroupProjectilePlayer*	m_pcGCGroupProjectilePlayer;
 
+	CGCObjKeys*						m_pcGCOKeys;
+	CGCObjKeys*						m_pcGCOKeys1;
+	CGCObjKeys*						m_pcGCOKeys2;
+
 	//UI
 	CGCObjTimer*					m_pcGCTimer;
 	
@@ -67,6 +72,11 @@ private:
 	CGCLevelLoader_Ogmo		m_cLevelLoader;
 
 	bool					m_bCheckIfPlayerIsAbovePlatform;
+
+	int						m_iKeysCollected;
+
+	int						m_iTotalKeys;
+
 
 public:
 	CGCGameLayerPlatformer	( void );
@@ -92,6 +102,8 @@ public:
 
 	// called from VOnUpdate
 	void HandleCollisions( void );
+
+	void keyCollected();
 
 	//////////////////////////////////////////////////////////////////////////
 	// CCNode interface...

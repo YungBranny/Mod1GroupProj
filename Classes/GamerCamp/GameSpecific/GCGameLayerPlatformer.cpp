@@ -76,9 +76,15 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCOPlayer					( nullptr )
 , m_bResetWasRequested			( false )
 , m_bQuitWasRequested			( false )
-{
-}
+, m_pcGCOKeys					( nullptr )
+, m_pcGCOKeys1					( nullptr )
+, m_pcGCOKeys2					( nullptr )
 
+{
+	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
+
+	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
+}
 
 //////////////////////////////////////////////////////////////////////////
 // Destructor
@@ -87,6 +93,11 @@ CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
 {
 }
 
+void CGCGameLayerPlatformer::keyCollected() // Mia: This function adds one more Key onto how many the Player obtains
+{
+	m_iKeysCollected++; // Mia: Adds a Key
+	CCLOG("Key Collected."); // Mia: Checks to make sure Player has picked up Key only once
+}
 
 //////////////////////////////////////////////////////////////////////////
 // in order to guarantee the actions this layer expects we need to 
@@ -447,12 +458,13 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		[this]
 	(CGCObjExitDoor& rcExitDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
-			//if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
-			//{
+			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
+			{
+			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
 			//	m_bPlayerKeysGathered = true;
 
 			//	playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
-			//}
+			}
 		}
 	);
 
@@ -466,7 +478,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			{
 				rcKeys.setJustCollided (true); // Mia: When player has collided with a Key
 				CGCObjectManager::ObjectKill (&rcKeys); // Mia: Destroy the Key Object Sprite
-				//keyCollected (); // Mia: Calls Function which adds on one Key to how many Player has obtained
+				keyCollected (); // Mia: Calls Function which adds on one Key to how many Player has obtained
 				//playKeyAudio (); // Mia: Then calls Function which plays Key Collected Audio
 			}
 		}
@@ -594,6 +606,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	if( ResetWasRequested() )
 	{
 		VOnReset();
+		m_iKeysCollected = 0; // Mia: Resets Keys Collected
 		ResetRequestWasHandled();
 	}
 
