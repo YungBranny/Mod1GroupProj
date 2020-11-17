@@ -39,6 +39,7 @@ class CGCObjMovingPlatform;
 class GCObjBrickPlatform;
 class CGCObjLadder;
 class CGCObjKeys;
+class GCObjEnemyMovementCollider;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer

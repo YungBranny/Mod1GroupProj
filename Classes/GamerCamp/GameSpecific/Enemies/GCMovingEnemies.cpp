@@ -24,6 +24,9 @@ CGCMovingEnemies::CGCMovingEnemies ()
 	, m_vMovingDownVelocity			(-m_vMovingUpVelocity)			//Default values for the variables
 	, m_bJustCollided				(false)							//Default values for the variables
 	, m_iCollisionBuffer			(60)							//Default values for the variables
+	, m_iCollisionDirBuffer			(20)
+	, m_bDefaultDirection			(true)
+	, m_bJustChangedDir				(false)
 {
 	InitialiseMovementDirection (); //calls the function when this class is initalised
 }
@@ -84,7 +87,8 @@ void CGCMovingEnemies::ChangeDirection ()
 		{
 		case EMoveDirection::Right:
 		{
-			if (GetSpritePosition ().x >= m_vEndDestination1.x)
+			//if (GetSpritePosition ().x >= m_vEndDestination1.x)
+			if (m_bDefaultDirection == true)
 			{
 				m_eMoveDirection = EMoveDirection::Left;
 			}
@@ -93,7 +97,8 @@ void CGCMovingEnemies::ChangeDirection ()
 
 		case EMoveDirection::Left:
 		{
-			if (GetSpritePosition ().x <= m_vEndDesitnation2.x)
+			//if (GetSpritePosition ().x <= m_vEndDesitnation2.x)
+			if (m_bDefaultDirection == false)
 			{
 				m_eMoveDirection = EMoveDirection::Right;
 			}
@@ -108,7 +113,8 @@ void CGCMovingEnemies::ChangeDirection ()
 		{
 		case EMoveDirection::Up:
 		{
-			if (GetSpritePosition ().y >= m_vEndDestination1.y)
+			//if (GetSpritePosition ().y >= m_vEndDestination1.y)
+			if (m_bDefaultDirection == true)
 			{
 				m_eMoveDirection = EMoveDirection::Down;
 			}
@@ -117,7 +123,8 @@ void CGCMovingEnemies::ChangeDirection ()
 
 		case EMoveDirection::Down:
 		{
-			if (GetSpritePosition ().y <= m_vEndDesitnation2.y)
+			//if (GetSpritePosition ().y <= m_vEndDesitnation2.y)
+			if (m_bDefaultDirection == false)
 			{
 				m_eMoveDirection = EMoveDirection::Up;
 			}
@@ -177,9 +184,29 @@ void CGCMovingEnemies::CollisionChecker ()
 	}
 }
 
+void CGCMovingEnemies::CollisionDirChecker ()
+{
+	{
+		if (m_bJustChangedDir == true)
+		{
+			if (m_iCollisionBuffer >= 0)
+			{
+				m_iCollisionBuffer--;
+			}
+
+			if (m_iCollisionBuffer <= 0)
+			{
+				m_bJustChangedDir = false;
+				m_iCollisionBuffer = 30;
+			}
+		}
+	}
+}
+
 void CGCMovingEnemies::VOnUpdate (f32 fTimeStep)
 {
 	ChangeDirection ();
 	Movement ();
 	CollisionChecker ();
+	CollisionDirChecker ();
 }

@@ -29,6 +29,7 @@ private:
 
 	unsigned short int		m_iCollisionBuffer;				//A buffer which gets triggered when the player hits the enemy so collision with this obj cannot be called more than once until its reset
 
+	unsigned short int		m_iCollisionDirBuffer;				//A buffer which gets triggered when the Enemy Hits a collider
 
 	EMoveDirection			m_eMoveDirection;				 //EmoveDirection which sets what direction it starts in
 	float					m_fGravity;						 //Gravit float which will ultimately be removed
@@ -43,9 +44,12 @@ private:
 
 	bool					m_bMovingLeftAndRight;			 //Bool to say which direction the enemy is moving in
 	bool					m_bJustCollided;				 //Bool to say if the enemy has just collided with the player
+	bool					m_bDefaultDirection;			 //Bool which is triggered when the enemy collides witht the collider which will help change its direction
+	bool					m_bJustChangedDir;
 
 	void					InitialiseMovementDirection ();	 //Function which checks if the moving left and right bool is true or false, if it is true then the enemy will go left/right if it false the enemy will go up or down
-	void					CollisionChecker ();			 //Function which checks if the just collided bool is true or false
+	void					CollisionChecker ();			 //Function which checks if the just collided bool is true or false#
+	void					CollisionDirChecker ();
 
 public:
 	
@@ -56,8 +60,11 @@ public:
 
 	GCFACTORY_DECLARE_CREATABLECLASS (CGCMovingEnemies);
 
-	unsigned short int getCollisionBuffer ()	const   { return m_iCollisionBuffer;	}	//Getter for CollisionBuffer
-	void  setCollisionBuffer (unsigned short int i)	    { m_iCollisionBuffer = i;		}	//Setter for CollisionBuffer
+	unsigned short int getCollisionDirBuffer ()	const   { return m_iCollisionDirBuffer;	}	//Getter for CollisionBuffer
+	void  setCollisionDirBuffer (unsigned short int i)	    { m_iCollisionDirBuffer = i;		}	//Setter for CollisionBuffer
+
+	unsigned short int getCollisionBuffer ()	const { return m_iCollisionBuffer; }	//Getter for CollisionBuffer
+	void  setCollisionBuffer (unsigned short int i) { m_iCollisionBuffer = i; }	//Setter for CollisionBuffer
 
 																							
 	float getGravity ()							const	{ return m_fGravity;			}	//Getter for Gravity
@@ -65,6 +72,14 @@ public:
 																							
 	bool  getJustCollided ()					const	{return m_bJustCollided;		}	//Getter for CollisionBuffer
 	void  setJustCollided (bool i)						{ m_bJustCollided = i;			}	//Setter for CollisionBuffer
+
+	bool  getChangedDir ()					const { return m_bJustChangedDir; }	//Getter for CollisionBuffer
+	void  setChangedDir (bool i)				  { m_bJustChangedDir = i; }	//Setter for CollisionBuffer
+
+
+
+	bool  getDefaultDirection ()				const   { return m_bDefaultDirection;   }	//Getter for DefaultDirection
+	void  setDefaultDirection (bool i)					{ m_bDefaultDirection = i;      }	//Setter for DefaultDirection
 																							
 	cocos2d::Vec2	getEndDestination1		()	const	{ return m_vEndDestination1;	}	//Getter for EndDesination1
 	cocos2d::Vec2	getEndDesination2		()	const	{ return m_vEndDesitnation2;	}	//Getter for EndDesination2

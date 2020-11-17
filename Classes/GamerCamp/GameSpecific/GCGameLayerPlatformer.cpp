@@ -48,6 +48,7 @@
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform7.h"
 #include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
 #include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
+#include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider.h"
 
 #include "AppDelegate.h"
 
@@ -518,7 +519,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		[this]
 	(CGCBasicEnemies& rcEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
-			CGCObjectManager::ObjectKill (&rcEnemies);
+ 			CGCObjectManager::ObjectKill (&rcEnemies);
 			//m_pcGCTimer->ResetTimer ();
 			//CGCObjectManager::ObjectKill (&rcEnemies);
 			CCLOG ("Player Died.");
@@ -552,6 +553,29 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		}
 	);
 
+	GetCollisionManager ().AddCollisionHandler
+	(
+		//Brandon Middleton
+		//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
+		//it will reset the level from the start
+		[]
+	(CGCMovingEnemies& rcMEnemies, GCObjEnemyMovementCollider& rcCollider, const b2Contact& rcContact) -> void
+		{
+			if (rcMEnemies.getChangedDir() == false)
+			{
+				if (rcMEnemies.getDefaultDirection () == true)
+				{
+					rcMEnemies.setChangedDir (true);
+					rcMEnemies.setDefaultDirection (false);
+				}
+				else if (rcMEnemies.getDefaultDirection () == false)
+				{
+					rcMEnemies.setChangedDir (true);
+					rcMEnemies.setDefaultDirection (true);
+				}
+			}
+		}
+	);
 
 	GetCollisionManager ().AddCollisionHandler
 	(
