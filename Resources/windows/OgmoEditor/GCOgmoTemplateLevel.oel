@@ -177,12 +177,12 @@
     <Ladder id="5" x="1280" y="896" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladder/Ladder.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Ladder>
   <Hazards>
-    <BasicEnemy id="0" x="750" y="870" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BasicEnemy id="1" x="690" y="90" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BasicEnemy id="2" x="990" y="90" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BasicEnemy id="3" x="1410" y="390" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BasicEnemy id="4" x="1650" y="390" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BasicEnemy id="5" x="1290" y="630" class="CGCBasicEnemies" shape="Spike" PlistFile="TexturePacker/Sprites/Spike/Spike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UpwardSpike id="0" x="1410" y="390" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/Spike/UpwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UpwardSpike id="1" x="1650" y="390" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/Spike/UpwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UpwardSpike id="2" x="1290" y="630" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/Spike/UpwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <DownwardSpike id="4" x="690" y="90" angle="0" class="CGCBasicEnemies" shape="cc_hazard_downward_spike" PlistFile="TexturePacker/Sprites/Spike/DownwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UpwardSpike id="3" x="750" y="870" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/Spike/UpwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <DownwardSpike id="5" x="990" y="90" angle="0" class="CGCBasicEnemies" shape="cc_hazard_downward_spike" PlistFile="TexturePacker/Sprites/Spike/DownwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Hazards>
   <Keys>
     <Keys id="0" x="1830" y="510" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />

@@ -963,6 +963,70 @@
                     </dict>
 				</array>
 			</dict>
+			<key>cc_hazard_downward_spike</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+					<dict>
+                        <key>density</key> <real>2</real>
+                        <key>friction</key> <real>0</real>
+                        <key>restitution</key> <real>0</real>
+                        <key>filter_categoryBits</key> <integer>1</integer>
+                        <key>filter_groupIndex</key> <integer>0</integer>
+                        <key>filter_maskBits</key> <integer>65535</integer>
+                        <key>isSensor</key> <false/>
+                        <key>id</key> <string></string>
+                        <key>fixture_type</key> <string>POLYGON</string>
+
+						<key>polygons</key>
+						<array>
+							<array>	
+								<string>{ -17.000,29.000 }</string>	
+								<string>{ -30.000,-3.000 }</string>	
+								<string>{ -12.000,-15.000 }</string>	
+								<string>{ 14.000,-13.000 }</string>	
+								<string>{ 29.000,0.000 }</string>	
+								<string>{ 18.000,29.000 }</string>
+							</array>
+						</array>
+                    </dict>
+				</array>
+			</dict>
+			<key>cc_hazard_bush</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+					<dict>
+                        <key>density</key> <real>2</real>
+                        <key>friction</key> <real>0</real>
+                        <key>restitution</key> <real>0</real>
+                        <key>filter_categoryBits</key> <integer>1</integer>
+                        <key>filter_groupIndex</key> <integer>0</integer>
+                        <key>filter_maskBits</key> <integer>65535</integer>
+                        <key>isSensor</key> <false/>
+                        <key>id</key> <string></string>
+                        <key>fixture_type</key> <string>POLYGON</string>
+
+						<key>polygons</key>
+						<array>
+							<array>	
+								<string>{ -17.000,-30.000 }</string>	
+								<string>{ 18.000,-30.000 }</string>	
+								<string>{ 29.000,0.000 }</string>	
+								<string>{ 14.000,14.000 }</string>	
+								<string>{ -12.000,16.000 }</string>	
+								<string>{ -30.000,3.000 }</string>
+							</array>
+						</array>
+                    </dict>
+				</array>
+			</dict>
 		</dict>
 	</dict>
 </plist>
