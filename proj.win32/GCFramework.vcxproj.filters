@@ -243,6 +243,27 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBrickPlatform.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform1.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform2.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform3.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform4.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform5.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform6.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform7.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -420,6 +441,27 @@
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBrickPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform1.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform2.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform3.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform4.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform5.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform6.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform7.h">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
   </ItemGroup>

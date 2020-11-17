@@ -38,6 +38,13 @@ class CGCObjScalingFallingPlatform;
 class CGCObjMovingPlatform;
 class GCObjBrickPlatform;
 class CGCObjLadder;
+class GCObjBasicPlatform1;
+class GCObjBasicPlatform2;
+class GCObjBasicPlatform3;
+class GCObjBasicPlatform4;
+class GCObjBasicPlatform5;
+class GCObjBasicPlatform6;
+class GCObjBasicPlatform7;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer

@@ -170,6 +170,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjItem.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform1.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform2.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform3.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform4.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform5.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform6.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform7.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBrickPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.cpp" />
@@ -229,6 +236,13 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjItem.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform1.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform2.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform3.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform4.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform5.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform6.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform7.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBrickPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.h" />
