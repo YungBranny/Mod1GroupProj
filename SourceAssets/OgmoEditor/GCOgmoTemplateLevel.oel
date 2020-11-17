@@ -165,6 +165,13 @@
     <CrumblingPlatform id="147" x="1530" y="870" class="CGCObjScalingFallingPlatform" shape="cc_platform_crumbling" PlistFile="TexturePacker/Sprites/CrumblingPlatform/cc_platform_crumbling.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <CrumblingPlatform id="148" x="1470" y="870" class="CGCObjScalingFallingPlatform" shape="cc_platform_crumbling" PlistFile="TexturePacker/Sprites/CrumblingPlatform/cc_platform_crumbling.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <CrumblingPlatform id="149" x="570" y="270" class="CGCObjScalingFallingPlatform" shape="BasicScalingPlatform" PlistFile="TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CrumblingPlatform id="164" x="1410" y="870" class="CGCObjScalingFallingPlatform" shape="cc_platform_crumbling" PlistFile="TexturePacker/Sprites/CrumblingPlatform/cc_platform_crumbling.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <BrickPlatform id="167" x="1050" y="630" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <BrickPlatform id="166" x="1110" y="630" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <BrickPlatform id="165" x="1170" y="630" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <BrickPlatform id="163" x="1350" y="870" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <BrickPlatform id="162" x="1290" y="870" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <BrickPlatform id="161" x="1230" y="870" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </platforms>
   <ExitDoor>
     <ExitDoor id="0" x="1800" y="960" class="CGCObjExitDoor" shape="cc_exit" PlistFile="TexturePacker/Sprites/Exit/cc_exit.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />

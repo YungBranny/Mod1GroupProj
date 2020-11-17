@@ -36,6 +36,7 @@ class CGCObjScalingFallingPlatformManager;
 class CGCObjScalingBasicPlatform;
 class CGCObjScalingFallingPlatform;
 class CGCObjMovingPlatform;
+class GCObjBrickPlatform;
 class CGCObjLadder;
 
 //////////////////////////////////////////////////////////////////////////

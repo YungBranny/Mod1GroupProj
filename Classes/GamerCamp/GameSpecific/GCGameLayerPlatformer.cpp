@@ -38,6 +38,7 @@
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatformManager.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatform.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjMovingPlatform.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBrickPlatform.h"
 #include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
 #include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
 
