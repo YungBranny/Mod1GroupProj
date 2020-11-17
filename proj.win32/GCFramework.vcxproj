@@ -158,6 +158,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCHazardChild.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ExitDoor\GCObjExitDoor.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.cpp" />
@@ -215,6 +216,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCHazardChild.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ExitDoor\GCObjExitDoor.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.h" />

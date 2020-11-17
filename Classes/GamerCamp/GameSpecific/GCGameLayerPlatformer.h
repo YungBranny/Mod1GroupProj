@@ -27,6 +27,7 @@ class CGCObjTimer;
 class CGCObjKeys;
 class CGCBasicEnemies;
 class CGCMovingEnemies;
+class CGCHazardChild;
 class CGCObjTravelatorPlatform;
 class CGCObjExitDoor;
 class CGCObjTimePickUp;

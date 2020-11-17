@@ -237,6 +237,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Ladder</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCHazardChild.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -409,6 +412,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.h">
       <Filter>Classes\GamerCamp\GameSpecific\Ladder</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCHazardChild.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

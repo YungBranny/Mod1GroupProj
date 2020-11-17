@@ -39,6 +39,7 @@
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatform.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjMovingPlatform.h"
 #include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
+#include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
 
 #include "AppDelegate.h"
 
@@ -69,7 +70,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCGroupItem				( nullptr )
 , m_pcGCGroupInvader			( nullptr )
 , m_pcGCGroupProjectilePlayer	( nullptr )
-, m_pcGCTimer					(nullptr)
+, m_pcGCTimer					( nullptr )
 , m_pcGCSprBackGround			( nullptr )
 , m_pcGCOPlayer					( nullptr )
 , m_bResetWasRequested			( false )

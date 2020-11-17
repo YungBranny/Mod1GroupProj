@@ -181,7 +181,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">../../../../../../../Desktop/cc_hazard_downward_spike.png</key>
+            <key type="filename">Frames/cc_hazard_downward_spike.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -199,7 +199,7 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>../../../../../../../Desktop/cc_hazard_downward_spike.png</filename>
+            <filename>Frames/cc_hazard_downward_spike.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>
