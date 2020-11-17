@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>cc_platform_2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{60,38}}</string>
+                <key>offset</key>
+                <string>{0,11}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,38}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>TimerBar.png</string>
+            <key>size</key>
+            <string>{62,40}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:d71348a7706b2906d521491d8715897f:12eff6fe6c8542804d9eee7800549e4c:468694364f64763d3604a03677464b8c$</string>
+            <key>textureFileName</key>
+            <string>TimerBar.png</string>
+        </dict>
+    </dict>
+</plist>
