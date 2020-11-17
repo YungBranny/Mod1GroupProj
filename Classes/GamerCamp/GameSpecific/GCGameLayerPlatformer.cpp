@@ -203,16 +203,16 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// add label
 	///////////////////////////////////////////////////////////////////////////
 
-	// create and initialize a label
-	Label* pLabel = Label::createWithTTF ("Game - Top button to Quit, bottom button to Reset", "fonts/arial.ttf", 24);
+	// Mia: Create and initialize the Label with instructions, then set the Font and then the Size
+	Label* pLabel = Label::createWithTTF("Collect the three Keys to open the Door before the Air Timer runs out!", "fonts/SaltyOcean.ttf", 35);
 
-	// position the label on the center of the screen
-	pLabel->setPosition (Vec2 (visibleSize.width / 2, visibleSize.height - 50));
+	// Mia: Position the label to the top centre of the screen
+	pLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 40));
 
-	// add the label as a child to this layer
-	this->addChild (pLabel, 1);
+	// Mia: Add the label as a child to this Game Layer
+	this->addChild(pLabel, 1);
 
-	// add "CGCGameLayerPlatformer" splash screen"
+	//Mia: Added Background
 	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite ();
