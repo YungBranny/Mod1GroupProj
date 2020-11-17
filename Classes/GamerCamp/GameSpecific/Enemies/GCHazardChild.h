@@ -2,6 +2,7 @@
 #define _GCHazardChild_
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
+#include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 #include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 class GCHazardChild
