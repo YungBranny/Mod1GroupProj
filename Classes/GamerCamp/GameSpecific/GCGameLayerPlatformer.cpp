@@ -720,21 +720,21 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	// N.B. because object groups must register manually, 
 	// we also unregister them manually
 	///////////////////////////////////////////////////////////////////////////
-	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupPlatform );
-	delete m_pcGCGroupPlatform;
-	m_pcGCGroupPlatform = nullptr;
+	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupPlatform );
+	//delete m_pcGCGroupPlatform;
+	//m_pcGCGroupPlatform = nullptr;
 
-	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupProjectilePlayer );
-	delete m_pcGCGroupProjectilePlayer;
-	m_pcGCGroupProjectilePlayer = nullptr;
+	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupProjectilePlayer );
+	//delete m_pcGCGroupProjectilePlayer;
+	//m_pcGCGroupProjectilePlayer = nullptr;
 
-	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupInvader );
-	delete m_pcGCGroupInvader;
-	m_pcGCGroupInvader = nullptr;
+	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupInvader );
+	//delete m_pcGCGroupInvader;
+	//m_pcGCGroupInvader = nullptr;
 
-	CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupItem );
-	delete m_pcGCGroupItem;
-	m_pcGCGroupItem = nullptr;
+	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupItem );
+	//delete m_pcGCGroupItem;
+	//m_pcGCGroupItem = nullptr;
 
 	IGCGameLayer::VOnDestroy();
 }
