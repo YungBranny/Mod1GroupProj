@@ -56,6 +56,11 @@ private:
 	float	m_iLivesBarHeightX;
 	float	m_iLivesBarHeightY;
 
+	float	m_fStartPositionY;
+	float	m_fEndPositionY;
+	float	m_fDropDistance;
+	float	m_fMaximumDropDistance;
+
 	int		m_iNumberOfLives;
 
 	bool	m_bCanJump;
@@ -136,6 +141,8 @@ public:
 	void ResetLives();
 
 	void UpdateLives();
+
+	void FallDamage();
 
 	cocos2d::Label* getLivesText() const { return m_pLivesText; }
 

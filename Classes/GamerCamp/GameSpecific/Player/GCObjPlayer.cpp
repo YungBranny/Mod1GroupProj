@@ -52,6 +52,10 @@ CGCObjPlayer::CGCObjPlayer()
 	, m_v2MovingDownVelocity(-m_v2MovingUpVelocity)
 	, m_v2StopMovingVelocity(0, 0)
 	, m_bOnLadder(false)
+	, m_fStartPositionY(0)
+	, m_fEndPositionY(0)
+	, m_fDropDistance(0)
+	, m_fMaximumDropDistance(20.0f)
 {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -128,7 +132,7 @@ void CGCObjPlayer::VOnReset()
 void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 {
 	// handle movement
-	UpdateMovement( fTimeStep );
+	UpdateMovement(fTimeStep);
 }
 
 
@@ -168,6 +172,7 @@ f32 g_GCGameLayer_fDamping						= 0.999f;	// unitless
 //////////////////////////////////////////////////////////////////////////
 void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 {
+
 	////////////////////////////////////////////////////////////////////////////////
 	///// VARIABLES NOT USED
 	////////////////////////////////////////////////////////////////////////////////
@@ -383,6 +388,29 @@ void CGCObjPlayer::DecrementLives()
 void CGCObjPlayer::ResetLives()
 {
 	m_iNumberOfLives = 3;
+}
+
+void CGCObjPlayer::FallDamage()
+{
+	if( m_bCanJump == false)
+	{
+		m_fStartPositionY = GetPhysicsBody()->GetPosition().y;
+		m_fDropDistance = m_fStartPositionY - m_fMaximumDropDistance;
+	}
+
+	else if( m_bCanJump == true )
+	{
+		m_fEndPositionY = GetPhysicsBody()->GetPosition().y;
+
+		if( m_fEndPositionY <= m_fDropDistance )
+		{
+			CCLOG("Player dead.");
+		}
+
+		m_fStartPositionY = GetPhysicsBody()->GetPosition().y;
+		m_fEndPositionY = GetPhysicsBody()->GetPosition().y;
+		m_fDropDistance = 0;
+	}
 }
 
 //////////////////////////////////////////////////////////////////////////
