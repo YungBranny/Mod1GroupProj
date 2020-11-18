@@ -118,6 +118,13 @@ void CGCGameLayerPlatformer::addOnTime()
 
 }
 
+void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
+{
+	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
+}
+
+
 //////////////////////////////////////////////////////////////////////////
 // in order to guarantee the actions this layer expects we need to 
 // initialise the keyboard action map every time onEnter is called - this
@@ -250,6 +257,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		m_pcGCSprBackGround->SetScale(1, 1);
 		m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
+		playBackgroundMusic(); // Mia: Calling 'backgroundMusic' Function, so the Audio plays as soon as level loads
 	}
 
 	m_pcGCTimer = new CGCObjTimer();
@@ -650,6 +658,8 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		VOnReset();
 		m_iKeysCollected = 0; // Mia: Resets Keys Collected
 		ResetRequestWasHandled();
+		m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Reset
+		playBackgroundMusic(); // Mia: Calls this Function, so it doesn't overlay
 	}
 
 	if( QuitWasRequested() )

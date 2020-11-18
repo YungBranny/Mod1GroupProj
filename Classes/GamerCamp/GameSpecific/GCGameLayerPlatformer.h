@@ -11,6 +11,8 @@
 	#include "../GCCocosInterface/LevelLoader/GCLevelLoader_Ogmo.h"
 #endif
 
+#include "SimpleAudioEngine.h"
+
 //////////////////////////////////////////////////////////////////////////
 // fwd decl
 class CGCObjSprite;
@@ -80,6 +82,8 @@ private:
 
 	int						m_iTimerPickedUp;
 
+	CocosDenshion::SimpleAudioEngine* m_pcGCBackgroundAudio;
+	CocosDenshion::SimpleAudioEngine* m_pcGCSoundEffectsAudio;
 
 public:
 	CGCGameLayerPlatformer	( void );
@@ -109,6 +113,8 @@ public:
 	void keyCollected();
 
 	void addOnTime();
+
+	void playBackgroundMusic();
 
 	//////////////////////////////////////////////////////////////////////////
 	// CCNode interface...
