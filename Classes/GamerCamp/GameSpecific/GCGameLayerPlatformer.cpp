@@ -628,7 +628,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	(CGCObjScalingFallingPlatform& rcFallingPlatforms, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 
 		{
-			if (rcContact.IsTouching ())
+			if (rcContact.IsTouching ()&& rcContact.GetFixtureB()->IsSensor())
 			{
 				if (rcFallingPlatforms.GetContactWithPlayer () == false)
 				{
