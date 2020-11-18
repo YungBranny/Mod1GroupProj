@@ -124,6 +124,24 @@ void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is call
 	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
 }
 
+void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
+{
+	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Key/CollectKey.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+}
+
+
+void CGCGameLayerPlatformer::playTimerPickUpAudio() // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
+{
+	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Timer/TimerPickUp.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+}
+
+void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is called when we want the Door Opened Sound Effect to play
+{
+	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/Door/OpeningDoor.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+}
 
 //////////////////////////////////////////////////////////////////////////
 // in order to guarantee the actions this layer expects we need to 
@@ -490,7 +508,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
 			//	m_bPlayerKeysGathered = true;
 
-			//	playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
+				playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
 			}
 		}
 	);
@@ -506,7 +524,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 				rcKeys.setJustCollided (true); // Mia: When player has collided with a Key
 				CGCObjectManager::ObjectKill (&rcKeys); // Mia: Destroy the Key Object Sprite
 				keyCollected (); // Mia: Calls Function which adds on one Key to how many Player has obtained
-				//playKeyAudio (); // Mia: Then calls Function which plays Key Collected Audio
+				playKeyAudio (); // Mia: Then calls Function which plays Key Collected Audio
 			}
 		}
 	);
@@ -524,7 +542,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 					rcPickUp.setJustCollided (true); // Mia: When player has collided with a Timer PickUp
 					CGCObjectManager::ObjectKill (&rcPickUp); // Mia: Destroy the Timer PickUp Object Sprite
 					addOnTime (); // Mia: Calls the Function which adds on Timer Increase Value (20) to whatever is the current Air Time
-					//playTimerPickUpAudio (); // Mia: Calls the Function which plays Timer PickUp Audio
+					playTimerPickUpAudio (); // Mia: Calls the Function which plays Timer PickUp Audio
 				}
 			}
 		}

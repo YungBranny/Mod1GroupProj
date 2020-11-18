@@ -116,6 +116,13 @@ public:
 
 	void playBackgroundMusic();
 
+	void playKeyAudio();
+
+	void playTimerPickUpAudio();
+
+	void playDoorOpeningAudio();
+
+
 	//////////////////////////////////////////////////////////////////////////
 	// CCNode interface...
 	virtual void onEnter();
