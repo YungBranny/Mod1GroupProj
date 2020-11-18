@@ -146,7 +146,7 @@ void CGCObjPlayer::VOnResourceRelease()
 void CGCObjPlayer::VOnResurrected(void)
 {
 	CGCObjSpritePhysics::VOnResurrected();
-	m_bv2jumpVel = b2Vec2(GetPhysicsBody()->GetLinearVelocity().x, 8);
+	m_bv2jumpVel = b2Vec2(GetPhysicsBody()->GetLinearVelocity().x, 10.7f);
 }
 
 
