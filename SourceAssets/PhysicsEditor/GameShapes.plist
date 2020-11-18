@@ -613,8 +613,8 @@
 
                          <key>circle</key>
                          <dict>
-                             <key>radius</key> <real>8.816</real>
-                             <key>position</key> <string>{ 1.979,-58.234 }</string>
+                             <key>radius</key> <real>7.765</real>
+                             <key>position</key> <string>{ 1.340,-57.170 }</string>
                          </dict>
                     </dict>
 				</array>
@@ -898,8 +898,8 @@
 						<array>
 							<array>	
 								<string>{ -30.000,30.000 }</string>	
-								<string>{ -30.000,28.000 }</string>	
-								<string>{ 30.000,28.000 }</string>	
+								<string>{ -30.000,26.000 }</string>	
+								<string>{ 30.000,26.000 }</string>	
 								<string>{ 30.000,30.000 }</string>
 							</array>
 						</array>
@@ -1005,7 +1005,7 @@
 			<key>cc_platform_single_brick</key>
 			<dict>
 				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5080 }</string>
+                <string>{ 0.5000,0.5000 }</string>
 				<key>fixtures</key>
 				<array>
 
@@ -1023,10 +1023,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -30.000,29.028 }</string>	
-								<string>{ -30.000,-29.972 }</string>	
-								<string>{ 30.000,-29.972 }</string>	
-								<string>{ 30.000,29.028 }</string>
+								<string>{ -30.000,29.500 }</string>	
+								<string>{ -30.000,-29.500 }</string>	
+								<string>{ 30.000,-29.500 }</string>	
+								<string>{ 30.000,29.500 }</string>
 							</array>
 						</array>
                     </dict>
