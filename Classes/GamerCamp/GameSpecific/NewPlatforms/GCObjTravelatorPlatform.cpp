@@ -15,7 +15,7 @@ GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjTravelatorPlatform);
 CGCObjTravelatorPlatform::CGCObjTravelatorPlatform()
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjTravelatorPlatform))
 	//, m_v2StartPos	(600, 600)  // Start position
-	, m_v2Velocity	(-8.0f, 0.0f ) //Speed and direction the player is sent in 
+	, m_fVelocity	(-8.0f ) //Speed and direction the player is sent in 
 {
 	//SetResetPosition(GetStartPos()); //reset position
 }

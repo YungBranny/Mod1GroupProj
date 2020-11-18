@@ -285,8 +285,16 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			{
 				//GetPhysicsBody ()->ApplyForce (b2Vec2 (0, 500), GetPhysicsBody ()->GetWorldCenter (), true);
 				SetVelocity(cocos2d::Vec2(0, GetVelocity().y));
+
 			}
+			
 		}
+		  
+	}
+	else if (m_bOnTravelator == true) 
+	{
+
+
 	}
 	////////////////////////////////////////////////////////////////////////////////
 	///// Start OLD CODE

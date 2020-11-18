@@ -15,7 +15,7 @@ class CGCObjTravelatorPlatform
 private:
 	//cocos2d::Vec2 m_v2StartPos;
 
-	cocos2d::Vec2 m_v2Velocity;
+	float m_fVelocity;
 
 public:
 
@@ -36,8 +36,8 @@ public:
 	//virtual void VOnReset(void);
 	virtual void VOnUpdate(f32 fTimestep);
 	
-	cocos2d::Vec2 getVelocity() const { return m_v2Velocity; }
-	void setVelocity(cocos2d::Vec2 f) { m_v2Velocity = f;	}
+	float getVelocity() const { return m_fVelocity; }
+	void setVelocity(float f) { m_fVelocity = f;	}
 
 	/////////////////////////////////////////////////////////////////////////////
 
