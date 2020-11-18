@@ -78,6 +78,8 @@ private:
 
 	int						m_iTotalKeys;
 
+	int						m_iTimerPickedUp;
+
 
 public:
 	CGCGameLayerPlatformer	( void );
@@ -105,6 +107,8 @@ public:
 	void HandleCollisions( void );
 
 	void keyCollected();
+
+	void addOnTime();
 
 	//////////////////////////////////////////////////////////////////////////
 	// CCNode interface...

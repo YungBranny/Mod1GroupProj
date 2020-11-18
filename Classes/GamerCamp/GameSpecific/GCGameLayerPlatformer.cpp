@@ -92,6 +92,8 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
 
 	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
+
+	m_iTimerPickedUp = 0; // Mia: Sets Default Timer Pick Up to 0
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -105,6 +107,15 @@ void CGCGameLayerPlatformer::keyCollected() // Mia: This function adds one more 
 {
 	m_iKeysCollected++; // Mia: Adds a Key
 	CCLOG("Key Collected."); // Mia: Checks to make sure Player has picked up Key only once
+}
+
+void CGCGameLayerPlatformer::addOnTime()
+{
+	// Mia: Replaces Current Air Time when Player picks up Timer PickUp by Getting Current Air Time and
+	// Calling the Increase Value (of 20) that I created in Dan's 'GCObjTimer.cpp'
+	m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
+	CCLOG("Time PickUp Collected."); // Mia: Check to make sure Player has picked up Timer Pick Up only once
+
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -500,13 +511,13 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		{
 			if (rcPickUp.getJustCollided () == false)
 			{
-				//if (m_pcGCTimer->getCurrentTime () >= 0) // Mia: If Current Time is greater or equal to zero
-				//{
-				//	rcPickUp.setJustCollided (true); // Mia: When player has collided with a Timer PickUp
-				//	CGCObjectManager::ObjectKill (&rcPickUp); // Mia: Destroy the Timer PickUp Object Sprite
-				//	addOnTime (); // Mia: Calls the Function which adds on Timer Increase Value (20) to whatever is the current Air Time
-				//	playTimerPickUpAudio (); // Mia: Calls the Function which plays Timer PickUp Audio
-				//}
+				if (m_pcGCTimer->getCurrentTime () >= 0) // Mia: If Current Time is greater or equal to zero
+				{
+					rcPickUp.setJustCollided (true); // Mia: When player has collided with a Timer PickUp
+					CGCObjectManager::ObjectKill (&rcPickUp); // Mia: Destroy the Timer PickUp Object Sprite
+					addOnTime (); // Mia: Calls the Function which adds on Timer Increase Value (20) to whatever is the current Air Time
+					//playTimerPickUpAudio (); // Mia: Calls the Function which plays Timer PickUp Audio
+				}
 			}
 		}
 	);
