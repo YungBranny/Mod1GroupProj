@@ -262,7 +262,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	Label* pLabel = Label::createWithTTF("Collect the three Keys to open the Door before the Air Timer runs out!", "fonts/SaltyOcean.ttf", 35);
 
 	// Mia: Position the label to the top centre of the screen
-	pLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 40));
+	pLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 150));
 
 	// Mia: Add the label as a child to this Game Layer
 	this->addChild(pLabel, 1);

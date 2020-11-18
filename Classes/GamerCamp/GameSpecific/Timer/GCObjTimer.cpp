@@ -30,9 +30,9 @@ using namespace cocos2d;
 	,m_fScaleDecreaseY			 (		0.1f		)	// Scale Decrease Y
 	,m_iTimerTextOutlineSize	 (		1	     	)	// Text outline width
 	,m_fTimerTextFontSize		 (		50.0f		)	// Text font size
-	,m_fTimerBarStartPosX		 (		1000			)	// Timer bar start pos X
+	,m_fTimerBarStartPosX		 (		1000		)	// Timer bar start pos X
 	,m_fTimerBarStartPosY		 (		1000		)	// Timer bar start pos Y
-	,m_iTimerBarHeightX			 (		500			)	// Timer bar Height on Screen
+	,m_iTimerBarHeightX			 (		425			)	// Timer bar Height on Screen
 	,m_iTimerBarHeightY			 (		1000		)	// Timer bar Height on Screen
 	,m_iTimerBufferDecrease		 (		  1			)	// Timer buffer decrease value
     
@@ -59,7 +59,7 @@ using namespace cocos2d;
 	
 	getTimerText()->setPosition(Vec2(  m_iTimerBarHeightX ,   m_iTimerBarHeightY));
 
-	getTimerText()->setString("Air " + std::to_string( getCurrentTime()) + "%"  );
+	getTimerText()->setString("Power " + std::to_string( getCurrentTime()) + "%"  );
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -77,7 +77,9 @@ using namespace cocos2d;
  	//m_TimerBar = ProgressTimer::create(m_TimerBarSprite);
  	//m_TimerBar->setType(ProgressTimer::Type::BAR);
 
-	
+	m_UI_TimerBorder = Sprite::create("Loose/UI_Bar.png");
+
+	getTimerBarUI()->setPosition(Vec2(m_fTimerBarStartPosX, m_fTimerBarStartPosY + 17.5));
 
  	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,9 +100,7 @@ using namespace cocos2d;
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	m_UI_TimerBorder = Sprite::create("Loose/UI_Bar.png");
-
-	getTimerBarUI()->setPosition(Vec2(m_fTimerBarStartPosX, m_fTimerBarStartPosY + 17.5));
+	
 }
 
  //test
@@ -125,7 +125,7 @@ using namespace cocos2d;
 			
 			//SetScale(getCurrentTime() / m_fScaleDecreaseX, m_fScaleDecreaseY);// Scale for the timer bar being decremented
 
-			getTimerText()->setString("Air "+ std::to_string(getCurrentTime()) + "%" ); //Setting Current time to text to be shown on the screen
+			getTimerText()->setString("Power "+ std::to_string(getCurrentTime()) + "%" ); //Setting Current time to text to be shown on the screen
 		}
 		else
 		{
