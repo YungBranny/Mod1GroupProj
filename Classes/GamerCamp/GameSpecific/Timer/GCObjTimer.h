@@ -47,6 +47,8 @@ private:
 
 	cocos2d::Sprite* m_TimerBarSprite;
 
+	cocos2d::Sprite* m_UI_TimerBorder;
+
 public:
 	
 	CGCObjTimer();
@@ -73,8 +75,11 @@ public:
 	cocos2d::Label* getTimerText() const  { return m_pTimerText;			}	//Getter and Setter for getting the timer text component
 	void setTimerText(cocos2d::Label*  t) { m_pTimerText = t;				}	
 
-	cocos2d::ProgressTimer* getTimerBar() const { return m_TimerBar;		 }
-	void setTimerBar(cocos2d::ProgressTimer* t) { m_TimerBar = t; }
+	cocos2d::ProgressTimer* getTimerBar() const { return m_TimerBar;		}
+	void setTimerBar(cocos2d::ProgressTimer* t) { m_TimerBar = t;			}
+
+	cocos2d::Sprite* getTimerBarUI() const { return m_UI_TimerBorder;		}
+	void setTimerBarUI(cocos2d::Sprite* t) { m_UI_TimerBorder = t;			}
 	
 	float getCurrentTimeBuffer() const	  { return m_fCurrentTimeBuffer;	}	//Getter and Setter for getting the current timer buffer
 	void setCurrentTimeBuffer(float f)	  { m_fCurrentTimeBuffer = f;		}	

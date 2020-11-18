@@ -210,7 +210,7 @@ inline void CGCObjSprite::SetSpriteRotation( float fRotationRadians )
 }
 
 
-//////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 inline void CGCObjSprite::SetScale(float bArgScaleX, float bArgScaleY)
 {
 	m_pcSprite->setScale(bArgScaleX, bArgScaleY);
@@ -220,7 +220,6 @@ inline void CGCObjSprite::SetScale(float bArgScaleX, float bArgScaleY)
 inline float CGCObjSprite::GetScale() const
 {
 	return m_pcSprite->getScale();
-
 
 }
 //////////////////////////////////////////////////////////////////////////
