@@ -8,7 +8,12 @@
 #include "../../GCCocosInterface/GCObjSpritePhysics.h"
 #include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 
+#include "cocos2d/cocos/2d/CCProgressTimer.h"
+#include "cocos2d/cocos/2d/CCSprite.h"
 
+
+namespace cocos2d {
+}
 
 class CGCObjTimer
 	:CGCObjSprite
@@ -38,6 +43,10 @@ private:
 	
 	cocos2d::Label* m_pTimerText;
 
+	cocos2d::ProgressTimer* m_TimerBar;
+
+	cocos2d::Sprite* m_TimerBarSprite;
+
 public:
 	
 	CGCObjTimer();
@@ -63,7 +72,10 @@ public:
 																				
 	cocos2d::Label* getTimerText() const  { return m_pTimerText;			}	//Getter and Setter for getting the timer text component
 	void setTimerText(cocos2d::Label*  t) { m_pTimerText = t;				}	
-																				
+
+	cocos2d::ProgressTimer* getTimerBar() const { return m_TimerBar;		 }
+	void setTimerBar(cocos2d::ProgressTimer* t) { m_TimerBar = t; }
+	
 	float getCurrentTimeBuffer() const	  { return m_fCurrentTimeBuffer;	}	//Getter and Setter for getting the current timer buffer
 	void setCurrentTimeBuffer(float f)	  { m_fCurrentTimeBuffer = f;		}	
 

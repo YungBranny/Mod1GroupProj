@@ -64,7 +64,7 @@ using namespace cocos2d;
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//Getting texture file path for timer bar sprite
-	const char* pszTimerBarSprite = "TexturePacker/Sprites/TimerBar/WhiteSquare.plist";
+	const char* pszTimerBarSprite = "Loose/UI_TimerBar.plist";
 	{
 		CreateSprite(pszTimerBarSprite);
 		SetResetPosition(Vec2(m_fTimerBarStartPosX, m_fTimerBarStartPosY));
@@ -72,6 +72,32 @@ using namespace cocos2d;
 		SetScale(m_fScaleX, m_fScaleY);
 		
 	}
+
+ 	//"TexturePacker/Sprites/TimerBar/UI_TimerBar.plist";
+ 	//m_TimerBar = ProgressTimer::create(m_TimerBarSprite);
+ 	//m_TimerBar->setType(ProgressTimer::Type::BAR);
+
+
+ 	
+	m_TimerBarSprite = Sprite::create("Loose/UI_TimerBar.png");
+
+	setTimerBar(ProgressTimer::create(m_TimerBarSprite));
+
+ 	getTimerBar()->setType(ProgressTimer::Type::BAR);
+	getTimerBar()->setMidpoint(Vec2(0.0f, 0.5f));
+	getTimerBar()->setBarChangeRate(Vec2(1.0f, 0.0f));
+	getTimerBar()->setPercentage(100.0f);
+	getTimerBar()->setPosition(Vec2(m_fTimerBarStartPosX, m_fTimerBarStartPosY));
+	
+
+ 	
+	//m_TimerBar->setMidpoint(Vec2(0.0f, 0.5f));
+	//m_TimerBar->setBarChangeRate(Vec2(1.0f, 0.0f));
+	//m_TimerBar->setPercentage(100.0f);
+	//m_TimerBar->setPosition(Vec2(0, 0));
+	//m_TimerBar->setParent(IGCGameLayer::ActiveInstance());
+ 	
+ 	
 
 }
 
@@ -93,7 +119,7 @@ using namespace cocos2d;
 		{
 			setCurrentTime(getCurrentTime() - getTimerDecreaseValue()); //Starting at 100% this counts down in 1's to 0
 
-			
+			getTimerBar()->setPercentage(100 * getCurrentTime() / getTotalTimerDuration());
 			SetScale(getCurrentTime() / m_fScaleDecreaseX, m_fScaleDecreaseY);// Scale for the timer bar being decremented
 
 			getTimerText()->setString("Air "+ std::to_string(getCurrentTime()) + "%" ); //Setting Current time to text to be shown on the screen
