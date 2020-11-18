@@ -822,6 +822,7 @@ void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 			)
 		{
 			m_pcGCOPlayer->SetCanJump (false);
+			m_pcGCOPlayer->FallDamage();
 		}
 	}
 }
@@ -994,6 +995,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 		)
 	{
 		m_pcGCOPlayer->SetCanJump (true);
+		m_pcGCOPlayer->FallDamage();
 	}
 }
 
