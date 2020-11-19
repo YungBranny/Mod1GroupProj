@@ -260,14 +260,14 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// add label
 	///////////////////////////////////////////////////////////////////////////
 
-	// Mia: Create and initialize the Label with instructions, then set the Font and then the Size
-	Label* pLabel = Label::createWithTTF("Collect the five Keys to open the Door before the Air Timer runs out!", "fonts/SaltyOcean.ttf", 30);
+	//// Mia: Create and initialize the Label with instructions, then set the Font and then the Size
+	//Label* pLabel = Label::createWithTTF("Collect the five Keys to open the Door before the Air Timer runs out!", "fonts/SaltyOcean.ttf", 30);
 
-	// Mia: Position the label to the top centre of the screen
-	pLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 175));
+	//// Mia: Position the label to the top centre of the screen
+	//pLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 175));
 
-	// Mia: Add the label as a child to this Game Layer
-	this->addChild(pLabel, 1);
+	//// Mia: Add the label as a child to this Game Layer
+	//this->addChild(pLabel, 1);
 
 	//Mia: Added Background
 	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
@@ -277,7 +277,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		m_pcGCSprBackGround->SetScale(1, 1);
 		m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
-		playBackgroundMusic(); // Mia: Calling 'backgroundMusic' Function, so the Audio plays as soon as level loads
+		playBackgroundMusic(); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
 	}
 
 	m_pcGCTimer = new CGCObjTimer();
