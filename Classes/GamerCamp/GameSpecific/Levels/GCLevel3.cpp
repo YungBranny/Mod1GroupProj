@@ -3,15 +3,15 @@
 // Distributed under the MIT license - see readme.md
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "GCGameLayerPlatformer.h"
+#include "GCLevel3.h"
 #include <algorithm>
 #include <stdlib.h> 
 
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 
 #include "MenuScene.h"
-#include "GamerCamp/GameSpecific/Levels/GCLevel2.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
+#include "GamerCamp/GameSpecific/Levels/GCLevel3.h"
 #include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 #include "GamerCamp/GameSpecific/Player/GCObjPlayer.h"
 #include "GamerCamp/GameSpecific/Platforms/GCObjPlatform.h" 
@@ -58,37 +58,24 @@
 USING_NS_CC;
 
 
-///////////////////////////////////////////////////////////////////////////
-// this just demos how simple it is to turn on/off logging on a define....
-#define ENABLE_COLLISION_TEST_LOGGING
-
-#if defined (ENABLE_COLLISION_TEST_LOGGING)
-
-	#define COLLISIONTESTLOG( str )		CCLOG( str )
-
-#else
-
-	#define COLLISIONTESTLOG( str )		/*nothing*/
-
-#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // Constructor
 ///////////////////////////////////////////////////////////////////////////////
-CGCGameLayerPlatformer::CGCGameLayerPlatformer()
-: IGCGameLayer					( GetGCTypeIDOf( CGCGameLayerPlatformer ) ) 
-, m_pcGCGroupItem				( nullptr )
-, m_pcGCGroupInvader			( nullptr )
-, m_pcGCGroupProjectilePlayer	( nullptr )
-, m_pcGCTimer					( nullptr )
-, m_pcGCSprBackGround			( nullptr )
-, m_pcGCOPlayer					( nullptr )
-, m_bResetWasRequested			( false )
-, m_bQuitWasRequested			( false )
-, m_pcGCOKeys					( nullptr )
-, m_pcGCOKeys1					( nullptr )
-, m_pcGCOKeys2					( nullptr )
+GCLevel3::GCLevel3 ()
+	: IGCGameLayer (GetGCTypeIDOf (GCLevel3))
+	, m_pcGCGroupItem (nullptr)
+	, m_pcGCGroupInvader (nullptr)
+	, m_pcGCGroupProjectilePlayer (nullptr)
+	, m_pcGCTimer (nullptr)
+	, m_pcGCSprBackGround (nullptr)
+	, m_pcGCOPlayer (nullptr)
+	, m_bResetWasRequested (false)
+	, m_bQuitWasRequested (false)
+	, m_pcGCOKeys (nullptr)
+	, m_pcGCOKeys1 (nullptr)
+	, m_pcGCOKeys2 (nullptr)
 
 {
 	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
@@ -101,48 +88,48 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 //////////////////////////////////////////////////////////////////////////
 // Destructor
 //////////////////////////////////////////////////////////////////////////
-CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
+GCLevel3::~GCLevel3 ()
 {
 }
 
-void CGCGameLayerPlatformer::keyCollected() // Mia: This function adds one more Key onto how many the Player obtains
+void GCLevel3::keyCollected () // Mia: This function adds one more Key onto how many the Player obtains
 {
 	m_iKeysCollected++; // Mia: Adds a Key
-	CCLOG("Key Collected."); // Mia: Checks to make sure Player has picked up Key only once
+	CCLOG ("Key Collected."); // Mia: Checks to make sure Player has picked up Key only once
 }
 
-void CGCGameLayerPlatformer::addOnTime()
+void GCLevel3::addOnTime ()
 {
 	// Mia: Replaces Current Air Time when Player picks up Timer PickUp by Getting Current Air Time and
 	// Calling the Increase Value (of 20) that I created in Dan's 'GCObjTimer.cpp'
-	m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
-	CCLOG("Time PickUp Collected."); // Mia: Check to make sure Player has picked up Timer Pick Up only once
+	m_pcGCTimer->setCurrentTime (m_pcGCTimer->getCurrentTime () + m_pcGCTimer->getTimerIncreaseValue ());
+	CCLOG ("Time PickUp Collected."); // Mia: Check to make sure Player has picked up Timer Pick Up only once
 
 }
 
-void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
+void GCLevel3::playBackgroundMusic () // Mia: Function that is called when we want the Background Music to play
 {
-	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
+	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance ();
+	m_pcGCBackgroundAudio->playBackgroundMusic ("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
 }
 
-void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
+void GCLevel3::playKeyAudio () // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
-	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Key/CollectKey.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance ();
+	m_pcGCSoundEffectsAudio->playEffect ("Sounds/Collectables/Key/CollectKey.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 
-void CGCGameLayerPlatformer::playTimerPickUpAudio() // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
+void GCLevel3::playTimerPickUpAudio () // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
 {
-	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Timer/TimerPickUp.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance ();
+	m_pcGCSoundEffectsAudio->playEffect ("Sounds/Collectables/Timer/TimerPickUp.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
-void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is called when we want the Door Opened Sound Effect to play
+void GCLevel3::playDoorOpeningAudio () // Mia: Function that is called when we want the Door Opened Sound Effect to play
 {
-	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/Door/OpeningDoor.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance ();
+	m_pcGCSoundEffectsAudio->playEffect ("Sounds/Door/OpeningDoor.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -151,14 +138,14 @@ void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is cal
 // fixes the case where an IGCGameLayer with a different mapping was
 // pushed over this one on Director's scene stack
 //////////////////////////////////////////////////////////////////////////
-void CGCGameLayerPlatformer::onEnter()
+void GCLevel3::onEnter ()
 {
-	IGCGameLayer::onEnter();
+	IGCGameLayer::onEnter ();
 
 	//////////////////////////////////////////////////////////////////////////
 	// init the actions
 	// N.B. these 
-	cocos2d::EventKeyboard::KeyCode aeKeyCodesForActions[] =
+	cocos2d::EventKeyboard::KeyCode aeKeyCodesForActions [] =
 	{
 		EventKeyboard::KeyCode::KEY_UP_ARROW,		// EPA_Up,
 		EventKeyboard::KeyCode::KEY_DOWN_ARROW,		// EPA_Down,
@@ -167,23 +154,20 @@ void CGCGameLayerPlatformer::onEnter()
 		EventKeyboard::KeyCode::KEY_SPACE,			// EPA_Fire	
 	};
 
-	u32 uSizeOfActionArray = ( sizeof(aeKeyCodesForActions) / sizeof(cocos2d::EventKeyboard::KeyCode) );
+	u32 uSizeOfActionArray = ( sizeof (aeKeyCodesForActions) / sizeof (cocos2d::EventKeyboard::KeyCode) );
 
 	// call base class function	to init the keyboard manager
-	AppDelegate::InitialiseKeyboardManager( uSizeOfActionArray, aeKeyCodesForActions );
+	AppDelegate::InitialiseKeyboardManager (uSizeOfActionArray, aeKeyCodesForActions);
 }
 
 //////////////////////////////////////////////////////////////////////////
-void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact )
-{
-	COLLISIONTESTLOG( "( standard function!) the player hit an item!" );
-}
+
 
 //////////////////////////////////////////////////////////////////////////
 // on create
 //////////////////////////////////////////////////////////////////////////
 //virtual
-void CGCGameLayerPlatformer::VOnCreate ()
+void GCLevel3::VOnCreate ()
 {
 	///////////////////////////////////////////////////////////////////////////
 	// cache some useful values 
@@ -237,7 +221,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	MenuItemImage* pResetItem
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
-			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnResetButton, this));
+			CC_CALLBACK_1 (GCLevel3::Callback_OnResetButton, this));
 
 	pResetItem->setPosition (Vec2 (( ( visibleSize.width - ( pResetItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( ( pResetItem->getContentSize ().height * 0.5f ) + origin.y ) )));
@@ -245,7 +229,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	MenuItemImage* pQuitItem
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
-			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnQuitButton, this));
+			CC_CALLBACK_1 (GCLevel3::Callback_OnQuitButton, this));
 
 	pQuitItem->setPosition (Vec2 (( ( visibleSize.width - ( pQuitItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( visibleSize.height - ( pQuitItem->getContentSize ().height * 0.5f ) ) + origin.y )));
@@ -261,31 +245,31 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	///////////////////////////////////////////////////////////////////////////
 
 	// Mia: Create and initialize the Label with instructions, then set the Font and then the Size
-	Label* pLabel = Label::createWithTTF("Collect the five Keys to open the Door before the Air Timer runs out!", "fonts/SaltyOcean.ttf", 30);
+	Label* pLabel = Label::createWithTTF ("Collect the five Keys to open the Door before the Air Timer runs out!", "fonts/SaltyOcean.ttf", 30);
 
 	// Mia: Position the label to the top centre of the screen
-	pLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 175));
+	pLabel->setPosition (Vec2 (visibleSize.width / 2, visibleSize.height - 175));
 
 	// Mia: Add the label as a child to this Game Layer
-	this->addChild(pLabel, 1);
+	this->addChild (pLabel, 1);
 
 	//Mia: Added Background
 	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite ();
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
-		m_pcGCSprBackGround->SetScale(1, 1);
+		m_pcGCSprBackGround->SetScale (1, 1);
 		m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
-		playBackgroundMusic(); // Mia: Calling 'backgroundMusic' Function, so the Audio plays as soon as level loads
+		playBackgroundMusic (); // Mia: Calling 'backgroundMusic' Function, so the Audio plays as soon as level loads
 	}
 
-	m_pcGCTimer = new CGCObjTimer();
+	m_pcGCTimer = new CGCObjTimer ();
 
-	this->addChild(m_pcGCTimer->getTimerText(), 10);
-	this->addChild(m_pcGCTimer->getTimerBar(), 50);
-	this->addChild(m_pcGCTimer->getTimerBarUI(), 51);
-	
+	this->addChild (m_pcGCTimer->getTimerText (), 10);
+	this->addChild (m_pcGCTimer->getTimerBar (), 50);
+	this->addChild (m_pcGCTimer->getTimerBarUI (), 51);
+
 
 	///////////////////////////////////////////////////////////////////////////
 	// set up physics 
@@ -361,7 +345,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// load level data from Ogmo Editor
 
 	// read the oel file for level 0
-	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/GCOgmoTemplateLevel.oel")).c_str ());
+	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level.oel")).c_str ());
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// note: we have now created all the items, platforms, & invaders specified in the level file
@@ -373,7 +357,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	// starting position
 	cocos2d::Vec2 v2MarioStartPos (60, 120);
-	
+
 	//(( origin.x + ( visibleSize.width * 0.5f ) ),
 	//	( origin.y + ( visibleSize.height * 0.5f ) ));
 
@@ -388,7 +372,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	// create player object
 	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory ().CreateInstance (sParams, v2MarioStartPos) );
-	m_pcGCOPlayer->setJumpHeight (11.5f);
+	m_pcGCOPlayer->setJumpHeight (13.0f);
 
 	//////////////////////////////////////////////////////////////////////////
 	// test new collision handler code
@@ -405,10 +389,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// GetCollisionManager().AddCollisionHandler( CB_TestCollisionHandler );
 	// 
 
-	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact) -> void
-		{
-			COLLISIONTESTLOG ("(lambda) the player hit an item!");
-		});
 
 	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjScalingFallingPlatform& rcItem, const b2Contact& rcContact) -> void
 		{
@@ -420,20 +400,19 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			//	
 		});
 
-	GetCollisionManager().AddCollisionHandler([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcLadder, const b2Contact& rcContact) -> void
-	{
-		COLLISIONTESTLOG("Collided with Ladder.");
+	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcLadder, const b2Contact& rcContact) -> void
+		{
 
-		if( rcContact.IsTouching() )
+			if (rcContact.IsTouching ())
 			{
-				rcPlayer.setOnLadder(true);
+				rcPlayer.setOnLadder (true);
 			}
 
-		else if (rcContact.IsTouching () == false)
-		{
-			rcPlayer.setOnLadder(false);
-		}
-	});
+			else if (rcContact.IsTouching () == false)
+			{
+				rcPlayer.setOnLadder (false);
+			}
+		});
 
 
 
@@ -483,14 +462,14 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	(CGCObjPlayer& rcPlayer, CGCObjTravelatorPlatform& rcTravelatorPlatform, const b2Contact& rcContact) -> void
 		{
 
-			if (rcContact.IsTouching() && rcContact.GetFixtureB()->IsSensor())
+			if (rcContact.IsTouching () && rcContact.GetFixtureB ()->IsSensor ())
 			{
 
 				rcPlayer.setOnTravelator (true);
 
 				//rcPlayer.SetCanJump (true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
 
-				rcPlayer.SetVelocity(cocos2d::Vec2(rcTravelatorPlatform.getVelocity(),rcPlayer.GetVelocity().y));
+				rcPlayer.SetVelocity (cocos2d::Vec2 (rcTravelatorPlatform.getVelocity (), rcPlayer.GetVelocity ().y));
 
 				// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
 
@@ -513,8 +492,8 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		{
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
-			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
-			//	m_bPlayerKeysGathered = true;
+				//ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel3 >::CreateScene ()));
+				//	m_bPlayerKeysGathered = true;
 
 				playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
 			}
@@ -564,7 +543,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		[this]
 	(CGCBasicEnemies& rcEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
- 			//CGCObjectManager::ObjectKill (&rcEnemies);
+			//CGCObjectManager::ObjectKill (&rcEnemies);
 			//m_pcGCTimer->ResetTimer ();
 			//CGCObjectManager::ObjectKill (&rcEnemies);
 			CCLOG ("Player Died.");
@@ -585,7 +564,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	(CGCMovingEnemies& rcMEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
 			CGCObjectManager::ObjectKill (&rcMEnemies);
-			CCLOG("HEUFH");
+			CCLOG ("HEUFH");
 			if (rcMEnemies.getJustCollided () == false)
 			{
 				rcMEnemies.setJustCollided (true);
@@ -607,7 +586,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		[]
 	(CGCMovingEnemies& rcMEnemies, GCObjEnemyMovementCollider& rcCollider, const b2Contact& rcContact) -> void
 		{
-			if (rcMEnemies.getChangedDir() == false)
+			if (rcMEnemies.getChangedDir () == false)
 			{
 				if (rcMEnemies.getDefaultDirection () == true)
 				{
@@ -635,7 +614,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	(CGCObjScalingFallingPlatform& rcFallingPlatforms, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 
 		{
-			if (rcContact.IsTouching ()&& rcContact.GetFixtureB()->IsSensor())
+			if (rcContact.IsTouching () && rcContact.GetFixtureB ()->IsSensor ())
 			{
 				if (rcFallingPlatforms.GetContactWithPlayer () == false)
 				{
@@ -670,37 +649,37 @@ void CGCGameLayerPlatformer::VOnCreate ()
 // on update
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
+void GCLevel3::VOnUpdate (f32 fTimeStep)
 {
-	IGCGameLayer::VOnUpdate( fTimeStep );
-	
+	IGCGameLayer::VOnUpdate (fTimeStep);
+
 	// this shows how to iterate and respond to the box2d collision info
-	HandleCollisions();	
+	HandleCollisions ();
 
 
-	m_pcGCTimer->Update();
-	
-	if( ResetWasRequested() )
+	m_pcGCTimer->Update ();
+
+	if (ResetWasRequested ())
 	{
-		VOnReset();
+		VOnReset ();
 		m_iKeysCollected = 0; // Mia: Resets Keys Collected
-		ResetRequestWasHandled();
-		m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Reset
-		playBackgroundMusic(); // Mia: Calls this Function, so it doesn't overlay
+		ResetRequestWasHandled ();
+		m_pcGCBackgroundAudio->stopBackgroundMusic (); // Mia: Stops all Background Audio on Reset
+		playBackgroundMusic (); // Mia: Calls this Function, so it doesn't overlay
 	}
 
-	if( QuitWasRequested() )
+	if (QuitWasRequested ())
 	{
-		QuitRequestWasHandled();
-		ReplaceScene( TransitionRotoZoom::create( 1.0f, CMenuLayer::scene() ) );
+		QuitRequestWasHandled ();
+		ReplaceScene (TransitionRotoZoom::create (1.0f, CMenuLayer::scene ()));
 	}
 
 
-	if (m_pcGCTimer->getCurrentTime() <= 0)
+	if (m_pcGCTimer->getCurrentTime () <= 0)
 	{
-		m_pcGCTimer->setCurrentTime(m_pcGCTimer->getTotalTimerDuration());
+		m_pcGCTimer->setCurrentTime (m_pcGCTimer->getTotalTimerDuration ());
 
-		RequestReset();
+		RequestReset ();
 	}
 }
 
@@ -709,7 +688,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 // on destroy
 ///////////////////////////////////////////////////////////////////////////////
 // virtual
-void CGCGameLayerPlatformer::VOnDestroy()
+void GCLevel3::VOnDestroy ()
 {
 	///////////////////////////////////////////////////////////////////////////
 	// clean up anything we allocated in opposite order to creation
@@ -718,7 +697,7 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	m_pcGCOPlayer = nullptr;
 
 	// clean up the level
-	m_cLevelLoader.DestroyObjects();
+	m_cLevelLoader.DestroyObjects ();
 
 	delete m_pcGCSprBackGround;
 	m_pcGCSprBackGround = nullptr;
@@ -743,16 +722,16 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	//delete m_pcGCGroupItem;
 	//m_pcGCGroupItem = nullptr;
 
-	IGCGameLayer::VOnDestroy();
+	IGCGameLayer::VOnDestroy ();
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
 // on quit button
 ///////////////////////////////////////////////////////////////////////////////
-void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
+void GCLevel3::Callback_OnQuitButton (Ref* pSender)
 {
-	RequestQuit();
+	RequestQuit ();
 }
 
 
@@ -760,9 +739,9 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 ///////////////////////////////////////////////////////////////////////////////
 // on reset button
 ///////////////////////////////////////////////////////////////////////////////
-void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
+void GCLevel3::Callback_OnResetButton (Ref* pSender)
 {
-	RequestReset();
+	RequestReset ();
 }
 
 
@@ -772,7 +751,7 @@ void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 // contact exists
 ///////////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
+void GCLevel3::BeginContact (b2Contact* pB2Contact)
 {
 
 }
@@ -784,7 +763,7 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 // contact exists
 ///////////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
+void GCLevel3::EndContact (b2Contact* pB2Contact)
 {
 	{
 		const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
@@ -830,7 +809,7 @@ void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 			)
 		{
 			m_pcGCOPlayer->SetCanJump (false);
-			m_pcGCOPlayer->FallDamage();
+			m_pcGCOPlayer->FallDamage ();
 		}
 	}
 }
@@ -841,42 +820,42 @@ void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 // insert any logic that needs to be done before a contact is resolved
 ///////////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* pOldManifold ) 
+void GCLevel3::PreSolve (b2Contact* pB2Contact, const b2Manifold* pOldManifold)
 {
-	const b2Fixture* pFixtureA = pB2Contact->GetFixtureA();
-	const b2Fixture* pFixtureB = pB2Contact->GetFixtureB();
+	const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
+	const b2Fixture* pFixtureB = pB2Contact->GetFixtureB ();
 
-	const b2Body* pBodyA = pFixtureA->GetBody();
-	const b2Body* pBodyB = pFixtureB->GetBody();
+	const b2Body* pBodyA = pFixtureA->GetBody ();
+	const b2Body* pBodyB = pFixtureB->GetBody ();
 
-	CGCObjSpritePhysics* pGcSprPhysA = (CGCObjSpritePhysics*) pBodyA->GetUserData();
+	CGCObjSpritePhysics* pGcSprPhysA = (CGCObjSpritePhysics*) pBodyA->GetUserData ();
 	// if( this is not a GC object )
-	if( pGcSprPhysA == nullptr )
+	if (pGcSprPhysA == nullptr)
 	{
 		return;
 	}
 
-	CGCObjSpritePhysics* pGcSprPhysB = (CGCObjSpritePhysics*) pBodyB->GetUserData();
+	CGCObjSpritePhysics* pGcSprPhysB = (CGCObjSpritePhysics*) pBodyB->GetUserData ();
 	// if( this is not a GC object )
-	if( pGcSprPhysB == nullptr )
+	if (pGcSprPhysB == nullptr)
 	{
 		return;
 	}
 
 	// ignore contact between player projectile and item for collision resolution purposes
-	if(	pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() )
+	if (pGcSprPhysA->GetGCTypeID () != pGcSprPhysB->GetGCTypeID ())
 	{
-		if(		(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjPlayer ) )
-				 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) ) )
-			||	(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) )
-				 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer) ) ) )
+		if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) ) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
 		{
 			// ignore the collision!
 
 			if (m_pcGCOPlayer->GetVelocity ().y > 0)
 			{
-					// ignore the collision!
-					pB2Contact->SetEnabled (false);
+				// ignore the collision!
+				pB2Contact->SetEnabled (false);
 
 			}
 
@@ -895,7 +874,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 			//
 			//
 
-			
+
 		}
 
 		if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
@@ -909,14 +888,14 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 			{
 				// ignore the collision!
 				pB2Contact->SetEnabled (false);
-				
+
 			}
 
-		
-				if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+
+			if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+			{
+				if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor () || pB2Contact->IsTouching () && pB2Contact->GetFixtureA ()->IsSensor ())
 				{
-					if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor () || pB2Contact->IsTouching () && pB2Contact->GetFixtureA ()->IsSensor ())
-					{
 					// ignore the collision!
 
 
@@ -939,7 +918,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) ))
 		{
 			// ignore the collision!
-			
+
 			if (m_pcGCOPlayer->GetVelocity ().y > 3.0f)
 			{
 				pB2Contact->SetEnabled (false);
@@ -947,12 +926,12 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 
 			if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor ())
 			{
-			if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-			{
-				// ignore the collision!
-			
-			
+				if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+				{
 					// ignore the collision!
+
+
+						// ignore the collision!
 					pB2Contact->SetEnabled (true);
 				}
 			}
@@ -1018,12 +997,8 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) ) )
 		)
 	{
-			m_pcGCOPlayer->SetCanJump (true);
-			m_pcGCOPlayer->FallDamage ();
-			//if (m_pcGCOPlayer->getPlayerDiedFromFalling())
-			//{
-			//	CGCObjectManager::ObjectKill (m_pcGCOPlayer);
-			//}
+		m_pcGCOPlayer->SetCanJump (true);
+		m_pcGCOPlayer->FallDamage ();
 
 	}
 }
@@ -1035,7 +1010,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 // e.g. check the types and double the impulse
 ///////////////////////////////////////////////////////////////////////////////
 //virtual 
-void CGCGameLayerPlatformer::PostSolve( b2Contact* pB2Contact, const b2ContactImpulse* pImpulse )
+void GCLevel3::PostSolve (b2Contact* pB2Contact, const b2ContactImpulse* pImpulse)
 {
 }
 
@@ -1049,26 +1024,26 @@ void CGCGameLayerPlatformer::PostSolve( b2Contact* pB2Contact, const b2ContactIm
 // e.g. for gamplay reasons like jumping up through a platform
 // 
 ///////////////////////////////////////////////////////////////////////////////
-void CGCGameLayerPlatformer::HandleCollisions()
+void GCLevel3::HandleCollisions ()
 {
 	// check for collisions
 	b2Body* pBodyToDestroy = nullptr;
-	for(	const b2Contact* pB2Contact	= IGCGameLayer::ActiveInstance()->B2dGetWorld()->GetContactList();
-			nullptr						!= pB2Contact;
-			pB2Contact					= pB2Contact->GetNext() )
+	for (const b2Contact* pB2Contact = IGCGameLayer::ActiveInstance ()->B2dGetWorld ()->GetContactList ();
+		nullptr != pB2Contact;
+		pB2Contact = pB2Contact->GetNext ())
 	{
-		const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A( pB2Contact );
-		const b2Fixture* pFixtureB = CGCObjSpritePhysics::FromB2DContactGetFixture_B( pB2Contact );
+		const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A (pB2Contact);
+		const b2Fixture* pFixtureB = CGCObjSpritePhysics::FromB2DContactGetFixture_B (pB2Contact);
 
 		// return if either physics body has null user data
-		CGCObjSpritePhysics* pGcSprPhysA = CGCObjSpritePhysics::FromB2DFixtureGetSpritePhysics( pFixtureA );
-		if( !pGcSprPhysA )
+		CGCObjSpritePhysics* pGcSprPhysA = CGCObjSpritePhysics::FromB2DFixtureGetSpritePhysics (pFixtureA);
+		if (!pGcSprPhysA)
 		{
 			return;
 		}
 
-		CGCObjSpritePhysics* pGcSprPhysB = CGCObjSpritePhysics::FromB2DFixtureGetSpritePhysics( pFixtureB );
-		if( !pGcSprPhysB )
+		CGCObjSpritePhysics* pGcSprPhysB = CGCObjSpritePhysics::FromB2DFixtureGetSpritePhysics (pFixtureB);
+		if (!pGcSprPhysB)
 		{
 			return;
 		}
@@ -1078,20 +1053,20 @@ void CGCGameLayerPlatformer::HandleCollisions()
 		// 
 		// Mario has a fixture that is a sensor with id 'bottom_left' 
 		// and this is what we're checking for :)
-		const std::string*	pstrCheckMe		= cocos2d::GB2ShapeCache::getFixtureIdText( pFixtureA );
-		bool				bNameMatches	= ( 0 == pstrCheckMe->compare( "WillyBottomSensor" ) );
-		bool				bIsASensor		= pFixtureA->IsSensor();
+		const std::string* pstrCheckMe = cocos2d::GB2ShapeCache::getFixtureIdText (pFixtureA);
+		bool				bNameMatches = ( 0 == pstrCheckMe->compare ("WillyBottomSensor") );
+		bool				bIsASensor = pFixtureA->IsSensor ();
 
-		if(	pstrCheckMe && bNameMatches && bIsASensor )
+		if (pstrCheckMe && bNameMatches && bIsASensor)
 		{
 			int i = 0;
-			++i;			
+			++i;
 		}
 
-		pstrCheckMe = cocos2d::GB2ShapeCache::getFixtureIdText( pFixtureB );
-		if( 	pstrCheckMe 
-			&&	( 0 == pstrCheckMe->compare( "bottom_left" ) ) 
-			&&	pFixtureB->IsSensor() )
+		pstrCheckMe = cocos2d::GB2ShapeCache::getFixtureIdText (pFixtureB);
+		if (pstrCheckMe
+			&& ( 0 == pstrCheckMe->compare ("bottom_left") )
+			&& pFixtureB->IsSensor ())
 		{
 			int i = 0;
 			++i;
@@ -1099,22 +1074,22 @@ void CGCGameLayerPlatformer::HandleCollisions()
 
 		// is this collision an invader and a projectile?
 		// if so, kill the invader
-		if(	   pB2Contact->IsEnabled()
-			&& ( pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() ) )
+		if (pB2Contact->IsEnabled ()
+			&& ( pGcSprPhysA->GetGCTypeID () != pGcSprPhysB->GetGCTypeID () ))
 		{
 			// returns a valid ptr if instance's EXACT type matches or nullptr if not
-			CGCObjInvader* pInvaderA = CGCObject::SafeCastToDerived< CGCObjInvader* >( pGcSprPhysA );
-			CGCObjInvader* pInvaderB = CGCObject::SafeCastToDerived< CGCObjInvader* >( pGcSprPhysB );
+			CGCObjInvader* pInvaderA = CGCObject::SafeCastToDerived< CGCObjInvader* > (pGcSprPhysA);
+			CGCObjInvader* pInvaderB = CGCObject::SafeCastToDerived< CGCObjInvader* > (pGcSprPhysB);
 
 			// at least one of them is an invader?
-			if(	pInvaderA || pInvaderB )
+			if (pInvaderA || pInvaderB)
 			{
-				CGCObjInvader*	pKillMe			= ( pInvaderA ? pInvaderA : pInvaderB );
-				GCTypeID		tidNotInvader	= ( pInvaderA ? pGcSprPhysB->GetGCTypeID() : pGcSprPhysA->GetGCTypeID() );
-			
-				if( GetGCTypeIDOf( CGCObjProjectilePlayer ) == tidNotInvader )
+				CGCObjInvader* pKillMe = ( pInvaderA ? pInvaderA : pInvaderB );
+				GCTypeID		tidNotInvader = ( pInvaderA ? pGcSprPhysB->GetGCTypeID () : pGcSprPhysA->GetGCTypeID () );
+
+				if (GetGCTypeIDOf (CGCObjProjectilePlayer) == tidNotInvader)
 				{
-					CGCObjectManager::ObjectKill( pKillMe );
+					CGCObjectManager::ObjectKill (pKillMe);
 				}
 			}
 		}

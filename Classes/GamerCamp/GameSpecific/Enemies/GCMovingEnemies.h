@@ -99,7 +99,7 @@ public:
 	void Movement ();							  //Function which 
 
 	//virtual void VOnResourceAcquire (void);		  //Default functions for spritephysics
-	//virtual void VOnResurrected (void);			  //Default functions for spritephysics
+	virtual void VOnResurrected (void);			  //Default functions for spritephysics
 	//virtual void VOnResourceRelease (void);		  //Default functions for spritephysics
 	//virtual void VOnReset (void);				  //Default functions for spritephysics
 	virtual void VOnUpdate (f32 fTimestep);		  //Default functions for spritephysics

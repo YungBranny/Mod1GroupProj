@@ -29,6 +29,7 @@ CGCMovingEnemies::CGCMovingEnemies ()
 	, m_bJustChangedDir				(false)
 {
 	InitialiseMovementDirection (); //calls the function when this class is initalised
+	
 }
 
 //this function checks if the bool"m_bMovingLeftAndRight  is true it 
@@ -72,11 +73,12 @@ void CGCMovingEnemies::InitialiseMovementDirection ()
 //	CGCObjSpritePhysics::VOnResourceRelease ();
 //}
 
-//void CGCMovingEnemies::VOnResurrected ()
-//{
-//	CGCObjSpritePhysics::VOnResurrected ();
-//	GetPhysicsBody ()->SetGravityScale (getGravity ());
-//}
+void CGCMovingEnemies::VOnResurrected ()
+{
+	CGCObjSpritePhysics::VOnResurrected ();
+	//GetPhysicsBody ()->SetGravityScale (getGravity ());
+	GetPhysicsBody ()->SetGravityScale (0.0f);
+}
 
 //changes the direction if the current position has reached the end desitination 
 void CGCMovingEnemies::ChangeDirection () 

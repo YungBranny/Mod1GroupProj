@@ -79,6 +79,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Ladder">
       <UniqueIdentifier>{95a2c300-3c7b-4780-a848-bb600954fc7b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Levels">
+      <UniqueIdentifier>{41ab3e56-6449-4eea-bc5f-2bcb4098b7bf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -266,6 +269,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GcEnemyMovementCollider.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasePlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel3.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -469,6 +481,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCEnemyMovementCollider.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasePlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel3.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

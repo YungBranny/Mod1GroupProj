@@ -31,31 +31,33 @@ GCFACTORY_IMPLEMENT_CREATEABLECLASS( CGCObjPlayer );
 //////////////////////////////////////////////////////////////////////////
 // GetGCTypeIDOf uses the template in GCTypeID to generate a unique ID for 
 // this type - need this to construct our base type
-CGCObjPlayer::CGCObjPlayer()
-	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjPlayer))
-	, m_fMaximumMoveForce_Horizontal(20.0f)
-	, m_fDragCoefficient_Linear(0.25f)
-	, m_fDragCoefficient_Square(0.2f)
-	, m_fNoInput_ExtraDrag_Square(0.2f)
-	, m_fNoInput_VelocityThreshold(0.25f)
-	, m_pcControllerActionToKeyMap(nullptr)
-	, m_fLivesFontSize(35.0f)
-	, m_iLivesTextOutlineSize(1)
-	, m_iLivesBarHeightX(695)
-	, m_iLivesBarHeightY(500)
-	, m_bCanJump(true)
-	, m_bOnTravelator(false)
-	, m_iNumberOfLives(1)
-	, m_v2MovingRightVelocity(6.0f, 0)
-	, m_v2MovingLeftVelocity(-m_v2MovingRightVelocity)
-	, m_v2MovingUpVelocity(3.0f, 0)
-	, m_v2MovingDownVelocity(-m_v2MovingUpVelocity)
-	, m_v2StopMovingVelocity(0, 0)
-	, m_bOnLadder(false)
-	, m_fStartPositionY(0)
-	, m_fEndPositionY(0)
-	, m_fDropDistance(0)
-	, m_fMaximumDropDistance(20.0f)
+CGCObjPlayer::CGCObjPlayer ()
+	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjPlayer))
+	, m_fMaximumMoveForce_Horizontal (20.0f)
+	, m_fDragCoefficient_Linear (0.25f)
+	, m_fDragCoefficient_Square (0.2f)
+	, m_fNoInput_ExtraDrag_Square (0.2f)
+	, m_fNoInput_VelocityThreshold (0.25f)
+	, m_pcControllerActionToKeyMap (nullptr)
+	, m_fLivesFontSize (35.0f)
+	, m_iLivesTextOutlineSize (1)
+	, m_iLivesBarHeightX (695)
+	, m_iLivesBarHeightY (500)
+	, m_bCanJump (true)
+	, m_bOnTravelator (false)
+	, m_iNumberOfLives (1)
+	, m_v2MovingRightVelocity (6.0f, 0)
+	, m_v2MovingLeftVelocity (-m_v2MovingRightVelocity)
+	, m_v2MovingUpVelocity (3.0f, 0)
+	, m_v2MovingDownVelocity (-m_v2MovingUpVelocity)
+	, m_v2StopMovingVelocity (0, 0)
+	, m_bOnLadder (false)
+	, m_fStartPositionY (0)
+	, m_fEndPositionY (0)
+	, m_fDropDistance (0)
+	, m_fMaximumDropDistance (20.0f)
+	, m_fJumpHeight (12.5f)
+	, m_bPlayerDiedFromFalling (false)
 {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -150,7 +152,7 @@ void CGCObjPlayer::VOnResourceRelease()
 void CGCObjPlayer::VOnResurrected(void)
 {
 	CGCObjSpritePhysics::VOnResurrected();
-	m_bv2jumpVel = b2Vec2(GetPhysicsBody()->GetLinearVelocity().x, 10.7f);
+	m_bv2jumpVel = b2Vec2(GetPhysicsBody()->GetLinearVelocity().x, m_fJumpHeight);
 }
 
 
@@ -413,6 +415,7 @@ void CGCObjPlayer::FallDamage()
 		if( m_fEndPositionY <= m_fDropDistance )
 		{
 			CCLOG("Player dead.");
+			m_bPlayerDiedFromFalling = true;
 		}
 
 		m_fStartPositionY = GetPhysicsBody()->GetPosition().y;

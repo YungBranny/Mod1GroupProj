@@ -60,12 +60,13 @@ private:
 	float	m_fEndPositionY;
 	float	m_fDropDistance;
 	float	m_fMaximumDropDistance;
+	float	m_fJumpHeight;
 
 	int		m_iNumberOfLives;
 
 	bool	m_bCanJump;
 	bool	m_bOnTravelator;
-
+	bool	m_bPlayerDiedFromFalling;
 	bool	m_bOnLadder;
 
 	cocos2d::Label* m_pLivesText;
@@ -86,8 +87,12 @@ public:
 	bool getOnTravelator() const { return m_bOnTravelator; }
 	void setOnTravelator(bool b) { m_bOnTravelator = b; }
 
+	bool getPlayerDiedFromFalling () { return m_bPlayerDiedFromFalling; };
 	bool getOnLadder() const { return m_bOnLadder; }
 	void setOnLadder(bool i) { m_bOnLadder = i; }
+
+	float getJumpHeight () const { return m_fJumpHeight; }
+	void setJumpHeight (float i) { m_fJumpHeight = i; }
 
 	//////////////////////////////////////////////////////////////////////////
 	// declare the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
