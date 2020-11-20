@@ -282,7 +282,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	m_pcGCTimer = new CGCObjTimer();
 
-	this->addChild(m_pcGCTimer->getTimerText(), 10);
+	//this->addChild(m_pcGCTimer->getTimerText(), 10);
 	this->addChild(m_pcGCTimer->getTimerBar(), 50);
 	this->addChild(m_pcGCTimer->getTimerBarUI(), 51);
 	
