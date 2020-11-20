@@ -91,6 +91,8 @@ private:
 	cocos2d::Vec2			m_v2StopMovingVelocity;				 //The velocitys for how fast the enemy should move
 	b2Vec2					m_bv2jumpVel;
 
+	b2Vec2					m_bv2CurrentPos;
+
 public:
 	CGCObjPlayer();
 
@@ -103,6 +105,9 @@ public:
 
 	float getJumpHeight () const { return m_fJumpHeight; }
 	void setJumpHeight (float i) { m_fJumpHeight = i; }
+
+	b2Vec2 getCurrentPos () const { return m_bv2CurrentPos; }
+
 
 	//cocos2d::Sprite* getLivesUI1() const { return m_pLivesUI1; }
 	//void setLivesUI1(cocos2d::Sprite* i) { m_pLivesUI1 = i; }

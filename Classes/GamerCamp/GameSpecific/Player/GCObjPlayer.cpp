@@ -65,6 +65,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fLivesStartPositionX (100)
 	, m_fLivesStartPositionY (1800)
 	, m_fLivesSpacingX (10.0f)
+	//, m_bv2CurrentPos(0,0)
 {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -111,6 +112,8 @@ void CGCObjPlayer::VOnResourceAcquire()
 	CGCObjSpritePhysics::VOnResourceAcquire();
 
 
+
+
 	// animate!
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( GetFactoryCreationParams()->strPlistFile );
 	//RunAction( GCCocosHelpers::CreateAnimationActionLoop( GCCocosHelpers::CreateAnimation( dicPList, pszAnim_marioJog ) ) );
@@ -145,6 +148,7 @@ void CGCObjPlayer::VOnReset()
 		GetPhysicsBody()->SetLinearVelocity( b2Vec2( 0.0f, 0.0f ) );
 		GetPhysicsBody()->SetTransform( IGCGameLayer::B2dPixelsToWorld( b2Vec2( v2SpritePos.x, v2SpritePos.y ) ), 0.0f );
 		GetPhysicsBody()->SetFixedRotation( true );
+		m_bv2CurrentPos = GetPhysicsBody ()->GetPosition ();
 	}
 }
 

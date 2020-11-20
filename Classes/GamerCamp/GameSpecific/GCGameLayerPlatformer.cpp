@@ -89,6 +89,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCOKeys					( nullptr )
 , m_pcGCOKeys1					( nullptr )
 , m_pcGCOKeys2					( nullptr )
+, m_bCheckIfPlayerIsAbovePlatform (false)
 
 {
 	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
@@ -783,7 +784,202 @@ void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 //virtual 
 void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 {
+	const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
+	const b2Fixture* pFixtureB = pB2Contact->GetFixtureB ();
 
+	const b2Body* pBodyA = pFixtureA->GetBody ();
+	const b2Body* pBodyB = pFixtureB->GetBody ();
+
+	CGCObjSpritePhysics* pGcSprPhysA = (CGCObjSpritePhysics*) pBodyA->GetUserData ();
+	// if( this is not a GC object )
+	if (pGcSprPhysA == nullptr)
+	{
+		return;
+	}
+
+	CGCObjSpritePhysics* pGcSprPhysB = (CGCObjSpritePhysics*) pBodyB->GetUserData ();
+	// if( this is not a GC object )
+	if (pGcSprPhysB == nullptr)
+	{
+		return;
+	}
+
+	//// ignore contact between player projectile and item for collision resolution purposes
+	//if(	pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() )
+	//{
+	//	if(		(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjPlayer ) )
+	//			 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) ) )
+	//		||	(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) )
+	//			 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer) ) ) )
+	//	{
+	//		// ignore the collision!
+
+	//		if (m_pcGCOPlayer->GetVelocity ().y > 0)
+	//		{
+	//				// ignore the collision!
+	//				pB2Contact->SetEnabled (false);
+
+	//		}
+
+	//		if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+	//		{
+	//			if (pB2Contact->GetFixtureA ()->IsSensor () || pB2Contact->GetFixtureB ())
+	//			{
+	//				// ignore the collision!
+	//				pB2Contact->SetEnabled (true);
+	//			}
+	//		}
+	//		// ignore the collision!
+	//		//pB2Contact->SetEnabled( true );
+	//		//
+	//		// insert logic relating to this collision here
+	//		//
+	//		//
+
+	//		
+	//	}
+
+	//	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) )
+	//		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
+	//			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
+	//	{
+	//		// ignore the collision!
+
+	//		if (m_pcGCOPlayer->GetVelocity ().y > 0)
+	//		{
+	//			// ignore the collision!
+	//			pB2Contact->SetEnabled (false);
+	//			
+	//		}
+
+	//	
+	//			if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+	//			{
+	//				if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor () || pB2Contact->IsTouching () && pB2Contact->GetFixtureA ()->IsSensor ())
+	//				{
+	//				// ignore the collision!
+
+
+	//					// ignore the collision!
+	//				pB2Contact->SetEnabled (true);
+	//			}
+	//		}
+	//		// ignore the collision!
+	//		//pB2Contact->SetEnabled( true );
+	//		//
+	//		// insert logic relating to this collision here
+	//		//
+	//		//
+
+
+	//	}
+
+
+	//	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) ))
+	//	{
+	//		// ignore the collision!
+	//		
+	//		if (m_pcGCOPlayer->GetVelocity ().y > 3.0f)
+	//		{
+	//			pB2Contact->SetEnabled (false);
+	//		}
+
+	//		if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor ())
+	//		{
+	//		if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+	//		{
+	//			// ignore the collision!
+	//		
+	//		
+	//				// ignore the collision!
+	//				pB2Contact->SetEnabled (true);
+	//			}
+	//		}
+	//		// ignore the collision!
+	//		//pB2Contact->SetEnabled( true );
+	//		//
+	//		// insert logic relating to this collision here
+	//		//
+	//		//
+
+
+	//	}
+	//}
+
+	//if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+	//	&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
+	//	|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
+	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
+	//{
+	//	// ignore the collision!
+
+	//	if (m_pcGCOPlayer->GetVelocity ().y > 0)
+	//	{
+	//		pB2Contact->SetEnabled (false);
+	//	}
+
+	//	if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+	//	{
+	//		if (pB2Contact->GetFixtureA ()->IsSensor () || pB2Contact->GetFixtureB ())
+	//		{
+	//			pB2Contact->SetEnabled (true);
+	//		}
+	//	}
+	//	// ignore the collision!
+	//	//pB2Contact->SetEnabled( true );
+	//	//
+	//	// insert logic relating to this collision here
+	//	//
+	//	//
+
+
+	//}
+
+	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) ) )
+		)
+	{
+
+
+		
+		if (m_pcGCOPlayer->GetVelocity ().y > 0)
+		{
+			m_bCheckIfPlayerIsAbovePlatform = false;
+			pB2Contact->SetEnabled (false);
+		}
+
+		if (m_pcGCOPlayer->GetVelocity ().y <= 0 && pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor () == true)
+		{
+			m_bCheckIfPlayerIsAbovePlatform = true;
+
+			pB2Contact->SetEnabled (true);
+		}
+		//if (m_pcGCOPlayer->getPlayerDiedFromFalling())
+		//{
+		//	CGCObjectManager::ObjectKill (m_pcGCOPlayer);
+		//}
+
+	}
 }
 
 
@@ -840,6 +1036,7 @@ void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 		{
 			m_pcGCOPlayer->SetCanJump (false);
 			m_pcGCOPlayer->FallDamage();
+			
 		}
 	}
 }
@@ -872,169 +1069,189 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 		return;
 	}
 
-	// ignore contact between player projectile and item for collision resolution purposes
-	if (pGcSprPhysA->GetGCTypeID () != pGcSprPhysB->GetGCTypeID ())
+	//// ignore contact between player projectile and item for collision resolution purposes
+	//if(	pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() )
+	//{
+	//	if(		(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjPlayer ) )
+	//			 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) ) )
+	//		||	(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) )
+	//			 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer) ) ) )
+	//	{
+	//		// ignore the collision!
+
+	//		if (m_pcGCOPlayer->GetVelocity ().y > 0)
+	//		{
+	//				// ignore the collision!
+	//				pB2Contact->SetEnabled (false);
+
+	//		}
+
+	//		if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+	//		{
+	//			if (pB2Contact->GetFixtureA ()->IsSensor () || pB2Contact->GetFixtureB ())
+	//			{
+	//				// ignore the collision!
+	//				pB2Contact->SetEnabled (true);
+	//			}
+	//		}
+	//		// ignore the collision!
+	//		//pB2Contact->SetEnabled( true );
+	//		//
+	//		// insert logic relating to this collision here
+	//		//
+	//		//
+
+	//		
+	//	}
+
+	//	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) )
+	//		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
+	//			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
+	//	{
+	//		// ignore the collision!
+
+	//		if (m_pcGCOPlayer->GetVelocity ().y > 0)
+	//		{
+	//			// ignore the collision!
+	//			pB2Contact->SetEnabled (false);
+	//			
+	//		}
+
+	//	
+	//			if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+	//			{
+	//				if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor () || pB2Contact->IsTouching () && pB2Contact->GetFixtureA ()->IsSensor ())
+	//				{
+	//				// ignore the collision!
+
+
+	//					// ignore the collision!
+	//				pB2Contact->SetEnabled (true);
+	//			}
+	//		}
+	//		// ignore the collision!
+	//		//pB2Contact->SetEnabled( true );
+	//		//
+	//		// insert logic relating to this collision here
+	//		//
+	//		//
+
+
+	//	}
+
+
+	//	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) ))
+	//	{
+	//		// ignore the collision!
+	//		
+	//		if (m_pcGCOPlayer->GetVelocity ().y > 3.0f)
+	//		{
+	//			pB2Contact->SetEnabled (false);
+	//		}
+
+	//		if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor ())
+	//		{
+	//		if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+	//		{
+	//			// ignore the collision!
+	//		
+	//		
+	//				// ignore the collision!
+	//				pB2Contact->SetEnabled (true);
+	//			}
+	//		}
+	//		// ignore the collision!
+	//		//pB2Contact->SetEnabled( true );
+	//		//
+	//		// insert logic relating to this collision here
+	//		//
+	//		//
+
+
+	//	}
+	//}
+
+	//if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+	//	&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
+	//	|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
+	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
+	//{
+	//	// ignore the collision!
+
+	//	if (m_pcGCOPlayer->GetVelocity ().y > 0)
+	//	{
+	//		pB2Contact->SetEnabled (false);
+	//	}
+
+	//	if (m_pcGCOPlayer->GetVelocity ().y <= 0)
+	//	{
+	//		if (pB2Contact->GetFixtureA ()->IsSensor () || pB2Contact->GetFixtureB ())
+	//		{
+	//			pB2Contact->SetEnabled (true);
+	//		}
+	//	}
+	//	// ignore the collision!
+	//	//pB2Contact->SetEnabled( true );
+	//	//
+	//	// insert logic relating to this collision here
+	//	//
+	//	//
+
+
+	//}
+
+	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )  )
+		)
 	{
-		//if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-		//	&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) ) )
-		//	|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )
-		//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
-		//{
-		//	// ignore the collision!
 
-		//	if (m_pcGCOPlayer->GetVelocity ().y > 0)
-		//	{
-		//		// ignore the collision!
-		//		pB2Contact->SetEnabled (false);
-
-		//	}
-
-		//	if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-		//	{
-		//		if (m_pcGCOPlayer == pGcSprPhysA && m_pcGCOPlayer->GetSpritePosition ().y > pGcSprPhysB->GetSpritePosition ().y
-		//			|| m_pcGCOPlayer == pGcSprPhysB && m_pcGCOPlayer->GetSpritePosition ().y > pGcSprPhysA->GetSpritePosition ().y)
-		//		{
-		//			m_pcGCOPlayer->SetCanJump (true);
-		//		}
-		//	}
-
-		//}
-
-		//if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-		//	&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) )
-		//	|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
-		//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
-		//{
-		//	// ignore the collision!
-
-		//	if (m_pcGCOPlayer->GetVelocity ().y > 0)
-		//	{
-		//		// ignore the collision!
-		//		pB2Contact->SetEnabled (false);
-
-		//	}
-
-		//	if (m_pcGCOPlayer->GetVelocity ().y <= -10)
-		//	{
-		//		if (m_pcGCOPlayer == pGcSprPhysA && m_pcGCOPlayer->GetSpritePosition ().y  + 30 > pGcSprPhysB->GetSpritePosition ().y
-		//			|| m_pcGCOPlayer == pGcSprPhysB && m_pcGCOPlayer->GetSpritePosition ().y + 30 > pGcSprPhysA->GetSpritePosition ().y)
-		//		{
-		//			m_pcGCOPlayer->SetCanJump (true);
-		//		}
-		//	}
-
-		//}
-
-
-		//if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-		//	&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) )
-		//	|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) )
-		//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
-		//{
-		//	// ignore the collision!
-
-		//	if (m_pcGCOPlayer->GetVelocity ().y > 3.0f)
-		//	{
-		//		pB2Contact->SetEnabled (false);
-		//	}
-
-		//	if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-		//	{
-		//		if (m_pcGCOPlayer == pGcSprPhysA && m_pcGCOPlayer->GetSpritePosition().y > pGcSprPhysB->GetSpritePosition ().y
-		//			|| m_pcGCOPlayer == pGcSprPhysB && m_pcGCOPlayer->GetSpritePosition ().y > pGcSprPhysA->GetSpritePosition ().y)
-		//		{
-		//			m_pcGCOPlayer->SetCanJump (true);
-		//		}
-		//	}
-
-		//	// ignore the collision!
-		//	//pB2Contact->SetEnabled( true );
-		//	//
-		//	// insert logic relating to this collision here
-		//	//
-		//	//
-		//}
-
-
-		//if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-		//	&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
-		//	|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
-		//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
-		//{
-		//	// ignore the collision!
-
-		//	if (m_pcGCOPlayer->GetVelocity ().y > 0)
-		//	{
-		//		pB2Contact->SetEnabled (false);
-		//	}
-
-		//	if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-		//	{
-		//		if (m_pcGCOPlayer == pGcSprPhysA && m_pcGCOPlayer->GetSpritePosition ().y > pGcSprPhysB->GetSpritePosition ().y
-		//			|| m_pcGCOPlayer == pGcSprPhysB && m_pcGCOPlayer->GetSpritePosition ().y > pGcSprPhysA->GetSpritePosition ().y)
-		//		{
-		//			m_pcGCOPlayer->SetCanJump (true);
-		//		}
-		//	}
-		//	// ignore the collision!
-		//	//pB2Contact->SetEnabled( true );
-		//	//
-		//	// insert logic relating to this collision here
-		//	//
-		//	//
-
-
-		//}
-
-		if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) ) )
-			)
-		{
 
 			pB2Contact->SetEnabled (false);
-
-			m_pcGCOPlayer->FallDamage ();
-			m_pcGCOPlayer->SetCanJump (true);
-			if (m_pcGCOPlayer->GetVelocity ().y > 0)
-			{
-				pB2Contact->SetEnabled (false);
-			}
-
-			if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-			{
-				if ( m_pcGCOPlayer == pGcSprPhysA && pB2Contact->GetFixtureA()->IsSensor() && pB2Contact->IsTouching())
-				{
-					m_pcGCOPlayer->SetCanJump (true);
-				}
-
-			}
-
+				
+			if (m_bCheckIfPlayerIsAbovePlatform == true)
 			
+			{
+				pB2Contact->SetEnabled (true);
+				m_pcGCOPlayer->SetCanJump (true);
+				m_pcGCOPlayer->FallDamage ();
+				
+			}
 			//if (m_pcGCOPlayer->getPlayerDiedFromFalling())
 			//{
 			//	CGCObjectManager::ObjectKill (m_pcGCOPlayer);
 			//}
 
-		}
 	}
+
+	 if ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) )
+		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) 
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) )))
+	 {
+		 if (m_bCheckIfPlayerIsAbovePlatform == true)
+
+		 {
+			 m_pcGCOPlayer->SetCanJump (true);
+
+			 m_pcGCOPlayer->FallDamage ();
+		 }
+	 }
 }
 
 
