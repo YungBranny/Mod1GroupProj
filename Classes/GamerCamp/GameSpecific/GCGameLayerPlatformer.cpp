@@ -382,13 +382,13 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	CGCFactoryCreationParams& sParams = m_sPlayerCreateParams;
 	sParams.strClassName = "CGCObjPlayer";
 	sParams.strPlistFile = "TexturePacker/Sprites/Willy/mm_character_willy.plist";
-	sParams.strPhysicsShape = "Willy";
+	sParams.strPhysicsShape = "mm_character_willy";
 	sParams.eB2dBody_BodyType = b2_dynamicBody;
 	sParams.bB2dBody_FixedRotation = true;
 
 	// create player object
 	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory ().CreateInstance (sParams, v2MarioStartPos) );
-	m_pcGCOPlayer->setJumpHeight (11.5f);
+	m_pcGCOPlayer->setJumpHeight (200.0f);
 
 	//////////////////////////////////////////////////////////////////////////
 	// test new collision handler code

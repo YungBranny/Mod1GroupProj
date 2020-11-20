@@ -56,7 +56,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fEndPositionY (0)
 	, m_fDropDistance (0)
 	, m_fMaximumDropDistance (20.0f)
-	, m_fJumpHeight (12.5f)
+	, m_fJumpHeight (12.0f)
 	, m_bPlayerDiedFromFalling (false)
 {
 
@@ -89,6 +89,7 @@ void CGCObjPlayer::VOnResourceAcquire()
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
 
+
 	// animate!
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( GetFactoryCreationParams()->strPlistFile );
 	//RunAction( GCCocosHelpers::CreateAnimationActionLoop( GCCocosHelpers::CreateAnimation( dicPList, pszAnim_marioJog ) ) );
@@ -99,6 +100,7 @@ void CGCObjPlayer::VOnResourceAcquire()
 	// 
 	// n.n.b. ... however if we did use std::unique_ptr we'd need to use std::unique_ptr::reset in VOnResourceRelease if we wanted the memory allocate / free behaviour to be the same...
 	m_pcControllerActionToKeyMap = TCreateActionToKeyMap( s_aePlayerActions, s_aeKeys );
+
 }
 
 
@@ -152,6 +154,7 @@ void CGCObjPlayer::VOnResourceRelease()
 void CGCObjPlayer::VOnResurrected(void)
 {
 	CGCObjSpritePhysics::VOnResurrected();
+	GetPhysicsBody ()->SetGravityScale (7.0f);
 	m_bv2jumpVel = b2Vec2(GetPhysicsBody()->GetLinearVelocity().x, m_fJumpHeight);
 }
 
@@ -384,7 +387,28 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 
 	if (bFireWasPressed && m_bCanJump)
 	{
-		GetPhysicsBody()->SetLinearVelocity(m_bv2jumpVel);
+		//GetPhysicsBody()->ApplyForce(m_bv2jumpVel, GetPhysicsBody()->GetWorldCenter(), true);
+		
+		if (GetVelocity ().x > 0)
+		{
+			SetVelocity (cocos2d::Vec2 (GetVelocity ().x - 30, m_v2MovingDownVelocity.x));
+			float impulse = GetPhysicsBody ()->GetMass () * 30;
+			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse * 1.2f), GetPhysicsBody ()->GetWorldCenter (), true);
+		};
+		if (GetVelocity ().x < 0)
+		{
+			SetVelocity (cocos2d::Vec2 (GetVelocity ().x + 30, m_v2MovingDownVelocity.x));
+			float impulse = GetPhysicsBody ()->GetMass () * 30;
+			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse* 1.2f), GetPhysicsBody ()->GetWorldCenter (), true);
+		};
+		if (GetVelocity ().x == 0 )
+		{
+			float impulse = GetPhysicsBody ()->GetMass () * 30;
+			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse), GetPhysicsBody ()->GetWorldCenter (), true);
+		};
+	
+		
+		
 	}
 
 }
