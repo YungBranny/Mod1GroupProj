@@ -62,12 +62,22 @@ private:
 	float	m_fMaximumDropDistance;
 	float	m_fJumpHeight;
 
+	float   m_fLivesStartPositionX;
+	float	m_fLivesStartPositionY;
+	float	m_fLivesSpacingX;
+
 	int		m_iNumberOfLives;
 
 	bool	m_bCanJump;
 	bool	m_bOnTravelator;
 	bool	m_bPlayerDiedFromFalling;
 	bool	m_bOnLadder;
+
+	cocos2d::Vec2 m_v2LivesStartPosition;
+
+	cocos2d::Sprite* m_pLivesUI;
+	cocos2d::Sprite* m_pLivesUI1;
+	cocos2d::Sprite* m_pLivesUI2;
 
 	cocos2d::Label* m_pLivesText;
 
@@ -93,6 +103,12 @@ public:
 
 	float getJumpHeight () const { return m_fJumpHeight; }
 	void setJumpHeight (float i) { m_fJumpHeight = i; }
+
+	//cocos2d::Sprite* getLivesUI1() const { return m_pLivesUI1; }
+	//void setLivesUI1(cocos2d::Sprite* i) { m_pLivesUI1 = i; }
+
+	//cocos2d::Sprite* getLivesUI2() const { return m_pLivesUI2; }
+	//void setLivesUI2(cocos2d::Sprite* i) { m_pLivesUI2 = i; }
 
 	//////////////////////////////////////////////////////////////////////////
 	// declare the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
@@ -149,8 +165,13 @@ public:
 
 	void FallDamage();
 
+	void CreateLives();
+
 	cocos2d::Label* getLivesText() const { return m_pLivesText; }
 
 	void setLivesText(cocos2d::Label* t) { m_pLivesText = t; }
+
+	//cocos2d::Sprite* getLivesUI() const { return m_pLivesUI; }
+	//void setLivesUI(cocos2d::Sprite* i) { m_pLivesUI = i; }
 };
 #endif // #ifndef _GCOBJPLAYER_H_

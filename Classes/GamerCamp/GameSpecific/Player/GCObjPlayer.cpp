@@ -11,6 +11,10 @@
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 #include "GamerCamp/GameController/GCController.h"
+#include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
+#include "GamerCamp/Core/GCTypes.h"
+#include "GamerCamp/GCObject/GCObject.h"
+#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 
 #include "GCObjPlayer.h"
 
@@ -45,7 +49,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_iLivesBarHeightY (500)
 	, m_bCanJump (true)
 	, m_bOnTravelator (false)
-	, m_iNumberOfLives (1)
+	, m_iNumberOfLives (3)
 	, m_v2MovingRightVelocity (15.0f, 0)
 	, m_v2MovingLeftVelocity (-m_v2MovingRightVelocity)
 	, m_v2MovingUpVelocity (3.0f, 0)
@@ -58,20 +62,37 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fMaximumDropDistance (20.0f)
 	, m_fJumpHeight (12.0f)
 	, m_bPlayerDiedFromFalling (false)
+	, m_fLivesStartPositionX (100)
+	, m_fLivesStartPositionY (1800)
+	, m_fLivesSpacingX (10.0f)
 {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	//setLivesText(Label::createWithTTF(" ", "fonts/SaltyOcean.ttf", m_fLivesFontSize));
+	setLivesText(Label::createWithTTF(" ", "fonts/SaltyOcean.ttf", m_fLivesFontSize));
 
-	//getLivesText()->setColor(Color3B::WHITE);
+	getLivesText()->setColor(Color3B::WHITE);
 
-	//getLivesText()->enableOutline(Color4B::BLACK, m_iLivesTextOutlineSize);
+	getLivesText()->enableOutline(Color4B::BLACK, m_iLivesTextOutlineSize);
 
-	//getLivesText()->setPosition(Vec2(visibleSize.width / 2 - m_iLivesBarHeightX, visibleSize.height + m_iLivesBarHeightY));
+	getLivesText()->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
 
-	//getLivesText()->setString("Lives " + std::to_string(GetNumberOfLives()));
+	getLivesText()->setString("Lives " + std::to_string(GetNumberOfLives()));
+
+	//m_pLivesUI = Sprite::create("Lives/ui_life_full.png");
+
+	//m_pLivesUI->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
+
+	//m_pLivesUI->setParent(IGCGameLayer::ActiveInstance());
+
+	//const char* pszLivesSprite = "Lives/ui_life_full.plist";
+	//{
+	//	CreateSprite(pszLivesSprite);
+	//	SetResetPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
+	//	SetParent(IGCGameLayer::ActiveInstance());
+	//	//SetScale(m_fScaleX, m_fScaleY);
+	//}
 
 }
 
@@ -417,7 +438,9 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 void CGCObjPlayer::DecrementLives()
 {
 	m_iNumberOfLives--;
+	getLivesText()->setString("Lives " + std::to_string(GetNumberOfLives()));
 }
+
 //Function to reset lives
 void CGCObjPlayer::ResetLives()
 {
@@ -447,6 +470,20 @@ void CGCObjPlayer::FallDamage()
 		m_fDropDistance = 0;
 	}
 }
+
+
+// Mia: Can use for refactoring once Lives is put into a GroupLives Class
+//void CGCObjPlayer::CreateLives()
+//{
+//	for( i32 iLoop = 0; iLoop < m_iNumberOfLives; ++iLoop )
+//	{
+//		m_v2LivesStartPosition = cocos2d::Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY);
+//		Sprite* m_pLivesUI = new Sprite();
+//		m_pLivesUI = Sprite::create("Lives/ui_life_full.png");
+//		m_pLivesUI->setPosition(m_v2LivesStartPosition);
+//		m_fLivesStartPositionX += m_fLivesSpacingX;
+//	}
+//}
 
 //////////////////////////////////////////////////////////////////////////
 // this function exists purely to better illustrate the EXAMPLE collision 

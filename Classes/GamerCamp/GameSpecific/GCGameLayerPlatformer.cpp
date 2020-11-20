@@ -285,6 +285,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	//this->addChild(m_pcGCTimer->getTimerText(), 10);
 	this->addChild(m_pcGCTimer->getTimerBar(), 50);
 	this->addChild(m_pcGCTimer->getTimerBarUI(), 51);
+
 	
 
 	///////////////////////////////////////////////////////////////////////////
@@ -389,6 +390,14 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// create player object
 	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory ().CreateInstance (sParams, v2MarioStartPos) );
 	m_pcGCOPlayer->setJumpHeight (200.0f);
+
+	this->addChild(m_pcGCOPlayer->getLivesText(), 10);
+
+	//this->addChild(m_pcGCOPlayer->getLivesUI(), 20);
+
+	//this->addChild(m_pcGCOPlayer->getLivesUI1());
+
+	//this->addChild(m_pcGCOPlayer->getLivesUI2());
 
 	//////////////////////////////////////////////////////////////////////////
 	// test new collision handler code
