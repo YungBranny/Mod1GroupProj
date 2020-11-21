@@ -42,6 +42,7 @@ class GCObjBrickPlatform;
 class CGCObjLadder;
 class CGCObjKeys;
 class GCObjEnemyMovementCollider;
+class CGCObjLives;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer
@@ -63,6 +64,7 @@ private:
 
 	//UI
 	CGCObjTimer*					m_pcGCTimer;
+	CGCObjLives*					m_pcGCOLives;
 	
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;

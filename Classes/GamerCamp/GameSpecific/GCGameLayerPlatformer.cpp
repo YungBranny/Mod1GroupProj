@@ -51,6 +51,7 @@
 #include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
 #include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider.h"
+#include "GamerCamp/GameSpecific/Lives/GCObjLives.h"
 
 #include "AppDelegate.h"
 
@@ -394,7 +395,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	this->addChild(m_pcGCOPlayer->getLivesText(), 10);
 
-	//this->addChild(m_pcGCOPlayer->getLivesUI(), 20);
+	//this->addChild(m_pcGCOLives->getLivesUI(), 20);
 
 	//this->addChild(m_pcGCOPlayer->getLivesUI1());
 
