@@ -493,7 +493,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	(CGCObjPlayer& rcPlayer, CGCObjTravelatorPlatform& rcTravelatorPlatform, const b2Contact& rcContact) -> void
 		{
 
-			if (rcContact.IsTouching() && rcContact.GetFixtureB()->IsSensor() && rcPlayer.getIsPlayerOnPlatform())
+			if (rcContact.IsTouching() && rcPlayer.getIsPlayerOnPlatform())
 			{
 
 				rcPlayer.setOnTravelator (true);
@@ -579,7 +579,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			//CGCObjectManager::ObjectKill (&rcEnemies);
 			CCLOG ("Player Died.");
 			//m_bPlayerHitHostile = true;
-			//RequestReset ();
+			RequestReset ();
 			rcPlayer.DecrementLives (); //Puia Lose a life when colliding
 		}
 	);
@@ -599,7 +599,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			if (rcMEnemies.getJustCollided () == false)
 			{
 				rcMEnemies.setJustCollided (true);
-				//RequestReset ();
+				RequestReset ();
 				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");
 				//CGCObjectManager::ObjectKill (&rcPlayer);
