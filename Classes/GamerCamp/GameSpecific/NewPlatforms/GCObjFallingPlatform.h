@@ -23,12 +23,20 @@ private:
 	bool m_bContactWithPlayer;			//Bool which needs to be set to true if the player is colliding with this platform
 	bool m_bCanDelete;					// Bool that needs to be set to true once the destroyplatform tick has reached 0 which will then allow the platform to be delete
 
-	float m_fDestroyPlatformTick;		// A float that counts down to 0, once it has reached 0 it will set the can delete bool to true
+	float m_fCurrentDestroyPlatformTick;		// A float that counts down to 0, once it has reached 0 it will set the can delete bool to true
+	float m_fMaxDestroyPlatformTick;
+
 
 public:
 
 	CGCObjFallingPlatform ();													//constructor
 	virtual ~CGCObjFallingPlatform () {};										//deconstructor
+
+	float GetCurrentDestroyPlatformTick () const { return m_fCurrentDestroyPlatformTick; }
+	void  SetCurrentDestroyPlatformTick (float i){ m_fCurrentDestroyPlatformTick = i;   }
+
+	float GetMaxDestroyPlatformTick () const { return m_fMaxDestroyPlatformTick; }
+	void  SetMaxDestroyPlatformTick (float i) { m_fMaxDestroyPlatformTick = i; }
 
 	cocos2d::Vec2 GetStartPos () const { return m_v2StartPos; }					//getter for the start pos
 	void SetStartPos (cocos2d::Vec2 i) { m_v2StartPos = i; }					//setter fro the start pos

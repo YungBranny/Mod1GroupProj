@@ -493,7 +493,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	(CGCObjPlayer& rcPlayer, CGCObjTravelatorPlatform& rcTravelatorPlatform, const b2Contact& rcContact) -> void
 		{
 
-			if (rcContact.IsTouching() && rcContact.GetFixtureB()->IsSensor())
+			if (rcContact.IsTouching() && rcContact.GetFixtureB()->IsSensor() && rcPlayer.getIsPlayerOnPlatform())
 			{
 
 				rcPlayer.setOnTravelator (true);
@@ -579,7 +579,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			//CGCObjectManager::ObjectKill (&rcEnemies);
 			CCLOG ("Player Died.");
 			//m_bPlayerHitHostile = true;
-			RequestReset ();
+			//RequestReset ();
 			rcPlayer.DecrementLives (); //Puia Lose a life when colliding
 		}
 	);
@@ -599,7 +599,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			if (rcMEnemies.getJustCollided () == false)
 			{
 				rcMEnemies.setJustCollided (true);
-				RequestReset ();
+				//RequestReset ();
 				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");
 				//CGCObjectManager::ObjectKill (&rcPlayer);
@@ -656,6 +656,8 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			else if (rcContact.IsTouching () == false)				//stops moving when the player is off it
 			{
 				rcFallingPlatforms.SetContactWithPlayer (false);
+
+				
 			}
 
 			if (rcFallingPlatforms.GetCanDelete () == true)
@@ -962,15 +964,17 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 
 
 		
-		if (m_pcGCOPlayer->GetVelocity ().y > 0)
+		if (m_pcGCOPlayer->GetVelocity ().y > 0 && !pB2Contact->GetFixtureB ()->IsSensor ())
 		{
-			m_bCheckIfPlayerIsAbovePlatform = false;
+			m_pcGCOPlayer->setIsPlayerOnPlatform (false);
+			//m_bCheckIfPlayerIsAbovePlatform = false;
 			pB2Contact->SetEnabled (false);
 		}
 
 		if (m_pcGCOPlayer->GetVelocity ().y <= 0 && pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor () == true)
 		{
-			m_bCheckIfPlayerIsAbovePlatform = true;
+			m_pcGCOPlayer->setIsPlayerOnPlatform (true);
+			//m_bCheckIfPlayerIsAbovePlatform = true;
 
 			pB2Contact->SetEnabled (true);
 		}
@@ -1224,7 +1228,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 
 			pB2Contact->SetEnabled (false);
 				
-			if (m_bCheckIfPlayerIsAbovePlatform == true)
+			if (m_pcGCOPlayer->getIsPlayerOnPlatform() == true)
 			
 			{
 				pB2Contact->SetEnabled (true);
@@ -1244,7 +1248,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) )))
 	 {
-		 if (m_bCheckIfPlayerIsAbovePlatform == true)
+		 if (m_pcGCOPlayer->getIsPlayerOnPlatform () == true)
 
 		 {
 			 m_pcGCOPlayer->SetCanJump (true);

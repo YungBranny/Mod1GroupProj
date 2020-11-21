@@ -21,7 +21,11 @@ private:
 	bool m_bContactWithPlayer;			//Bool which needs to be set to true if the player is colliding with this platform
 	bool m_bCanDelete;					//Bool that needs to be set to true once the destroyplatform tick has reached 0 which will then allow the platform to be delete
 
-	float m_fDestroyPlatformTick;		// A float that counts down to 0, once it has reached 0 it will set the can delete bool to true
+
+	float m_fCurrentDestroyPlatformTick;		// A float that counts down to 0, once it has reached 0 it will set the can delete bool to true
+	float m_fMaxDestroyPlatformTick;
+
+
 
 
 public:
@@ -30,6 +34,12 @@ public:
 	virtual ~CGCObjScalingFallingPlatform () {};									//deconstructor
 
 	GCFACTORY_DECLARE_CREATABLECLASS (CGCObjScalingFallingPlatform);
+
+	float GetCurrentDestroyPlatformTick () const { return m_fCurrentDestroyPlatformTick; }
+	void  SetCurrentDestroyPlatformTick (float i) { m_fCurrentDestroyPlatformTick = i; }
+
+	float GetMaxDestroyPlatformTick () const { return m_fMaxDestroyPlatformTick; }
+	void  SetMaxDestroyPlatformTick (float i) { m_fMaxDestroyPlatformTick = i; }
 
 	cocos2d::Vec2 GetFallingVelocity () const { return m_v2FallingVelocity; }		//getter for the Current velocity
 	void SetFallingVelocity (cocos2d::Vec2 i) { m_v2FallingVelocity = i; }			//setter for the Current velocity
@@ -45,7 +55,7 @@ public:
 
 
 	//virtual void VOnResourceAcquire (void);											//Default Function
-
+	virtual void VOnReset (void);
 	void MoveDownOnContact ();														//Function that moved the platform down on contact, no longer needed but will be refactored
 	virtual void VOnUpdate (f32 fTimestep);											//UpdateFunction
 

@@ -17,7 +17,8 @@ CGCObjFallingPlatform::CGCObjFallingPlatform ()
 	, m_v2FallingVelocity	(0.0f, -10.0f)								  //Initalises the variable with a default value
 	, m_v2DefaultVelocity	(0.0f, 0.0f)								  //Initalises the variable with a default value
 	, m_bContactWithPlayer	(false)										  //Initalises the variable with a default value
-	, m_fDestroyPlatformTick(120.0f)									  //Initalises the variable with a default value
+	, m_fMaxDestroyPlatformTick(120.0f)
+	, m_fCurrentDestroyPlatformTick(m_fMaxDestroyPlatformTick)									  //Initalises the variable with a default value
 	, m_bCanDelete			(false)										  //Initalises the variable with a default value
 	, m_v2EndPos			(m_v2StartPos.x, m_v2StartPos.y - ( -1.0f ))  //Initalises the variable with a default value
 {
@@ -46,7 +47,9 @@ void CGCObjFallingPlatform::VOnReset ()
 	// reset
 	SetFlippedX (false);
 	SetFlippedY (false);
-
+	m_bCanDelete = false;
+	m_fCurrentDestroyPlatformTick = m_fMaxDestroyPlatformTick;
+	
 	SetResetPosition (GetStartPos ());
 	if (GetPhysicsBody ())
 	{
@@ -64,14 +67,18 @@ void CGCObjFallingPlatform::MoveDownOnContact ()
 	{
 		SetVelocity (m_v2FallingVelocity);
 
-		if (m_fDestroyPlatformTick >= 0)
+		if (m_fCurrentDestroyPlatformTick >= 0)
 		{
-			m_fDestroyPlatformTick--;
+			m_fCurrentDestroyPlatformTick--;
 		}
 
-		if (m_fDestroyPlatformTick <= 0)
+		if (m_fCurrentDestroyPlatformTick <= 0)
 		{
-			m_bCanDelete = true;
+			if (m_bCanDelete == false)
+			{
+				m_bCanDelete = true;
+			}
+			
 		}
 	}
 	else // changes the velocity to 0 so it stops moving
@@ -95,6 +102,7 @@ void CGCObjFallingPlatform::VOnResurrected ()
 {
 	CGCObjSpritePhysics::VOnResurrected ();
 	GetPhysicsBody ()->SetGravityScale (0.0f);
+
 }
 
 

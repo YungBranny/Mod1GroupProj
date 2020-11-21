@@ -65,6 +65,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fLivesStartPositionX (100)
 	, m_fLivesStartPositionY (1800)
 	, m_fLivesSpacingX (10.0f)
+	, m_bIsPlayerOnPlatform (true)
 	//, m_bv2CurrentPos(0,0)
 {
 
@@ -140,6 +141,7 @@ void CGCObjPlayer::VOnReset()
 	// reset velocity and flip state
 	SetFlippedX( false );
 	SetFlippedY( false );
+	m_bOnTravelator = false;
 
 	// reset
 	if( GetPhysicsBody() )

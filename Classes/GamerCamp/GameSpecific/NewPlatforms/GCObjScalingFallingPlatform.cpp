@@ -17,7 +17,8 @@ CGCObjScalingFallingPlatform::CGCObjScalingFallingPlatform ()
 	, m_v2FallingVelocity (0.0f, -1.0f)									  //Initalises the variable with a default value
 	, m_v2DefaultVelocity (0.0f, 0.0f)									  //Initalises the variable with a default value
 	, m_bContactWithPlayer (false)										  //Initalises the variable with a default value
-	, m_fDestroyPlatformTick (60.0f)									  //Initalises the variable with a default value
+	, m_fMaxDestroyPlatformTick (60.0f)
+	, m_fCurrentDestroyPlatformTick (m_fMaxDestroyPlatformTick)
 	, m_bCanDelete (false)												  //Initalises the variable with a default value
 {																		 
 }																		 
@@ -33,6 +34,13 @@ CGCObjScalingFallingPlatform::CGCObjScalingFallingPlatform ()
 //	CGCObjSpritePhysics::VOnResourceAcquire ();
 //
 //}
+void CGCObjScalingFallingPlatform::VOnReset ()
+{
+	CGCObjSpritePhysics::VOnReset ();
+	m_bContactWithPlayer = false;
+	m_bCanDelete = false;
+	m_fCurrentDestroyPlatformTick = m_fMaxDestroyPlatformTick;
+}
 
 //Calls the function that moves the platform down
 void CGCObjScalingFallingPlatform::MoveDownOnContact ()
@@ -43,13 +51,13 @@ void CGCObjScalingFallingPlatform::MoveDownOnContact ()
 	{
 		//SetVelocity (m_v2FallingVelocity);
 
-		if (m_fDestroyPlatformTick >= 0)
+		if (m_fCurrentDestroyPlatformTick >= 0)
 		{
-			m_fDestroyPlatformTick--;
+			m_fCurrentDestroyPlatformTick--;
 			SetSpritePosition (cocos2d::Vec2 (GetSpritePosition ().x, GetSpritePosition ().y -3.0f));
 		}
 
-		if (m_fDestroyPlatformTick <= 0)
+		if (m_fCurrentDestroyPlatformTick <= 0)
 		{
 			m_bCanDelete = true;
 		}

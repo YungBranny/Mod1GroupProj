@@ -73,6 +73,8 @@ private:
 	bool	m_bPlayerDiedFromFalling;
 	bool	m_bOnLadder;
 
+	bool	m_bIsPlayerOnPlatform;
+
 	cocos2d::Vec2 m_v2LivesStartPosition;
 
 	cocos2d::Sprite* m_pLivesUI;
@@ -98,6 +100,9 @@ public:
 
 	bool getOnTravelator() const { return m_bOnTravelator; }
 	void setOnTravelator(bool b) { m_bOnTravelator = b; }
+
+	bool getIsPlayerOnPlatform () const { return m_bIsPlayerOnPlatform; }
+	void setIsPlayerOnPlatform (bool i) { m_bIsPlayerOnPlatform = i; }
 
 	bool getPlayerDiedFromFalling () { return m_bPlayerDiedFromFalling; };
 	bool getOnLadder() const { return m_bOnLadder; }
