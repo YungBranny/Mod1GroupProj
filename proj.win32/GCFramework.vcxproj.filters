@@ -85,6 +85,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Lives">
       <UniqueIdentifier>{690cbb5e-2590-46fd-b4b0-a09ad94b5b57}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Score">
+      <UniqueIdentifier>{cbc768e0-b2fa-4b9c-a7d2-071efd09a4cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -284,6 +287,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Lives\GCObjLives.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Lives</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Score\GCObjScore.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -499,6 +505,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Lives\GCObjLives.h">
       <Filter>Classes\GamerCamp\GameSpecific\Lives</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Score\GCObjScore.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
