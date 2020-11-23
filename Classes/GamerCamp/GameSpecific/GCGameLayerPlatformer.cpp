@@ -547,7 +547,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		{
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
-			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
+			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));
 			//	m_bPlayerKeysGathered = true;
 
 				playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
