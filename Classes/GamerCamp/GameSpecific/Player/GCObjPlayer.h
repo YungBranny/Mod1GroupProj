@@ -83,6 +83,14 @@ private:
 	cocos2d::Sprite* m_pLivesUI1;
 	cocos2d::Sprite* m_pLivesUI2;
 
+	cocos2d::Sprite* m_sprPlayerLives1;
+	cocos2d::Sprite* m_sprPlayerLives2;
+	cocos2d::Sprite* m_sprPlayerLives3;
+
+	cocos2d::Sprite* m_sprPlayerLoseLives1;
+	cocos2d::Sprite* m_sprPlayerLoseLives2;
+	cocos2d::Sprite* m_sprPlayerLoseLives3;
+	
 	cocos2d::Label* m_pLivesText;
 
 	// action map for controllers
@@ -119,6 +127,24 @@ public:
 
 	b2Vec2 getCurrentPos () const { return m_bv2CurrentPos; }
 
+
+	cocos2d::Sprite* getPlayerLivesUI1() const { return m_sprPlayerLives1; }
+	void setPlayerLivesUI1(cocos2d::Sprite* t) { m_sprPlayerLives1 = t; }
+	
+	cocos2d::Sprite* getPlayerLivesUI2() const { return m_sprPlayerLives2; }
+	void setPlayerLivesUI2(cocos2d::Sprite* t) { m_sprPlayerLives2 = t; }
+	
+	cocos2d::Sprite* getPlayerLivesUI3() const { return m_sprPlayerLives3; }
+	void setPlayerLivesUI3(cocos2d::Sprite* t) { m_sprPlayerLives3 = t; }
+
+	cocos2d::Sprite* getPlayerLoseLivesUI1() const { return m_sprPlayerLoseLives1; }
+	void setPlayerLoseLivesUI1(cocos2d::Sprite* t) { m_sprPlayerLoseLives1 = t; }
+
+	cocos2d::Sprite* getPlayerLoseLivesUI2() const { return m_sprPlayerLoseLives2; }
+	void setPlayerLoseLivesUI2(cocos2d::Sprite* t) { m_sprPlayerLoseLives2 = t; }
+
+	cocos2d::Sprite* getPlayerLoseLivesUI3() const { return m_sprPlayerLoseLives3; }
+	void setPlayerLoseLivesUI3(cocos2d::Sprite* t) { m_sprPlayerLoseLives3 = t; }
 
 	//cocos2d::Sprite* getLivesUI1() const { return m_pLivesUI1; }
 	//void setLivesUI1(cocos2d::Sprite* i) { m_pLivesUI1 = i; }
@@ -182,6 +208,8 @@ public:
 	void FallDamage();
 
 	void CreateLives();
+
+	void LivesUI();
 
 	cocos2d::Label* getLivesText() const { return m_pLivesText; }
 

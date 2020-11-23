@@ -400,7 +400,23 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory ().CreateInstance (sParams, v2MarioStartPos) );
 	m_pcGCOPlayer->setJumpHeight (200.0f);
 
-	this->addChild(m_pcGCOPlayer->getLivesText(), 10);
+	//this->addChild(m_pcGCOPlayer->getLivesText(), 10);
+	
+
+	this->addChild(m_pcGCOPlayer->getPlayerLoseLivesUI1(), 10);
+
+	this->addChild(m_pcGCOPlayer->getPlayerLoseLivesUI2(), 10);
+
+	this->addChild(m_pcGCOPlayer->getPlayerLoseLivesUI3(), 10);
+
+	
+	this->addChild(m_pcGCOPlayer->getPlayerLivesUI1(), 11);
+
+	this->addChild(m_pcGCOPlayer->getPlayerLivesUI2(), 11);
+
+	this->addChild(m_pcGCOPlayer->getPlayerLivesUI3(), 11);
+	
+	
 
 	//this->addChild(m_pcGCOLives->getLivesUI(), 20);
 

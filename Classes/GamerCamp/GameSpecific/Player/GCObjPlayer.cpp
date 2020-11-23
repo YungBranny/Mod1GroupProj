@@ -97,6 +97,24 @@ CGCObjPlayer::CGCObjPlayer ()
 	//	//SetScale(m_fScaleX, m_fScaleY);
 	//}
 
+	m_sprPlayerLoseLives1 = Sprite::create("TexturePacker/Sprites/Lives/ui_life_lost.png");
+	m_sprPlayerLoseLives2 = Sprite::create("TexturePacker/Sprites/Lives/ui_life_lost.png");
+	m_sprPlayerLoseLives3 = Sprite::create("TexturePacker/Sprites/Lives/ui_life_lost.png");
+	
+	
+	
+	getPlayerLoseLivesUI1()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
+	getPlayerLoseLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 50, m_fLivesStartPositionY));
+	getPlayerLoseLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 100, m_fLivesStartPositionY));
+	
+	m_sprPlayerLives1	= Sprite::create(  "TexturePacker/Sprites/Lives/ui_life_full.png");
+	m_sprPlayerLives2	= Sprite::create(  "TexturePacker/Sprites/Lives/ui_life_full.png");
+	m_sprPlayerLives3	= Sprite::create(  "TexturePacker/Sprites/Lives/ui_life_full.png");
+	
+	getPlayerLivesUI1()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
+	getPlayerLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 50, m_fLivesStartPositionY));
+	getPlayerLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 100, m_fLivesStartPositionY));
+
 }
 
 
@@ -165,6 +183,8 @@ void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 {
 	// handle movement
 	UpdateMovement(fTimeStep);
+
+	
 }
 
 
@@ -445,7 +465,8 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 void CGCObjPlayer::DecrementLives()
 {
 	m_iNumberOfLives--;
-	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
+	//getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
+	LivesUI();
 }
 
 //Function to reset lives
@@ -476,6 +497,22 @@ void CGCObjPlayer::FallDamage()
 		m_fEndPositionY = GetPhysicsBody()->GetPosition().y;
 		m_fDropDistance = 0;
 	}
+}
+void CGCObjPlayer::LivesUI()
+{
+	if (m_iNumberOfLives == 0)
+	{
+		getPlayerLivesUI1()->setPosition(Vec2(-10000, -10000));
+	}
+	else if (m_iNumberOfLives == 1)
+	{
+		getPlayerLivesUI2()->setPosition(Vec2(-10000, -10000));
+	}
+	else if (m_iNumberOfLives == 2)
+	{
+		getPlayerLivesUI3()->setPosition(Vec2(-10000, -10000));
+	}
+
 }
 
 
