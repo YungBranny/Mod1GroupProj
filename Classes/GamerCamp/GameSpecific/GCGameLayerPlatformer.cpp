@@ -27,6 +27,7 @@
 #include "GamerCamp/GameSpecific/Collectables/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
+#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemy2.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjTravelatorPlatform.h"
 #include "GamerCamp/GameSpecific/ExitDoor/GCObjExitDoor.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
@@ -51,6 +52,7 @@
 #include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
 #include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider.h"
+#include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider2.h"
 #include "GamerCamp/GameSpecific/Lives/GCObjLives.h"
 #include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 
@@ -624,6 +626,30 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	(CGCMovingEnemies& rcMEnemies, GCObjEnemyMovementCollider& rcCollider, const b2Contact& rcContact) -> void
 		{
 			if (rcMEnemies.getChangedDir() == false)
+			{
+				if (rcMEnemies.getDefaultDirection () == true)
+				{
+					rcMEnemies.setChangedDir (true);
+					rcMEnemies.setDefaultDirection (false);
+				}
+				else if (rcMEnemies.getDefaultDirection () == false)
+				{
+					rcMEnemies.setChangedDir (true);
+					rcMEnemies.setDefaultDirection (true);
+				}
+			}
+		}
+	);
+
+	GetCollisionManager ().AddCollisionHandler
+	(
+		//Brandon Middleton
+		//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
+		//it will reset the level from the start
+		[]
+	(CGCMovingEnemy2& rcMEnemies, GCObjEnemyMovementCollider2& rcCollider, const b2Contact& rcContact) -> void
+		{
+			if (rcMEnemies.getChangedDir () == false)
 			{
 				if (rcMEnemies.getDefaultDirection () == true)
 				{

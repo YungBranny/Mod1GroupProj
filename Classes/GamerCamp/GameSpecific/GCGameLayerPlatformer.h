@@ -29,6 +29,7 @@ class CGCObjTimer;
 class CGCObjKeys;
 class CGCBasicEnemies;
 class CGCMovingEnemies;
+class CGCMovingEnemy2;
 class CGCHazardChild;
 class CGCObjTravelatorPlatform;
 class CGCObjExitDoor;
@@ -42,6 +43,7 @@ class GCObjBrickPlatform;
 class CGCObjLadder;
 class CGCObjKeys;
 class GCObjEnemyMovementCollider;
+class GCObjEnemyMovementCollider2;
 class CGCObjLives;
 class CGCObjScore;
 
