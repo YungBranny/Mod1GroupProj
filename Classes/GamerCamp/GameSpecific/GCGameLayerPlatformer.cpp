@@ -53,7 +53,7 @@
 #include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider2.h"
-#include "GamerCamp/GameSpecific/Lives/GCObjLives.h"
+//#include "GamerCamp/GameSpecific/Lives/GCObjLives.h"
 #include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 
 #include "AppDelegate.h"

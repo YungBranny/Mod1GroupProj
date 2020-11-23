@@ -51,6 +51,8 @@ private:
 	void					CollisionChecker ();			 //Function which checks if the just collided bool is true or false#
 	void					CollisionDirChecker ();
 
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
+
 public:
 	
 
@@ -59,6 +61,8 @@ public:
 	virtual ~CGCMovingEnemies () {};
 
 	GCFACTORY_DECLARE_CREATABLECLASS (CGCMovingEnemies);
+
+
 
 	unsigned short int getCollisionDirBuffer ()	const   { return m_iCollisionDirBuffer;	}	//Getter for CollisionBuffer
 	void  setCollisionDirBuffer (unsigned short int i)	    { m_iCollisionDirBuffer = i;		}	//Setter for CollisionBuffer
@@ -99,11 +103,12 @@ public:
 	void Movement ();							  //Function which 
 
 	//virtual void VOnResourceAcquire (void);		  //Default functions for spritephysics
-	virtual void VOnResurrected (void);			  //Default functions for spritephysics
-	//virtual void VOnResourceRelease (void);		  //Default functions for spritephysics
+	//virtual void VOnResurrected (void);			  //Default functions for spritephysics
+	virtual void VOnResourceRelease (void);		  //Default functions for spritephysics
 	//virtual void VOnReset (void);				  //Default functions for spritephysics
 	virtual void VOnUpdate (f32 fTimestep);		  //Default functions for spritephysics
 
+	virtual void VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
 
 
 };

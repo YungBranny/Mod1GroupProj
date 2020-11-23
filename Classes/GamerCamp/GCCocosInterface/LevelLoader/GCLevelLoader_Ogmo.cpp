@@ -35,6 +35,9 @@ static const char* k_pszB2BodyType_Static		= "b2_staticBody";
 static const char* k_pszB2BodyType_Kinematic	= "b2_kinematicBody";
 
 
+//Changes
+const tinyxml2::XMLElement* CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData = nullptr;
+
 //////////////////////////////////////////////////////////////////////////
 // Constructor
 //////////////////////////////////////////////////////////////////////////
@@ -156,7 +159,14 @@ inline bool CGCLevelLoader_Ogmo::AddFactoryDataForXMLElementAndCreateInstance( c
 		CCAssert( ( m_vecFactoryCreatedObjects.size() < EMAX_HANDLED_OBJECTS ),
 				  "You need to reserve more space in CGCLevelLoader_Ogmo::m_vecFactoryCreatedObjects! Make CGCLevelLoader_Ogmo::EMAX_HANDLED_OBJECTS bigger!" );
 
-		m_vecFactoryCreatedObjects.push_back( rClassFactory.CreateInstance( ( *pParams ), v2Pos ) );
+		//m_vecFactoryCreatedObjects.push_back( rClassFactory.CreateInstance( ( *pParams ), v2Pos ) );
+
+
+		sm_pCurrentObjectXmlData = &rxmlElement;
+
+		m_vecFactoryCreatedObjects.push_back (rClassFactory.CreateInstance (( *pParams ), v2Pos));
+
+		sm_pCurrentObjectXmlData = nullptr;
 
 		return true;
 	}

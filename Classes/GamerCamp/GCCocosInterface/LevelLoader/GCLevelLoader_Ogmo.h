@@ -92,6 +92,8 @@ public:
 
 	// destroy objects
 	void			DestroyObjects();
+
+	static const tinyxml2::XMLElement* sm_pCurrentObjectXmlData;
 };
 
 

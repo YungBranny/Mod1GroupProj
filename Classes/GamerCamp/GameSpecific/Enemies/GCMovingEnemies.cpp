@@ -3,10 +3,21 @@
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
 #include "../../GCCocosInterface/GB2ShapeCache-x.h"
 
-
 #include "GCMovingEnemies.h"
+
+
+#ifndef TINYXML2_INCLUDED
+#include "external\tinyxml2\tinyxml2.h"
+#endif
+
+#ifndef _GCLEVELLOADER_OGMO_H_
+#include "GamerCamp/GCCocosInterface/LevelLoader/GCLevelLoader_Ogmo.h"
+#endif
+
+
 
 //using namespace cocos2d;
 
@@ -27,6 +38,7 @@ CGCMovingEnemies::CGCMovingEnemies ()
 	, m_iCollisionDirBuffer			(20)
 	, m_bDefaultDirection			(true)
 	, m_bJustChangedDir				(false)
+	, m_pCustomCreationParams		(nullptr)
 {
 	InitialiseMovementDirection (); //calls the function when this class is initalised
 	
@@ -68,17 +80,22 @@ void CGCMovingEnemies::InitialiseMovementDirection ()
 //	CGCObjSpritePhysics::VOnReset ();
 //}
 
-//void CGCMovingEnemies::VOnResourceRelease ()
-//{
-//	CGCObjSpritePhysics::VOnResourceRelease ();
-//}
-
-void CGCMovingEnemies::VOnResurrected ()
+void CGCMovingEnemies::VOnResourceRelease ()
 {
-	CGCObjSpritePhysics::VOnResurrected ();
-	//GetPhysicsBody ()->SetGravityScale (getGravity ());
-	GetPhysicsBody ()->SetGravityScale (0.0f);
+	CGCObjSpritePhysics::VOnResourceRelease ();
+
+	if (nullptr != m_pCustomCreationParams.get ())
+	{
+		m_pCustomCreationParams.reset (nullptr);
+	}
 }
+
+//void CGCMovingEnemies::VOnResurrected ()
+//{
+//	CGCObjSpritePhysics::VOnResurrected ();
+//	//GetPhysicsBody ()->SetGravityScale (getGravity ());
+//	GetPhysicsBody ()->SetGravityScale (0.0f);
+//}
 
 //changes the direction if the current position has reached the end desitination 
 void CGCMovingEnemies::ChangeDirection () 
@@ -204,6 +221,36 @@ void CGCMovingEnemies::CollisionDirChecker ()
 		}
 	}
 }
+
+void CGCMovingEnemies::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
+{
+	const CGCFactoryCreationParams* pParamsToPassToBaseClass = &rCreationParams;
+
+	 if (nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData)
+	{
+		 //const tinyxml2::XMLAttribute* pName = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "name" );
+
+		 //CCLOG( (nullptr == pName) ? "BOB NOT FOUND!" : pName->Value() );
+
+		 const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("PlistFile");    //customplist    //PlistFile
+
+		 const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "shape" );
+
+		 if (( nullptr != pCustomPlistPath ) && ( 0 != strlen (pCustomPlistPath->Value ()) ))    // && ( (nullptr != pCustomShape) && ( 0 != strlen( pCustomShape->Value() ) ) ) )
+		 {
+			 m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams > (rCreationParams.strClassName.c_str (),
+																					 pCustomPlistPath->Value (),
+																					 pCustomShape->Value(),
+																					 rCreationParams.eB2dBody_BodyType,
+																					 rCreationParams.bB2dBody_FixedRotation);
+
+			 pParamsToPassToBaseClass = m_pCustomCreationParams.get ();
+		 }
+	 }
+
+	 CGCObjSpritePhysics::VHandleFactoryParams (( *pParamsToPassToBaseClass ), v2InitialPosition);
+}
+
 
 void CGCMovingEnemies::VOnUpdate (f32 fTimeStep)
 {
