@@ -43,6 +43,7 @@ class CGCObjLadder;
 class CGCObjKeys;
 class GCObjEnemyMovementCollider;
 class CGCObjLives;
+class CGCObjScore;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer
@@ -65,6 +66,7 @@ private:
 	//UI
 	CGCObjTimer*					m_pcGCTimer;
 	CGCObjLives*					m_pcGCOLives;
+	CGCObjScore*					m_pcGCOScore;
 	
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;
@@ -123,8 +125,6 @@ public:
 	void playTimerPickUpAudio();
 
 	void playDoorOpeningAudio();
-	
-	void onDeath();
 
 
 	//////////////////////////////////////////////////////////////////////////

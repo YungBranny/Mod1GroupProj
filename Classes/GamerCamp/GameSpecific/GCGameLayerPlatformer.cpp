@@ -52,6 +52,7 @@
 #include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider.h"
 #include "GamerCamp/GameSpecific/Lives/GCObjLives.h"
+#include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 
 #include "AppDelegate.h"
 
@@ -91,6 +92,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCOKeys1					( nullptr )
 , m_pcGCOKeys2					( nullptr )
 , m_bCheckIfPlayerIsAbovePlatform (false)
+, m_pcGCOScore (nullptr)
 
 {
 	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
@@ -110,6 +112,7 @@ CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
 void CGCGameLayerPlatformer::keyCollected() // Mia: This function adds one more Key onto how many the Player obtains
 {
 	m_iKeysCollected++; // Mia: Adds a Key
+	m_pcGCOScore->IncreaseScore();
 	CCLOG("Key Collected."); // Mia: Checks to make sure Player has picked up Key only once
 }
 
@@ -271,6 +274,10 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	//// Mia: Add the label as a child to this Game Layer
 	//this->addChild(pLabel, 1);
 
+	m_pcGCOScore = new CGCObjScore();
+
+	this->addChild(m_pcGCOScore->getScoreText(), 10);
+
 	//Mia: Added Background
 	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
 	{
@@ -287,8 +294,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	//this->addChild(m_pcGCTimer->getTimerText(), 10);
 	this->addChild(m_pcGCTimer->getTimerBar(), 50);
 	this->addChild(m_pcGCTimer->getTimerBarUI(), 51);
-
-	
 
 	///////////////////////////////////////////////////////////////////////////
 	// set up physics 
@@ -528,7 +533,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			//	m_bPlayerKeysGathered = true;
 
 				playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
-				rcPlayer.ResetLives();
 			}
 		}
 	);
@@ -690,9 +694,8 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	
 	// this shows how to iterate and respond to the box2d collision info
 	HandleCollisions();	
-	
-	onDeath();
-	 
+
+
 	m_pcGCTimer->Update(fTimeStep);
 	
 	if( ResetWasRequested() )
@@ -761,14 +764,6 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	IGCGameLayer::VOnDestroy();
 }
 
-void CGCGameLayerPlatformer::onDeath()
-{
-	if (m_pcGCOPlayer->GetNumberOfLives() <= 0)
-	{
-		//ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
-		m_pcGCOPlayer->ResetLives();
-	}
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 // on quit button

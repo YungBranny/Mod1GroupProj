@@ -43,7 +43,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fNoInput_ExtraDrag_Square (0.2f)
 	, m_fNoInput_VelocityThreshold (0.25f)
 	, m_pcControllerActionToKeyMap (nullptr)
-	, m_fLivesFontSize (54.0f)
+	, m_fLivesFontSize (20.0f)
 	, m_iLivesTextOutlineSize (1)
 	, m_iLivesBarHeightX (695)
 	, m_iLivesBarHeightY (500)
@@ -62,8 +62,8 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fMaximumDropDistance (20.0f)
 	, m_fJumpHeight (12.0f)
 	, m_bPlayerDiedFromFalling (false)
-	, m_fLivesStartPositionX (100)
-	, m_fLivesStartPositionY (1800)
+	, m_fLivesStartPositionX (1700)
+	, m_fLivesStartPositionY (1015)
 	, m_fLivesSpacingX (10.0f)
 	, m_bIsPlayerOnPlatform (true)
 	, m_fTravelatorVelocity (-25.0f)
@@ -73,13 +73,13 @@ CGCObjPlayer::CGCObjPlayer ()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	setLivesText(Label::createWithTTF(" ", "fonts/SaltyOcean.ttf", m_fLivesFontSize));
+	setLivesText(Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fLivesFontSize));
 
-	getLivesText()->setColor(Color3B::RED);
+	getLivesText()->setColor(Color3B::WHITE);
 
 	getLivesText()->enableOutline(Color4B::BLACK, m_iLivesTextOutlineSize);
 
-	getLivesText()->setPosition(Vec2(visibleSize.width / 2 - 800, visibleSize.height / 2 + 480));
+	getLivesText()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
 
 	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
 
@@ -451,7 +451,7 @@ void CGCObjPlayer::DecrementLives()
 //Function to reset lives
 void CGCObjPlayer::ResetLives()
 {
-	m_iNumberOfLives = 4;
+	m_iNumberOfLives = 3;
 }
 
 void CGCObjPlayer::FallDamage()
