@@ -273,6 +273,10 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	//// Mia: Add the label as a child to this Game Layer
 	//this->addChild(pLabel, 1);
 
+	m_pcGCOScore = new CGCObjScore();
+
+	this->addChild(m_pcGCOScore->getScoreText(), 10);
+
 	//Mia: Added Background
 	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
 	{
@@ -289,10 +293,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	//this->addChild(m_pcGCTimer->getTimerText(), 10);
 	this->addChild(m_pcGCTimer->getTimerBar(), 50);
 	this->addChild(m_pcGCTimer->getTimerBarUI(), 51);
-
-	//m_pcGCOScore = new CGCObjScore();
-
-	//this->addChild(m_pcGCOScore->getScoreText(), 10);
 
 	///////////////////////////////////////////////////////////////////////////
 	// set up physics 

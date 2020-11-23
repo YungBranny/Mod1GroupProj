@@ -13,8 +13,7 @@
 using namespace cocos2d;
 
 CGCObjScore::CGCObjScore()
-	:CGCObjSprite(GetGCTypeIDOf(CGCObjScore))
-	, m_fScoreTextStartPositionX(425)
+	: m_fScoreTextStartPositionX(1000)
 	, m_fScoreTextStartPositionY(1000)
 	, m_fScoreTextSize(30.0f)
 {

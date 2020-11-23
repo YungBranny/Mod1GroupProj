@@ -8,7 +8,6 @@
 #include "cocos2d/cocos/2d/CCSprite.h"
 
 class CGCObjScore
-	:CGCObjSprite
 {
 private:
 	float m_fScoreTextSize;
@@ -24,7 +23,7 @@ public:
 	~CGCObjScore();
 
 	cocos2d::Label* getScoreText() const { return m_pScoreText; }
-	void setScoreText(cocos2d::Label* t) { m_pScoreText = t; }
+	void setScoreText(cocos2d::Label* i) { m_pScoreText = i; }
 
 	void IncreaseScore();
 
