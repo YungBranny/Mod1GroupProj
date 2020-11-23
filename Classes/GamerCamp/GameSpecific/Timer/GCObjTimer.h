@@ -20,9 +20,9 @@ class CGCObjTimer
 {
 private:
 
-	int m_iTotalTimerDuration; 
-	int m_iCurrentTime;
-	int m_iTimerDecreaseValue;
+	float m_fTotalTimerDuration; 
+	float m_fCurrentTime;
+	float m_fTimerDecreaseValue;
 	int m_iTimerIncreaseValue;
 	int m_iTimerTextOutlineSize;
 	int m_iTimerBarHeightX;
@@ -57,14 +57,14 @@ public:
 	
    ///////////////////////////////////////////////////////////////////////////////
 	
-	int getTotalTimerDuration() const	  { return m_iTotalTimerDuration;   } 	//Getter and Setter for getting the Total timer duration
-	void  setTotalTimerDuration(int f)	  { m_iTotalTimerDuration = f;      }	
+	float getTotalTimerDuration() const	  { return m_fTotalTimerDuration;   } 	//Getter and Setter for getting the Total timer duration
+	void  setTotalTimerDuration(float f)	  { m_fTotalTimerDuration = f;      }	
 																				
-	int getCurrentTime() const			  { return  m_iCurrentTime;         }	//Getter and Setter for getting the current time
-	void  setCurrentTime(int f)           { m_iCurrentTime = f;             }	
+	float getCurrentTime() const			  { return  m_fCurrentTime;         }	//Getter and Setter for getting the current time
+	void  setCurrentTime(float f)           { m_fCurrentTime = f;             }	
 																				
-	int getTimerDecreaseValue() const     { return m_iTimerDecreaseValue;   }	//Getter and Setter for getting the timer decrease amount 
-	void setTimerDercreaseValue(int f)    { m_iTimerDecreaseValue = f;      }	
+	float getTimerDecreaseValue() const     { return m_fTimerDecreaseValue;   }	//Getter and Setter for getting the timer decrease amount 
+	void setTimerDercreaseValue(float f)    { m_fTimerDecreaseValue = f;      }	
 																				
 	int getTimerIncreaseValue() const     { return m_iTimerIncreaseValue;   }	//Getter and Setter for getting the timer increase amount
 	void setTimerIncreaseValue(int f)     { m_iTimerIncreaseValue = f;      }	
@@ -88,16 +88,18 @@ public:
 
 	///////////////////////////////////////////////////////////////////////////////
 	
-	void DecreaseTimer();
+	void DecreaseTimer( f32 fTimeStep);
 	
 	void ResetTimer();
 
 	void ClampTimer();
+
+	virtual void VOnReset(void);
 	
 	///////////////////////////////////////////////////////////////////////////////
 	
 
-	void Update();
+	void Update(f32 fTimeStep);
 	
 	
 	

@@ -18,8 +18,8 @@ using namespace cocos2d;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
  CGCObjTimer::CGCObjTimer()
 	:CGCObjSprite(GetGCTypeIDOf(CGCObjTimer))
-	,m_iTotalTimerDuration		 (		100			)   // Max value for the timer
-    ,m_iTimerDecreaseValue		 (		 1			)	// The Amount decremented each time
+	,m_fTotalTimerDuration		 (		100.0f		)   // Max value for the timer
+    ,m_fTimerDecreaseValue		 (		0.0015f		)	// The Amount decremented each time
 	,m_iTimerIncreaseValue       (       20         )	// The Amount the Timer increases when the Timer pickup is picked up
     ,m_fMaxTimeBuffer			 (		100.0f		)	// Max value timer resets too
 	,m_fCurrentTimeBuffer        ( m_fMaxTimeBuffer )	// higher the value  slower the timer is
@@ -34,7 +34,7 @@ using namespace cocos2d;
 	,m_fTimerBarStartPosY		 (		1000		)	// Timer bar start pos Y
 	,m_iTimerBarHeightX			 (		425			)	// Timer bar Height on Screen
 	,m_iTimerBarHeightY			 (		1000		)	// Timer bar Height on Screen
-	,m_iTimerBufferDecrease		 (		  1			)	// Timer buffer decrease value
+	,m_iTimerBufferDecrease		 (		1		)	// Timer buffer decrease value
     
 {	/////////////////////////////////////////////////////////////////////////////////////////////////
  	
@@ -106,34 +106,53 @@ using namespace cocos2d;
  //test
  //IN_CPP_CREATION_PARAMS_DECLARE(CGCObjTimer, "TexturePacker/Sprites/Mario/mario.plist", "mario", b2_dynamicBody, true);
 
- void CGCObjTimer::DecreaseTimer()
+ void CGCObjTimer::DecreaseTimer(f32 fTimeStep)
  {
 
- 	if(getCurrentTimeBuffer()> 0)
- 	{
-		setCurrentTimeBuffer(getCurrentTimeBuffer()-m_iTimerBufferDecrease);
- 		//Decreases the timer buffer by 1 each update
- 	}
-    else if (getCurrentTimeBuffer() <= 0)
-	{
 
-		if (getCurrentTime() >= 0)
-		{
-			setCurrentTime(getCurrentTime() - getTimerDecreaseValue()); //Starting at 100% this counts down in 1's to 0
+	 if (getCurrentTime() >= 0)
+	 {
 
-			getTimerBar()->setPercentage(100 * getCurrentTime() / getTotalTimerDuration());
-			
-			//SetScale(getCurrentTime() / m_fScaleDecreaseX, m_fScaleDecreaseY);// Scale for the timer bar being decremented
 
-			//getTimerText()->setString("Power "+ std::to_string(getCurrentTime()) + "%" ); //Setting Current time to text to be shown on the screen
-		}
-		else
-		{
-			setCurrentTime(0.0f); //sets time to 0 when at 0 to prevent going into negative values
-		}
-		
-		setCurrentTimeBuffer(m_fMaxTimeBuffer);// sets timer buffer back to 100
-	}
+		 setCurrentTime(getCurrentTime() - getTimerDecreaseValue()); //Starting at 100% this counts down in 1's to 0
+
+		 //SetScale(getCurrentTime() / m_fScaleDecreaseX, m_fScaleDecreaseY);// Scale for the timer bar being decremented
+
+		 //getTimerText()->setString("Power "+ std::to_string(getCurrentTime()) + "%" ); //Setting Current time to text to be shown on the screen
+	 }
+	 else
+	 {
+		 setCurrentTime(0.0f); //sets time to 0 when at 0 to prevent going into negative values
+	 }
+
+
+ 	
+
+ //	if(getCurrentTimeBuffer()> 0)
+ //	{
+	//	setCurrentTimeBuffer(getCurrentTimeBuffer()-m_iTimerBufferDecrease);
+ //		//Decreases the timer buffer by 1 each update
+ //	}
+ //   else if (getCurrentTimeBuffer() <= 0)
+	//{
+
+	//	if (getCurrentTime() >= 0)
+	//	{
+
+	//		
+	//		setCurrentTime(getCurrentTime() - getTimerDecreaseValue()); //Starting at 100% this counts down in 1's to 0
+
+	//		//SetScale(getCurrentTime() / m_fScaleDecreaseX, m_fScaleDecreaseY);// Scale for the timer bar being decremented
+
+	//		//getTimerText()->setString("Power "+ std::to_string(getCurrentTime()) + "%" ); //Setting Current time to text to be shown on the screen
+	//	}
+	//	else
+	//	{
+	//		setCurrentTime(0.0f); //sets time to 0 when at 0 to prevent going into negative values
+	//	}
+	//	
+	//	setCurrentTimeBuffer(m_fMaxTimeBuffer);// sets timer buffer back to 100
+	//}
  }
 
 void CGCObjTimer::ClampTimer()
@@ -152,6 +171,11 @@ void CGCObjTimer::ClampTimer()
 //	
 //}
 
+void CGCObjTimer::VOnReset()
+ {
+	setCurrentTime(getTotalTimerDuration());
+ }
+
 
 void CGCObjTimer::ResetTimer()
 {
@@ -159,9 +183,15 @@ void CGCObjTimer::ResetTimer()
  	//on reset set timer back to max
 }
 
- void CGCObjTimer::Update()
+ void CGCObjTimer::Update( f32 fTimeStep)
 {
-	 DecreaseTimer();
+	 
+ 	
+	 m_fCurrentTime -= fTimeStep;
+ 	
+ 	 DecreaseTimer(fTimeStep);
+ 	
+	 getTimerBar()->setPercentage(100 * getCurrentTime() / getTotalTimerDuration());
  	
 	 ClampTimer();
 

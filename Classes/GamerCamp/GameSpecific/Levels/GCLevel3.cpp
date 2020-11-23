@@ -657,7 +657,7 @@ void GCLevel3::VOnUpdate (f32 fTimeStep)
 	HandleCollisions ();
 
 
-	m_pcGCTimer->Update ();
+	m_pcGCTimer->Update (fTimeStep);
 
 	if (ResetWasRequested ())
 	{
