@@ -123,6 +123,8 @@ public:
 	void playTimerPickUpAudio();
 
 	void playDoorOpeningAudio();
+	
+	void onDeath();
 
 
 	//////////////////////////////////////////////////////////////////////////

@@ -43,7 +43,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fNoInput_ExtraDrag_Square (0.2f)
 	, m_fNoInput_VelocityThreshold (0.25f)
 	, m_pcControllerActionToKeyMap (nullptr)
-	, m_fLivesFontSize (35.0f)
+	, m_fLivesFontSize (54.0f)
 	, m_iLivesTextOutlineSize (1)
 	, m_iLivesBarHeightX (695)
 	, m_iLivesBarHeightY (500)
@@ -75,13 +75,13 @@ CGCObjPlayer::CGCObjPlayer ()
 
 	setLivesText(Label::createWithTTF(" ", "fonts/SaltyOcean.ttf", m_fLivesFontSize));
 
-	getLivesText()->setColor(Color3B::WHITE);
+	getLivesText()->setColor(Color3B::RED);
 
 	getLivesText()->enableOutline(Color4B::BLACK, m_iLivesTextOutlineSize);
 
-	getLivesText()->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	getLivesText()->setPosition(Vec2(visibleSize.width / 2 - 800, visibleSize.height / 2 + 480));
 
-	getLivesText()->setString("Lives " + std::to_string(GetNumberOfLives()));
+	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
 
 	//m_pLivesUI = Sprite::create("Lives/ui_life_full.png");
 
@@ -451,7 +451,7 @@ void CGCObjPlayer::DecrementLives()
 //Function to reset lives
 void CGCObjPlayer::ResetLives()
 {
-	m_iNumberOfLives = 3;
+	m_iNumberOfLives = 4;
 }
 
 void CGCObjPlayer::FallDamage()

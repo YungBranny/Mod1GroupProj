@@ -528,6 +528,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			//	m_bPlayerKeysGathered = true;
 
 				playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
+				rcPlayer.ResetLives();
 			}
 		}
 	);
@@ -689,8 +690,9 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	
 	// this shows how to iterate and respond to the box2d collision info
 	HandleCollisions();	
-
-
+	
+	onDeath();
+	 
 	m_pcGCTimer->Update(fTimeStep);
 	
 	if( ResetWasRequested() )
@@ -759,6 +761,14 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	IGCGameLayer::VOnDestroy();
 }
 
+void CGCGameLayerPlatformer::onDeath()
+{
+	if (m_pcGCOPlayer->GetNumberOfLives() <= 0)
+	{
+		//ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
+		m_pcGCOPlayer->ResetLives();
+	}
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 // on quit button
