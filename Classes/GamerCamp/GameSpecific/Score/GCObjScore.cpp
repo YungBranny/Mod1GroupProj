@@ -8,21 +8,20 @@
 #include "GamerCamp/Core/GCTypes.h"
 #include "GamerCamp/GCObject/GCObject.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
-#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 
 using namespace cocos2d;
 
 CGCObjScore::CGCObjScore()
-	: m_fScoreTextStartPositionX(1000)
-	, m_fScoreTextStartPositionY(1000)
-	, m_fScoreTextSize(30.0f)
+	: m_fScoreTextStartPositionX(200)
+	, m_fScoreTextStartPositionY(1020)
+	, m_fScoreTextSize(20.0f)
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
 	setScoreText(Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fScoreTextSize));
 
-	getScoreText()->setString("Score ");
+	getScoreText()->setString("Score: ");
 
 	getScoreText()->setPosition(Vec2(m_fScoreTextStartPositionX, m_fScoreTextStartPositionY));
 }

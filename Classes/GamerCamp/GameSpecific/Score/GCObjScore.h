@@ -2,10 +2,6 @@
 #define	_GCOBJSCORE_H_
 
 #include "2d/CCLabel.h"
-#include "GamerCamp/GameSpecific/Items/GCObjItem.h"
-#include "../../GCCocosInterface/GCObjSpritePhysics.h"
-#include "GamerCamp/GCCocosInterface/GCObjSprite.h"
-#include "cocos2d/cocos/2d/CCSprite.h"
 
 class CGCObjScore
 {
