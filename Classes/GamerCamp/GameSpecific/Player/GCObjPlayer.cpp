@@ -62,8 +62,8 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fMaximumDropDistance (20.0f)
 	, m_fJumpHeight (12.0f)
 	, m_bPlayerDiedFromFalling (false)
-	, m_fLivesStartPositionX (100)
-	, m_fLivesStartPositionY (1800)
+	, m_fLivesStartPositionX (300)
+	, m_fLivesStartPositionY (1025)
 	, m_fLivesSpacingX (10.0f)
 	, m_bIsPlayerOnPlatform (true)
 	, m_fTravelatorVelocity (-25.0f)
@@ -79,9 +79,9 @@ CGCObjPlayer::CGCObjPlayer ()
 
 	getLivesText()->enableOutline(Color4B::BLACK, m_iLivesTextOutlineSize);
 
-	getLivesText()->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	getLivesText()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
 
-	getLivesText()->setString("Lives " + std::to_string(GetNumberOfLives()));
+	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
 
 	//m_pLivesUI = Sprite::create("Lives/ui_life_full.png");
 

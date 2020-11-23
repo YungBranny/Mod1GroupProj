@@ -52,6 +52,7 @@
 #include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider.h"
 #include "GamerCamp/GameSpecific/Lives/GCObjLives.h"
+#include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 
 #include "AppDelegate.h"
 
@@ -91,6 +92,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCOKeys1					( nullptr )
 , m_pcGCOKeys2					( nullptr )
 , m_bCheckIfPlayerIsAbovePlatform (false)
+, m_pcGCOScore (nullptr)
 
 {
 	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
@@ -288,7 +290,9 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	this->addChild(m_pcGCTimer->getTimerBar(), 50);
 	this->addChild(m_pcGCTimer->getTimerBarUI(), 51);
 
-	
+	//m_pcGCOScore = new CGCObjScore();
+
+	//this->addChild(m_pcGCOScore->getScoreText(), 10);
 
 	///////////////////////////////////////////////////////////////////////////
 	// set up physics 
