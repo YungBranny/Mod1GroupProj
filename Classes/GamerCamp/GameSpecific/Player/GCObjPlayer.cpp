@@ -445,7 +445,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 void CGCObjPlayer::DecrementLives()
 {
 	m_iNumberOfLives--;
-	getLivesText()->setString("Lives " + std::to_string(GetNumberOfLives()));
+	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
 }
 
 //Function to reset lives
