@@ -66,6 +66,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fLivesStartPositionY (1800)
 	, m_fLivesSpacingX (10.0f)
 	, m_bIsPlayerOnPlatform (true)
+	, m_fTravelatorVelocity (-25.0f)
 	//, m_bv2CurrentPos(0,0)
 {
 
@@ -418,13 +419,13 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		
 		if (GetVelocity ().x > 0)
 		{
-			SetVelocity (cocos2d::Vec2 (GetVelocity ().x - 50, m_v2MovingDownVelocity.x));
+			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
 			float impulse = GetPhysicsBody ()->GetMass () * 40;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse * 1.1f), GetPhysicsBody ()->GetWorldCenter (), true);
 		};
 		if (GetVelocity ().x < 0)
 		{
-			SetVelocity (cocos2d::Vec2 (GetVelocity ().x + 50, m_v2MovingDownVelocity.x));
+			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
 			float impulse = GetPhysicsBody ()->GetMass () * 40;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse* 1.1f), GetPhysicsBody ()->GetWorldCenter (), true);
 		};

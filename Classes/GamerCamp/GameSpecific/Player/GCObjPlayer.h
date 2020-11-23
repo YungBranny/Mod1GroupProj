@@ -66,6 +66,8 @@ private:
 	float	m_fLivesStartPositionY;
 	float	m_fLivesSpacingX;
 
+	float	m_fTravelatorVelocity;
+
 	int		m_iNumberOfLives;
 
 	bool	m_bCanJump;
@@ -110,6 +112,10 @@ public:
 
 	float getJumpHeight () const { return m_fJumpHeight; }
 	void setJumpHeight (float i) { m_fJumpHeight = i; }
+
+	float getTravelatorVelocity () const { return m_fTravelatorVelocity; }
+	void setTravelatorVelocity (float f) { m_fTravelatorVelocity = f; }
+
 
 	b2Vec2 getCurrentPos () const { return m_bv2CurrentPos; }
 

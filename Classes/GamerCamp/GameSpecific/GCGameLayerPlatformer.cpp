@@ -494,24 +494,24 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	(CGCObjPlayer& rcPlayer, CGCObjTravelatorPlatform& rcTravelatorPlatform, const b2Contact& rcContact) -> void
 		{
 
-			if (rcContact.IsTouching() && rcPlayer.getIsPlayerOnPlatform())
-			{
+			//if (rcContact.IsTouching() && rcPlayer.getIsPlayerOnPlatform())
+			//{
 
-				rcPlayer.setOnTravelator (true);
+			//	rcPlayer.setOnTravelator (true);
 
-				//rcPlayer.SetCanJump (true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
+			//	//rcPlayer.SetCanJump (true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
 
-				rcPlayer.SetVelocity(cocos2d::Vec2(rcTravelatorPlatform.getVelocity(),rcPlayer.GetVelocity().y));
+			//	rcPlayer.SetVelocity(cocos2d::Vec2(rcTravelatorPlatform.getVelocity(),rcPlayer.GetVelocity().y));
 
-				// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
+			//	// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
 
-			}
-			else if (rcContact.IsTouching () == false)
-			{
-				rcPlayer.setOnTravelator (false);//Dan :Sets the players velocity back to normal when the player is no longer touching the platform
+			//}
+			//else if (rcContact.IsTouching () == false)
+			//{
+			//	rcPlayer.setOnTravelator (false);//Dan :Sets the players velocity back to normal when the player is no longer touching the platform
 
-				//rcPlayer.SetCanJump (false);//Dan : making sure that the player cant jump while in the air when they are falling off the platform
-			}
+			//	//rcPlayer.SetCanJump (false);//Dan : making sure that the player cant jump while in the air when they are falling off the platform
+			//}
 		}
 	);
 
@@ -983,7 +983,24 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 		//{
 		//	CGCObjectManager::ObjectKill (m_pcGCOPlayer);
 		//}
+	}
 
+	if (( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
+		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) ))
+	{
+		if (m_pcGCOPlayer->GetVelocity ().y <= 0 && pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor () == true)
+
+		{
+			m_pcGCOPlayer->setOnTravelator (true);
+
+			//rcPlayer.SetCanJump (true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
+
+			m_pcGCOPlayer->SetVelocity (cocos2d::Vec2 (m_pcGCOPlayer->getTravelatorVelocity (), m_pcGCOPlayer->GetVelocity ().y));
+
+			// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
+		}
 	}
 }
 
@@ -1041,6 +1058,16 @@ void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 		{
 			m_pcGCOPlayer->SetCanJump (false);
 			m_pcGCOPlayer->FallDamage();
+			
+		}
+
+		if (( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) ))
+		{
+			m_pcGCOPlayer->setOnTravelator (false);//Dan :Sets the players velocity back to normal when the player is no longer touching the platform
+
 			
 		}
 	}
