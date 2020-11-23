@@ -174,7 +174,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel3.cpp" />
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Lives\GCObjLives.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasePlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform1.cpp" />
@@ -248,7 +247,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel3.h" />
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Lives\GCObjLives.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasePlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform1.h" />
