@@ -68,7 +68,7 @@ using namespace cocos2d;
 	//Getting texture file path for timer bar sprite
 	const char* pszTimerBarSprite = "Loose/UI_TimerBar.plist";
 	{
-		//CreateSprite(pszTimerBarSprite);
+		CreateSprite(pszTimerBarSprite);
 		/*SetResetPosition(Vec2(m_fTimerBarStartPosX, m_fTimerBarStartPosY));
 		SetParent(IGCGameLayer::ActiveInstance());
 		SetScale(m_fScaleX, m_fScaleY);*/
