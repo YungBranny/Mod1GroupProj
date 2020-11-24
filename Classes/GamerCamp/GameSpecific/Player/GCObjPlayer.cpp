@@ -103,9 +103,8 @@ CGCObjPlayer::CGCObjPlayer ()
 	
 	
 	
-	getPlayerLoseLivesUI1()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
-	getPlayerLoseLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 50, m_fLivesStartPositionY));
-	getPlayerLoseLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 100, m_fLivesStartPositionY));
+
+	
 	
 	m_sprPlayerLives1	= Sprite::create(  "TexturePacker/Sprites/Lives/ui_life_full.png");
 	m_sprPlayerLives2	= Sprite::create(  "TexturePacker/Sprites/Lives/ui_life_full.png");
@@ -502,15 +501,22 @@ void CGCObjPlayer::LivesUI()
 {
 	if (m_iNumberOfLives == 0)
 	{
-		getPlayerLivesUI1()->setPosition(Vec2(-10000, -10000));
+		getPlayerLivesUI1()->setVisible(false);
+		
+		getPlayerLoseLivesUI1()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
 	}
 	else if (m_iNumberOfLives == 1)
 	{
-		getPlayerLivesUI2()->setPosition(Vec2(-10000, -10000));
+		getPlayerLivesUI2()->setVisible(false);
+	
+		getPlayerLoseLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 50, m_fLivesStartPositionY));
 	}
 	else if (m_iNumberOfLives == 2)
 	{
-		getPlayerLivesUI3()->setPosition(Vec2(-10000, -10000));
+		
+		getPlayerLivesUI3()->setVisible(false);
+		
+		getPlayerLoseLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 100, m_fLivesStartPositionY));
 	}
 
 }
