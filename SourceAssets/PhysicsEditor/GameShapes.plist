@@ -828,10 +828,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -33.000,30.000 }</string>	
-								<string>{ -33.000,26.000 }</string>	
-								<string>{ 33.000,26.000 }</string>	
-								<string>{ 33.000,30.000 }</string>
+								<string>{ -33.000,31.000 }</string>	
+								<string>{ -33.000,27.000 }</string>	
+								<string>{ 33.000,27.000 }</string>	
+								<string>{ 33.000,31.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -954,10 +954,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -34.000,29.028 }</string>	
+								<string>{ -34.000,31.028 }</string>	
 								<string>{ -34.000,-29.972 }</string>	
 								<string>{ 34.000,-29.972 }</string>	
-								<string>{ 34.000,29.028 }</string>
+								<string>{ 34.000,31.028 }</string>
 							</array>
 						</array>
                     </dict>
@@ -984,10 +984,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -32.000,26.000 }</string>	
-								<string>{ 32.000,27.000 }</string>	
-								<string>{ 32.000,30.000 }</string>	
-								<string>{ -32.000,30.000 }</string>
+								<string>{ 32.000,26.000 }</string>	
+								<string>{ 32.000,31.000 }</string>	
+								<string>{ -32.000,31.000 }</string>	
+								<string>{ -32.000,26.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -1014,10 +1014,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -32.000,30.000 }</string>	
-								<string>{ -32.000,26.000 }</string>	
-								<string>{ 32.000,26.000 }</string>	
-								<string>{ 32.000,30.000 }</string>
+								<string>{ -32.000,31.000 }</string>	
+								<string>{ -32.000,27.000 }</string>	
+								<string>{ 32.000,27.000 }</string>	
+								<string>{ 32.000,31.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -1044,10 +1044,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -32.000,30.000 }</string>	
+								<string>{ -32.000,31.000 }</string>	
 								<string>{ -32.000,24.000 }</string>	
 								<string>{ 32.000,24.000 }</string>	
-								<string>{ 32.000,30.000 }</string>
+								<string>{ 32.000,31.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -1074,10 +1074,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -32.000,30.000 }</string>	
+								<string>{ -32.000,31.000 }</string>	
 								<string>{ -32.000,26.000 }</string>	
 								<string>{ 32.000,26.000 }</string>	
-								<string>{ 32.000,30.000 }</string>
+								<string>{ 32.000,31.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -1104,10 +1104,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ 33.000,30.000 }</string>	
-								<string>{ -34.000,30.000 }</string>	
+								<string>{ -34.000,31.000 }</string>	
 								<string>{ -34.000,26.000 }</string>	
-								<string>{ 32.000,26.000 }</string>
+								<string>{ 33.000,26.000 }</string>	
+								<string>{ 33.000,31.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -1134,10 +1134,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -33.000,30.000 }</string>	
+								<string>{ -33.000,31.000 }</string>	
 								<string>{ -33.000,26.000 }</string>	
 								<string>{ 33.000,26.000 }</string>	
-								<string>{ 33.000,30.000 }</string>
+								<string>{ 33.000,31.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -1253,8 +1253,8 @@
 
                          <key>circle</key>
                          <dict>
-                             <key>radius</key> <real>18.672</real>
-                             <key>position</key> <string>{ -3.932,-33.676 }</string>
+                             <key>radius</key> <real>15.961</real>
+                             <key>position</key> <string>{ -5.288,-33.676 }</string>
                          </dict>
                     </dict>
 					<dict>
@@ -1291,8 +1291,8 @@
 
                          <key>circle</key>
                          <dict>
-                             <key>radius</key> <real>6.979</real>
-                             <key>position</key> <string>{ 3.681,-52.915 }</string>
+                             <key>radius</key> <real>7.829</real>
+                             <key>position</key> <string>{ 1.816,-53.932 }</string>
                          </dict>
                     </dict>
 					<dict>
@@ -1308,8 +1308,8 @@
 
                          <key>circle</key>
                          <dict>
-                             <key>radius</key> <real>20.000</real>
-                             <key>position</key> <string>{ -6.254,-7.271 }</string>
+                             <key>radius</key> <real>16.614</real>
+                             <key>position</key> <string>{ -7.271,-7.271 }</string>
                          </dict>
                     </dict>
 					<dict>
@@ -1325,30 +1325,9 @@
 
                          <key>circle</key>
                          <dict>
-                             <key>radius</key> <real>15.432</real>
-                             <key>position</key> <string>{ 11.542,-1.339 }</string>
+                             <key>radius</key> <real>11.554</real>
+                             <key>position</key> <string>{ 10.186,-1.508 }</string>
                          </dict>
-                    </dict>
-					<dict>
-                        <key>density</key> <real>2</real>
-                        <key>friction</key> <real>0</real>
-                        <key>restitution</key> <real>0</real>
-                        <key>filter_categoryBits</key> <integer>1</integer>
-                        <key>filter_groupIndex</key> <integer>0</integer>
-                        <key>filter_maskBits</key> <integer>65535</integer>
-                        <key>isSensor</key> <true/>
-                        <key>id</key> <string></string>
-                        <key>fixture_type</key> <string>POLYGON</string>
-
-						<key>polygons</key>
-						<array>
-							<array>	
-								<string>{ 11.000,-56.000 }</string>	
-								<string>{ -3.000,-56.000 }</string>	
-								<string>{ -3.000,-68.000 }</string>	
-								<string>{ 10.000,-68.000 }</string>
-							</array>
-						</array>
                     </dict>
 					<dict>
                         <key>density</key> <real>2</real>
@@ -1364,7 +1343,7 @@
                          <key>circle</key>
                          <dict>
                              <key>radius</key> <real>9.579</real>
-                             <key>position</key> <string>{ 3.930,-61.141 }</string>
+                             <key>position</key> <string>{ 2.574,-56.565 }</string>
                          </dict>
                     </dict>
 				</array>
