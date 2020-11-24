@@ -132,6 +132,7 @@ void CGCObjPlayer::VOnResourceAcquire()
 	SetName( "Mario!!" );
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
+	//m_bIsPlayerOnPlatform = true;
 
 
 
