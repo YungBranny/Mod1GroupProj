@@ -160,6 +160,7 @@ void CGCObjPlayer::VOnReset()
 	SetFlippedX( false );
 	SetFlippedY( false );
 	m_bOnTravelator = false;
+	m_bIsPlayerOnPlatform = true;
 
 	// reset
 	if( GetPhysicsBody() )
