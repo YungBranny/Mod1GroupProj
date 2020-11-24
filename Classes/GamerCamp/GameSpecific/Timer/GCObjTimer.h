@@ -38,6 +38,8 @@ private:
 	float m_fTimerTextFontSize;
 	float m_fTimerBarStartPosY;
 	float m_fTimerBarStartPosX;
+	float m_fTimerBarSpeedDecrease;
+	float m_fTimerBarMidPoint;
 	
 
 	
