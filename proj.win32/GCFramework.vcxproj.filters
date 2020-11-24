@@ -291,6 +291,21 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCEnemyMovemntCollider2.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRSlow.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRFast.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDown.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownSlow.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownFast.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -510,6 +525,21 @@
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCEnemyMovementCollider2.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRSlow.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRFast.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDown.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownSlow.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownFast.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
   </ItemGroup>

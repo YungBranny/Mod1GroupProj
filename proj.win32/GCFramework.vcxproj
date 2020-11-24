@@ -162,6 +162,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCEnemyMovemntCollider2.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCHazardChild.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRFast.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRSlow.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDown.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownFast.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownSlow.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\MovingEnemy2.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ExitDoor\GCObjExitDoor.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.cpp" />
@@ -236,6 +241,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCHazardChild.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemy2.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRFast.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRSlow.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDown.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownFast.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownSlow.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ExitDoor\GCObjExitDoor.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.h" />
