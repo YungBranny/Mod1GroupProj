@@ -34,7 +34,9 @@ using namespace cocos2d;
 	,m_fTimerBarStartPosY		 (		1000		)	// Timer bar start pos Y
 	,m_iTimerBarHeightX			 (		425			)	// Timer bar Height on Screen
 	,m_iTimerBarHeightY			 (		1000		)	// Timer bar Height on Screen
-	,m_iTimerBufferDecrease		 (		1		)	// Timer buffer decrease value
+	,m_iTimerBufferDecrease		 (		1			)	// Timer buffer decrease value
+	,m_fTimerBarSpeedDecrease	 (		1.0f		)
+	,m_fTimerBarMidPoint		 (		0.5f		)
     
 {	/////////////////////////////////////////////////////////////////////////////////////////////////
  	
@@ -92,11 +94,11 @@ using namespace cocos2d;
  	
  	getTimerBar()->setType(ProgressTimer::Type::BAR); // Makes the Timer bar a bar, other option is radial
  	
-	getTimerBar()->setBarChangeRate(Vec2(1.0f, 0.0f)); //the amount the timer bar decreases 
+	getTimerBar()->setBarChangeRate(Vec2(m_fTimerBarSpeedDecrease, 0.0f)); //the amount the timer bar decreases 
  	
 	getTimerBar()->setPercentage(100.0f); // original percentage of the timer bar
  	
-	getTimerBar()->setMidpoint(Vec2(0.0f, 0.5f)); // choose which side the bar counts down from
+	getTimerBar()->setMidpoint(Vec2(0.0f, m_fTimerBarMidPoint)); // choose which side the bar counts down from
 	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
 	
