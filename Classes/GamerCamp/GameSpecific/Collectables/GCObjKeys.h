@@ -20,6 +20,8 @@ private:
 
 	void					CollisionChecker();
 
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
+
 public:
 	CGCObjKeys ( void );
 	virtual ~CGCObjKeys ();
@@ -34,6 +36,8 @@ public:
 
 	virtual void VOnResourceAcquire ( void );
 	virtual void VOnUpdate ( f32 fTimestep );
+
+	virtual void VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
 };
 
 #endif
