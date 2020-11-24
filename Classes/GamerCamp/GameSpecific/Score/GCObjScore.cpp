@@ -20,7 +20,9 @@ CGCObjScore::CGCObjScore()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	setScoreText(Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fScoreTextSize));
+	Label* pLabel = Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fScoreTextSize);
+	CC_ASSERT(pLabel != nullptr);
+	setScoreText( pLabel );
 
 	getScoreText()->setString("Score: " + std::to_string(getScoreAmount()));
 

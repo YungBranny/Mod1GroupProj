@@ -73,7 +73,10 @@ CGCObjPlayer::CGCObjPlayer ()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	setLivesText(Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fLivesFontSize));
+	Label* pLabel = Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fLivesFontSize);
+	CC_ASSERT(pLabel != nullptr);
+
+	setLivesText(pLabel);
 
 	getLivesText()->setColor(Color3B::WHITE);
 
