@@ -1,6 +1,14 @@
 #ifndef _CGCOBJTRAVELATORPLATFORM_
 #define _CGCOBJTRAVELATORPLATFORM__
 
+#ifndef TINYXML2_INCLUDED
+#include "external\tinyxml2\tinyxml2.h"
+#endif
+
+#ifndef _GCLEVELLOADER_OGMO_H_
+#include "GamerCamp/GCCocosInterface/LevelLoader/GCLevelLoader_Ogmo.h"
+#endif
+
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 
@@ -17,6 +25,8 @@ private:
 
 	float m_fVelocity;
 
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
+	
 public:
 
 	CGCObjTravelatorPlatform();
@@ -39,6 +49,8 @@ public:
 	float getVelocity() const { return m_fVelocity; }
 	void setVelocity(float f) { m_fVelocity = f;	}
 
+	virtual void VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
+	
 	/////////////////////////////////////////////////////////////////////////////
 
 	
