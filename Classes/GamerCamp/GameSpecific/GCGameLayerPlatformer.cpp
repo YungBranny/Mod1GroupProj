@@ -85,14 +85,15 @@ USING_NS_CC;
 // Constructor
 ///////////////////////////////////////////////////////////////////////////////
 CGCGameLayerPlatformer::CGCGameLayerPlatformer()
-: IGCGameLayer					( GetGCTypeIDOf( CGCGameLayerPlatformer ) ) 
-, m_pcGCGroupItem				( nullptr )
-, m_pcGCGroupInvader			( nullptr )
-, m_pcGCGroupProjectilePlayer	( nullptr )
-, m_pcGCTimer					( nullptr )
-, m_pcGCSprBackGround			( nullptr )
-, m_pcGCOPlayer					( nullptr )
-, m_bResetWasRequested			( false )
+	: IGCGameLayer(GetGCTypeIDOf(CGCGameLayerPlatformer))
+	, m_pcGCGroupItem(nullptr)
+	, m_pcGCGroupInvader(nullptr)
+	, m_pcGCGroupProjectilePlayer(nullptr)
+	, m_pcGCTimer(nullptr)
+	, m_pcGCSprBackGround(nullptr)
+	, m_pcGCOPlayer(nullptr)
+	, m_bResetWasRequested(false)
+	, m_bSkipWasRequested(false)
 , m_bQuitWasRequested			( false )
 , m_pcGCOKeys					( nullptr )
 , m_pcGCOKeys1					( nullptr )
@@ -253,6 +254,14 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	pResetItem->setPosition (Vec2 (( ( visibleSize.width - ( pResetItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( ( pResetItem->getContentSize ().height * 0.5f ) + origin.y ) )));
 
+	MenuItemImage* pSkipItem
+		= MenuItemImage::create("Loose/CloseNormal.png",
+			"Loose/CloseSelected.png",
+			CC_CALLBACK_1(CGCGameLayerPlatformer::Callback_OnSkipButton, this));
+
+	pSkipItem->setPosition(Vec2(( ( visibleSize.width - ( pSkipItem->getContentSize().width * 0.5f ) ) + origin.x ),
+		( ( ( pSkipItem->getContentSize().height * 6.0f ) + origin.y ) )));
+
 	MenuItemImage* pQuitItem
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
@@ -262,7 +271,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		( ( visibleSize.height - ( pQuitItem->getContentSize ().height * 0.5f ) ) + origin.y )));
 
 	// create menu, it's an autorelease object
-	Menu* pMenu = Menu::create (pResetItem, pQuitItem, nullptr);
+	Menu* pMenu = Menu::create (pResetItem, pSkipItem, pQuitItem, nullptr);
 	pMenu->setPosition (Vec2::ZERO);
 	this->addChild (pMenu, 1);
 
@@ -753,6 +762,12 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		playBackgroundMusic(); // Mia: Calls this Function, so it doesn't overlay
 	}
 
+	if( SkipWasRequested() )
+	{
+		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
+		SkipRequestWasHandled();
+	}
+
 	if( QuitWasRequested() )
 	{
 		QuitRequestWasHandled();
@@ -819,6 +834,11 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 	RequestQuit();
 }
 
+
+void CGCGameLayerPlatformer::Callback_OnSkipButton(Ref* pSender)
+{
+	SkipWasRequested();
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////

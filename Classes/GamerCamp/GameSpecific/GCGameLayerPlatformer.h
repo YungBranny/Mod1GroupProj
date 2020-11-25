@@ -116,6 +116,7 @@ public:
 	//////////////////////////////////////////////////////////////////////////
     // 'selector' callbacks for menu buttons
     void Callback_OnQuitButton	( Ref* pSender );
+	void Callback_OnSkipButton(Ref* pSender);
     void Callback_OnResetButton	( Ref* pSender );
 
 	// called from VOnUpdate
@@ -169,6 +170,7 @@ public:
 private:
 	bool							m_bResetWasRequested;
 	bool							m_bQuitWasRequested;
+	bool							m_bSkipWasRequested;
 
 	void RequestReset()
 	{
@@ -183,6 +185,21 @@ private:
 	bool ResetWasRequested()
 	{
 		return m_bResetWasRequested; 
+	}
+
+	void RequestSkip()
+	{
+		m_bSkipWasRequested = true;
+	}
+
+	void SkipRequestWasHandled()
+	{
+		m_bSkipWasRequested = false;
+	}
+
+	bool SkipWasRequested()
+	{
+		return m_bSkipWasRequested;
 	}
 
 	void RequestQuit()
