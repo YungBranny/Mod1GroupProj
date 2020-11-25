@@ -136,12 +136,12 @@ void CGCObjPlayer::VOnResourceAcquire()
 	// animate!
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
 
-	if( m_bChangeAnimation == false )
+	if( m_bChangeAnimation == true )
 	{
 		RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_WillyIdle)));
 	}
 
-	else if( m_bChangeAnimation == true )
+	else if( m_bChangeAnimation == false )
 	{
 		RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_WillyRun)));
 	}

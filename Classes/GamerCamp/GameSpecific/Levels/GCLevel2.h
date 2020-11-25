@@ -30,6 +30,12 @@ class CGCObjTimer;
 class CGCObjKeys;
 class CGCBasicEnemies;
 class CGCMovingEnemies;
+class CGCMovingEnemy2;
+class CGCMovingEnemyLRSlow;
+class CGCMovingEnemyLRFast;
+class CGCMovingEnemyUpDown;
+class CGCMovingEnemyUpDownSlow;
+class CGCMovingEnemyUpDownFast;
 class CGCHazardChild;
 class CGCObjTravelatorPlatform;
 class CGCObjExitDoor;
@@ -43,6 +49,10 @@ class GCObjBrickPlatform;
 class CGCObjLadder;
 class CGCObjKeys;
 class GCObjEnemyMovementCollider;
+class GCObjEnemyMovementCollider2;
+class CGCObjLives;
+class CGCObjScore;
+class CGCGameLayerPlatformer;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer
@@ -64,6 +74,9 @@ private:
 
 	//UI
 	CGCObjTimer* m_pcGCTimer;
+
+	//score
+	CGCObjScore* m_pcGCOScore;
 
 	// backgrounds
 	CGCObjSprite* m_pcGCSprBackGround;
@@ -107,7 +120,7 @@ public:
 	// 'selector' callbacks for menu buttons
 	void Callback_OnQuitButton (Ref* pSender);
 	void Callback_OnResetButton (Ref* pSender);
-
+	void Callback_OnSkipButton (Ref* pSender);
 	// called from VOnUpdate
 	void HandleCollisions (void);
 
@@ -159,6 +172,7 @@ public:
 private:
 	bool							m_bResetWasRequested;
 	bool							m_bQuitWasRequested;
+	bool							m_bSkipWasRequested;
 
 	void RequestReset ()
 	{
@@ -188,6 +202,20 @@ private:
 	bool QuitWasRequested ()
 	{
 		return m_bQuitWasRequested;
+	}
+	void RequestSkip ()
+	{
+		m_bSkipWasRequested = true;
+	}
+
+	void SkipRequestWasHandled ()
+	{
+		m_bSkipWasRequested = false;
+	}
+
+	bool SkipWasRequested ()
+	{
+		return m_bSkipWasRequested;
 	}
 };
 //

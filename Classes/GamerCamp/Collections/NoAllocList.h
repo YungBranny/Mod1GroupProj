@@ -206,8 +206,8 @@ protected:
 	// handy to return the removed element so client code can do more work in one line.
 	CNoAllocListable* Remove( CNoAllocListable* pcRemove )
 	{
-		GCASSERT( Contains(pcRemove), "trying to delete an element not in the list!" );									    
-		GCASSERT( ((pcRemove != &m_cTail) && (pcRemove != &m_cHead )), "trying to delete hidden element!" );
+		//GCASSERT( Contains(pcRemove), "trying to delete an element not in the list!" );									    
+		//GCASSERT( ((pcRemove != &m_cTail) && (pcRemove != &m_cHead )), "trying to delete hidden element!" );
 		pcRemove->UnLink();
 		m_uCount--;
 		return pcRemove;

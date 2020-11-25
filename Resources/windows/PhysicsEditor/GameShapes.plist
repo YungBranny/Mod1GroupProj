@@ -1224,10 +1224,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -902.000,28.000 }</string>	
-								<string>{ -902.000,24.000 }</string>	
-								<string>{ 898.000,24.000 }</string>	
-								<string>{ 898.000,28.000 }</string>
+								<string>{ -902.000,17.000 }</string>	
+								<string>{ 898.000,19.000 }</string>	
+								<string>{ 898.000,28.000 }</string>	
+								<string>{ -902.000,28.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -1308,8 +1308,8 @@
 
                          <key>circle</key>
                          <dict>
-                             <key>radius</key> <real>12.049</real>
-                             <key>position</key> <string>{ 1.110,-54.858 }</string>
+                             <key>radius</key> <real>9.000</real>
+                             <key>position</key> <string>{ 2.636,-56.044 }</string>
                          </dict>
                     </dict>
 					<dict>
@@ -1317,16 +1317,16 @@
                         <key>friction</key> <real>0</real>
                         <key>restitution</key> <real>0</real>
                         <key>filter_categoryBits</key> <integer>1</integer>
-                        <key>filter_groupIndex</key> <integer>1</integer>
+                        <key>filter_groupIndex</key> <integer>0</integer>
                         <key>filter_maskBits</key> <integer>65535</integer>
                         <key>isSensor</key> <true/>
-                        <key>id</key> <string>WillyBottomSensor</string>
+                        <key>id</key> <string></string>
                         <key>fixture_type</key> <string>CIRCLE</string>
 
                          <key>circle</key>
                          <dict>
-                             <key>radius</key> <real>10.338</real>
-                             <key>position</key> <string>{ 2.339,-61.783 }</string>
+                             <key>radius</key> <real>12.035</real>
+                             <key>position</key> <string>{ 3.407,-62.864 }</string>
                          </dict>
                     </dict>
 				</array>

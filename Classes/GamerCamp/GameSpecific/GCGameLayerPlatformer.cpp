@@ -384,7 +384,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// load level data from Ogmo Editor
 
 	// read the oel file for level 0
-	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level3.oel")).c_str ());
+	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/GCOgmoTemplateLevel.oel")).c_str ());
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// note: we have now created all the items, platforms, & invaders specified in the level file
@@ -560,7 +560,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		{
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
-			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));
+			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
 			//	m_bPlayerKeysGathered = true;
 
 				playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
@@ -762,8 +762,9 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	if( SkipWasRequested() )
 	{
+		SkipRequestWasHandled ();
 		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
-		SkipRequestWasHandled();
+		
 	}
 
 	if( QuitWasRequested() )
@@ -835,7 +836,7 @@ void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 
 void CGCGameLayerPlatformer::Callback_OnSkipButton(Ref* pSender)
 {
-	SkipWasRequested();
+	RequestSkip();
 }
 
 
