@@ -8,6 +8,7 @@
 #include "MenuScene.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 
 #include "AppDelegate.h"
 
@@ -173,7 +174,7 @@ void CGCWinScene::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCWinScene::Callback_OnQuitButton(Ref* pSender)
 {
-	ReplaceScene(TransitionRotoZoom::create(1.0f, CMenuLayer::scene()));//goes back to the menu scene
+	ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));//goes back to the menu scene
 }
 
 

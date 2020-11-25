@@ -671,7 +671,7 @@ void GCLevel3::VOnUpdate (f32 fTimeStep)
 	if (QuitWasRequested ())
 	{
 		QuitRequestWasHandled ();
-		ReplaceScene (TransitionRotoZoom::create (1.0f, CMenuLayer::scene ()));
+		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
 	}
 
 
