@@ -234,7 +234,10 @@ f32 g_GCGameLayer_fDamping						= 0.999f;	// unitless
 //////////////////////////////////////////////////////////////////////////
 void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 {
-
+	if (GetVelocity ().y > 0 || GetVelocity ().y < 0)
+	{
+		m_bCanJump = false;
+	}
 	////////////////////////////////////////////////////////////////////////////////
 	///// VARIABLES NOT USED
 	////////////////////////////////////////////////////////////////////////////////
@@ -449,7 +452,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 	if (bFireWasPressed && m_bCanJump)
 	{
 		//GetPhysicsBody()->ApplyForce(m_bv2jumpVel, GetPhysicsBody()->GetWorldCenter(), true);
-		
+		m_bCanJump = false;
 		if (GetVelocity ().x > 0)
 		{
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
