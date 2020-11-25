@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>cc_enemy_duck.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{60,108}}</string>
+                <key>offset</key>
+                <string>{0,-6}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,12},{60,108}}</string>
+                <key>sourceSize</key>
+                <string>{60,120}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>cc_enemy_duck.png</string>
+            <key>size</key>
+            <string>{62,110}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:775524960deda2faa48ac9d59883e334:816a5ab77387a3b56800d670d7c4f1a5:2b49eac6e131c12adcbd3cddd3d43641$</string>
+            <key>textureFileName</key>
+            <string>cc_enemy_duck.png</string>
+        </dict>
+    </dict>
+</plist>

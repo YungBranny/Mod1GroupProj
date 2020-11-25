@@ -1,14 +1,14 @@
 <level width="1920" height="1080">
   <enemies>
-    <EnemyMovementCollider2 id="0" x="64" y="400" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <EnemyMovementCollider2 id="1" x="800" y="400" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <EnemyMovementCollider2 id="2" x="848" y="624" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <EnemyMovementCollider2 id="3" x="240" y="624" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <EnemyMovementCollider2 id="4" x="960" y="896" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <EnemyMovementCollider2 id="5" x="992" y="208" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <LRNMovingEnemy id="6" x="400" y="416" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <LRNMovingEnemy id="7" x="672" y="624" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <UDNMovingEnemyUpDown id="8" x="976" y="512" class="CGCMovingEnemyUpDown" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <LRNMovingEnemy id="6" x="400" y="368" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemy id="7" x="688" y="592" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <UDNMovingEnemyUpDown id="8" x="976" y="512" class="CGCMovingEnemyUpDown" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="0" x="48" y="384" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="1" x="896" y="400" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="2" x="880" y="624" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="3" x="208" y="640" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="4" x="960" y="912" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="5" x="960" y="176" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>
@@ -163,11 +163,11 @@
   <Ladder />
   <Hazards>
     <DownwardSpike id="0" x="1230" y="150" angle="0" class="GCHazardChild" shape="cc_hazard_downward_spike" PlistFile="TexturePacker/Sprites/Spike/DownwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <UpwardSpike id="1" x="1470" y="420" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/Spike/UpwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <UpwardSpike id="2" x="1290" y="570" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/Spike/UpwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <UpwardSpike id="3" x="330" y="990" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/Spike/UpwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <UpwardSpike id="4" x="1470" y="990" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/Spike/UpwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <UpwardSpike id="5" x="1530" y="990" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/Spike/UpwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UpwardSpike id="6" x="1290" y="570" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UpwardSpike id="7" x="1470" y="420" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UpwardSpike id="8" x="1470" y="990" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UpwardSpike id="9" x="1530" y="990" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UpwardSpike id="10" x="330" y="990" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Hazards>
   <Keys>
     <Keys id="0" x="1830" y="210" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
