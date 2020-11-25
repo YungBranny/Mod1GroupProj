@@ -68,6 +68,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_bIsPlayerOnPlatform (true)
 	, m_fTravelatorVelocity (-25.0f)
 	//, m_bv2CurrentPos(0,0)
+	, m_bChangeAnimation (false)
 {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -126,20 +127,24 @@ CGCObjPlayer::CGCObjPlayer ()
 //virtual 
 void CGCObjPlayer::VOnResourceAcquire()
 {
-	//const char* pszPlist_mario		= "TexturePacker/Sprites/Mario/Mario.plist";
-	//const char* pszAnim_marioJog	= "Jog";
-
-	SetName( "Mario!!" );
-
 	CGCObjSpritePhysics::VOnResourceAcquire();
-	//m_bIsPlayerOnPlatform = true;
 
-
-
+	const char* pszPlist_Willy = "TexturePacker/Sprites/Willy/Willy.plist";
+	const char* pszAnim_WillyRun = "Run";
+	const char* pszAnim_WillyIdle = "Idle";
 
 	// animate!
-	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( GetFactoryCreationParams()->strPlistFile );
-	//RunAction( GCCocosHelpers::CreateAnimationActionLoop( GCCocosHelpers::CreateAnimation( dicPList, pszAnim_marioJog ) ) );
+	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
+
+	if( m_bChangeAnimation == false )
+	{
+		RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_WillyIdle)));
+	}
+
+	else if( m_bChangeAnimation == true )
+	{
+		RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_WillyRun)));
+	}
 
 	// because we're just storing a vanilla pointer we must call delete on it in VOnResourceRelease or leak memory 
 	// 
@@ -302,7 +307,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			{
 
 				SetVelocity(cocos2d::Vec2(m_v2MovingLeftVelocity.x, GetVelocity().y));
-				SetFlippedX(true);
+				SetFlippedX(false);
 
 			}
 
@@ -315,7 +320,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			{
 
 				SetVelocity(cocos2d::Vec2(m_v2MovingRightVelocity.x, GetVelocity().y));
-				SetFlippedX(false);
+				SetFlippedX(true);
 			}
 		}
 
@@ -410,12 +415,16 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		SetFlippedY(false);
 	}
 
-	//if( GetVelocity().x >= 0.0f )
+	//if( GetVelocity().x > 0.0f || GetVelocity().x < 0.0f)
 	//{
+	//	m_bChangeAnimation = true;
+	//	ChangeAnimation();
 	//	SetFlippedX( true );
 	//}
-	//else if( GetVelocity().x < 0.0f )
+	//else if( GetVelocity().x == 0.0f )
 	//{
+	//	m_bChangeAnimation = false;
+	//	ChangeAnimation();
 	//	SetFlippedX( false );
 	//}
 
@@ -523,6 +532,12 @@ void CGCObjPlayer::LivesUI()
 		
 		getPlayerLoseLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 100, m_fLivesStartPositionY));
 	}
+
+}
+
+void CGCObjPlayer::ChangeAnimation()
+{
+
 
 }
 

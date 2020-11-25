@@ -74,6 +74,7 @@ private:
 	bool	m_bOnTravelator;
 	bool	m_bPlayerDiedFromFalling;
 	bool	m_bOnLadder;
+	bool	m_bChangeAnimation; // If more animations added, will be changed to enum or switch
 
 	bool	m_bIsPlayerOnPlatform;
 
@@ -210,6 +211,8 @@ public:
 	void CreateLives();
 
 	void LivesUI();
+
+	void ChangeAnimation();
 
 	cocos2d::Label* getLivesText() const { return m_pLivesText; }
 
