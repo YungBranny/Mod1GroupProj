@@ -94,6 +94,7 @@ void CGCMainMenu::VOnCreate ()
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
 		m_pcGCSprBackGround->SetResetPosition (cocos2d::Vec2 (visibleSize.width / 2, visibleSize.height / 2));
 		m_pcGCSprBackGround->SetScale(1.4f, 1.4f);
+		playMenuBackgroundMusic();
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
 	}
 
@@ -119,6 +120,12 @@ void CGCMainMenu::VOnCreate ()
 void CGCMainMenu::VOnDestroy ()
 {
 	IGCGameLayer::VOnDestroy ();
+}
+
+void CGCMainMenu::playMenuBackgroundMusic()
+{
+	m_pcGCMenuBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcGCMenuBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true);
 }
 
 

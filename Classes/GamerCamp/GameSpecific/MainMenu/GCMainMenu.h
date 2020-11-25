@@ -3,6 +3,7 @@
 
 #include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
 
+#include "SimpleAudioEngine.h"
 
 class CGCObjSprite;
 
@@ -15,6 +16,7 @@ private:
 
 	CGCObjSprite* m_pcGCSprBackGround;
 
+	CocosDenshion::SimpleAudioEngine* m_pcGCMenuBackgroundAudio;
 
 public:
 	CGCMainMenu ();
@@ -27,6 +29,7 @@ public:
 	virtual void onEnter ();
 	virtual	void VOnCreate (void);
 	virtual	void VOnDestroy (void);
+	void playMenuBackgroundMusic();
 
 
 };
