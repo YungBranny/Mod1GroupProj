@@ -78,14 +78,14 @@ void CGCMainMenu::VOnCreate ()
 	cocos2d::Label* pLabel = cocos2d::Label::createWithTTF ("MAIN MENU", "fonts/Pixeled.ttf", 24);
 
 	// position the label on the center of the screen
-	pLabel->setPosition (cocos2d::Vec2 (visibleSize.width * 0.5f, visibleSize.height - 50));
+	pLabel->setPosition (cocos2d::Vec2 (visibleSize.width * 0.5f, visibleSize.height - 80));
 
 	// add the label as a child to this layer
 	this->addChild (pLabel, 1);
 
 
 
-	const char* pszPlist_background = "TexturePacker/TestBackground/BackgroundTest.plist";
+	const char* pszPlist_background = "TexturePacker/Sprites/Background/background.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite ();
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
