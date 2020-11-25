@@ -51,21 +51,21 @@ void CGCMainMenu::VOnCreate ()
 
 	// add a "close" icon to exit the progress. it's an autorelease object
 	cocos2d::MenuItemImage* pResetItem
-		= cocos2d::MenuItemImage::create ("Buttons/PlayButtonUnClicked.png",
+		= cocos2d::MenuItemImage::create ("Buttons/PlayButton1.png",
 			"Buttons/PlayButton1.png",
 			CC_CALLBACK_1 (CGCMainMenu::LoadLevel, this));
 
-	pResetItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width * 0.5f)),
-	( ( visibleSize.height - ( pResetItem->getContentSize ().height * 1.6f ) ) )));
+	pResetItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width / 2)),
+	( ( visibleSize.height - ( pResetItem->getContentSize ().height * 4.0f ) ) )));
 
 
 	cocos2d::MenuItemImage* pQuitItem
-		= cocos2d::MenuItemImage::create ("Buttons/QuitButtonUnClicked.png",
+		= cocos2d::MenuItemImage::create ("Buttons/QuitButton1.png",
 			"Buttons/QuitButton1.png",
 		CC_CALLBACK_1 (CGCMainMenu::QuitGame, this));
 
-	pQuitItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width * 0.5f ) ),
-		( ( ( pQuitItem->getContentSize ().height * 0.5f ) + origin.y + 0.0f ) )));
+	pQuitItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width / 2 ) ),
+		( ( ( pQuitItem->getContentSize ().height * 4.0f ) + origin.y + 0.0f ) )));
 
 	// create menu, it's an autorelease object
 	cocos2d::Menu* pMenu = cocos2d::Menu::create (pResetItem, pQuitItem, nullptr);
@@ -75,10 +75,10 @@ void CGCMainMenu::VOnCreate ()
 
 
 	// create and initialize a label
-	cocos2d::Label* pLabel = cocos2d::Label::createWithTTF ("MAIN MENU", "fonts/Pixeled.ttf", 24);
+	cocos2d::Label* pLabel = cocos2d::Label::createWithTTF ("MANIC MINER", "fonts/Pixeled.ttf", 60);
 
 	// position the label on the center of the screen
-	pLabel->setPosition (cocos2d::Vec2 (visibleSize.width * 0.5f, visibleSize.height - 80));
+	pLabel->setPosition (cocos2d::Vec2 (visibleSize.width / 2, visibleSize.height - 200));
 
 	// add the label as a child to this layer
 	this->addChild (pLabel, 1);
@@ -90,8 +90,8 @@ void CGCMainMenu::VOnCreate ()
 		m_pcGCSprBackGround = new CGCObjSprite ();
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
 		m_pcGCSprBackGround->SetResetPosition (cocos2d::Vec2 (visibleSize.width / 2, visibleSize.height / 2));
+		m_pcGCSprBackGround->SetScale(1.4f, 1.4f);
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
-
 	}
 
 	B2dGetWorld ()->SetContactListener (this);

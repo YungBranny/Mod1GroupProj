@@ -35,7 +35,6 @@
 #include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyLRFast.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjTravelatorPlatform.h"
 #include "GamerCamp/GameSpecific/ExitDoor/GCObjExitDoor.h"
-#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
@@ -757,7 +756,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	if( QuitWasRequested() )
 	{
 		QuitRequestWasHandled();
-		ReplaceScene( TransitionRotoZoom::create( 1.0f, CMenuLayer::scene() ) );
+		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
 	}
 
 
@@ -817,8 +816,7 @@ void CGCGameLayerPlatformer::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 {
-	ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
-	//RequestQuit();
+	RequestQuit();
 }
 
 
