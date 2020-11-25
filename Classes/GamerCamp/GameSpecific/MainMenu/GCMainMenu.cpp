@@ -75,7 +75,7 @@ void CGCMainMenu::VOnCreate ()
 
 
 	// create and initialize a label
-	cocos2d::Label* pLabel = cocos2d::Label::createWithTTF ("PLACE HOLDER MAIN MENU", "fonts/arial.ttf", 24);
+	cocos2d::Label* pLabel = cocos2d::Label::createWithTTF ("MAIN MENU", "fonts/Pixeled.ttf", 24);
 
 	// position the label on the center of the screen
 	pLabel->setPosition (cocos2d::Vec2 (visibleSize.width * 0.5f, visibleSize.height - 50));

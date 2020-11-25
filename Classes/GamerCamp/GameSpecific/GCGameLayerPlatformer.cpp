@@ -817,7 +817,8 @@ void CGCGameLayerPlatformer::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 {
-	RequestQuit();
+	ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
+	//RequestQuit();
 }
 
 
