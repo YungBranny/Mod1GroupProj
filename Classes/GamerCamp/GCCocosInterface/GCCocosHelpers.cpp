@@ -178,7 +178,7 @@ namespace GCCocosHelpers
 	//////////////////////////////////////////////////////////////////////////
 	ActionInterval* CreateAnimationActionLoop( Animation* pAnimation )
 	{
-		CCAssert( pAnimation, "pAnimation passed as nullptr" );
+		//CCAssert( pAnimation, "pAnimation passed as nullptr" );
 		return RepeatForever::create( Animate::create( pAnimation ) ); // N.B. Auto release
 	}
 }

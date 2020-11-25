@@ -14,6 +14,8 @@ class CGCBasicEnemies
 private:
 	float m_fGravity;										//float for gravity
 
+
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
 public:
 	
 	CGCBasicEnemies ();										//constructor
@@ -34,7 +36,8 @@ public:
 	virtual void VOnReset			(void)	;				//Default Functions
 							  
 	virtual void VOnUpdate (f32 fTimestep);					//Update
-	
+	virtual void VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
+
 };
 
 #endif
