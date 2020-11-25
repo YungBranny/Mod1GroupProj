@@ -52,7 +52,7 @@ void CGCMainMenu::VOnCreate ()
 	// add a "close" icon to exit the progress. it's an autorelease object
 	cocos2d::MenuItemImage* pResetItem
 		= cocos2d::MenuItemImage::create ("Buttons/PlayButtonUnClicked.png",
-			"Buttons/PlayButtonClicked.png",
+			"Buttons/PlayButton1.png",
 			CC_CALLBACK_1 (CGCMainMenu::LoadLevel, this));
 
 	pResetItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width * 0.5f)),
@@ -61,7 +61,7 @@ void CGCMainMenu::VOnCreate ()
 
 	cocos2d::MenuItemImage* pQuitItem
 		= cocos2d::MenuItemImage::create ("Buttons/QuitButtonUnClicked.png",
-			"Buttons/QuitButtonClicked.png",
+			"Buttons/QuitButton1.png",
 		CC_CALLBACK_1 (CGCMainMenu::QuitGame, this));
 
 	pQuitItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width * 0.5f ) ),
