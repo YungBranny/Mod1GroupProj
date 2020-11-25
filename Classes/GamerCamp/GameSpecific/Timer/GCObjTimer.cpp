@@ -79,14 +79,14 @@ using namespace cocos2d;
  	//m_TimerBar = ProgressTimer::create(m_TimerBarSprite);
  	//m_TimerBar->setType(ProgressTimer::Type::BAR);
 
-	m_UI_TimerBorder = Sprite::create("Loose/UI_Bar.png");
+	m_UI_TimerBorder = Sprite::create("TexturePacker/Sprites/TimerBar/air_container.png");
 
-	getTimerBarUI()->setPosition(Vec2(m_fTimerBarStartPosX, m_fTimerBarStartPosY + 17.5));
+	getTimerBarUI()->setPosition(Vec2(m_fTimerBarStartPosX, m_fTimerBarStartPosY ));
 
  	
 	/////////////////////////////////////////////////////////////////////////////////////////////////////
  	
-	m_TimerBarSprite = Sprite::create("Loose/UI_TimerBar.png"); // Sprite used for the Timer Bar
+	m_TimerBarSprite = Sprite::create("TexturePacker/Sprites/TimerBar/air_bar.png"); // Sprite used for the Timer Bar
 
 	setTimerBar(ProgressTimer::create(m_TimerBarSprite));// Makes the sprite into a cocos2d::ProgressTimer
 

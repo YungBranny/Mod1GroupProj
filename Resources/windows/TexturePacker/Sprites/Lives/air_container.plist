@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>life_full.png</key>
+            <key>air_container.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{64,64}}</string>
+                <string>{{1,1},{918,114}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{3,-3}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{64,64}}</string>
+                <string>{{24,6},{918,114}}</string>
                 <key>sourceSize</key>
-                <string>{64,64}</string>
+                <string>{960,120}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>life_full.png</string>
+            <string>air_container.png</string>
             <key>size</key>
-            <string>{66,66}</string>
+            <string>{920,116}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:a23ac9c81c8664e66f94c30a1319ba44:b38860040fa16037d3cf730d81c1ca8e:c8d8f78f416db682e7524aff28d1d1cf$</string>
+            <string>$TexturePacker:SmartUpdate:52e4640fca94487669a1864501737349:7ffa6318c3fe9ffed3c0c606749d28d0:ff0314766e52dcf0e9a6617dd2ae84fe$</string>
             <key>textureFileName</key>
-            <string>life_full.png</string>
+            <string>air_container.png</string>
         </dict>
     </dict>
 </plist>
