@@ -19,27 +19,38 @@ CGCObjScalingFallingPlatform::CGCObjScalingFallingPlatform ()
 	, m_bContactWithPlayer (false)										  //Initalises the variable with a default value
 	, m_fMaxDestroyPlatformTick (60.0f)
 	, m_fCurrentDestroyPlatformTick (m_fMaxDestroyPlatformTick)
-	, m_bCanDelete (false)												  //Initalises the variable with a default value
+	, m_bCanDelete (false)		//Initalises the variable with a default value
+
 {																		 
 }																		 
 
 //Sets the sprite
 //IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingFallingPlatform, "TexturePacker/Sprites/FallingScalingPlatform/FallingScalingPlatform.plist", "FallingScalingPlatform", b2_kinematicBody, true);
 
-//void CGCObjScalingFallingPlatform::VOnResourceAcquire ()
-//{
-//
-//	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjScalingFallingPlatform);
-//
-//	CGCObjSpritePhysics::VOnResourceAcquire ();
-//
-//}
+void CGCObjScalingFallingPlatform::VOnResourceAcquire ()
+{
+
+	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjScalingFallingPlatform);
+
+	CGCObjSpritePhysics::VOnResourceAcquire ();
+
+
+}
 void CGCObjScalingFallingPlatform::VOnReset ()
 {
 	CGCObjSpritePhysics::VOnReset ();
 	m_bContactWithPlayer = false;
 	m_bCanDelete = false;
 	m_fCurrentDestroyPlatformTick = m_fMaxDestroyPlatformTick;
+
+	if (GetPhysicsBody ())
+	{
+		cocos2d::Vec2 v2SpritePos = GetSpritePosition ();
+		GetPhysicsBody ()->SetLinearVelocity (b2Vec2 (0.0f, 0.0f));
+		GetPhysicsBody ()->SetTransform (IGCGameLayer::B2dPixelsToWorld (b2Vec2 (v2SpritePos.x, v2SpritePos.y)), 0.0f);
+		GetPhysicsBody ()->SetFixedRotation (true);
+		m_v2CurrentPos = GetPhysicsBody ()->GetPosition ();
+	}
 }
 
 //Calls the function that moves the platform down

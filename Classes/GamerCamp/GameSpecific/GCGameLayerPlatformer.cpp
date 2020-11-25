@@ -384,7 +384,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// load level data from Ogmo Editor
 
 	// read the oel file for level 0
-	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level2.oel")).c_str ());
+	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level3.oel")).c_str ());
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// note: we have now created all the items, platforms, & invaders specified in the level file
@@ -708,17 +708,15 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		{
 			if (rcContact.IsTouching ()&& rcContact.GetFixtureB()->IsSensor())
 			{
-				if (rcFallingPlatforms.GetContactWithPlayer () == false)
-				{
-					rcFallingPlatforms.SetContactWithPlayer (true);	//Starts moving when the player is on the platform		
-				}
+					if (rcFallingPlatforms.GetContactWithPlayer () == false)
+					{
+						rcFallingPlatforms.SetContactWithPlayer (true);	//Starts moving when the player is on the platform		
+					}
 			}
 
 			else if (rcContact.IsTouching () == false)				//stops moving when the player is off it
 			{
 				rcFallingPlatforms.SetContactWithPlayer (false);
-
-				
 			}
 
 			if (rcFallingPlatforms.GetCanDelete () == true)
