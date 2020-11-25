@@ -10,7 +10,7 @@
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 
 #include "MenuScene.h"
-#include "GamerCamp/GameSpecific/Levels/GCLevel2.h"
+#include "GamerCamp/GameSpecific/Levels/GCLevel3.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 #include "GamerCamp/GameSpecific/Player/GCObjPlayer.h"
@@ -461,7 +461,7 @@ void GCLevel2::VOnCreate ()
 
 	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcLadder, const b2Contact& rcContact) -> void
 		{
-			//COLLISIONTESTLOG ("Collided with Ladder.");
+			
 
 			if (rcContact.IsTouching ())
 			{
@@ -552,7 +552,7 @@ void GCLevel2::VOnCreate ()
 		{
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
-				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene ()));
+				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel3 >::CreateScene ()));
 				//	m_bPlayerKeysGathered = true;
 
 				playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
@@ -754,7 +754,7 @@ void GCLevel2::VOnUpdate (f32 fTimeStep)
 
 	if (SkipWasRequested ())
 	{
-		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene ()));
+		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel3 >::CreateScene ()));
 		SkipRequestWasHandled ();
 	}
 
@@ -827,7 +827,7 @@ void GCLevel2::Callback_OnQuitButton (Ref* pSender)
 
 void GCLevel2::Callback_OnSkipButton (Ref* pSender)
 {
-	SkipWasRequested ();
+	RequestSkip ();
 }
 
 

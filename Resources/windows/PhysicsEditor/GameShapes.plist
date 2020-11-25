@@ -1325,8 +1325,8 @@
 
                          <key>circle</key>
                          <dict>
-                             <key>radius</key> <real>12.035</real>
-                             <key>position</key> <string>{ 3.407,-62.864 }</string>
+                             <key>radius</key> <real>12.111</real>
+                             <key>position</key> <string>{ 2.559,-56.593 }</string>
                          </dict>
                     </dict>
 				</array>

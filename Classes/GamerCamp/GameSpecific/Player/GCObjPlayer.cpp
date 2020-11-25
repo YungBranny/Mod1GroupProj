@@ -66,7 +66,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fLivesStartPositionY (1015)
 	, m_fLivesSpacingX (10.0f)
 	, m_bIsPlayerOnPlatform (true)
-	, m_fTravelatorVelocity (-25.0f)
+	, m_fTravelatorVelocity (-20.0f)
 	//, m_bv2CurrentPos(0,0)
 	, m_bChangeAnimation (false)
 {
@@ -467,7 +467,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		};
 		if (GetVelocity ().x == 0 )
 		{
-			float impulse = GetPhysicsBody ()->GetMass () * 41;
+			float impulse = GetPhysicsBody ()->GetMass () * 41.5;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse), GetPhysicsBody ()->GetWorldCenter (), true);
 		};
 	

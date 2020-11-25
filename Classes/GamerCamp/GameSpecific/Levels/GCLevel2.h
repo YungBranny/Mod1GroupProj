@@ -53,6 +53,7 @@ class GCObjEnemyMovementCollider2;
 class CGCObjLives;
 class CGCObjScore;
 class CGCGameLayerPlatformer;
+class GCLevel3;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer
