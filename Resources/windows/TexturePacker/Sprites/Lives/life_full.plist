@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>life_full.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{62,62}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{62,62}}</string>
+                <key>sourceSize</key>
+                <string>{62,62}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>life_full.png</string>
+            <key>size</key>
+            <string>{64,64}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:6ef8b4ea69d02f42dd4aa9a8fdeb7aa9:acf454d41841d243eb61931a5932475f:c8d8f78f416db682e7524aff28d1d1cf$</string>
+            <key>textureFileName</key>
+            <string>life_full.png</string>
+        </dict>
+    </dict>
+</plist>

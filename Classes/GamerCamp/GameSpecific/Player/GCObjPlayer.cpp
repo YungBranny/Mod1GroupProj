@@ -101,18 +101,18 @@ CGCObjPlayer::CGCObjPlayer ()
 	//	//SetScale(m_fScaleX, m_fScaleY);
 	//}
 
-	m_sprPlayerLoseLives1 = Sprite::create("TexturePacker/Sprites/Lives/ui_life_lost.png");
-	m_sprPlayerLoseLives2 = Sprite::create("TexturePacker/Sprites/Lives/ui_life_lost.png");
-	m_sprPlayerLoseLives3 = Sprite::create("TexturePacker/Sprites/Lives/ui_life_lost.png");
+	m_sprPlayerLoseLives1 = Sprite::create("TexturePacker/Sprites/Lives/empty_heart.png");
+	m_sprPlayerLoseLives2 = Sprite::create("TexturePacker/Sprites/Lives/empty_heart.png");
+	m_sprPlayerLoseLives3 = Sprite::create("TexturePacker/Sprites/Lives/empty_heart.png");
 	
 	
 	
 
 	
 	
-	m_sprPlayerLives1	= Sprite::create(  "TexturePacker/Sprites/Lives/ui_life_full.png");
-	m_sprPlayerLives2	= Sprite::create(  "TexturePacker/Sprites/Lives/ui_life_full.png");
-	m_sprPlayerLives3	= Sprite::create(  "TexturePacker/Sprites/Lives/ui_life_full.png");
+	m_sprPlayerLives1	= Sprite::create(  "TexturePacker/Sprites/Lives/life_full.png");
+	m_sprPlayerLives2	= Sprite::create(  "TexturePacker/Sprites/Lives/life_full.png");
+	m_sprPlayerLives3	= Sprite::create(  "TexturePacker/Sprites/Lives/life_full.png");
 	
 	getPlayerLivesUI1()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
 	getPlayerLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 50, m_fLivesStartPositionY));
