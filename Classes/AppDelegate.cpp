@@ -6,6 +6,7 @@
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCObject/GCObjGroupDefault.h"
 #include "MenuScene.h"
+#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 
 
 USING_NS_CC;
@@ -128,7 +129,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		InitialiseControllerManager();
 
 		// create the initial GameScene
-		Scene* pScene = CMenuLayer::scene();
+		Scene* pScene = (1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene());
 
 
 	// GamerCamp Edit
