@@ -455,7 +455,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		};
 		if (GetVelocity ().x == 0 )
 		{
-			float impulse = GetPhysicsBody ()->GetMass () * 40;
+			float impulse = GetPhysicsBody ()->GetMass () * 41;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse), GetPhysicsBody ()->GetWorldCenter (), true);
 		};
 	
