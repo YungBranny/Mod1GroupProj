@@ -40,11 +40,11 @@ void CGCObjKeys::VOnResourceAcquire ( void )
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
 
-	//const char* pszPlist_Key = "TexturePacker/Sprites/Key/cc_collectible_key.plist";
-	//const char* pszAnim_Key = "Key";
+	const char* pszPlist_Key = "TexturePacker/Sprites/Key/cc_collectible_key.plist";
+	const char* pszAnim_Key = "KeyIdle";
 
-	//ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
-	//RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_Key)));
+	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
+	RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_Key)));
 
 }
 
@@ -97,6 +97,6 @@ void CGCObjKeys::CollisionChecker()
 
 void CGCObjKeys::VOnUpdate ( f32 fTimestep )
 {
-	SetSpriteRotation(GetSpriteRotation() + 0.1f); // Setting the rotation for the Keys, so they spin and look appealing to the Player
+	//SetSpriteRotation(GetSpriteRotation() + 0.1f); // Setting the rotation for the Keys, so they spin and look appealing to the Player
 	CollisionChecker(); // Updates CollisionChecker
 }
