@@ -9,6 +9,13 @@
 #include "../../GCCocosInterface/GB2ShapeCache-x.h"
 #include "GamerCamp/GameSpecific/Collectables/GCObjKeys.h"
 
+#include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
+#include "GamerCamp/GCObject/GCObjectManager.h"
+#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "../../GCCocosInterface/GB2ShapeCache-x.h"
+#include "GamerCamp/Core/GCTypes.h"
+#include "AppDelegate.h"
+
 GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjKeys);
 
 CGCObjKeys::CGCObjKeys ( void )
@@ -32,6 +39,13 @@ void CGCObjKeys::VOnResourceAcquire ( void )
 	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCObjKeys);
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
+
+	//const char* pszPlist_Key = "TexturePacker/Sprites/Key/cc_collectible_key.plist";
+	//const char* pszAnim_Key = "Key";
+
+	//ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
+	//RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_Key)));
+
 }
 
 void CGCObjKeys::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
