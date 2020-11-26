@@ -457,13 +457,13 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		{
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
 			float impulse = GetPhysicsBody ()->GetMass () * 40;
-			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse * 1.1f), GetPhysicsBody ()->GetWorldCenter (), true);
+			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse * 1.07f), GetPhysicsBody ()->GetWorldCenter (), true);
 		};
 		if (GetVelocity ().x < 0)
 		{
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
 			float impulse = GetPhysicsBody ()->GetMass () * 40;
-			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse* 1.1f), GetPhysicsBody ()->GetWorldCenter (), true);
+			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse* 1.07f), GetPhysicsBody ()->GetWorldCenter (), true);
 		};
 		if (GetVelocity ().x == 0 )
 		{

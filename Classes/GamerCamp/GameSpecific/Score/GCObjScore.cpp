@@ -36,7 +36,7 @@ CGCObjScore::~CGCObjScore()
 
 void CGCObjScore::IncreaseScore()
 {
-	m_iScoreAmount++;
+	m_iScoreAmount += 100;
 	getScoreText()->setString("Score: " + std::to_string(getScoreAmount()));
 };
 
