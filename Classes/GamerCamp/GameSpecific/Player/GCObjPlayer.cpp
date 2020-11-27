@@ -69,6 +69,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fTravelatorVelocity (-20.0f)
 	//, m_bv2CurrentPos(0,0)
 	, m_bChangeAnimation (false)
+	, m_iSwitchesHit (0)
 {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -170,6 +171,7 @@ void CGCObjPlayer::VOnReset()
 	SetFlippedY( false );
 	m_bOnTravelator = false;
 	m_bIsPlayerOnPlatform = true;
+	m_iSwitchesHit = 0;
 
 	// reset
 	if( GetPhysicsBody() )

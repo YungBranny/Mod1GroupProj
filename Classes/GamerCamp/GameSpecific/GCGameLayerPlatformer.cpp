@@ -57,8 +57,10 @@
 #include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider2.h"
-//#include "GamerCamp/GameSpecific/Lives/GCObjLives.h"
 #include "GamerCamp/GameSpecific/Score/GCObjScore.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCSwitch.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjSwitchPlatform1.h"
+
 
 #include "AppDelegate.h"
 
@@ -457,15 +459,20 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			COLLISIONTESTLOG ("(lambda) the player hit an item!");
 		});
 
-	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjScalingFallingPlatform& rcItem, const b2Contact& rcContact) -> void
-		{
-			//	const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A (pB2Contact);
-			//	const b2Fixture* pFixtureB = CGCObjSpritePhysics::FromB2DContactGetFixture_B (pB2Contact);
 
-				//const std::string* PlayerSesnor = cocos2d::GB2ShapeCache::getFixtureIdText (pFixtureA);
-			//rcPlayer.FromB2DContactGetFixture_A(CGCObjPlayer)->IsSensor()
-			//	
+	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, GCSwitch& rcSwitch, const b2Contact& rcContact) -> void
+		{
+		
+			rcPlayer.setSwitchesHit (rcPlayer.getSwitchesHit()+1);
+			CCLOG ("huhguhg");
 		});
+
+	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjSwitchPlatform1& rcSwitch, const b2Contact& rcContact) -> void
+		{
+
+		});
+
+
 
 	GetCollisionManager().AddCollisionHandler([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcLadder, const b2Contact& rcContact) -> void
 	{

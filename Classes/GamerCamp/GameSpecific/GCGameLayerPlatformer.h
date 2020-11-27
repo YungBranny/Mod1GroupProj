@@ -51,6 +51,8 @@ class GCObjEnemyMovementCollider;
 class GCObjEnemyMovementCollider2;
 class CGCObjLives;
 class CGCObjScore;
+class GCSwitch;
+class CHCOnjSwitchPlatform1;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer
@@ -60,6 +62,8 @@ class CGCGameLayerPlatformer
 , public b2ContactListener 
 {
 private:
+
+
 	// object groups
 	CGCObjGroupPlatform*			m_pcGCGroupPlatform;
 	CGCObjGroupItem*				m_pcGCGroupItem;
@@ -84,6 +88,7 @@ private:
 
 	// level loader
 	CGCLevelLoader_Ogmo		m_cLevelLoader;
+
 
 	bool					m_bCheckIfPlayerIsAbovePlatform;
 

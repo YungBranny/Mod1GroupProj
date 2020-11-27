@@ -70,6 +70,8 @@ private:
 
 	int		m_iNumberOfLives;
 
+	int		m_iSwitchesHit;
+
 	bool	m_bCanJump;
 	bool	m_bOnTravelator;
 	bool	m_bPlayerDiedFromFalling;
@@ -122,8 +124,12 @@ public:
 	float getJumpHeight () const { return m_fJumpHeight; }
 	void setJumpHeight (float i) { m_fJumpHeight = i; }
 
+
+	int getSwitchesHit () const { return m_iSwitchesHit; }
+	void setSwitchesHit (int f) { m_iSwitchesHit = f; }
+
 	float getTravelatorVelocity () const { return m_fTravelatorVelocity; }
-	void setTravelatorVelocity (float f) { m_fTravelatorVelocity = f; }
+	void setTravelatorVelocity (int f) { m_fTravelatorVelocity = f; }
 
 
 	b2Vec2 getCurrentPos () const { return m_bv2CurrentPos; }
