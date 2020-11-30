@@ -1,5 +1,5 @@
-#ifndef _CGCOBJSWITCHPLATFORM1_
-#define _CGCOBJSWITCHPLATFORM1__
+#ifndef _CGCOBJSWITCHPLATFORM2_
+#define _CGCOBJSWITCHPLATFORM2__
 
 
 //Brandon Middleton
@@ -11,7 +11,7 @@
 
 
 
-class CGCObjSwitchPlatform1
+class CGCObjSwitchPlatform2
 	: public CGCObjSpritePhysics
 {
 private:
@@ -19,10 +19,10 @@ private:
 	//cocos2d::experimental::AudioEngine* m_audio1;
 public:
 
-	GCFACTORY_DECLARE_CREATABLECLASS (CGCObjSwitchPlatform1);
+	GCFACTORY_DECLARE_CREATABLECLASS (CGCObjSwitchPlatform2);
 
-	CGCObjSwitchPlatform1 ();				//constructor
-	virtual ~CGCObjSwitchPlatform1 () {};	//deconstuctor
+	CGCObjSwitchPlatform2 ();				//constructor
+	virtual ~CGCObjSwitchPlatform2 () {};	//deconstuctor
 
 
 //	virtual void VOnResourceAcquire (void);
@@ -34,8 +34,8 @@ public:
 	//void NotifyOfCollisionWithPlayer ();
 
 	virtual void VOnUpdate (f32 fTimeStep);
-	
-	virtual void VOnResurrected();
+
+	virtual void VOnResurrected ();
 
 
 };

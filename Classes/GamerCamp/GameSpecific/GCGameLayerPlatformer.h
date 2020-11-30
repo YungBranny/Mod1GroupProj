@@ -53,6 +53,7 @@ class CGCObjLives;
 class CGCObjScore;
 class GCSwitch;
 class CHCOnjSwitchPlatform1;
+class CHCOnjSwitchPlatform2;
 class CGCObjFallingPlane;
 
 //////////////////////////////////////////////////////////////////////////
