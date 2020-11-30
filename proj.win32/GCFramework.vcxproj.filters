@@ -315,6 +315,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCOFallingPlane.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Score\GCObjHighScore.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -560,10 +563,18 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCOFallingPlane.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Score\GCObjHighScore.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\SourceAssets\Loose\HighScore.txt">
+      <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
+    </Text>
   </ItemGroup>
 </Project>
