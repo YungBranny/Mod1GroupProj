@@ -27,13 +27,13 @@ public:
 
 //	virtual void VOnResourceAcquire (void);
 
-	void DestroyPlatform (CGCObjPlayer& rcPlayer);
+	void DestroyPlatform ();
 	void movePlatform ();
 	bool i = false;
 	// this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
 	//void NotifyOfCollisionWithPlayer ();
 
-	virtual void VOnUpdate (f32 fTimeStep, CGCObjPlayer& rcPlayer);
+	virtual void VOnUpdate (f32 fTimeStep);
 
 
 

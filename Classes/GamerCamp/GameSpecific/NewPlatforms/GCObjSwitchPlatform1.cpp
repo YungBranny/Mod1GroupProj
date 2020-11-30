@@ -22,17 +22,16 @@ CGCObjSwitchPlatform1::CGCObjSwitchPlatform1 ()
 }
 
 
-void CGCObjSwitchPlatform1::DestroyPlatform (CGCObjPlayer& rcPlayer)
+void CGCObjSwitchPlatform1::DestroyPlatform()
 {
-	if ( rcPlayer.getSwitchesHit() >= 1 )
-	{		
-		SetResetPosition (cocos2d::Vec2 (-1000, -1000));
-	}
+	
+		 SetResetPosition (cocos2d::Vec2 (-1000, -1000));
+
 }
 
 
-void CGCObjSwitchPlatform1::VOnUpdate (f32 fTimeStep, CGCObjPlayer& rcPlayer)
+void CGCObjSwitchPlatform1::VOnUpdate (f32 fTimeStep)
 {
-	DestroyPlatform (rcPlayer);
+	//DestroyPlatform ();
 }
 
