@@ -68,7 +68,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_bIsPlayerOnPlatform (true)
 	, m_fTravelatorVelocity (-20.0f)
 	//, m_bv2CurrentPos(0,0)
-	, m_bChangeAnimation (false)
+	, m_bChangeAnimation (true)
 	, m_iSwitchesHit (0)
 	, m_bPlayerLivesCheck(false)
 {
@@ -130,31 +130,7 @@ CGCObjPlayer::CGCObjPlayer ()
 void CGCObjPlayer::VOnResourceAcquire()
 {
 	CGCObjSpritePhysics::VOnResourceAcquire();
-
-	const char* pszPlist_Willy = "TexturePacker/Sprites/Willy/Willy.plist";
-	const char* pszAnim_WillyRun = "Run";
-	const char* pszAnim_WillyIdle = "Idle";
-
-	// animate!
-	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
-
-	if( m_bChangeAnimation == true )
-	{
-		RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_WillyIdle)));
-	}
-
-	else if( m_bChangeAnimation == false )
-	{
-		RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_WillyRun)));
-	}
-
-	// because we're just storing a vanilla pointer we must call delete on it in VOnResourceRelease or leak memory 
-	// 
-	// n.b. m_pcControllerActionToKeyMap is a "perfect use case" for std::unique_ptr...
-	// 
-	// n.n.b. ... however if we did use std::unique_ptr we'd need to use std::unique_ptr::reset in VOnResourceRelease if we wanted the memory allocate / free behaviour to be the same...
-	m_pcControllerActionToKeyMap = TCreateActionToKeyMap( s_aePlayerActions, s_aeKeys );
-
+	ChangeAnimation ();
 }
 
 
@@ -415,13 +391,23 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		// * set sprite flip based on velocity
 		// N.B. the else-if looks redundant, but we want the sprite's flip 
 		// state to stay the same if its velocity is set to (0.0f, 0.0f)
-	if (GetVelocity().y >= 0.0f)
+	if (GetVelocity().x > 0.0f || GetVelocity ().x < 0.0f)
 	{
-		SetFlippedY(false);
+		if (m_bChangeAnimation == false)
+		{
+			SetFlippedY (false);
+			ChangeAnimation ();
+			m_bChangeAnimation = true;
+		}
 	}
-	else if (GetVelocity().y < 0.0f)
+	else if (GetVelocity().x == 0.0f)
 	{
-		SetFlippedY(false);
+		if (m_bChangeAnimation == true)
+		{
+			SetFlippedY (false);
+			ChangeAnimation ();
+			m_bChangeAnimation = false;
+		}
 	}
 
 	//if( GetVelocity().x > 0.0f || GetVelocity().x < 0.0f)
@@ -546,6 +532,35 @@ void CGCObjPlayer::LivesUI()
 
 void CGCObjPlayer::ChangeAnimation()
 {
+	
+	const char* pszPlist_Willy = "TexturePacker/Sprites/Willy/Willy.plist";
+	const char* pszAnim_WillyRun = "Run";
+	const char* pszAnim_WillyIdle = "Idle";
+
+	// animate!
+	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
+	
+
+	if( m_bChangeAnimation == true )
+	{
+		StopAction ();
+		RunAction(GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation(dicPList, pszAnim_WillyIdle)));
+		
+	}
+
+	else if( m_bChangeAnimation == false )
+	{
+		StopAction ();
+		RunAction(GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation(dicPList, pszAnim_WillyRun)));
+		
+	}
+
+	// because we're just storing a vanilla pointer we must call delete on it in VOnResourceRelease or leak memory 
+	// 
+	// n.b. m_pcControllerActionToKeyMap is a "perfect use case" for std::unique_ptr...
+	// 
+	// n.n.b. ... however if we did use std::unique_ptr we'd need to use std::unique_ptr::reset in VOnResourceRelease if we wanted the memory allocate / free behaviour to be the same...
+	m_pcControllerActionToKeyMap = TCreateActionToKeyMap( s_aePlayerActions, s_aeKeys );
 
 
 }
