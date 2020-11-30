@@ -51,12 +51,12 @@ void CGCMainMenu::VOnCreate ()
 
 	// add a "close" icon to exit the progress. it's an autorelease object
 	cocos2d::MenuItemImage* pResetItem
-		= cocos2d::MenuItemImage::create ("Buttons/PlayButton1.png",
-			"Buttons/PlayButton1.png",
+		= cocos2d::MenuItemImage::create ("TexturePacker/Sprites/MainMenu/Buttons/play_normal.png",
+			"TexturePacker/Sprites/MainMenu/Buttons/play_pressed.png",
 			CC_CALLBACK_1 (CGCMainMenu::LoadLevel, this));
 
 	pResetItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width / 2)),
-	( ( visibleSize.height - ( pResetItem->getContentSize ().height * 4.0f ) ) )));
+	( ( visibleSize.height - ( pResetItem->getContentSize ().height * 4.0f ) ) ))); // fix pressed button position
 
 
 	cocos2d::MenuItemImage* pQuitItem
@@ -65,7 +65,7 @@ void CGCMainMenu::VOnCreate ()
 		CC_CALLBACK_1 (CGCMainMenu::QuitGame, this));
 
 	pQuitItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width / 2 ) ),
-		( ( ( pQuitItem->getContentSize ().height * 4.0f ) + origin.y + 0.0f ) )));
+		( ( ( pQuitItem->getContentSize ().height * 3.0f ) + origin.y + 0.0f ) )));
 
 	// create menu, it's an autorelease object
 	cocos2d::Menu* pMenu = cocos2d::Menu::create (pResetItem, pQuitItem, nullptr);
@@ -73,13 +73,13 @@ void CGCMainMenu::VOnCreate ()
 	this->addChild (pMenu, 1);
 
 	// create and initialize a label
-	cocos2d::Label* pLabel = cocos2d::Label::createWithTTF ("MANIC MINER", "fonts/Pixeled.ttf", 60);
+	//cocos2d::Label* pLabel = cocos2d::Label::createWithTTF ("MANIC MINER", "fonts/Pixeled.ttf", 60);
 
 	// position the label on the center of the screen
-	pLabel->setPosition (cocos2d::Vec2 (visibleSize.width / 2, visibleSize.height - 200));
+	//pLabel->setPosition (cocos2d::Vec2 (visibleSize.width / 2, visibleSize.height - 200));
 
 	// add the label as a child to this layer
-	this->addChild (pLabel, 1);
+	//this->addChild (pLabel, 1);
 
 	cocos2d::Label* pLabel1 = cocos2d::Label::createWithTTF("Team 2: Mia, Brandon, Daniel, Puia and Johnny", "fonts/Pixeled.ttf", 20);
 
@@ -88,12 +88,12 @@ void CGCMainMenu::VOnCreate ()
 	this->addChild(pLabel1, 1);
 
 
-	const char* pszPlist_background = "TexturePacker/Sprites/Background/background.plist";
+	const char* pszPlist_background = "TexturePacker/Sprites/MainMenu/Background/main_menu.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite ();
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
 		m_pcGCSprBackGround->SetResetPosition (cocos2d::Vec2 (visibleSize.width / 2, visibleSize.height / 2));
-		m_pcGCSprBackGround->SetScale(1.4f, 1.4f);
+		//m_pcGCSprBackGround->SetScale(1.4f, 1.4f);
 		playMenuBackgroundMusic();
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
 	}
@@ -125,7 +125,7 @@ void CGCMainMenu::VOnDestroy ()
 void CGCMainMenu::playMenuBackgroundMusic()
 {
 	m_pcGCMenuBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCMenuBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true);
+	//m_pcGCMenuBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true);
 }
 
 

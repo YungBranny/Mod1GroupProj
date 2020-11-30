@@ -300,6 +300,16 @@ void GCLevel2::VOnCreate ()
 		playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
 	}
 
+	const char* pszPlist_background1 = "TexturePacker/Sprites/BackgroundLevel2/tcr_background_1.plist";
+	{
+		m_pcGCSprBackGround = new CGCObjSprite();
+		m_pcGCSprBackGround->CreateSprite(pszPlist_background1);
+		//m_pcGCSprBackGround->SetScale(1, 1);
+		m_pcGCSprBackGround->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+		m_pcGCSprBackGround->SetParent(IGCGameLayer::ActiveInstance());
+		playBackgroundMusic(); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
+	}
+
 	m_pcGCTimer = new CGCObjTimer ();
 
 	//this->addChild(m_pcGCTimer->getTimerText(), 10);
