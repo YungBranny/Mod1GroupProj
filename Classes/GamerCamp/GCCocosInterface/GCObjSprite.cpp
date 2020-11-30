@@ -122,6 +122,14 @@ CGCObjSprite::EActionState CGCObjSprite::RunAction( Action* pAction )
 	return EAS_Running;
 }
 
+CGCObjSprite::EActionState CGCObjSprite::StopAction ()
+{
+	CCAssert (m_pcSprite, "m_pcSprite is nullptr. Have you called CreateSprite?");
+	//CCAssert ("pAction is nullptr");
+	m_pcSprite->stopAllActions();
+	return EAS_Running;
+}
+
 //////////////////////////////////////////////////////////////////////////
 DEBUG_ONLY( static int s_iRespourceAcquiredCount = 0 );
 // default behaviour is to add the managed sprite to the game layer 

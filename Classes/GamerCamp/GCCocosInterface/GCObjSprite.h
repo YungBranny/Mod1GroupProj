@@ -102,6 +102,7 @@ public:
 		EAS_Finished,
 	};
 	EActionState	RunAction( cocos2d::Action* pAction );
+	EActionState	StopAction ();
 
 
 	//////////////////////////////////////////////////////////////////////////
