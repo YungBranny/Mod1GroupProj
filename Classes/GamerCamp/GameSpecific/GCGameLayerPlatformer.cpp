@@ -465,18 +465,18 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	GetCollisionManager ().AddCollisionHandler ([this](GCSwitch& rcSwitch, CGCObjSwitchPlatform1& rcSwitchPlatform, const b2Contact& rcContact) -> void
 		{
-			//if (m_pcGCOPlayer->getSwitchesHit () >= 1)
-			//{
-			//	rcSwitchPlatform.DestroyPlatform ();
-			//}
+			if (m_pcGCOPlayer->getSwitchesHit () >= 1)
+			{
+				rcSwitchPlatform.DestroyPlatform ();
+			}
 		});
 
 	GetCollisionManager ().AddCollisionHandler ([this](GCSwitch& rcSwitch, CGCObjSwitchPlatform2& rcSwitchPlatform, const b2Contact& rcContact) -> void
 		{
-			//if (m_pcGCOPlayer->getSwitchesHit () >= 2)
-			//{
-			//	rcSwitchPlatform.DestroyPlatform ();
-			//}
+			if (m_pcGCOPlayer->getSwitchesHit () >= 2)
+			{
+				rcSwitchPlatform.DestroyPlatform ();
+			}
 		});
 	GetCollisionManager ().AddCollisionHandler ([this](GCSwitch& rcSwitch, CGCObjPlayer& rc_player, const b2Contact& rcContact) -> void
 		{
