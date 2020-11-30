@@ -35,7 +35,7 @@ void CGCBasicEnemies::VOnResourceAcquire()
 {
 	CGCObjSpritePhysics::VOnResourceAcquire ();
 	const char* pszPlist_SeaUrchin = "TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist";
-	const char* pszAnim_Idle = "Idle";
+	const char* pszAnim_Idle = "UrchinIdle";
 
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist( GetFactoryCreationParams()->strPlistFile );
 	RunAction( GCCocosHelpers::CreateAnimationActionLoop( GCCocosHelpers::CreateAnimation( dicPList, pszAnim_Idle ) ) );

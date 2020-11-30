@@ -82,7 +82,85 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0007.png</key>
+            <key>UrchinIdle/final-0001.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{787,63},{54,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{3,0},{54,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>UrchinIdle/final-0002.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{613,63},{56,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{56,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>UrchinIdle/final-0003.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{615,1},{56,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{56,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>UrchinIdle/final-0004.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{671,63},{56,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{2,0},{56,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>UrchinIdle/final-0005.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{373,63},{58,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{58,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>UrchinIdle/final-0006.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{433,63},{58,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{58,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+            <key>UrchinIdle/final-0007.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{435,1},{58,60}}</string>
@@ -95,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0008.png</key>
+            <key>UrchinIdle/final-0008.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{493,63},{58,60}}</string>
@@ -108,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0009.png</key>
+            <key>UrchinIdle/final-0009.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,1},{60,60}}</string>
@@ -121,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0010.png</key>
+            <key>UrchinIdle/final-0010.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,63},{60,60}}</string>
@@ -134,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0011.png</key>
+            <key>UrchinIdle/final-0011.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{63,1},{60,60}}</string>
@@ -147,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0012.png</key>
+            <key>UrchinIdle/final-0012.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{63,63},{60,60}}</string>
@@ -160,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0013.png</key>
+            <key>UrchinIdle/final-0013.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{125,1},{60,60}}</string>
@@ -173,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0014.png</key>
+            <key>UrchinIdle/final-0014.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{125,63},{60,60}}</string>
@@ -186,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0015.png</key>
+            <key>UrchinIdle/final-0015.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{187,1},{60,60}}</string>
@@ -199,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0016.png</key>
+            <key>UrchinIdle/final-0016.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{187,63},{60,60}}</string>
@@ -212,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0017.png</key>
+            <key>UrchinIdle/final-0017.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{249,1},{60,60}}</string>
@@ -225,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0018.png</key>
+            <key>UrchinIdle/final-0018.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{249,63},{60,60}}</string>
@@ -238,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0019.png</key>
+            <key>UrchinIdle/final-0019.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{311,1},{60,60}}</string>
@@ -251,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0020.png</key>
+            <key>UrchinIdle/final-0020.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{311,63},{60,60}}</string>
@@ -264,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0021.png</key>
+            <key>UrchinIdle/final-0021.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{373,1},{60,60}}</string>
@@ -277,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0022.png</key>
+            <key>UrchinIdle/final-0022.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{495,1},{58,60}}</string>
@@ -290,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0023.png</key>
+            <key>UrchinIdle/final-0023.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{553,63},{58,60}}</string>
@@ -303,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0024.png</key>
+            <key>UrchinIdle/final-0024.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{555,1},{58,60}}</string>
@@ -316,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0025.png</key>
+            <key>UrchinIdle/final-0025.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{673,1},{56,60}}</string>
@@ -329,7 +407,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0026.png</key>
+            <key>UrchinIdle/final-0026.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{729,63},{56,60}}</string>
@@ -342,7 +420,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0027.png</key>
+            <key>UrchinIdle/final-0027.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{731,1},{56,60}}</string>
@@ -355,7 +433,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0028.png</key>
+            <key>UrchinIdle/final-0028.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{789,1},{54,60}}</string>
@@ -368,7 +446,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0029.png</key>
+            <key>UrchinIdle/final-0029.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{843,63},{54,60}}</string>
@@ -381,7 +459,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0030.png</key>
+            <key>UrchinIdle/final-0030.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{845,1},{54,60}}</string>
@@ -394,7 +472,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0031.png</key>
+            <key>UrchinIdle/final-0031.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{901,1},{52,60}}</string>
@@ -407,7 +485,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0032.png</key>
+            <key>UrchinIdle/final-0032.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{955,1},{52,60}}</string>
@@ -420,7 +498,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0033.png</key>
+            <key>UrchinIdle/final-0033.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1009,63},{50,60}}</string>
@@ -433,7 +511,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0034.png</key>
+            <key>UrchinIdle/final-0034.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1061,63},{50,60}}</string>
@@ -446,7 +524,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0035.png</key>
+            <key>UrchinIdle/final-0035.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1063,1},{50,60}}</string>
@@ -459,7 +537,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0036.png</key>
+            <key>UrchinIdle/final-0036.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1165,63},{48,60}}</string>
@@ -472,7 +550,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0037.png</key>
+            <key>UrchinIdle/final-0037.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1167,1},{48,60}}</string>
@@ -485,7 +563,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0038.png</key>
+            <key>UrchinIdle/final-0038.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1215,63},{48,60}}</string>
@@ -498,7 +576,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0039.png</key>
+            <key>UrchinIdle/final-0039.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1315,63},{46,58}}</string>
@@ -511,7 +589,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0040.png</key>
+            <key>UrchinIdle/final-0040.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1363,1},{46,58}}</string>
@@ -524,7 +602,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0041.png</key>
+            <key>UrchinIdle/final-0041.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1363,61},{46,58}}</string>
@@ -537,7 +615,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0042.png</key>
+            <key>UrchinIdle/final-0042.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1267,1},{46,60}}</string>
@@ -550,7 +628,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0043.png</key>
+            <key>UrchinIdle/final-0043.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1315,1},{46,60}}</string>
@@ -563,7 +641,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0044.png</key>
+            <key>UrchinIdle/final-0044.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1217,1},{48,60}}</string>
@@ -576,7 +654,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0045.png</key>
+            <key>UrchinIdle/final-0045.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1265,63},{48,60}}</string>
@@ -589,7 +667,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0046.png</key>
+            <key>UrchinIdle/final-0046.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1113,63},{50,60}}</string>
@@ -602,7 +680,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0047.png</key>
+            <key>UrchinIdle/final-0047.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1115,1},{50,60}}</string>
@@ -615,7 +693,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0048.png</key>
+            <key>UrchinIdle/final-0048.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{955,63},{52,60}}</string>
@@ -628,7 +706,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0049.png</key>
+            <key>UrchinIdle/final-0049.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1009,1},{52,60}}</string>
@@ -641,7 +719,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0050.png</key>
+            <key>UrchinIdle/final-0050.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{899,63},{54,60}}</string>
@@ -654,7 +732,7 @@
                 <key>sourceSize</key>
                 <string>{60,60}</string>
             </dict>
-            <key>Idle/final-0051.png</key>
+            <key>UrchinIdle/final-0051.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{787,63},{54,60}}</string>
@@ -681,7 +759,7 @@
             <key>size</key>
             <string>{1410,124}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9d8ee00cec2d589f590d52c664043460:cdf117f13462949f660f033d69505714:634a9e88189044a9f45ab5fefd99f64b$</string>
+            <string>$TexturePacker:SmartUpdate:fff22f76e762fdcec3385d0e5a7fbd04:81c12f738e1aadaef5180c391896f240:634a9e88189044a9f45ab5fefd99f64b$</string>
             <key>textureFileName</key>
             <string>SeaUrchin.png</string>
         </dict>
