@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>BackgroundTest.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{900,600}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{900,600}}</string>
+                <key>sourceSize</key>
+                <string>{900,600}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>BackgroundTest.png</string>
+            <key>size</key>
+            <string>{902,602}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:3875a546b8e06ad5213d9d02093e813d:6b008ccd59b23625496ac54f1531c6be:d3d3c3c7977f29b146aa3023c91ef053$</string>
+            <key>textureFileName</key>
+            <string>BackgroundTest.png</string>
+        </dict>
+    </dict>
+</plist>

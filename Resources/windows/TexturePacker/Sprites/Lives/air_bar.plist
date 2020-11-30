@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>air_bar.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{824,42}}</string>
+                <key>offset</key>
+                <string>{33,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{101,37},{824,42}}</string>
+                <key>sourceSize</key>
+                <string>{960,120}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>air_bar.png</string>
+            <key>size</key>
+            <string>{826,44}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:625ef7b178da64da1cf39b57dd4fb02a:cd8cffae450c205fa1e2db5a2b033bc2:5498da4c6d01e18248744aba121845a6$</string>
+            <key>textureFileName</key>
+            <string>air_bar.png</string>
+        </dict>
+    </dict>
+</plist>

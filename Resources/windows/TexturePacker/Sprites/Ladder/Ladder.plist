@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>Ladder.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{20,32}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,0},{20,32}}</string>
+                <key>sourceSize</key>
+                <string>{32,32}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>Ladder.png</string>
+            <key>size</key>
+            <string>{22,34}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:4d011fd8eca669538d7001a26667e9e4:af639a5b1f2528486601c9eaaf026f99:581654d94e4418b65ab674528e1bab04$</string>
+            <key>textureFileName</key>
+            <string>Ladder.png</string>
+        </dict>
+    </dict>
+</plist>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>air_container.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{918,114}}</string>
+                <key>offset</key>
+                <string>{3,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{24,6},{918,114}}</string>
+                <key>sourceSize</key>
+                <string>{960,120}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>air_container.png</string>
+            <key>size</key>
+            <string>{920,116}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:76c02acd854c9860678d017080d7d822:7ffa6318c3fe9ffed3c0c606749d28d0:ff0314766e52dcf0e9a6617dd2ae84fe$</string>
+            <key>textureFileName</key>
+            <string>air_container.png</string>
+        </dict>
+    </dict>
+</plist>

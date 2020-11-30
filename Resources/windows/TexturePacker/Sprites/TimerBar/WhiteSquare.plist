@@ -7,7 +7,7 @@
             <key>Frames/WhiteSquare.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{290,280}}</string>
+                <string>{{295,201},{290,280}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -16,6 +16,71 @@
                 <string>{{0,0},{290,280}}</string>
                 <key>sourceSize</key>
                 <string>{290,280}</string>
+            </dict>
+            <key>TimerBar.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,161},{948,38}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,1},{948,38}}</string>
+                <key>sourceSize</key>
+                <string>{950,40}</string>
+            </dict>
+            <key>WhiteSquare.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,201},{292,282}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{292,282}}</string>
+                <key>sourceSize</key>
+                <string>{292,282}</string>
+            </dict>
+            <key>air_bar.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,117},{824,42}}</string>
+                <key>offset</key>
+                <string>{33,2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{101,37},{824,42}}</string>
+                <key>sourceSize</key>
+                <string>{960,120}</string>
+            </dict>
+            <key>air_container.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{918,114}}</string>
+                <key>offset</key>
+                <string>{3,-3}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{24,6},{918,114}}</string>
+                <key>sourceSize</key>
+                <string>{960,120}</string>
+            </dict>
+            <key>ui_slider.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,161},{948,38}}</string>
+                <key>offset</key>
+                <string>{-23,-12}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{13,113},{948,38}}</string>
+                <key>sourceSize</key>
+                <string>{1020,240}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -29,9 +94,9 @@
             <key>realTextureFileName</key>
             <string>WhiteSquare.png</string>
             <key>size</key>
-            <string>{292,282}</string>
+            <string>{950,484}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:37e736d21a35613a92c0449439b81307:fe94be182c5317f2285e2b988b67f1cd:16b33dffb7a68852153b5c4b1e58f0ae$</string>
+            <string>$TexturePacker:SmartUpdate:3d72093923508babcdc286fe4f58dd4b:852b9ac4ef06a5025c8e920f0425a9ca:16b33dffb7a68852153b5c4b1e58f0ae$</string>
             <key>textureFileName</key>
             <string>WhiteSquare.png</string>
         </dict>

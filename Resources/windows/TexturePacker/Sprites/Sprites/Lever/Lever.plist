@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>Lever.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{128,128}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{128,128}}</string>
+                <key>sourceSize</key>
+                <string>{128,128}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>Lever.png</string>
+            <key>size</key>
+            <string>{130,130}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:4ae812dd6dbad10695d3e6276fefdcf1:48c9869745a5a610a6abdb22df48e642:38a9bd176d1e0da328570eee30da6c1b$</string>
+            <key>textureFileName</key>
+            <string>Lever.png</string>
+        </dict>
+    </dict>
+</plist>
