@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>life_full.png</key>
+            <key>play_normal.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{140,140}}</string>
+                <string>{{1,1},{532,140}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-2,-3}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{140,140}}</string>
+                <string>{{62,53},{532,140}}</string>
                 <key>sourceSize</key>
-                <string>{140,140}</string>
+                <string>{660,240}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>life_full.png</string>
+            <string>play_normal.png</string>
             <key>size</key>
-            <string>{142,142}</string>
+            <string>{534,142}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c8d1226bd0d682fe1435d910616df25e:1803339c76d4fcd2786442d6494d5f63:c8d8f78f416db682e7524aff28d1d1cf$</string>
+            <string>$TexturePacker:SmartUpdate:48ca005bd349b099ec2282dba947a407:d8cc9446fc0bc06ac7e78e092480d983:047558ba363303105958c9ac9e88cac3$</string>
             <key>textureFileName</key>
-            <string>life_full.png</string>
+            <string>play_normal.png</string>
         </dict>
     </dict>
 </plist>
