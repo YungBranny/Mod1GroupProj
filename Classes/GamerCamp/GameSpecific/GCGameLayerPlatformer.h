@@ -103,6 +103,8 @@ private:
 
 	int						m_iTimerPickedUp;
 
+	int			m_iHighScore;
+	
 	CocosDenshion::SimpleAudioEngine* m_pcGCBackgroundAudio;
 	CocosDenshion::SimpleAudioEngine* m_pcGCSoundEffectsAudio;
 
@@ -146,7 +148,8 @@ public:
 
 	void PlayerDeathSceneSwap();
 	
-
+	void HighScore();
+	
 	//////////////////////////////////////////////////////////////////////////
 	// CCNode interface...
 	virtual void onEnter();

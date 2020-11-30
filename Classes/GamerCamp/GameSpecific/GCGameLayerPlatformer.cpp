@@ -6,7 +6,7 @@
 #include "GCGameLayerPlatformer.h"
 #include <algorithm>
 #include <stdlib.h> 
-
+#include <fstream>
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 
 #include "MenuScene.h"
@@ -113,6 +113,9 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
 
 	m_iTimerPickedUp = 0; // Mia: Sets Default Timer Pick Up to 0
+	
+	m_iHighScore = 0;
+	
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -781,6 +784,37 @@ void CGCGameLayerPlatformer::PlayerDeathSceneSwap()
 	Director::getInstance()->replaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));
 }
 
+void CGCGameLayerPlatformer::HighScore()
+{
+	std::fstream readFile;
+	readFile.open("HighScore.txt");
+
+	if (readFile.is_open())
+	{
+
+		while (!readFile.eof())
+		{
+			readFile >> m_iHighScore;
+		}
+	}
+
+	readFile.close();
+
+	std::ofstream writeFile("HighScore.txt");
+
+	if (writeFile.is_open())
+	{
+		if (m_pcGCOScore->getScoreAmount() > m_iHighScore)
+		{
+			m_iHighScore = m_pcGCOScore->getScoreAmount();
+		}
+
+		writeFile << m_iHighScore;
+
+	}
+	writeFile.close();
+
+}
 
 //////////////////////////////////////////////////////////////////////////
 // on update
@@ -798,7 +832,15 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		PlayerDeathSceneSwap();
 	}
 
-	
+	//std::ifstream inFile;
+	//inFile.open("HighScore.txt");
+
+	//if(inFile.fail())
+	//{
+	//	CCLOG("bruh");
+	//	return;
+	//}
+
 	
 	m_pcGCTimer->Update(fTimeStep);
 
