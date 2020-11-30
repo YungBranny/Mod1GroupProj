@@ -496,6 +496,22 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		CGCObjectManager::ObjectKill (&rcPlane);
 	});
 
+	GetCollisionManager().AddCollisionHandler
+	(
+		[this]
+	(CGCObjFallingPlane& rcPlane, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+	{
+		CGCObjectManager::ObjectKill(&rcPlane);
+		if( rcPlane.getJustCollided() == false )
+		{
+			rcPlane.setJustCollided(true);
+			RequestReset();
+			CCLOG("Player hit by Plane.");
+			rcPlayer.DecrementLives();
+		}
+	}
+	);
+
 	//GetCollisionManager ().AddCollisionHandler
 	//(
 
