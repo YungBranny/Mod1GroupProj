@@ -53,6 +53,7 @@ class CGCObjLives;
 class CGCObjScore;
 class GCSwitch;
 class CHCOnjSwitchPlatform1;
+class CGCObjFallingPlane;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer

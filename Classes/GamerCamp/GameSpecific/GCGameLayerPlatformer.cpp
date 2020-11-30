@@ -60,6 +60,7 @@
 #include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCSwitch.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjSwitchPlatform1.h"
+#include "GamerCamp/GameSpecific/Enemies/GCOFallingPlane.h"
 
 
 #include "AppDelegate.h"
@@ -489,7 +490,11 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		}
 	});
 
-
+	GetCollisionManager().AddCollisionHandler([](CGCObjFallingPlane& rcPlane, CGCObjScalingBasicPlatform& rcPlatform, const b2Contact& rcContact) -> void
+	{
+		COLLISIONTESTLOG("Plane hit Platform!");
+		CGCObjectManager::ObjectKill (&rcPlane);
+	});
 
 	//GetCollisionManager ().AddCollisionHandler
 	//(
