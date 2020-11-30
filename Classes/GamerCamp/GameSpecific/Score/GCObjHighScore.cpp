@@ -78,39 +78,37 @@ void CGCObjHighScore::HighScoreCheck(CGCObjScore* m_score)
 
 	
 	
-	//std::ifstream inFile;
-	//inFile.open("HighScore.txt");
 
-	//	 std::fstream readFile ("HighScore.xml",std::ios::in);
-	//	 std::string line;
-	//	 //readFile.open("GamerCamp/GameSpecific/Score/HighScore.txt");
-	//
-	// 	if(readFile.is_open())
-	// 	{
-	//		getline(readFile, line);
-	// 		
-	// 		while ( !readFile.eof())
-	//			{
-	//			readFile >> m_iHighScoreValue;
-	//			}
-	// 	}
-	//
-	//	readFile.close();
-	//
-	//	std::ofstream writeFile("Loose/HighScore.txt");
-	//
-	// 	if(writeFile.is_open())
-	// 	{
-	// 		if ( m_score->getScoreAmount() > m_iHighScoreValue)
-	// 		{
-	//			m_iHighScoreValue = m_score->getScoreAmount();
-	// 		}
-	//
-	//		writeFile << m_iHighScoreValue;
-	// 		
-	// 	}
-	//	writeFile.close();
-	//
+		 std::fstream readFile ("HighScore.txt",std::ios::in);
+		 std::string line;
+		 //readFile.open("GamerCamp/GameSpecific/Score/HighScore.txt");
+	
+	 	if(readFile.is_open())
+	 	{
+			getline(readFile, line);
+	 		
+	 		while ( !readFile.eof())
+				{
+				readFile >> m_iHighScoreValue;
+				}
+	 	}
+	
+		readFile.close();
+	
+		std::ofstream writeFile("Loose/HighScore.txt");
+	
+	 	if(writeFile.is_open())
+	 	{
+	 		if ( m_score->getScoreAmount() > m_iHighScoreValue)
+	 		{
+				m_iHighScoreValue = m_score->getScoreAmount();
+	 		}
+	
+			writeFile << m_iHighScoreValue;
+	 		
+	 	}
+		writeFile.close();
+	
 
 	//
 	//UserDefault* default = UserDefault::getInstance();

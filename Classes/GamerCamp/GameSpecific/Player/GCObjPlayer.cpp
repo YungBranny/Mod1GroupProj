@@ -70,6 +70,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	//, m_bv2CurrentPos(0,0)
 	, m_bChangeAnimation (false)
 	, m_iSwitchesHit (0)
+	, m_bPlayerLivesCheck(false)
 {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -195,7 +196,10 @@ void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 	// handle movement
 	UpdateMovement(fTimeStep);
 
-	
+	if(getPlayerLives() <=0)
+	{
+		setPlayerCheckLives(true);
+	}
 }
 
 

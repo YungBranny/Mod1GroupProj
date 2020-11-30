@@ -318,6 +318,7 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Score\GCObjHighScore.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\CGCObjSwitchPlatform2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -566,6 +567,7 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Score\GCObjHighScore.h">
       <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\CGCObjSwitchPlatform2.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

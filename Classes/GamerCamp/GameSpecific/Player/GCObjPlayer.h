@@ -78,6 +78,8 @@ private:
 	bool	m_bOnLadder;
 	bool	m_bChangeAnimation; // If more animations added, will be changed to enum or switch
 
+	bool   m_bPlayerLivesCheck;
+	
 	bool	m_bIsPlayerOnPlatform;
 
 	cocos2d::Vec2 m_v2LivesStartPosition;
@@ -114,6 +116,10 @@ public:
 	bool getOnTravelator() const { return m_bOnTravelator; }
 	void setOnTravelator(bool b) { m_bOnTravelator = b; }
 
+
+	bool getPlayerCheckLives() const { return m_bPlayerLivesCheck; }
+	void setPlayerCheckLives(bool b) { m_bPlayerLivesCheck = b; }
+
 	bool getIsPlayerOnPlatform () const { return m_bIsPlayerOnPlatform; }
 	void setIsPlayerOnPlatform (bool i) { m_bIsPlayerOnPlatform = i; }
 
@@ -127,6 +133,9 @@ public:
 
 	int getSwitchesHit () const { return m_iSwitchesHit; }
 	void setSwitchesHit (int f) { m_iSwitchesHit = f; }
+
+	int getPlayerLives() const { return m_iNumberOfLives; }
+	void setPlayerLives (int f) { m_iNumberOfLives = f; }
 
 	float getTravelatorVelocity () const { return m_fTravelatorVelocity; }
 	void setTravelatorVelocity (int f) { m_fTravelatorVelocity = f; }

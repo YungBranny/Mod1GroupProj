@@ -58,6 +58,7 @@
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider2.h"
 #include "GamerCamp/GameSpecific/Score/GCObjScore.h"
+#include "GamerCamp/GameSpecific/Score/GCObjHighScore.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCSwitch.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjSwitchPlatform1.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/CGCObjSwitchPlatform2.h"
@@ -104,6 +105,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 , m_pcGCOKeys2					( nullptr )
 , m_bCheckIfPlayerIsAbovePlatform (false)
 , m_pcGCOScore (nullptr)
+, m_pcGCOHighScore(nullptr)
 
 {
 	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
@@ -297,6 +299,9 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
+	m_pcGCOHighScore = new CGCObjHighScore(m_pcGCOScore);
+
+	this->addChild(m_pcGCOHighScore->getHighScoreText(), 10);
 	//Mia: Added Background
 	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
 	{
@@ -609,10 +614,12 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		{
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
+				playDoorOpeningAudio ();
+				
 			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
 			//	m_bPlayerKeysGathered = true;
 
-				playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
+				 // Mia: Calls the Function which plays the Door Opening Audio
 			}
 		}
 	);
@@ -652,25 +659,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		}
 	);
 
-	GetCollisionManager ().AddCollisionHandler
-	(
-		//Brandon Middleton
-		//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
-		//it will reset the level from the start
-		[this]
-	(CGCBasicEnemies& rcEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
-		{
- 			//CGCObjectManager::ObjectKill (&rcEnemies);
-			//m_pcGCTimer->ResetTimer ();
-			//CGCObjectManager::ObjectKill (&rcEnemies);
-			CCLOG ("Player Died.");
-			//m_bPlayerHitHostile = true;
-			RequestReset ();
-			rcPlayer.DecrementLives (); //Puia Lose a life when colliding
-		}
-	);
-
-
 
 	GetCollisionManager ().AddCollisionHandler
 	(
@@ -684,13 +672,15 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			CCLOG("HEUFH");
 			if (rcMEnemies.getJustCollided () == false)
 			{
+				
 				rcMEnemies.setJustCollided (true);
 				RequestReset ();
 				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");
 				//CGCObjectManager::ObjectKill (&rcPlayer);
 				//m_bPlayerHitHostile = true;
-				rcPlayer.DecrementLives (); //Puia Lose a life when colliding
+				rcPlayer.DecrementLives ();
+				//PlayerDeathSceneSwap(); //Puia Lose a life when colliding
 			}
 		}
 	);
@@ -785,6 +775,12 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		});
 }
 
+void CGCGameLayerPlatformer::PlayerDeathSceneSwap()
+{
+	
+	Director::getInstance()->replaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 // on update
@@ -797,8 +793,16 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	// this shows how to iterate and respond to the box2d collision info
 	HandleCollisions();	
 
+	if(m_pcGCOPlayer->getPlayerCheckLives()== true)
+	{
+		PlayerDeathSceneSwap();
+	}
 
+	
+	
 	m_pcGCTimer->Update(fTimeStep);
+
+	
 	
 	if( ResetWasRequested() )
 	{
@@ -1123,6 +1127,27 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 			// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
 		}
 	}
+	
+	if ((pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf(CGCBasicEnemies))
+		&& (pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer))
+		|| ((pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer))
+			&& (pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCBasicEnemies))))
+	{
+
+		//CGCObjectManager::ObjectKill (&rcEnemies);
+		//m_pcGCTimer->ResetTimer ();
+		//CGCObjectManager::ObjectKill (&rcEnemies);
+		CCLOG("Player Died.");
+		//m_bPlayerHitHostile = true;
+		//PlayerDeathSceneSwap();
+		RequestReset();
+		m_pcGCOPlayer->DecrementLives(); //Puia Lose a life when colliding
+		
+	}
+
+	
+	
+
 }
 
 

@@ -51,6 +51,7 @@ class GCObjEnemyMovementCollider;
 class GCObjEnemyMovementCollider2;
 class CGCObjLives;
 class CGCObjScore;
+class CGCObjHighScore;
 class GCSwitch;
 class CHCOnjSwitchPlatform1;
 class CHCOnjSwitchPlatform2;
@@ -80,6 +81,8 @@ private:
 	CGCObjTimer*					m_pcGCTimer;
 	CGCObjLives*					m_pcGCOLives;
 	CGCObjScore*					m_pcGCOScore;
+	CGCObjHighScore*				 m_pcGCOHighScore;
+	
 	
 	// backgrounds
 	CGCObjSprite*					m_pcGCSprBackGround;
@@ -141,6 +144,8 @@ public:
 
 	void playDoorOpeningAudio();
 
+	void PlayerDeathSceneSwap();
+	
 
 	//////////////////////////////////////////////////////////////////////////
 	// CCNode interface...
