@@ -15,9 +15,22 @@ GCFACTORY_IMPLEMENT_CREATEABLECLASS (GCSwitch);
 
 GCSwitch::GCSwitch ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (GCSwitch))
+	,m_bSwitchHit(false)
 {
 	//m_audio->playBackgroundMusic ("", true);
 
+}
+
+void GCSwitch::VOnResurrected ()
+{
+	CGCObjSpritePhysics::VOnResurrected ();
+	GetPhysicsBody ()->SetGravityScale (0);
+}
+
+void GCSwitch::VOnReset ()
+{
+	CGCObjSpritePhysics::VOnReset ();
+	m_bSwitchHit = false;
 }
 
 //CHooses what sprite is drawn

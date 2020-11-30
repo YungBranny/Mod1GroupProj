@@ -60,6 +60,7 @@
 #include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCSwitch.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjSwitchPlatform1.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/CGCObjSwitchPlatform2.h"
 #include "GamerCamp/GameSpecific/Enemies/GCOFallingPlane.h"
 
 
@@ -258,12 +259,12 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		( ( ( pResetItem->getContentSize ().height * 0.5f ) + origin.y ) )));
 
 	MenuItemImage* pSkipItem
-		= MenuItemImage::create("Loose/CloseNormal.png",
+		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
-			CC_CALLBACK_1(CGCGameLayerPlatformer::Callback_OnSkipButton, this));
+			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnSkipButton, this));
 
-	pSkipItem->setPosition(Vec2(( ( visibleSize.width - ( pSkipItem->getContentSize().width * 0.5f ) ) + origin.x ),
-		( ( ( pSkipItem->getContentSize().height * 6.0f ) + origin.y ) )));
+	pSkipItem->setPosition (Vec2 (( ( visibleSize.width - ( pSkipItem->getContentSize ().width * 0.5f ) ) + origin.x ),
+		( ( ( pSkipItem->getContentSize ().height * 6.0f ) + origin.y ) )));
 
 	MenuItemImage* pQuitItem
 		= MenuItemImage::create ("Loose/CloseNormal.png",
@@ -292,26 +293,26 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	//// Mia: Add the label as a child to this Game Layer
 	//this->addChild(pLabel, 1);
 
-	m_pcGCOScore = new CGCObjScore();
+	m_pcGCOScore = new CGCObjScore ();
 
-	this->addChild(m_pcGCOScore->getScoreText(), 10);
+	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
 	//Mia: Added Background
 	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite ();
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
-		m_pcGCSprBackGround->SetScale(1, 1);
+		m_pcGCSprBackGround->SetScale (1, 1);
 		m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
-		playBackgroundMusic(); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
+		playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
 	}
 
-	m_pcGCTimer = new CGCObjTimer();
+	m_pcGCTimer = new CGCObjTimer ();
 
 	//this->addChild(m_pcGCTimer->getTimerText(), 10);
-	this->addChild(m_pcGCTimer->getTimerBar(), 50);
-	this->addChild(m_pcGCTimer->getTimerBarUI(), 51);
+	this->addChild (m_pcGCTimer->getTimerBar (), 50);
+	this->addChild (m_pcGCTimer->getTimerBarUI (), 51);
 
 	///////////////////////////////////////////////////////////////////////////
 	// set up physics 
@@ -399,7 +400,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	// starting position
 	cocos2d::Vec2 v2MarioStartPos (60, 120);
-	
+
 	//(( origin.x + ( visibleSize.width * 0.5f ) ),
 	//	( origin.y + ( visibleSize.height * 0.5f ) ));
 
@@ -417,22 +418,22 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	m_pcGCOPlayer->setJumpHeight (200.0f);
 
 	//this->addChild(m_pcGCOPlayer->getLivesText(), 10);
-	
 
-	this->addChild(m_pcGCOPlayer->getPlayerLoseLivesUI1(), 10);
 
-	this->addChild(m_pcGCOPlayer->getPlayerLoseLivesUI2(), 10);
+	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI1 (), 10);
 
-	this->addChild(m_pcGCOPlayer->getPlayerLoseLivesUI3(), 10);
+	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI2 (), 10);
 
-	
-	this->addChild(m_pcGCOPlayer->getPlayerLivesUI1(), 11);
+	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI3 (), 10);
 
-	this->addChild(m_pcGCOPlayer->getPlayerLivesUI2(), 11);
 
-	this->addChild(m_pcGCOPlayer->getPlayerLivesUI3(), 11);
-	
-	
+	this->addChild (m_pcGCOPlayer->getPlayerLivesUI1 (), 11);
+
+	this->addChild (m_pcGCOPlayer->getPlayerLivesUI2 (), 11);
+
+	this->addChild (m_pcGCOPlayer->getPlayerLivesUI3 (), 11);
+
+
 
 	//this->addChild(m_pcGCOLives->getLivesUI(), 20);
 
@@ -461,16 +462,36 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		});
 
 
-	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, GCSwitch& rcSwitch, const b2Contact& rcContact) -> void
+
+	GetCollisionManager ().AddCollisionHandler ([this](GCSwitch& rcSwitch, CGCObjSwitchPlatform1& rcSwitchPlatform, const b2Contact& rcContact) -> void
 		{
-		
-			rcPlayer.setSwitchesHit (rcPlayer.getSwitchesHit()+1);
-			CCLOG ("huhguhg");
+			//if (m_pcGCOPlayer->getSwitchesHit () >= 1)
+			//{
+			//	rcSwitchPlatform.DestroyPlatform ();
+			//}
 		});
 
-	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjSwitchPlatform1& rcSwitch, const b2Contact& rcContact) -> void
+	GetCollisionManager ().AddCollisionHandler ([this](GCSwitch& rcSwitch, CGCObjSwitchPlatform2& rcSwitchPlatform, const b2Contact& rcContact) -> void
 		{
-
+			//if (m_pcGCOPlayer->getSwitchesHit () >= 2)
+			//{
+			//	rcSwitchPlatform.DestroyPlatform ();
+			//}
+		});
+	GetCollisionManager ().AddCollisionHandler ([this](GCSwitch& rcSwitch, CGCObjPlayer& rc_player, const b2Contact& rcContact) -> void
+		{
+			if (rcContact.GetFixtureA()->IsSensor() ==false && rcContact.GetFixtureB ()->IsSensor () == false)
+			{
+				if (rcSwitch.getSwitchHit() == false)
+				{
+					rcSwitch.setSwitchHit (true);
+					m_pcGCOPlayer->setSwitchesHit (m_pcGCOPlayer->getSwitchesHit () + 1);
+					CCLOG ("AAAA12");
+				}
+				
+			}
+			
+			
 		});
 
 
@@ -904,6 +925,8 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 	{
 		return;
 	}
+
+	
 
 	//// ignore contact between player projectile and item for collision resolution purposes
 	//if(	pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() )

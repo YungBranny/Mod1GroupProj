@@ -21,12 +21,20 @@ CGCObjSwitchPlatform1::CGCObjSwitchPlatform1 ()
 
 }
 
+void CGCObjSwitchPlatform1::VOnResurrected ()
+{
+	CGCObjSpritePhysics::VOnResurrected ();
+	GetPhysicsBody ()->SetGravityScale (0);
+}
+
+
 
 void CGCObjSwitchPlatform1::DestroyPlatform()
 {
 	
 		 SetResetPosition (cocos2d::Vec2 (-1000, -1000));
-
+		 GetPhysicsBody ()->SetTransform (b2Vec2 (-1000, 1000), 0.0f);
+		 //SetScale (0, 0);
 }
 
 

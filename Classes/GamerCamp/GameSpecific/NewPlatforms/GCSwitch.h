@@ -19,6 +19,7 @@ class GCSwitch
 private:
 	//CocosDenshion::SimpleAudioEngine* m_audio;
 	//cocos2d::experimental::AudioEngine* m_audio1;
+	bool m_bSwitchHit;
 public:
 
 	GCFACTORY_DECLARE_CREATABLECLASS (GCSwitch);
@@ -26,6 +27,11 @@ public:
 	GCSwitch ();				//constructor
 	virtual ~GCSwitch () {};	//deconstuctor
 
+	bool getSwitchHit ()const { return m_bSwitchHit; }
+	void setSwitchHit (bool i) { m_bSwitchHit = i; }
+	
+	virtual void VOnResurrected ();
+	virtual void VOnReset ();
 
 
 
