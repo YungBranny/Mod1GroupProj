@@ -312,6 +312,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCSwitch.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCOFallingPlane.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -553,6 +556,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCSwitch.h">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCOFallingPlane.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
