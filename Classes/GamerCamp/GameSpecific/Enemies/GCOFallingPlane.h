@@ -24,7 +24,7 @@ private:
 
 	float					m_fGravity;
 
-	cocos2d::Vec2			m_v2StartPosition;
+	b2Vec2			m_v2StartPosition;
 	cocos2d::Vec2			m_v2EndPosition;
 	cocos2d::Vec2			m_v2MoveRightVelocity;
 	cocos2d::Vec2			m_v2MoveLeftVelocity;
@@ -55,7 +55,7 @@ public:
 	void  setJustCollided(bool i) { m_bJustCollided = i; }
 
 	// Setting up Getters
-	cocos2d::Vec2	getStartPosition()					const { return m_v2StartPosition; }
+	b2Vec2	getStartPosition()					const { return m_v2StartPosition; }
 	cocos2d::Vec2	getEndPosition()					const { return m_v2EndPosition; }
 	cocos2d::Vec2	getMovingRightVelocity()			const { return m_v2MoveRightVelocity; }
 	cocos2d::Vec2	getMovingLeftVelocity()				const { return m_v2MoveRightVelocity; }
@@ -63,7 +63,7 @@ public:
 	cocos2d::Vec2	getMovingDownVelocity()				const { return m_v2MoveDownVelocity; }
 
 	// Setting up Setters
-	void setStartPosition(cocos2d::Vec2 i) { m_v2StartPosition = i; }
+	void setStartPosition(b2Vec2 i) { m_v2StartPosition = i; }
 	void setEndPosition(cocos2d::Vec2 i) { m_v2EndPosition = i; }
 	void setMovingRightVelocity(cocos2d::Vec2 i) { m_v2MoveRightVelocity = i; }
 	void setMovingLeftVelocity(cocos2d::Vec2 i) { m_v2MoveLeftVelocity = i; }
@@ -72,8 +72,10 @@ public:
 
 	//void OppositeDirection();
 	void SettingVelocity();
+	void ResetPosition();
 
 	virtual void VOnResourceAcquire(void);
+	virtual void VOnResurrected(void);
 	virtual void VOnUpdate(f32 fTimestep);
 
 	virtual void VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);

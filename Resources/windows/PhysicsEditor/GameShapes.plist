@@ -490,7 +490,7 @@
 			<key>Willy</key>
 			<dict>
 				<key>anchorpoint</key>
-                <string>{ 0.0650,0.0830 }</string>
+                <string>{ 0.0308,0.1069 }</string>
 				<key>fixtures</key>
 				<array>
 
@@ -1509,7 +1509,7 @@
                         <key>filter_categoryBits</key> <integer>1</integer>
                         <key>filter_groupIndex</key> <integer>0</integer>
                         <key>filter_maskBits</key> <integer>65535</integer>
-                        <key>isSensor</key> <false/>
+                        <key>isSensor</key> <true/>
                         <key>id</key> <string></string>
                         <key>fixture_type</key> <string>POLYGON</string>
 
