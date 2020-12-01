@@ -17,7 +17,6 @@ CGCObjFallingPlane::CGCObjFallingPlane()
 	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjFallingPlane))
 	, m_bMoveUpAndDown(false)
 	, m_bJustCollided(false)
-	, m_v2StartPosition(800, 280)
 	, m_v2EndPosition(500, 110)
 	, m_v2MoveUpVelocity(cocos2d::Vec2(0.0f, 3.0f))
 	, m_v2MoveDownVelocity(-m_v2MoveUpVelocity)
@@ -47,10 +46,19 @@ void CGCObjFallingPlane::VOnResourceAcquire()
 
 	CGCObjSpritePhysics::VOnResourceAcquire();
 
+	//m_v2StartPosition = GetPhysicsBody()->GetPosition();
+
 	if( nullptr != m_pCustomCreationParams.get() )
 	{
 		m_pCustomCreationParams.reset(nullptr);
 	}
+}
+
+void CGCObjFallingPlane::VOnResurrected(void)
+{
+	CGCObjSpritePhysics::VOnResurrected();
+	m_v2StartPosition = GetPhysicsBody()->GetPosition();
+	GetPhysicsBody()->SetGravityScale(0.0f);
 }
 
 // If 'm_bMoveUpAndDown' is set to 'True', Platform will move from Right, reach the greater or equal than point that the Start Position has been set at
@@ -136,6 +144,11 @@ void CGCObjFallingPlane::SettingVelocity()
 	}
 	break;
 	}
+}
+
+void CGCObjFallingPlane::ResetPosition()
+{
+	GetPhysicsBody()->SetTransform(getStartPosition(), 0);
 }
 
 void CGCObjFallingPlane::CollisionChecker()

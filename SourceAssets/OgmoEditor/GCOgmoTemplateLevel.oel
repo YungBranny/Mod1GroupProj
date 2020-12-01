@@ -1,13 +1,10 @@
 <level width="1920" height="1080">
+  <LevelBackground />
   <enemies>
     <EnemyMovementCollider id="1" x="1040" y="640" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="2" x="480" y="640" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="3" x="400" y="656" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <FallingPlaneEnemy id="0" x="256" y="80" class="GCOFallingPlane" shape="Airplane" PlistFile="TexturePacker/Sprites/FallingPlane/Airplane.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SwitchPlatform1 id="4" x="1312" y="944" class="CGCObjSwitchPlatform1" shape="Lever" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="False" />
-    <Lever id="5" x="1584" y="944" class="GCSwitch" shape="Lever" PlistFile="TexturePacker/Sprites/Lever/Lever.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SwitchPlatform2 id="6" x="1024" y="176" class="CGCObjSwitchPlatform2" shape="Lever" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
-    <Lever id="7" x="144" y="800" class="GCSwitch" shape="Lever" PlistFile="TexturePacker/Sprites/Lever/Lever.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="8" x="224" y="400" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>

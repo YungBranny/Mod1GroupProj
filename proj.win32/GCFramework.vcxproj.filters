@@ -319,6 +319,9 @@
       <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\CGCObjSwitchPlatform2.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevelBackground.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -568,6 +571,9 @@
       <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\CGCObjSwitchPlatform2.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevelBackground.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">

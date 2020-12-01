@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>life_full.png</key>
+            <key>cc_platform_moving_1200x60.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{170,170}}</string>
+                <string>{{1,1},{1200,46}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{0,7}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{170,170}}</string>
+                <string>{{0,0},{1200,46}}</string>
                 <key>sourceSize</key>
-                <string>{170,170}</string>
+                <string>{1200,60}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>life_full.png</string>
+            <string>cc_platform_moving_1200x60.png</string>
             <key>size</key>
-            <string>{172,172}</string>
+            <string>{1202,48}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:0368386196146da736e1e2111bc1576b:92a8e4e839b52494c06dfad39e6697fe:c8d8f78f416db682e7524aff28d1d1cf$</string>
+            <string>$TexturePacker:SmartUpdate:af5ac9bad6bf5f9734086572c92a2b25:56fc188ae663ff634284e3662b9c63a0:bf9acafbdcb2d9d0df69fb624856cf88$</string>
             <key>textureFileName</key>
-            <string>life_full.png</string>
+            <string>cc_platform_moving_1200x60.png</string>
         </dict>
     </dict>
 </plist>
