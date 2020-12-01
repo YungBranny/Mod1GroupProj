@@ -25,7 +25,7 @@ CGCObjHighScore::CGCObjHighScore(CGCObjScore* m_score)
 	: m_fHighScoreTextStartPositionX(200)
 	, m_fHighScoreTextStartPositionY(1000)
 	, m_fHighScoreTextSize(20.0f)
-	, m_iHighScoreValue(m_score->getScoreAmount())
+	, m_iHighScoreValue(0)
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
@@ -38,7 +38,7 @@ CGCObjHighScore::CGCObjHighScore(CGCObjScore* m_score)
 
 	getHighScoreText()->setPosition(Vec2(m_fHighScoreTextStartPositionX, m_fHighScoreTextStartPositionY));
 
-	HighScoreCheck(m_score);
+	//HighScoreCheck(m_score);
 
 	m_fCurrentScore = m_score->getScoreAmount();
 }
@@ -50,6 +50,38 @@ CGCObjHighScore::~CGCObjHighScore()
 
 void CGCObjHighScore::HighScoreCheck(CGCObjScore* m_score)
 {
+
+	std::ifstream readFile;
+	readFile.open("HighScore.txt");
+
+
+        readFile >> m_iHighScoreValue;
+
+	/*if (readFile.is_open())
+	{*/
+		
+	/*}*/
+
+	readFile.close();
+
+	std::ofstream writeFile("HighScore.txt");
+
+	if (writeFile.is_open())
+	{
+		if (m_fCurrentScore > m_iHighScoreValue)
+		{
+			m_iHighScoreValue = m_fCurrentScore;
+		}
+
+		writeFile << m_iHighScoreValue;
+
+	}
+	writeFile.close();
+
+
+
+
+	
 	/* std::ifstream input("HighScore.plist");
 	if(!input.is_open())
 	{
