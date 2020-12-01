@@ -1,9 +1,9 @@
 <level width="1920" height="1080">
+  <LevelBackground />
   <enemies>
     <EnemyMovementCollider id="1" x="1040" y="640" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="2" x="480" y="640" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="3" x="400" y="656" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <FallingPlaneEnemy id="0" x="224" y="-64" class="CGCObjFallingPlane" shape="Airplane" PlistFile="TexturePacker/Sprites/FallingPlane/Airplane.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="8" x="224" y="400" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </enemies>
   <items />
