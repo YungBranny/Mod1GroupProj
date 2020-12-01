@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>cc_platform_moving_480x60.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{480,46}}</string>
+                <key>offset</key>
+                <string>{0,7}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{480,46}}</string>
+                <key>sourceSize</key>
+                <string>{480,60}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>cc_platform_moving_480x60.png</string>
+            <key>size</key>
+            <string>{482,48}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:0edee20d3d2da7f71830a38ad8fe286b:8a9b46ba6d2af90f55384c48285b337a:62ffc4481faded256b6ea0f250627391$</string>
+            <key>textureFileName</key>
+            <string>cc_platform_moving_480x60.png</string>
+        </dict>
+    </dict>
+</plist>
