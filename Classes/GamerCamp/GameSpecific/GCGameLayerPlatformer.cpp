@@ -307,7 +307,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	
 	m_pcGCOHighScore = new CGCObjHighScore(m_pcGCOScore);
 
-	m_pcGCOHighScore->HighScoreCheck(m_pcGCOScore);
+	m_pcGCOHighScore->HighScoreCheckOpen(m_pcGCOScore);
 	
 	this->addChild(m_pcGCOHighScore->getHighScoreText(), 10);
 
@@ -628,6 +628,8 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
 				playDoorOpeningAudio ();
+
+				m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
 				
 			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
 			//	m_bPlayerKeysGathered = true;
@@ -649,6 +651,8 @@ void CGCGameLayerPlatformer::VOnCreate ()
 				CGCObjectManager::ObjectKill (&rcKeys); // Mia: Destroy the Key Object Sprite
 				keyCollected (); // Mia: Calls Function which adds on one Key to how many Player has obtained
 				playKeyAudio (); // Mia: Then calls Function which plays Key Collected Audio
+				
+				
 			}
 		}
 	);
@@ -687,6 +691,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			{
 				
 				rcMEnemies.setJustCollided (true);
+				m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
 				RequestReset ();
 				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");
@@ -828,7 +833,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	
 	m_pcGCTimer->Update(fTimeStep);
 
-	
+	m_pcGCOHighScore->Update();
 	
 	if( ResetWasRequested() )
 	{
@@ -860,6 +865,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		RequestReset();
 	}
 
+	
 	//HighScore();
 }
 
@@ -1165,6 +1171,7 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 		//CGCObjectManager::ObjectKill (&rcEnemies);
 		//m_pcGCTimer->ResetTimer ();
 		//CGCObjectManager::ObjectKill (&rcEnemies);
+		m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
 		CCLOG("Player Died.");
 		//m_bPlayerHitHostile = true;
 		//PlayerDeathSceneSwap();
