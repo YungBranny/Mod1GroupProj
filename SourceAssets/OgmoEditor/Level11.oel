@@ -1,5 +1,24 @@
 <level width="1920" height="1080">
-  <enemies />
+  <enemies>
+    <UDSMovingEnemyUpDownSlow id="0" x="240" y="512" class="CGCMovingEnemyFast" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <EnemyMovementCollider2 id="1" x="238" y="311" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider2 id="2" x="240" y="1040" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UDNMovingEnemyUpDown id="3" x="848" y="416" class="CGCMovingEnemyUpDown" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <EnemyMovementCollider2 id="4" x="848" y="683" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider2 id="5" x="848" y="160" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider2 id="6" x="928" y="640" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <LRSMovingEnemyLRSlow id="7" x="1088" y="608" class="CGCMovingEnemyLRSlow" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <EnemyMovementCollider2 id="8" x="1280" y="656" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UDSMovingEnemyUpDownSlow id="9" x="1360" y="768" class="CGCMovingEnemyFast" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <EnemyMovementCollider2 id="10" x="1360" y="464" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider2 id="11" x="1360" y="1040" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UDFMovingEnemyUpDownFast id="12" x="1632" y="688" class="CGCMovingEnemyUpDownFast" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <EnemyMovementCollider2 id="13" x="1648" y="1040" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider2 id="14" x="1616" y="160" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <LRNMovingEnemy id="15" x="1136" y="368" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="16" x="992" y="400" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="17" x="1520" y="400" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </enemies>
   <items />
   <platforms>
     <PlatformGround id="0" x="960" y="1050" class="GCObjBasePlatform" shape="cc_platform_ground" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_ground.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
