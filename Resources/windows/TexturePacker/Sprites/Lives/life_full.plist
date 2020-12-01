@@ -7,15 +7,15 @@
             <key>life_full.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{154,154}}</string>
+                <string>{{1,1},{158,158}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{154,154}}</string>
+                <string>{{0,0},{158,158}}</string>
                 <key>sourceSize</key>
-                <string>{154,154}</string>
+                <string>{158,158}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -29,9 +29,9 @@
             <key>realTextureFileName</key>
             <string>life_full.png</string>
             <key>size</key>
-            <string>{156,156}</string>
+            <string>{160,160}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4045b1ced91cf40a7df496e302339b23:75feaee4672a03461e14d3eebb220dcf:c8d8f78f416db682e7524aff28d1d1cf$</string>
+            <string>$TexturePacker:SmartUpdate:2afe872452168567ae3804b929f10c7b:75c78e4ad10d6ade7f8aa0d578557d3d:c8d8f78f416db682e7524aff28d1d1cf$</string>
             <key>textureFileName</key>
             <string>life_full.png</string>
         </dict>

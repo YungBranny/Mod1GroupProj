@@ -4,84 +4,6 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Idle/final-0001.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{787,63},{54,60}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{3,0},{54,60}}</string>
-                <key>sourceSize</key>
-                <string>{60,60}</string>
-            </dict>
-            <key>Idle/final-0002.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{613,63},{56,60}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{2,0},{56,60}}</string>
-                <key>sourceSize</key>
-                <string>{60,60}</string>
-            </dict>
-            <key>Idle/final-0003.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{615,1},{56,60}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{2,0},{56,60}}</string>
-                <key>sourceSize</key>
-                <string>{60,60}</string>
-            </dict>
-            <key>Idle/final-0004.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{671,63},{56,60}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{2,0},{56,60}}</string>
-                <key>sourceSize</key>
-                <string>{60,60}</string>
-            </dict>
-            <key>Idle/final-0005.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{373,63},{58,60}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,0},{58,60}}</string>
-                <key>sourceSize</key>
-                <string>{60,60}</string>
-            </dict>
-            <key>Idle/final-0006.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{433,63},{58,60}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,0},{58,60}}</string>
-                <key>sourceSize</key>
-                <string>{60,60}</string>
-            </dict>
             <key>UrchinIdle/final-0001.png</key>
             <dict>
                 <key>frame</key>
@@ -759,7 +681,7 @@
             <key>size</key>
             <string>{1410,124}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:fff22f76e762fdcec3385d0e5a7fbd04:81c12f738e1aadaef5180c391896f240:634a9e88189044a9f45ab5fefd99f64b$</string>
+            <string>$TexturePacker:SmartUpdate:8ec5096c132450af3048c8f8bc8d21ea:cdf117f13462949f660f033d69505714:634a9e88189044a9f45ab5fefd99f64b$</string>
             <key>textureFileName</key>
             <string>SeaUrchin.png</string>
         </dict>

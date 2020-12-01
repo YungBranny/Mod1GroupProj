@@ -114,7 +114,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 
 	m_iTimerPickedUp = 0; // Mia: Sets Default Timer Pick Up to 0
 	
-	m_iHighScore = 0;
+	
 	
 }
 
@@ -215,6 +215,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	Size visibleSize = Director::getInstance ()->getVisibleSize ();
 	Point origin = Director::getInstance ()->getVisibleOrigin ();
 
+	
 
 	///////////////////////////////////////////////////////////////////////////
 	// default object group
@@ -223,7 +224,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// create the default object group
 	IGCGameLayer::VOnCreate ();
 
-
+	
 	///////////////////////////////////////////////////////////////////////////
 	// custom object groups
 	//
@@ -302,9 +303,17 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
+	
+	
 	m_pcGCOHighScore = new CGCObjHighScore(m_pcGCOScore);
 
+	m_pcGCOHighScore->HighScoreCheck(m_pcGCOScore);
+	
 	this->addChild(m_pcGCOHighScore->getHighScoreText(), 10);
+
+
+	
+	//HighScore();
 	//Mia: Added Background
 	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
 	{
@@ -786,33 +795,7 @@ void CGCGameLayerPlatformer::PlayerDeathSceneSwap()
 
 void CGCGameLayerPlatformer::HighScore()
 {
-	std::fstream readFile;
-	readFile.open("HighScore.txt");
-
-	if (readFile.is_open())
-	{
-
-		while (!readFile.eof())
-		{
-			readFile >> m_iHighScore;
-		}
-	}
-
-	readFile.close();
-
-	std::ofstream writeFile("HighScore.txt");
-
-	if (writeFile.is_open())
-	{
-		if (m_pcGCOScore->getScoreAmount() > m_iHighScore)
-		{
-			m_iHighScore = m_pcGCOScore->getScoreAmount();
-		}
-
-		writeFile << m_iHighScore;
-
-	}
-	writeFile.close();
+	
 
 }
 
@@ -875,6 +858,8 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 		RequestReset();
 	}
+
+	//HighScore();
 }
 
 

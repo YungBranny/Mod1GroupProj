@@ -13,7 +13,7 @@ using namespace cocos2d;
 
 CGCObjScore::CGCObjScore()
 	: m_fScoreTextStartPositionX(200)
-	, m_fScoreTextStartPositionY(1020)
+	, m_fScoreTextStartPositionY(1040)
 	, m_fScoreTextSize ( 20.0f)
 	, m_iScoreAmount ( 0 )
 {
