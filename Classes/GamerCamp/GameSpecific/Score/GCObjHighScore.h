@@ -27,7 +27,9 @@ public:
 
 	~CGCObjHighScore();
 	
-	void HighScoreCheck(CGCObjScore* m_score);
+	void HighScoreCheckOpen(CGCObjScore* m_score);
+
+	void HighScoreCheckClose(CGCObjScore* m_score);
 	
 	cocos2d::Label* getHighScoreText() const { return m_pHighScoreText; }
 	void setHighScoreText(cocos2d::Label* i) { m_pHighScoreText = i; }
