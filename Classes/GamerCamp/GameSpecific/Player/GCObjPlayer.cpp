@@ -120,6 +120,8 @@ CGCObjPlayer::CGCObjPlayer ()
 	getPlayerLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 50, m_fLivesStartPositionY));
 	getPlayerLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 100, m_fLivesStartPositionY));
 
+
+	m_eChangeAnimation = EChangeAnimation::Idle;
 }
 
 
@@ -176,6 +178,7 @@ void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 	{
 		setPlayerCheckLives(true);
 	}
+
 }
 
 
@@ -293,7 +296,8 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 
 				SetVelocity(cocos2d::Vec2(m_v2MovingLeftVelocity.x, GetVelocity().y));
 				SetFlippedX(false);
-
+				m_eChangeAnimation = EChangeAnimation::Run;
+				ChangeAnimation ();
 			}
 
 		}
@@ -306,6 +310,8 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 
 				SetVelocity(cocos2d::Vec2(m_v2MovingRightVelocity.x, GetVelocity().y));
 				SetFlippedX(true);
+				m_eChangeAnimation = EChangeAnimation::Run;
+				ChangeAnimation ();
 			}
 		}
 
@@ -314,6 +320,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			if( m_bOnLadder == true ) // Mia: If Player is on Ladder
 			{
 				SetVelocity(cocos2d::Vec2(GetVelocity().x, m_v2MovingUpVelocity.x)); // Mia: The Player is able to move upwards
+
 			}
 		}
 
@@ -332,7 +339,8 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			{
 				//GetPhysicsBody ()->ApplyForce (b2Vec2 (0, 500), GetPhysicsBody ()->GetWorldCenter (), true);
 				SetVelocity(cocos2d::Vec2(0, GetVelocity().y));
-
+				m_eChangeAnimation = EChangeAnimation::Idle;
+				ChangeAnimation ();
 			}
 			
 		}
@@ -391,24 +399,79 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		// * set sprite flip based on velocity
 		// N.B. the else-if looks redundant, but we want the sprite's flip 
 		// state to stay the same if its velocity is set to (0.0f, 0.0f)
-	if (GetVelocity().x > 0.0f || GetVelocity ().x < 0.0f)
-	{
-		if (m_bChangeAnimation == false)
-		{
-			SetFlippedY (false);
-			ChangeAnimation ();
-			m_bChangeAnimation = true;
-		}
-	}
-	else if (GetVelocity().x == 0.0f)
-	{
-		if (m_bChangeAnimation == true)
-		{
-			SetFlippedY (false);
-			ChangeAnimation ();
-			m_bChangeAnimation = false;
-		}
-	}
+		//
+	//	//
+	//switch (m_eChangeAnimation)
+	//{
+	//case EChangeAnimation::Run:
+
+	//	if (GetCanJump () == false)
+	//	{
+	//		SetFlippedY (false);
+	//		ChangeAnimation ();
+	//		m_eChangeAnimation = EChangeAnimation::Jump;
+
+	//	}
+
+	//	if (GetCanJump () == true)
+	//	{
+	//		if (GetVelocity ().x == 0.0f)
+	//		{
+	//			SetFlippedY (false);
+	//			ChangeAnimation ();
+	//			m_eChangeAnimation = EChangeAnimation::Idle;
+	//		}
+	//	}
+	//	break;
+	//	
+	//case EChangeAnimation::Idle:
+	//	if (GetCanJump () == false)
+	//	{
+	//		SetFlippedY (false);
+
+
+	//	}
+
+	//	if (GetCanJump () == true)
+	//	{
+	//		if (GetVelocity ().x > 0.0f || GetVelocity ().x < 0.0f)
+	//		{
+	//			SetFlippedY (false);
+	//			ChangeAnimation ();
+	//			m_eChangeAnimation = EChangeAnimation::Run;
+
+	//		}
+	//	}
+
+	//	 break;
+	//	
+	//case EChangeAnimation::Jump:
+
+
+	//	if (GetCanJump () == true)
+	//	{
+	//		if (GetVelocity ().x > 0.0f || GetVelocity ().x < 0.0f)
+	//		{
+	//			SetFlippedY (false);
+	//			ChangeAnimation ();
+	//			m_eChangeAnimation = EChangeAnimation::Run;
+	//			
+	//		}
+	//	}
+	//	
+
+	//	if (GetCanJump () == true)
+	//	{
+	//		if (GetVelocity ().x == 0.0f)
+	//		{
+	//			SetFlippedY (false);
+	//			ChangeAnimation ();
+	//			m_eChangeAnimation = EChangeAnimation::Idle;
+	//		}
+	//	}
+	//	break;
+	//}
+
 
 	//if( GetVelocity().x > 0.0f || GetVelocity().x < 0.0f)
 	//{
@@ -445,6 +508,9 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 	{
 		//GetPhysicsBody()->ApplyForce(m_bv2jumpVel, GetPhysicsBody()->GetWorldCenter(), true);
 		m_bCanJump = false;
+
+		m_eChangeAnimation = EChangeAnimation::Jump;
+		ChangeAnimation ();
 		if (GetVelocity ().x > 0)
 		{
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
@@ -462,6 +528,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			float impulse = GetPhysicsBody ()->GetMass () * 41.5;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse), GetPhysicsBody ()->GetWorldCenter (), true);
 		};
+
 	
 		
 		
@@ -536,25 +603,49 @@ void CGCObjPlayer::ChangeAnimation()
 	const char* pszPlist_Willy = "TexturePacker/Sprites/Willy/Willy.plist";
 	const char* pszAnim_WillyRun = "Run";
 	const char* pszAnim_WillyIdle = "Idle";
+	const char* pszAnim_WillyJump = "Jump";
+	static int stop = 0;
 
 	// animate!
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
-	
 
-	if( m_bChangeAnimation == true )
+	switch (m_eChangeAnimation)
 	{
-		StopAction ();
-		RunAction(GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation(dicPList, pszAnim_WillyIdle)));
-		
-	}
 
-	else if( m_bChangeAnimation == false )
+	case EChangeAnimation::Run:
 	{
-		StopAction ();
-		RunAction(GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation(dicPList, pszAnim_WillyRun)));
-		
+		if (stop != 1)
+		{
+			stop = 1;
+			StopAction ();
+			RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_WillyRun)));
+		}
 	}
+	break;
+	case EChangeAnimation::Idle:
 
+	{
+		if (stop != 2)
+		{
+			stop = 2;
+			StopAction ();
+			RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_WillyIdle)));
+		}
+	}
+	break;
+
+	case EChangeAnimation::Jump:
+
+	{
+		if (stop != 3)
+		{
+			stop = 3;
+			StopAction ();
+			RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_WillyJump)));
+		}
+	}
+	break;
+	}
 	// because we're just storing a vanilla pointer we must call delete on it in VOnResourceRelease or leak memory 
 	// 
 	// n.b. m_pcControllerActionToKeyMap is a "perfect use case" for std::unique_ptr...

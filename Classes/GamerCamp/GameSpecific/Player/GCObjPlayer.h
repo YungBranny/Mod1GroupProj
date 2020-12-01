@@ -113,6 +113,17 @@ private:
 public:
 	CGCObjPlayer();
 
+
+	enum class EChangeAnimation
+	{
+		Idle,
+		Run,
+		Jump
+		
+	};
+
+	EChangeAnimation m_eChangeAnimation;
+
 	bool getOnTravelator() const { return m_bOnTravelator; }
 	void setOnTravelator(bool b) { m_bOnTravelator = b; }
 
