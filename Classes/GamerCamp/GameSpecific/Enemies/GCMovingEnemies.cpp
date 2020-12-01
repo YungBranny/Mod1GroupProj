@@ -43,6 +43,12 @@ CGCMovingEnemies::CGCMovingEnemies ()
 	InitialiseMovementDirection (); //calls the function when this class is initalised
 	
 }
+void CGCMovingEnemies::VOnResurrected (void)
+{
+	CGCObjSpritePhysics::VOnResurrected ();
+	GetPhysicsBody ()->SetGravityScale (0.0f);
+}
+
 
 //this function checks if the bool"m_bMovingLeftAndRight  is true it 
 //sets the starting direction to right, if not it is set to up

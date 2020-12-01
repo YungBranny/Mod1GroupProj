@@ -107,7 +107,7 @@ public:
 	virtual void VOnResourceRelease (void);		  //Default functions for spritephysics
 	//virtual void VOnReset (void);				  //Default functions for spritephysics
 	virtual void VOnUpdate (f32 fTimestep);		  //Default functions for spritephysics
-
+	virtual void VOnResurrected (void);
 	virtual void VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
 
 

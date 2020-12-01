@@ -58,6 +58,7 @@ public:
 
 	
 	CGCMovingEnemies ();
+	virtual void VOnResurrected (void);
 	virtual ~CGCMovingEnemies () {};
 
 	GCFACTORY_DECLARE_CREATABLECLASS (CGCMovingEnemies);

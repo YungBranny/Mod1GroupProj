@@ -48,7 +48,11 @@ void CGCMovingEnemy2::InitialiseMovementDirection ()
 		m_eMoveDirection = EMoveDirection::Up;
 	};
 }
-
+void CGCMovingEnemy2::VOnResurrected (void)
+{
+	CGCObjSpritePhysics::VOnResurrected ();
+	GetPhysicsBody ()->SetGravityScale (0.0f);
+}
 //Sets the sprite
 //IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist", "Enemy", b2_dynamicBody, true);
 //void CGCMovingEnemies::VOnResourceAcquire ()
@@ -73,12 +77,6 @@ void CGCMovingEnemy2::InitialiseMovementDirection ()
 //	CGCObjSpritePhysics::VOnResourceRelease ();
 //}
 
-void CGCMovingEnemy2::VOnResurrected ()
-{
-	CGCObjSpritePhysics::VOnResurrected ();
-	//GetPhysicsBody ()->SetGravityScale (getGravity ());
-	GetPhysicsBody ()->SetGravityScale (0.0f);
-}
 
 //changes the direction if the current position has reached the end desitination 
 void CGCMovingEnemy2::ChangeDirection ()

@@ -44,6 +44,12 @@ CGCMovingEnemyLRSlow::CGCMovingEnemyLRSlow ()
 
 }
 
+void CGCMovingEnemyLRSlow::VOnResurrected (void)
+{
+	CGCObjSpritePhysics::VOnResurrected ();
+	GetPhysicsBody ()->SetGravityScale (0.0f);
+}
+
 //this function checks if the bool"m_bMovingLeftAndRight  is true it 
 //sets the starting direction to right, if not it is set to up
 //If the default starting direction is right then 
