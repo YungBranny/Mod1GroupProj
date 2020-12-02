@@ -5,17 +5,14 @@
 #ifndef _GCLEVEL2_H_
 #define _GCLEVEL2_H_
 
-#include "Classes/GamerCamp/GCCocosInterface/IGCGameLayer.h"
 
-#ifndef _GCLEVELLOADER_OGMO_H_
-#include "Classes/GamerCamp/GCCocosInterface/LevelLoader/GCLevelLoader_Ogmo.h"
-#endif
 
 #include "SimpleAudioEngine.h"
+#include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
+#include "GamerCamp/GCCocosInterface/LevelLoader/GCLevelLoader_Ogmo.h"
 
 //////////////////////////////////////////////////////////////////////////
 // fwd decl
-//class CGCGameLayerPlatformer;
 class CGCObjSprite;
 class CGCObjPlayer;
 class CGCObjPlatform;
@@ -52,8 +49,11 @@ class GCObjEnemyMovementCollider;
 class GCObjEnemyMovementCollider2;
 class CGCObjLives;
 class CGCObjScore;
-class CGCGameLayerPlatformer;
-class GCLevel3;
+class CGCObjHighScore;
+class GCSwitch;
+class CHCOnjSwitchPlatform1;
+class CHCOnjSwitchPlatform2;
+class CGCObjFallingPlane;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer
@@ -63,6 +63,8 @@ class GCLevel2
 	, public b2ContactListener
 {
 private:
+
+
 	// object groups
 	CGCObjGroupPlatform* m_pcGCGroupPlatform;
 	CGCObjGroupItem* m_pcGCGroupItem;
@@ -75,9 +77,10 @@ private:
 
 	//UI
 	CGCObjTimer* m_pcGCTimer;
-
-	//score
+	CGCObjLives* m_pcGCOLives;
 	CGCObjScore* m_pcGCOScore;
+	CGCObjHighScore* m_pcGCOHighScore;
+
 
 	// backgrounds
 	CGCObjSprite* m_pcGCSprBackGround;
@@ -89,6 +92,7 @@ private:
 	// level loader
 	CGCLevelLoader_Ogmo		m_cLevelLoader;
 
+
 	bool					m_bCheckIfPlayerIsAbovePlatform;
 
 	int						m_iKeysCollected;
@@ -97,7 +101,9 @@ private:
 
 	int						m_iTimerPickedUp;
 
-	CocosDenshion::SimpleAudioEngine* m_pcGCBackgroundAudio;
+	int			m_iHighScore;
+
+	//CocosDenshion::SimpleAudioEngine* m_pcGCBackgroundAudio;
 	CocosDenshion::SimpleAudioEngine* m_pcGCSoundEffectsAudio;
 
 public:
@@ -120,8 +126,9 @@ public:
 	//////////////////////////////////////////////////////////////////////////
 	// 'selector' callbacks for menu buttons
 	void Callback_OnQuitButton (Ref* pSender);
-	void Callback_OnResetButton (Ref* pSender);
 	void Callback_OnSkipButton (Ref* pSender);
+	void Callback_OnResetButton (Ref* pSender);
+
 	// called from VOnUpdate
 	void HandleCollisions (void);
 
@@ -129,7 +136,7 @@ public:
 
 	void addOnTime ();
 
-	void playBackgroundMusic ();
+	//void playBackgroundMusic();
 
 	void playKeyAudio ();
 
@@ -137,6 +144,9 @@ public:
 
 	void playDoorOpeningAudio ();
 
+	void PlayerDeathSceneSwap ();
+
+	void HighScore ();
 
 	//////////////////////////////////////////////////////////////////////////
 	// CCNode interface...
@@ -190,20 +200,6 @@ private:
 		return m_bResetWasRequested;
 	}
 
-	void RequestQuit ()
-	{
-		m_bQuitWasRequested = true;
-	}
-
-	void QuitRequestWasHandled ()
-	{
-		m_bQuitWasRequested = false;
-	}
-
-	bool QuitWasRequested ()
-	{
-		return m_bQuitWasRequested;
-	}
 	void RequestSkip ()
 	{
 		m_bSkipWasRequested = true;
@@ -218,6 +214,22 @@ private:
 	{
 		return m_bSkipWasRequested;
 	}
+
+	void RequestQuit ()
+	{
+		m_bQuitWasRequested = true;
+	}
+
+	void QuitRequestWasHandled ()
+	{
+		m_bQuitWasRequested = false;
+	}
+
+	bool QuitWasRequested ()
+	{
+		return m_bQuitWasRequested;
+	}
 };
 //
-#endif // __CGCGameLayerPlatformer_SCENE_H__
+#endif
+

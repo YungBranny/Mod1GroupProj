@@ -6,11 +6,10 @@
 #include "GCLevel2.h"
 #include <algorithm>
 #include <stdlib.h> 
-
+#include <fstream>
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 
 #include "MenuScene.h"
-#include "GamerCamp/GameSpecific/Levels/GCLevel3.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 #include "GamerCamp/GameSpecific/Player/GCObjPlayer.h"
@@ -22,7 +21,7 @@
 #include "GamerCamp/GameSpecific/Invaders/GCObjGroupInvader.h"
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 #include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
-
+#include "GamerCamp/GameSpecific/Levels/GCLevel3.h"
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
 #include "GamerCamp/GameSpecific/Collectables/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
@@ -57,28 +56,20 @@
 #include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider2.h"
-//#include "GamerCamp/GameSpecific/Lives/GCObjLives.h"
 #include "GamerCamp/GameSpecific/Score/GCObjScore.h"
+#include "GamerCamp/GameSpecific/Score/GCObjHighScore.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCSwitch.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjSwitchPlatform1.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/CGCObjSwitchPlatform2.h"
+#include "GamerCamp/GameSpecific/Enemies/GCOFallingPlane.h"
+
 
 #include "AppDelegate.h"
+#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
 
 USING_NS_CC;
 
-
-///////////////////////////////////////////////////////////////////////////
-// this just demos how simple it is to turn on/off logging on a define....
-//#define ENABLE_COLLISION_TEST_LOGGING
-//
-//#if defined (ENABLE_COLLISION_TEST_LOGGING)
-//
-//#define COLLISIONTESTLOG( str )		CCLOG( str )
-//
-//#else
-//
-//#define COLLISIONTESTLOG( str )		/*nothing*/
-//
-//#endif
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -100,6 +91,7 @@ GCLevel2::GCLevel2 ()
 	, m_pcGCOKeys2 (nullptr)
 	, m_bCheckIfPlayerIsAbovePlatform (false)
 	, m_pcGCOScore (nullptr)
+	, m_pcGCOHighScore (nullptr)
 
 {
 	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
@@ -107,6 +99,9 @@ GCLevel2::GCLevel2 ()
 	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
 
 	m_iTimerPickedUp = 0; // Mia: Sets Default Timer Pick Up to 0
+
+
+
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -132,11 +127,11 @@ void GCLevel2::addOnTime ()
 
 }
 
-void GCLevel2::playBackgroundMusic () // Mia: Function that is called when we want the Background Music to play
-{
-	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance ();
-	m_pcGCBackgroundAudio->playBackgroundMusic ("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
-}
+//void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
+//{
+//	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+//	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
+//}
 
 void GCLevel2::playKeyAudio () // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
@@ -186,7 +181,6 @@ void GCLevel2::onEnter ()
 }
 
 //////////////////////////////////////////////////////////////////////////
-
 //////////////////////////////////////////////////////////////////////////
 // on create
 //////////////////////////////////////////////////////////////////////////
@@ -201,6 +195,7 @@ void GCLevel2::VOnCreate ()
 	// cache some useful values 
 	Size visibleSize = Director::getInstance ()->getVisibleSize ();
 	Point origin = Director::getInstance ()->getVisibleOrigin ();
+
 
 
 	///////////////////////////////////////////////////////////////////////////
@@ -289,26 +284,27 @@ void GCLevel2::VOnCreate ()
 
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
-	//Mia: Added Background
-	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
-	{
-		m_pcGCSprBackGround = new CGCObjSprite ();
-		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
-		m_pcGCSprBackGround->SetScale (1, 1);
-		m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
-		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
-		playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
-	}
 
-	const char* pszPlist_background1 = "TexturePacker/Sprites/BackgroundLevel2/tcr_background_1.plist";
-	{
-		m_pcGCSprBackGround = new CGCObjSprite();
-		m_pcGCSprBackGround->CreateSprite(pszPlist_background1);
-		//m_pcGCSprBackGround->SetScale(1, 1);
-		m_pcGCSprBackGround->SetResetPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-		m_pcGCSprBackGround->SetParent(IGCGameLayer::ActiveInstance());
-		playBackgroundMusic(); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
-	}
+
+	m_pcGCOHighScore = new CGCObjHighScore (m_pcGCOScore);
+
+	m_pcGCOHighScore->HighScoreCheckOpen (m_pcGCOScore);
+
+	this->addChild (m_pcGCOHighScore->getHighScoreText (), 10);
+
+
+
+	//HighScore();
+	//Mia: Added Background
+	//const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
+	//{
+	//	m_pcGCSprBackGround = new CGCObjSprite ();
+	//	m_pcGCSprBackGround->CreateSprite (pszPlist_background);
+	//	m_pcGCSprBackGround->SetScale (1, 1);
+	//	m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
+	//	m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
+	//	playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
+	//}
 
 	m_pcGCTimer = new CGCObjTimer ();
 
@@ -459,19 +455,43 @@ void GCLevel2::VOnCreate ()
 	// 
 
 
-	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjScalingFallingPlatform& rcItem, const b2Contact& rcContact) -> void
-		{
-			//	const b2Fixture* pFixtureA = CGCObjSpritePhysics::FromB2DContactGetFixture_A (pB2Contact);
-			//	const b2Fixture* pFixtureB = CGCObjSpritePhysics::FromB2DContactGetFixture_B (pB2Contact);
 
-				//const std::string* PlayerSesnor = cocos2d::GB2ShapeCache::getFixtureIdText (pFixtureA);
-			//rcPlayer.FromB2DContactGetFixture_A(CGCObjPlayer)->IsSensor()
-			//	
+
+	GetCollisionManager ().AddCollisionHandler ([this](GCSwitch& rcSwitch, CGCObjSwitchPlatform1& rcSwitchPlatform, const b2Contact& rcContact) -> void
+		{
+			if (m_pcGCOPlayer->getSwitchesHit () >= 1)
+			{
+				rcSwitchPlatform.DestroyPlatform ();
+			}
 		});
+
+	GetCollisionManager ().AddCollisionHandler ([this](GCSwitch& rcSwitch, CGCObjSwitchPlatform2& rcSwitchPlatform, const b2Contact& rcContact) -> void
+		{
+			if (m_pcGCOPlayer->getSwitchesHit () >= 2)
+			{
+				rcSwitchPlatform.DestroyPlatform ();
+			}
+		});
+	GetCollisionManager ().AddCollisionHandler ([this](GCSwitch& rcSwitch, CGCObjPlayer& rc_player, const b2Contact& rcContact) -> void
+		{
+			if (rcContact.GetFixtureA ()->IsSensor () == false && rcContact.GetFixtureB ()->IsSensor () == false)
+			{
+				if (rcSwitch.getSwitchHit () == false)
+				{
+					rcSwitch.setSwitchHit (true);
+					m_pcGCOPlayer->setSwitchesHit (m_pcGCOPlayer->getSwitchesHit () + 1);
+					CCLOG ("AAAA12");
+				}
+
+			}
+
+
+		});
+
+
 
 	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcLadder, const b2Contact& rcContact) -> void
 		{
-			
 
 			if (rcContact.IsTouching ())
 			{
@@ -484,7 +504,28 @@ void GCLevel2::VOnCreate ()
 			}
 		});
 
+	GetCollisionManager ().AddCollisionHandler ([](CGCObjFallingPlane& rcPlane, CGCObjScalingBasicPlatform& rcPlatform, const b2Contact& rcContact) -> void
+		{
 
+			//CGCObjectManager::ObjectKill (&rcPlane);
+			rcPlane.ResetPosition ();
+		});
+
+	GetCollisionManager ().AddCollisionHandler
+	(
+		[this]
+	(CGCObjFallingPlane& rcPlane, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+		{
+			//CGCObjectManager::ObjectKill(&rcPlane);
+			if (rcPlane.getJustCollided () == false)
+			{
+				rcPlane.setJustCollided (true);
+				rcPlane.ResetPosition ();
+				CCLOG ("Player hit by Plane.");
+				rcPlayer.DecrementLives ();
+			}
+		}
+	);
 
 	//GetCollisionManager ().AddCollisionHandler
 	//(
@@ -562,10 +603,14 @@ void GCLevel2::VOnCreate ()
 		{
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
+				playDoorOpeningAudio ();
+
+				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+
 				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel3 >::CreateScene ()));
 				//	m_bPlayerKeysGathered = true;
 
-				playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
+					 // Mia: Calls the Function which plays the Door Opening Audio
 			}
 		}
 	);
@@ -582,6 +627,8 @@ void GCLevel2::VOnCreate ()
 				CGCObjectManager::ObjectKill (&rcKeys); // Mia: Destroy the Key Object Sprite
 				keyCollected (); // Mia: Calls Function which adds on one Key to how many Player has obtained
 				playKeyAudio (); // Mia: Then calls Function which plays Key Collected Audio
+
+
 			}
 		}
 	);
@@ -605,25 +652,6 @@ void GCLevel2::VOnCreate ()
 		}
 	);
 
-	GetCollisionManager ().AddCollisionHandler
-	(
-		//Brandon Middleton
-		//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
-		//it will reset the level from the start
-		[this]
-	(CGCBasicEnemies& rcEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
-		{
-			//CGCObjectManager::ObjectKill (&rcEnemies);
-			//m_pcGCTimer->ResetTimer ();
-			//CGCObjectManager::ObjectKill (&rcEnemies);
-			CCLOG ("Player Died.");
-			//m_bPlayerHitHostile = true;
-			RequestReset ();
-			rcPlayer.DecrementLives (); //Puia Lose a life when colliding
-		}
-	);
-
-
 
 	GetCollisionManager ().AddCollisionHandler
 	(
@@ -637,13 +665,16 @@ void GCLevel2::VOnCreate ()
 			CCLOG ("HEUFH");
 			if (rcMEnemies.getJustCollided () == false)
 			{
+
 				rcMEnemies.setJustCollided (true);
+				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
 				RequestReset ();
 				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");
 				//CGCObjectManager::ObjectKill (&rcPlayer);
 				//m_bPlayerHitHostile = true;
-				rcPlayer.DecrementLives (); //Puia Lose a life when colliding
+				rcPlayer.DecrementLives ();
+				//PlayerDeathSceneSwap(); //Puia Lose a life when colliding
 			}
 		}
 	);
@@ -738,6 +769,17 @@ void GCLevel2::VOnCreate ()
 		});
 }
 
+void GCLevel2::PlayerDeathSceneSwap ()
+{
+
+	Director::getInstance ()->replaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+}
+
+void GCLevel2::HighScore ()
+{
+
+
+}
 
 //////////////////////////////////////////////////////////////////////////
 // on update
@@ -750,22 +792,39 @@ void GCLevel2::VOnUpdate (f32 fTimeStep)
 	// this shows how to iterate and respond to the box2d collision info
 	HandleCollisions ();
 
+	if (m_pcGCOPlayer->getPlayerCheckLives () == true)
+	{
+		PlayerDeathSceneSwap ();
+	}
+
+	//std::ifstream inFile;
+	//inFile.open("HighScore.txt");
+
+	//if(inFile.fail())
+	//{
+	//	CCLOG("bruh");
+	//	return;
+	//}
+
 
 	m_pcGCTimer->Update (fTimeStep);
+
+	m_pcGCOHighScore->Update ();
 
 	if (ResetWasRequested ())
 	{
 		VOnReset ();
 		m_iKeysCollected = 0; // Mia: Resets Keys Collected
 		ResetRequestWasHandled ();
-		m_pcGCBackgroundAudio->stopBackgroundMusic (); // Mia: Stops all Background Audio on Reset
-		playBackgroundMusic (); // Mia: Calls this Function, so it doesn't overlay
+		//m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Reset
+		//playBackgroundMusic(); // Mia: Calls this Function, so it doesn't overlay
 	}
 
 	if (SkipWasRequested ())
 	{
-		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel3 >::CreateScene ()));
 		SkipRequestWasHandled ();
+		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel3 >::CreateScene ()));
+
 	}
 
 	if (QuitWasRequested ())
@@ -781,6 +840,9 @@ void GCLevel2::VOnUpdate (f32 fTimeStep)
 
 		RequestReset ();
 	}
+
+
+	//HighScore();
 }
 
 
@@ -877,6 +939,8 @@ void GCLevel2::BeginContact (b2Contact* pB2Contact)
 	{
 		return;
 	}
+
+
 
 	//// ignore contact between player projectile and item for collision resolution purposes
 	//if(	pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() )
@@ -1073,6 +1137,28 @@ void GCLevel2::BeginContact (b2Contact* pB2Contact)
 			// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
 		}
 	}
+
+	if (( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCBasicEnemies) )
+		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCBasicEnemies) ) ))
+	{
+
+		//CGCObjectManager::ObjectKill (&rcEnemies);
+		//m_pcGCTimer->ResetTimer ();
+		//CGCObjectManager::ObjectKill (&rcEnemies);
+		m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+		CCLOG ("Player Died.");
+		//m_bPlayerHitHostile = true;
+		//PlayerDeathSceneSwap();
+		RequestReset ();
+		m_pcGCOPlayer->DecrementLives (); //Puia Lose a life when colliding
+
+	}
+
+
+
+
 }
 
 

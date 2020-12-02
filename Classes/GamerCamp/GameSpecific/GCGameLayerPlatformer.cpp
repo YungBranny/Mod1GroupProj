@@ -73,18 +73,18 @@ USING_NS_CC;
 
 ///////////////////////////////////////////////////////////////////////////
 // this just demos how simple it is to turn on/off logging on a define....
-#define ENABLE_COLLISION_TEST_LOGGING
-
-#if defined (ENABLE_COLLISION_TEST_LOGGING)
-
-	#define COLLISIONTESTLOG( str )		CCLOG( str )
-
-#else
-
-	#define COLLISIONTESTLOG( str )		/*nothing*/
-
-#endif
-
+//#define ENABLE_COLLISION_TEST_LOGGING
+//
+//#if defined (ENABLE_COLLISION_TEST_LOGGING)
+//
+//	#define COLLISIONTESTLOG( str )		CCLOG( str )
+//
+//#else
+//
+//	#define COLLISIONTESTLOG( str )		/*nothing*/
+//
+//#endif
+//
 
 ///////////////////////////////////////////////////////////////////////////////
 // Constructor
@@ -197,7 +197,7 @@ void CGCGameLayerPlatformer::onEnter()
 //////////////////////////////////////////////////////////////////////////
 void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact )
 {
-	COLLISIONTESTLOG( "( standard function!) the player hit an item!" );
+	//COLLISIONTESTLOG( "( standard function!) the player hit an item!" );
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -405,7 +405,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// load level data from Ogmo Editor
 
 	// read the oel file for level 0
-	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level2.oel")).c_str ());
+	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/GCOgmoTemplateLevel.oel")).c_str ());
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// note: we have now created all the items, platforms, & invaders specified in the level file
@@ -475,7 +475,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact) -> void
 		{
-			COLLISIONTESTLOG ("(lambda) the player hit an item!");
+			//COLLISIONTESTLOG ("(lambda) the player hit an item!");
 		});
 
 
@@ -515,7 +515,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	GetCollisionManager().AddCollisionHandler([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcLadder, const b2Contact& rcContact) -> void
 	{
-		COLLISIONTESTLOG("Collided with Ladder.");
+		//COLLISIONTESTLOG("Collided with Ladder.");
 
 		if( rcContact.IsTouching() )
 			{
@@ -530,7 +530,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	GetCollisionManager().AddCollisionHandler([](CGCObjFallingPlane& rcPlane, CGCObjScalingBasicPlatform& rcPlatform, const b2Contact& rcContact) -> void
 	{
-		COLLISIONTESTLOG("Plane hit Platform!");
+		//COLLISIONTESTLOG("Plane hit Platform!");
 		//CGCObjectManager::ObjectKill (&rcPlane);
 		rcPlane.ResetPosition();
 	});

@@ -4,16 +4,16 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>auw_background_2.png</key>
+            <key>tm_background_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{1792,676}}</string>
+                <string>{{1,1},{1412,590}}</string>
                 <key>offset</key>
-                <string>{-26,-173}</string>
+                <string>{148,-17}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{38,375},{1792,676}}</string>
+                <string>{{402,262},{1412,590}}</string>
                 <key>sourceSize</key>
                 <string>{1920,1080}</string>
             </dict>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>auw_background_2.png</string>
+            <string>tm_background_2.png</string>
             <key>size</key>
-            <string>{1794,678}</string>
+            <string>{1414,592}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:158b3d93e06da112a3156c2e02a6e5eb:b87e0d02c37095d07a587a7d60b6f046:9534b3efd384f05b114bed6e7406efab$</string>
+            <string>$TexturePacker:SmartUpdate:f5259cc2c8f24033ecab3c51acf938b8:0dc8025efcb329f2dec849cdc747417b:9a593f8250bb0ffead05ee140d3664e8$</string>
             <key>textureFileName</key>
-            <string>auw_background_2.png</string>
+            <string>tm_background_2.png</string>
         </dict>
     </dict>
 </plist>
