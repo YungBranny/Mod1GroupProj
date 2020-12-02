@@ -159,11 +159,13 @@ using namespace cocos2d;
 
 void CGCObjTimer::ClampTimer()
 {
-	if(getCurrentTime()> getMaxTimeBuffer())
+	if(getCurrentTime()> getTotalTimerDuration())
 	{
-		setCurrentTime(getMaxTimeBuffer());
+		setCurrentTime(getTotalTimerDuration());
 		//Timer can't go over 100
 	}
+
+ 
 }
 
 //void CGCObjTimer::VOnResourceAcquire(void)
