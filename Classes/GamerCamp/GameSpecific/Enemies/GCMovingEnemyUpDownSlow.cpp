@@ -182,12 +182,14 @@ void CGCMovingEnemyUpDownSlow::Movement () //changes the velocity depending on t
 	case EMoveDirection::Up:
 	{
 		this->SetVelocity (m_vMovingUpVelocity);
+		SetFlippedX (true);
 	}
 	break;
 
 	case EMoveDirection::Down:
 	{
 		this->SetVelocity (m_vMovingDownVelocity);
+		SetFlippedX (false);
 	}
 	break;
 	}

@@ -169,12 +169,14 @@ void CGCMovingEnemyLRFast::Movement () //changes the velocity depending on the d
 	case EMoveDirection::Right:
 	{
 		this->SetVelocity (m_vMovingRightVelocity);
+		SetFlippedX (true);
 	}
 	break;
 
 	case EMoveDirection::Left:
 	{
 		this->SetVelocity (m_vMovingLeftVelocity);
+		SetFlippedX (false);
 	}
 	break;
 

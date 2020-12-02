@@ -169,24 +169,27 @@ void CGCMovingEnemyUpDown::Movement () //changes the velocity depending on the d
 	case EMoveDirection::Right:
 	{
 		this->SetVelocity (m_vMovingRightVelocity);
+		SetFlippedX (true);
 	}
 	break;
 
 	case EMoveDirection::Left:
 	{
 		this->SetVelocity (m_vMovingLeftVelocity);
+		SetFlippedX (false);
 	}
 	break;
-
 	case EMoveDirection::Up:
 	{
 		this->SetVelocity (m_vMovingUpVelocity);
+		SetFlippedX (true);
 	}
 	break;
 
 	case EMoveDirection::Down:
 	{
 		this->SetVelocity (m_vMovingDownVelocity);
+		SetFlippedX (false);
 	}
 	break;
 	}
