@@ -14,7 +14,7 @@ class GCObjBasePlatform
 	: public CGCObjSpritePhysics
 {
 private:
-
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
 public:
 
 	GCFACTORY_DECLARE_CREATABLECLASS (GCObjBasePlatform);
@@ -22,7 +22,7 @@ public:
 	GCObjBasePlatform ();				//constructor
 	virtual ~GCObjBasePlatform () {};	//deconstuctor
 
-
+	virtual void VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
 
 };
 

@@ -25,7 +25,7 @@ private:
 
 	float m_fCurrentDestroyPlatformTick;		// A float that counts down to 0, once it has reached 0 it will set the can delete bool to true
 	float m_fMaxDestroyPlatformTick;
-
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
 
 public:
 
@@ -66,6 +66,7 @@ public:
 	void MoveDownOnContact ();													//Function that moved the platform down on contact, no longer needed but will be refactored
 
 	virtual void VOnUpdate (f32 fTimestep);										//Update
+	virtual void VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
 }; 
 
 #endif

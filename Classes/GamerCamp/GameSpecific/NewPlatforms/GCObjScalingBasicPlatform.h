@@ -19,6 +19,7 @@ class CGCObjScalingBasicPlatform
 private:
 	//CocosDenshion::SimpleAudioEngine* m_audio;
 	//cocos2d::experimental::AudioEngine* m_audio1;
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
 public:
 
 	GCFACTORY_DECLARE_CREATABLECLASS(CGCObjScalingBasicPlatform);
@@ -29,7 +30,7 @@ public:
 
 	virtual void VOnResourceAcquire (void);
 
-
+	virtual void VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
 	//virtual void VOnUpdate (f32 fTimestep);
 
 	// this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
