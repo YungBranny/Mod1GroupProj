@@ -178,6 +178,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjGroupItem.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjItem.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel10.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel11.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel12.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel13.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel14.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel15.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevelBackground.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel3.cpp" />
@@ -262,6 +268,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjGroupItem.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjItem.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel10.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel11.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel12.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel13.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel14.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel15.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevelBackground.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel3.h" />
