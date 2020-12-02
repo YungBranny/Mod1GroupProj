@@ -181,27 +181,27 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">Frames/EnemyIdle/final-0001.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0002.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0003.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0004.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0005.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0006.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0007.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0008.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0009.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0010.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0011.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0012.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0013.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0014.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0015.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0016.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0017.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0018.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0019.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0020.png</key>
-            <key type="filename">Frames/EnemyIdle/final-0021.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0001.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0002.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0003.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0004.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0005.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0006.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0007.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0008.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0009.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0010.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0011.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0012.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0013.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0014.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0015.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0016.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0017.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0018.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0019.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0020.png</key>
+            <key type="filename">Frames/PEnemyIdle/final-0021.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>

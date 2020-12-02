@@ -4,9 +4,8 @@
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
-#include "../../GCCocosInterface/GB2ShapeCache-x.h"
-
-#include "GCMovingEnemies.h"
+#include "GamerCamp/GCCocosInterface/GB2ShapeCache-x.h"
+#include "GCMovingEnemyNPirate.h"
 
 
 #ifndef TINYXML2_INCLUDED
@@ -21,29 +20,29 @@
 
 //using namespace cocos2d;
 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCMovingEnemies);
+GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCMovingEnemyNPirate);
 
-CGCMovingEnemies::CGCMovingEnemies ()
+CGCMovingEnemyNPirate::CGCMovingEnemyNPirate ()
 //not letting me inherit from basic enemies
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCMovingEnemies))
-	, m_bMovingLeftAndRight			(true)							//Default values for the variables
-	, m_vEndDestination1			(600,400)						//Default values for the variables
-	, m_vEndDesitnation2			(450,100)						//Default values for the variables
-	, m_vMovingRightVelocity		(cocos2d::Vec2 (7.0f, 0.0f))	//Default values for the variables
-	, m_vMovingLeftVelocity			(-m_vMovingRightVelocity)		//Default values for the variables
-	, m_vMovingUpVelocity			(cocos2d::Vec2 (0.0f, 3.0f))	//Default values for the variables
-	, m_vMovingDownVelocity			(-m_vMovingUpVelocity)			//Default values for the variables
-	, m_bJustCollided				(false)							//Default values for the variables
-	, m_iCollisionBuffer			(60)							//Default values for the variables
-	, m_iCollisionDirBuffer			(20)
-	, m_bDefaultDirection			(true)
-	, m_bJustChangedDir				(false)
-	, m_pCustomCreationParams		(nullptr)
+	, m_bMovingLeftAndRight (true)							//Default values for the variables
+	, m_vEndDestination1 (600, 400)						//Default values for the variables
+	, m_vEndDesitnation2 (450, 100)						//Default values for the variables
+	, m_vMovingRightVelocity (cocos2d::Vec2 (7.0f, 0.0f))	//Default values for the variables
+	, m_vMovingLeftVelocity (-m_vMovingRightVelocity)		//Default values for the variables
+	, m_vMovingUpVelocity (cocos2d::Vec2 (0.0f, 3.0f))	//Default values for the variables
+	, m_vMovingDownVelocity (-m_vMovingUpVelocity)			//Default values for the variables
+	, m_bJustCollided (false)							//Default values for the variables
+	, m_iCollisionBuffer (60)							//Default values for the variables
+	, m_iCollisionDirBuffer (20)
+	, m_bDefaultDirection (true)
+	, m_bJustChangedDir (false)
+	, m_pCustomCreationParams (nullptr)
 {
 	InitialiseMovementDirection (); //calls the function when this class is initalised
-	
+
 }
-void CGCMovingEnemies::VOnResurrected (void)
+void CGCMovingEnemyNPirate::VOnResurrected (void)
 {
 	CGCObjSpritePhysics::VOnResurrected ();
 	GetPhysicsBody ()->SetGravityScale (0.0f);
@@ -55,7 +54,7 @@ void CGCMovingEnemies::VOnResurrected (void)
 //If the default starting direction is right then 
 //the only other direction it can go is left, if the default position
 //is up then the only other direction it can go is down
-void CGCMovingEnemies::InitialiseMovementDirection () 
+void CGCMovingEnemyNPirate::InitialiseMovementDirection ()
 {
 	if (m_bMovingLeftAndRight == true)
 	{
@@ -69,19 +68,19 @@ void CGCMovingEnemies::InitialiseMovementDirection ()
 
 //Sets the sprite
 //IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist", "Enemy", b2_dynamicBody, true);
-void CGCMovingEnemies::VOnResourceAcquire ()
+void CGCMovingEnemyNPirate::VOnResourceAcquire ()
 {
 
 	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCMovingEnemies);
 
 	CGCObjSpritePhysics::VOnResourceAcquire ();
-	
+
 	//const char* pszPlist_SeaUrchin = "TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist";
-	
-	const char* pszAnim_Idle = "SEnemyIdle";
+
+	const char* pszAnim_Idle = "UEnemyIdle";
 	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
 	RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_Idle)));
-	
+
 
 }
 
@@ -92,7 +91,7 @@ void CGCMovingEnemies::VOnResourceAcquire ()
 //	CGCObjSpritePhysics::VOnReset ();
 //}
 
-void CGCMovingEnemies::VOnResourceRelease ()
+void CGCMovingEnemyNPirate::VOnResourceRelease ()
 {
 	CGCObjSpritePhysics::VOnResourceRelease ();
 
@@ -110,7 +109,7 @@ void CGCMovingEnemies::VOnResourceRelease ()
 //}
 
 //changes the direction if the current position has reached the end desitination 
-void CGCMovingEnemies::ChangeDirection () 
+void CGCMovingEnemyNPirate::ChangeDirection ()
 {
 	if (m_bMovingLeftAndRight == true)
 	{
@@ -165,21 +164,21 @@ void CGCMovingEnemies::ChangeDirection ()
 	}
 }
 
-void CGCMovingEnemies::Movement () //changes the velocity depending on the direction it is going
+void CGCMovingEnemyNPirate::Movement () //changes the velocity depending on the direction it is going
 {
 	switch (m_eMoveDirection)
 	{
 	case EMoveDirection::Right:
 	{
 		this->SetVelocity (m_vMovingRightVelocity);
-		SetFlippedX (true);
+		SetFlippedX (false);
 	}
 	break;
 
 	case EMoveDirection::Left:
 	{
 		this->SetVelocity (m_vMovingLeftVelocity);
-		SetFlippedX (false);
+		SetFlippedX (true);
 	}
 	break;
 
@@ -200,7 +199,7 @@ void CGCMovingEnemies::Movement () //changes the velocity depending on the direc
 
 //checks to see if the just collided bool is true, if it is then the collision buffer counts down, once it has reached 0 it sets the bool back to false
 //Once its false it can be collided with again
-void CGCMovingEnemies::CollisionChecker () 
+void CGCMovingEnemyNPirate::CollisionChecker ()
 {
 	if (m_bJustCollided == true)
 	{
@@ -217,7 +216,7 @@ void CGCMovingEnemies::CollisionChecker ()
 	}
 }
 
-void CGCMovingEnemies::CollisionDirChecker ()
+void CGCMovingEnemyNPirate::CollisionDirChecker ()
 {
 	{
 		if (m_bJustChangedDir == true)
@@ -236,37 +235,37 @@ void CGCMovingEnemies::CollisionDirChecker ()
 	}
 }
 
-void CGCMovingEnemies::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
+void CGCMovingEnemyNPirate::VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
 {
 	const CGCFactoryCreationParams* pParamsToPassToBaseClass = &rCreationParams;
 
-	 if (nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData)
+	if (nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData)
 	{
-		 //const tinyxml2::XMLAttribute* pName = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "name" );
+		//const tinyxml2::XMLAttribute* pName = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "name" );
 
-		 //CCLOG( (nullptr == pName) ? "BOB NOT FOUND!" : pName->Value() );
+		//CCLOG( (nullptr == pName) ? "BOB NOT FOUND!" : pName->Value() );
 
-		 const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("PlistFile");    //customplist    //PlistFile
+		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("PlistFile");    //customplist    //PlistFile
 
-		 const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "shape" );
+		const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("shape");
 
-		 if (( nullptr != pCustomPlistPath ) && ( 0 != strlen (pCustomPlistPath->Value ()) ))    // && ( (nullptr != pCustomShape) && ( 0 != strlen( pCustomShape->Value() ) ) ) )
-		 {
-			 m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams > (rCreationParams.strClassName.c_str (),
-																					 pCustomPlistPath->Value (),
-																					 pCustomShape->Value(),
-																					 rCreationParams.eB2dBody_BodyType,
-																					 rCreationParams.bB2dBody_FixedRotation);
+		if (( nullptr != pCustomPlistPath ) && ( 0 != strlen (pCustomPlistPath->Value ()) ))    // && ( (nullptr != pCustomShape) && ( 0 != strlen( pCustomShape->Value() ) ) ) )
+		{
+			m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams > (rCreationParams.strClassName.c_str (),
+				pCustomPlistPath->Value (),
+				pCustomShape->Value (),
+				rCreationParams.eB2dBody_BodyType,
+				rCreationParams.bB2dBody_FixedRotation);
 
-			 pParamsToPassToBaseClass = m_pCustomCreationParams.get ();
-		 }
-	 }
+			pParamsToPassToBaseClass = m_pCustomCreationParams.get ();
+		}
+	}
 
-	 CGCObjSpritePhysics::VHandleFactoryParams (( *pParamsToPassToBaseClass ), v2InitialPosition);
+	CGCObjSpritePhysics::VHandleFactoryParams (( *pParamsToPassToBaseClass ), v2InitialPosition);
 }
 
 
-void CGCMovingEnemies::VOnUpdate (f32 fTimeStep)
+void CGCMovingEnemyNPirate::VOnUpdate (f32 fTimeStep)
 {
 	ChangeDirection ();
 	Movement ();

@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>EnemyIdle/final-0001.png</key>
+            <key>SeEnemyIdle/final-0001.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,477},{54,74}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0002.png</key>
+            <key>SeEnemyIdle/final-0002.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,81},{54,74}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0003.png</key>
+            <key>SeEnemyIdle/final-0003.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{57,397},{54,74}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0004.png</key>
+            <key>SeEnemyIdle/final-0004.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{111,159},{52,74}}</string>
@@ -56,7 +56,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0005.png</key>
+            <key>SeEnemyIdle/final-0005.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{109,237},{52,74}}</string>
@@ -69,7 +69,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0006.png</key>
+            <key>SeEnemyIdle/final-0006.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{151,545},{52,72}}</string>
@@ -82,7 +82,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0007.png</key>
+            <key>SeEnemyIdle/final-0007.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,553},{54,72}}</string>
@@ -95,7 +95,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0008.png</key>
+            <key>SeEnemyIdle/final-0008.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{57,473},{54,74}}</string>
@@ -108,7 +108,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0009.png</key>
+            <key>SeEnemyIdle/final-0009.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{75,549},{54,74}}</string>
@@ -121,7 +121,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0010.png</key>
+            <key>SeEnemyIdle/final-0010.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,81},{54,76}}</string>
@@ -134,7 +134,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0011.png</key>
+            <key>SeEnemyIdle/final-0011.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{59,1},{52,78}}</string>
@@ -147,7 +147,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0012.png</key>
+            <key>SeEnemyIdle/final-0012.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,159},{52,78}}</string>
@@ -160,7 +160,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0013.png</key>
+            <key>SeEnemyIdle/final-0013.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{55,317},{50,78}}</string>
@@ -173,7 +173,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0014.png</key>
+            <key>SeEnemyIdle/final-0014.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{57,81},{54,76}}</string>
@@ -186,7 +186,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0015.png</key>
+            <key>SeEnemyIdle/final-0015.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{113,1},{54,76}}</string>
@@ -199,7 +199,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0016.png</key>
+            <key>SeEnemyIdle/final-0016.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{55,159},{54,76}}</string>
@@ -212,7 +212,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0017.png</key>
+            <key>SeEnemyIdle/final-0017.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{165,157},{54,74}}</string>
@@ -225,7 +225,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0018.png</key>
+            <key>SeEnemyIdle/final-0018.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{107,317},{54,74}}</string>
@@ -238,7 +238,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0019.png</key>
+            <key>SeEnemyIdle/final-0019.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{113,393},{54,74}}</string>
@@ -251,7 +251,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0020.png</key>
+            <key>SeEnemyIdle/final-0020.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{163,235},{52,74}}</string>
@@ -264,7 +264,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0021.png</key>
+            <key>SeEnemyIdle/final-0021.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{163,311},{52,74}}</string>
@@ -277,7 +277,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0022.png</key>
+            <key>SeEnemyIdle/final-0022.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,387},{52,74}}</string>
@@ -290,7 +290,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0023.png</key>
+            <key>SeEnemyIdle/final-0023.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{113,469},{54,74}}</string>
@@ -303,7 +303,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0024.png</key>
+            <key>SeEnemyIdle/final-0024.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,463},{54,74}}</string>
@@ -316,7 +316,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0025.png</key>
+            <key>SeEnemyIdle/final-0025.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{113,79},{54,76}}</string>
@@ -329,7 +329,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0026.png</key>
+            <key>SeEnemyIdle/final-0026.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,1},{56,78}}</string>
@@ -342,7 +342,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0027.png</key>
+            <key>SeEnemyIdle/final-0027.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,239},{52,78}}</string>
@@ -355,7 +355,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0028.png</key>
+            <key>SeEnemyIdle/final-0028.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{169,1},{52,78}}</string>
@@ -368,7 +368,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0029.png</key>
+            <key>SeEnemyIdle/final-0029.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{55,237},{52,78}}</string>
@@ -381,7 +381,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0030.png</key>
+            <key>SeEnemyIdle/final-0030.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,319},{52,78}}</string>
@@ -394,7 +394,7 @@
                 <key>sourceSize</key>
                 <string>{60,120}</string>
             </dict>
-            <key>EnemyIdle/final-0031.png</key>
+            <key>SeEnemyIdle/final-0031.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,399},{54,76}}</string>
@@ -421,7 +421,7 @@
             <key>size</key>
             <string>{224,608}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:03dbca1d4984e404c8064c29bd5f61e2:aa1c35e2f552da98b69e5841177b9c8d:884047bb12e7919b3124d309973e135f$</string>
+            <string>$TexturePacker:SmartUpdate:6bf5962f9fa4726f442e5cf2bcb04329:aa1c35e2f552da98b69e5841177b9c8d:884047bb12e7919b3124d309973e135f$</string>
             <key>textureFileName</key>
             <string>SealEnemy.png</string>
         </dict>

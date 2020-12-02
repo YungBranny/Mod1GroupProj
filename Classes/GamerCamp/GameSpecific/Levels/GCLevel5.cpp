@@ -3,12 +3,12 @@
 // Distributed under the MIT license - see readme.md
 ///////////////////////////////////////////////////////////////////////////////
 
-#include "GCLevel3.h"
+#include "GCLevel5.h"
 #include <algorithm>
 #include <stdlib.h> 
 #include <fstream>
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
-
+#include "GamerCamp/GameSpecific/Levels/GCLevel5.h"
 #include "MenuScene.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCCocosInterface/GCObjSprite.h"
@@ -21,7 +21,7 @@
 #include "GamerCamp/GameSpecific/Invaders/GCObjGroupInvader.h"
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 #include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
-
+#include "GamerCamp/GameSpecific/Levels/GCLevel6.h"
 #include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
 #include "GamerCamp/GameSpecific/Collectables/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
@@ -65,7 +65,6 @@
 
 
 #include "AppDelegate.h"
-#include "GCLevel4.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
 
@@ -76,8 +75,8 @@ USING_NS_CC;
 ///////////////////////////////////////////////////////////////////////////////
 // Constructor
 ///////////////////////////////////////////////////////////////////////////////
-GCLevel3::GCLevel3 ()
-	: IGCGameLayer (GetGCTypeIDOf (GCLevel3))
+GCLevel5::GCLevel5 ()
+	: IGCGameLayer (GetGCTypeIDOf (GCLevel5))
 	, m_pcGCGroupItem (nullptr)
 	, m_pcGCGroupInvader (nullptr)
 	, m_pcGCGroupProjectilePlayer (nullptr)
@@ -108,18 +107,18 @@ GCLevel3::GCLevel3 ()
 //////////////////////////////////////////////////////////////////////////
 // Destructor
 //////////////////////////////////////////////////////////////////////////
-GCLevel3::~GCLevel3 ()
+GCLevel5::~GCLevel5 ()
 {
 }
 
-void GCLevel3::keyCollected () // Mia: This function adds one more Key onto how many the Player obtains
+void GCLevel5::keyCollected () // Mia: This function adds one more Key onto how many the Player obtains
 {
 	m_iKeysCollected++; // Mia: Adds a Key
 	m_pcGCOScore->IncreaseScore ();
 	CCLOG ("Key Collected."); // Mia: Checks to make sure Player has picked up Key only once
 }
 
-void GCLevel3::addOnTime ()
+void GCLevel5::addOnTime ()
 {
 	// Mia: Replaces Current Air Time when Player picks up Timer PickUp by Getting Current Air Time and
 	// Calling the Increase Value (of 20) that I created in Dan's 'GCObjTimer.cpp'
@@ -134,20 +133,20 @@ void GCLevel3::addOnTime ()
 //	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
 //}
 
-void GCLevel3::playKeyAudio () // Mia: Function that is called when we want the Collected Key Sound Effect to play
+void GCLevel5::playKeyAudio () // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance ();
 	m_pcGCSoundEffectsAudio->playEffect ("Sounds/Collectables/Key/CollectKey.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 
-void GCLevel3::playTimerPickUpAudio () // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
+void GCLevel5::playTimerPickUpAudio () // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
 {
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance ();
 	m_pcGCSoundEffectsAudio->playEffect ("Sounds/Collectables/Timer/TimerPickUp.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
-void GCLevel3::playDoorOpeningAudio () // Mia: Function that is called when we want the Door Opened Sound Effect to play
+void GCLevel5::playDoorOpeningAudio () // Mia: Function that is called when we want the Door Opened Sound Effect to play
 {
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance ();
 	m_pcGCSoundEffectsAudio->playEffect ("Sounds/Door/OpeningDoor.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
@@ -159,7 +158,7 @@ void GCLevel3::playDoorOpeningAudio () // Mia: Function that is called when we w
 // fixes the case where an IGCGameLayer with a different mapping was
 // pushed over this one on Director's scene stack
 //////////////////////////////////////////////////////////////////////////
-void GCLevel3::onEnter ()
+void GCLevel5::onEnter ()
 {
 	IGCGameLayer::onEnter ();
 
@@ -186,7 +185,7 @@ void GCLevel3::onEnter ()
 // on create
 //////////////////////////////////////////////////////////////////////////
 //virtual
-void GCLevel3::VOnCreate ()
+void GCLevel5::VOnCreate ()
 {
 	///////////////////////////////////////////////////////////////////////////
 	// cache some useful values 
@@ -241,7 +240,7 @@ void GCLevel3::VOnCreate ()
 	MenuItemImage* pResetItem
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
-			CC_CALLBACK_1 (GCLevel3::Callback_OnResetButton, this));
+			CC_CALLBACK_1 (GCLevel5::Callback_OnResetButton, this));
 
 	pResetItem->setPosition (Vec2 (( ( visibleSize.width - ( pResetItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( ( pResetItem->getContentSize ().height * 0.5f ) + origin.y ) )));
@@ -249,7 +248,7 @@ void GCLevel3::VOnCreate ()
 	MenuItemImage* pSkipItem
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
-			CC_CALLBACK_1 (GCLevel3::Callback_OnSkipButton, this));
+			CC_CALLBACK_1 (GCLevel5::Callback_OnSkipButton, this));
 
 	pSkipItem->setPosition (Vec2 (( ( visibleSize.width - ( pSkipItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( ( pSkipItem->getContentSize ().height * 6.0f ) + origin.y ) )));
@@ -257,7 +256,7 @@ void GCLevel3::VOnCreate ()
 	MenuItemImage* pQuitItem
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
-			CC_CALLBACK_1 (GCLevel3::Callback_OnQuitButton, this));
+			CC_CALLBACK_1 (GCLevel5::Callback_OnQuitButton, this));
 
 	pQuitItem->setPosition (Vec2 (( ( visibleSize.width - ( pQuitItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( visibleSize.height - ( pQuitItem->getContentSize ().height * 0.5f ) ) + origin.y )));
@@ -387,7 +386,7 @@ void GCLevel3::VOnCreate ()
 	// load level data from Ogmo Editor
 
 	// read the oel file for level 0
-	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level3.oel")).c_str ());
+	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level5.oel")).c_str ());
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// note: we have now created all the items, platforms, & invaders specified in the level file
@@ -608,7 +607,7 @@ void GCLevel3::VOnCreate ()
 
 				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
 
-				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel6 >::CreateScene ()));
 				//	m_bPlayerKeysGathered = true;
 
 					 // Mia: Calls the Function which plays the Door Opening Audio
@@ -770,13 +769,13 @@ void GCLevel3::VOnCreate ()
 		});
 }
 
-void GCLevel3::PlayerDeathSceneSwap ()
+void GCLevel5::PlayerDeathSceneSwap ()
 {
 
 	Director::getInstance ()->replaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 }
 
-void GCLevel3::HighScore ()
+void GCLevel5::HighScore ()
 {
 
 
@@ -786,7 +785,7 @@ void GCLevel3::HighScore ()
 // on update
 //////////////////////////////////////////////////////////////////////////
 //virtual 
-void GCLevel3::VOnUpdate (f32 fTimeStep)
+void GCLevel5::VOnUpdate (f32 fTimeStep)
 {
 	IGCGameLayer::VOnUpdate (fTimeStep);
 
@@ -824,7 +823,7 @@ void GCLevel3::VOnUpdate (f32 fTimeStep)
 	if (SkipWasRequested ())
 	{
 		SkipRequestWasHandled ();
-		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel6 >::CreateScene ()));
 
 	}
 
@@ -851,7 +850,7 @@ void GCLevel3::VOnUpdate (f32 fTimeStep)
 // on destroy
 ///////////////////////////////////////////////////////////////////////////////
 // virtual
-void GCLevel3::VOnDestroy ()
+void GCLevel5::VOnDestroy ()
 {
 	///////////////////////////////////////////////////////////////////////////
 	// clean up anything we allocated in opposite order to creation
@@ -892,13 +891,13 @@ void GCLevel3::VOnDestroy ()
 ///////////////////////////////////////////////////////////////////////////////
 // on quit button
 ///////////////////////////////////////////////////////////////////////////////
-void GCLevel3::Callback_OnQuitButton (Ref* pSender)
+void GCLevel5::Callback_OnQuitButton (Ref* pSender)
 {
 	RequestQuit ();
 }
 
 
-void GCLevel3::Callback_OnSkipButton (Ref* pSender)
+void GCLevel5::Callback_OnSkipButton (Ref* pSender)
 {
 	RequestSkip ();
 }
@@ -907,7 +906,7 @@ void GCLevel3::Callback_OnSkipButton (Ref* pSender)
 ///////////////////////////////////////////////////////////////////////////////
 // on reset button
 ///////////////////////////////////////////////////////////////////////////////
-void GCLevel3::Callback_OnResetButton (Ref* pSender)
+void GCLevel5::Callback_OnResetButton (Ref* pSender)
 {
 	RequestReset ();
 }
@@ -919,7 +918,7 @@ void GCLevel3::Callback_OnResetButton (Ref* pSender)
 // contact exists
 ///////////////////////////////////////////////////////////////////////////////
 //virtual 
-void GCLevel3::BeginContact (b2Contact* pB2Contact)
+void GCLevel5::BeginContact (b2Contact* pB2Contact)
 {
 	const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
 	const b2Fixture* pFixtureB = pB2Contact->GetFixtureB ();
@@ -1169,7 +1168,7 @@ void GCLevel3::BeginContact (b2Contact* pB2Contact)
 // contact exists
 ///////////////////////////////////////////////////////////////////////////////
 //virtual 
-void GCLevel3::EndContact (b2Contact* pB2Contact)
+void GCLevel5::EndContact (b2Contact* pB2Contact)
 {
 	{
 		const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
@@ -1230,7 +1229,7 @@ void GCLevel3::EndContact (b2Contact* pB2Contact)
 // insert any logic that needs to be done before a contact is resolved
 ///////////////////////////////////////////////////////////////////////////////
 //virtual 
-void GCLevel3::PreSolve (b2Contact* pB2Contact, const b2Manifold* pOldManifold)
+void GCLevel5::PreSolve (b2Contact* pB2Contact, const b2Manifold* pOldManifold)
 {
 	const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
 	const b2Fixture* pFixtureB = pB2Contact->GetFixtureB ();
@@ -1322,7 +1321,7 @@ void GCLevel3::PreSolve (b2Contact* pB2Contact, const b2Manifold* pOldManifold)
 // e.g. check the types and double the impulse
 ///////////////////////////////////////////////////////////////////////////////
 //virtual 
-void GCLevel3::PostSolve (b2Contact* pB2Contact, const b2ContactImpulse* pImpulse)
+void GCLevel5::PostSolve (b2Contact* pB2Contact, const b2ContactImpulse* pImpulse)
 {
 }
 
@@ -1336,7 +1335,7 @@ void GCLevel3::PostSolve (b2Contact* pB2Contact, const b2ContactImpulse* pImpuls
 // e.g. for gamplay reasons like jumping up through a platform
 // 
 ///////////////////////////////////////////////////////////////////////////////
-void GCLevel3::HandleCollisions ()
+void GCLevel5::HandleCollisions ()
 {
 	// check for collisions
 	b2Body* pBodyToDestroy = nullptr;

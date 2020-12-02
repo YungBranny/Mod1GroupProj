@@ -164,6 +164,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemies.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRFast.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRSlow.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPenguin.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPirate.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNSeal.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDown.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownFast.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownSlow.cpp" />
@@ -185,6 +188,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel14.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel15.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel4.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel5.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel6.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevelBackground.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel3.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.cpp" />
@@ -255,6 +261,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemy2.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRFast.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyLRSlow.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPenguin.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPirate.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNSeal.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDown.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownFast.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownSlow.h" />
@@ -275,6 +284,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel14.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel15.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel4.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel5.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel6.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevelBackground.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel3.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\MainMenu\GCMainMenu.h" />

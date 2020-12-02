@@ -340,6 +340,24 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel15.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel4.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel5.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel6.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPenguin.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNSeal.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPirate.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -609,6 +627,24 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel15.h">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel4.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel5.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel6.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPenguin.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNSeal.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPirate.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

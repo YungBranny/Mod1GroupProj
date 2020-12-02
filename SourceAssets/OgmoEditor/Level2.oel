@@ -1,6 +1,7 @@
 <level width="1920" height="1080">
   <LevelBackground>
     <Background2 id="0" x="960" y="540" class="CGCLevelBackground" shape="tcr_background_1" PlistFile="TexturePacker/Sprites/BackgroundLevel2/tcr_background_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="2" x="1792" y="992" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </LevelBackground>
   <LevelMidground />
   <Level2ndMidground />
@@ -11,8 +12,8 @@
     <EnemyMovementCollider id="1" x="1744" y="1008" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="4" x="1216" y="368" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="5" x="96" y="368" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <LRNMovingEnemy id="3" x="1040" y="336" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/PenguinEnemy/PenguinEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
-    <LRNMovingEnemy id="2" x="1664" y="976" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/PenguinEnemy/PenguinEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemyPenguin id="2" x="1104" y="336" class="CGCMovingEnemyNPenguin" shape="penguin" PlistFile="TexturePacker/Sprites/PenguinEnemy/PenguinEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemyPenguin id="3" x="1648" y="960" class="CGCMovingEnemyNPenguin" shape="penguin" PlistFile="TexturePacker/Sprites/PenguinEnemy/PenguinEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>

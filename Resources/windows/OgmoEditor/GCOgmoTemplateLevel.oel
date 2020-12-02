@@ -12,12 +12,13 @@
     <Background1-4 id="0" x="960" y="544" class="CGCLevelBackground" shape="cc_background_4" PlistFile="TexturePacker/Sprites/BackgroundLevel1/cc_background_4.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Background1-4 id="1" x="960" y="544" class="CGCLevelBackground" shape="cc_background_4" PlistFile="TexturePacker/Sprites/BackgroundLevel1/cc_background_4.plist" B2DBodyType="b2_staticBody" HasFixedRotation="False" />
   </LevelForeground>
+  <Level2ndForeground />
   <enemies>
     <EnemyMovementCollider id="1" x="1040" y="640" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="2" x="480" y="640" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="3" x="400" y="656" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="8" x="224" y="400" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <LRNMovingEnemy id="0" x="592" y="608" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemySquid id="0" x="928" y="608" class="CGCMovingEnemies" shape="squid" PlistFile="TexturePacker/Sprites/SquidEnemy/SquidEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>

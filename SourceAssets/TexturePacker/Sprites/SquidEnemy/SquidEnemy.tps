@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../../Resources/windows/TexturePacker/Sprites/PirateEnemy/PirateEnemy.plist</filename>
+                <filename>../../../../Resources/windows/TexturePacker/Sprites/SquidEnemy/SquidEnemy.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -181,34 +181,32 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">Frames/UEnemyIdle/final-0001.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0002.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0003.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0004.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0005.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0006.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0007.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0008.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0009.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0010.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0011.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0012.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0013.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0014.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0015.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0016.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0017.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0018.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0019.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0020.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0021.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0022.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0023.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0024.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0025.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0026.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0027.png</key>
-            <key type="filename">Frames/UEnemyIdle/final-0028.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0001.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0002.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0003.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0004.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0005.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0006.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0007.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0008.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0009.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0010.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0011.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0012.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0013.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0014.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0015.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0016.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0017.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0018.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0019.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0020.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0021.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0022.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0023.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0024.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0025.png</key>
+            <key type="filename">Frames/SEnemyIdle/final-0026.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
