@@ -196,7 +196,7 @@ void CGCObjPlayer::VOnResourceRelease()
 void CGCObjPlayer::VOnResurrected(void)
 {
 	CGCObjSpritePhysics::VOnResurrected();
-	GetPhysicsBody ()->SetGravityScale (10.0f);
+	GetPhysicsBody ()->SetGravityScale (8.0f);
 	m_bv2jumpVel = b2Vec2(GetPhysicsBody()->GetLinearVelocity().x, m_fJumpHeight);
 }
 
@@ -514,18 +514,18 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		if (GetVelocity ().x > 0)
 		{
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
-			float impulse = GetPhysicsBody ()->GetMass () * 40;
+			float impulse = GetPhysicsBody ()->GetMass () * 35;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse * 1.07f), GetPhysicsBody ()->GetWorldCenter (), true);
 		};
 		if (GetVelocity ().x < 0)
 		{
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
-			float impulse = GetPhysicsBody ()->GetMass () * 40;
+			float impulse = GetPhysicsBody ()->GetMass () * 35;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse* 1.07f), GetPhysicsBody ()->GetWorldCenter (), true);
 		};
 		if (GetVelocity ().x == 0 )
 		{
-			float impulse = GetPhysicsBody ()->GetMass () * 41.5;
+			float impulse = GetPhysicsBody ()->GetMass () * 36.5;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse), GetPhysicsBody ()->GetWorldCenter (), true);
 		};
 
