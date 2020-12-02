@@ -7,15 +7,15 @@
             <key>empty_heart.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{50,46}}</string>
+                <string>{{1,1},{62,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,1},{50,46}}</string>
+                <string>{{0,1},{62,50}}</string>
                 <key>sourceSize</key>
-                <string>{52,48}</string>
+                <string>{62,52}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -29,9 +29,9 @@
             <key>realTextureFileName</key>
             <string>empty_heart.png</string>
             <key>size</key>
-            <string>{52,48}</string>
+            <string>{64,52}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f6f22ec9b63d3386a3509f22886a3b27:31e885b25a355630cf5f87f4a54a9eff:a94355896b83bb91a194de59633f1526$</string>
+            <string>$TexturePacker:SmartUpdate:960dac7f3aecfddaa07a8676a70427b7:1472f8248f45595e7d7d47be01827421:a94355896b83bb91a194de59633f1526$</string>
             <key>textureFileName</key>
             <string>empty_heart.png</string>
         </dict>

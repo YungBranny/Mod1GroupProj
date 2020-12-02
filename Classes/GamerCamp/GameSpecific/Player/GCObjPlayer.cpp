@@ -62,7 +62,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fMaximumDropDistance (20.0f)
 	, m_fJumpHeight (12.0f)
 	, m_bPlayerDiedFromFalling (false)
-	, m_fLivesStartPositionX (1700)
+	, m_fLivesStartPositionX (1600)
 	, m_fLivesStartPositionY (1015)
 	, m_fLivesSpacingX (10.0f)
 	, m_bIsPlayerOnPlatform (true)
@@ -117,8 +117,8 @@ CGCObjPlayer::CGCObjPlayer ()
 	m_sprPlayerLives3	= Sprite::create(  "TexturePacker/Sprites/Lives/life_full.png");
 	
 	getPlayerLivesUI1()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
-	getPlayerLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 50, m_fLivesStartPositionY));
-	getPlayerLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 100, m_fLivesStartPositionY));
+	getPlayerLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 75, m_fLivesStartPositionY));
+	getPlayerLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 150, m_fLivesStartPositionY));
 
 
 	m_eChangeAnimation = EChangeAnimation::Idle;
@@ -585,14 +585,14 @@ void CGCObjPlayer::LivesUI()
 	{
 		getPlayerLivesUI2()->setVisible(false);
 	
-		getPlayerLoseLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 50, m_fLivesStartPositionY));
+		getPlayerLoseLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 75, m_fLivesStartPositionY));
 	}
 	else if (m_iNumberOfLives == 2)
 	{
 		
 		getPlayerLivesUI3()->setVisible(false);
 		
-		getPlayerLoseLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 100, m_fLivesStartPositionY));
+		getPlayerLoseLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 150, m_fLivesStartPositionY));
 	}
 
 }
