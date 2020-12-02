@@ -141,11 +141,11 @@ void CGCGameLayerPlatformer::addOnTime()
 
 }
 
-void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
-{
-	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
-}
+//void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
+//{
+//	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+//	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
+//}
 
 void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
@@ -315,15 +315,15 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	
 	//HighScore();
 	//Mia: Added Background
-	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
-	{
-		m_pcGCSprBackGround = new CGCObjSprite ();
-		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
-		m_pcGCSprBackGround->SetScale (1, 1);
-		m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
-		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
-		playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
-	}
+	//const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
+	//{
+	//	m_pcGCSprBackGround = new CGCObjSprite ();
+	//	m_pcGCSprBackGround->CreateSprite (pszPlist_background);
+	//	m_pcGCSprBackGround->SetScale (1, 1);
+	//	m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
+	//	m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
+	//	playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
+	//}
 
 	m_pcGCTimer = new CGCObjTimer ();
 
@@ -405,7 +405,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// load level data from Ogmo Editor
 
 	// read the oel file for level 0
-	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/GCOgmoTemplateLevel.oel")).c_str ());
+	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level2.oel")).c_str ());
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// note: we have now created all the items, platforms, & invaders specified in the level file
@@ -840,8 +840,8 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		VOnReset();
 		m_iKeysCollected = 0; // Mia: Resets Keys Collected
 		ResetRequestWasHandled();
-		m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Reset
-		playBackgroundMusic(); // Mia: Calls this Function, so it doesn't overlay
+		//m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Reset
+		//playBackgroundMusic(); // Mia: Calls this Function, so it doesn't overlay
 	}
 
 	if( SkipWasRequested() )

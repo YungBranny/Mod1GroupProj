@@ -4,16 +4,16 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>tcr_background_1.png</key>
+            <key>tcr_background_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{1920,1080}}</string>
+                <string>{{1,1},{1710,718}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-57,-180}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{1920,1080}}</string>
+                <string>{{48,361},{1710,718}}</string>
                 <key>sourceSize</key>
                 <string>{1920,1080}</string>
             </dict>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>tcr_background_1.png</string>
+            <string>tcr_background_2.png</string>
             <key>size</key>
-            <string>{1922,1082}</string>
+            <string>{1712,720}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:17ef45963f1e72fe49b2b43ad4e0b454:0cca89a588b625f8a05adcc661898e6b:fcf2d902975d9e706523ac63b8745acf$</string>
+            <string>$TexturePacker:SmartUpdate:bf8155cee8f24696ae4d5d05fe7eddfb:8061951868654233b3be31431d6340cc:8d8fb0cf534a83eaa7d648e3927ecee6$</string>
             <key>textureFileName</key>
-            <string>tcr_background_1.png</string>
+            <string>tcr_background_2.png</string>
         </dict>
     </dict>
 </plist>
