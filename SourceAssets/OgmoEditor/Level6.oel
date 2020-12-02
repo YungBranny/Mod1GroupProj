@@ -2,7 +2,9 @@
   <LevelBackground>
     <Background2 id="0" x="960" y="544" class="CGCLevelBackground" shape="tcr_background_1" PlistFile="TexturePacker/Sprites/BackgroundLevel2/tcr_background_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </LevelBackground>
-  <LevelMidground />
+  <LevelMidground>
+    <Background2-1 id="0" x="960" y="544" class="CGCLevelBackground" shape="tcr_background_2" PlistFile="TexturePacker/Sprites/BackgroundLevel2/tcr_background_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </LevelMidground>
   <Level2ndMidground />
   <LevelForeground />
   <Level2ndForeground />
