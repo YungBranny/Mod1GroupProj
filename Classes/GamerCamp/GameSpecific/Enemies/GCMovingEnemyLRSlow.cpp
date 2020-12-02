@@ -68,16 +68,18 @@ void CGCMovingEnemyLRSlow::InitialiseMovementDirection ()
 }
 
 //Sets the sprite
-//IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist", "Enemy", b2_dynamicBody, true);
-//void CGCMovingEnemies::VOnResourceAcquire ()
-//{
-//
-//	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCMovingEnemies);
-//
-//	CGCObjSpritePhysics::VOnResourceAcquire ();
-//
-//	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
-//}
+void CGCMovingEnemyLRSlow::VOnResourceAcquire ()
+{
+
+	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCMovingEnemies);
+
+	CGCObjSpritePhysics::VOnResourceAcquire ();
+
+
+	const char* pszAnim_Idle = "EnemyIdle";
+	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
+	RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_Idle)));
+}
 
 
 //

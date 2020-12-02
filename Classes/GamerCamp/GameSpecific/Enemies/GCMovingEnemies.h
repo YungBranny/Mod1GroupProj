@@ -48,6 +48,7 @@ private:
 	bool					m_bJustChangedDir;
 
 	void					InitialiseMovementDirection ();	 //Function which checks if the moving left and right bool is true or false, if it is true then the enemy will go left/right if it false the enemy will go up or down
+	void VOnResourceAcquire ();
 	void					CollisionChecker ();			 //Function which checks if the just collided bool is true or false#
 	void					CollisionDirChecker ();
 
@@ -58,7 +59,6 @@ public:
 
 	
 	CGCMovingEnemies ();
-	virtual void VOnResurrected (void);
 	virtual ~CGCMovingEnemies () {};
 
 	GCFACTORY_DECLARE_CREATABLECLASS (CGCMovingEnemies);
@@ -104,7 +104,7 @@ public:
 	void Movement ();							  //Function which 
 
 	//virtual void VOnResourceAcquire (void);		  //Default functions for spritephysics
-	//virtual void VOnResurrected (void);			  //Default functions for spritephysics
+	virtual void VOnResurrected (void);			  //Default functions for spritephysics
 	virtual void VOnResourceRelease (void);		  //Default functions for spritephysics
 	//virtual void VOnReset (void);				  //Default functions for spritephysics
 	virtual void VOnUpdate (f32 fTimestep);		  //Default functions for spritephysics

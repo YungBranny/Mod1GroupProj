@@ -102,7 +102,7 @@ public:
 	void ChangeDirection ();					  //Function which contains the logic to change direction
 	void Movement ();							  //Function which 
 
-	//virtual void VOnResourceAcquire (void);		  //Default functions for spritephysics
+	virtual void VOnResourceAcquire (void);		  //Default functions for spritephysics
 	//virtual void VOnResurrected (void);			  //Default functions for spritephysics
 	virtual void VOnResourceRelease (void);		  //Default functions for spritephysics
 	//virtual void VOnReset (void);				  //Default functions for spritephysics
