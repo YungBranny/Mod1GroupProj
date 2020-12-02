@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>life_full.png</key>
+            <key>cc_background_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{232,232}}</string>
+                <string>{{1,1},{1920,1080}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{232,232}}</string>
+                <string>{{0,0},{1920,1080}}</string>
                 <key>sourceSize</key>
-                <string>{232,232}</string>
+                <string>{1920,1080}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>life_full.png</string>
+            <string>cc_background_2.png</string>
             <key>size</key>
-            <string>{234,234}</string>
+            <string>{1922,1082}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:21b346517788d014cab93e9030cd7350:dc8b5d9cbaf343695aca01f955137c41:c8d8f78f416db682e7524aff28d1d1cf$</string>
+            <string>$TexturePacker:SmartUpdate:811b2656a337a4135d49789b2df840a7:5bd9d31e4edfedace07b5088ea40d3ba:593a9d7fae45b05764b4afa910b94239$</string>
             <key>textureFileName</key>
-            <string>life_full.png</string>
+            <string>cc_background_2.png</string>
         </dict>
     </dict>
 </plist>

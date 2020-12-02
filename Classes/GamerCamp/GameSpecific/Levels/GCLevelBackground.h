@@ -8,11 +8,15 @@
 class CGCLevelBackground
 	: public CGCObjSpritePhysics
 {
+private:
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
 public:
 	CGCLevelBackground();
 	virtual ~CGCLevelBackground() {};
 
 	GCFACTORY_DECLARE_CREATABLECLASS(CGCLevelBackground);
+
+	virtual void VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
 
 };
 
