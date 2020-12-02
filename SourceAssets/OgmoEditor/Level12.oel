@@ -2,12 +2,18 @@
   <LevelBackground>
     <Background4 id="0" x="960" y="544" class="CGCLevelBackground" shape="auw_background_1" PlistFile="TexturePacker/Sprites/BackgroundLevel4/auw_background_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </LevelBackground>
-  <LevelMidground />
+  <LevelMidground>
+    <Background4-1 id="0" x="960" y="544" class="CGCLevelBackground" shape="auw_background_2" PlistFile="TexturePacker/Sprites/BackgroundLevel4/auw_background_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </LevelMidground>
   <Level2ndMidground>
     <Background4-2 id="0" x="960" y="496" class="CGCLevelBackground" shape="auw_background_3" PlistFile="TexturePacker/Sprites/BackgroundLevel4/auw_background_3.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Level2ndMidground>
-  <LevelForeground />
-  <Level2ndForeground />
+  <LevelForeground>
+    <Background4-3 id="0" x="960" y="544" class="CGCLevelBackground" shape="auw_background_4" PlistFile="TexturePacker/Sprites/BackgroundLevel4/auw_background_4.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </LevelForeground>
+  <Level2ndForeground>
+    <Background4-4 id="0" x="960" y="528" class="CGCLevelBackground" shape="auw_background_5" PlistFile="TexturePacker/Sprites/BackgroundLevel4/auw_background_5.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </Level2ndForeground>
   <enemies>
     <EnemyMovementCollider id="1" x="32" y="992" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="2" x="864" y="992" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
