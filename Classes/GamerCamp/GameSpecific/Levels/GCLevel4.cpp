@@ -397,7 +397,7 @@ void GCLevel4::VOnCreate ()
 	///////////////////////////////////////////////////////////////////////////
 
 	// starting position
-	cocos2d::Vec2 v2MarioStartPos (60, 120);
+	cocos2d::Vec2 v2MarioStartPos (1700, 120);
 
 	//(( origin.x + ( visibleSize.width * 0.5f ) ),
 	//	( origin.y + ( visibleSize.height * 0.5f ) ));
@@ -678,6 +678,34 @@ void GCLevel4::VOnCreate ()
 			}
 		}
 	);
+
+
+	GetCollisionManager().AddCollisionHandler
+	(
+		//Brandon Middleton
+		//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
+		//it will reset the level from the start
+		[this]
+	(CGCMovingEnemy2& rcMEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
+		{
+			CGCObjectManager::ObjectKill(&rcMEnemies);
+			CCLOG("HEUFH");
+			if (rcMEnemies.getJustCollided() == false)
+			{
+
+				rcMEnemies.setJustCollided(true);
+				m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+				RequestReset();
+				//m_pcGCTimer->ResetTimer ();
+				CCLOG("Player wacked.");
+				//CGCObjectManager::ObjectKill (&rcPlayer);
+				//m_bPlayerHitHostile = true;
+				rcPlayer.DecrementLives();
+				//PlayerDeathSceneSwap(); //Puia Lose a life when colliding
+			}
+		}
+	);
+
 
 	GetCollisionManager ().AddCollisionHandler
 	(

@@ -2096,7 +2096,7 @@
                          <key>circle</key>
                          <dict>
                              <key>radius</key> <real>15.741</real>
-                             <key>position</key> <string>{ -1.143,-34.857 }</string>
+                             <key>position</key> <string>{ -1.143,-34.571 }</string>
                          </dict>
                     </dict>
 				</array>
@@ -2115,7 +2115,7 @@
                         <key>filter_categoryBits</key> <integer>1</integer>
                         <key>filter_groupIndex</key> <integer>0</integer>
                         <key>filter_maskBits</key> <integer>65535</integer>
-                        <key>isSensor</key> <false/>
+                        <key>isSensor</key> <true/>
                         <key>id</key> <string></string>
                         <key>fixture_type</key> <string>CIRCLE</string>
 
@@ -2132,7 +2132,7 @@
                         <key>filter_categoryBits</key> <integer>1</integer>
                         <key>filter_groupIndex</key> <integer>0</integer>
                         <key>filter_maskBits</key> <integer>65535</integer>
-                        <key>isSensor</key> <false/>
+                        <key>isSensor</key> <true/>
                         <key>id</key> <string></string>
                         <key>fixture_type</key> <string>CIRCLE</string>
 

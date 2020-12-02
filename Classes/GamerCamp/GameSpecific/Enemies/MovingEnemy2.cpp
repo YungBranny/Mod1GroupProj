@@ -63,7 +63,7 @@ void CGCMovingEnemy2::VOnResourceAcquire ()
 	CGCObjSpritePhysics::VOnResourceAcquire ();
 
 
-		const char* pszAnim_Idle = "EnemyIdle";
+		const char* pszAnim_Idle = "SeEnemyIdle";
 		if (pszAnim_Idle)
 		{
 			cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
@@ -142,29 +142,32 @@ void CGCMovingEnemy2::ChangeDirection ()
 
 void CGCMovingEnemy2::Movement () //changes the velocity depending on the direction it is going
 {
+
 	switch (m_eMoveDirection)
 	{
 	case EMoveDirection::Right:
 	{
-		this->SetVelocity (m_vMovingRightVelocity);
+		this->SetVelocity(m_vMovingRightVelocity);
+		SetFlippedX(true);
 	}
 	break;
 
 	case EMoveDirection::Left:
 	{
-		this->SetVelocity (m_vMovingLeftVelocity);
+		this->SetVelocity(m_vMovingLeftVelocity);
+		SetFlippedX(false);
 	}
 	break;
 
 	case EMoveDirection::Up:
 	{
-		this->SetVelocity (m_vMovingUpVelocity);
+		this->SetVelocity(m_vMovingUpVelocity);
 	}
 	break;
 
 	case EMoveDirection::Down:
 	{
-		this->SetVelocity (m_vMovingDownVelocity);
+		this->SetVelocity(m_vMovingDownVelocity);
 	}
 	break;
 	}

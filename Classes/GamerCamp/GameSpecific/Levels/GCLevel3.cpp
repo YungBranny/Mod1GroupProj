@@ -608,7 +608,7 @@ void GCLevel3::VOnCreate ()
 
 				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
 
-				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel4 >::CreateScene ()));
 				//	m_bPlayerKeysGathered = true;
 
 					 // Mia: Calls the Function which plays the Door Opening Audio
@@ -824,7 +824,7 @@ void GCLevel3::VOnUpdate (f32 fTimeStep)
 	if (SkipWasRequested ())
 	{
 		SkipRequestWasHandled ();
-		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel4 >::CreateScene ()));
 
 	}
 
