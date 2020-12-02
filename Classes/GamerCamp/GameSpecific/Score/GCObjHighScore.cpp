@@ -30,7 +30,7 @@ CGCObjHighScore::CGCObjHighScore(CGCObjScore* m_score)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	Label* pLabel = Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fHighScoreTextSize);
+	Label* pLabel = Label::createWithTTF(" ", "fonts/Super Mario Bros. 2.ttf", m_fHighScoreTextSize);
 	CC_ASSERT(pLabel != nullptr);
 	setHighScoreText(pLabel);
 
