@@ -1,4 +1,16 @@
 <level width="1920" height="1080">
+  <LevelBackground>
+    <Background4 id="0" x="960" y="528" class="CGCLevelBackground" shape="auw_background_1" PlistFile="TexturePacker/Sprites/BackgroundLevel4/auw_background_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </LevelBackground>
+  <LevelMidground />
+  <Level2ndMidground>
+    <Background4-2 id="0" x="960" y="496" class="CGCLevelBackground" shape="auw_background_3" PlistFile="TexturePacker/Sprites/BackgroundLevel4/auw_background_3.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </Level2ndMidground>
+  <LevelForeground>
+    <Background4-3 id="0" x="960" y="544" class="CGCLevelBackground" shape="auw_background_4" PlistFile="TexturePacker/Sprites/BackgroundLevel4/auw_background_4.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Background4-4 id="1" x="976" y="544" class="CGCLevelBackground" shape="auw_background_5" PlistFile="TexturePacker/Sprites/BackgroundLevel4/auw_background_5.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </LevelForeground>
+  <Level2ndForeground />
   <enemies />
   <items />
   <platforms>
