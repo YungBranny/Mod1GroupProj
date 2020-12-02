@@ -691,7 +691,11 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			{
 				
 				rcMEnemies.setJustCollided (true);
-				m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
+				{
+					m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+				}
+
 				RequestReset ();
 				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");
@@ -711,6 +715,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		[]
 	(CGCMovingEnemies& rcMEnemies, GCObjEnemyMovementCollider& rcCollider, const b2Contact& rcContact) -> void
 		{
+
 			if (rcMEnemies.getChangedDir() == false)
 			{
 				if (rcMEnemies.getDefaultDirection () == true)
@@ -1171,7 +1176,13 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 		//CGCObjectManager::ObjectKill (&rcEnemies);
 		//m_pcGCTimer->ResetTimer ();
 		//CGCObjectManager::ObjectKill (&rcEnemies);
-		m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+		
+		if(m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
+		{
+			m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+		}
+		
+		
 		CCLOG("Player Died.");
 		//m_bPlayerHitHostile = true;
 		//PlayerDeathSceneSwap();

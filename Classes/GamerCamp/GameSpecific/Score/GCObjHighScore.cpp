@@ -40,7 +40,8 @@ CGCObjHighScore::CGCObjHighScore(CGCObjScore* m_score)
 
 	//HighScoreCheck(m_score);
 
-	m_fCurrentScore = m_score->getScoreAmount();
+	
+	
 }
 
 CGCObjHighScore::~CGCObjHighScore()
@@ -65,27 +66,23 @@ void CGCObjHighScore::HighScoreCheckOpen(CGCObjScore* m_score)
 void CGCObjHighScore::HighScoreCheckClose(CGCObjScore* m_score)
 {
 
+	std::ofstream writeFile;
+	writeFile.open("HighScore.txt");
 	
-	
-	if (m_fCurrentScore > m_iHighScoreValue)
+	if(writeFile.is_open())
 	{
-		std::ofstream writeFile("HighScore.txt");
-
-		if (writeFile.is_open())
-		{
-
-
-			m_iHighScoreValue = m_fCurrentScore;
+		
+			m_iHighScoreValue = m_score->getScoreAmount();
 
 
 			writeFile << m_iHighScoreValue;
 
-		}
 		writeFile.close();
 	}
+		
+		
+}
 	
-
-};
 
 //
 //if (m_fCurrentScore > m_iHighScoreValue)
