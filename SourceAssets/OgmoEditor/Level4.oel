@@ -20,8 +20,7 @@
     <EnemyMovementCollider id="1" x="64" y="1008" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="2" x="688" y="992" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider2 id="4" x="992" y="992" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <MovingEnemyPlistTest id="3" x="496" y="976" class="CGCMovingEnemies" shape="cc_platform_ground" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
-    <LRNMovingEnemy id="0" x="128" y="976" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/PenguinEnemy\PenguinEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <MovingEnemyPlistTest id="3" x="464" y="944" class="CGCMovingEnemies" shape="cc_platform_ground" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>

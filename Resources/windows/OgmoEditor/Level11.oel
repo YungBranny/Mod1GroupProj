@@ -6,7 +6,9 @@
     <Background3-1 id="0" x="976" y="528" class="CGCLevelBackground" shape="tm_background_2" PlistFile="TexturePacker/Sprites/BackgroundLevel3/tm_background_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </LevelMidground>
   <Level2ndMidground />
-  <LevelForeground />
+  <LevelForeground>
+    <Background3-2 id="0" x="928" y="544" class="CGCLevelBackground" shape="tm_background_3" PlistFile="TexturePacker/Sprites/BackgroundLevel3/tm_background_3.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </LevelForeground>
   <Level2ndForeground />
   <enemies>
     <EnemyMovementCollider2 id="1" x="238" y="311" class="GCObjEnemyMovementCollider2" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
