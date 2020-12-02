@@ -315,15 +315,15 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	
 	//HighScore();
 	//Mia: Added Background
-	//const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
-	//{
-	//	m_pcGCSprBackGround = new CGCObjSprite ();
-	//	m_pcGCSprBackGround->CreateSprite (pszPlist_background);
-	//	m_pcGCSprBackGround->SetScale (1, 1);
-	//	m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
-	//	m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
-	//	playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
-	//}
+	const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
+	{
+		m_pcGCSprBackGround = new CGCObjSprite ();
+		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
+		m_pcGCSprBackGround->SetScale (1, 1);
+		m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
+		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
+		playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
+	}
 
 	m_pcGCTimer = new CGCObjTimer ();
 
