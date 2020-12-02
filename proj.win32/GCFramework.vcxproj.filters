@@ -322,6 +322,24 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevelBackground.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel10.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel11.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel12.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel13.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel14.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel15.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -572,6 +590,24 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\CGCObjSwitchPlatform2.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevelBackground.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel10.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel11.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel12.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel13.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel14.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel15.h">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClInclude>
   </ItemGroup>
