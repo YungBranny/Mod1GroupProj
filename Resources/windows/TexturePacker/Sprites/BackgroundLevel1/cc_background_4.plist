@@ -4,16 +4,16 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>cc_background_3.png</key>
+            <key>cc_background_4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{1916,588}}</string>
+                <string>{{1,1},{1848,320}}</string>
                 <key>offset</key>
-                <string>{2,-143}</string>
+                <string>{11,-320}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{4,389},{1916,588}}</string>
+                <string>{{47,700},{1848,320}}</string>
                 <key>sourceSize</key>
                 <string>{1920,1080}</string>
             </dict>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>cc_background_3.png</string>
+            <string>cc_background_4.png</string>
             <key>size</key>
-            <string>{1918,590}</string>
+            <string>{1850,322}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f10e4a5e5999c19fa031aee5448caea3:cd97c68f55b559e6df5f7af3a41fb5e2:ac0a620fda48e3a129460047ae0f3ad0$</string>
+            <string>$TexturePacker:SmartUpdate:067589d98e45891f894769770ced0941:a38025d88255f210e200118868bfa6cb:c8a6110bf9fe14b203f03efee53886a3$</string>
             <key>textureFileName</key>
-            <string>cc_background_3.png</string>
+            <string>cc_background_4.png</string>
         </dict>
     </dict>
 </plist>
