@@ -1,14 +1,25 @@
 <level width="1920" height="1080">
+  <LevelBackground>
+    <Background1 id="0" x="960" y="544" class="CGCLevelBackground" shape="cc_background" PlistFile="TexturePacker/Sprites/BackgroundLevel1/cc_background.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </LevelBackground>
+  <LevelMidground>
+    <Background1-2 id="0" x="960" y="544" class="CGCLevelBackground" shape="cc_background_2" PlistFile="TexturePacker/Sprites/BackgroundLevel1/cc_background_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </LevelMidground>
+  <Level2ndMidground />
+  <LevelForeground>
+    <Background1-4 id="0" x="960" y="544" class="CGCLevelBackground" shape="cc_background_4" PlistFile="TexturePacker/Sprites/BackgroundLevel1/cc_background_4.plist" B2DBodyType="b2_staticBody" HasFixedRotation="False" />
+  </LevelForeground>
+  <Level2ndForeground />
   <enemies>
-    <LRNMovingEnemy id="6" x="400" y="368" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
-    <LRNMovingEnemy id="7" x="688" y="592" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
-    <UDNMovingEnemyUpDown id="8" x="976" y="512" class="CGCMovingEnemyUpDown" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/DuckEnemy/cc_enemy_duck.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="0" x="48" y="384" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="1" x="896" y="400" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="2" x="880" y="624" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="3" x="208" y="640" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="4" x="960" y="912" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="5" x="960" y="176" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UDNMovingEnemyUpDown id="8" x="976" y="512" class="CGCMovingEnemyUpDown" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/PirateEnemy/PirateEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemy id="7" x="672" y="592" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/PenguinEnemy\PenguinEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemy id="6" x="432" y="384" class="CGCMovingEnemies" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/PenguinEnemy\PenguinEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>
@@ -105,15 +116,6 @@
     <Platform5 id="107" x="390" y="690" class="GCObjBasicPlatform5" shape="cc_platform_5" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_5.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform5 id="108" x="330" y="690" class="GCObjBasicPlatform5" shape="cc_platform_5" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_5.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform1 id="109" x="270" y="690" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="110" x="1110" y="630" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="111" x="1170" y="630" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="112" x="1230" y="630" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="113" x="1290" y="630" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="114" x="1350" y="630" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="115" x="1410" y="630" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="116" x="1470" y="630" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="117" x="1530" y="630" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="118" x="1590" y="630" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform6 id="119" x="1830" y="540" class="GCObjBasicPlatform6" shape="cc_platform_6" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_6.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform1 id="120" x="1770" y="540" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform6 id="121" x="1650" y="480" class="GCObjBasicPlatform6" shape="cc_platform_6" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_6.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -137,7 +139,6 @@
     <BrickPlatform id="56" x="1350" y="990" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BrickPlatform id="0" x="1410" y="990" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BrickPlatform id="62" x="1410" y="1050" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="63" x="1650" y="630" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BrickPlatform id="64" x="30" y="450" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BrickPlatform id="66" x="30" y="390" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <BrickPlatform id="68" x="30" y="330" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
