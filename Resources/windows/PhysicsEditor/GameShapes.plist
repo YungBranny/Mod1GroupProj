@@ -736,7 +736,7 @@
 			<key>cc_collectible_key</key>
 			<dict>
 				<key>anchorpoint</key>
-                <string>{ 0.0180,0.2500 }</string>
+                <string>{ 0.0179,0.2500 }</string>
 				<key>fixtures</key>
 				<array>
 
@@ -754,24 +754,24 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -29.748,-23.000 }</string>	
-								<string>{ -15.248,-30.500 }</string>	
-								<string>{ 18.252,-30.000 }</string>	
-								<string>{ 30.252,15.000 }</string>	
-								<string>{ 25.252,27.000 }</string>	
-								<string>{ -16.248,31.500 }</string>	
-								<string>{ -17.248,31.500 }</string>	
-								<string>{ -31.748,16.000 }</string>
+								<string>{ -29.500,-23.000 }</string>	
+								<string>{ -15.000,-30.500 }</string>	
+								<string>{ 18.500,-30.000 }</string>	
+								<string>{ 30.500,15.000 }</string>	
+								<string>{ 25.500,27.000 }</string>	
+								<string>{ -16.000,31.500 }</string>	
+								<string>{ -17.000,31.500 }</string>	
+								<string>{ -31.500,16.000 }</string>
 							</array>
 							<array>	
-								<string>{ 27.252,-24.000 }</string>	
-								<string>{ 30.252,15.000 }</string>	
-								<string>{ 18.252,-30.000 }</string>
+								<string>{ 27.500,-24.000 }</string>	
+								<string>{ 30.500,15.000 }</string>	
+								<string>{ 18.500,-30.000 }</string>
 							</array>
 							<array>	
-								<string>{ 19.752,31.500 }</string>	
-								<string>{ -16.248,31.500 }</string>	
-								<string>{ 25.252,27.000 }</string>
+								<string>{ 20.000,31.500 }</string>	
+								<string>{ -16.000,31.500 }</string>	
+								<string>{ 25.500,27.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -1292,7 +1292,7 @@
                          <key>circle</key>
                          <dict>
                              <key>radius</key> <real>20.000</real>
-                             <key>position</key> <string>{ -0.423,-35.352 }</string>
+                             <key>position</key> <string>{ -0.563,-37.465 }</string>
                          </dict>
                     </dict>
 					<dict>
@@ -1309,7 +1309,7 @@
                          <key>circle</key>
                          <dict>
                              <key>radius</key> <real>12.111</real>
-                             <key>position</key> <string>{ 2.921,-51.338 }</string>
+                             <key>position</key> <string>{ 2.319,-53.292 }</string>
                          </dict>
                     </dict>
 					<dict>
@@ -1325,8 +1325,8 @@
 
                          <key>circle</key>
                          <dict>
-                             <key>radius</key> <real>9.851</real>
-                             <key>position</key> <string>{ 2.359,-52.491 }</string>
+                             <key>radius</key> <real>11.408</real>
+                             <key>position</key> <string>{ 2.218,-50.942 }</string>
                          </dict>
                     </dict>
 				</array>
@@ -1812,97 +1812,7 @@
                     </dict>
 				</array>
 			</dict>
-			<key>cc_background</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
-			<key>cc_background_2</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
-			<key>cc_background_3</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
-			<key>cc_background_4</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
-			<key>tcr_background_2</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
-			<key>tcr_background_1</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
-			<key>tm_background_2</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
-			<key>tm_background_3</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
-			<key>tm_background</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
 			<key>auw_background_1</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
-			<key>auw_background_1 (2)</key>
 			<dict>
 				<key>anchorpoint</key>
                 <string>{ 0.5000,0.5000 }</string>
@@ -1939,6 +1849,87 @@
 				</array>
 			</dict>
 			<key>auw_background_5</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+				</array>
+			</dict>
+			<key>tm_background</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+				</array>
+			</dict>
+			<key>tm_background_2</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+				</array>
+			</dict>
+			<key>tm_background_3</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+				</array>
+			</dict>
+			<key>tcr_background_1</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+				</array>
+			</dict>
+			<key>tcr_background_2</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+				</array>
+			</dict>
+			<key>cc_background</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+				</array>
+			</dict>
+			<key>cc_background_2</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+				</array>
+			</dict>
+			<key>cc_background_3</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+				</array>
+			</dict>
+			<key>cc_background_4</key>
 			<dict>
 				<key>anchorpoint</key>
                 <string>{ 0.5000,0.5000 }</string>

@@ -1,40 +1,17 @@
 <level width="1920" height="1080">
-  <enemies />
+  <LevelBackground>
+    <Background2 id="0" x="960" y="544" class="CGCLevelBackground" shape="tcr_background_1" PlistFile="TexturePacker/Sprites/BackgroundLevel2/tcr_background_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </LevelBackground>
+  <LevelMidground />
+  <Level2ndMidground />
+  <LevelForeground />
+  <Level2ndForeground />
+  <enemies>
+    <FallingPlaneEnemy id="0" x="208" y="-80" class="CGCObjFallingPlane" shape="Airplane" PlistFile="TexturePacker/Sprites/FallingPlane/Airplane.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+  </enemies>
   <items />
   <platforms>
     <PlatformGround id="0" x="960" y="1050" class="GCObjBasePlatform" shape="cc_platform_ground" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_ground.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="1" x="30" y="1050" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="2" x="30" y="990" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="3" x="30" y="930" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="4" x="30" y="870" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="5" x="30" y="810" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="6" x="30" y="750" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="7" x="30" y="690" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="8" x="30" y="630" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="9" x="30" y="570" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="10" x="30" y="510" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="11" x="30" y="450" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="12" x="30" y="390" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="13" x="30" y="330" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="14" x="30" y="270" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="15" x="30" y="210" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="16" x="30" y="150" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="17" x="1890" y="1050" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="18" x="1890" y="990" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="19" x="1890" y="930" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="20" x="1890" y="870" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="21" x="1890" y="810" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="22" x="1890" y="750" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="23" x="1890" y="690" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="24" x="1890" y="630" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="25" x="1890" y="570" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="26" x="1890" y="510" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="27" x="1890" y="450" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="28" x="1890" y="390" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="29" x="1890" y="330" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="30" x="1890" y="270" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="31" x="1890" y="210" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <BrickPlatform id="32" x="1890" y="150" class="GCObjBrickPlatform" shape="cc_platform_single_brick" PlistFile="TexturePacker/Sprites/BrickPlatform/cc_platform_single_brick.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform1 id="33" x="510" y="930" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform6 id="34" x="570" y="930" class="GCObjBasicPlatform6" shape="cc_platform_6" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_6.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform1 id="35" x="90" y="810" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -63,14 +40,40 @@
     <Platform6 id="58" x="1560" y="780" class="GCObjBasicPlatform6" shape="cc_platform_6" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_6.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform6 id="59" x="1350" y="690" class="GCObjBasicPlatform6" shape="cc_platform_6" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_6.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform1 id="60" x="1320" y="690" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="61" x="1230" y="780" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="62" x="1170" y="780" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="63" x="1110" y="780" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="64" x="1050" y="780" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="65" x="990" y="780" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <SmallTravelatorPlatform id="66" x="930" y="780" class="CGCObjTravelatorPlatform" shape="cc_platform_mid" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_mid.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform1 id="67" x="780" y="690" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform6 id="68" x="840" y="690" class="GCObjBasicPlatform6" shape="cc_platform_6" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_6.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="1" x="30" y="1050" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="2" x="30" y="990" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="3" x="30" y="930" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="4" x="30" y="870" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="5" x="30" y="810" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="6" x="30" y="750" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="7" x="30" y="690" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="8" x="30" y="630" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="9" x="30" y="570" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="10" x="30" y="510" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="11" x="30" y="450" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="12" x="30" y="390" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="13" x="30" y="330" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="14" x="30" y="270" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="15" x="30" y="210" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="16" x="30" y="150" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="17" x="1890" y="1050" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="18" x="1890" y="990" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="19" x="1890" y="930" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="20" x="1890" y="870" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="21" x="1890" y="810" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="22" x="1890" y="750" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="23" x="1890" y="690" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="24" x="1890" y="630" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="25" x="1890" y="570" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="26" x="1890" y="510" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="27" x="1890" y="450" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="28" x="1890" y="390" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="29" x="1890" y="330" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="30" x="1890" y="270" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="31" x="1890" y="210" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <WallPlatform id="32" x="1890" y="150" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </platforms>
   <ExitDoor>
     <ExitDoor id="0" x="960" y="180" class="CGCObjExitDoor" shape="cc_exit" PlistFile="TexturePacker/Sprites/Exit/cc_exit.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
