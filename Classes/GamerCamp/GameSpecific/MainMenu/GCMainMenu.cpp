@@ -81,7 +81,7 @@ void CGCMainMenu::VOnCreate ()
 	// add the label as a child to this layer
 	//this->addChild (pLabel, 1);
 
-	cocos2d::Label* pLabel1 = cocos2d::Label::createWithTTF("Team 2: Mia, Brandon, Daniel, Puia and Johnny", "fonts/Pixeled.ttf", 20);
+	cocos2d::Label* pLabel1 = cocos2d::Label::createWithTTF("Team 2: Mia, Brandon, Daniel, Puia and Johnny", "fonts/Super Mario Bros. 2.ttf", 20);
 
 	pLabel1->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height - 1000));
 

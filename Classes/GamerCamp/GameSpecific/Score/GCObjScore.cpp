@@ -20,7 +20,7 @@ CGCObjScore::CGCObjScore()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	Label* pLabel = Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fScoreTextSize);
+	Label* pLabel = Label::createWithTTF(" ", "fonts/Super Mario Bros. 2.ttf", m_fScoreTextSize);
 	CC_ASSERT(pLabel != nullptr);
 	setScoreText( pLabel );
 
