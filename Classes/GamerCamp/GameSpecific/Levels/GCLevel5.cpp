@@ -607,7 +607,7 @@ void GCLevel5::VOnCreate ()
 
 				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
 
-				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel6 >::CreateScene ()));
+				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 				//	m_bPlayerKeysGathered = true;
 
 					 // Mia: Calls the Function which plays the Door Opening Audio
@@ -667,7 +667,11 @@ void GCLevel5::VOnCreate ()
 			{
 
 				rcMEnemies.setJustCollided (true);
-				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+				if (m_pcGCOScore->getScoreAmount () > m_pcGCOHighScore->getHighScoreValue ())
+				{
+					m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+				}
+			//	m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
 				RequestReset ();
 				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");
@@ -823,7 +827,7 @@ void GCLevel5::VOnUpdate (f32 fTimeStep)
 	if (SkipWasRequested ())
 	{
 		SkipRequestWasHandled ();
-		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel6 >::CreateScene ()));
+		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 
 	}
 
@@ -1147,7 +1151,11 @@ void GCLevel5::BeginContact (b2Contact* pB2Contact)
 		//CGCObjectManager::ObjectKill (&rcEnemies);
 		//m_pcGCTimer->ResetTimer ();
 		//CGCObjectManager::ObjectKill (&rcEnemies);
-		m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+		if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
+		{
+			m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+		}
+		//m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
 		CCLOG ("Player Died.");
 		//m_bPlayerHitHostile = true;
 		//PlayerDeathSceneSwap();

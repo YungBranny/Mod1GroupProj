@@ -667,7 +667,11 @@ void GCLevel2::VOnCreate ()
 			{
 
 				rcMEnemies.setJustCollided (true);
-				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+				//m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+				if (m_pcGCOScore->getScoreAmount () > m_pcGCOHighScore->getHighScoreValue ())
+				{
+					m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+				}
 				RequestReset ();
 				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");
@@ -1147,7 +1151,11 @@ void GCLevel2::BeginContact (b2Contact* pB2Contact)
 		//CGCObjectManager::ObjectKill (&rcEnemies);
 		//m_pcGCTimer->ResetTimer ();
 		//CGCObjectManager::ObjectKill (&rcEnemies);
-		m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+	//	m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+		if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
+		{
+			m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+		}
 		CCLOG ("Player Died.");
 		//m_bPlayerHitHostile = true;
 		//PlayerDeathSceneSwap();
