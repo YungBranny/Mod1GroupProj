@@ -128,11 +128,11 @@ void GCLevel3::addOnTime ()
 
 }
 
-//void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
-//{
-//	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-//	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
-//}
+void GCLevel3::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
+{
+	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/BackgroundMusic/Deep Sea Oil Rig  SvR.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
+}
 
 void GCLevel3::playKeyAudio () // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
@@ -304,7 +304,7 @@ void GCLevel3::VOnCreate ()
 	//	m_pcGCSprBackGround->SetScale (1, 1);
 	//	m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
 	//	m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
-	//	playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
+		playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
 	//}
 
 	m_pcGCTimer = new CGCObjTimer ();
@@ -820,8 +820,8 @@ void GCLevel3::VOnUpdate (f32 fTimeStep)
 		VOnReset ();
 		m_iKeysCollected = 0; // Mia: Resets Keys Collected
 		ResetRequestWasHandled ();
-		//m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Reset
-		//playBackgroundMusic(); // Mia: Calls this Function, so it doesn't overlay
+		m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Reset
+		playBackgroundMusic(); // Mia: Calls this Function, so it doesn't overlay
 	}
 
 	if (SkipWasRequested ())
