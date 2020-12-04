@@ -799,8 +799,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 void CGCGameLayerPlatformer::PlayerDeathSceneSwap()
 {
-	
-	Director::getInstance()->replaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));
+	Director::getInstance()->replaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
 }
 
 void CGCGameLayerPlatformer::HighScore()

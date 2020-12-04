@@ -56,6 +56,7 @@ class GCSwitch;
 class CHCOnjSwitchPlatform1;
 class CHCOnjSwitchPlatform2;
 class CGCObjFallingPlane;
+class CGLossScene;
 
 //////////////////////////////////////////////////////////////////////////
 // sample class that creates a 'game' by deriving from IGCGameLayer

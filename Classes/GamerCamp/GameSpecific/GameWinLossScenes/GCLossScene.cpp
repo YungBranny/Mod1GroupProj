@@ -8,10 +8,10 @@
 #include "MenuScene.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
-#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
+
 
 #include "AppDelegate.h"
-
+#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 
 
 
@@ -51,51 +51,50 @@ void CGCLossScene::VOnCreate()
 	
 	///////////////////////////////////////////////////////////////////////////
 	///Reset Button
-	cocos2d::MenuItemImage* pResetItem
-		= cocos2d::MenuItemImage::create("Loose/CloseNormal.png",
-			"Loose/CloseSelected.png",
+	
+	cocos2d::MenuItemImage* pResetButton
+		= cocos2d::MenuItemImage::create("TexturePacker/Sprites/MainMenu/Buttons/play_normal.png",
+			"TexturePacker/Sprites/MainMenu/Buttons/play_pressed.png",
 			CC_CALLBACK_1(CGCLossScene::Callback_OnResetButton, this));
+
+	pResetButton->setPosition(cocos2d::Vec2(((visibleSize.width  * 0.25f)),
+		((visibleSize.height - (pResetButton->getContentSize().height * 6.5f))))); // fix pressed button position
+
+
 	
-
-	pResetItem->setPosition(cocos2d::Vec2(((visibleSize.width - (pResetItem->getContentSize().width * 0.5f)) + origin.x),
-		(((pResetItem->getContentSize().height * 0.5f) + origin.y))));
-
-	///////////////////////////////////////////////////////////////////////////
-	///Quit Button
-	cocos2d::MenuItemImage* pQuitItem
-		= cocos2d::MenuItemImage::create("Loose/CloseNormal.png",
-			"Loose/CloseSelected.png",
+		cocos2d::MenuItemImage* pQuitItem
+		= cocos2d::MenuItemImage::create("Buttons/QuitButton1.png",
+			"Buttons/QuitButton1.png",
 			CC_CALLBACK_1(CGCLossScene::Callback_OnQuitButton, this));
-	
 
-	pQuitItem->setPosition(cocos2d::Vec2(((visibleSize.width - (pQuitItem->getContentSize().width * 0.5f)) + origin.x),
-		((visibleSize.height - (pQuitItem->getContentSize().height * 0.5f)) + origin.y)));
-	
-	///////////////////////////////////////////////////////////////////////////
-	///making the buttons group together 
-	
-	cocos2d::Menu* pMenu = cocos2d::Menu::create(pResetItem, pQuitItem, nullptr);
+	pQuitItem->setPosition(cocos2d::Vec2(((visibleSize.width  * 0.75f)),
+		(((pQuitItem->getContentSize().height * 1.5) + origin.y + 0.0f))));
+
+	// create menu, it's an autorelease object
+	cocos2d::Menu* pMenu = cocos2d::Menu::create(pResetButton, pQuitItem, nullptr);
 	pMenu->setPosition(cocos2d::Vec2::ZERO);
 	this->addChild(pMenu, 1);
 
+
+	
 
 	///////////////////////////////////////////////////////////////////////////
 	// add label
 	///////////////////////////////////////////////////////////////////////////
 
 	// create and initialize a label
-	cocos2d::Label* pLabel = cocos2d::Label::createWithTTF("Loser!", "fonts/arial.ttf", 100);
+	//cocos2d::Label* pLabel = cocos2d::Label::createWithTTF("Loser!", "fonts/arial.ttf", 100);
 
-	// position the label on the center of the screen
-	pLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height - 50));
+	//// position the label on the center of the screen
+	//pLabel->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height - 50));
 
-	pLabel->setColor(Color3B::MAGENTA);
+	//pLabel->setColor(Color3B::MAGENTA);
 
-	// add the label as a child to this layer
-	this->addChild(pLabel, 1);
+	//// add the label as a child to this layer
+	//this->addChild(pLabel, 1);
 	
 	///////////////////////////////////////////////////////////////////////////
-	const char* pszPlist_background = "TexturePacker/Backgrounds/Placeholder/background.plist";
+	const char* pszPlist_background = "TexturePacker/Sprites/GameOver/game_over.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite();
 		m_pcGCSprBackGround->CreateSprite(pszPlist_background);
@@ -106,12 +105,12 @@ void CGCLossScene::VOnCreate()
 
 	//////////////////////////////////////////////////////////////////////////////////////////
 
-	
-	// set "self" as contact listener
-	B2dGetWorld()->SetContactListener(this);
+	//
+	//// set "self" as contact listener
+	//B2dGetWorld()->SetContactListener(this);
 
-	// load the physics shapes from the plist created with PhysicsEditor
-	B2dLoadShapesFromPlist("PhysicsEditor/GameShapes.plist");
+	//// load the physics shapes from the plist created with PhysicsEditor
+	//B2dLoadShapesFromPlist("PhysicsEditor/GameShapes.plist");
 
 
 	///////////////////////////////////////////////////////////////////////////
@@ -119,7 +118,7 @@ void CGCLossScene::VOnCreate()
 	// this is to allow callback based collision handling with them etc.
 	///////////////////////////////////////////////////////////////////////////
 	///
-	cocos2d::Vec2	v2ScreenCentre_Pixels((origin.x + (visibleSize.width * 0.5f)), (origin.y + (visibleSize.height * 0.5f)));
+	/*cocos2d::Vec2	v2ScreenCentre_Pixels((origin.x + (visibleSize.width * 0.5f)), (origin.y + (visibleSize.height * 0.5f)));
 	cocos2d::Vec2	v2ScreenCentre_B2d = B2dPixelsToWorld(v2ScreenCentre_Pixels);
 
 	f32 fScreenWidthB2d = B2dPixelsToWorld(visibleSize.width);
@@ -131,7 +130,7 @@ void CGCLossScene::VOnCreate()
 	new CGCObjScreenBound(CGCObjScreenBound::EScreenBoundType::Bottom, (v2ScreenCentre_B2d + cocos2d::Vec2(0.0f, -fHalfScreenHeightB2d)), fScreenWidthB2d, 0.5f, 0.0f);
 	new CGCObjScreenBound(CGCObjScreenBound::EScreenBoundType::Top, (v2ScreenCentre_B2d + cocos2d::Vec2(0.0f, fHalfScreenHeightB2d)), fScreenWidthB2d, 0.5f, 0.0f);
 	new CGCObjScreenBound(CGCObjScreenBound::EScreenBoundType::Left, (v2ScreenCentre_B2d + cocos2d::Vec2(-fHalfScreenWidthB2d, 0.0f)), 0.5f, fScreenHeightB2d, 0.0f);
-	new CGCObjScreenBound(CGCObjScreenBound::EScreenBoundType::Right, (v2ScreenCentre_B2d + cocos2d::Vec2(fHalfScreenWidthB2d, 0.0f)), 0.5f, fScreenHeightB2d, 0.0f);
+	new CGCObjScreenBound(CGCObjScreenBound::EScreenBoundType::Right, (v2ScreenCentre_B2d + cocos2d::Vec2(fHalfScreenWidthB2d, 0.0f)), 0.5f, fScreenHeightB2d, 0.0f);*/
 
 
 }// void CGCGameLayerPlatformer::VOnCreate() { ...
@@ -171,7 +170,7 @@ void CGCLossScene::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCLossScene::Callback_OnQuitButton(Ref* pSender)
 {
-	ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
+	CCDirector::getInstance()->end();
 }
 
 
