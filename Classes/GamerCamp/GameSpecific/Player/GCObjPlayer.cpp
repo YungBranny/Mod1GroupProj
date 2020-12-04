@@ -516,6 +516,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
 			float impulse = GetPhysicsBody ()->GetMass () * 35;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse * 1.07f), GetPhysicsBody ()->GetWorldCenter (), true);
+			playJumpUpAudio();
 		};
 		if (GetVelocity ().x < 0)
 		{
@@ -655,6 +656,17 @@ void CGCObjPlayer::ChangeAnimation()
 
 
 }
+
+void CGCObjPlayer::playJumpUpAudio()
+{
+	m_pcJumpUpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcJumpUpSoundEffectAudio->playEffect("Sounds/Collectables/Key/item_pickup.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+}
+
+//void CGCObjPlayer::playJumpDownAudio()
+//{
+//
+//}
 
 
 // Mia: Can use for refactoring once Lives is put into a GroupLives Class

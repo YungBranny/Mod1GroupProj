@@ -112,7 +112,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer()
 
 	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
 
-	m_iTimerPickedUp = 0; // Mia: Sets Default Timer Pick Up to 0
+	//m_iTimerPickedUp = 0; // Mia: Sets Default Timer Pick Up to 0
 	
 	
 	
@@ -669,7 +669,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 					rcPickUp.setJustCollided (true); // Mia: When player has collided with a Timer PickUp
 					CGCObjectManager::ObjectKill (&rcPickUp); // Mia: Destroy the Timer PickUp Object Sprite
 					addOnTime (); // Mia: Calls the Function which adds on Timer Increase Value (20) to whatever is the current Air Time
-					playTimerPickUpAudio (); // Mia: Calls the Function which plays Timer PickUp Audio
+					//playTimerPickUpAudio (); // Mia: Calls the Function which plays Timer PickUp Audio
 				}
 			}
 		}

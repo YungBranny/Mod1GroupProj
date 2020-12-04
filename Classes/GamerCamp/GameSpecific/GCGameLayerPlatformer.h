@@ -142,7 +142,7 @@ public:
 
 	void playKeyAudio();
 
-	void playTimerPickUpAudio();
+	//void playTimerPickUpAudio();
 
 	void playDoorOpeningAudio();
 

@@ -16,6 +16,8 @@
 	#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 #endif
 
+#include "SimpleAudioEngine.h"
+
 
 //////////////////////////////////////////////////////////////////////////
 // forward declare
@@ -109,6 +111,9 @@ private:
 	b2Vec2					m_bv2jumpVel;
 
 	b2Vec2					m_bv2CurrentPos;
+
+	CocosDenshion::SimpleAudioEngine* m_pcJumpUpSoundEffectAudio;
+	//CocosDenshion::SimpleAudioEngine* m_pcJumpDownSoundEffectAudio;
 
 public:
 	CGCObjPlayer();
@@ -239,6 +244,10 @@ public:
 	void LivesUI();
 
 	void ChangeAnimation();
+
+	void playJumpUpAudio();
+
+	//void playJumpDownAudio();
 
 	cocos2d::Label* getLivesText() const { return m_pLivesText; }
 
