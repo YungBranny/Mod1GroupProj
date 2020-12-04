@@ -103,7 +103,7 @@ private:
 
 	int			m_iHighScore;
 
-	//CocosDenshion::SimpleAudioEngine* m_pcGCBackgroundAudio;
+	CocosDenshion::SimpleAudioEngine* m_pcGCBackgroundAudio;
 	CocosDenshion::SimpleAudioEngine* m_pcGCSoundEffectsAudio;
 
 public:
@@ -136,7 +136,7 @@ public:
 
 	void addOnTime ();
 
-	//void playBackgroundMusic();
+	void playBackgroundMusic();
 
 	void playKeyAudio ();
 
