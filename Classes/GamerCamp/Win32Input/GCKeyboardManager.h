@@ -153,7 +153,6 @@ inline bool CGCKeyboardManager::ActionIsPressed( u32 uAction )	const
 	return m_pabActionStates_CurrentFrame[ uAction ];
 }
 
-
 //////////////////////////////////////////////////////////////////////////
 // will return true if uAction was pressed last frame, but is now not pressed
 //////////////////////////////////////////////////////////////////////////
@@ -163,4 +162,5 @@ inline bool CGCKeyboardManager::ActionHasJustBeenReleased( u32 uAction ) const
 	// n.b. && returns bool
 	return( ( !m_pabActionStates_CurrentFrame[ uAction ] ) && m_pabActionStates_LastFrame[ uAction ] );
 }
+
 #endif //#ifndef _GCKEYBOARDMANAGER_H_

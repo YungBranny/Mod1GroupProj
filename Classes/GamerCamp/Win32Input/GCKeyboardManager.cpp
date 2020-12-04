@@ -52,11 +52,13 @@ void CGCKeyboardManager::Initialise( u32 uNumActions, const cocos2d::EventKeyboa
 //////////////////////////////////////////////////////////////////////////
 void CGCKeyboardManager::Reset( void )
 {
+	m_pKeyboardInput->Reset ();
 	memset( m_abActionBuffer_One, 0, sizeof( m_abActionBuffer_One ) );
 	memset( m_abActionBuffer_Two, 0, sizeof( m_abActionBuffer_Two ) );
 
 	m_pabActionStates_CurrentFrame	= m_abActionBuffer_One;
 	m_pabActionStates_LastFrame		= m_abActionBuffer_Two;
+	
 }
 
 
