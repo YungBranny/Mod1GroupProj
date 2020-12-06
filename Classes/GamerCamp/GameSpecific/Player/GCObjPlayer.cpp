@@ -660,7 +660,7 @@ void CGCObjPlayer::ChangeAnimation()
 void CGCObjPlayer::playJumpUpAudio()
 {
 	m_pcJumpUpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcJumpUpSoundEffectAudio->playEffect("Sounds/Collectables/Key/item_pickup.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcJumpUpSoundEffectAudio->playEffect("", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 //void CGCObjPlayer::playJumpDownAudio()
