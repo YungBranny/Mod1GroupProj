@@ -606,7 +606,10 @@ void GCLevel3::VOnCreate ()
 			{
 				playDoorOpeningAudio ();
 
-				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
+				{
+					m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+				}
 
 				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel4 >::CreateScene ()));
 				//	m_bPlayerKeysGathered = true;
