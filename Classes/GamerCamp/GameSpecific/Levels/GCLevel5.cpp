@@ -282,6 +282,8 @@ void GCLevel5::VOnCreate ()
 
 	m_pcGCOScore = new CGCObjScore ();
 
+	m_pcGCOScore->ScoreCheckOpen(m_pcGCOScore);
+	
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
 
@@ -605,7 +607,12 @@ void GCLevel5::VOnCreate ()
 			{
 				playDoorOpeningAudio ();
 
-				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+				m_pcGCOScore->ScoreCheckClose(m_pcGCOScore);
+
+				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
+				{
+					m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+				}
 
 				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 				//	m_bPlayerKeysGathered = true;

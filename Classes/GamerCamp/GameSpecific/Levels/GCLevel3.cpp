@@ -283,6 +283,8 @@ void GCLevel3::VOnCreate ()
 
 	m_pcGCOScore = new CGCObjScore ();
 
+	m_pcGCOScore->ScoreCheckOpen(m_pcGCOScore);
+	
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
 
@@ -606,6 +608,8 @@ void GCLevel3::VOnCreate ()
 			{
 				playDoorOpeningAudio ();
 
+				m_pcGCOScore->ScoreCheckClose(m_pcGCOScore);
+
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
 					m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
@@ -813,7 +817,8 @@ void GCLevel3::VOnUpdate (f32 fTimeStep)
 	//	return;
 	//}
 
-
+	m_pcGCOScore->Update();
+	
 	m_pcGCTimer->Update (fTimeStep);
 
 	m_pcGCOHighScore->Update ();

@@ -36,7 +36,7 @@ CGCObjScore::~CGCObjScore()
 };
 
 
-void CGCObjScore::ScoreCheckOpen()
+void CGCObjScore::ScoreCheckOpen(CGCObjScore* m_score)
 {
 	std::ifstream readFile;
 	readFile.open("Score.txt");
@@ -51,7 +51,7 @@ void CGCObjScore::ScoreCheckOpen()
 
 
 
-void CGCObjScore::ScoreCheckClose()
+void CGCObjScore::ScoreCheckClose(CGCObjScore* m_score)
 {
 
 
@@ -71,7 +71,7 @@ void CGCObjScore::ScoreCheckClose()
 }
 
 
-void CGCObjScore::ScoreClear()
+void CGCObjScore::ScoreClear(CGCObjScore* m_score)
 {
 
 

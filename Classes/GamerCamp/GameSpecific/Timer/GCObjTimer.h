@@ -7,6 +7,7 @@
 #include "GamerCamp/GameSpecific/Items/GCObjItem.h"
 #include "../../GCCocosInterface/GCObjSpritePhysics.h"
 #include "GamerCamp/GCCocosInterface/GCObjSprite.h"
+#include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 
 #include "cocos2d/cocos/2d/CCProgressTimer.h"
 #include "cocos2d/cocos/2d/CCSprite.h"
@@ -41,7 +42,7 @@ private:
 	float m_fTimerBarSpeedDecrease;
 	float m_fTimerBarMidPoint;
 	
-
+	CGCObjScore m_score;
 	
 	cocos2d::Label* m_pTimerText;
 
