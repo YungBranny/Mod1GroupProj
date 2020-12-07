@@ -731,6 +731,42 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		}
 	);
 
+
+	GetCollisionManager ().AddCollisionHandler ([this](CGCMovingEnemies& rcMEnemies, CGCObjSwitchPlatform1& rcSwitchPlatform, const b2Contact& rcContact) -> void
+		{
+			if (rcMEnemies.getChangedDir () == false)
+			{
+				if (rcMEnemies.getDefaultDirection () == true)
+				{
+					rcMEnemies.setChangedDir (true);
+					rcMEnemies.setDefaultDirection (false);
+				}
+				else if (rcMEnemies.getDefaultDirection () == false)
+				{
+					rcMEnemies.setChangedDir (true);
+					rcMEnemies.setDefaultDirection (true);
+				}
+			}
+		
+		});
+
+	GetCollisionManager ().AddCollisionHandler ([this](CGCMovingEnemies& rcMEnemies, CGCObjSwitchPlatform2& rcSwitchPlatform, const b2Contact& rcContact) -> void
+		{
+			if (rcMEnemies.getChangedDir () == false)
+			{
+				if (rcMEnemies.getDefaultDirection () == true)
+				{
+					rcMEnemies.setChangedDir (true);
+					rcMEnemies.setDefaultDirection (false);
+				}
+				else if (rcMEnemies.getDefaultDirection () == false)
+				{
+					rcMEnemies.setChangedDir (true);
+					rcMEnemies.setDefaultDirection (true);
+				}
+			}
+		
+		});
 	GetCollisionManager ().AddCollisionHandler
 	(
 		//Brandon Middleton
