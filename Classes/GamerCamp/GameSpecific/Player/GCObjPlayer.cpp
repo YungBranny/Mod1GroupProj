@@ -219,7 +219,7 @@ f32 g_GCGameLayer_fDamping						= 0.999f;	// unitless
 //////////////////////////////////////////////////////////////////////////
 void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 {
-	if (GetVelocity ().y > 0 || GetVelocity ().y < 0)
+	if (GetVelocity ().y > 3 || GetVelocity ().y < -3)
 	{
 		m_bCanJump = false;
 	}
@@ -606,7 +606,7 @@ void CGCObjPlayer::ChangeAnimation()
 	const char* pszAnim_WillyRun = "Run";
 	const char* pszAnim_WillyIdle = "Idle";
 	const char* pszAnim_WillyJump = "Jump";
-	static int stop = 0;
+	static int switchAnim = 0;
 
 	// animate!
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
@@ -616,9 +616,9 @@ void CGCObjPlayer::ChangeAnimation()
 
 	case EChangeAnimation::Run:
 	{
-		if (stop != 1)
+		if (switchAnim != 1)
 		{
-			stop = 1;
+			switchAnim = 1;
 			StopAction ();
 			RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_WillyRun)));
 		}
@@ -627,9 +627,9 @@ void CGCObjPlayer::ChangeAnimation()
 	case EChangeAnimation::Idle:
 
 	{
-		if (stop != 2)
+		if (switchAnim != 2)
 		{
-			stop = 2;
+			switchAnim = 2;
 			StopAction ();
 			RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_WillyIdle)));
 		}
@@ -639,9 +639,9 @@ void CGCObjPlayer::ChangeAnimation()
 	case EChangeAnimation::Jump:
 
 	{
-		if (stop != 3)
+		if (switchAnim != 3)
 		{
-			stop = 3;
+			switchAnim = 3;
 			StopAction ();
 			RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_WillyJump)));
 		}
