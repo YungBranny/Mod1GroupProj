@@ -112,8 +112,7 @@ private:
 
 	b2Vec2					m_bv2CurrentPos;
 
-	CocosDenshion::SimpleAudioEngine* m_pcJumpUpSoundEffectAudio;
-	//CocosDenshion::SimpleAudioEngine* m_pcJumpDownSoundEffectAudio;
+	CocosDenshion::SimpleAudioEngine* m_pcJumpSoundEffectAudio;
 
 public:
 	CGCObjPlayer();
@@ -247,8 +246,7 @@ public:
 
 	void playJumpUpAudio();
 
-
-	//void playJumpDownAudio();
+	void playJumpDownAudio();
 
 	cocos2d::Label* getLivesText() const { return m_pLivesText; }
 
