@@ -358,6 +358,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPirate.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCOFallingPlane2.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -644,6 +647,9 @@
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPirate.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCOFallingPlane2.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
