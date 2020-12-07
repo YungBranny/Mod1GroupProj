@@ -61,7 +61,6 @@
 #include "GamerCamp/GameSpecific/NewPlatforms/GCSwitch.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjSwitchPlatform1.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/CGCObjSwitchPlatform2.h"
-#include "GamerCamp/GameSpecific/Enemies/GCOFallingPlane.h"
 
 
 #include "AppDelegate.h"
@@ -506,28 +505,6 @@ void GCLevel5::VOnCreate ()
 			}
 		});
 
-	GetCollisionManager ().AddCollisionHandler ([](CGCObjFallingPlane& rcPlane, CGCObjScalingBasicPlatform& rcPlatform, const b2Contact& rcContact) -> void
-		{
-
-			//CGCObjectManager::ObjectKill (&rcPlane);
-			rcPlane.ResetPosition ();
-		});
-
-	GetCollisionManager ().AddCollisionHandler
-	(
-		[this]
-	(CGCObjFallingPlane& rcPlane, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
-		{
-			//CGCObjectManager::ObjectKill(&rcPlane);
-			if (rcPlane.getJustCollided () == false)
-			{
-				rcPlane.setJustCollided (true);
-				rcPlane.ResetPosition ();
-				CCLOG ("Player hit by Plane.");
-				rcPlayer.DecrementLives ();
-			}
-		}
-	);
 
 	//GetCollisionManager ().AddCollisionHandler
 	//(
