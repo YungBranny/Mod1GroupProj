@@ -26,6 +26,12 @@ public:
 	int getScoreAmount() const { return m_iScoreAmount; }
 	void setScoreAmount(int i) { m_iScoreAmount = i; }
 
+	void ScoreCheckOpen();
+							
+	void ScoreCheckClose();
+
+	void ScoreClear();
+
 	void IncreaseScore();
 
 	void ResetScore();

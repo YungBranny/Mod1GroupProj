@@ -96,6 +96,8 @@ public:
 
 	void ClampTimer();
 
+	void EndGameDecrease();
+
 	virtual void VOnReset(void);
 	
 	///////////////////////////////////////////////////////////////////////////////

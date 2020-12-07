@@ -605,7 +605,10 @@ void GCLevel4::VOnCreate ()
 			{
 				playDoorOpeningAudio ();
 
-				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
+				{
+					m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+				}
 
 				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel5 >::CreateScene ()));
 				//	m_bPlayerKeysGathered = true;
@@ -667,7 +670,14 @@ void GCLevel4::VOnCreate ()
 			{
 
 				rcMEnemies.setJustCollided (true);
-				m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+
+
+				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
+				{
+					m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+				}
+
+
 				RequestReset ();
 				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");

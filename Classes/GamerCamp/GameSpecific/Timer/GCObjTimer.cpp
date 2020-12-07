@@ -20,21 +20,21 @@ using namespace cocos2d;
 	:CGCObjSprite(GetGCTypeIDOf(CGCObjTimer))
 	,m_fTotalTimerDuration		 (		100.0f		)   // Max value for the timer
     ,m_fTimerDecreaseValue		 (		0.0015f		)	// The Amount decremented each time
-	,m_iTimerIncreaseValue       (       20         )	// The Amount the Timer increases when the Timer pickup is picked up
+	,m_iTimerIncreaseValue		 (       20			)	// The Amount the Timer increases when the Timer pickup is picked up
     ,m_fMaxTimeBuffer			 (		100.0f		)	// Max value timer resets too
-	,m_fCurrentTimeBuffer        ( m_fMaxTimeBuffer )	// higher the value  slower the timer is
-	,m_fScaleX					 (     2.0f			)	// Scale X for Timer bar
-	,m_fScaleY					 (		0.1f		)	// Scale Y for Timer bar
-	,m_fCurrentXScale			 (    m_fScaleX		)	// Current scale
-	,m_fScaleDecreaseX			 (		40.0f		)	// Scale Decrease X
-	,m_fScaleDecreaseY			 (		0.1f		)	// Scale Decrease Y
+	,m_fCurrentTimeBuffer		 ( m_fMaxTimeBuffer		)	// higher the value  slower the timer is
+	,m_fScaleX			 (     2.0f			)	// Scale X for Timer bar
+	,m_fScaleY			 (		0.1f		)	// Scale Y for Timer bar
+	,m_fCurrentXScale		 (    m_fScaleX			)	// Current scale
+	,m_fScaleDecreaseX		 (		40.0f		)	// Scale Decrease X
+	,m_fScaleDecreaseY		 (		0.1f		)	// Scale Decrease Y
 	//,m_iTimerTextOutlineSize	 (		1	     	)	// Text outline width
 	//,m_fTimerTextFontSize		 (		50.0f		)	// Text font size
 	,m_fTimerBarStartPosX		 (		1000		)	// Timer bar start pos X
 	,m_fTimerBarStartPosY		 (		1000		)	// Timer bar start pos Y
-	,m_iTimerBarHeightX			 (		425			)	// Timer bar Height on Screen
-	,m_iTimerBarHeightY			 (		1000		)	// Timer bar Height on Screen
-	,m_iTimerBufferDecrease		 (		1			)	// Timer buffer decrease value
+	,m_iTimerBarHeightX		 (		425		)	// Timer bar Height on Screen
+	,m_iTimerBarHeightY		 (		1000		)	// Timer bar Height on Screen
+	,m_iTimerBufferDecrease		 (		1		)	// Timer buffer decrease value
 	,m_fTimerBarSpeedDecrease	 (		1.0f		)
 	,m_fTimerBarMidPoint		 (		0.5f		)
     
@@ -166,6 +166,12 @@ void CGCObjTimer::ClampTimer()
 	}
 
  
+}
+
+void CGCObjTimer::EndGameDecrease()
+{
+	m_fCurrentTime --;
+
 }
 
 //void CGCObjTimer::VOnResourceAcquire(void)

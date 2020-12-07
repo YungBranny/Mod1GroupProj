@@ -1,4 +1,5 @@
 #include <string.h>
+#include <fstream>
 
 #include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 
@@ -34,6 +35,62 @@ CGCObjScore::~CGCObjScore()
 
 };
 
+
+void CGCObjScore::ScoreCheckOpen()
+{
+	std::ifstream readFile;
+	readFile.open("Score.txt");
+
+	if (readFile.is_open())
+	{
+		readFile >> m_iScoreAmount;
+	}
+	readFile.close();
+  
+}
+
+
+
+void CGCObjScore::ScoreCheckClose()
+{
+
+
+	std::ofstream writeFile;
+	writeFile.open("Score.txt");
+
+	if (writeFile.is_open())
+	{
+
+		writeFile << m_iScoreAmount;
+
+		writeFile.close();
+	}
+
+
+
+}
+
+
+void CGCObjScore::ScoreClear()
+{
+
+
+	std::ofstream writeFile;
+	writeFile.open("Score.txt");
+
+	if (writeFile.is_open())
+	{
+
+		writeFile << 0;
+
+		writeFile.close();
+	}
+
+}
+
+
+
+
 void CGCObjScore::IncreaseScore()
 {
 	m_iScoreAmount += 100;
@@ -47,5 +104,5 @@ void CGCObjScore::ResetScore()
 
 void CGCObjScore::Update()
 {
-
+	getScoreText()->setString("Score: " + std::to_string(m_iScoreAmount));
 };
