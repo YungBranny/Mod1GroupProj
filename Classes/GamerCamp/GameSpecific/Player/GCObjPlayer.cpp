@@ -528,6 +528,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		{
 			float impulse = GetPhysicsBody ()->GetMass () * 36.5;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse), GetPhysicsBody ()->GetWorldCenter (), true);
+			playJumpUpAudio();
 		};
 
 	
@@ -660,7 +661,7 @@ void CGCObjPlayer::ChangeAnimation()
 void CGCObjPlayer::playJumpUpAudio()
 {
 	m_pcJumpUpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcJumpUpSoundEffectAudio->playEffect("", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcJumpUpSoundEffectAudio->playEffect("Sounds/Jumping/jump_up.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 //void CGCObjPlayer::playJumpDownAudio()
