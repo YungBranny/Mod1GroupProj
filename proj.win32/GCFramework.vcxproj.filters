@@ -85,6 +85,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Score">
       <UniqueIdentifier>{cbc768e0-b2fa-4b9c-a7d2-071efd09a4cc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Enemies\Planes">
+      <UniqueIdentifier>{730fe7fe-0d21-44a6-bfe4-c0fe86671e20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -312,9 +315,6 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCSwitch.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCOFallingPlane.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Score\GCObjHighScore.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
     </ClCompile>
@@ -358,8 +358,41 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPirate.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCOFallingPlane2.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane2.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane3.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane4.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane5.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane6.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane7.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane8.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane9.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane10.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane11.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane12.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -603,9 +636,6 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCSwitch.h">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCOFallingPlane.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Score\GCObjHighScore.h">
       <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
     </ClInclude>
@@ -649,8 +679,41 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPirate.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCOFallingPlane2.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane2.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane3.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane4.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane5.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane6.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane7.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane8.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane9.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane10.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane11.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane12.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
