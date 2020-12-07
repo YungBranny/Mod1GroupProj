@@ -679,9 +679,6 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyNPirate.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane2.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
     </ClInclude>
@@ -713,6 +710,9 @@
       <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane12.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
     </ClInclude>
   </ItemGroup>
