@@ -298,11 +298,12 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	//// Mia: Add the label as a child to this Game Layer
 	//this->addChild(pLabel, 1);
 
+	
 	m_pcGCOScore = new CGCObjScore ();
 
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
-	
+	m_pcGCOScore->ScoreClear(m_pcGCOScore);
 	
 	m_pcGCOHighScore = new CGCObjHighScore(m_pcGCOScore);
 
@@ -624,13 +625,14 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		[this]
 	(CGCObjExitDoor& rcExitDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
-
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
 				playDoorOpeningAudio ();
 				
 				m_pcGCOScore->ScoreCheckClose(m_pcGCOScore);
 
+				
+				//m_pcGCOPlayer->LivesCheckClose();
 				
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{

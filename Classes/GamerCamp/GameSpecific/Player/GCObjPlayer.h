@@ -8,6 +8,9 @@
 #include "2d/CCLabel.h"
 #include "GamerCamp/GCCocosInterface/GCObjSprite.h"
 
+
+#include "GamerCamp/GameSpecific/Score/GCObjScore.h"
+
 #ifndef _GCOBJSPRITEPHYSICS_H_
 	#include "../../GCCocosInterface/GCObjSpritePhysics.h"
 #endif
@@ -126,6 +129,8 @@ public:
 		
 	};
 
+	CGCObjScore* m_score;
+	
 	EChangeAnimation m_eChangeAnimation;
 
 	bool getOnTravelator() const { return m_bOnTravelator; }
@@ -232,6 +237,10 @@ public:
 
 	void DecrementLives();
 
+	void LivesCheckOpen();
+	
+	void LivesCheckClose();
+	
 	void ResetLives();
 
 	void UpdateLives();

@@ -3,6 +3,7 @@
 // Distributed under the MIT license - see readme.md
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #include <memory.h>
+#include <fstream>
 
 #include "AppDelegate.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
@@ -136,6 +137,36 @@ void CGCObjPlayer::VOnResourceAcquire()
 }
 
 
+void CGCObjPlayer::LivesCheckOpen()
+{
+
+	std::ifstream readFile;
+	readFile.open("Lives.txt");
+
+	if (readFile.is_open())
+	{
+		readFile >> m_iNumberOfLives;
+	}
+	readFile.close();
+
+};
+
+void CGCObjPlayer::LivesCheckClose()
+{
+
+	std::ofstream writeFile;
+	writeFile.open("Lives.txt");
+	
+	if(writeFile.is_open())
+	{
+		
+			writeFile << m_iNumberOfLives;
+
+		writeFile.close();
+	}
+		
+		
+}
 
 //////////////////////////////////////////////////////////////////////////
 // 
@@ -548,7 +579,7 @@ void CGCObjPlayer::DecrementLives()
 //Function to reset lives
 void CGCObjPlayer::ResetLives()
 {
-	m_iNumberOfLives = 3;
+	//m_iNumberOfLives = 3;
 }
 
 void CGCObjPlayer::FallDamage()

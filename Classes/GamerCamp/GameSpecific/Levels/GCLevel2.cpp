@@ -285,7 +285,7 @@ void GCLevel2::VOnCreate ()
 	
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
-	
+	//m_pcGCOPlayer->LivesCheckOpen();
 
 	m_pcGCOHighScore = new CGCObjHighScore (m_pcGCOScore);
 
@@ -584,6 +584,8 @@ void GCLevel2::VOnCreate ()
 				playDoorOpeningAudio ();
 
 				m_pcGCOScore->ScoreCheckClose(m_pcGCOScore);
+
+				//m_pcGCOPlayer->LivesCheckClose();
 				
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
