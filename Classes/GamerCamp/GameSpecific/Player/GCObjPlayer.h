@@ -247,6 +247,7 @@ public:
 
 	void playJumpUpAudio();
 
+
 	//void playJumpDownAudio();
 
 	cocos2d::Label* getLivesText() const { return m_pLivesText; }
