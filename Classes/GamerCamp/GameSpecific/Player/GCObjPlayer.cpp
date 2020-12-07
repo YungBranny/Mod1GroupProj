@@ -511,12 +511,12 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 
 		m_eChangeAnimation = EChangeAnimation::Jump;
 		ChangeAnimation ();
+		playJumpUpAudio();
 		if (GetVelocity ().x > 0)
 		{
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
 			float impulse = GetPhysicsBody ()->GetMass () * 35;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse * 1.07f), GetPhysicsBody ()->GetWorldCenter (), true);
-			playJumpUpAudio();
 		};
 		if (GetVelocity ().x < 0)
 		{
@@ -528,7 +528,6 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		{
 			float impulse = GetPhysicsBody ()->GetMass () * 36.5;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse), GetPhysicsBody ()->GetWorldCenter (), true);
-			playJumpUpAudio();
 		};
 
 	
@@ -660,14 +659,15 @@ void CGCObjPlayer::ChangeAnimation()
 
 void CGCObjPlayer::playJumpUpAudio()
 {
-	m_pcJumpUpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcJumpUpSoundEffectAudio->playEffect("Sounds/Jumping/jump_up.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcJumpSoundEffectAudio->playEffect("Sounds/Jumping/jump_up.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
-//void CGCObjPlayer::playJumpDownAudio()
-//{
-//
-//}
+void CGCObjPlayer::playJumpDownAudio()
+{
+	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcJumpSoundEffectAudio->playEffect("Sounds/Jumping/jump_down.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+}
 
 
 // Mia: Can use for refactoring once Lives is put into a GroupLives Class
