@@ -84,8 +84,8 @@
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>enemies</Name>
       <Grid>
-        <Width>30</Width>
-        <Height>30</Height>
+        <Width>15</Width>
+        <Height>15</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
