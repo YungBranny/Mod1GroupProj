@@ -524,17 +524,17 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			float impulse = GetPhysicsBody ()->GetMass () * 35;
 			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse* 1.07f), GetPhysicsBody ()->GetWorldCenter (), true);
 		};
-		if (GetVelocity ().x == 0 )
+		if( GetVelocity().x == 0 )
 		{
-			float impulse = GetPhysicsBody ()->GetMass () * 36.5;
-			GetPhysicsBody ()->ApplyLinearImpulse (b2Vec2 (0, impulse), GetPhysicsBody ()->GetWorldCenter (), true);
+			float impulse = GetPhysicsBody()->GetMass() * 36.5;
+			GetPhysicsBody()->ApplyLinearImpulse(b2Vec2(0, impulse), GetPhysicsBody()->GetWorldCenter(), true);
 		};
-
-	
-		
-		
 	}
 
+	//else if( GetVelocity().y > 0 )
+	//{
+	//	playJumpDownAudio();
+	//}
 }
 
 //Function to be called when losing a life
@@ -666,22 +666,14 @@ void CGCObjPlayer::playJumpUpAudio()
 void CGCObjPlayer::playJumpDownAudio()
 {
 	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcJumpSoundEffectAudio->playEffect("Sounds/Jumping/jump_down.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcJumpSoundEffectAudio->playEffect("Sounds/Jumping/jump_down.wav", false); // Mia: Play Audio by locating File, set to 'False' to not
 }
 
-
-// Mia: Can use for refactoring once Lives is put into a GroupLives Class
-//void CGCObjPlayer::CreateLives()
-//{
-//	for( i32 iLoop = 0; iLoop < m_iNumberOfLives; ++iLoop )
-//	{
-//		m_v2LivesStartPosition = cocos2d::Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY);
-//		Sprite* m_pLivesUI = new Sprite();
-//		m_pLivesUI = Sprite::create("Lives/ui_life_full.png");
-//		m_pLivesUI->setPosition(m_v2LivesStartPosition);
-//		m_fLivesStartPositionX += m_fLivesSpacingX;
-//	}
-//}
+void CGCObjPlayer::playRunAudio()
+{
+	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+	m_pcJumpSoundEffectAudio->playEffect("Sounds/wilfred_run_1.mp3", false); // Mia: Play Audio by locating File, set to 'False' to not
+}
 
 //////////////////////////////////////////////////////////////////////////
 // this function exists purely to better illustrate the EXAMPLE collision 

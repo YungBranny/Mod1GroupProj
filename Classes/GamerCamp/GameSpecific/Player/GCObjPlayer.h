@@ -248,6 +248,8 @@ public:
 
 	void playJumpDownAudio();
 
+	void playRunAudio();
+
 	cocos2d::Label* getLivesText() const { return m_pLivesText; }
 
 	void setLivesText(cocos2d::Label* t) { m_pLivesText = t; }
