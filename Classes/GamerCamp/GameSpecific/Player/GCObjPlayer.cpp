@@ -137,36 +137,7 @@ void CGCObjPlayer::VOnResourceAcquire()
 }
 
 
-void CGCObjPlayer::LivesCheckOpen()
-{
 
-	std::ifstream readFile;
-	readFile.open("Lives.txt");
-
-	if (readFile.is_open())
-	{
-		readFile >> m_iNumberOfLives;
-	}
-	readFile.close();
-
-};
-
-void CGCObjPlayer::LivesCheckClose()
-{
-
-	std::ofstream writeFile;
-	writeFile.open("Lives.txt");
-	
-	if(writeFile.is_open())
-	{
-		
-			writeFile << m_iNumberOfLives;
-
-		writeFile.close();
-	}
-		
-		
-}
 
 //////////////////////////////////////////////////////////////////////////
 // 
@@ -706,6 +677,36 @@ void CGCObjPlayer::playRunAudio()
 	m_pcJumpSoundEffectAudio->playEffect("Sounds/wilfred_run_1.mp3", false); // Mia: Play Audio by locating File, set to 'False' to not
 }
 
+void CGCObjPlayer::LivesCheckOpen()
+{
+
+	std::ifstream readFile;
+	readFile.open("Lives.txt");
+
+	if (readFile.is_open())
+	{
+		readFile >> m_iNumberOfLives;
+	}
+	readFile.close();
+
+};
+
+void CGCObjPlayer::LivesCheckClose()
+{
+
+	std::ofstream writeFile;
+	writeFile.open("Lives.txt");
+
+	if (writeFile.is_open())
+	{
+
+		writeFile << m_iNumberOfLives;
+
+		writeFile.close();
+	}
+
+
+}
 //////////////////////////////////////////////////////////////////////////
 // this function exists purely to better illustrate the EXAMPLE collision 
 // detection functionality in CGCGameLayerPlatformer
