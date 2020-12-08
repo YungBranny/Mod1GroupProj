@@ -129,13 +129,13 @@ void GCLevel5::addOnTime ()
 void GCLevel5::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
 {
 	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/BackgroundMusic/Crystal Coral Reef SvR.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
+	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/BackgroundMusic/CrystalCoralReefSvR.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
 }
 
 void GCLevel5::playKeyAudio () // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance ();
-	m_pcGCSoundEffectsAudio->playEffect ("Sounds/Collectables/Key/CollectKey.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio->playEffect ("Sounds/Collectables/Key/item_pickup.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 

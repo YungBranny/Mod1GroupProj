@@ -135,7 +135,7 @@ void GCLevel13::addOnTime()
 void GCLevel13::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Key/CollectKey.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
+	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Key/item_pickup.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
 
