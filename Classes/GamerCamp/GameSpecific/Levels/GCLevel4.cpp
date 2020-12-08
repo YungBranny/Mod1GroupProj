@@ -1309,10 +1309,11 @@ void GCLevel4::PreSolve (b2Contact* pB2Contact, const b2Manifold* pOldManifold)
 			m_pcGCOPlayer->FallDamage ();
 
 		}
-		//if (m_pcGCOPlayer->getPlayerDiedFromFalling())
-		//{
-		//	CGCObjectManager::ObjectKill (m_pcGCOPlayer);
-		//}
+		if( m_pcGCOPlayer->getPlayerDiedFromFalling() )
+		{
+			m_pcGCOPlayer->DecrementLives();
+			RequestReset();
+		}
 
 	}
 
