@@ -954,10 +954,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ 31.000,31.028 }</string>	
-								<string>{ -32.000,30.028 }</string>	
-								<string>{ -32.000,-28.972 }</string>	
-								<string>{ 31.000,-28.972 }</string>
+								<string>{ -30.000,30.028 }</string>	
+								<string>{ -30.000,-29.972 }</string>	
+								<string>{ 30.000,-29.972 }</string>	
+								<string>{ 30.000,30.028 }</string>
 							</array>
 						</array>
                     </dict>

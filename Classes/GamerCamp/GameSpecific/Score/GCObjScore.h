@@ -26,11 +26,11 @@ public:
 	int getScoreAmount() const { return m_iScoreAmount; }
 	void setScoreAmount(int i) { m_iScoreAmount = i; }
 
-	void ScoreCheckOpen(CGCObjScore* m_score);
+	void ScoreReadFile(CGCObjScore* m_score);
 							
-	void ScoreCheckClose(CGCObjScore* m_score);
+	void ScoreWriteFile(CGCObjScore* m_score);
 
-	void ScoreClear(CGCObjScore* m_score);
+	void ScoreClearFile(CGCObjScore* m_score);
 
 	void IncreaseScore();
 

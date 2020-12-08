@@ -677,7 +677,7 @@ void CGCObjPlayer::playRunAudio()
 	m_pcJumpSoundEffectAudio->playEffect("Sounds/wilfred_run_1.mp3", false); // Mia: Play Audio by locating File, set to 'False' to not
 }
 
-void CGCObjPlayer::LivesCheckOpen()
+void CGCObjPlayer::PlayerLivesReadFile()
 {
 
 	std::ifstream readFile;
@@ -691,7 +691,7 @@ void CGCObjPlayer::LivesCheckOpen()
 
 };
 
-void CGCObjPlayer::LivesCheckClose()
+void CGCObjPlayer::PlayerLivesWriteFile()
 {
 
 	std::ofstream writeFile;

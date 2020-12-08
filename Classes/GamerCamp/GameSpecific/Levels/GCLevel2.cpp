@@ -281,15 +281,15 @@ void GCLevel2::VOnCreate ()
 
 	m_pcGCOScore = new CGCObjScore ();
 	
-	m_pcGCOScore->ScoreCheckOpen(m_pcGCOScore);
+	m_pcGCOScore->ScoreReadFile(m_pcGCOScore);
 	
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
-	//m_pcGCOPlayer->LivesCheckOpen();
+	//m_pcGCOPlayer->PlayerLivesReadFile();
 
 	m_pcGCOHighScore = new CGCObjHighScore (m_pcGCOScore);
 
-	m_pcGCOHighScore->HighScoreCheckOpen (m_pcGCOScore);
+	m_pcGCOHighScore->HighScoreReadFile (m_pcGCOScore);
 
 	this->addChild (m_pcGCOHighScore->getHighScoreText (), 10);
 
@@ -583,13 +583,13 @@ void GCLevel2::VOnCreate ()
 			{
 				playDoorOpeningAudio ();
 
-				m_pcGCOScore->ScoreCheckClose(m_pcGCOScore);
+				m_pcGCOScore->ScoreWriteFile(m_pcGCOScore);
 
-				//m_pcGCOPlayer->LivesCheckClose();
+				//m_pcGCOPlayer->PlayerLivesWriteFile();
 				
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
-					m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+					m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 				}
 
 				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel3 >::CreateScene ()));
@@ -652,10 +652,10 @@ void GCLevel2::VOnCreate ()
 			{
 
 				rcMEnemies.setJustCollided (true);
-				//m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+				//m_pcGCOHighScore->HighScoreWriteFile (m_pcGCOScore);
 				if (m_pcGCOScore->getScoreAmount () > m_pcGCOHighScore->getHighScoreValue ())
 				{
-					m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+					m_pcGCOHighScore->HighScoreWriteFile (m_pcGCOScore);
 				}
 				RequestReset ();
 				//m_pcGCTimer->ResetTimer ();
@@ -1138,10 +1138,10 @@ void GCLevel2::BeginContact (b2Contact* pB2Contact)
 		//CGCObjectManager::ObjectKill (&rcEnemies);
 		//m_pcGCTimer->ResetTimer ();
 		//CGCObjectManager::ObjectKill (&rcEnemies);
-	//	m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+	//	m_pcGCOHighScore->HighScoreWriteFile (m_pcGCOScore);
 		if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 		{
-			m_pcGCOHighScore->HighScoreCheckClose (m_pcGCOScore);
+			m_pcGCOHighScore->HighScoreWriteFile (m_pcGCOScore);
 		}
 		CCLOG ("Player Died.");
 		//m_bPlayerHitHostile = true;

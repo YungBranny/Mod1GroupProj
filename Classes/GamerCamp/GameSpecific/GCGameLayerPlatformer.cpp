@@ -303,11 +303,11 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
-	m_pcGCOScore->ScoreClear(m_pcGCOScore);
+	m_pcGCOScore->ScoreClearFile(m_pcGCOScore);
 	
 	m_pcGCOHighScore = new CGCObjHighScore(m_pcGCOScore);
 
-	m_pcGCOHighScore->HighScoreCheckOpen(m_pcGCOScore);
+	m_pcGCOHighScore->HighScoreReadFile(m_pcGCOScore);
 	
 	this->addChild(m_pcGCOHighScore->getHighScoreText(), 10);
 
@@ -629,14 +629,15 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			{
 				playDoorOpeningAudio ();
 				
-				m_pcGCOScore->ScoreCheckClose(m_pcGCOScore);
+				m_pcGCOScore->ScoreWriteFile(m_pcGCOScore);
 
 				
-				//m_pcGCOPlayer->LivesCheckClose();
+				//m_pcGCOPlayer->PlayerLivesWriteFile();
 				
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
-					m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+					m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
+					//ZAF m_pcGCOHighScore->saveHighScore( m_pcGCOScore->getScoreAmount() );
 				}
 				
 			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
@@ -701,7 +702,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 				rcMEnemies.setJustCollided (true);
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
-					m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+					m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 				}
 
 				RequestReset ();
@@ -1222,7 +1223,7 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 		
 		if(m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 		{
-			m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+			m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 		}
 		
 		

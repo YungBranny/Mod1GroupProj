@@ -49,7 +49,7 @@ CGCObjHighScore::~CGCObjHighScore()
 
 };
 
-void CGCObjHighScore::HighScoreCheckOpen(CGCObjScore* m_score)
+void CGCObjHighScore::HighScoreReadFile(CGCObjScore* m_score)
 {
 
 	std::ifstream readFile;
@@ -63,7 +63,7 @@ void CGCObjHighScore::HighScoreCheckOpen(CGCObjScore* m_score)
 
 };
 
-void CGCObjHighScore::HighScoreCheckClose(CGCObjScore* m_score)
+void CGCObjHighScore::HighScoreWriteFile(CGCObjScore* m_score)
 {
 
 	std::ofstream writeFile;

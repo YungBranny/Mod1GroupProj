@@ -237,9 +237,9 @@ public:
 
 	void DecrementLives();
 
-	void LivesCheckOpen();
+	void PlayerLivesReadFile();
 	
-	void LivesCheckClose();
+	void PlayerLivesWriteFile();
 	
 	void ResetLives();
 

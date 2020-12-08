@@ -287,7 +287,7 @@ void GCLevel15::VOnCreate()
 
 	m_pcGCOHighScore = new CGCObjHighScore(m_pcGCOScore);
 
-	m_pcGCOHighScore->HighScoreCheckOpen(m_pcGCOScore);
+	m_pcGCOHighScore->HighScoreReadFile(m_pcGCOScore);
 
 	this->addChild(m_pcGCOHighScore->getHighScoreText(), 10);
 
@@ -582,7 +582,7 @@ void GCLevel15::VOnCreate()
 			{
 				playDoorOpeningAudio();
 
-				m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+				m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 
 				ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel15 >::CreateScene()));
 				//	m_bPlayerKeysGathered = true;
@@ -644,7 +644,7 @@ void GCLevel15::VOnCreate()
 			{
 
 				rcMEnemies.setJustCollided(true);
-				m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+				m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 				RequestReset();
 				//m_pcGCTimer->ResetTimer ();
 				CCLOG("Player wacked.");
@@ -1124,7 +1124,7 @@ void GCLevel15::BeginContact(b2Contact* pB2Contact)
 		//CGCObjectManager::ObjectKill (&rcEnemies);
 		//m_pcGCTimer->ResetTimer ();
 		//CGCObjectManager::ObjectKill (&rcEnemies);
-		m_pcGCOHighScore->HighScoreCheckClose(m_pcGCOScore);
+		m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 		CCLOG("Player Died.");
 		//m_bPlayerHitHostile = true;
 		//PlayerDeathSceneSwap();
