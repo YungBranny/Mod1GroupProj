@@ -437,7 +437,7 @@
         <Height>60</Height>
       </Size>
       <Origin>
-        <X>30</X>
+        <X>300</X>
         <Y>30</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\CCPlatforms\cc_platform_regular_600x60.png" Tiled="false">
