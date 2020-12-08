@@ -394,6 +394,15 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane12.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel7.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel8.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel9.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -714,6 +723,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies\Planes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel7.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel8.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel9.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
