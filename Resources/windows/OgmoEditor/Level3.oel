@@ -23,17 +23,17 @@
   <platforms>
     <Platfrom2 id="98" x="150" y="450" class="GCObjBasicPlatform2" shape="cc_platform_2" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform1 id="99" x="90" y="450" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Platform1 id="100" x="90" y="570" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Platfrom2 id="101" x="150" y="570" class="GCObjBasicPlatform2" shape="cc_platform_2" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Platform1 id="100" x="90" y="600" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Platfrom2 id="101" x="150" y="600" class="GCObjBasicPlatform2" shape="cc_platform_2" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <PlatformGround id="36" x="960" y="1050" class="GCObjBasePlatform" shape="cc_platform_ground" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_ground.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform5 id="64" x="210" y="450" class="GCObjBasicPlatform5" shape="cc_platform_5" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_5.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform6 id="65" x="1830" y="570" class="GCObjBasicPlatform6" shape="cc_platform_6" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_6.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platfrom2 id="66" x="1770" y="570" class="GCObjBasicPlatform2" shape="cc_platform_2" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform3 id="67" x="1710" y="570" class="GCObjBasicPlatform3" shape="cc_platform_3" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_3.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform1 id="68" x="1650" y="570" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Platform3 id="69" x="210" y="570" class="GCObjBasicPlatform3" shape="cc_platform_3" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_3.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Platform4 id="70" x="270" y="570" class="GCObjBasicPlatform4" shape="cc_platform_4" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_4.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Platform6 id="72" x="390" y="570" class="GCObjBasicPlatform6" shape="cc_platform_6" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_6.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Platform3 id="69" x="210" y="600" class="GCObjBasicPlatform3" shape="cc_platform_3" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_3.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Platform4 id="70" x="270" y="600" class="GCObjBasicPlatform4" shape="cc_platform_4" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_4.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Platform6 id="72" x="390" y="600" class="GCObjBasicPlatform6" shape="cc_platform_6" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_6.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform1 id="78" x="330" y="900" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform3 id="80" x="450" y="900" class="GCObjBasicPlatform3" shape="cc_platform_3" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_3.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform4 id="81" x="510" y="900" class="GCObjBasicPlatform4" shape="cc_platform_4" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_4.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -124,7 +124,7 @@
     <Platfrom2 id="97" x="1350" y="930" class="GCObjBasicPlatform2" shape="cc_platform_2" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform1 id="102" x="1290" y="930" class="GCObjBasicPlatform1" shape="cc_platform_1" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platfrom2 id="136" x="390" y="900" class="GCObjBasicPlatform2" shape="cc_platform_2" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Platfrom2 id="140" x="330" y="570" class="GCObjBasicPlatform2" shape="cc_platform_2" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Platfrom2 id="140" x="330" y="600" class="GCObjBasicPlatform2" shape="cc_platform_2" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Platform6 id="37" x="270" y="450" class="GCObjBasicPlatform6" shape="cc_platform_6" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_6.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </platforms>
   <ExitDoor>

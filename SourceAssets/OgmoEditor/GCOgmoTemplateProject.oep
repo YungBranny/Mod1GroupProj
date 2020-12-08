@@ -329,7 +329,7 @@
         <Height>60</Height>
       </Size>
       <Origin>
-        <X>30</X>
+        <X>90</X>
         <Y>30</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\CCPlatforms\cc_platform_regular_180x60.png" Tiled="false">
@@ -383,7 +383,7 @@
         <Height>60</Height>
       </Size>
       <Origin>
-        <X>30</X>
+        <X>210</X>
         <Y>30</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\CCPlatforms\cc_platform_regular_420x60.png" Tiled="false">

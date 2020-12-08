@@ -646,7 +646,7 @@ void GCLevel3::VOnCreate ()
 		[this]
 	(CGCMovingEnemies& rcMEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
-			CGCObjectManager::ObjectKill (&rcMEnemies);
+			//CGCObjectManager::ObjectKill (&rcMEnemies);
 			CCLOG ("HEUFH");
 			if (rcMEnemies.getJustCollided () == false)
 			{
