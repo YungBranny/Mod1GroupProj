@@ -403,6 +403,21 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel9.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel16.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel17.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel18.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel19.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel20.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -731,6 +746,21 @@
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel9.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel16.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel17.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel18.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel19.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel20.h">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClInclude>
   </ItemGroup>

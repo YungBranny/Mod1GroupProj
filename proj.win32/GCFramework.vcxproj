@@ -192,6 +192,11 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjGroupItem.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Items\GCObjItem.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Ladder\GCObjLadder.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel16.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel17.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel18.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel19.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel20.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel9.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel10.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel11.cpp" />
@@ -308,7 +313,12 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel13.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel14.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel15.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel16.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel17.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel18.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel19.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel20.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel4.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel5.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel6.h" />
