@@ -10,7 +10,19 @@
     <Background3-2 id="0" x="960" y="544" class="CGCLevelBackground" shape="tm_background_3" PlistFile="TexturePacker/Sprites/BackgroundLevel3/tm_background_3.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </LevelForeground>
   <Level2ndForeground />
-  <enemies />
+  <enemies>
+    <UDNMovingEnemyUpDown id="0" x="570" y="600" class="CGCMovingEnemyUpDown" shape="pirate" PlistFile="TexturePacker/Sprites/PirateEnemy/PirateEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="1" x="572" y="1038" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="2" x="570" y="390" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="3" x="930" y="390" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="4" x="931" y="1037" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="5" x="1231" y="1037" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="6" x="1260" y="390" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <UDSMovingEnemyUpDownSlow id="7" x="930" y="810" class="CGCMovingEnemyFast" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/PirateEnemy/PirateEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <UDFMovingEnemyUpDownFast id="8" x="1260" y="510" class="CGCMovingEnemyUpDownFast" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/PirateEnemy/PirateEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <TravelatorPlatform480x60 id="9" x="1215" y="360" class="CGCObjTravelatorPlatform" shape="cc_platform_moving_480x60" PlistFile="TexturePacker/Sprites/CCPlatforms/cc_platform_moving_480x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <TravelatorPlatform480x60 id="10" x="735" y="360" class="CGCObjTravelatorPlatform" shape="cc_platform_moving_480x60" PlistFile="TexturePacker/Sprites/CCPlatforms/cc_platform_moving_480x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </enemies>
   <items />
   <platforms>
     <PlatformGround id="0" x="960" y="1050" class="GCObjBasePlatform" shape="cc_platform_ground" PlistFile="TexturePacker/Sprites/Platforms/cc_platform_ground.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
