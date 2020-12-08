@@ -513,7 +513,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 
 		m_eChangeAnimation = EChangeAnimation::Jump;
 		ChangeAnimation ();
-		playJumpUpAudio();
+		//playJumpUpAudio();
 		if (GetVelocity ().x > 0)
 		{
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
