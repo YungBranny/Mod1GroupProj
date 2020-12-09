@@ -2033,7 +2033,7 @@
         <X>60</X>
         <Y>60</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\..\Resources\windows\TexturePacker\Sprites\Exit\cc_exit.png" Tiled="false">
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\Exit\cc_exit.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
