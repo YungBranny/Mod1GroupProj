@@ -181,7 +181,28 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">Frames/cc_exit.png</key>
+            <key type="filename">Frames/ExitIdle/portal0000.png</key>
+            <key type="filename">Frames/ExitIdle/portal0001.png</key>
+            <key type="filename">Frames/ExitIdle/portal0002.png</key>
+            <key type="filename">Frames/ExitIdle/portal0003.png</key>
+            <key type="filename">Frames/ExitIdle/portal0004.png</key>
+            <key type="filename">Frames/ExitIdle/portal0005.png</key>
+            <key type="filename">Frames/ExitIdle/portal0006.png</key>
+            <key type="filename">Frames/ExitIdle/portal0007.png</key>
+            <key type="filename">Frames/ExitIdle/portal0008.png</key>
+            <key type="filename">Frames/ExitIdle/portal0009.png</key>
+            <key type="filename">Frames/ExitIdle/portal0010.png</key>
+            <key type="filename">Frames/ExitIdle/portal0011.png</key>
+            <key type="filename">Frames/ExitIdle/portal0012.png</key>
+            <key type="filename">Frames/ExitIdle/portal0013.png</key>
+            <key type="filename">Frames/ExitIdle/portal0014.png</key>
+            <key type="filename">Frames/ExitIdle/portal0015.png</key>
+            <key type="filename">Frames/ExitIdle/portal0016.png</key>
+            <key type="filename">Frames/ExitIdle/portal0017.png</key>
+            <key type="filename">Frames/ExitIdle/portal0018.png</key>
+            <key type="filename">Frames/ExitIdle/portal0019.png</key>
+            <key type="filename">Frames/ExitIdle/portal0020.png</key>
+            <key type="filename">Frames/ExitIdle/portal0021.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
