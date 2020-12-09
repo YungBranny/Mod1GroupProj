@@ -1883,24 +1883,6 @@
 
 				</array>
 			</dict>
-			<key>tcr_background_1</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
-			<key>tcr_background_2</key>
-			<dict>
-				<key>anchorpoint</key>
-                <string>{ 0.5000,0.5000 }</string>
-				<key>fixtures</key>
-				<array>
-
-				</array>
-			</dict>
 			<key>cc_background</key>
 			<dict>
 				<key>anchorpoint</key>
@@ -5226,6 +5208,24 @@
 							</array>
 						</array>
                     </dict>
+				</array>
+			</dict>
+			<key>tcr_background_1</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
+				</array>
+			</dict>
+			<key>tcr_background_2</key>
+			<dict>
+				<key>anchorpoint</key>
+                <string>{ 0.5000,0.5000 }</string>
+				<key>fixtures</key>
+				<array>
+
 				</array>
 			</dict>
 		</dict>

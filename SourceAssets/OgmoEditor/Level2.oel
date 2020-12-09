@@ -1,11 +1,9 @@
 <level width="1920" height="1080">
   <LevelBackground>
-    <Background2 id="0" x="960" y="540" class="CGCLevelBackground" shape="tcr_background_1" PlistFile="TexturePacker/Sprites/BackgroundLevel2/tcr_background_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="2" x="1792" y="992" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Background2 id="0" x="960" y="544" class="CGCLevelBackground" shape="tcr_background_1" PlistFile="TexturePacker/Sprites/BackgroundLevel2/tcr_background_1.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </LevelBackground>
-  <LevelMidground>
-    <Background2-1 id="0" x="944" y="528" class="CGCLevelBackground" shape="tcr_background_2" PlistFile="TexturePacker/Sprites/BackgroundLevel2/tcr_background_2.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-  </LevelMidground>
+  <LevelMidground />
   <Level2ndMidground />
   <LevelForeground />
   <Level2ndForeground />

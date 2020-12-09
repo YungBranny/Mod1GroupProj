@@ -16,7 +16,7 @@
     <Width>1920</Width>
     <Height>1080</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Dan\Documents\GitHub\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
+  <Filename>C:\Users\-\Documents\GitHub\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -3401,7 +3401,7 @@
     </EntityDefinition>
     <EntityDefinition Name="Background3" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>1980</Width>
+        <Width>1920</Width>
         <Height>1080</Height>
       </Size>
       <Origin>

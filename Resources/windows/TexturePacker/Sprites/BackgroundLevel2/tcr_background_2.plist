@@ -7,13 +7,13 @@
             <key>tcr_background_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{1710,718}}</string>
+                <string>{{1,1},{1920,654}}</string>
                 <key>offset</key>
-                <string>{-57,-180}</string>
+                <string>{0,-213}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{48,361},{1710,718}}</string>
+                <string>{{0,426},{1920,654}}</string>
                 <key>sourceSize</key>
                 <string>{1920,1080}</string>
             </dict>
@@ -29,9 +29,9 @@
             <key>realTextureFileName</key>
             <string>tcr_background_2.png</string>
             <key>size</key>
-            <string>{1712,720}</string>
+            <string>{1922,656}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:7aa0b82bc039453b7baff9f4337f706a:8061951868654233b3be31431d6340cc:8d8fb0cf534a83eaa7d648e3927ecee6$</string>
+            <string>$TexturePacker:SmartUpdate:4447314d094a630bb77b2fa5be02a665:90f4516c1a75c4d656c161907a6caef6:8d8fb0cf534a83eaa7d648e3927ecee6$</string>
             <key>textureFileName</key>
             <string>tcr_background_2.png</string>
         </dict>
