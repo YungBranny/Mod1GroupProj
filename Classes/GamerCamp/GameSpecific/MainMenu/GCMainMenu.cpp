@@ -56,7 +56,7 @@ void CGCMainMenu::VOnCreate ()
 			CC_CALLBACK_1 (CGCMainMenu::LoadLevel, this));
 
 	pResetItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width / 2)),
-	( ( visibleSize.height - ( pResetItem->getContentSize ().height * 4.0f ) ) ))); // fix pressed button position
+	( ( visibleSize.height - ( pResetItem->getContentSize ().height * 4.0f ) ) )));
 
 
 	cocos2d::MenuItemImage* pQuitItem
@@ -136,6 +136,6 @@ void CGCMainMenu::QuitGame (Ref* pSender)
 
 void CGCMainMenu::LoadLevel (Ref* pSender)
 {
-	Director::getInstance()->replaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+	Director::getInstance()->replaceScene (TransitionMoveInR::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 }
 
