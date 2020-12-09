@@ -157,6 +157,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameController\GCControllerManager.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCCCDownSpike.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GcEnemyMovementCollider.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCEnemyMovemntCollider2.cpp" />
@@ -276,6 +277,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameController\GCControllerManager.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCCCDownSpike.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCEnemyMovementCollider.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCEnemyMovementCollider2.h" />
