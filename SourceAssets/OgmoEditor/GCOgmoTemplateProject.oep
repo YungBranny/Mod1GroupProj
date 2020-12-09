@@ -16,7 +16,7 @@
     <Width>1920</Width>
     <Height>1080</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\-\Documents\GitHub\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
+  <Filename>C:\Users\Dan\Documents\GitHub\Mod1GroupProj\SourceAssets\OgmoEditor\GCOgmoTemplateProject.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -960,6 +960,924 @@
         <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="tcr_platform_regular_600x60" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/TCRPlatforms/tcr_platform_regular_600x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_collectable_switch_off_60x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_collectable_switch_off_60x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCSwitch" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_collectable_switch_off_60x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_collectable_switch_off_60x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_collectable_switch_on_60x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_collectable_switch_on_60x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCSwitch" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_collectable_switch_on_60x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_collectable_switch_on_60x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_collectable_key_60x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_collectible_key_60x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_collectable_key_60x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_collectible_key_60x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_hazard_downward_spike_60x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_hazard_downward_spike_60x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCHazardChild" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_hazard_downward_spike_60x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_hazard_downward_spike_60x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_hazard_spider_short_60x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_hazard_spider_short_60x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCHazardChild" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_hazard_spider_short_60x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_hazard_spider_short_60x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_hazard_upward_spike_bush_60x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_hazard_upward_spike_bush_60x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCHazardChild" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_hazard_upward_spike_bush_60x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_hazard_upward_spike_bush_60x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_60x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_60x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_60x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_60x120" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>120</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>60</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_60x120.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_60x120" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x120.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_60x180" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>180</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>90</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_60x180.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_60x180" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x180.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_60x240" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>240</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>120</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_60x240.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_60x240" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x240.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_60x300" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>300</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>150</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_60x300.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_60x300" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x300.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_60x360" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>360</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>180</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_60x360.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_60x360" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x360.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_60x600" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>600</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>300</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_60x600.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_60x600" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x600.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_60x780" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>780</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>390</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_60x780.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_60x780" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x780.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_60x960" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>960</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>480</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_60x960.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_60x960" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x960.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_120x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>120</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>60</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_120x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_120x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_120x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_240x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>240</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>120</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_240x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_240x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_240x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_360x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>360</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>180</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_360x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_360x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_360x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_brick_1020x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>1020</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>510</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_brick_1020x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCObjBrickPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_brick_1020x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_1020x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_crumbling_60x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_crumbling_60x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingFallingPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_crumbling_60x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_crumbling_60x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_moving_180x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>180</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>90</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_moving_180x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjTravelatorPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_moving_180x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_moving_180x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_moving_660x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>660</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>330</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_moving_660x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjTravelatorPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_moving_660x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_moving_660x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_moving_1320x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>1320</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>660</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_moving_1320x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjTravelatorPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_moving_1320x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_moving_1320x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_moving_1440x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>1440</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>720</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_moving_1440x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjTravelatorPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_moving_1440x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_moving_1440x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_ground_1800x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>600</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>300</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_ground_1800x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_ground_1800x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_ground_1800x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_regular_60x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>60</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>30</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_regular_60x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="tcr_platform_regular_600x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_60x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_regular_240x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>240</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>120</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_regular_240x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_regular_240x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_240x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_regular_300x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>300</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>150</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_regular_300x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_regular_300x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_300x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_regular_360x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>360</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>180</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_regular_360x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_regular_360x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_360x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_regular_540x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>540</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>270</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_regular_540x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_regular_540x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_540x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_regular_660x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>660</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>330</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_regular_660x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_regular_660x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_660x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_regular_780x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>780</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>390</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_regular_780x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="auw_platform_regular_780x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_780x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_regular_180x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>180</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>90</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_regular_180x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="tcr_platform_regular_180x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_180x60.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
+          <Elements>
+            <string>b2_staticBody</string>
+            <string>b2_kinematicBody</string>
+            <string>b2_dynamicBody</string>
+          </Elements>
+        </ValueDefinition>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="HasFixedRotation" Default="true" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="auw_platform_regular_120x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>120</Width>
+        <Height>60</Height>
+      </Size>
+      <Origin>
+        <X>60</X>
+        <Y>30</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_regular_120x60.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCObjScalingBasicPlatform" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="tcr_platform_regular_120x60" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_120x60.plist" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
           <Elements>
             <string>b2_staticBody</string>
