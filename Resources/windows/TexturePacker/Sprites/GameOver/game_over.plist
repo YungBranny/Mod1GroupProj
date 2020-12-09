@@ -7,15 +7,15 @@
             <key>game_over.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{2032,1192}}</string>
+                <string>{{1,1},{2042,1202}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{2032,1192}}</string>
+                <string>{{0,0},{2042,1202}}</string>
                 <key>sourceSize</key>
-                <string>{2032,1192}</string>
+                <string>{2042,1202}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -29,9 +29,9 @@
             <key>realTextureFileName</key>
             <string>game_over.png</string>
             <key>size</key>
-            <string>{2034,1194}</string>
+            <string>{2044,1204}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:dbc3b7f36e5ed21b3b3fe5d93b519175:b21a5396219ff514ceec9aad78d50a8c:249af31fdc8386b230fd7d270d9e8a8e$</string>
+            <string>$TexturePacker:SmartUpdate:a5b156e3e145ede404b0e1b7eea0bb8d:63f1e687619cbe780805a8f12ce209c4:249af31fdc8386b230fd7d270d9e8a8e$</string>
             <key>textureFileName</key>
             <string>game_over.png</string>
         </dict>
