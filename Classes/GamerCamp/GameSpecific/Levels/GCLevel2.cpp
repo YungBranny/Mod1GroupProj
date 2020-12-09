@@ -129,7 +129,7 @@ void GCLevel2::addOnTime ()
 void GCLevel2::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
 {
 	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/BackgroundMusic/Underwater Volcano SvR.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
+	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/BackgroundMusic/UnderwaterVolcanoSvRV1.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
 }
 
 void GCLevel2::playKeyAudio () // Mia: Function that is called when we want the Collected Key Sound Effect to play
