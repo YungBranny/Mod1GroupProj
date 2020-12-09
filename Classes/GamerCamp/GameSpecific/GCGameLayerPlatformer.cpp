@@ -144,7 +144,7 @@ void CGCGameLayerPlatformer::addOnTime()
 void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
 {
 	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/BackgroundMusic/CrystalCoralReefSvR.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
+	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/BackgroundMusic/CrystalCoralReefSvRV1.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
 }
 
 void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
