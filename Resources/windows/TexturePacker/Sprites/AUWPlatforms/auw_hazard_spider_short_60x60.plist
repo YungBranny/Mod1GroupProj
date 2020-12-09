@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>auw_hazard_spider_short_60x60.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{44,60}}</string>
+                <key>offset</key>
+                <string>{-2,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{6,0},{44,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>auw_hazard_spider_short_60x60.png</string>
+            <key>size</key>
+            <string>{46,62}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:e5b6ce6c5ab9f3035b32f52e92d639ab:7c5d65c6fbab51f5e890bf331d76e7bb:12fe15768c2d60c1868d4a89649e2a0d$</string>
+            <key>textureFileName</key>
+            <string>auw_hazard_spider_short_60x60.png</string>
+        </dict>
+    </dict>
+</plist>
