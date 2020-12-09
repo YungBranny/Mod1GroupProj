@@ -304,8 +304,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
 	m_pcGCOScore->ScoreClearFile(m_pcGCOScore);
-
-	
 	
 	m_pcGCOHighScore = new CGCObjHighScore(m_pcGCOScore);
 
@@ -438,7 +436,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	//this->addChild(m_pcGCOPlayer->getLivesText(), 10);
 
-	m_pcGCOPlayer->PlayerLivesClearFile();
 
 	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI1 (), 10);
 

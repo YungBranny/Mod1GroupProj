@@ -240,8 +240,6 @@ public:
 	void PlayerLivesReadFile();
 	
 	void PlayerLivesWriteFile();
-
-	void PlayerLivesClearFile();
 	
 	void ResetLives();
 
