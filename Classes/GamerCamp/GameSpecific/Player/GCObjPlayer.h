@@ -253,11 +253,11 @@ public:
 
 	void ChangeAnimation();
 
-	void playJumpUpAudio();
+	void playJumpAudio();
 
-	void playJumpDownAudio();
+	//void playJumpDownAudio();
 
-	void playRunAudio();
+	//void playRunAudio();
 
 	cocos2d::Label* getLivesText() const { return m_pLivesText; }
 

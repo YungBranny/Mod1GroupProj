@@ -518,7 +518,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 
 		m_eChangeAnimation = EChangeAnimation::Jump;
 		ChangeAnimation ();
-		playJumpUpAudio();
+		playJumpAudio();
 		if (GetVelocity ().x > 0)
 		{
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
@@ -685,23 +685,23 @@ void CGCObjPlayer::ChangeAnimation()
 
 }
 
-void CGCObjPlayer::playJumpUpAudio()
+void CGCObjPlayer::playJumpAudio()
 {
 	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
 	m_pcJumpSoundEffectAudio->playEffect("Sounds/Jumping/jump_up.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
-void CGCObjPlayer::playJumpDownAudio()
-{
-	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcJumpSoundEffectAudio->playEffect("Sounds/Jumping/jump_down.wav", false); // Mia: Play Audio by locating File, set to 'False' to not
-}
+//void CGCObjPlayer::playJumpDownAudio()
+//{
+//	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+//	m_pcJumpSoundEffectAudio->playEffect("Sounds/Jumping/jump_down.wav", false); // Mia: Play Audio by locating File, set to 'False' to not
+//}
 
-void CGCObjPlayer::playRunAudio()
-{
-	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcJumpSoundEffectAudio->playEffect("Sounds/wilfred_run_1.mp3", false); // Mia: Play Audio by locating File, set to 'False' to not
-}
+//void CGCObjPlayer::playRunAudio()
+//{
+//	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
+//	m_pcJumpSoundEffectAudio->playEffect("Sounds/wilfred_run_1.mp3", false); // Mia: Play Audio by locating File, set to 'False' to not
+//}
 
 void CGCObjPlayer::PlayerLivesReadFile()
 {
