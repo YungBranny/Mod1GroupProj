@@ -15,7 +15,7 @@ class CGCObjExitDoor
 	: public CGCObjSpritePhysics
 {
 private:
-
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
 public:
 	CGCObjExitDoor ( void );
 	virtual ~CGCObjExitDoor () {};
