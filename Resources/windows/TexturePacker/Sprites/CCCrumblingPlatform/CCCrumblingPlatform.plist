@@ -4,278 +4,265 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>PEnemyIdle/final-0001.png</key>
+            <key>CCIdle/0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{233,1},{50,82}}</string>
+                <string>{{1,1},{60,60}}</string>
                 <key>offset</key>
-                <string>{-3,-18}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,37},{50,82}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0002.png</key>
+            <key>CCIdle/1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{173,87},{50,84}}</string>
+                <string>{{1,869},{60,58}}</string>
                 <key>offset</key>
-                <string>{-3,-18}</string>
+                <string>{0,-1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,36},{50,84}}</string>
+                <string>{{0,2},{60,58}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0003.png</key>
+            <key>CCIdle/2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{59,177},{54,78}}</string>
+                <string>{{1,63},{60,60}}</string>
                 <key>offset</key>
-                <string>{-1,-17}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,38},{54,78}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0004.png</key>
+            <key>CCIdle/3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,177},{56,78}}</string>
+                <string>{{1,125},{60,60}}</string>
                 <key>offset</key>
-                <string>{-1,-18}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,39},{56,78}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0005.png</key>
+            <key>CCIdle/4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{233,169},{56,80}}</string>
+                <string>{{1,187},{60,60}}</string>
                 <key>offset</key>
-                <string>{-1,-18}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,38},{56,80}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0006.png</key>
+            <key>CCIdle/5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{283,85},{56,80}}</string>
+                <string>{{1,249},{60,60}}</string>
                 <key>offset</key>
-                <string>{0,-18}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,38},{56,80}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0007.png</key>
+            <key>CCIdle/6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{285,1},{56,80}}</string>
+                <string>{{1,311},{60,60}}</string>
                 <key>offset</key>
-                <string>{0,-18}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,38},{56,80}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0008.png</key>
+            <key>CCIdle/7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{115,175},{58,80}}</string>
+                <string>{{1,929},{60,58}}</string>
                 <key>offset</key>
-                <string>{-1,-18}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,38},{58,80}}</string>
+                <string>{{0,1},{60,58}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0009.png</key>
+            <key>CCIdle/8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{175,173},{56,82}}</string>
+                <string>{{1,373},{60,60}}</string>
                 <key>offset</key>
-                <string>{-1,-17}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,36},{56,82}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0010.png</key>
+            <key>CCIdle/9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{175,1},{56,82}}</string>
+                <string>{{1,435},{60,60}}</string>
                 <key>offset</key>
-                <string>{-2,-17}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,36},{56,82}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0011.png</key>
+            <key>CCPop/0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{291,167},{54,80}}</string>
+                <string>{{1,497},{60,60}}</string>
                 <key>offset</key>
-                <string>{-2,-17}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,37},{54,80}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0012.png</key>
+            <key>CCPop/1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{341,83},{54,80}}</string>
+                <string>{{1,559},{60,60}}</string>
                 <key>offset</key>
-                <string>{-2,-17}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,37},{54,80}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0013.png</key>
+            <key>CCPop/2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{343,1},{54,80}}</string>
+                <string>{{1,621},{60,60}}</string>
                 <key>offset</key>
-                <string>{-2,-17}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,37},{54,80}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0014.png</key>
+            <key>CCPop/3.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{347,165},{54,80}}</string>
+                <string>{{1,683},{60,60}}</string>
                 <key>offset</key>
-                <string>{-1,-17}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,37},{54,80}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0015.png</key>
+            <key>CCPop/4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{225,85},{56,82}}</string>
+                <string>{{1,745},{60,60}}</string>
                 <key>offset</key>
-                <string>{-1,-17}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,36},{56,82}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0016.png</key>
+            <key>CCPop/5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{61,89},{56,84}}</string>
+                <string>{{1,807},{60,60}}</string>
                 <key>offset</key>
-                <string>{-1,-17}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,35},{56,84}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0017.png</key>
+            <key>CCPop/6.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{117,1},{56,84}}</string>
+                <string>{{1,989},{60,46}}</string>
                 <key>offset</key>
-                <string>{-1,-18}</string>
+                <string>{0,-7}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,36},{56,84}}</string>
+                <string>{{0,14},{60,46}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0018.png</key>
+            <key>CCPop/7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{58,86}}</string>
+                <string>{{1,1037},{56,58}}</string>
                 <key>offset</key>
-                <string>{-1,-17}</string>
+                <string>{2,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,34},{58,86}}</string>
+                <string>{{4,1},{56,58}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0019.png</key>
+            <key>CCPop/8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,89},{58,86}}</string>
+                <string>{{1,1095},{42,56}}</string>
                 <key>offset</key>
-                <string>{-1,-17}</string>
+                <string>{8,-1}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,34},{58,86}}</string>
+                <string>{{17,3},{42,56}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
-            <key>PEnemyIdle/final-0020.png</key>
+            <key>CCPop/9.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{61,1},{54,86}}</string>
+                <string>{{59,1095},{3,3}}</string>
                 <key>offset</key>
-                <string>{-3,-17}</string>
+                <string>{-28.5,28.5}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,34},{54,86}}</string>
+                <string>{{0,0},{3,3}}</string>
                 <key>sourceSize</key>
-                <string>{60,120}</string>
-            </dict>
-            <key>PEnemyIdle/final-0021.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{119,87},{52,84}}</string>
-                <key>offset</key>
-                <string>{-3,-18}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{1,36},{52,84}}</string>
-                <key>sourceSize</key>
-                <string>{60,120}</string>
+                <string>{60,60}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -287,13 +274,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>PenguinEnemy.png</string>
+            <string>CCCrumblingPlatform.png</string>
             <key>size</key>
-            <string>{402,256}</string>
+            <string>{63,1138}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:48e7b2b84c494232e5cda0ad1caf4125:bee2371d5c251d12c1fb42612acc36d9:692f7469e8d9a0335e35a968122bca99$</string>
+            <string>$TexturePacker:SmartUpdate:4af6fef1df4ba6fd628822ba1c0fa2ef:4ee7b662512d279be2457d5014730f93:ed7040a9c378c3770c2156da2aec6e2f$</string>
             <key>textureFileName</key>
-            <string>PenguinEnemy.png</string>
+            <string>CCCrumblingPlatform.png</string>
         </dict>
     </dict>
 </plist>

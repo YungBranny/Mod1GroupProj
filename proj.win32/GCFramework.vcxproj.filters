@@ -418,6 +418,15 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel20.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjCCCrumblingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTCRCrumblingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTMCrumblingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -762,6 +771,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel20.h">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjCCCrumblingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTCRCrumblingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTMCrumblingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

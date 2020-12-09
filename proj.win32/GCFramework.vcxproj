@@ -223,6 +223,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform6.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform7.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBrickPlatform.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjCCCrumblingPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjMovingPlatform.cpp" />
@@ -232,6 +233,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatformManager.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjShortPlatformTest.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjSwitchPlatform1.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTCRCrumblingPlatform.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTMCrumblingPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTravelatorPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCSwitch.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjGroupPlatform.cpp" />
@@ -338,6 +341,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform6.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform7.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBrickPlatform.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjCCCrumblingPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjMovingPlatform.h" />
@@ -347,6 +351,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatformManager.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjShortPlatformTest.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjSwitchPlatform1.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTCRCrumblingPlatform.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTMCrumblingPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTravelatorPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCSwitch.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjGroupPlatform.h" />
