@@ -710,6 +710,24 @@ void CGCObjPlayer::PlayerLivesWriteFile()
 
 
 }
+
+void CGCObjPlayer::PlayerLivesClearFile()
+{
+
+	std::ofstream writeFile;
+	writeFile.open("Lives.txt");
+
+	if (writeFile.is_open())
+	{
+
+		writeFile << 3;
+
+		writeFile.close();
+	}
+}
+
+
+
 //////////////////////////////////////////////////////////////////////////
 // this function exists purely to better illustrate the EXAMPLE collision 
 // detection functionality in CGCGameLayerPlatformer
