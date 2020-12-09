@@ -598,7 +598,7 @@ void GCLevel3::VOnCreate ()
 				}
 
 				
-				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel4 >::CreateScene ()));
+				ReplaceScene (TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel4 >::CreateScene ()));
 				//	m_bPlayerKeysGathered = true;
 
 					 // Mia: Calls the Function which plays the Door Opening Audio
@@ -766,7 +766,7 @@ void GCLevel3::VOnCreate ()
 void GCLevel3::PlayerDeathSceneSwap ()
 {
 
-	Director::getInstance ()->replaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+	Director::getInstance ()->replaceScene (TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 }
 
 void GCLevel3::HighScore ()
@@ -819,14 +819,14 @@ void GCLevel3::VOnUpdate (f32 fTimeStep)
 	{
 		m_pcGCOPlayer->PlayerLivesWriteFile();
 		SkipRequestWasHandled ();
-		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel4 >::CreateScene ()));
+		ReplaceScene (TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel4 >::CreateScene ()));
 
 	}
 
 	if (QuitWasRequested ())
 	{
 		QuitRequestWasHandled ();
-		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene ()));
+		ReplaceScene (TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene ()));
 	}
 
 

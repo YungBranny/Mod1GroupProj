@@ -640,7 +640,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 					m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 					//ZAF m_pcGCOHighScore->saveHighScore( m_pcGCOScore->getScoreAmount() );
 				}
-			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
+			ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
 			
 			//	m_bPlayerKeysGathered = true;
 
@@ -846,7 +846,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 void CGCGameLayerPlatformer::PlayerDeathSceneSwap()
 {
-	Director::getInstance()->replaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
+	Director::getInstance()->replaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
 }
 
 void CGCGameLayerPlatformer::HighScore()
@@ -898,14 +898,14 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	{
 		m_pcGCOPlayer->PlayerLivesWriteFile();
 		SkipRequestWasHandled ();
-		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
+		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
 		
 	}
 
 	if( QuitWasRequested() )
 	{
 		QuitRequestWasHandled();
-		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
+		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
 	}
 
 

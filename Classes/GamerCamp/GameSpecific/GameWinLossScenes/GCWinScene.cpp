@@ -174,7 +174,7 @@ void CGCWinScene::VOnDestroy()
 ///////////////////////////////////////////////////////////////////////////////
 void CGCWinScene::Callback_OnQuitButton(Ref* pSender)
 {
-	ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));//goes back to the menu scene
+	ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));//goes back to the menu scene
 }
 
 
