@@ -427,6 +427,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTMCrumblingPlatform.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyPuffer.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -780,6 +783,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTMCrumblingPlatform.h">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyPuffer.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
