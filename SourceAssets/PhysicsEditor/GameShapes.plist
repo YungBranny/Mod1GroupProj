@@ -1224,10 +1224,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ -900.000,-2.000 }</string>	
-								<string>{ 900.000,19.000 }</string>	
-								<string>{ 900.000,28.000 }</string>	
-								<string>{ -900.000,28.000 }</string>
+								<string>{ -898.000,1.000 }</string>	
+								<string>{ 902.000,22.000 }</string>	
+								<string>{ 902.000,31.000 }</string>	
+								<string>{ -898.000,31.000 }</string>
 							</array>
 						</array>
                     </dict>
@@ -2921,10 +2921,10 @@
 						<key>polygons</key>
 						<array>
 							<array>	
-								<string>{ 32.000,27.000 }</string>	
-								<string>{ 32.000,32.000 }</string>	
-								<string>{ -32.000,32.000 }</string>	
-								<string>{ -32.000,27.000 }</string>
+								<string>{ -32.000,30.000 }</string>	
+								<string>{ -32.000,24.000 }</string>	
+								<string>{ 32.000,24.000 }</string>	
+								<string>{ 32.000,30.000 }</string>
 							</array>
 						</array>
                     </dict>
