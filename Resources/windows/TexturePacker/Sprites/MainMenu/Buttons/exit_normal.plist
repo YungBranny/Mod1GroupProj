@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>game_over.png</key>
+            <key>exit_normal.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{2032,1192}}</string>
+                <string>{{1,1},{464,100}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{2032,1192}}</string>
+                <string>{{8,10},{464,100}}</string>
                 <key>sourceSize</key>
-                <string>{2032,1192}</string>
+                <string>{480,120}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>game_over.png</string>
+            <string>exit_normal.png</string>
             <key>size</key>
-            <string>{2034,1194}</string>
+            <string>{466,102}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:dbc3b7f36e5ed21b3b3fe5d93b519175:b21a5396219ff514ceec9aad78d50a8c:249af31fdc8386b230fd7d270d9e8a8e$</string>
+            <string>$TexturePacker:SmartUpdate:1a43afc8b8760cec082a8eb341b0216f:a86ce93bcec833662e01c6540487a09e:33051959f5df16f23f2f3b566380a8fd$</string>
             <key>textureFileName</key>
-            <string>game_over.png</string>
+            <string>exit_normal.png</string>
         </dict>
     </dict>
 </plist>

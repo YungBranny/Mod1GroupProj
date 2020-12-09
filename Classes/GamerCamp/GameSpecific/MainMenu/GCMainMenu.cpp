@@ -60,8 +60,8 @@ void CGCMainMenu::VOnCreate ()
 
 
 	cocos2d::MenuItemImage* pQuitItem
-		= cocos2d::MenuItemImage::create ("Buttons/QuitButton1.png",
-			"Buttons/QuitButton1.png",
+		= cocos2d::MenuItemImage::create ("TexturePacker/Sprites/MainMenu/Buttons/exit_normal.png",
+			"TexturePacker/Sprites/MainMenu/Buttons/exit_pressed",
 		CC_CALLBACK_1 (CGCMainMenu::QuitGame, this));
 
 	pQuitItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width / 2 ) ),
@@ -136,6 +136,6 @@ void CGCMainMenu::QuitGame (Ref* pSender)
 
 void CGCMainMenu::LoadLevel (Ref* pSender)
 {
-	Director::getInstance()->replaceScene (TransitionMoveInR::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+	Director::getInstance()->replaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 }
 
