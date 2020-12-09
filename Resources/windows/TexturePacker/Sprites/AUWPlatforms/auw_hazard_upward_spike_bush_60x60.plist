@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>auw_hazard_upward_spike_bush_60x60.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{60,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>auw_hazard_upward_spike_bush_60x60.png</string>
+            <key>size</key>
+            <string>{62,62}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:e5984765d4fea4551b00affcfa502e83:28a3d17a91df8b11cadc4feb67b804e3:3d422e99ab4bf18d34931b30c9155c22$</string>
+            <key>textureFileName</key>
+            <string>auw_hazard_upward_spike_bush_60x60.png</string>
+        </dict>
+    </dict>
+</plist>

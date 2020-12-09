@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>auw_collectable_switch_on_60x60.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{1,1},{60,60}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,60}}</string>
+                <key>sourceSize</key>
+                <string>{60,60}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>pixelFormat</key>
+            <string>RGBA8888</string>
+            <key>premultiplyAlpha</key>
+            <false/>
+            <key>realTextureFileName</key>
+            <string>auw_collectable_switch_on_60x60.png</string>
+            <key>size</key>
+            <string>{62,62}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:c999a647d990369445cc5b7c11f5fc4a:e735d9223a567aa4a2095dc73610ee2e:4385e836852fb550fe3afec65cdbb40d$</string>
+            <key>textureFileName</key>
+            <string>auw_collectable_switch_on_60x60.png</string>
+        </dict>
+    </dict>
+</plist>
