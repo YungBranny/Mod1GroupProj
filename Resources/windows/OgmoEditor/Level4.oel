@@ -102,8 +102,8 @@
   </ExitDoor>
   <Ladder />
   <Hazards>
-    <DownwardSpike id="0" x="450" y="150" angle="0" class="GCHazardChild" shape="cc_hazard_downward_spike" PlistFile="TexturePacker/Sprites/Spike/DownwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <DownwardSpike id="1" x="1410" y="840" angle="0" class="GCHazardChild" shape="cc_hazard_downward_spike" PlistFile="TexturePacker/Sprites/Spike/DownwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <auw_hazard_spider_short_60x60 id="4" x="450" y="150" class="GCHazardChild" shape="auw_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_spider_short_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <auw_hazard_spider_short_60x60 id="5" x="1410" y="870" class="GCHazardChild" shape="auw_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_spider_short_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Hazards>
   <Keys>
     <Keys id="0" x="90" y="150" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />

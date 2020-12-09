@@ -14,6 +14,11 @@ public:
 
 	GCFACTORY_DECLARE_CREATABLECLASS (GCHazardChild);
 
+	void GCHazardChild::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
+
+private:
+
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
 };
 
 #endif
