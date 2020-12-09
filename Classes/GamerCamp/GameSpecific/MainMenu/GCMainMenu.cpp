@@ -55,8 +55,8 @@ void CGCMainMenu::VOnCreate ()
 			"TexturePacker/Sprites/MainMenu/Buttons/play_pressed.png",
 			CC_CALLBACK_1 (CGCMainMenu::LoadLevel, this));
 
-	pResetItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width / 2)),
-	( ( visibleSize.height - ( pResetItem->getContentSize ().height * 4.0f ) ) )));
+	pResetItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width * 0.60f)),
+	( ( visibleSize.height - ( pResetItem->getContentSize ().height * 5.5f ) ) )));
 
 
 	cocos2d::MenuItemImage* pQuitItem
@@ -64,8 +64,8 @@ void CGCMainMenu::VOnCreate ()
 			"TexturePacker/Sprites/MainMenu/Buttons/exit_pressed",
 		CC_CALLBACK_1 (CGCMainMenu::QuitGame, this));
 
-	pQuitItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width / 2 ) ),
-		( ( ( pQuitItem->getContentSize ().height * 3.0f ) + origin.y + 0.0f ) )));
+	pQuitItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width * 0.60f ) ),
+		( ( ( pQuitItem->getContentSize ().height * 2.0f ) + origin.y + 0.0f ) )));
 
 	// create menu, it's an autorelease object
 	cocos2d::Menu* pMenu = cocos2d::Menu::create (pResetItem, pQuitItem, nullptr);
@@ -81,7 +81,7 @@ void CGCMainMenu::VOnCreate ()
 	// add the label as a child to this layer
 	//this->addChild (pLabel, 1);
 
-	cocos2d::Label* pLabel1 = cocos2d::Label::createWithTTF("Team 2: Mia, Brandon, Daniel, Puia and Johnny", "fonts/Super Mario Bros. 2.ttf", 20);
+	cocos2d::Label* pLabel1 = cocos2d::Label::createWithTTF("Team 2: Mia, Brandon, Daniel, Puia and Johnny", "fonts/Super Mario Bros. 2.ttf", 10);
 
 	pLabel1->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height - 1000));
 
