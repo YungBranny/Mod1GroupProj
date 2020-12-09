@@ -384,7 +384,7 @@ void GCLevel19::VOnCreate ()
 	// load level data from Ogmo Editor
 
 	// read the oel file for level 0
-	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level6.oel")).c_str ());
+	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level19.oel")).c_str ());
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// note: we have now created all the items, platforms, & invaders specified in the level file
@@ -781,7 +781,7 @@ void GCLevel19::VOnUpdate (f32 fTimeStep)
 	if (SkipWasRequested ())
 	{
 		SkipRequestWasHandled ();
-		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel20 >::CreateScene ()));
+		ReplaceScene (TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel20 >::CreateScene ()));
 
 	}
 

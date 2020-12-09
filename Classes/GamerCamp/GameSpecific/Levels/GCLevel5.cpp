@@ -788,7 +788,7 @@ void GCLevel5::VOnUpdate (f32 fTimeStep)
 	{
 		m_pcGCOPlayer->PlayerLivesWriteFile();
 		SkipRequestWasHandled ();
-		ReplaceScene (TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+		ReplaceScene (TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel6 >::CreateScene ()));
 
 	}
 
