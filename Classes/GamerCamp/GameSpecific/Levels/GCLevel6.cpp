@@ -64,6 +64,7 @@
 
 #include "AppDelegate.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "GCLevel7.h"
 
 
 USING_NS_CC;
@@ -571,25 +572,6 @@ void GCLevel6::VOnCreate ()
 	);
 
 
-	// Mia: Handles the Collision between the Player and the Exit Door
-	GetCollisionManager ().AddCollisionHandler
-	(
-		[this]
-	(CGCObjExitDoor& rcExitDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
-		{
-			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
-			{
-				playDoorOpeningAudio ();
-
-				m_pcGCOHighScore->HighScoreWriteFile (m_pcGCOScore);
-
-				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel6 >::CreateScene ()));
-				//	m_bPlayerKeysGathered = true;
-
-					 // Mia: Calls the Function which plays the Door Opening Audio
-			}
-		}
-	);
 
 	// Mia: Handles the Collision between the Player and the Keys
 	GetCollisionManager ().AddCollisionHandler
@@ -799,7 +781,7 @@ void GCLevel6::VOnUpdate (f32 fTimeStep)
 	if (SkipWasRequested ())
 	{
 		SkipRequestWasHandled ();
-		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel6 >::CreateScene ()));
+		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel7 >::CreateScene ()));
 
 	}
 
@@ -1132,7 +1114,33 @@ void GCLevel6::BeginContact (b2Contact* pB2Contact)
 
 	}
 
+	// Mia: Handles the Collision between the Player and the Exit Door
 
+	if (( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjExitDoor) )
+		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
+			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjExitDoor) ) ))
+	{
+		if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
+		{
+			playDoorOpeningAudio ();
+
+			m_pcGCOScore->ScoreWriteFile (m_pcGCOScore);
+
+			m_pcGCOPlayer->PlayerLivesWriteFile ();
+
+			if (m_pcGCOScore->getScoreAmount () > m_pcGCOHighScore->getHighScoreValue ())
+			{
+				m_pcGCOHighScore->HighScoreWriteFile (m_pcGCOScore);
+				//ZAF m_pcGCOHighScore->saveHighScore( m_pcGCOScore->getScoreAmount() );
+			}
+			ReplaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< GCLevel7 >::CreateScene ()));
+
+			//	m_bPlayerKeysGathered = true;
+
+				 // Mia: Calls the Function which plays the Door Opening Audio
+		}
+	}
 
 
 }
