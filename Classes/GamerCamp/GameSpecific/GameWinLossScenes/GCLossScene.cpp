@@ -58,13 +58,13 @@ void CGCLossScene::VOnCreate()
 			CC_CALLBACK_1(CGCLossScene::Callback_OnResetButton, this));
 
 	pResetButton->setPosition(cocos2d::Vec2(((visibleSize.width  * 0.25f)),
-		((visibleSize.height - (pResetButton->getContentSize().height * 6.5f))))); // fix pressed button position
+		((visibleSize.height - (pResetButton->getContentSize().height * 9.1f))))); // fix pressed button position
 
 
 	
 		cocos2d::MenuItemImage* pQuitItem
-		= cocos2d::MenuItemImage::create("Buttons/QuitButton1.png",
-			"Buttons/QuitButton1.png",
+		= cocos2d::MenuItemImage::create("TexturePacker/Sprites/MainMenu/Buttons/exit_normal.png",
+			"TexturePacker/Sprites/MainMenu/Buttons/exit_pressed",
 			CC_CALLBACK_1(CGCLossScene::Callback_OnQuitButton, this));
 
 	pQuitItem->setPosition(cocos2d::Vec2(((visibleSize.width  * 0.75f)),
@@ -181,7 +181,7 @@ void CGCLossScene::Callback_OnQuitButton(Ref* pSender)
 void CGCLossScene::Callback_OnResetButton(Ref* pSender)
 {
 
-	Director::getInstance()->replaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));
+	Director::getInstance()->replaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));
 }
 
 
