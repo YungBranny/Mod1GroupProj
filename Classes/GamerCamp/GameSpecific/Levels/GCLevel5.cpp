@@ -1097,7 +1097,7 @@ void GCLevel5::BeginContact (b2Contact* pB2Contact)
 
 			//rcPlayer.SetCanJump (true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
 
-			m_pcGCOPlayer->SetVelocity (cocos2d::Vec2 (m_pcGCOPlayer->getTravelatorVelocity (), m_pcGCOPlayer->GetVelocity ().y));
+			m_pcGCOPlayer->SetVelocity (cocos2d::Vec2 (m_pcGCOPlayer->getTravelatorVelocity ()*-1, m_pcGCOPlayer->GetVelocity ().y));
 
 			// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
 		}
