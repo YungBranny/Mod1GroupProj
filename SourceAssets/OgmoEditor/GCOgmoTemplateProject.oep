@@ -1621,11 +1621,11 @@
     </EntityDefinition>
     <EntityDefinition Name="auw_platform_ground_1800x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>600</Width>
+        <Width>1800</Width>
         <Height>60</Height>
       </Size>
       <Origin>
-        <X>300</X>
+        <X>900</X>
         <Y>30</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\AUWPlatforms\auw_platform_ground_1800x60.png" Tiled="false">
