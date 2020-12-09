@@ -1985,7 +1985,7 @@
       <ValueDefinitions>
         <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="GCHazardChild" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="tm_hazard_spider_long_60x120" MaxChars="-1" MultiLine="false" />
-        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/TMPlatforms/tm_hazard_spider_long_60x120.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/TMPlatforms/tm_hazard_spider_long_60x240.plist" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
           <Elements>
             <string>b2_staticBody</string>
@@ -2084,7 +2084,7 @@
         <Height>960</Height>
       </Size>
       <Origin>
-        <X>330</X>
+        <X>30</X>
         <Y>480</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\TMPlatforms\tm_platform_brick_60x960.png" Tiled="false">
@@ -2620,11 +2620,11 @@
     </EntityDefinition>
     <EntityDefinition Name="tm_platform_regular_360x60" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>120</Width>
+        <Width>360</Width>
         <Height>60</Height>
       </Size>
       <Origin>
-        <X>60</X>
+        <X>180</X>
         <Y>30</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\TMPlatforms\tm_platform_regular_360x60.png" Tiled="false">
