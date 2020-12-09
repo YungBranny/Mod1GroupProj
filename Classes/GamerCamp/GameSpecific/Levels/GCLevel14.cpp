@@ -804,7 +804,7 @@ void GCLevel14::VOnUpdate(f32 fTimeStep)
 	if (SkipWasRequested())
 	{
 		SkipRequestWasHandled();
-		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel15 >::CreateScene()));
+		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel15 >::CreateScene()));
 
 	}
 
