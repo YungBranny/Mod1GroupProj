@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>tm_platform_regular_240x60.png</key>
+            <key>auw_platform_regular_120x60.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{240,60}}</string>
+                <string>{{1,1},{120,52}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{0,4}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{240,60}}</string>
+                <string>{{0,0},{120,52}}</string>
                 <key>sourceSize</key>
-                <string>{240,60}</string>
+                <string>{120,60}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>tm_platform_regular_240x60.png</string>
+            <string>auw_platform_regular_120x60.png</string>
             <key>size</key>
-            <string>{242,62}</string>
+            <string>{122,54}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9e58a9cc9a2cd776105c6a5e1880596c:570161db03fd00b9929a28fcc21bf5d8:53213d0bd3af3393753bd016920d0f9b$</string>
+            <string>$TexturePacker:SmartUpdate:f626a6455967bad45952d2361efd033c:976f0b9097bd0e422b4b822f603eafd2:7ce4196d87cf4ea71f965d1754e76387$</string>
             <key>textureFileName</key>
-            <string>tm_platform_regular_240x60.png</string>
+            <string>auw_platform_regular_120x60.png</string>
         </dict>
     </dict>
 </plist>

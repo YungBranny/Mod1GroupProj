@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>tm_platform_regular_240x60.png</key>
+            <key>tm_platform_brick_60x240.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{240,60}}</string>
+                <string>{{1,1},{60,240}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{240,60}}</string>
+                <string>{{0,0},{60,240}}</string>
                 <key>sourceSize</key>
-                <string>{240,60}</string>
+                <string>{60,240}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>tm_platform_regular_240x60.png</string>
+            <string>tm_platform_brick_60x240.png</string>
             <key>size</key>
-            <string>{242,62}</string>
+            <string>{62,242}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9e58a9cc9a2cd776105c6a5e1880596c:570161db03fd00b9929a28fcc21bf5d8:53213d0bd3af3393753bd016920d0f9b$</string>
+            <string>$TexturePacker:SmartUpdate:5650bb61ab2be2be261ba4ecf64122b2:6909119f73bafc3324f0a0ff2c9fff78:4007e6acaf36609b4ed5df3658e2c27b$</string>
             <key>textureFileName</key>
-            <string>tm_platform_regular_240x60.png</string>
+            <string>tm_platform_brick_60x240.png</string>
         </dict>
     </dict>
 </plist>
