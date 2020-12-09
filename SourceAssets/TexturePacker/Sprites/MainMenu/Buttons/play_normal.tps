@@ -190,9 +190,9 @@
                 <key>scale9Enabled</key>
                 <false/>
                 <key>scale9Borders</key>
-                <rect>165,60,330,120</rect>
+                <rect>120,30,240,60</rect>
                 <key>scale9Paddings</key>
-                <rect>165,60,330,120</rect>
+                <rect>120,30,240,60</rect>
                 <key>scale9FromFile</key>
                 <false/>
             </struct>

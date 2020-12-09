@@ -7,15 +7,15 @@
             <key>play_pressed.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{576,214}}</string>
+                <string>{{1,1},{464,100}}</string>
                 <key>offset</key>
-                <string>{-3,3}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{39,10},{576,214}}</string>
+                <string>{{8,10},{464,100}}</string>
                 <key>sourceSize</key>
-                <string>{660,240}</string>
+                <string>{480,120}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -29,9 +29,9 @@
             <key>realTextureFileName</key>
             <string>play_pressed.png</string>
             <key>size</key>
-            <string>{578,216}</string>
+            <string>{466,102}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4e5d1f81d6652bf1b3e3dc6c7b45bc5c:06ca1ec31221d5f1e576038ef001da8e:2f402d1a73c8e87f398b78aa8616ce19$</string>
+            <string>$TexturePacker:SmartUpdate:d7dd07c10554f38f873a078ac3969ee6:3340784a4a312cf64cb8298674770b0d:2f402d1a73c8e87f398b78aa8616ce19$</string>
             <key>textureFileName</key>
             <string>play_pressed.png</string>
         </dict>

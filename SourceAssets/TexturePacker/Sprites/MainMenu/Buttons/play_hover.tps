@@ -34,7 +34,7 @@
         <key>dataFormat</key>
         <string>cocos2d-v2</string>
         <key>textureFileName</key>
-        <filename>../../../../../Resources/windows/TexturePacker/Sprites/MainMenu/Buttons/play_pressed.png</filename>
+        <filename>../../../../../Resources/windows/TexturePacker/Sprites/MainMenu/Buttons/play_hover.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>pvrCompressionQuality</key>
@@ -132,7 +132,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>../../../../../Resources/windows/TexturePacker/Sprites/MainMenu/Buttons/play_pressed.plist</filename>
+                <filename>../../../../../Resources/windows/TexturePacker/Sprites/MainMenu/Buttons/play_hover.plist</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -181,7 +181,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
-            <key type="filename">play_pressed.png</key>
+            <key type="filename">play_hover.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -199,7 +199,7 @@
         </map>
         <key>fileList</key>
         <array>
-            <filename>play_pressed.png</filename>
+            <filename>play_hover.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

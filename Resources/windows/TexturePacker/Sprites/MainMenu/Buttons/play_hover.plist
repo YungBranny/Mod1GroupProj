@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>play_normal.png</key>
+            <key>play_hover.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{1,1},{464,100}}</string>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>play_normal.png</string>
+            <string>play_hover.png</string>
             <key>size</key>
             <string>{466,102}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:461c282ca53f477f892064f93be21bed:efa5df24451de655a58206cc194914bc:047558ba363303105958c9ac9e88cac3$</string>
+            <string>$TexturePacker:SmartUpdate:a922e47a04be484d9a72429f5bdfcbec:28febfd8f1eae4cec5da32a240c2bab1:c9826df468a25e70d1264e3faacd7700$</string>
             <key>textureFileName</key>
-            <string>play_normal.png</string>
+            <string>play_hover.png</string>
         </dict>
     </dict>
 </plist>
