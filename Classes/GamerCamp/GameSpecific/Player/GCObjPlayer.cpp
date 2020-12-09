@@ -103,7 +103,8 @@ CGCObjPlayer::CGCObjPlayer ()
 	//	SetParent(IGCGameLayer::ActiveInstance());
 	//	//SetScale(m_fScaleX, m_fScaleY);
 	//}
-
+    
+	
 	m_sprPlayerLoseLives1 = Sprite::create("TexturePacker/Sprites/Lives/empty_heart.png");
 	m_sprPlayerLoseLives2 = Sprite::create("TexturePacker/Sprites/Lives/empty_heart.png");
 	m_sprPlayerLoseLives3 = Sprite::create("TexturePacker/Sprites/Lives/empty_heart.png");
@@ -123,6 +124,8 @@ CGCObjPlayer::CGCObjPlayer ()
 
 
 	m_eChangeAnimation = EChangeAnimation::Idle;
+
+	
 }
 
 

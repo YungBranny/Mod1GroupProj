@@ -625,22 +625,25 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		[this]
 	(CGCObjExitDoor& rcExitDoor, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
+			
+			
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
 				playDoorOpeningAudio ();
 				
 				m_pcGCOScore->ScoreWriteFile(m_pcGCOScore);
 
-				
-				//m_pcGCOPlayer->PlayerLivesWriteFile();
+				m_pcGCOPlayer->PlayerLivesWriteFile();
+			
+			
 				
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
 					m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 					//ZAF m_pcGCOHighScore->saveHighScore( m_pcGCOScore->getScoreAmount() );
 				}
-				
 			ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
+			
 			//	m_bPlayerKeysGathered = true;
 
 				 // Mia: Calls the Function which plays the Door Opening Audio

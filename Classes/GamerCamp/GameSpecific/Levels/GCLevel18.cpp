@@ -63,6 +63,7 @@
 
 
 #include "AppDelegate.h"
+#include "GCLevel19.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
 

@@ -285,7 +285,7 @@ void GCLevel2::VOnCreate ()
 	
 	this->addChild (m_pcGCOScore->getScoreText (), 10);
 
-	//m_pcGCOPlayer->PlayerLivesReadFile();
+	
 
 	m_pcGCOHighScore = new CGCObjHighScore (m_pcGCOScore);
 
@@ -417,7 +417,9 @@ void GCLevel2::VOnCreate ()
 	m_pcGCOPlayer->setJumpHeight (200.0f);
 
 	//this->addChild(m_pcGCOPlayer->getLivesText(), 10);
-
+	
+	m_pcGCOPlayer->PlayerLivesReadFile();
+	
 
 	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI1 (), 10);
 
@@ -432,8 +434,9 @@ void GCLevel2::VOnCreate ()
 
 	this->addChild (m_pcGCOPlayer->getPlayerLivesUI3 (), 11);
 
-
-
+	m_pcGCOPlayer->LivesUI();
+	
+	
 	//this->addChild(m_pcGCOLives->getLivesUI(), 20);
 
 	//this->addChild(m_pcGCOPlayer->getLivesUI1());
@@ -585,7 +588,7 @@ void GCLevel2::VOnCreate ()
 
 				m_pcGCOScore->ScoreWriteFile(m_pcGCOScore);
 
-				//m_pcGCOPlayer->PlayerLivesWriteFile();
+				m_pcGCOPlayer->PlayerLivesWriteFile();
 				
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
