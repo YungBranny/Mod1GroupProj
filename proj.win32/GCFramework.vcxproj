@@ -172,6 +172,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDown.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownFast.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownSlow.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRDownSpike.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRSpike.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTMHazardDown.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\MovingEnemy2.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane10.cpp" />
@@ -185,6 +188,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane7.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane8.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane9.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTMHazard.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\ExitDoor\GCObjExitDoor.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.cpp" />
@@ -293,6 +297,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDown.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownFast.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownSlow.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRDownSpike.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRSpike.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTMHazardDown.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane10.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane11.h" />
@@ -305,6 +312,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane7.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane8.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane9.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTMHazard.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\ExitDoor\GCObjExitDoor.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCLossScene.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GameWinLossScenes\GCWinScene.h" />

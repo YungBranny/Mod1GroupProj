@@ -10,7 +10,7 @@
 
 
 
-#include "GCCCDownSpike.h"
+#include "GCTCRDownSpike.h"
 
 #ifndef TINYXML2_INCLUDED
 #include "external\tinyxml2\tinyxml2.h"
@@ -23,18 +23,18 @@
 
 USING_NS_CC;
 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCCCDownSpike);
+GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCTCRDownSpike);
 
-CGCCCDownSpike::CGCCCDownSpike ()
+CGCTCRDownSpike::CGCTCRDownSpike ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCBasicEnemies))
 {
 
 }
 
-void CGCCCDownSpike::VOnResourceAcquire ()
+void CGCTCRDownSpike::VOnResourceAcquire ()
 {
 	CGCObjSpritePhysics::VOnResourceAcquire ();
-	const char* pszAnim_Idle = "CCDownSpike";
+	const char* pszAnim_Idle = "TCRSpike";
 
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
 	RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_Idle)));
@@ -44,16 +44,16 @@ void CGCCCDownSpike::VOnResourceAcquire ()
 
 }
 
-void CGCCCDownSpike::VOnReset ()
+void CGCTCRDownSpike::VOnReset ()
 {
 	CGCObjSpritePhysics::VOnReset ();
 }
-void CGCCCDownSpike::VOnUpdate (f32 fTimestep)
+void CGCTCRDownSpike::VOnUpdate (f32 fTimestep)
 {
 	CGCObjSpritePhysics::VOnUpdate (fTimestep);
 }
 
-void CGCCCDownSpike::VOnResourceRelease ()
+void CGCTCRDownSpike::VOnResourceRelease ()
 {
 	CGCObjSpritePhysics::VOnResourceRelease ();
 	if (nullptr != m_pCustomCreationParams.get ())
@@ -61,12 +61,12 @@ void CGCCCDownSpike::VOnResourceRelease ()
 		m_pCustomCreationParams.reset (nullptr);
 	}
 }
-void CGCCCDownSpike::VOnResurrected ()
+void CGCTCRDownSpike::VOnResurrected ()
 {
 	CGCObjSpritePhysics::VOnResurrected ();
 }
 
-void CGCCCDownSpike::VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
+void CGCTCRDownSpike::VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
 {
 	const CGCFactoryCreationParams* pParamsToPassToBaseClass = &rCreationParams;
 
@@ -94,7 +94,5 @@ void CGCCCDownSpike::VHandleFactoryParams (const CGCFactoryCreationParams& rCrea
 
 	CGCObjSpritePhysics::VHandleFactoryParams (( *pParamsToPassToBaseClass ), v2InitialPosition);
 }
-
-
 
 

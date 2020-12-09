@@ -10,7 +10,7 @@
 
 
 
-#include "GCCCDownSpike.h"
+#include "GCTMHazardDown.h"
 
 #ifndef TINYXML2_INCLUDED
 #include "external\tinyxml2\tinyxml2.h"
@@ -23,18 +23,18 @@
 
 USING_NS_CC;
 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCCCDownSpike);
+GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCTMHazardDown);
 
-CGCCCDownSpike::CGCCCDownSpike ()
+CGCTMHazardDown::CGCTMHazardDown ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCBasicEnemies))
 {
 
 }
 
-void CGCCCDownSpike::VOnResourceAcquire ()
+void CGCTMHazardDown::VOnResourceAcquire ()
 {
 	CGCObjSpritePhysics::VOnResourceAcquire ();
-	const char* pszAnim_Idle = "CCDownSpike";
+	const char* pszAnim_Idle = "TMHazardDown";
 
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
 	RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_Idle)));
@@ -44,16 +44,16 @@ void CGCCCDownSpike::VOnResourceAcquire ()
 
 }
 
-void CGCCCDownSpike::VOnReset ()
+void CGCTMHazardDown::VOnReset ()
 {
 	CGCObjSpritePhysics::VOnReset ();
 }
-void CGCCCDownSpike::VOnUpdate (f32 fTimestep)
+void CGCTMHazardDown::VOnUpdate (f32 fTimestep)
 {
 	CGCObjSpritePhysics::VOnUpdate (fTimestep);
 }
 
-void CGCCCDownSpike::VOnResourceRelease ()
+void CGCTMHazardDown::VOnResourceRelease ()
 {
 	CGCObjSpritePhysics::VOnResourceRelease ();
 	if (nullptr != m_pCustomCreationParams.get ())
@@ -61,12 +61,12 @@ void CGCCCDownSpike::VOnResourceRelease ()
 		m_pCustomCreationParams.reset (nullptr);
 	}
 }
-void CGCCCDownSpike::VOnResurrected ()
+void CGCTMHazardDown::VOnResurrected ()
 {
 	CGCObjSpritePhysics::VOnResurrected ();
 }
 
-void CGCCCDownSpike::VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
+void CGCTMHazardDown::VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
 {
 	const CGCFactoryCreationParams* pParamsToPassToBaseClass = &rCreationParams;
 
