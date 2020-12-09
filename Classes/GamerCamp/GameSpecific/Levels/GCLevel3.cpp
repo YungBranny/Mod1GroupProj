@@ -780,7 +780,7 @@ void GCLevel3::VOnUpdate (f32 fTimeStep)
 	// this shows how to iterate and respond to the box2d collision info
 	HandleCollisions ();
 
-	if (m_pcGCOPlayer->getPlayerCheckLives () == true)
+	if (m_pcGCOPlayer->getPlayerLives() <= 0)
 	{
 		PlayerDeathSceneSwap ();
 	}
@@ -931,139 +931,6 @@ void GCLevel3::BeginContact (b2Contact* pB2Contact)
 
 
 
-	//// ignore contact between player projectile and item for collision resolution purposes
-	//if(	pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() )
-	//{
-	//	if(		(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjPlayer ) )
-	//			 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) ) )
-	//		||	(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) )
-	//			 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer) ) ) )
-	//	{
-	//		// ignore the collision!
-
-	//		if (m_pcGCOPlayer->GetVelocity ().y > 0)
-	//		{
-	//				// ignore the collision!
-	//				pB2Contact->SetEnabled (false);
-
-	//		}
-
-	//		if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-	//		{
-	//			if (pB2Contact->GetFixtureA ()->IsSensor () || pB2Contact->GetFixtureB ())
-	//			{
-	//				// ignore the collision!
-	//				pB2Contact->SetEnabled (true);
-	//			}
-	//		}
-	//		// ignore the collision!
-	//		//pB2Contact->SetEnabled( true );
-	//		//
-	//		// insert logic relating to this collision here
-	//		//
-	//		//
-
-	//		
-	//	}
-
-	//	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) )
-	//		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
-	//			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
-	//	{
-	//		// ignore the collision!
-
-	//		if (m_pcGCOPlayer->GetVelocity ().y > 0)
-	//		{
-	//			// ignore the collision!
-	//			pB2Contact->SetEnabled (false);
-	//			
-	//		}
-
-	//	
-	//			if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-	//			{
-	//				if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor () || pB2Contact->IsTouching () && pB2Contact->GetFixtureA ()->IsSensor ())
-	//				{
-	//				// ignore the collision!
-
-
-	//					// ignore the collision!
-	//				pB2Contact->SetEnabled (true);
-	//			}
-	//		}
-	//		// ignore the collision!
-	//		//pB2Contact->SetEnabled( true );
-	//		//
-	//		// insert logic relating to this collision here
-	//		//
-	//		//
-
-
-	//	}
-
-
-	//	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) ))
-	//	{
-	//		// ignore the collision!
-	//		
-	//		if (m_pcGCOPlayer->GetVelocity ().y > 3.0f)
-	//		{
-	//			pB2Contact->SetEnabled (false);
-	//		}
-
-	//		if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor ())
-	//		{
-	//		if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-	//		{
-	//			// ignore the collision!
-	//		
-	//		
-	//				// ignore the collision!
-	//				pB2Contact->SetEnabled (true);
-	//			}
-	//		}
-	//		// ignore the collision!
-	//		//pB2Contact->SetEnabled( true );
-	//		//
-	//		// insert logic relating to this collision here
-	//		//
-	//		//
-
-
-	//	}
-	//}
-
-	//if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-	//	&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
-	//	|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
-	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
-	//{
-	//	// ignore the collision!
-
-	//	if (m_pcGCOPlayer->GetVelocity ().y > 0)
-	//	{
-	//		pB2Contact->SetEnabled (false);
-	//	}
-
-	//	if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-	//	{
-	//		if (pB2Contact->GetFixtureA ()->IsSensor () || pB2Contact->GetFixtureB ())
-	//		{
-	//			pB2Contact->SetEnabled (true);
-	//		}
-	//	}
-	//	// ignore the collision!
-	//	//pB2Contact->SetEnabled( true );
-	//	//
-	//	// insert logic relating to this collision here
-	//	//
-	//	//
-
-
-	//}
-
 	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
 		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
@@ -1103,10 +970,7 @@ void GCLevel3::BeginContact (b2Contact* pB2Contact)
 
 			pB2Contact->SetEnabled (true);
 		}
-		//if (m_pcGCOPlayer->getPlayerDiedFromFalling())
-		//{
-		//	CGCObjectManager::ObjectKill (m_pcGCOPlayer);
-		//}
+
 	}
 
 	if (( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
@@ -1277,6 +1141,8 @@ void GCLevel3::PreSolve (b2Contact* pB2Contact, const b2Manifold* pOldManifold)
 		}
 		if( m_pcGCOPlayer->getPlayerDiedFromFalling() )
 		{
+			//m_pcGCOPlayer->FallDamage ();
+			//m_pcGCOPlayer->SetCanJump (true);
 			m_pcGCOPlayer->DecrementLives();
 			RequestReset();
 		}

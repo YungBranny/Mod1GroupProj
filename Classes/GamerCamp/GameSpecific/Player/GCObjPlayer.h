@@ -82,7 +82,7 @@ private:
 	bool	m_bPlayerDiedFromFalling;
 	bool	m_bOnLadder;
 	bool	m_bChangeAnimation; // If more animations added, will be changed to enum or switch
-
+	bool	m_bLostLife;
 	bool   m_bPlayerLivesCheck;
 	
 	bool	m_bIsPlayerOnPlatform;

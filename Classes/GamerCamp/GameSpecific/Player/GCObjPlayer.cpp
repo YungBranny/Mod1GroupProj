@@ -72,6 +72,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_bChangeAnimation (true)
 	, m_iSwitchesHit (0)
 	, m_bPlayerLivesCheck(false)
+	, m_bLostLife(false)
 {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -156,7 +157,8 @@ void CGCObjPlayer::VOnReset()
 	m_bOnTravelator = false;
 	m_bIsPlayerOnPlatform = true;
 	m_iSwitchesHit = 0;
-
+	m_bLostLife = false;
+	m_bPlayerDiedFromFalling = false;
 	// reset
 	if( GetPhysicsBody() )
 	{
@@ -179,7 +181,7 @@ void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 	// handle movement
 	UpdateMovement(fTimeStep);
 
-	if(getPlayerLives() <=0)
+	if(getPlayerLives() <= 0)
 	{
 		setPlayerCheckLives(true);
 	}
@@ -545,9 +547,15 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 //Function to be called when losing a life
 void CGCObjPlayer::DecrementLives()
 {
-	m_iNumberOfLives--;
-	//getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
-	LivesUI();
+
+	
+	if (m_bLostLife == false)
+	{
+		m_bLostLife = true;
+		m_iNumberOfLives--;
+		//getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
+		LivesUI ();
+	}
 }
 
 //Function to reset lives
@@ -573,7 +581,7 @@ void CGCObjPlayer::FallDamage()
 			CCLOG("Player dead.");
 			m_bPlayerDiedFromFalling = true;
 		}
-
+		m_bPlayerDiedFromFalling = false;
 		m_fStartPositionY = GetPhysicsBody()->GetPosition().y;
 		m_fEndPositionY = GetPhysicsBody()->GetPosition().y;
 		m_fDropDistance = 0;
