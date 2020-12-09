@@ -419,13 +419,15 @@ void GCLevel3::VOnCreate ()
 
 	//this->addChild(m_pcGCOPlayer->getLivesText(), 10);
 
+	m_pcGCOPlayer->PlayerLivesReadFile();
 
 	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI1 (), 10);
 
 	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI2 (), 10);
 
 	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI3 (), 10);
-
+	
+	
 
 	this->addChild (m_pcGCOPlayer->getPlayerLivesUI1 (), 11);
 
@@ -433,8 +435,9 @@ void GCLevel3::VOnCreate ()
 
 	this->addChild (m_pcGCOPlayer->getPlayerLivesUI3 (), 11);
 
-
-
+	
+	m_pcGCOPlayer->LivesUI();
+	
 	//this->addChild(m_pcGCOLives->getLivesUI(), 20);
 
 	//this->addChild(m_pcGCOPlayer->getLivesUI1());
@@ -587,11 +590,14 @@ void GCLevel3::VOnCreate ()
 
 				m_pcGCOScore->ScoreWriteFile(m_pcGCOScore);
 
+				m_pcGCOPlayer->PlayerLivesWriteFile();
+
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
 					m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 				}
 
+				
 				ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel4 >::CreateScene ()));
 				//	m_bPlayerKeysGathered = true;
 
@@ -811,6 +817,7 @@ void GCLevel3::VOnUpdate (f32 fTimeStep)
 
 	if (SkipWasRequested ())
 	{
+		m_pcGCOPlayer->PlayerLivesWriteFile();
 		SkipRequestWasHandled ();
 		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel4 >::CreateScene ()));
 

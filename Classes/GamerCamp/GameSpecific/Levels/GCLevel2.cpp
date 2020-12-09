@@ -816,6 +816,7 @@ void GCLevel2::VOnUpdate (f32 fTimeStep)
 
 	if (SkipWasRequested ())
 	{
+		m_pcGCOPlayer->PlayerLivesWriteFile();
 		SkipRequestWasHandled ();
 		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< GCLevel3 >::CreateScene ()));
 

@@ -591,15 +591,30 @@ void CGCObjPlayer::LivesUI()
 {
 	if (m_iNumberOfLives == 0)
 	{
+		
+		
 		getPlayerLivesUI1()->setVisible(false);
+
+		getPlayerLivesUI2()->setVisible(false);
+
+		getPlayerLivesUI3()->setVisible(false);
 		
 		getPlayerLoseLivesUI1()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
+
+		getPlayerLoseLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 75, m_fLivesStartPositionY));
+
+		getPlayerLoseLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 150, m_fLivesStartPositionY));
+		
 	}
 	else if (m_iNumberOfLives == 1)
 	{
 		getPlayerLivesUI2()->setVisible(false);
+
+		getPlayerLivesUI3()->setVisible(false);
 	
 		getPlayerLoseLivesUI2()->setPosition(Vec2(m_fLivesStartPositionX + 75, m_fLivesStartPositionY));
+
+		getPlayerLoseLivesUI3()->setPosition(Vec2(m_fLivesStartPositionX + 150, m_fLivesStartPositionY));
 	}
 	else if (m_iNumberOfLives == 2)
 	{

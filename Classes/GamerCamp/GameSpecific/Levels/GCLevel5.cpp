@@ -418,7 +418,8 @@ void GCLevel5::VOnCreate ()
 
 	//this->addChild(m_pcGCOPlayer->getLivesText(), 10);
 
-
+	m_pcGCOPlayer->PlayerLivesReadFile();
+	
 	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI1 (), 10);
 
 	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI2 (), 10);
@@ -432,7 +433,7 @@ void GCLevel5::VOnCreate ()
 
 	this->addChild (m_pcGCOPlayer->getPlayerLivesUI3 (), 11);
 
-
+	m_pcGCOPlayer->LivesUI();
 
 	//this->addChild(m_pcGCOLives->getLivesUI(), 20);
 
@@ -585,6 +586,8 @@ void GCLevel5::VOnCreate ()
 				playDoorOpeningAudio ();
 
 				m_pcGCOScore->ScoreWriteFile(m_pcGCOScore);
+
+				m_pcGCOPlayer->PlayerLivesWriteFile();
 
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
@@ -810,6 +813,7 @@ void GCLevel5::VOnUpdate (f32 fTimeStep)
 
 	if (SkipWasRequested ())
 	{
+		m_pcGCOPlayer->PlayerLivesWriteFile();
 		SkipRequestWasHandled ();
 		ReplaceScene (TransitionRotoZoom::create (1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 

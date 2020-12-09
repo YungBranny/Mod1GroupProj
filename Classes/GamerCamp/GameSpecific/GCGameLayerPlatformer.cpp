@@ -450,7 +450,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	this->addChild (m_pcGCOPlayer->getPlayerLivesUI3 (), 11);
 
-
+	m_pcGCOPlayer->LivesUI();
 
 	//this->addChild(m_pcGCOLives->getLivesUI(), 20);
 
@@ -635,8 +635,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 				m_pcGCOPlayer->PlayerLivesWriteFile();
 			
-			
-				
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
 					m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
@@ -898,6 +896,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	if( SkipWasRequested() )
 	{
+		m_pcGCOPlayer->PlayerLivesWriteFile();
 		SkipRequestWasHandled ();
 		ReplaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
 		
