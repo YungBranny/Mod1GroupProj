@@ -131,12 +131,12 @@
   </ExitDoor>
   <Ladder />
   <Hazards>
-    <DownwardSpike id="6" x="690" y="150" angle="0" class="GCHazardChild" shape="cc_hazard_downward_spike" PlistFile="TexturePacker/Sprites/Spike/DownwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <DownwardSpike id="4" x="990" y="150" angle="0" class="GCHazardChild" shape="cc_hazard_downward_spike" PlistFile="TexturePacker/Sprites/Spike/DownwardSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <UpwardSpike id="2" x="1260" y="630" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <UpwardSpike id="3" x="750" y="870" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <UpwardSpike id="0" x="1410" y="390" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <UpwardSpike id="1" x="1650" y="390" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CCDownSpike id="5" x="690" y="150" angle="0" class="CGCCCDownSpike" shape="cc_hazard_downward_spike" PlistFile="TexturePacker/Sprites/CCDownSpike/CCDownSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CCDownSpike id="4" x="990" y="150" angle="0" class="CGCCCDownSpike" shape="cc_hazard_downward_spike" PlistFile="TexturePacker/Sprites/CCDownSpike/CCDownSpike.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Hazards>
   <Keys>
     <Keys id="0" x="1830" y="510" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
