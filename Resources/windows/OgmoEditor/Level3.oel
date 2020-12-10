@@ -67,10 +67,10 @@
   </ExitDoor>
   <Ladder />
   <Hazards>
-    <tm_hazard_spider_short_60x60 id="3" x="630" y="150" class="GCHazardChild" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_hazard_spider_short_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <tm_hazard_spider_short_60x60 id="4" x="1650" y="150" class="GCHazardChild" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_hazard_spider_short_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <tm_hazard_spider_long_60x120 id="5" x="1110" y="180" class="GCHazardChild" shape="tm_hazard_spider_long_60x120" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_hazard_spider_long_60x120.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <tm_hazard_spider_long_60x240 id="0" x="90" y="690" class="GCHazardChild" shape="tm_hazard_spider_long_60x120" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_hazard_spider_long_60x240.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <TMHazardDown id="0" x="90" y="630" angle="0" class="CGCTMHazardDown" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMHazardDown/TMHazardDown.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <TMHazardDown id="1" x="1140" y="180" angle="0" class="CGCTMHazardDown" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMHazardDown/TMHazardDown.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <TMHazard id="2" x="1650" y="150" angle="0" class="CGCTMHazard" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMHazard/TMHazard.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <TMHazard id="3" x="630" y="150" angle="0" class="CGCTMHazard" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMHazard/TMHazard.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Hazards>
   <Keys>
     <Keys id="0" x="1830" y="510" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />

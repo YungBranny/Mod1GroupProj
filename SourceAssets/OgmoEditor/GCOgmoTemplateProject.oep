@@ -380,11 +380,11 @@
     <EntityDefinition Name="TMHazardDown" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="true" RotateIncrement="180">
       <Size>
         <Width>60</Width>
-        <Height>60</Height>
+        <Height>120</Height>
       </Size>
       <Origin>
         <X>30</X>
-        <Y>30</Y>
+        <Y>60</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\TexturePacker\Sprites\TMHazardDown\Frames\TMHazardDown\final-0001.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
@@ -446,7 +446,7 @@
       <ValueDefinitions>
         <ValueDefinition xsi:type="StringValueDefinition" Name="class" Default="CGCTCRSpikeDown" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="StringValueDefinition" Name="shape" Default="tm_hazard_spider_short_60x60" MaxChars="-1" MultiLine="false" />
-        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/TCRSpikeDown/TCRSpikeDown.plist" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="StringValueDefinition" Name="PlistFile" Default="TexturePacker/Sprites/TCRDownSpike/TCRDownSpike.plist" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="EnumValueDefinition" Name="B2DBodyType">
           <Elements>
             <string>b2_staticBody</string>
