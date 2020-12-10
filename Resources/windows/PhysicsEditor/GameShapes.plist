@@ -1135,8 +1135,8 @@
 						<array>
 							<array>	
 								<string>{ -33.000,31.000 }</string>	
-								<string>{ -33.000,26.000 }</string>	
-								<string>{ 33.000,26.000 }</string>	
+								<string>{ -33.000,29.000 }</string>	
+								<string>{ 33.000,29.000 }</string>	
 								<string>{ 33.000,31.000 }</string>
 							</array>
 						</array>
@@ -1255,8 +1255,8 @@
 						<array>
 							<array>	
 								<string>{ 3.000,6.000 }</string>	
-								<string>{ 2.000,45.000 }</string>	
-								<string>{ -1.000,46.000 }</string>	
+								<string>{ 1.000,38.000 }</string>	
+								<string>{ -1.000,38.000 }</string>	
 								<string>{ -1.000,6.000 }</string>
 							</array>
 						</array>

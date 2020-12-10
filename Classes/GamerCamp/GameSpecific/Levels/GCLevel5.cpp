@@ -1146,7 +1146,7 @@ void GCLevel5::BeginContact (b2Contact* pB2Contact)
 				m_pcGCOHighScore->HighScoreWriteFile (m_pcGCOScore);
 				//ZAF m_pcGCOHighScore->saveHighScore( m_pcGCOScore->getScoreAmount() );
 			}
-			ReplaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< GCLevel6 >::CreateScene ()));
+			ReplaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 
 			//	m_bPlayerKeysGathered = true;
 
