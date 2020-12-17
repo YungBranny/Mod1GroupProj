@@ -88,6 +88,9 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Enemies\Planes">
       <UniqueIdentifier>{730fe7fe-0d21-44a6-bfe4-c0fe86671e20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\GamerCamp\GameSpecific\Enemies\LightMechanic">
+      <UniqueIdentifier>{44617deb-2640-4d30-b457-d4c639abeddd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -444,6 +447,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRDownSpike.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\LightMechanic\GCOLightMechanic.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\LightMechanic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -816,6 +822,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRDownSpike.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\LightMechanic\GCOLightMechanic.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Enemies\LightMechanic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

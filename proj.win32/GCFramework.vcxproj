@@ -175,6 +175,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRDownSpike.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRSpike.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTMHazardDown.cpp" />
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\LightMechanic\GCOLightMechanic.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\MovingEnemy2.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane10.cpp" />
@@ -300,6 +301,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRDownSpike.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRSpike.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTMHazardDown.h" />
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\LightMechanic\GCOLightMechanic.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane10.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\Planes\GCOFallingPlane11.h" />
