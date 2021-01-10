@@ -183,6 +183,7 @@ void CGCObjTimer::EndGameDecrease()
 
 void CGCObjTimer::VOnReset()
  {
+ 	//reset Timer back to max when the level is reset
 	setCurrentTime(getTotalTimerDuration());
  }
 
@@ -196,8 +197,7 @@ void CGCObjTimer::ResetTimer()
  void CGCObjTimer::Update( f32 fTimeStep)
 {
 	 
- 	
-	 m_fCurrentTime -= fTimeStep;
+	 m_fCurrentTime -= fTimeStep;//Lower timer frame rate compensated so the Timer bar decreases gradually
  	
  	 DecreaseTimer(fTimeStep);
  	
