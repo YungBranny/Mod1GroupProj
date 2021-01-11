@@ -33,7 +33,6 @@ CGCObjKeys::~CGCObjKeys()
 }
 
 // Create the Key Sprite, give it a Static Physics Body which means it won't move and then set fixed rotation to 'True'
-//IN_CPP_CREATION_PARAMS_DECLARE ( CGCObjKeys, "TexturePacker/Sprites/Key/cc_collectible_key.plist", "Key", b2_staticBody, true );
 void CGCObjKeys::VOnResourceAcquire ( void )
 {
 	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCObjKeys);
@@ -54,10 +53,6 @@ void CGCObjKeys::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationP
 
 	if( nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData )
 	{
-		//const tinyxml2::XMLAttribute* pName = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "name" );
-
-		//CCLOG( (nullptr == pName) ? "BOB NOT FOUND!" : pName->Value() );
-
 		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("PlistFile");    //customplist    //PlistFile
 
 		const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("shape");
@@ -97,6 +92,5 @@ void CGCObjKeys::CollisionChecker()
 
 void CGCObjKeys::VOnUpdate ( f32 fTimestep )
 {
-	//SetSpriteRotation(GetSpriteRotation() + 0.1f); // Setting the rotation for the Keys, so they spin and look appealing to the Player
 	CollisionChecker(); // Updates CollisionChecker
 }
