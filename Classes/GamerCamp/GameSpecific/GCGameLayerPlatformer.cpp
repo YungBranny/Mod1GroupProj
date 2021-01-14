@@ -89,23 +89,24 @@ USING_NS_CC;
 ///////////////////////////////////////////////////////////////////////////////
 // Constructor
 ///////////////////////////////////////////////////////////////////////////////
-CGCGameLayerPlatformer::CGCGameLayerPlatformer()
-	: IGCGameLayer(GetGCTypeIDOf(CGCGameLayerPlatformer))
-	, m_pcGCGroupItem(nullptr)
-	, m_pcGCGroupInvader(nullptr)
-	, m_pcGCGroupProjectilePlayer(nullptr)
-	, m_pcGCTimer(nullptr)
-	, m_pcGCSprBackGround(nullptr)
-	, m_pcGCOPlayer(nullptr)
-	, m_bResetWasRequested(false)
-	, m_bSkipWasRequested(false)
-, m_bQuitWasRequested			( false )
-, m_pcGCOKeys					( nullptr )
-, m_pcGCOKeys1					( nullptr )
-, m_pcGCOKeys2					( nullptr )
-, m_bCheckIfPlayerIsAbovePlatform (false)
-, m_pcGCOScore (nullptr)
-, m_pcGCOHighScore(nullptr)
+CGCGameLayerPlatformer::CGCGameLayerPlatformer ()
+	: IGCGameLayer (GetGCTypeIDOf (CGCGameLayerPlatformer))
+	, m_pcGCGroupItem (nullptr)
+	, m_pcGCGroupInvader (nullptr)
+	, m_pcGCGroupProjectilePlayer (nullptr)
+	, m_pcGCTimer (nullptr)
+	, m_pcGCSprBackGround (nullptr)
+	, m_pcGCOPlayer (nullptr)
+	, m_bResetWasRequested (false)
+	, m_bSkipWasRequested (false)
+	, m_bQuitWasRequested (false)
+	, m_pcGCOKeys (nullptr)
+	, m_pcGCOKeys1 (nullptr)
+	, m_pcGCOKeys2 (nullptr)
+	, m_bCheckIfPlayerIsAbovePlatform (false)
+	, m_pcGCOScore (nullptr)
+	, m_pcGCOHighScore (nullptr)
+	, m_doorTest (false)
 
 {
 	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
@@ -842,7 +843,22 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	{
 		PlayerDeathSceneSwap();
 	}
+	
 
+		if (m_pcGCTimer->getCurrentTime () > 2.0f && m_doorTest == true)
+		{
+
+			m_pcGCTimer->setCurrentTime (m_pcGCTimer->getCurrentTime () - 0.4f);
+		}
+
+	if (m_doorTest == true && m_pcGCTimer->getCurrentTime () < 2.0f)
+	{
+		ReplaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene ()));
+	}
+	if(m_doorTest == true)
+	{
+		m_pcGCOPlayer->SetVelocity (Vec2 (0, 0));
+	}
 	//std::ifstream inFile;
 	//inFile.open("HighScore.txt");
 
@@ -1214,20 +1230,27 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjExitDoor) ) ))
 	{
+			
+		
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
-				playDoorOpeningAudio ();
+				if (m_doorTest == false)
+				{
+					playDoorOpeningAudio ();
+				}
+				
+				m_doorTest = true;
 
+				
 				m_pcGCOScore->ScoreWriteFile (m_pcGCOScore);
 
 				m_pcGCOPlayer->PlayerLivesWriteFile ();
-
 				if (m_pcGCOScore->getScoreAmount () > m_pcGCOHighScore->getHighScoreValue ())
 				{
 					m_pcGCOHighScore->HighScoreWriteFile (m_pcGCOScore);
-					//ZAF m_pcGCOHighScore->saveHighScore( m_pcGCOScore->getScoreAmount() );
+	//ZAF m_pcGCOHighScore->saveHighScore( m_pcGCOScore->getScoreAmount() );
 				}
-				ReplaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene ()));
+				
 
 				//	m_bPlayerKeysGathered = true;
 
@@ -1365,6 +1388,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 			}
 
 	}
+
 
 	 if ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) )
 		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) 

@@ -188,6 +188,8 @@ private:
 	bool							m_bQuitWasRequested;
 	bool							m_bSkipWasRequested;
 
+	bool							m_doorTest;
+	
 	void RequestReset()
 	{
 		m_bResetWasRequested = true; 
