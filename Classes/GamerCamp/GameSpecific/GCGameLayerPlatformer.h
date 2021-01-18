@@ -188,7 +188,7 @@ private:
 	bool							m_bQuitWasRequested;
 	bool							m_bSkipWasRequested;
 
-	bool							m_bDoorUnlocked;
+	bool							m_doorTest;
 	
 	void RequestReset()
 	{

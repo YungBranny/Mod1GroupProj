@@ -106,7 +106,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer ()
 	, m_bCheckIfPlayerIsAbovePlatform (false)
 	, m_pcGCOScore (nullptr)
 	, m_pcGCOHighScore (nullptr)
-	, m_bDoorUnlocked (false)
+	, m_doorTest (false)
 
 {
 	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
@@ -845,17 +845,17 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	}
 	
 
-		if (m_pcGCTimer->getCurrentTime () > 2.0f && m_bDoorUnlocked == true)
+		if (m_pcGCTimer->getCurrentTime () > 2.0f && m_doorTest == true)
 		{
 
 			m_pcGCTimer->setCurrentTime (m_pcGCTimer->getCurrentTime () - 0.4f);
 		}
 
-	if (m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime () < 2.0f)
+	if (m_doorTest == true && m_pcGCTimer->getCurrentTime () < 2.0f)
 	{
 		ReplaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene ()));
 	}
-	if(m_bDoorUnlocked == true)
+	if(m_doorTest == true)
 	{
 		m_pcGCOPlayer->SetVelocity (Vec2 (0, 0));
 	}
@@ -1234,12 +1234,12 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 		
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
-				if (m_bDoorUnlocked == false)
+				if (m_doorTest == false)
 				{
 					playDoorOpeningAudio ();
 				}
 				
-				m_bDoorUnlocked = true;
+				m_doorTest = true;
 
 				
 				m_pcGCOScore->ScoreWriteFile (m_pcGCOScore);
