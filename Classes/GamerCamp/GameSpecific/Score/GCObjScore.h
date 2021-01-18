@@ -1,6 +1,13 @@
 #ifndef	_GCOBJSCORE_H_
 #define	_GCOBJSCORE_H_
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// This 'GCObjScore' Header File and Class File was created by Mehak Hussain.						 //
+// The purpose of this Class is to create the Score that keeps track of how many points they Player  //
+// had accumulated.																				     //
+// In this Class, I set the Scores text and position.												 //
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #include "2d/CCLabel.h"
 
 class CGCObjScore
