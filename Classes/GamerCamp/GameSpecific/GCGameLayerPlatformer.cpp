@@ -70,6 +70,7 @@
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane6.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane7.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane8.h"
+#include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane9.h"
 
 #include "AppDelegate.h"
 
