@@ -1,5 +1,5 @@
-#ifndef _GCOFALLINGPLANE_
-#define _GCOFALLINGPLANE_
+#ifndef _GCOFALLINGPLANE4_
+#define _GCOFALLINGPLANE4_
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"

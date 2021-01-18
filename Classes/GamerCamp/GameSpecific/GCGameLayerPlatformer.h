@@ -59,6 +59,10 @@ class CGCObjFallingPlane;
 class CGCObjFallingPlane2;
 class CGCObjFallingPlane3;
 class CGCObjFallingPlane4;
+class CGCObjFallingPlane5;
+class CGCObjFallingPlane6;
+class CGCObjFallingPlane7;
+class CGCObjFallingPlane8;
 class CGLossScene;
 
 //////////////////////////////////////////////////////////////////////////

@@ -1,15 +1,11 @@
 #include <memory.h>
 
-//#include "AppDelegate.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "GamerCamp/GCCocosInterface/GB2ShapeCache-x.h"
 
-
-
 #include "GCOFallingPlane.h"
-
 
 GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjFallingPlane);
 
@@ -61,83 +57,11 @@ void CGCObjFallingPlane::VOnResurrected(void)
 	GetPhysicsBody()->SetGravityScale(0.0f);
 }
 
-// If 'm_bMoveUpAndDown' is set to 'True', Platform will move from Right, reach the greater or equal than point that the Start Position has been set at
-// then move in the opposite direction which is Left and then move back towards the Start Position once Platform reaches End Position
-//void CGCObjFallingPlane::OppositeDirection()
-//{
-//	if( m_bMoveUpAndDown == true )
-//	{
-//		switch( m_eMoveDirection )
-//		{
-//		case EMoveDirection::Right:
-//		{
-//			if( GetSpritePosition().x >= m_v2StartPosition.x )
-//			{
-//				m_eMoveDirection = EMoveDirection::Left;
-//			}
-//		}
-//		break;
-//
-//		case EMoveDirection::Left:
-//		{
-//			if( GetSpritePosition().x <= m_v2EndPosition.x )
-//			{
-//				m_eMoveDirection = EMoveDirection::Right;
-//			}
-//		}
-//		break;
-//		}
-//	}
-//
-//	// It is the same for if 'm_bMoveUpAndDown' was set as 'False' - which it is, but now the movement switch is Up and Down
-//	if( m_bMoveUpAndDown == false )
-//	{
-//		switch( m_eMoveDirection )
-//		{
-//		case EMoveDirection::Up:
-//		{
-//			if( GetSpritePosition().y >= m_v2StartPosition.y )
-//			{
-//				m_eMoveDirection = EMoveDirection::Down;
-//			}
-//		}
-//		break;
-//
-//		case EMoveDirection::Down:
-//		{
-//			if( GetSpritePosition().y <= m_v2EndPosition.y )
-//			{
-//				m_eMoveDirection = EMoveDirection::Up;
-//			}
-//		}
-//		break;
-//		}
-//	}
-//}
-
 void CGCObjFallingPlane::SettingVelocity()
 {
 	// Here is Velocity set for each Direction
 	switch( m_eMoveDirection )
 	{
-	//case EMoveDirection::Right:
-	//{
-	//	this->SetVelocity(m_v2MoveRightVelocity);
-	//}
-	//break;
-
-	//case EMoveDirection::Left:
-	//{
-	//	this->SetVelocity(m_v2MoveLeftVelocity);
-	//}
-	//break;
-
-	//case EMoveDirection::Up:
-	//{
-	//	this->SetVelocity(m_v2MoveUpVelocity);
-	//}
-	//break;
-
 	case EMoveDirection::Down:
 	{
 		this->SetVelocity(m_v2MoveDownVelocity);
@@ -200,7 +124,6 @@ void CGCObjFallingPlane::VHandleFactoryParams(const CGCFactoryCreationParams& rC
 
 void CGCObjFallingPlane::VOnUpdate(f32 fTimeStep)
 {
-	//OppositeDirection();
 	SettingVelocity();
 	CollisionChecker();
 }

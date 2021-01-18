@@ -66,6 +66,10 @@
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane2.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane3.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane4.h"
+#include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane5.h"
+#include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane6.h"
+#include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane7.h"
+#include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane8.h"
 
 #include "AppDelegate.h"
 
@@ -553,6 +557,11 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		}
 	}
 	);
+
+	GetCollisionManager().AddCollisionHandler([](CGCObjFallingPlane& rcPlane, CGCObjTravelatorPlatform& rcPlatform, const b2Contact& rcContact) -> void
+	{
+		rcPlane.ResetPosition();
+	});
 
 	//GetCollisionManager ().AddCollisionHandler
 	//(
