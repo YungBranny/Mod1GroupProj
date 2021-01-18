@@ -71,13 +71,7 @@ void CGCMovingEnemies::InitialiseMovementDirection ()
 //IN_CPP_CREATION_PARAMS_DECLARE (CGCMovingEnemies, "TexturePacker/Sprites/MovingEnemy/MovingEnemy/Enemy.plist", "Enemy", b2_dynamicBody, true);
 void CGCMovingEnemies::VOnResourceAcquire ()
 {
-
-	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCMovingEnemies);
-
-	CGCObjSpritePhysics::VOnResourceAcquire ();
-	
-	//const char* pszPlist_SeaUrchin = "TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist";
-	
+	CGCObjSpritePhysics::VOnResourceAcquire ();	
 	const char* pszAnim_Idle = "SEnemyIdle";
 	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
 	RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_Idle)));
@@ -85,12 +79,6 @@ void CGCMovingEnemies::VOnResourceAcquire ()
 
 }
 
-
-//
-//void CGCMovingEnemies::VOnReset ()
-//{
-//	CGCObjSpritePhysics::VOnReset ();
-//}
 
 void CGCMovingEnemies::VOnResourceRelease ()
 {
@@ -102,13 +90,6 @@ void CGCMovingEnemies::VOnResourceRelease ()
 	}
 }
 
-//void CGCMovingEnemies::VOnResurrected ()
-//{
-//	CGCObjSpritePhysics::VOnResurrected ();
-//	//GetPhysicsBody ()->SetGravityScale (getGravity ());
-//	GetPhysicsBody ()->SetGravityScale (0.0f);
-//}
-
 //changes the direction if the current position has reached the end desitination 
 void CGCMovingEnemies::ChangeDirection () 
 {
@@ -118,7 +99,6 @@ void CGCMovingEnemies::ChangeDirection ()
 		{
 		case EMoveDirection::Right:
 		{
-			//if (GetSpritePosition ().x >= m_vEndDestination1.x)
 			if (m_bDefaultDirection == true)
 			{
 				m_eMoveDirection = EMoveDirection::Left;
@@ -128,7 +108,6 @@ void CGCMovingEnemies::ChangeDirection ()
 
 		case EMoveDirection::Left:
 		{
-			//if (GetSpritePosition ().x <= m_vEndDesitnation2.x)
 			if (m_bDefaultDirection == false)
 			{
 				m_eMoveDirection = EMoveDirection::Right;
@@ -144,7 +123,6 @@ void CGCMovingEnemies::ChangeDirection ()
 		{
 		case EMoveDirection::Up:
 		{
-			//if (GetSpritePosition ().y >= m_vEndDestination1.y)
 			if (m_bDefaultDirection == true)
 			{
 				m_eMoveDirection = EMoveDirection::Down;
@@ -154,7 +132,6 @@ void CGCMovingEnemies::ChangeDirection ()
 
 		case EMoveDirection::Down:
 		{
-			//if (GetSpritePosition ().y <= m_vEndDesitnation2.y)
 			if (m_bDefaultDirection == false)
 			{
 				m_eMoveDirection = EMoveDirection::Up;
@@ -236,35 +213,32 @@ void CGCMovingEnemies::CollisionDirChecker ()
 	}
 }
 
-void CGCMovingEnemies::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
+//allows the paramters to be handled in ogmo level editor
+void CGCMovingEnemies::VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
 {
 	const CGCFactoryCreationParams* pParamsToPassToBaseClass = &rCreationParams;
 
-	 if (nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData)
+	if (nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData)
 	{
-		 //const tinyxml2::XMLAttribute* pName = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "name" );
 
-		 //CCLOG( (nullptr == pName) ? "BOB NOT FOUND!" : pName->Value() );
+		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("PlistFile");    //customplist    //PlistFile
 
-		 const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("PlistFile");    //customplist    //PlistFile
+		const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("shape");
 
-		 const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "shape" );
+		if (( nullptr != pCustomPlistPath ) && ( 0 != strlen (pCustomPlistPath->Value ()) ))    // && ( (nullptr != pCustomShape) && ( 0 != strlen( pCustomShape->Value() ) ) ) )
+		{
+			m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams > (rCreationParams.strClassName.c_str (),
+				pCustomPlistPath->Value (),
+				pCustomShape->Value (),
+				rCreationParams.eB2dBody_BodyType,
+				rCreationParams.bB2dBody_FixedRotation);
 
-		 if (( nullptr != pCustomPlistPath ) && ( 0 != strlen (pCustomPlistPath->Value ()) ))    // && ( (nullptr != pCustomShape) && ( 0 != strlen( pCustomShape->Value() ) ) ) )
-		 {
-			 m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams > (rCreationParams.strClassName.c_str (),
-																					 pCustomPlistPath->Value (),
-																					 pCustomShape->Value(),
-																					 rCreationParams.eB2dBody_BodyType,
-																					 rCreationParams.bB2dBody_FixedRotation);
+			pParamsToPassToBaseClass = m_pCustomCreationParams.get ();
+		}
+	}
 
-			 pParamsToPassToBaseClass = m_pCustomCreationParams.get ();
-		 }
-	 }
-
-	 CGCObjSpritePhysics::VHandleFactoryParams (( *pParamsToPassToBaseClass ), v2InitialPosition);
+	CGCObjSpritePhysics::VHandleFactoryParams (( *pParamsToPassToBaseClass ), v2InitialPosition);
 }
-
 
 void CGCMovingEnemies::VOnUpdate (f32 fTimeStep)
 {

@@ -25,10 +25,9 @@ USING_NS_CC;
 
 GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCCCDownSpike);
 
-CGCCCDownSpike::CGCCCDownSpike ()
+CGCCCDownSpike::CGCCCDownSpike () //contstructor 
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCBasicEnemies))
 {
-
 }
 
 void CGCCCDownSpike::VOnResourceAcquire ()
@@ -38,9 +37,6 @@ void CGCCCDownSpike::VOnResourceAcquire ()
 
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
 	RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_Idle)));
-
-
-
 
 }
 
@@ -72,10 +68,6 @@ void CGCCCDownSpike::VHandleFactoryParams (const CGCFactoryCreationParams& rCrea
 
 	if (nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData)
 	{
-		//const tinyxml2::XMLAttribute* pName = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "name" );
-
-		//CCLOG( (nullptr == pName) ? "BOB NOT FOUND!" : pName->Value() );
-
 		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("PlistFile");    //customplist    //PlistFile
 
 		const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("shape");

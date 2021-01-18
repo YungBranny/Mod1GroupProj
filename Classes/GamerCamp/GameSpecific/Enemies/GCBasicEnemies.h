@@ -13,9 +13,7 @@ class CGCBasicEnemies
 {
 private:
 	float m_fGravity;										//float for gravity
-
-
-	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
+	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams; //This is one of the many functions needed for the paramters to be changed inside ogmo level editor
 public:
 	
 	CGCBasicEnemies ();										//constructor
