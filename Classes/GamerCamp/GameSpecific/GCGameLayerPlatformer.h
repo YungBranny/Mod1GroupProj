@@ -57,6 +57,8 @@ class CHCOnjSwitchPlatform1;
 class CHCOnjSwitchPlatform2;
 class CGCObjFallingPlane;
 class CGCObjFallingPlane2;
+class CGCObjFallingPlane3;
+class CGCObjFallingPlane4;
 class CGLossScene;
 
 //////////////////////////////////////////////////////////////////////////

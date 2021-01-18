@@ -64,7 +64,8 @@
 #include "GamerCamp/GameSpecific/NewPlatforms/CGCObjSwitchPlatform2.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane2.h"
-
+#include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane3.h"
+#include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane4.h"
 
 #include "AppDelegate.h"
 
