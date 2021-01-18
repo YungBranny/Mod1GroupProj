@@ -3,7 +3,7 @@
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
-#include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"
+#include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 class CGCObjFallingPlane2
 	: public CGCObjSpritePhysics

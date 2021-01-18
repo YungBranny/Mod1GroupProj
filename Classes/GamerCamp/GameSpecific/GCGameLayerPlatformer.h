@@ -56,6 +56,7 @@ class GCSwitch;
 class CHCOnjSwitchPlatform1;
 class CHCOnjSwitchPlatform2;
 class CGCObjFallingPlane;
+class CGCObjFallingPlane2;
 class CGLossScene;
 
 //////////////////////////////////////////////////////////////////////////
@@ -188,7 +189,7 @@ private:
 	bool							m_bQuitWasRequested;
 	bool							m_bSkipWasRequested;
 
-	bool							m_doorTest;
+	bool							m_bDoorUnlocked;
 	
 	void RequestReset()
 	{
