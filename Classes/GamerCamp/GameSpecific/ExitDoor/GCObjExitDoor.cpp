@@ -7,21 +7,17 @@
 
 USING_NS_CC;
 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjExitDoor);
+GCFACTORY_IMPLEMENT_CREATEABLECLASS ( CGCObjExitDoor );
 
 CGCObjExitDoor::CGCObjExitDoor( void )
-	: CGCObjSpritePhysics ( GetGCTypeIDOf (CGCObjExitDoor) ) // We are inheriting from CGCObjSpritePhysics, so we can use physics on the Exit Door
-	, m_pCustomCreationParams(nullptr)
+	: CGCObjSpritePhysics ( GetGCTypeIDOf ( CGCObjExitDoor ) ) // We are inheriting from CGCObjSpritePhysics, so we can use physics on the Exit Door
+	, m_pCustomCreationParams ( nullptr )
 {
 
 }
 
-// Create the Exit Door Sprite, give it a Static Physics Body which means it won't move and then set fixed rotation to 'True'
-//IN_CPP_CREATION_PARAMS_DECLARE (CGCObjExitDoor, "TexturePacker/Sprites/Door/Door.plist", "Door", b2_staticBody, true );
 void CGCObjExitDoor::VOnResourceAcquire ()
 {
-	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjExitDoor);
-
 	CGCObjSpritePhysics::VOnResourceAcquire ();
 
 	const char* pszPlist_Exit = "TexturePacker/Sprites/Exit/cc_exit.plist";

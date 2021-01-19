@@ -7,19 +7,16 @@
 
 USING_NS_CC;
 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjLadder);
+GCFACTORY_IMPLEMENT_CREATEABLECLASS ( CGCObjLadder );
 
-CGCObjLadder::CGCObjLadder(void)
-	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjLadder))
+CGCObjLadder::CGCObjLadder ( void )
+	: CGCObjSpritePhysics (GetGCTypeIDOf ( CGCObjLadder ) )
 {
 
 }
 
-//IN_CPP_CREATION_PARAMS_DECLARE (CGCObjExitDoor, "TexturePacker/Sprites/Ladder/Ladder.plist", "Ladder", b2_staticBody, true );
 void CGCObjLadder::VOnResourceAcquire()
 {
-	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjExitDoor);
-
 	CGCObjSpritePhysics::VOnResourceAcquire();
 
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);

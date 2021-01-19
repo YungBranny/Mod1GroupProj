@@ -20,7 +20,7 @@ public:
 	CGCObjExitDoor ( void );
 	virtual ~CGCObjExitDoor () {};
 
-	GCFACTORY_DECLARE_CREATABLECLASS(CGCObjExitDoor);
+	GCFACTORY_DECLARE_CREATABLECLASS ( CGCObjExitDoor );
 
 	virtual void VOnResourceAcquire ( void );
 };

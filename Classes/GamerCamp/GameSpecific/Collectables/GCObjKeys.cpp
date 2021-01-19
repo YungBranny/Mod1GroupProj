@@ -35,8 +35,6 @@ CGCObjKeys::~CGCObjKeys()
 // Create the Key Sprite, give it a Static Physics Body which means it won't move and then set fixed rotation to 'True'
 void CGCObjKeys::VOnResourceAcquire ( void )
 {
-	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE(CGCObjKeys);
-
 	CGCObjSpritePhysics::VOnResourceAcquire();
 
 	const char* pszPlist_Key = "TexturePacker/Sprites/Key/cc_collectible_key.plist";
@@ -53,11 +51,11 @@ void CGCObjKeys::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationP
 
 	if( nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData )
 	{
-		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("PlistFile");    //customplist    //PlistFile
+		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("PlistFile");
 
 		const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("shape");
 
-		if( ( nullptr != pCustomPlistPath ) && ( 0 != strlen(pCustomPlistPath->Value()) ) )    // && ( (nullptr != pCustomShape) && ( 0 != strlen( pCustomShape->Value() ) ) ) )
+		if( ( nullptr != pCustomPlistPath ) && ( 0 != strlen(pCustomPlistPath->Value()) ) )
 		{
 			m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams >(rCreationParams.strClassName.c_str(),
 				pCustomPlistPath->Value(),
@@ -68,7 +66,6 @@ void CGCObjKeys::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationP
 			pParamsToPassToBaseClass = m_pCustomCreationParams.get();
 		}
 	}
-
 	CGCObjSpritePhysics::VHandleFactoryParams(( *pParamsToPassToBaseClass ), v2InitialPosition);
 }
 

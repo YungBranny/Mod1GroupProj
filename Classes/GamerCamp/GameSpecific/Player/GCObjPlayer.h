@@ -108,8 +108,8 @@ private:
 
 	cocos2d::Vec2			m_v2MovingRightVelocity;			 //The velocitys for how fast the enemy should move
 	cocos2d::Vec2			m_v2MovingLeftVelocity;				 //The velocitys for how fast the enemy should move
-	cocos2d::Vec2			m_v2MovingUpVelocity;				 // Mia: Up Velocity for when Player interacts with a Ladder.
-	cocos2d::Vec2			m_v2MovingDownVelocity;				 // Mia: Down Velocity for when Player interacts with a Ladder.
+	cocos2d::Vec2			m_v2MovingUpVelocity;				 
+	cocos2d::Vec2			m_v2MovingDownVelocity;				 
 	cocos2d::Vec2			m_v2StopMovingVelocity;				 //The velocitys for how fast the enemy should move
 	b2Vec2					m_bv2jumpVel;
 
@@ -255,15 +255,8 @@ public:
 
 	void playJumpAudio();
 
-	//void playJumpDownAudio();
-
-	//void playRunAudio();
-
 	cocos2d::Label* getLivesText() const { return m_pLivesText; }
 
 	void setLivesText(cocos2d::Label* t) { m_pLivesText = t; }
-
-	//cocos2d::Sprite* getLivesUI() const { return m_pLivesUI; }
-	//void setLivesUI(cocos2d::Sprite* i) { m_pLivesUI = i; }
 };
 #endif // #ifndef _GCOBJPLAYER_H_

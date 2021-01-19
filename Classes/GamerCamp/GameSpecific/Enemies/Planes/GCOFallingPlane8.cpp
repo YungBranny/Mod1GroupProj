@@ -7,42 +7,29 @@
 
 #include "GCOFallingPlane8.h"
 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjFallingPlane8);
+GCFACTORY_IMPLEMENT_CREATEABLECLASS ( CGCObjFallingPlane8 );
 
 CGCObjFallingPlane8::CGCObjFallingPlane8()
-	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjFallingPlane))
-	, m_bMoveUpAndDown(false)
-	, m_bJustCollided(false)
-	, m_v2EndPosition(500, 110)
-	, m_v2MoveUpVelocity(cocos2d::Vec2(0.0f, 4.0f))
-	, m_v2MoveDownVelocity(-m_v2MoveUpVelocity)
-	, m_iCollisionBuffer(60)
-	, m_pCustomCreationParams(nullptr)
+	: CGCObjSpritePhysics ( GetGCTypeIDOf ( CGCObjFallingPlane ) )
+	, m_bMoveUpAndDown		  ( false )
+	, m_bJustCollided		  ( false )
+	, m_v2EndPosition		  ( 500, 110 )
+	, m_v2MoveUpVelocity	  ( cocos2d::Vec2 ( 0.0f, 4.0f ) )
+	, m_v2MoveDownVelocity	  ( -m_v2MoveUpVelocity )
+	, m_iCollisionBuffer	  ( 60 )
+	, m_pCustomCreationParams ( nullptr )
 {
 	InitialiseMovementDirection();
 }
 
 void CGCObjFallingPlane8::InitialiseMovementDirection()
 {
-	//if( m_bMoveUpAndDown == true ) // If default bool is set to 'true', then the platform may go Right and in the opposite direction, which is Left. This may be used for future levels
-	//{
 	m_eMoveDirection = EMoveDirection::Down;
-	//}
-	//else if( m_bMoveUpAndDown == false ) // The default 'm_bMoveUpAndDown' bool is set to 'false', therefore platform can only go up and in the opposite direction, which is down
-	//{
-	//	m_eMoveDirection = EMoveDirection::Up;
-	//};
 }
 
-// Create the Platform Sprite, give it a Kinematic Physics Body which means it only moves when code tells it too and then set fixed rotation to 'True'
-//IN_CPP_CREATION_PARAMS_DECLARE( CGCObjMovingPlatform, "TexturePacker/Sprites/Platform/platform.plist", "platform", b2_kinematicBody, true );
 void CGCObjFallingPlane8::VOnResourceAcquire()
 {
-	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE ( CGCObjMovingPlatform );
-
 	CGCObjSpritePhysics::VOnResourceAcquire();
-
-	//m_v2StartPosition = GetPhysicsBody()->GetPosition();
 
 	if( nullptr != m_pCustomCreationParams.get() )
 	{
@@ -99,17 +86,13 @@ void CGCObjFallingPlane8::VHandleFactoryParams(const CGCFactoryCreationParams& r
 
 	if( nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData )
 	{
-		//const tinyxml2::XMLAttribute* pName = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "name" );
-
-		//CCLOG( (nullptr == pName) ? "BOB NOT FOUND!" : pName->Value() );
-
-		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("PlistFile");    //customplist    //PlistFile
+		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("PlistFile");
 
 		const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("shape");
 
-		if( ( nullptr != pCustomPlistPath ) && ( 0 != strlen(pCustomPlistPath->Value()) ) )    // && ( (nullptr != pCustomShape) && ( 0 != strlen( pCustomShape->Value() ) ) ) )
+		if( ( nullptr != pCustomPlistPath ) && ( 0 != strlen(pCustomPlistPath->Value()) ) )
 		{
-			m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams >(rCreationParams.strClassName.c_str(),
+				m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams >(rCreationParams.strClassName.c_str(),
 				pCustomPlistPath->Value(),
 				pCustomShape->Value(),
 				rCreationParams.eB2dBody_BodyType,
@@ -118,7 +101,6 @@ void CGCObjFallingPlane8::VHandleFactoryParams(const CGCFactoryCreationParams& r
 			pParamsToPassToBaseClass = m_pCustomCreationParams.get();
 		}
 	}
-
 	CGCObjSpritePhysics::VHandleFactoryParams(( *pParamsToPassToBaseClass ), v2InitialPosition);
 }
 

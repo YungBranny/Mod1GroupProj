@@ -26,7 +26,7 @@ public:
 	CGCObjKeys ( void );
 	virtual ~CGCObjKeys ();
 
-	GCFACTORY_DECLARE_CREATABLECLASS(CGCObjKeys);
+	GCFACTORY_DECLARE_CREATABLECLASS	( CGCObjKeys );
 
 	unsigned short int getCollisionBuffer ()	const	{	return m_iCollisionBuffer;	}
 	void  setCollisionBuffer ( unsigned short int i )	{	m_iCollisionBuffer = i;	    }
@@ -35,9 +35,9 @@ public:
 	void  setJustCollided	 (		  bool i        )	{	  m_bJustCollided = i;	    }
 
 	virtual void VOnResourceAcquire ( void );
-	virtual void VOnUpdate ( f32 fTimestep );
+	virtual void VOnUpdate			( f32 fTimestep );
 
-	virtual void VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
+	virtual void VHandleFactoryParams ( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition );
 };
 
 #endif

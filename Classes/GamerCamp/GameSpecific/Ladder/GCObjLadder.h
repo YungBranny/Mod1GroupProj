@@ -10,12 +10,12 @@ class CGCObjLadder
 private:
 
 public:
-	CGCObjLadder(void);
+	CGCObjLadder ( void );
 	virtual ~CGCObjLadder() {};
 
-	GCFACTORY_DECLARE_CREATABLECLASS(CGCObjLadder);
+	GCFACTORY_DECLARE_CREATABLECLASS ( CGCObjLadder );
 
-	virtual void VOnResourceAcquire(void);
+	virtual void VOnResourceAcquire ( void );
 };
 
 #endif

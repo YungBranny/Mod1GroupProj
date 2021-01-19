@@ -12,8 +12,6 @@ class CGCMainMenu
 	, public b2ContactListener
 {
 private:
-
-
 	CGCObjSprite* m_pcGCSprBackGround;
 
 	CocosDenshion::SimpleAudioEngine* m_pcGCMenuBackgroundAudio;
@@ -22,7 +20,6 @@ public:
 	CGCMainMenu ();
 	~CGCMainMenu ();
 
-
 	void QuitGame (Ref* pSender);
 	void LoadLevel (Ref* pSender);
 
@@ -30,10 +27,6 @@ public:
 	virtual	void VOnCreate (void);
 	virtual	void VOnDestroy (void);
 	void playMenuBackgroundMusic();
-
-
 };
-
-
 
 #endif

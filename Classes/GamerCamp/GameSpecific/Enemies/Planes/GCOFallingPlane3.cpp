@@ -1,27 +1,23 @@
 #include <memory.h>
 
-//#include "AppDelegate.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "GamerCamp/GCCocosInterface/GB2ShapeCache-x.h"
 
-
-
 #include "GCOFallingPlane3.h"
 
-
-GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjFallingPlane3);
+GCFACTORY_IMPLEMENT_CREATEABLECLASS ( CGCObjFallingPlane3 );
 
 CGCObjFallingPlane3::CGCObjFallingPlane3()
-	: CGCObjSpritePhysics(GetGCTypeIDOf(CGCObjFallingPlane))
-	, m_bMoveUpAndDown(false)
-	, m_bJustCollided(false)
-	, m_v2EndPosition(500, 110)
-	, m_v2MoveUpVelocity(cocos2d::Vec2(0.0f, 11.0f))
-	, m_v2MoveDownVelocity(-m_v2MoveUpVelocity)
-	, m_iCollisionBuffer(60)
-	, m_pCustomCreationParams(nullptr)
+	: CGCObjSpritePhysics ( GetGCTypeIDOf ( CGCObjFallingPlane ) )
+	, m_bMoveUpAndDown		  ( false )
+	, m_bJustCollided		  ( false )
+	, m_v2EndPosition		  ( 500, 110 )
+	, m_v2MoveUpVelocity	  ( cocos2d::Vec2 ( 0.0f, 11.0f ) )
+	, m_v2MoveDownVelocity	  ( -m_v2MoveUpVelocity )
+	, m_iCollisionBuffer	  ( 60 )
+	, m_pCustomCreationParams ( nullptr )
 {
 	InitialiseMovementDirection();
 }
@@ -33,9 +29,7 @@ void CGCObjFallingPlane3::InitialiseMovementDirection()
 
 void CGCObjFallingPlane3::VOnResourceAcquire()
 {
-
 	CGCObjSpritePhysics::VOnResourceAcquire();
-
 
 	if( nullptr != m_pCustomCreationParams.get() )
 	{
@@ -49,7 +43,6 @@ void CGCObjFallingPlane3::VOnResurrected(void)
 	m_v2StartPosition = GetPhysicsBody()->GetPosition();
 	GetPhysicsBody()->SetGravityScale(0.0f);
 }
-
 
 void CGCObjFallingPlane3::SettingVelocity()
 {
@@ -95,15 +88,13 @@ void CGCObjFallingPlane3::VHandleFactoryParams(const CGCFactoryCreationParams& r
 
 	if( nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData )
 	{
-
-
-		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("PlistFile");    //customplist    //PlistFile
+		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("PlistFile");
 
 		const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute("shape");
 
 		if( ( nullptr != pCustomPlistPath ) && ( 0 != strlen(pCustomPlistPath->Value()) ) )
 		{
-			m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams >(rCreationParams.strClassName.c_str(),
+			    m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams >(rCreationParams.strClassName.c_str(),
 				pCustomPlistPath->Value(),
 				pCustomShape->Value(),
 				rCreationParams.eB2dBody_BodyType,
@@ -112,7 +103,6 @@ void CGCObjFallingPlane3::VHandleFactoryParams(const CGCFactoryCreationParams& r
 			pParamsToPassToBaseClass = m_pCustomCreationParams.get();
 		}
 	}
-
 	CGCObjSpritePhysics::VHandleFactoryParams(( *pParamsToPassToBaseClass ), v2InitialPosition);
 }
 

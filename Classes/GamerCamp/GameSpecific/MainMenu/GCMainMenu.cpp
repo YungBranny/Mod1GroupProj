@@ -1,8 +1,7 @@
 #include "GCMainMenu.h"
 
 #include <algorithm>
-#include <stdlib.h> 
-
+#include <stdlib.h>
 
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "MenuScene.h"
@@ -11,43 +10,30 @@
 
 #include "AppDelegate.h"
 
-
-
-
 CGCMainMenu::CGCMainMenu ()
-	: IGCGameLayer (GetGCTypeIDOf (CGCMainMenu))
-	, m_pcGCSprBackGround (nullptr)
+	: IGCGameLayer ( GetGCTypeIDOf ( CGCMainMenu ) )
+	, m_pcGCSprBackGround ( nullptr )
 {
-}
 
+}
 
 CGCMainMenu::~CGCMainMenu ()
 {
 
 }
 
-
 void CGCMainMenu::onEnter ()
 {
 	IGCGameLayer::onEnter ();
 }
 
-
 void CGCMainMenu::VOnCreate ()
 {
-
 	cocos2d::Size visibleSize = cocos2d::Director::getInstance ()->getVisibleSize ();
 	cocos2d::Point origin = cocos2d::Director::getInstance ()->getVisibleOrigin ();
 
-///
-
 	// create the default object group
 	IGCGameLayer::VOnCreate ();
-
-
-	///////////////////////////////////////////////////////////////////////////
-	// add menu
-	///////////////////////////////////////////////////////////////////////////
 
 	// add a "close" icon to exit the progress. it's an autorelease object
 	cocos2d::MenuItemImage* pResetItem
@@ -57,7 +43,6 @@ void CGCMainMenu::VOnCreate ()
 
 	pResetItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width * 0.60f)),
 	( ( visibleSize.height - ( pResetItem->getContentSize ().height * 5.5f ) ) )));
-
 
 	cocos2d::MenuItemImage* pQuitItem
 		= cocos2d::MenuItemImage::create ("TexturePacker/Sprites/MainMenu/Buttons/exit_normal.png",
@@ -72,28 +57,17 @@ void CGCMainMenu::VOnCreate ()
 	pMenu->setPosition (cocos2d::Vec2::ZERO);
 	this->addChild (pMenu, 1);
 
-	// create and initialize a label
-	//cocos2d::Label* pLabel = cocos2d::Label::createWithTTF ("MANIC MINER", "fonts/Pixeled.ttf", 60);
-
-	// position the label on the center of the screen
-	//pLabel->setPosition (cocos2d::Vec2 (visibleSize.width / 2, visibleSize.height - 200));
-
-	// add the label as a child to this layer
-	//this->addChild (pLabel, 1);
-
 	cocos2d::Label* pLabel1 = cocos2d::Label::createWithTTF("Team 2: Mia, Brandon, Daniel, Puia and Johnny", "fonts/Super Mario Bros. 2.ttf", 10);
 
 	pLabel1->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height - 1000));
 
 	this->addChild(pLabel1, 1);
 
-
 	const char* pszPlist_background = "TexturePacker/Sprites/MainMenu/Background/main_menu.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite ();
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
 		m_pcGCSprBackGround->SetResetPosition (cocos2d::Vec2 (visibleSize.width / 2, visibleSize.height / 2));
-		//m_pcGCSprBackGround->SetScale(1.4f, 1.4f);
 		playMenuBackgroundMusic();
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
 	}
@@ -116,7 +90,6 @@ void CGCMainMenu::VOnCreate ()
 
 }
 
-
 void CGCMainMenu::VOnDestroy ()
 {
 	IGCGameLayer::VOnDestroy ();
@@ -125,9 +98,7 @@ void CGCMainMenu::VOnDestroy ()
 void CGCMainMenu::playMenuBackgroundMusic()
 {
 	m_pcGCMenuBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	//m_pcGCMenuBackgroundAudio->playBackgroundMusic("Sounds/Background/BackgroundMusic.wav", true);
 }
-
 
 void CGCMainMenu::QuitGame (Ref* pSender)
 {

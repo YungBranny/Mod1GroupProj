@@ -56,7 +56,6 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_v2MovingUpVelocity (3.0f, 0)
 	, m_v2MovingDownVelocity (-m_v2MovingUpVelocity)
 	, m_v2StopMovingVelocity (0, 0)
-	, m_bOnLadder (false)
 	, m_fStartPositionY (0)
 	, m_fEndPositionY (0)
 	, m_fDropDistance (0)
@@ -322,23 +321,6 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			}
 		}
 
-		else if( pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Up) ) // Mia: Once Player presses Up
-		{
-			if( m_bOnLadder == true ) // Mia: If Player is on Ladder
-			{
-				SetVelocity(cocos2d::Vec2(GetVelocity().x, m_v2MovingUpVelocity.x)); // Mia: The Player is able to move upwards
-
-			}
-		}
-
-		else if( pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Down) ) // Mia: Once Player presses Down
-		{
-			if( m_bOnLadder == true ) // Mia: If Player is on Ladder
-			{
-				SetVelocity(cocos2d::Vec2(GetVelocity().x, m_v2MovingDownVelocity.x)); // Mia: The Player is able to move downwards
-			}
-		}
-
 		else
 		{
 
@@ -537,11 +519,6 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 			GetPhysicsBody()->ApplyLinearImpulse(b2Vec2(0, impulse), GetPhysicsBody()->GetWorldCenter(), true);
 		};
 	}
-
-	//else if( GetVelocity().y > 0 )
-	//{
-	//	playJumpDownAudio();
-	//}
 }
 
 //Function to be called when losing a life
