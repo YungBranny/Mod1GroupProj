@@ -19,7 +19,7 @@
     <FallingPlaneEnemy8 id="7" x="1200" y="-1575" class="CGCObjFallingPlane8" shape="Airplane" PlistFile="TexturePacker/Sprites/FallingPlane/Airplane.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
     <FallingPlaneEnemy9 id="8" x="1320" y="-990" class="CGCObjFallingPlane9" shape="Airplane" PlistFile="TexturePacker/Sprites/FallingPlane/Airplane.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
     <FallingPlaneEnemy10 id="9" x="1560" y="-930" class="CGCObjFallingPlane10" shape="Airplane" PlistFile="TexturePacker/Sprites/FallingPlane/Airplane.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
-    <FallingPlaneEnemy11 id="10" x="1665" y="-2175" class="CGCObjFallingPlane11" shape="Airplane" PlistFile="TexturePacker/Sprites/FallingPlane/Airplane.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <FallingPlaneEnemy11 id="10" x="1650" y="-2175" class="CGCObjFallingPlane11" shape="Airplane" PlistFile="TexturePacker/Sprites/FallingPlane/Airplane.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
     <FallingPlaneEnemy12 id="11" x="1800" y="-675" class="CGCObjFallingPlane12" shape="Airplane" PlistFile="TexturePacker/Sprites/FallingPlane/Airplane.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
   </enemies>
   <items />

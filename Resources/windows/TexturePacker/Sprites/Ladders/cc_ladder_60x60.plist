@@ -4,18 +4,18 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Ladder.png</key>
+            <key>cc_ladder_60x60.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1,1},{20,32}}</string>
+                <string>{{1,1},{60,60}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{6,0},{20,32}}</string>
+                <string>{{0,0},{60,60}}</string>
                 <key>sourceSize</key>
-                <string>{32,32}</string>
+                <string>{60,60}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -27,13 +27,13 @@
             <key>premultiplyAlpha</key>
             <false/>
             <key>realTextureFileName</key>
-            <string>Ladder.png</string>
+            <string>cc_ladder_60x60.png</string>
             <key>size</key>
-            <string>{22,34}</string>
+            <string>{62,62}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:4d011fd8eca669538d7001a26667e9e4:af639a5b1f2528486601c9eaaf026f99:581654d94e4418b65ab674528e1bab04$</string>
+            <string>$TexturePacker:SmartUpdate:2472d767680008baa9cb7f1d772c02f8:41f227d214609b6975f6888372176023:97bda7669dadb93344f5a1436abb603c$</string>
             <key>textureFileName</key>
-            <string>Ladder.png</string>
+            <string>cc_ladder_60x60.png</string>
         </dict>
     </dict>
 </plist>
