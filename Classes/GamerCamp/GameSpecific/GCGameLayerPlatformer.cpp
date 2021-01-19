@@ -414,31 +414,13 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	);
 
 
-	//Dan: Handle collision with the payer and the travelator 
+	//Dan: Handle collision with the player and the travelator 
 	GetCollisionManager ().AddCollisionHandler
 	(
 		[]
 	(CGCObjPlayer& rcPlayer, CGCObjTravelatorPlatform& rcTravelatorPlatform, const b2Contact& rcContact) -> void
 		{
 
-			//if (rcContact.IsTouching() && rcPlayer.getIsPlayerOnPlatform())
-			//{
-
-			//	rcPlayer.setOnTravelator (true);
-
-			//	//rcPlayer.SetCanJump (true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
-
-			//	rcPlayer.SetVelocity(cocos2d::Vec2(rcTravelatorPlatform.getVelocity(),rcPlayer.GetVelocity().y));
-
-			//	// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
-
-			//}
-			//else if (rcContact.IsTouching () == false)
-			//{
-			//	rcPlayer.setOnTravelator (false);//Dan :Sets the players velocity back to normal when the player is no longer touching the platform
-
-			//	//rcPlayer.SetCanJump (false);//Dan : making sure that the player cant jump while in the air when they are falling off the platform
-			//}
 		}
 	);
 
@@ -606,6 +588,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 void CGCGameLayerPlatformer::PlayerDeathSceneSwap()
 {
+	//Dan: When the player dies the scene is replaced with the death scene
 	Director::getInstance()->replaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
 }
 
@@ -649,15 +632,6 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		m_pcGCOPlayer->SetVelocity (Vec2 (0, 0));
 	}
 	
-	//std::ifstream inFile;
-	//inFile.open("HighScore.txt");
-
-	//if(inFile.fail())
-	//{
-	//	CCLOG("bruh");
-	//	return;
-	//}
-
 	
 	m_pcGCTimer->Update(fTimeStep);
 
@@ -689,13 +663,12 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	if (m_pcGCTimer->getCurrentTime() <= 0)
 	{
+		//Dan: Reset Timer 
 		m_pcGCTimer->setCurrentTime(m_pcGCTimer->getTotalTimerDuration());
 
 		RequestReset();
 	}
 
-	
-	//HighScore();
 }
 
 
@@ -835,7 +808,7 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 			m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 		}
 		RequestReset();
-		m_pcGCOPlayer->DecrementLives(); //Puia Lose a life when colliding
+		m_pcGCOPlayer->DecrementLives(); //Dan: When the player collides with any of the above they lose a life
 		
 	}
 
@@ -852,10 +825,11 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 				}
 				
 				m_bDoorUnlocked = true;
-				m_pcGCOScore->ScoreWriteFile (m_pcGCOScore);
-				m_pcGCOPlayer->PlayerLivesWriteFile ();
+				m_pcGCOScore->ScoreWriteFile (m_pcGCOScore);// Dan: when the next level is loaded the score is writen to an external file before, then read on the next level
+				m_pcGCOPlayer->PlayerLivesWriteFile ();//Dan: PLayer lives saved to external file
 				if (m_pcGCOScore->getScoreAmount () > m_pcGCOHighScore->getHighScoreValue ())
 				{
+					//Dan:Check if the score is higher then the current highscore, if so replace the highscore
 					m_pcGCOHighScore->HighScoreWriteFile (m_pcGCOScore);
 				}
 			}

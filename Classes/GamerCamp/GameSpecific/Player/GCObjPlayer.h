@@ -120,13 +120,11 @@ private:
 public:
 	CGCObjPlayer();
 
-
 	enum class EChangeAnimation
 	{
 		Idle,
 		Run,
-		Jump
-		
+		Jump	
 	};
 
 	CGCObjScore* m_score;
@@ -135,7 +133,6 @@ public:
 
 	bool getOnTravelator() const { return m_bOnTravelator; }
 	void setOnTravelator(bool b) { m_bOnTravelator = b; }
-
 
 	bool getPlayerCheckLives() const { return m_bPlayerLivesCheck; }
 	void setPlayerCheckLives(bool b) { m_bPlayerLivesCheck = b; }
@@ -150,7 +147,6 @@ public:
 	float getJumpHeight () const { return m_fJumpHeight; }
 	void setJumpHeight (float i) { m_fJumpHeight = i; }
 
-
 	int getSwitchesHit () const { return m_iSwitchesHit; }
 	void setSwitchesHit (int f) { m_iSwitchesHit = f; }
 
@@ -160,9 +156,7 @@ public:
 	float getTravelatorVelocity () const { return m_fTravelatorVelocity; }
 	void setTravelatorVelocity (int f) { m_fTravelatorVelocity = f; }
 
-
 	b2Vec2 getCurrentPos () const { return m_bv2CurrentPos; }
-
 
 	cocos2d::Sprite* getPlayerLivesUI1() const { return m_sprPlayerLives1; }
 	void setPlayerLivesUI1(cocos2d::Sprite* t) { m_sprPlayerLives1 = t; }
@@ -182,52 +176,22 @@ public:
 	cocos2d::Sprite* getPlayerLoseLivesUI3() const { return m_sprPlayerLoseLives3; }
 	void setPlayerLoseLivesUI3(cocos2d::Sprite* t) { m_sprPlayerLoseLives3 = t; }
 
-	//cocos2d::Sprite* getLivesUI1() const { return m_pLivesUI1; }
-	//void setLivesUI1(cocos2d::Sprite* i) { m_pLivesUI1 = i; }
-
-	//cocos2d::Sprite* getLivesUI2() const { return m_pLivesUI2; }
-	//void setLivesUI2(cocos2d::Sprite* i) { m_pLivesUI2 = i; }
-
-	//////////////////////////////////////////////////////////////////////////
-	// declare the factory method to enable this to be created via CGCFactory_ObjSpritePhysics 
 	GCFACTORY_DECLARE_CREATABLECLASS( CGCObjPlayer );
 
-	//////////////////////////////////////////////////////////////////////////
-	// we need a virtual destructor since delete will be called on pointers of 
-	// this class to delete derived types.
 	virtual ~CGCObjPlayer()
 	{}
 
+	virtual void VOnResourceAcquire( void );
 
-	//////////////////////////////////////////////////////////////////////////
-	// overridden virtuals from the game object interface
+	virtual void VOnReset( void ); 
+	
+	virtual void VOnUpdate( f32 fTimeStep ); 
 
-		// This will be called exactly once for each CGCObject derived class instance 
-		// registered with CGCObjectManager as soon as the TGB level file has stopped 
-		// loading- it is an "explicit constructor".
-		virtual void VOnResourceAcquire( void );
+    virtual void VOnResourceRelease( void );
 
-		// OnReset is called for each CGCObject derived class when CGCObjectManager is 
-		// reset
-		virtual void VOnReset( void ); 
+	virtual void VOnResurrected(void);
 
-		// OnUpdate is called for each CGCObject derived class when CGCObjectManager is 
-		// updated in t2dSCeneGraph onProcessTick()
-		virtual void VOnUpdate( f32 fTimeStep ); 
-
-        // called immediately before the managing object group releases its own assets
-        virtual void VOnResourceRelease( void );
-
-		virtual void VOnResurrected(void);
-
-	// overridden virtuals from the game object interface
-	//////////////////////////////////////////////////////////////////////////
-
-	// updates the movement of the CCSprite
 	void UpdateMovement( f32 fTimeStep );
-
-    // this function exists purely to better illustrate the EXAMPLE collision detection functionality in CGCGameLayerSpaceInvaders
-    void NotifyOfCollisionWithInvader();
 
 	bool GetCanJump() { return m_bCanJump; }
 
