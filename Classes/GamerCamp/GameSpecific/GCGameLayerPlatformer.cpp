@@ -271,24 +271,24 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	pMenu->setPosition (Vec2::ZERO);
 	this->addChild (pMenu, 1);
 	
-	m_pcGCOScore = new CGCObjScore ();
+	m_pcGCOScore = new CGCObjScore (); //Dan: Creating score
 
-	this->addChild (m_pcGCOScore->getScoreText (), 10);
+	this->addChild (m_pcGCOScore->getScoreText (), 10); //Dan: Adding score to UI layer
 
-	m_pcGCOScore->ScoreClearFile(m_pcGCOScore);
+	m_pcGCOScore->ScoreClearFile(m_pcGCOScore); //Dan: When the game is started the score inside of the external file will be set to 0
 	
-	m_pcGCOHighScore = new CGCObjHighScore(m_pcGCOScore);
+	m_pcGCOHighScore = new CGCObjHighScore(m_pcGCOScore); //Dan: Creating Highscore
 
-	m_pcGCOHighScore->HighScoreReadFile(m_pcGCOScore);
+	m_pcGCOHighScore->HighScoreReadFile(m_pcGCOScore); //Dan: opens the highscore external file and gets the value inside and sets to the highscore
 	
-	this->addChild(m_pcGCOHighScore->getHighScoreText(), 10);
+	this->addChild(m_pcGCOHighScore->getHighScoreText(), 10); //Dan: adding highscore to UI layer
 
 	playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
 
-	m_pcGCTimer = new CGCObjTimer ();
+	m_pcGCTimer = new CGCObjTimer (); //Dan: creating Timer
 
 	//this->addChild(m_pcGCTimer->getTimerText(), 10);
-	this->addChild (m_pcGCTimer->getTimerBar (), 50);
+	this->addChild (m_pcGCTimer->getTimerBar (), 50);//Dan: Timer layer UI set
 	this->addChild (m_pcGCTimer->getTimerBarUI (), 51);
 
 	///////////////////////////////////////////////////////////////////////////
@@ -395,7 +395,8 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	m_pcGCOPlayer->setJumpHeight (200.0f);
 
 	//this->addChild(m_pcGCOPlayer->getLivesText(), 10);
-
+	
+	//Dan: Adds player lose lives UI to the scene
 
 	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI1 (), 10);
 
@@ -403,6 +404,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI3 (), 10);
 
+	//Dan: Adds player lives UI to the scene
 
 	this->addChild (m_pcGCOPlayer->getPlayerLivesUI1 (), 11);
 
@@ -589,8 +591,10 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			{
 				
 				rcMEnemies.setJustCollided (true);
+				
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
+					//Dan: Sets highscore if the score value passes it
 					m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 				}
 
@@ -756,6 +760,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	if(m_pcGCOPlayer->getPlayerCheckLives()== true)
 	{
+		//Dan: if the player dies the death screen is shown
 		PlayerDeathSceneSwap();
 	}
 	
