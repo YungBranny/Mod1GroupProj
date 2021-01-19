@@ -38,7 +38,6 @@
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
-#include "GamerCamp/GameSpecific/Collectables/GCObjTimePickUp.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatformManager.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatform.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatformManager.h"
@@ -119,11 +118,6 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer ()
 	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
 
 	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
-
-	//m_iTimerPickedUp = 0; // Mia: Sets Default Timer Pick Up to 0
-	
-	
-	
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -140,15 +134,6 @@ void CGCGameLayerPlatformer::keyCollected() // Mia: This function adds one more 
 	CCLOG("Key Collected."); // Mia: Checks to make sure Player has picked up Key only once
 }
 
-void CGCGameLayerPlatformer::addOnTime()
-{
-	// Mia: Replaces Current Air Time when Player picks up Timer PickUp by Getting Current Air Time and
-	// Calling the Increase Value (of 20) that I created in Dan's 'GCObjTimer.cpp'
-	m_pcGCTimer->setCurrentTime(m_pcGCTimer->getCurrentTime() + m_pcGCTimer->getTimerIncreaseValue());
-	CCLOG("Time PickUp Collected."); // Mia: Check to make sure Player has picked up Timer Pick Up only once
-
-}
-
 void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
 {
 	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
@@ -160,12 +145,6 @@ void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
 	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Key/item_pickup.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
-
-//void CGCGameLayerPlatformer::playTimerPickUpAudio() // Mia: Function that is called when we want the Timer PickUp Sound Effect to play
-//{
-//	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-//	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Timer/TimerPickUp.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
-//}
 
 void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is called when we want the Door Opened Sound Effect to play
 {
@@ -291,21 +270,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	Menu* pMenu = Menu::create (pResetItem, pSkipItem, pQuitItem, nullptr);
 	pMenu->setPosition (Vec2::ZERO);
 	this->addChild (pMenu, 1);
-
-
-	///////////////////////////////////////////////////////////////////////////
-	// add label
-	///////////////////////////////////////////////////////////////////////////
-
-	//// Mia: Create and initialize the Label with instructions, then set the Font and then the Size
-	//Label* pLabel = Label::createWithTTF("Collect the five Keys to open the Door before the Air Timer runs out!", "fonts/SaltyOcean.ttf", 30);
-
-	//// Mia: Position the label to the top centre of the screen
-	//pLabel->setPosition(Vec2(visibleSize.width / 2, visibleSize.height - 175));
-
-	//// Mia: Add the label as a child to this Game Layer
-	//this->addChild(pLabel, 1);
-
 	
 	m_pcGCOScore = new CGCObjScore ();
 
@@ -319,19 +283,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	
 	this->addChild(m_pcGCOHighScore->getHighScoreText(), 10);
 
-
-	
-	//HighScore();
-	//Mia: Added Background
-	//const char* pszPlist_background = "TexturePacker/Sprites/Background/cc_background.plist";
-	//{
-	//	m_pcGCSprBackGround = new CGCObjSprite ();
-	//	m_pcGCSprBackGround->CreateSprite (pszPlist_background);
-	//	m_pcGCSprBackGround->SetScale (1, 1);
-	//	m_pcGCSprBackGround->SetResetPosition (Vec2 (visibleSize.width / 2, visibleSize.height / 2));
-	//	m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
-		playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
-	//}
+	playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
 
 	m_pcGCTimer = new CGCObjTimer ();
 
@@ -460,12 +412,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	m_pcGCOPlayer->LivesUI();
 
-	//this->addChild(m_pcGCOLives->getLivesUI(), 20);
-
-	//this->addChild(m_pcGCOPlayer->getLivesUI1());
-
-	//this->addChild(m_pcGCOPlayer->getLivesUI2());
-
 	//////////////////////////////////////////////////////////////////////////
 	// test new collision handler code
 	// 
@@ -538,8 +484,11 @@ void CGCGameLayerPlatformer::VOnCreate ()
 
 	GetCollisionManager().AddCollisionHandler([](CGCObjFallingPlane& rcPlane, CGCObjScalingBasicPlatform& rcPlatform, const b2Contact& rcContact) -> void
 	{
-		//COLLISIONTESTLOG("Plane hit Platform!");
-		//CGCObjectManager::ObjectKill (&rcPlane);
+		rcPlane.ResetPosition();
+	});
+
+	GetCollisionManager().AddCollisionHandler([](CGCObjFallingPlane& rcPlane, CGCObjTravelatorPlatform& rcPlatform, const b2Contact& rcContact) -> void
+	{
 		rcPlane.ResetPosition();
 	});
 
@@ -548,7 +497,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		[this]
 	(CGCObjFallingPlane& rcPlane, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 	{
-		//CGCObjectManager::ObjectKill(&rcPlane);
 		if( rcPlane.getJustCollided() == false )
 		{
 			rcPlane.setJustCollided(true);
@@ -558,29 +506,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		}
 	}
 	);
-
-	GetCollisionManager().AddCollisionHandler([](CGCObjFallingPlane& rcPlane, CGCObjTravelatorPlatform& rcPlatform, const b2Contact& rcContact) -> void
-	{
-		rcPlane.ResetPosition();
-	});
-
-	//GetCollisionManager ().AddCollisionHandler
-	//(
-
-	//	[]
-	//(CGCObjPlayer& rcPlayer, CGCObjMovingPlatform& rcMovingPlatform, const b2Contact& rcContact) -> void
-	//	{
-	//		if (rcContact.IsTouching ())
-	//		{
-	//			rcPlayer.SetCanJump (true); // // Mia: If is touching Platform, the Player can jump
-	//		}
-
-	//		else if (rcContact.IsTouching () == false)
-	//		{
-	//			rcPlayer.SetCanJump (false); // Mia: If not touching, the Player cannot jump
-	//		}
-	//	}
-	//);
 
 	GetCollisionManager ().AddCollisionHandler
 	(
@@ -646,31 +571,9 @@ void CGCGameLayerPlatformer::VOnCreate ()
 				CGCObjectManager::ObjectKill (&rcKeys); // Mia: Destroy the Key Object Sprite
 				keyCollected (); // Mia: Calls Function which adds on one Key to how many Player has obtained
 				playKeyAudio (); // Mia: Then calls Function which plays Key Collected Audio
-				
-				
 			}
 		}
 	);
-
-	// Mia: Handles the Collision between the Player and the Time PickUp
-	GetCollisionManager ().AddCollisionHandler
-	(
-		[this]
-	(CGCObjTimePickUp& rcPickUp, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
-		{
-			if (rcPickUp.getJustCollided () == false)
-			{
-				if (m_pcGCTimer->getCurrentTime () >= 0) // Mia: If Current Time is greater or equal to zero
-				{
-					rcPickUp.setJustCollided (true); // Mia: When player has collided with a Timer PickUp
-					CGCObjectManager::ObjectKill (&rcPickUp); // Mia: Destroy the Timer PickUp Object Sprite
-					addOnTime (); // Mia: Calls the Function which adds on Timer Increase Value (20) to whatever is the current Air Time
-					//playTimerPickUpAudio (); // Mia: Calls the Function which plays Timer PickUp Audio
-				}
-			}
-		}
-	);
-
 
 	GetCollisionManager ().AddCollisionHandler
 	(
@@ -1250,7 +1153,7 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 			{
 				if (m_bDoorUnlocked == false)
 				{
-					playDoorOpeningAudio ();
+					playDoorOpeningAudio (); // Mia: Calls the Function which plays the Door Opening Audio
 				}
 				
 				m_bDoorUnlocked = true;
@@ -1266,9 +1169,8 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 				}
 				
 
-				//	m_bPlayerKeysGathered = true;
+				
 
-					 // Mia: Calls the Function which plays the Door Opening Audio
 			}
 		}
 }

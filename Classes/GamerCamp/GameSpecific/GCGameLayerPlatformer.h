@@ -38,7 +38,6 @@ class CGCMovingEnemyUpDownFast;
 class CGCHazardChild;
 class CGCObjTravelatorPlatform;
 class CGCObjExitDoor;
-class CGCObjTimePickUp;
 class CGCObjScalingBasicPlatformManager;
 class CGCObjScalingFallingPlatformManager;
 class CGCObjScalingBasicPlatform;
@@ -110,8 +109,6 @@ private:
 
 	int						m_iTotalKeys;
 
-	int						m_iTimerPickedUp;
-
 	int			m_iHighScore;
 	
 	CocosDenshion::SimpleAudioEngine* m_pcGCBackgroundAudio;
@@ -145,13 +142,9 @@ public:
 
 	void keyCollected();
 
-	void addOnTime();
-
 	void playBackgroundMusic();
 
 	void playKeyAudio();
-
-	//void playTimerPickUpAudio();
 
 	void playDoorOpeningAudio();
 
