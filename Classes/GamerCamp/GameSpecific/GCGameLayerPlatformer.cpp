@@ -413,7 +413,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// load level data from Ogmo Editor
 
 	// read the oel file for level 0
-	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level14.oel")).c_str ());
+	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/GCOgmoTemplateLevel.oel")).c_str ());
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// note: we have now created all the items, platforms, & invaders specified in the level file
@@ -861,6 +861,8 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		{
 
 			m_pcGCTimer->setCurrentTime (m_pcGCTimer->getCurrentTime () - 0.4f);
+			m_pcGCOScore->IncreaseScore(); // Mia: Increases Score when Player collides with door.
+			m_pcGCOScore->ScoreWriteFile(m_pcGCOScore); // Mia: Writes over previous Score and saves it, so Player can continue to next Level.
 		}
 
 	if (m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime () < 2.0f)
