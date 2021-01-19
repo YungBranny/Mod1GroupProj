@@ -156,7 +156,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameController\GCController.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameController\GCControllerManager.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.cpp" />
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCCCDownSpike.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GcEnemyMovementCollider.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.cpp" />
@@ -232,7 +231,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjCCCrumblingPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.cpp" />
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjMovingPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatform.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatformManager.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatform.cpp" />
@@ -279,7 +277,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameController\GCController.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameController\GCControllerManager.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.h" />
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCCCDownSpike.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCEnemyMovementCollider.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.h" />
@@ -355,7 +352,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjCCCrumblingPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.h" />
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjMovingPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatform.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatformManager.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatform.h" />

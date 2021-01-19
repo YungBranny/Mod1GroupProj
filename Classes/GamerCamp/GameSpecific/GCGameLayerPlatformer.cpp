@@ -87,7 +87,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer ()
 	, m_bCheckIfPlayerIsAbovePlatform ( false )
 	, m_bDoorUnlocked				  ( false )
 {
-	m_iTotalKeys = 3; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
+	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
 
 	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
 }
@@ -152,33 +152,11 @@ void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const 
 //virtual
 void CGCGameLayerPlatformer::VOnCreate ()
 {
-	///////////////////////////////////////////////////////////////////////////
-	// cache some useful values 
-	///////////////////////////////////////////////////////////////////////////
-
-	//////////////////////////////////////////////////////////////////////////
-	// cache some useful values 
 	Size visibleSize = Director::getInstance ()->getVisibleSize ();
 	Point origin = Director::getInstance ()->getVisibleOrigin ();
 
-	
-
-	///////////////////////////////////////////////////////////////////////////
-	// default object group
-	///////////////////////////////////////////////////////////////////////////
-
 	// create the default object group
 	IGCGameLayer::VOnCreate ();
-
-	
-	///////////////////////////////////////////////////////////////////////////
-	// custom object groups
-	//
-	// N.B. Cannot do this in CGCObjectGroup internally on construction, 
-	// because ObjectGroupRegister calls a virtual function 
-	// in the CGCObjectManager interface to check the 
-	// types of objects that the group handles
-	///////////////////////////////////////////////////////////////////////////
 
 	// create and register the object group for the platform objects
 	m_pcGCGroupPlatform = new CGCObjGroupPlatform ();

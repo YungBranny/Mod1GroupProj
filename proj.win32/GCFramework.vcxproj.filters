@@ -189,9 +189,6 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjMovingPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatform.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
@@ -214,9 +211,6 @@
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.cpp">
@@ -555,9 +549,6 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.h">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjMovingPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatform.h">
       <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
@@ -580,9 +571,6 @@
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjKeys.h">
-      <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Collectables\GCObjTimePickUp.h">
       <Filter>Classes\GamerCamp\GameSpecific\Collectables</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCBasicEnemies.h">
