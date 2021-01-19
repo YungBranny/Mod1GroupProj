@@ -3,64 +3,19 @@
 // Distributed under the MIT license - see readme.md
 ///////////////////////////////////////////////////////////////////////////////
 
+#include "AppDelegate.h"
 #include "GCGameLayerPlatformer.h"
 #include <algorithm>
-#include <stdlib.h> 
 #include <fstream>
+#include <stdlib.h>
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
-
-#include "MenuScene.h"
-#include "GamerCamp/GameSpecific/Levels/GCLevel2.h"
+#include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GCCocosInterface/GCObjSprite.h"
-#include "GamerCamp/GameSpecific/Player/GCObjPlayer.h"
-#include "GamerCamp/GameSpecific/Platforms/GCObjPlatform.h" 
-#include "GamerCamp/GameSpecific/Platforms/GCObjGroupPlatform.h"
-#include "GamerCamp/GameSpecific/Items/GCObjItem.h" 
-#include "GamerCamp/GameSpecific/Items/GCObjGroupItem.h"
-#include "GamerCamp/GameSpecific/Invaders/GCObjInvader.h"
-#include "GamerCamp/GameSpecific/Invaders/GCObjGroupInvader.h"
-#include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
-#include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
-
-#include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
 #include "GamerCamp/GameSpecific/Collectables/GCObjKeys.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
-#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
-#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemy2.h"
-#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyUpDown.h"
-#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyUpDownSlow.h"
-#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyUpDownFast.h"
-#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyLRSlow.h"
-#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyLRFast.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjTravelatorPlatform.h"
-#include "GamerCamp/GameSpecific/ExitDoor/GCObjExitDoor.h"
-#include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
-#include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
-#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatformManager.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatform.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatformManager.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatform.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjMovingPlatform.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBrickPlatform.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform1.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform2.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform3.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform4.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform5.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform6.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform7.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasePlatform.h"
-#include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
-#include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider.h"
 #include "GamerCamp/GameSpecific/Enemies/GCEnemyMovementCollider2.h"
-#include "GamerCamp/GameSpecific/Score/GCObjScore.h"
-#include "GamerCamp/GameSpecific/Score/GCObjHighScore.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCSwitch.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjSwitchPlatform1.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/CGCObjSwitchPlatform2.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane2.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane3.h"
@@ -70,68 +25,83 @@
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane7.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane8.h"
 #include "GamerCamp/GameSpecific/Enemies/Planes/GCOFallingPlane9.h"
-
-#include "AppDelegate.h"
-
+#include "GamerCamp/GameSpecific/Enemies/GCHazardChild.h"
+#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemies.h"
+#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemy2.h"
+#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyUpDown.h"
+#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyUpDownSlow.h"
+#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyUpDownFast.h"
+#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyLRSlow.h"
+#include "GamerCamp/GameSpecific/Enemies/GCMovingEnemyLRFast.h"
+#include "GamerCamp/GameSpecific/ExitDoor/GCObjExitDoor.h"
+#include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
+#include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
+#include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
+#include "GamerCamp/GameSpecific/Invaders/GCObjInvader.h"
+#include "GamerCamp/GameSpecific/Invaders/GCObjGroupInvader.h"
+#include "GamerCamp/GameSpecific/Levels/GCLevel2.h"
+#include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasePlatform.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform1.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform2.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform3.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform4.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform5.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform6.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform7.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBrickPlatform.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjMovingPlatform.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatformManager.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatform.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatformManager.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatform.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCSwitch.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjSwitchPlatform1.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/CGCObjSwitchPlatform2.h"
+#include "GamerCamp/GameSpecific/NewPlatforms/GCObjTravelatorPlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjGroupPlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjPlatform.h"
+#include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
+#include "GamerCamp/GameSpecific/Player/GCObjPlayer.h"
+#include "GamerCamp/GameSpecific/Score/GCObjScore.h"
+#include "GamerCamp/GameSpecific/Score/GCObjHighScore.h"
+#include "GamerCamp/GameSpecific/Timer/GCObjTimer.h"
 
 USING_NS_CC;
 
-
-///////////////////////////////////////////////////////////////////////////
-// this just demos how simple it is to turn on/off logging on a define....
-//#define ENABLE_COLLISION_TEST_LOGGING
-//
-//#if defined (ENABLE_COLLISION_TEST_LOGGING)
-//
-//	#define COLLISIONTESTLOG( str )		CCLOG( str )
-//
-//#else
-//
-//	#define COLLISIONTESTLOG( str )		/*nothing*/
-//
-//#endif
-//
-
-///////////////////////////////////////////////////////////////////////////////
-// Constructor
-///////////////////////////////////////////////////////////////////////////////
 CGCGameLayerPlatformer::CGCGameLayerPlatformer ()
-	: IGCGameLayer (GetGCTypeIDOf (CGCGameLayerPlatformer))
-	, m_pcGCGroupItem (nullptr)
-	, m_pcGCGroupInvader (nullptr)
-	, m_pcGCGroupProjectilePlayer (nullptr)
-	, m_pcGCTimer (nullptr)
-	, m_pcGCSprBackGround (nullptr)
-	, m_pcGCOPlayer (nullptr)
-	, m_bResetWasRequested (false)
-	, m_bSkipWasRequested (false)
-	, m_bQuitWasRequested (false)
-	, m_pcGCOKeys (nullptr)
-	, m_pcGCOKeys1 (nullptr)
-	, m_pcGCOKeys2 (nullptr)
-	, m_bCheckIfPlayerIsAbovePlatform (false)
-	, m_pcGCOScore (nullptr)
-	, m_pcGCOHighScore (nullptr)
-	, m_bDoorUnlocked (false)
-
+	: IGCGameLayer ( GetGCTypeIDOf ( CGCGameLayerPlatformer ) )
+	, m_pcGCGroupItem			   ( nullptr )
+	, m_pcGCGroupInvader		   ( nullptr )
+	, m_pcGCGroupProjectilePlayer  ( nullptr )
+	, m_pcGCTimer				   ( nullptr )
+	, m_pcGCOPlayer                ( nullptr )
+	, m_pcGCOKeys                  ( nullptr )
+	, m_pcGCOKeys1                 ( nullptr )
+	, m_pcGCOKeys2                 ( nullptr )
+	, m_pcGCOScore                 ( nullptr )
+	, m_pcGCOHighScore             ( nullptr )
+	, m_bResetWasRequested			  ( false )
+	, m_bSkipWasRequested			  ( false )
+	, m_bQuitWasRequested			  ( false )
+	, m_bCheckIfPlayerIsAbovePlatform ( false )
+	, m_bDoorUnlocked				  ( false )
 {
-	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
+	m_iTotalKeys = 3; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
 
 	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
 }
 
-//////////////////////////////////////////////////////////////////////////
-// Destructor
-//////////////////////////////////////////////////////////////////////////
 CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
 {
+
 }
 
 void CGCGameLayerPlatformer::keyCollected() // Mia: This function adds one more Key onto how many the Player obtains
 {
 	m_iKeysCollected++; // Mia: Adds a Key
-	m_pcGCOScore->IncreaseScore();
-	CCLOG("Key Collected."); // Mia: Checks to make sure Player has picked up Key only once
+	m_pcGCOScore->IncreaseScore(); // Mia: Calls IncreaseScore Function from GCObjScore.cpp
+	CCLOG("Key Collected."); // Mia: Checks to make sure Player has picked up Key only once otherwise will call it continuously
 }
 
 void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
@@ -152,19 +122,10 @@ void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is cal
 	m_pcGCSoundEffectsAudio->playEffect("Sounds/Door/OpeningDoor.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
-//////////////////////////////////////////////////////////////////////////
-// in order to guarantee the actions this layer expects we need to 
-// initialise the keyboard action map every time onEnter is called - this
-// fixes the case where an IGCGameLayer with a different mapping was
-// pushed over this one on Director's scene stack
-//////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::onEnter()
 {
 	IGCGameLayer::onEnter();
 
-	//////////////////////////////////////////////////////////////////////////
-	// init the actions
-	// N.B. these 
 	cocos2d::EventKeyboard::KeyCode aeKeyCodesForActions[] =
 	{
 		EventKeyboard::KeyCode::KEY_UP_ARROW,		// EPA_Up,
@@ -180,7 +141,6 @@ void CGCGameLayerPlatformer::onEnter()
 	AppDelegate::InitialiseKeyboardManager( uSizeOfActionArray, aeKeyCodesForActions );
 }
 
-//////////////////////////////////////////////////////////////////////////
 void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact )
 {
 	//COLLISIONTESTLOG( "( standard function!) the player hit an item!" );
@@ -225,24 +185,19 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	CGCObjectManager::ObjectGroupRegister (m_pcGCGroupPlatform);
 
 	// create and register the object group for the item objects
-	m_pcGCGroupItem = new CGCObjGroupItem ();
-	CGCObjectManager::ObjectGroupRegister (m_pcGCGroupItem);
+	//m_pcGCGroupItem = new CGCObjGroupItem ();
+	//CGCObjectManager::ObjectGroupRegister (m_pcGCGroupItem);
 
 	// create and register the object group for the invader objects
-	m_pcGCGroupInvader = new CGCObjGroupInvader ();
-	CGCObjectManager::ObjectGroupRegister (m_pcGCGroupInvader);
+	//m_pcGCGroupInvader = new CGCObjGroupInvader ();
+	//CGCObjectManager::ObjectGroupRegister (m_pcGCGroupInvader);
 
 	// create and register the object group for the player projectile objects
-	m_pcGCGroupProjectilePlayer = new CGCObjGroupProjectilePlayer ();
-	CGCObjectManager::ObjectGroupRegister (m_pcGCGroupProjectilePlayer);
+	//m_pcGCGroupProjectilePlayer = new CGCObjGroupProjectilePlayer ();
+	//CGCObjectManager::ObjectGroupRegister (m_pcGCGroupProjectilePlayer);
 
-
-	///////////////////////////////////////////////////////////////////////////
-	// add menu
-	///////////////////////////////////////////////////////////////////////////
-
-	// add a "close" icon to exit the progress. it's an autorelease object
-	MenuItemImage* pResetItem
+	// Mia: Here are three 'cheat' buttons we used for testing purposes. These buttons are located on the right side of each and every Level
+	MenuItemImage* pResetItem // Mia: This button resets the Level
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
 			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnResetButton, this));
@@ -250,30 +205,29 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	pResetItem->setPosition (Vec2 (( ( visibleSize.width - ( pResetItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( ( pResetItem->getContentSize ().height * 0.5f ) + origin.y ) )));
 
-	MenuItemImage* pSkipItem
+	MenuItemImage* pSkipItem // Mia: This button skips a Level onto the next
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
 			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnSkipButton, this));
 
 	pSkipItem->setPosition (Vec2 (( ( visibleSize.width - ( pSkipItem->getContentSize ().width * 0.5f ) ) + origin.x ),
-		( ( ( pSkipItem->getContentSize ().height * 6.0f ) + origin.y ) )));
+		( ( ( pSkipItem->getContentSize ().height * 6.5f ) + origin.y ) )));
 
-	MenuItemImage* pQuitItem
+	MenuItemImage* pQuitItem // Mia: This button quits the Game back onto the Main Menu
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
 			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnQuitButton, this));
 
 	pQuitItem->setPosition (Vec2 (( ( visibleSize.width - ( pQuitItem->getContentSize ().width * 0.5f ) ) + origin.x ),
-		( ( visibleSize.height - ( pQuitItem->getContentSize ().height * 0.5f ) ) + origin.y )));
+		( ( visibleSize.height - ( pQuitItem->getContentSize ().height * 0.8f ) ) + origin.y )));
 
-	// create menu, it's an autorelease object
 	Menu* pMenu = Menu::create (pResetItem, pSkipItem, pQuitItem, nullptr);
 	pMenu->setPosition (Vec2::ZERO);
 	this->addChild (pMenu, 1);
 	
-	m_pcGCOScore = new CGCObjScore (); //Dan: Creating score
+	m_pcGCOScore = new CGCObjScore (); // Mia: Creates Score
 
-	this->addChild (m_pcGCOScore->getScoreText (), 10); //Dan: Adding score to UI layer
+	this->addChild (m_pcGCOScore->getScoreText(), 10); // Mia: Adds Score Text and sets size to the Level UI
 
 	m_pcGCOScore->ScoreClearFile(m_pcGCOScore); //Dan: When the game is started the score inside of the external file will be set to 0
 	
@@ -283,7 +237,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	
 	this->addChild(m_pcGCOHighScore->getHighScoreText(), 10); //Dan: adding highscore to UI layer
 
-	playBackgroundMusic (); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
+	playBackgroundMusic(); // Mia: Calling 'playBackgroundMusic' Function, so the Audio plays as soon as level loads
 
 	m_pcGCTimer = new CGCObjTimer (); //Dan: creating Timer
 
@@ -394,8 +348,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory ().CreateInstance (sParams, v2MarioStartPos) );
 	m_pcGCOPlayer->setJumpHeight (200.0f);
 
-	//this->addChild(m_pcGCOPlayer->getLivesText(), 10);
-	
 	//Dan: Adds player lose lives UI to the scene
 
 	this->addChild (m_pcGCOPlayer->getPlayerLoseLivesUI1 (), 10);
@@ -467,33 +419,19 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			
 		});
 
-
-
-	GetCollisionManager().AddCollisionHandler([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcLadder, const b2Contact& rcContact) -> void
-	{
-		//COLLISIONTESTLOG("Collided with Ladder.");
-
-		if( rcContact.IsTouching() )
-			{
-				rcPlayer.setOnLadder(true);
-			}
-
-		else if (rcContact.IsTouching () == false)
-		{
-			rcPlayer.setOnLadder(false);
-		}
-	});
-
+	// Mia: Handles the collision between Plane Enemy and Basic Platform
 	GetCollisionManager().AddCollisionHandler([](CGCObjFallingPlane& rcPlane, CGCObjScalingBasicPlatform& rcPlatform, const b2Contact& rcContact) -> void
 	{
-		rcPlane.ResetPosition();
+		rcPlane.ResetPosition(); // Mia: The position of the Plane is reset back to its original position
 	});
 
+	// Mia: Handles the collision between Plane Enemy and Travelator Platform
 	GetCollisionManager().AddCollisionHandler([](CGCObjFallingPlane& rcPlane, CGCObjTravelatorPlatform& rcPlatform, const b2Contact& rcContact) -> void
 	{
-		rcPlane.ResetPosition();
+		rcPlane.ResetPosition(); // Mia: The position of the Plane Enemy is reset back to its original position
 	});
 
+	// Mia: Handles the collision between Plane Enemy and Player
 	GetCollisionManager().AddCollisionHandler
 	(
 		[this]
@@ -501,10 +439,10 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	{
 		if( rcPlane.getJustCollided() == false )
 		{
-			rcPlane.setJustCollided(true);
-			rcPlane.ResetPosition();
-			CCLOG("Player hit by Plane.");
-			rcPlayer.DecrementLives();
+			rcPlane.setJustCollided(true); // Mia: When Plane Enemy collides with Player
+			rcPlane.ResetPosition(); // Mia: Reset the Plane Enemys position to original position
+			CCLOG("Player hit by Plane."); // Mia: Shows in the output for debug purposes that Plane has indeed hit Player and only once
+			rcPlayer.DecrementLives(); // Mia: Decreases Player Lives by one
 		}
 	}
 	);
@@ -557,9 +495,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			//}
 		}
 	);
-
-
-
 
 	// Mia: Handles the Collision between the Player and the Keys
 	GetCollisionManager ().AddCollisionHandler
@@ -767,10 +702,9 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 		if (m_pcGCTimer->getCurrentTime () > 2.0f && m_bDoorUnlocked == true)
 		{
-
 			m_pcGCTimer->setCurrentTime (m_pcGCTimer->getCurrentTime () - 0.4f);
-			m_pcGCOScore->IncreaseScore(); // Mia: Increases Score when Player collides with door.
-			m_pcGCOScore->ScoreWriteFile(m_pcGCOScore); // Mia: Writes over previous Score and saves it, so Player can continue to next Level.
+			m_pcGCOScore->IncreaseScore(); // Mia: Calls IncreaseScore function from GCObjScore.cpp when Player collides with door
+			m_pcGCOScore->ScoreWriteFile(m_pcGCOScore); // Mia: Writes over previous Score and saves it, so Player can continue to next Level with updates Score
 		}
 
 	if (m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime () < 2.0f)
@@ -798,7 +732,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	if( ResetWasRequested() )
 	{
 		VOnReset();
-		m_iKeysCollected = 0; // Mia: Resets Keys Collected
+		m_iKeysCollected = 0; // Mia: Resets Keys Collected by Player to 0
 		ResetRequestWasHandled();
 		m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Reset
 		playBackgroundMusic(); // Mia: Calls this Function, so it doesn't overlay
@@ -845,9 +779,6 @@ void CGCGameLayerPlatformer::VOnDestroy()
 
 	// clean up the level
 	m_cLevelLoader.DestroyObjects();
-
-	delete m_pcGCSprBackGround;
-	m_pcGCSprBackGround = nullptr;
 
 	///////////////////////////////////////////////////////////////////////////
 	// N.B. because object groups must register manually, 
@@ -1099,10 +1030,6 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 
 			pB2Contact->SetEnabled (true);
 		}
-		//if (m_pcGCOPlayer->getPlayerDiedFromFalling())
-		//{
-		//	CGCObjectManager::ObjectKill (m_pcGCOPlayer);
-		//}
 	}
 
 	if (( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
@@ -1234,8 +1161,7 @@ void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 		{
 			if (pB2Contact->IsTouching () == false)
 			{
-				//m_pcGCOPlayer->SetCanJump (false);
-				m_pcGCOPlayer->FallDamage ();
+				m_pcGCOPlayer->FallDamage (); // Mia: Call FallDamage function from GCObjPlayer.cpp
 			}
 			
 		}
@@ -1298,14 +1224,14 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 			{
 				pB2Contact->SetEnabled (true);
 				m_pcGCOPlayer->SetCanJump (true);
-				m_pcGCOPlayer->FallDamage ();
+				m_pcGCOPlayer->FallDamage (); // Mia: Call FallDamage function from GCObjPlayer.cpp
 				
 			}
 
-			if( m_pcGCOPlayer->getPlayerDiedFromFalling() )
+			if( m_pcGCOPlayer->getPlayerDiedFromFalling() ) // Mia: If this function is called
 			{
-				m_pcGCOPlayer->DecrementLives();
-				RequestReset();
+				m_pcGCOPlayer->DecrementLives(); // Mia: Decrease Player Lives by one
+				RequestReset(); // Mia: Then request reset
 			}
 
 	}
@@ -1321,7 +1247,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 		 {
 			 m_pcGCOPlayer->SetCanJump (true);
 
-			 m_pcGCOPlayer->FallDamage ();
+			 m_pcGCOPlayer->FallDamage (); // Mia: Call FallDamage function from GCObjPlayer.cpp
 		 }
 	 }
 

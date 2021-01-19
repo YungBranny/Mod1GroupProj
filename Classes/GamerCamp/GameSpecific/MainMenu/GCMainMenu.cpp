@@ -4,7 +4,6 @@
 #include <stdlib.h>
 
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
-#include "MenuScene.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 

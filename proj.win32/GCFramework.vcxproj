@@ -268,7 +268,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamerCamp\GCObject\GCObjGroupDefault.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\Win32Input\CInputKeyboard.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.cpp" />
-    <ClCompile Include="..\Classes\MenuScene.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -393,7 +392,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamerCamp\GCObject\GCObjGroupDefault.h" />
     <ClInclude Include="..\Classes\GamerCamp\Win32Input\CInputKeyboard.h" />
     <ClInclude Include="..\Classes\GamerCamp\Win32Input\GCKeyboardManager.h" />
-    <ClInclude Include="..\Classes\MenuScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="needs to be deleted.h" />
   </ItemGroup>

@@ -13,8 +13,6 @@
 
 #include "SimpleAudioEngine.h"
 
-//////////////////////////////////////////////////////////////////////////
-// fwd decl
 class CGCObjSprite;
 class CGCObjPlayer;
 class CGCObjPlatform;
@@ -65,61 +63,48 @@ class CGCObjFallingPlane8;
 class CGCObjFallingPlane9;
 class CGLossScene;
 
-//////////////////////////////////////////////////////////////////////////
-// sample class that creates a 'game' by deriving from IGCGameLayer
-//////////////////////////////////////////////////////////////////////////
 class CGCGameLayerPlatformer 
 : public IGCGameLayer
 , public b2ContactListener 
 {
 private:
-
-
 	// object groups
 	CGCObjGroupPlatform*			m_pcGCGroupPlatform;
 	CGCObjGroupItem*				m_pcGCGroupItem;
 	CGCObjGroupInvader*				m_pcGCGroupInvader;
 	CGCObjGroupProjectilePlayer*	m_pcGCGroupProjectilePlayer;
 
-	CGCObjKeys*						m_pcGCOKeys;
-	CGCObjKeys*						m_pcGCOKeys1;
-	CGCObjKeys*						m_pcGCOKeys2;
+	CGCObjKeys*						m_pcGCOKeys;  // Mia: Variable for first set of Keys
+	CGCObjKeys*						m_pcGCOKeys1; // Mia: Variable for second set of Keys
+	CGCObjKeys*						m_pcGCOKeys2; // Mia: Variable for third set of Keys
 
 	//UI
 	CGCObjTimer*					m_pcGCTimer;
 	CGCObjLives*					m_pcGCOLives;
-	CGCObjScore*					m_pcGCOScore;
+	CGCObjScore*					m_pcGCOScore; // Mia: Variable for Player Score
 	CGCObjHighScore*				 m_pcGCOHighScore;
-	
-	
-	// backgrounds
-	CGCObjSprite*					m_pcGCSprBackGround;
 
-	// mario
 	CGCObjPlayer*				m_pcGCOPlayer;
 	CGCFactoryCreationParams	m_sPlayerCreateParams;
 
 	// level loader
 	CGCLevelLoader_Ogmo		m_cLevelLoader;
 
-
 	bool					m_bCheckIfPlayerIsAbovePlatform;
 
-	int						m_iKeysCollected;
+	int						m_iKeysCollected; // Mia: Int for Keys Collected by Player
 
-	int						m_iTotalKeys;
+	int						m_iTotalKeys;	  // Mia: Int for the Total amount of Keys
 
 	int			m_iHighScore;
 	
-	CocosDenshion::SimpleAudioEngine* m_pcGCBackgroundAudio;
-	CocosDenshion::SimpleAudioEngine* m_pcGCSoundEffectsAudio;
+	CocosDenshion::SimpleAudioEngine*	m_pcGCBackgroundAudio;   // Mia: Variable for Background music
+	CocosDenshion::SimpleAudioEngine*	m_pcGCSoundEffectsAudio; // Mia: Variable for Sound Effects audio
 
 public:
 	CGCGameLayerPlatformer	( void );
 	~CGCGameLayerPlatformer	( void );
 
-	//////////////////////////////////////////////////////////////////////////
-	// player actions 
 	enum EPlayerActions
 	{
 		EPA_Up = 0,
@@ -128,10 +113,7 @@ public:
 		EPA_Right,
 		EPA_Fire
 	};
-	// player actions 
-	//////////////////////////////////////////////////////////////////////////
 
-	//////////////////////////////////////////////////////////////////////////
     // 'selector' callbacks for menu buttons
     void Callback_OnQuitButton	( Ref* pSender );
 	void Callback_OnSkipButton(Ref* pSender);
@@ -140,50 +122,28 @@ public:
 	// called from VOnUpdate
 	void HandleCollisions( void );
 
-	void keyCollected();
+	void keyCollected();		 // Mia: Key Collected by Player function
 
-	void playBackgroundMusic();
+	void playBackgroundMusic();  // Mia: Play Background Music in Level function
 
-	void playKeyAudio();
+	void playKeyAudio();		 // Mia: Play when a Key is picked up by Player audio function
 
-	void playDoorOpeningAudio();
+	void playDoorOpeningAudio(); // Mia: Play when Player unlocks Door audio function
 
 	void PlayerDeathSceneSwap();
 	
 	void HighScore();
-	
-	//////////////////////////////////////////////////////////////////////////
-	// CCNode interface...
-	virtual void onEnter();
-	// CCNode interface...
-	//////////////////////////////////////////////////////////////////////////
 
-	//////////////////////////////////////////////////////////////////////////
-	// IGCGameLayer interface
+	virtual void onEnter();
 
 		virtual	void VOnCreate	( void );
 		virtual void VOnUpdate	( f32 fTimeStep );
 		virtual	void VOnDestroy ( void );	
 
-	// IGCGameLayer interface
-	//////////////////////////////////////////////////////////////////////////
-
-
-	//////////////////////////////////////////////////////////////////////////
-	// b2ContactListener interface - see b2ContactListener for details of 
-	// when these get called and what they are
-
 		virtual void BeginContact	( b2Contact* pB2Contact );
 		virtual void EndContact		( b2Contact* pB2Contact );
 		virtual void PreSolve		( b2Contact* pB2Contact, const b2Manifold* pOldManifold );
 		virtual void PostSolve		( b2Contact* pB2Contact, const b2ContactImpulse* pImpulse );
-
-	// b2ContactListener interface - see b2ContactListener for details of 
-	// when these get called and what they are
-	//////////////////////////////////////////////////////////////////////////
-	
-	////////////////////////////////////////////////////////////////////////// 
-	// reset / quit handling
 private:
 	bool							m_bResetWasRequested;
 	bool							m_bQuitWasRequested;
@@ -236,5 +196,4 @@ private:
 		return m_bQuitWasRequested; 
 	}
 };
-//
 #endif // __CGCGameLayerPlatformer_SCENE_H__
