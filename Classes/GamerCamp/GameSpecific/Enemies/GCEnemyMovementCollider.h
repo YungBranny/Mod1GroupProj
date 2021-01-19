@@ -3,7 +3,8 @@
 
 
 //Brandon Middleton
-//This class draws a single platform which will be thrown into a platform manager to make it scaleable
+//This class is an empty item which has a single use that is to be collided with by an enemy and act as a single to make the enemy move the
+//other directon
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 #include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"

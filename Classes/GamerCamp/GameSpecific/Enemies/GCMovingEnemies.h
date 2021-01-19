@@ -55,9 +55,9 @@ private:
 	std::unique_ptr< CGCFactoryCreationParams > m_pCustomCreationParams;
 
 public:
-	
 
-	
+
+
 	CGCMovingEnemies ();
 	virtual ~CGCMovingEnemies () {};
 
@@ -65,41 +65,41 @@ public:
 
 
 
-	unsigned short int getCollisionDirBuffer ()	const   { return m_iCollisionDirBuffer;	}	//Getter for CollisionBuffer
-	void  setCollisionDirBuffer (unsigned short int i)	    { m_iCollisionDirBuffer = i;		}	//Setter for CollisionBuffer
+	unsigned short int getCollisionDirBuffer ()	const { return m_iCollisionDirBuffer; }	//Getter for CollisionBuffer
+	void  setCollisionDirBuffer (unsigned short int i) { m_iCollisionDirBuffer = i; }	//Setter for CollisionBuffer
 
 	unsigned short int getCollisionBuffer ()	const { return m_iCollisionBuffer; }	//Getter for CollisionBuffer
 	void  setCollisionBuffer (unsigned short int i) { m_iCollisionBuffer = i; }	//Setter for CollisionBuffer
 
-																							
-	float getGravity ()							const	{ return m_fGravity;			}	//Getter for Gravity
-	void  setGravity (float i)							{ m_fGravity = i;				}	//Setter for Gravity
-																							
-	bool  getJustCollided ()					const	{return m_bJustCollided;		}	//Getter for CollisionBuffer
-	void  setJustCollided (bool i)						{ m_bJustCollided = i;			}	//Setter for CollisionBuffer
+
+	float getGravity ()							const { return m_fGravity; }	//Getter for Gravity
+	void  setGravity (float i) { m_fGravity = i; }	//Setter for Gravity
+
+	bool  getJustCollided ()					const { return m_bJustCollided; }	//Getter for CollisionBuffer
+	void  setJustCollided (bool i) { m_bJustCollided = i; }	//Setter for CollisionBuffer
 
 	bool  getChangedDir ()					const { return m_bJustChangedDir; }	//Getter for CollisionBuffer
-	void  setChangedDir (bool i)				  { m_bJustChangedDir = i; }	//Setter for CollisionBuffer
+	void  setChangedDir (bool i) { m_bJustChangedDir = i; }	//Setter for CollisionBuffer
 
 
 
-	bool  getDefaultDirection ()				const   { return m_bDefaultDirection;   }	//Getter for DefaultDirection
-	void  setDefaultDirection (bool i)					{ m_bDefaultDirection = i;      }	//Setter for DefaultDirection
-																							
-	cocos2d::Vec2	getEndDestination1		()	const	{ return m_vEndDestination1;	}	//Getter for EndDesination1
-	cocos2d::Vec2	getEndDesination2		()	const	{ return m_vEndDesitnation2;	}	//Getter for EndDesination2
-	cocos2d::Vec2	getMovingRightVelocity	()	const	{ return m_vMovingRightVelocity;}	//Getter for MovingRightVelocity
-	cocos2d::Vec2	getMovingLeftVelocity	()	const	{ return m_vMovingRightVelocity;}	//Getter for MovingLeftVelocity
-	cocos2d::Vec2	getMovingUpVelocity		()	const	{ return m_vMovingUpVelocity;	}	//Getter for MovingUpVelocity
-	cocos2d::Vec2	getMovingDownVelocity	()	const	{ return m_vMovingDownVelocity;	}	//Getter for DownVelocity
-																					
-	void setEndDesination1			(cocos2d::Vec2 i)	{ m_vEndDestination1 = i;		}	//Setter for EndDesination1
-	void setEndDesination2			(cocos2d::Vec2 i)	{ m_vEndDesitnation2 = i;		}	//Setter for EndDesination2
-	void setMovingRightVelocity		(cocos2d::Vec2 i)	{ m_vMovingRightVelocity = i;	}	//Setter for MovingRightVelocity
-	void setMovingLeftVelocity		(cocos2d::Vec2 i)	{ m_vMovingLeftVelocity = i;	}	//Setter for MovingLeftVelocity
-	void setMovingUpVelocity		(cocos2d::Vec2 i)	{ m_vMovingUpVelocity = i;		}	//Setter for MovingUpVelocity
-	void setMovingDownVelocity		(cocos2d::Vec2 i)	{ m_vMovingDownVelocity = i;	}	//Setter for DownVelocity
-										 
+	bool  getDefaultDirection ()				const { return m_bDefaultDirection; }	//Getter for DefaultDirection
+	void  setDefaultDirection (bool i) { m_bDefaultDirection = i; }	//Setter for DefaultDirection
+
+	cocos2d::Vec2	getEndDestination1 ()	const { return m_vEndDestination1; }	//Getter for EndDesination1
+	cocos2d::Vec2	getEndDesination2 ()	const { return m_vEndDesitnation2; }	//Getter for EndDesination2
+	cocos2d::Vec2	getMovingRightVelocity ()	const { return m_vMovingRightVelocity; }	//Getter for MovingRightVelocity
+	cocos2d::Vec2	getMovingLeftVelocity ()	const { return m_vMovingRightVelocity; }	//Getter for MovingLeftVelocity
+	cocos2d::Vec2	getMovingUpVelocity ()	const { return m_vMovingUpVelocity; }	//Getter for MovingUpVelocity
+	cocos2d::Vec2	getMovingDownVelocity ()	const { return m_vMovingDownVelocity; }	//Getter for DownVelocity
+
+	void setEndDesination1 (cocos2d::Vec2 i) { m_vEndDestination1 = i; }	//Setter for EndDesination1
+	void setEndDesination2 (cocos2d::Vec2 i) { m_vEndDesitnation2 = i; }	//Setter for EndDesination2
+	void setMovingRightVelocity (cocos2d::Vec2 i) { m_vMovingRightVelocity = i; }	//Setter for MovingRightVelocity
+	void setMovingLeftVelocity (cocos2d::Vec2 i) { m_vMovingLeftVelocity = i; }	//Setter for MovingLeftVelocity
+	void setMovingUpVelocity (cocos2d::Vec2 i) { m_vMovingUpVelocity = i; }	//Setter for MovingUpVelocity
+	void setMovingDownVelocity (cocos2d::Vec2 i) { m_vMovingDownVelocity = i; }	//Setter for DownVelocity
+
 	void ChangeDirection ();					  //Function which contains the logic to change direction
 	void Movement ();							  //Function which 
 
