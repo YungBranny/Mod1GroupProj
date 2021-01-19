@@ -15,8 +15,6 @@ public:
 
 	GCFACTORY_DECLARE_CREATABLECLASS ( CGCObjLadder );
 
-	//virtual void VOnResourceAcquire ( void );
-	virtual void VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
+	virtual void VHandleFactoryParams ( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition );
 };
-
 #endif
