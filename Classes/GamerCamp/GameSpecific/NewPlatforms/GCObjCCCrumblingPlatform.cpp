@@ -1,6 +1,5 @@
 #include <memory.h>
 
-//#include "AppDelegate.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
@@ -12,7 +11,7 @@
 GCFACTORY_IMPLEMENT_CREATEABLECLASS (CGCObjCCCrumblingPlatform);
 
 
-CGCObjCCCrumblingPlatform::CGCObjCCCrumblingPlatform ()
+CGCObjCCCrumblingPlatform::CGCObjCCCrumblingPlatform () //constructor 
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjScalingFallingPlatform))
 	, m_v2FallingVelocity (0.0f, -1.0f)									  //Initalises the variable with a default value
 	, m_v2DefaultVelocity (0.0f, 0.0f)									  //Initalises the variable with a default value
@@ -25,32 +24,22 @@ CGCObjCCCrumblingPlatform::CGCObjCCCrumblingPlatform ()
 }
 
 //Sets the sprite
-//IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingFallingPlatform, "TexturePacker/Sprites/FallingScalingPlatform/FallingScalingPlatform.plist", "FallingScalingPlatform", b2_kinematicBody, true);
-
-void CGCObjCCCrumblingPlatform::VOnResourceAcquire ()
+void CGCObjCCCrumblingPlatform::VOnResourceAcquire () //acquires the resources 
 {
-
-	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjScalingFallingPlatform);
-
 	CGCObjSpritePhysics::VOnResourceAcquire ();
 
-		CGCObjSpritePhysics::VOnResourceAcquire ();
-		//const char* pszPlist_SeaUrchin = "TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist";
-		const char* pszAnim_Idle = "CCIdle";
+		CGCObjSpritePhysics::VOnResourceAcquire (); 
+		const char* pszAnim_Idle = "CCIdle"; // gets the folder name the animation is stored in 
 
-		cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
-		RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_Idle)));
-
-
-
-
+		cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile); //creates a valuemap from the plist given in ogmo
+		RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_Idle))); //runs the animation
 }
-void CGCObjCCCrumblingPlatform::VOnReset ()
+void CGCObjCCCrumblingPlatform::VOnReset () //reset function
 {
 	CGCObjSpritePhysics::VOnReset ();
-	m_bContactWithPlayer = false;
-	m_bCanDelete = false;
-	m_fCurrentDestroyPlatformTick = m_fMaxDestroyPlatformTick;
+	m_bContactWithPlayer = false;									  //Resets to the default state 
+	m_bCanDelete = false;											  //Resets to the default state 
+	m_fCurrentDestroyPlatformTick = m_fMaxDestroyPlatformTick;		  //Resets to the default state 
 
 	if (GetPhysicsBody ())
 	{
@@ -62,47 +51,42 @@ void CGCObjCCCrumblingPlatform::VOnReset ()
 	}
 }
 
-//Calls the function that moves the platform down
+//Calls the function that moves the platform down 
 void CGCObjCCCrumblingPlatform::MoveDownOnContact ()
 {
 	//if this boolean gets set to true it starts decreasing the platform tick 
 	//and changes the velocity of the platform so it moves down
 	if (GetContactWithPlayer () == true)
 	{
-		//SetVelocity (m_v2FallingVelocity);
-
 		if (m_fCurrentDestroyPlatformTick >= 0)
 		{
 			m_fCurrentDestroyPlatformTick--;
 			SetSpritePosition (cocos2d::Vec2 (GetSpritePosition ().x, GetSpritePosition ().y - 3.0f));
 		}
-
 		if (m_fCurrentDestroyPlatformTick <= 0)
 		{
 			m_bCanDelete = true;
 		}
 	}
-	else  // changes the velocity to 0 so it stops moving
+	else  // Else statement which is emtpy so that the platform should do nothing when its not being touched byt the player
 	{
-		//SetVelocity (m_v2DefaultVelocity);
+		
 	}
 }
 
+//function that allowes the custom 
 void CGCObjCCCrumblingPlatform::VHandleFactoryParams (const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
 {
 	const CGCFactoryCreationParams* pParamsToPassToBaseClass = &rCreationParams;
 
 	if (nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData)
 	{
-		//const tinyxml2::XMLAttribute* pName = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "name" );
-
-		//CCLOG( (nullptr == pName) ? "BOB NOT FOUND!" : pName->Value() );
 
 		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("PlistFile");    //customplist    //PlistFile
 
 		const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("shape");
 
-		if (( nullptr != pCustomPlistPath ) && ( 0 != strlen (pCustomPlistPath->Value ()) ))    // && ( (nullptr != pCustomShape) && ( 0 != strlen( pCustomShape->Value() ) ) ) )
+		if (( nullptr != pCustomPlistPath ) && ( 0 != strlen (pCustomPlistPath->Value ()) ))  
 		{
 			m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams > (rCreationParams.strClassName.c_str (),
 				pCustomPlistPath->Value (),
@@ -116,6 +100,7 @@ void CGCObjCCCrumblingPlatform::VHandleFactoryParams (const CGCFactoryCreationPa
 
 	CGCObjSpritePhysics::VHandleFactoryParams (( *pParamsToPassToBaseClass ), v2InitialPosition);
 }
+
 //update function
 void CGCObjCCCrumblingPlatform::VOnUpdate (f32 fTimestep)
 {

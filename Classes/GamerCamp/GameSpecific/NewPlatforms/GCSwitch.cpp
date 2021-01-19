@@ -13,28 +13,23 @@
 
 GCFACTORY_IMPLEMENT_CREATEABLECLASS (GCSwitch);
 
-GCSwitch::GCSwitch ()
+GCSwitch::GCSwitch () //constructor
 	: CGCObjSpritePhysics (GetGCTypeIDOf (GCSwitch))
 	,m_bSwitchHit(false)
 {
-	//m_audio->playBackgroundMusic ("", true);
-
 }
 
-void GCSwitch::VOnResurrected ()
+void GCSwitch::VOnResurrected () //resurrected
 {
 	CGCObjSpritePhysics::VOnResurrected ();
 	GetPhysicsBody ()->SetGravityScale (0);
 }
 
-void GCSwitch::VOnReset ()
+void GCSwitch::VOnReset () //reset
 {
 	CGCObjSpritePhysics::VOnReset ();
 	m_bSwitchHit = false;
 }
-
-//CHooses what sprite is drawn
-//IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingBasicPlatform, "TexturePacker/Sprites/BasicScalingPlatform/BasicScalingPlatform.plist", "BasicScalingPlatform", b2_staticBody, true);
 
 
 

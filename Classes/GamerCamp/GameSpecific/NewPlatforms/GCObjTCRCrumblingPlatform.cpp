@@ -24,26 +24,14 @@ CGCObjTCRCrumblingPlatform::CGCObjTCRCrumblingPlatform ()
 {
 }
 
-//Sets the sprite
-//IN_CPP_CREATION_PARAMS_DECLARE (CGCObjScalingFallingPlatform, "TexturePacker/Sprites/FallingScalingPlatform/FallingScalingPlatform.plist", "FallingScalingPlatform", b2_kinematicBody, true);
-
 void CGCObjTCRCrumblingPlatform::VOnResourceAcquire ()
 {
-
-	//IN_CPP_CREATION_PARAMS_AT_TOP_OF_VONRESOURCEACQUIRE (CGCObjScalingFallingPlatform);
-
 	CGCObjSpritePhysics::VOnResourceAcquire ();
-
 	CGCObjSpritePhysics::VOnResourceAcquire ();
-	//const char* pszPlist_SeaUrchin = "TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist";
 	const char* pszAnim_Idle = "TCRIdle";
 
 	cocos2d::ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist (GetFactoryCreationParams ()->strPlistFile);
 	RunAction (GCCocosHelpers::CreateAnimationActionLoop (GCCocosHelpers::CreateAnimation (dicPList, pszAnim_Idle)));
-
-
-
-
 }
 void CGCObjTCRCrumblingPlatform::VOnReset ()
 {
@@ -69,8 +57,6 @@ void CGCObjTCRCrumblingPlatform::MoveDownOnContact ()
 	//and changes the velocity of the platform so it moves down
 	if (GetContactWithPlayer () == true)
 	{
-		//SetVelocity (m_v2FallingVelocity);
-
 		if (m_fCurrentDestroyPlatformTick >= 0)
 		{
 			m_fCurrentDestroyPlatformTick--;
@@ -84,7 +70,6 @@ void CGCObjTCRCrumblingPlatform::MoveDownOnContact ()
 	}
 	else  // changes the velocity to 0 so it stops moving
 	{
-		//SetVelocity (m_v2DefaultVelocity);
 	}
 }
 
@@ -94,15 +79,11 @@ void CGCObjTCRCrumblingPlatform::VHandleFactoryParams (const CGCFactoryCreationP
 
 	if (nullptr != CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData)
 	{
-		//const tinyxml2::XMLAttribute* pName = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute( "name" );
-
-		//CCLOG( (nullptr == pName) ? "BOB NOT FOUND!" : pName->Value() );
-
 		const tinyxml2::XMLAttribute* pCustomPlistPath = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("PlistFile");    //customplist    //PlistFile
 
 		const tinyxml2::XMLAttribute* pCustomShape = CGCLevelLoader_Ogmo::sm_pCurrentObjectXmlData->FindAttribute ("shape");
 
-		if (( nullptr != pCustomPlistPath ) && ( 0 != strlen (pCustomPlistPath->Value ()) ))    // && ( (nullptr != pCustomShape) && ( 0 != strlen( pCustomShape->Value() ) ) ) )
+		if (( nullptr != pCustomPlistPath ) && ( 0 != strlen (pCustomPlistPath->Value ()) )) 
 		{
 			m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams > (rCreationParams.strClassName.c_str (),
 				pCustomPlistPath->Value (),
