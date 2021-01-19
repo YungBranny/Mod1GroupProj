@@ -87,7 +87,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer ()
 	, m_bCheckIfPlayerIsAbovePlatform ( false )
 	, m_bDoorUnlocked				  ( false )
 {
-	m_iTotalKeys = 0; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
+	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
 
 	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
 }
@@ -161,18 +161,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	// create and register the object group for the platform objects
 	m_pcGCGroupPlatform = new CGCObjGroupPlatform ();
 	CGCObjectManager::ObjectGroupRegister (m_pcGCGroupPlatform);
-
-	// create and register the object group for the item objects
-	//m_pcGCGroupItem = new CGCObjGroupItem ();
-	//CGCObjectManager::ObjectGroupRegister (m_pcGCGroupItem);
-
-	// create and register the object group for the invader objects
-	//m_pcGCGroupInvader = new CGCObjGroupInvader ();
-	//CGCObjectManager::ObjectGroupRegister (m_pcGCGroupInvader);
-
-	// create and register the object group for the player projectile objects
-	//m_pcGCGroupProjectilePlayer = new CGCObjGroupProjectilePlayer ();
-	//CGCObjectManager::ObjectGroupRegister (m_pcGCGroupProjectilePlayer);
 
 	// Mia: Here are three 'cheat' buttons we used for testing purposes. These buttons are located on the right side of each and every Level
 	MenuItemImage* pResetItem // Mia: This button resets the Level
@@ -365,7 +353,8 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		});
 
 
-
+	//Brandon - This is where the switches will delete the platforms/doors associated with them  when the player has has collided with a switch.
+	//It does this by adding up every time the player hits a switch which will then cause the if statement to be set to true allowing the platform/Wall to be deleted 
 	GetCollisionManager ().AddCollisionHandler ([this](GCSwitch& rcSwitch, CGCObjSwitchPlatform1& rcSwitchPlatform, const b2Contact& rcContact) -> void
 		{
 			if (m_pcGCOPlayer->getSwitchesHit () >= 1)
@@ -389,7 +378,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 				{
 					rcSwitch.setSwitchHit (true);
 					m_pcGCOPlayer->setSwitchesHit (m_pcGCOPlayer->getSwitchesHit () + 1);
-					CCLOG ("AAAA12");
 				}
 				
 			}
@@ -425,26 +413,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	}
 	);
 
-	GetCollisionManager ().AddCollisionHandler
-	(
-		//Brandon Middleton
-		//This collision checks if the player is touching a platform or not, if it is touching it gives the player the ability to jump
-		// if it not touching then the player cannot jump
-		[]
-	(CGCObjPlayer& rcPlayer, CGCObjScalingBasicPlatform& rcPlatform, const b2Contact& rcContact) -> void
-		{
-			//if (rcContact.IsTouching ()) //checks if it is touching
-			//{
-			//	rcPlayer.SetCanJump (true);  //sets the bool can jump to true if it touching
-			//}
-
-			//else if (rcContact.IsTouching () == false)
-			//{
-			//	rcPlayer.SetCanJump (false); // sets the bool to false if it is not touching
-			//}
-
-		}
-	);
 
 	//Dan: Handle collision with the payer and the travelator 
 	GetCollisionManager ().AddCollisionHandler
@@ -499,25 +467,17 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	(CGCMovingEnemies& rcMEnemies, CGCObjPlayer& rcPlayer, const b2Contact& rcContact) -> void
 		{
 			CGCObjectManager::ObjectKill (&rcMEnemies);
-			CCLOG("HEUFH");
 			if (rcMEnemies.getJustCollided () == false)
-			{
-				
+			{	
 				rcMEnemies.setJustCollided (true);
-				
 				if (m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 				{
 					//Dan: Sets highscore if the score value passes it
 					m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 				}
-
 				RequestReset ();
-				//m_pcGCTimer->ResetTimer ();
 				CCLOG ("Player wacked.");
-				//CGCObjectManager::ObjectKill (&rcPlayer);
-				//m_bPlayerHitHostile = true;
 				rcPlayer.DecrementLives ();
-				//PlayerDeathSceneSwap(); //Puia Lose a life when colliding
 			}
 		}
 	);
@@ -547,7 +507,9 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		}
 	);
 
-
+	//Brandon Middleton
+	//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
+	//it will reset the level from the start
 	GetCollisionManager ().AddCollisionHandler ([this](CGCMovingEnemies& rcMEnemies, CGCObjSwitchPlatform1& rcSwitchPlatform, const b2Contact& rcContact) -> void
 		{
 			if (rcMEnemies.getChangedDir () == false)
@@ -566,6 +528,9 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		
 		});
 
+	//Brandon Middleton
+	//This collision is in charge of detecting if the player has collided with an enemy or not, if it has collided with an enemy it
+	//it will reset the level from the start
 	GetCollisionManager ().AddCollisionHandler ([this](CGCMovingEnemies& rcMEnemies, CGCObjSwitchPlatform2& rcSwitchPlatform, const b2Contact& rcContact) -> void
 		{
 			if (rcMEnemies.getChangedDir () == false)
@@ -632,20 +597,10 @@ void CGCGameLayerPlatformer::VOnCreate ()
 				rcFallingPlatforms.SetContactWithPlayer (false);
 			}
 
-			if (rcFallingPlatforms.GetCanDelete () == true)
+			if (rcFallingPlatforms.GetCanDelete () == true) //checks if the platform can be deleted, if it can then it will delete itself
 			{
 				CGCObjectManager::ObjectKill (&rcFallingPlatforms);
-				//rcFallingPlatforms.SetPhysicsTransform (cocos2d::Vec2 (-300, -300), 0); //checks if the platform can be delted, if it can then it will delete itself
 			}
-
-			//if (rcContact.IsTouching ())							//checks if it is touching
-			//{
-			//	rcPlayer.SetCanJump (true);							//sets the bool can jump to true if it touching);
-			//}
-
-			//else if (rcContact.IsTouching () == false)
-			//{
-			//	rcPlayer.SetCanJump (false);						//Sets it to false if it is not touching 
 		});
 }
 
@@ -677,13 +632,13 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 		PlayerDeathSceneSwap();
 	}
 	
-
-		if (m_pcGCTimer->getCurrentTime () > 2.0f && m_bDoorUnlocked == true)
-		{
-			m_pcGCTimer->setCurrentTime (m_pcGCTimer->getCurrentTime () - 0.4f);
-			m_pcGCOScore->IncreaseScore(); // Mia: Calls IncreaseScore function from GCObjScore.cpp when Player collides with door
-			m_pcGCOScore->ScoreWriteFile(m_pcGCOScore); // Mia: Writes over previous Score and saves it, so Player can continue to next Level with updates Score
-		}
+	//Brandon this checks to see if the door is open and if it has been collided with yet, if it has then it disables the players movement, decreases the timer until it has ran out and then it switches scene 
+	if (m_pcGCTimer->getCurrentTime () > 2.0f && m_bDoorUnlocked == true)
+	{
+		m_pcGCTimer->setCurrentTime (m_pcGCTimer->getCurrentTime () - 0.4f);
+		m_pcGCOScore->IncreaseScore(); // Mia: Calls IncreaseScore function from GCObjScore.cpp when Player collides with door
+		m_pcGCOScore->ScoreWriteFile(m_pcGCOScore); // Mia: Writes over previous Score and saves it, so Player can continue to next Level with updates Score
+	}
 
 	if (m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime () < 2.0f)
 	{
@@ -693,6 +648,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	{
 		m_pcGCOPlayer->SetVelocity (Vec2 (0, 0));
 	}
+	
 	//std::ifstream inFile;
 	//inFile.open("HighScore.txt");
 
@@ -762,22 +718,6 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	// N.B. because object groups must register manually, 
 	// we also unregister them manually
 	///////////////////////////////////////////////////////////////////////////
-	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupPlatform );
-	//delete m_pcGCGroupPlatform;
-	//m_pcGCGroupPlatform = nullptr;
-
-	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupProjectilePlayer );
-	//delete m_pcGCGroupProjectilePlayer;
-	//m_pcGCGroupProjectilePlayer = nullptr;
-
-	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupInvader );
-	//delete m_pcGCGroupInvader;
-	//m_pcGCGroupInvader = nullptr;
-
-	//CGCObjectManager::ObjectGroupUnRegister( m_pcGCGroupItem );
-	//delete m_pcGCGroupItem;
-	//m_pcGCGroupItem = nullptr;
-
 	IGCGameLayer::VOnDestroy();
 }
 
@@ -834,141 +774,8 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 		return;
 	}
 
-	
-
-	//// ignore contact between player projectile and item for collision resolution purposes
-	//if(	pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() )
-	//{
-	//	if(		(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf( CGCObjPlayer ) )
-	//			 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) ) )
-	//		||	(	( pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf(CGCObjScalingFallingPlatform) )
-	//			 &&	( pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer) ) ) )
-	//	{
-	//		// ignore the collision!
-
-	//		if (m_pcGCOPlayer->GetVelocity ().y > 0)
-	//		{
-	//				// ignore the collision!
-	//				pB2Contact->SetEnabled (false);
-
-	//		}
-
-	//		if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-	//		{
-	//			if (pB2Contact->GetFixtureA ()->IsSensor () || pB2Contact->GetFixtureB ())
-	//			{
-	//				// ignore the collision!
-	//				pB2Contact->SetEnabled (true);
-	//			}
-	//		}
-	//		// ignore the collision!
-	//		//pB2Contact->SetEnabled( true );
-	//		//
-	//		// insert logic relating to this collision here
-	//		//
-	//		//
-
-	//		
-	//	}
-
-	//	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) ) )
-	//		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
-	//			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
-	//	{
-	//		// ignore the collision!
-
-	//		if (m_pcGCOPlayer->GetVelocity ().y > 0)
-	//		{
-	//			// ignore the collision!
-	//			pB2Contact->SetEnabled (false);
-	//			
-	//		}
-
-	//	
-	//			if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-	//			{
-	//				if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor () || pB2Contact->IsTouching () && pB2Contact->GetFixtureA ()->IsSensor ())
-	//				{
-	//				// ignore the collision!
-
-
-	//					// ignore the collision!
-	//				pB2Contact->SetEnabled (true);
-	//			}
-	//		}
-	//		// ignore the collision!
-	//		//pB2Contact->SetEnabled( true );
-	//		//
-	//		// insert logic relating to this collision here
-	//		//
-	//		//
-
-
-	//	}
-
-
-	//	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) ))
-	//	{
-	//		// ignore the collision!
-	//		
-	//		if (m_pcGCOPlayer->GetVelocity ().y > 3.0f)
-	//		{
-	//			pB2Contact->SetEnabled (false);
-	//		}
-
-	//		if (pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor ())
-	//		{
-	//		if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-	//		{
-	//			// ignore the collision!
-	//		
-	//		
-	//				// ignore the collision!
-	//				pB2Contact->SetEnabled (true);
-	//			}
-	//		}
-	//		// ignore the collision!
-	//		//pB2Contact->SetEnabled( true );
-	//		//
-	//		// insert logic relating to this collision here
-	//		//
-	//		//
-
-
-	//	}
-	//}
-
-	//if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-	//	&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
-	//	|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
-	//		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) ))
-	//{
-	//	// ignore the collision!
-
-	//	if (m_pcGCOPlayer->GetVelocity ().y > 0)
-	//	{
-	//		pB2Contact->SetEnabled (false);
-	//	}
-
-	//	if (m_pcGCOPlayer->GetVelocity ().y <= 0)
-	//	{
-	//		if (pB2Contact->GetFixtureA ()->IsSensor () || pB2Contact->GetFixtureB ())
-	//		{
-	//			pB2Contact->SetEnabled (true);
-	//		}
-	//	}
-	//	// ignore the collision!
-	//	//pB2Contact->SetEnabled( true );
-	//	//
-	//	// insert logic relating to this collision here
-	//	//
-	//	//
-
-
-	//}
-
+	//Brandon Checks if the players sensor located on his fees has collided with any of the platforms,
+	//depending on if this is true or not collision will be enabled/disabled allowing the player to jump from underneath a platform to land on top of it 
 	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
 		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
@@ -991,21 +798,14 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) ) )
 		)
 	{
-
-
-		
 		if (m_pcGCOPlayer->GetVelocity ().y > 0 && !pB2Contact->GetFixtureB ()->IsSensor ())
 		{
 			m_pcGCOPlayer->setIsPlayerOnPlatform (false);
-			//m_bCheckIfPlayerIsAbovePlatform = false;
 			pB2Contact->SetEnabled (false);
 		}
-
 		if (m_pcGCOPlayer->GetVelocity ().y <= 0 && pB2Contact->IsTouching () && pB2Contact->GetFixtureB ()->IsSensor () == true)
 		{
 			m_pcGCOPlayer->setIsPlayerOnPlatform (true);
-			//m_bCheckIfPlayerIsAbovePlatform = true;
-
 			pB2Contact->SetEnabled (true);
 		}
 	}
@@ -1019,34 +819,21 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 
 		{
 			m_pcGCOPlayer->setOnTravelator (true);
-
-			//rcPlayer.SetCanJump (true);//Dan: Setting jump to true so the player can jump when on the travelator(i.e. ground check)
-
 			m_pcGCOPlayer->SetVelocity (cocos2d::Vec2 (m_pcGCOPlayer->getTravelatorVelocity (), m_pcGCOPlayer->GetVelocity ().y));
-
 			// Dan: When contact with the player is made the players velocity will be increased or decreased depending on if the value is + / -
 		}
 	}
-	
+
+	//detects if the player has collided with a basic enemy (hazard) if true the player will lose a life and the level will reset 
 	if ((pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf(CGCBasicEnemies))
 		&& (pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer))
 		|| ((pGcSprPhysA->GetGCTypeID() == GetGCTypeIDOf(CGCObjPlayer))
 			&& (pGcSprPhysB->GetGCTypeID() == GetGCTypeIDOf(CGCBasicEnemies))))
-	{
-
-		//CGCObjectManager::ObjectKill (&rcEnemies);
-		//m_pcGCTimer->ResetTimer ();
-		//CGCObjectManager::ObjectKill (&rcEnemies);
-		
+	{		
 		if(m_pcGCOScore->getScoreAmount() > m_pcGCOHighScore->getHighScoreValue())
 		{
 			m_pcGCOHighScore->HighScoreWriteFile(m_pcGCOScore);
 		}
-		
-		
-		CCLOG("Player Died.");
-		//m_bPlayerHitHostile = true;
-		//PlayerDeathSceneSwap();
 		RequestReset();
 		m_pcGCOPlayer->DecrementLives(); //Puia Lose a life when colliding
 		
@@ -1057,8 +844,6 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjExitDoor) ) ))
 	{
-			
-		
 			if (m_iKeysCollected >= m_iTotalKeys) // Mia: If the Keys Collected by Player is more than or equal than to the Total Keys Collected
 			{
 				if (m_bDoorUnlocked == false)
@@ -1067,20 +852,12 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 				}
 				
 				m_bDoorUnlocked = true;
-
-				
 				m_pcGCOScore->ScoreWriteFile (m_pcGCOScore);
-
 				m_pcGCOPlayer->PlayerLivesWriteFile ();
 				if (m_pcGCOScore->getScoreAmount () > m_pcGCOHighScore->getHighScoreValue ())
 				{
 					m_pcGCOHighScore->HighScoreWriteFile (m_pcGCOScore);
-	//ZAF m_pcGCOHighScore->saveHighScore( m_pcGCOScore->getScoreAmount() );
 				}
-				
-
-				
-
 			}
 		}
 }
@@ -1174,7 +951,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 		return;
 	}
 
-
+	//Brandon - Presolve this function also helps the collision be enabled/disabled with the player and collisions, it also sets the players ability to jump depending if the player is on a platform
 	if (( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
 		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
@@ -1193,8 +970,6 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingFallingPlatform) )  )
 		)
 	{
-
-
 			pB2Contact->SetEnabled (false);
 				
 			if (m_pcGCOPlayer->getIsPlayerOnPlatform() == true)
@@ -1205,16 +980,14 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 				m_pcGCOPlayer->FallDamage (); // Mia: Call FallDamage function from GCObjPlayer.cpp
 				
 			}
-
 			if( m_pcGCOPlayer->getPlayerDiedFromFalling() ) // Mia: If this function is called
 			{
 				m_pcGCOPlayer->DecrementLives(); // Mia: Decrease Player Lives by one
 				RequestReset(); // Mia: Then request reset
 			}
-
 	}
 
-
+	//Sets the players jump to true when collided, this is in its own seperate function as the collision with the brick platforms should always be enabled
 	 if ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (GCObjBrickPlatform) )
 		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) 
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
