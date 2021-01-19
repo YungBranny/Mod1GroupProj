@@ -136,7 +136,7 @@
     <TMLadderMiddle id="9" x="1808" y="416" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/tm_ladder_middle_120x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <TMLadderMiddle id="10" x="1808" y="352" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/tm_ladder_middle_120x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <TMLadderMiddle id="11" x="1808" y="288" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/tm_ladder_middle_120x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <TMLadderTop id="12" x="1808" y="224" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/tm_ladder_bottom_120x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <TMLadderTop id="12" x="1805" y="225" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/tm_ladder_top_120x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Ladders>
   <Hazards />
   <Keys />

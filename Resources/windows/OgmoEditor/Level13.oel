@@ -198,18 +198,17 @@
   <ExitDoor>
     <ExitDoor id="0" x="120" y="960" class="CGCObjExitDoor" shape="cc_exit" PlistFile="TexturePacker/Sprites/Exit/cc_exit.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </ExitDoor>
-  <Ladder>
-    <Ladder id="0" x="208" y="960" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Ladder id="1" x="208" y="864" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Ladder id="2" x="208" y="768" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Ladder id="3" x="208" y="672" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Ladder id="4" x="208" y="576" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Ladder id="5" x="208" y="480" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Ladder id="6" x="208" y="384" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Ladder id="7" x="208" y="288" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Ladder id="8" x="208" y="192" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Ladder id="9" x="208" y="96" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-  </Ladder>
+  <Ladders>
+    <CCLadder id="0" x="255" y="945" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CCLadder id="1" x="255" y="855" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CCLadder id="2" x="255" y="765" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CCLadder id="3" x="255" y="675" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CCLadder id="4" x="255" y="585" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CCLadder id="5" x="255" y="495" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CCLadder id="6" x="255" y="405" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CCLadder id="7" x="255" y="315" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <CCLadder id="8" x="255" y="225" class="CGCObjLadder" shape="Ladder" PlistFile="TexturePacker/Sprites/Ladders/cc_ladder_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </Ladders>
   <Hazards />
   <Keys />
 </level>
