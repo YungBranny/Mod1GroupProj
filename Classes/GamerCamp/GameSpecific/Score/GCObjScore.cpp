@@ -39,7 +39,7 @@ void CGCObjScore::ScoreReadFile()
 
 	if (readFile.is_open())
 	{
-		readFile >> m_iScoreAmount;
+  		readFile >> m_iScoreAmount;
 		
 	}
 	readFile.close();

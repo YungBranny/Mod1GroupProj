@@ -511,11 +511,11 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	{
 		m_pcGCTimer->setCurrentTime (m_pcGCTimer->getCurrentTime () - 0.4f);
 		m_pcGCOScore->IncreaseScore(); // Mia: Calls IncreaseScore function from GCObjScore.cpp when Player collides with door
-		//m_pcGCOScore->ScoreWriteFile(); // Mia: Writes over previous Score and saves it, so Player can continue to next Level with updated Score
 	}
 
 	if (m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime () < 2.0f)
 	{
+		m_pcGCOScore->ScoreWriteFile(); // Mia: Writes over previous Score and saves it, so Player can continue to next Level with updated Score
 		ReplaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< CGCLevel2 >::CreateScene ()));
 	}
 	if(m_bDoorUnlocked == true)

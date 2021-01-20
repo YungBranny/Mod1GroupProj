@@ -161,14 +161,13 @@ void CGCLevel2::VOnCreate()
 	Menu* pMenu = Menu::create(pResetItem, pSkipItem, pQuitItem, nullptr);
 	pMenu->setPosition(Vec2::ZERO);
 	this->addChild(pMenu, 1);
-
+	
+	
 	m_pcGCOScore = new CGCObjScore(); // Mia: Creates Score
+	this->addChild (m_pcGCOScore->getScoreText (), 10);
+	m_pcGCOScore->ScoreReadFile ();// Mia: Adds Score Text and sets size to the Level UI
+	m_pcGCOScore->getScoreText ()->setString ("Score: " + std::to_string (m_pcGCOScore->getScoreAmount()));
 
-	m_pcGCOScore->ScoreReadFile();
-
-	this->addChild(m_pcGCOScore->getScoreText(), 10); // Mia: Adds Score Text and sets size to the Level UI
-
-	//m_pcGCOScore->ScoreClearFile(m_pcGCOScore); //Dan: When the game is started the score inside of the external file will be set to 0
 
 	m_pcGCOHighScore = new CGCObjHighScore(m_pcGCOScore); //Dan: Creating Highscore
 
