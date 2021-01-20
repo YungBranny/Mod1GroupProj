@@ -1,9 +1,13 @@
 #ifndef _MAINMENU_H_
 #define _MAINMENU_H_
 
-#include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// This 'GCMainMenu' Header File and Class File was created and was managed by Mehak Hussain.        //
+// The purpose of this Class is to create the Main Menu used in our Game.                            //
+// In this Class, I set up the buttons and sprites used for the Menu.                                //
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "SimpleAudioEngine.h"
+#include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
 
 class CGCObjSprite;
 
@@ -13,8 +17,6 @@ class CGCMainMenu
 {
 private:
 	CGCObjSprite* m_pcGCSprBackGround;
-
-	CocosDenshion::SimpleAudioEngine* m_pcGCMenuBackgroundAudio;
 
 public:
 	CGCMainMenu ();
@@ -26,6 +28,5 @@ public:
 	virtual void onEnter ();
 	virtual	void VOnCreate (void);
 	virtual	void VOnDestroy (void);
-	void playMenuBackgroundMusic();
 };
 #endif

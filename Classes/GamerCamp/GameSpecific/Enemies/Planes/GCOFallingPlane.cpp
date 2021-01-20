@@ -11,7 +11,7 @@ GCFACTORY_IMPLEMENT_CREATEABLECLASS	( CGCObjFallingPlane );
 
 CGCObjFallingPlane::CGCObjFallingPlane()
 	: CGCObjSpritePhysics ( GetGCTypeIDOf ( CGCObjFallingPlane ) )
-	, m_bJustCollided		  ( false ) // Default Key collision set to False
+	, m_bJustCollided		  ( false ) // Default collision set to False
 	, m_v2MoveUpVelocity	  ( cocos2d::Vec2 ( 0.0f, 4.0f ) ) // Sets up movement velocity
 	, m_v2MoveDownVelocity	  ( -m_v2MoveUpVelocity ) // Sets down movement by calling up velocity and switching direction
 	, m_iCollisionBuffer	  ( 60 ) // Sets default collision buffer to 60
