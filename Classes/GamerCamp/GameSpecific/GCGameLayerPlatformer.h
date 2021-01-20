@@ -69,7 +69,6 @@ private:
 	CGCObjKeys*						m_pcGCOKeys1; // Mia: Variable for second set of Keys
 	CGCObjKeys*						m_pcGCOKeys2; // Mia: Variable for third set of Keys
 
-	//UI
 	CGCObjTimer*					m_pcGCTimer;
 	CGCObjLives*					m_pcGCOLives;
 	CGCObjScore*					m_pcGCOScore; // Mia: Variable for Player Score
@@ -78,7 +77,6 @@ private:
 	CGCObjPlayer*					m_pcGCOPlayer;
 	CGCFactoryCreationParams		m_sPlayerCreateParams;
 
-	// level loader
 	CGCLevelLoader_Ogmo		m_cLevelLoader;
 
 	bool					m_bCheckIfPlayerIsAbovePlatform;
@@ -105,12 +103,10 @@ public:
 		EPA_Fire
 	};
 
-    // 'selector' callbacks for menu buttons
     void Callback_OnQuitButton	( Ref* pSender );
 	void Callback_OnSkipButton  ( Ref* pSender );
     void Callback_OnResetButton	( Ref* pSender );
 
-	// called from VOnUpdate
 	void HandleCollisions( void );
 
 	void keyCollected();		 // Mia: Key Collected by Player function

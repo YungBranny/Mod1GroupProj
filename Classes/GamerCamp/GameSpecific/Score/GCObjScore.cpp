@@ -1,14 +1,11 @@
 #include <string.h>
 #include <fstream>
 
-#include "GamerCamp/GameSpecific/Score/GCObjScore.h"
-
-#include "GamerCamp/GCObject/GCObjectManager.h"
-#include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
-#include "GamerCamp/Core/GCTypes.h"
-#include "GamerCamp/GCObject/GCObject.h"
+#include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
+
+#include "GCObjScore.h"
 
 using namespace cocos2d;
 
@@ -21,13 +18,13 @@ CGCObjScore::CGCObjScore()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	Label* pLabel = Label::createWithTTF(" ", "fonts/Super Mario Bros. 2.ttf", m_fScoreTextSize);
+	Label* pLabel = Label::createWithTTF(" ", "fonts/Super Mario Bros. 2.ttf", m_fScoreTextSize); // Mia: Sets font and calls text size
 	CC_ASSERT(pLabel != nullptr);
 	setScoreText( pLabel );
 
-	getScoreText()->setString("Score: " + std::to_string(getScoreAmount()));
+	getScoreText()->setString("Score: " + std::to_string(getScoreAmount())); // Mia: Creates string that shows Score amount, currently at default
 
-	getScoreText()->setPosition(Vec2(m_fScoreTextStartPositionX, m_fScoreTextStartPositionY));
+	getScoreText()->setPosition(Vec2(m_fScoreTextStartPositionX, m_fScoreTextStartPositionY)); // Mia: Calls Score start positions to place it
 }
 
 CGCObjScore::~CGCObjScore()
@@ -87,16 +84,16 @@ void CGCObjScore::ScoreClearFile(CGCObjScore* m_score)
 
 void CGCObjScore::IncreaseScore()
 {
-	m_iScoreAmount += 100;
-	getScoreText()->setString("Score: " + std::to_string(getScoreAmount()));
+	m_iScoreAmount += 100; // Mia: Sets how much to increase Score by
+	getScoreText()->setString("Score: " + std::to_string(getScoreAmount())); // Mia: Creates string that shows Score amount
 };
 
 void CGCObjScore::ResetScore()
 {
-	m_iScoreAmount = 0;
+	m_iScoreAmount = 0; // Mia: Resets Score back to 0 when called
 };
 
 void CGCObjScore::Update()
 {
-	getScoreText()->setString("Score: " + std::to_string(m_iScoreAmount));
+	getScoreText()->setString("Score: " + std::to_string(m_iScoreAmount)); // Mia: Keeps Score updated
 };
