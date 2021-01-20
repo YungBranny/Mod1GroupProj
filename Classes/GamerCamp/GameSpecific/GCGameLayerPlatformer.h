@@ -107,7 +107,7 @@ public:
 
     // 'selector' callbacks for menu buttons
     void Callback_OnQuitButton	( Ref* pSender );
-	void Callback_OnSkipButton(Ref* pSender);
+	void Callback_OnSkipButton  ( Ref* pSender );
     void Callback_OnResetButton	( Ref* pSender );
 
 	// called from VOnUpdate
