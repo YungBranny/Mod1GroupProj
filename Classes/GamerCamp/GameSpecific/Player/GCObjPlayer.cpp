@@ -65,7 +65,8 @@ CGCObjPlayer::CGCObjPlayer ()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
 
-	Label* pLabel = Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fLivesFontSize);
+	
+	/*Label* pLabel = Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fLivesFontSize);
 	CC_ASSERT(pLabel != nullptr);
 
 	setLivesText(pLabel);
@@ -76,15 +77,15 @@ CGCObjPlayer::CGCObjPlayer ()
 
 	getLivesText()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
 
-	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
+	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));*/
 
 	//Create all the player lives sprites
-	
+	//These are the sprites for when the player has lost a life
 	m_sprPlayerLoseLives1 = Sprite::create("TexturePacker/Sprites/Lives/empty_heart.png");
 	m_sprPlayerLoseLives2 = Sprite::create("TexturePacker/Sprites/Lives/empty_heart.png");
 	m_sprPlayerLoseLives3 = Sprite::create("TexturePacker/Sprites/Lives/empty_heart.png");
 	
-
+	//These are the sprites when a player has a life
 	m_sprPlayerLives1	= Sprite::create(  "TexturePacker/Sprites/Lives/life_full.png");
 	m_sprPlayerLives2	= Sprite::create(  "TexturePacker/Sprites/Lives/life_full.png");
 	m_sprPlayerLives3	= Sprite::create(  "TexturePacker/Sprites/Lives/life_full.png");
