@@ -32,10 +32,10 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fTravelatorVelocity			 ( -20.0f )
 	, m_iNumberOfLives				 ( 3 )
 	, m_iSwitchesHit				 ( 0 )
-	, m_fStartPositionY				 ( 0 )      // Mia: Player start position for fall damage
+	, m_fStartPositionY				 ( 0 )      // Mia: Players start position for fall damage
 	, m_fEndPositionY				 ( 0 )      // Mia: Players end position for fall damage
 	, m_fDropDistance				 ( 0 )      // Mia: Default Player drop distance set to 0
-	, m_fMaximumDropDistance		 ( 20.0f  ) // Mia: Players maxiumum drop distance for fall damage
+	, m_fMaximumDropDistance		 ( 20.0f  ) // Mia: Players maximum drop distance for fall damage
 	, m_fJumpHeight					 ( 12.0f  )
 	, m_fLivesStartPositionX		 ( 1600   )
 	, m_fLivesStartPositionY		 ( 1015   )
@@ -232,8 +232,8 @@ void CGCObjPlayer::DecrementLives()
 	}
 }
 
-// Mia: This function is for the Player fall damage. The drop distance is calculated by getting the Players position then minus what I set as the
-// maximum drop distance. If Players position exceeds the drop distance, the Player recieves fall damage
+// Mia: This function is for the Players fall damage. The drop distance is calculated by getting the Players position then minus what I set as 
+// the maximum drop distance. If Players position exceeds the drop distance, the Player recieves fall damage
 void CGCObjPlayer::FallDamage()
 {
 	if( m_bCanJump == false)

@@ -3,7 +3,7 @@
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // This 'GCObjLadder' Header File and Class File was created and was managed by Mehak Hussain.       //
-// The purpose of this Class is to create the Ladder used in Level 13 and 15.                        //
+// The purpose of this Class is to create the Ladders used in Level 13 and 15.                       //
 // In this Class, I set the creation for the Ladders to be used in Ogmo.                             //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 

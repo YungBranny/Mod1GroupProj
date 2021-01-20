@@ -1,13 +1,13 @@
-#include "GCMainMenu.h"
+#include "AppDelegate.h"
 
 #include <algorithm>
 #include <stdlib.h>
 
+#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
-#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 
-#include "AppDelegate.h"
+#include "GCMainMenu.h"
 
 CGCMainMenu::CGCMainMenu ()
 	: IGCGameLayer ( GetGCTypeIDOf ( CGCMainMenu ) )
@@ -33,7 +33,7 @@ void CGCMainMenu::VOnCreate ()
 
 	IGCGameLayer::VOnCreate ();
 
-	cocos2d::MenuItemImage* pResetItem
+	cocos2d::MenuItemImage* pResetItem // Play button sprites and position
 		= cocos2d::MenuItemImage::create ("TexturePacker/Sprites/MainMenu/Buttons/play_normal.png",
 			"TexturePacker/Sprites/MainMenu/Buttons/play_pressed.png",
 			CC_CALLBACK_1 (CGCMainMenu::LoadLevel, this));
@@ -41,7 +41,7 @@ void CGCMainMenu::VOnCreate ()
 	pResetItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width * 0.60f)),
 	( ( visibleSize.height - ( pResetItem->getContentSize ().height * 5.5f ) ) )));
 
-	cocos2d::MenuItemImage* pQuitItem
+	cocos2d::MenuItemImage* pQuitItem // Quit buttons sprites and position
 		= cocos2d::MenuItemImage::create ("TexturePacker/Sprites/MainMenu/Buttons/exit_normal.png",
 			"TexturePacker/Sprites/MainMenu/Buttons/exit_pressed",
 		CC_CALLBACK_1 (CGCMainMenu::QuitGame, this));
@@ -53,18 +53,19 @@ void CGCMainMenu::VOnCreate ()
 	pMenu->setPosition (cocos2d::Vec2::ZERO);
 	this->addChild (pMenu, 1);
 
+	// Adds a line of credits at the bottom
 	cocos2d::Label* pLabel1 = cocos2d::Label::createWithTTF("Team 2: Mia, Brandon, Daniel, Puia and Johnny", "fonts/Super Mario Bros. 2.ttf", 10);
 
 	pLabel1->setPosition(cocos2d::Vec2(visibleSize.width / 2, visibleSize.height - 1000));
 
 	this->addChild(pLabel1, 1);
 
+	// Sets up the background sprite
 	const char* pszPlist_background = "TexturePacker/Sprites/MainMenu/Background/main_menu.plist";
 	{
 		m_pcGCSprBackGround = new CGCObjSprite ();
 		m_pcGCSprBackGround->CreateSprite (pszPlist_background);
 		m_pcGCSprBackGround->SetResetPosition (cocos2d::Vec2 (visibleSize.width / 2, visibleSize.height / 2));
-		playMenuBackgroundMusic();
 		m_pcGCSprBackGround->SetParent (IGCGameLayer::ActiveInstance ());
 	}
 
@@ -88,11 +89,6 @@ void CGCMainMenu::VOnCreate ()
 void CGCMainMenu::VOnDestroy ()
 {
 	IGCGameLayer::VOnDestroy ();
-}
-
-void CGCMainMenu::playMenuBackgroundMusic()
-{
-	m_pcGCMenuBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
 }
 
 void CGCMainMenu::QuitGame (Ref* pSender)
