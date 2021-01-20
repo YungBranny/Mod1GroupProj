@@ -18,7 +18,6 @@
 
 USING_NS_CC;
 
-
 // action map arrays must match in length - in the templated controller class we use they map from the user define enum to cocos2d::Controller::Key 
 static EPlayerActions			s_aePlayerActions[]	= { EPA_AxisMove_X,								EPA_ButtonJump };
 static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYSTICK_LEFT_X,	cocos2d::Controller::Key::BUTTON_A };
@@ -106,18 +105,18 @@ void CGCObjPlayer::VOnResourceAcquire()
 	ChangeAnimation ();
 }
 
-void CGCObjPlayer::VOnReset()
+void CGCObjPlayer::VOnReset() //Brandon reset function
 {
 	CGCObjSpritePhysics::VOnReset();
 
-	// reset velocity and flip state
-	SetFlippedX( false );
-	SetFlippedY( false );
-	m_bOnTravelator = false;
-	m_bIsPlayerOnPlatform = true;
-	m_iSwitchesHit = 0;
-	m_bLostLife = false;
-	m_bPlayerDiedFromFalling = false;
+	// reset velocity and flip state	   //Variables which need to be reset when the player dies
+	SetFlippedX( false );				   //Variables which need to be reset when the player dies
+	SetFlippedY( false );				   //Variables which need to be reset when the player dies
+	m_bOnTravelator = false;			   //Variables which need to be reset when the player dies
+	m_bIsPlayerOnPlatform = true;		   //Variables which need to be reset when the player dies
+	m_iSwitchesHit = 0;					   //Variables which need to be reset when the player dies
+	m_bLostLife = false;				   //Variables which need to be reset when the player dies
+	m_bPlayerDiedFromFalling = false;	   //Variables which need to be reset when the player dies
 	// reset
 	if( GetPhysicsBody() )
 	{
@@ -126,7 +125,7 @@ void CGCObjPlayer::VOnReset()
 		GetPhysicsBody()->SetTransform( IGCGameLayer::B2dPixelsToWorld( b2Vec2( v2SpritePos.x, v2SpritePos.y ) ), 0.0f );
 		GetPhysicsBody()->SetFixedRotation( true );
 		m_bv2CurrentPos = GetPhysicsBody ()->GetPosition ();
-	}
+	} 
 }
 
 void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
@@ -156,9 +155,9 @@ void CGCObjPlayer::VOnResurrected(void)
 	m_bv2jumpVel = b2Vec2(GetPhysicsBody()->GetLinearVelocity().x, m_fJumpHeight);
 }
 
-void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
+void CGCObjPlayer::UpdateMovement(f32 fTimeStep) //Brandon Movement function 
 {
-	if (GetVelocity ().y > 3 || GetVelocity ().y < -3)
+	if (GetVelocity ().y > 3 || GetVelocity ().y < -3) //stops the player from jumping when he is falling/ in air
 	{
 		m_bCanJump = false;
 	}
@@ -167,7 +166,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 	
 	TGCController< EPlayerActions > cController = TGetActionMappedController(CGCControllerManager::eControllerOne, ( *m_pcControllerActionToKeyMap ));
 
-	if (m_bOnTravelator != true)
+	if (m_bOnTravelator != true) //if statements to determine which way the player should move and if the player can move
 	{
 		if (pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Left))
 		{
@@ -183,14 +182,12 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		{
 			if (m_bCanJump == true)
 			{
-
 				SetVelocity(cocos2d::Vec2(m_v2MovingRightVelocity.x, GetVelocity().y));
 				SetFlippedX(true);
 				m_eChangeAnimation = EChangeAnimation::Run;
 				ChangeAnimation ();
 			}
 		}
-
 		else
 		{
 			if (m_bCanJump == true)
@@ -200,13 +197,12 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 				ChangeAnimation ();
 			}
 		}
-		  
 	}
 	else if (m_bOnTravelator == true) 
 	{
 	}
 	
-	// Jump
+	// Brandon Jump enables the jump and triggers the jump animation
 	bool bFireWasPressed = false;
 
 	if (cController.IsActive())
@@ -224,11 +220,9 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep)
 		}
 	}
 
-	if (bFireWasPressed && m_bCanJump)
+	if (bFireWasPressed && m_bCanJump) //Allows the player to jump, the jump height/distance varies on which direction the player is moving or if the player is still
 	{
-		//GetPhysicsBody()->ApplyForce(m_bv2jumpVel, GetPhysicsBody()->GetWorldCenter(), true);
 		m_bCanJump = false;
-
 		m_eChangeAnimation = EChangeAnimation::Jump;
 		ChangeAnimation ();
 		playJumpAudio();
@@ -259,7 +253,6 @@ void CGCObjPlayer::DecrementLives()
 	{
 		m_bLostLife = true;
 		m_iNumberOfLives--;
-		//getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));
 		LivesUI ();
 	}
 }
@@ -334,13 +327,13 @@ void CGCObjPlayer::LivesUI()
 
 }
 
-void CGCObjPlayer::ChangeAnimation()
+void CGCObjPlayer::ChangeAnimation() //Brandon - chooses the animation depending on if the player is jumping, moving or still
 {
 	
-	const char* pszPlist_Willy = "TexturePacker/Sprites/Willy/Willy.plist";
-	const char* pszAnim_WillyRun = "Run";
-	const char* pszAnim_WillyIdle = "Idle";
-	const char* pszAnim_WillyJump = "Jump";
+	const char* pszPlist_Willy = "TexturePacker/Sprites/Willy/Willy.plist";	 //Charatcer plist
+	const char* pszAnim_WillyRun = "Run";									 //Animation Names
+	const char* pszAnim_WillyIdle = "Idle";									 //Animation Names
+	const char* pszAnim_WillyJump = "Jump";									 //Animation Names
 	static int switchAnim = 0;
 
 	// animate!
