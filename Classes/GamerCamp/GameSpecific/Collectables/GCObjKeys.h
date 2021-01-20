@@ -2,7 +2,7 @@
 #define	_GCOBJKEYS_H_
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
-// This 'GCObjKeys' Header File and Class File was created and is managed by Mehak Hussain.          //
+// This 'GCObjKeys' Header File and Class File was created and was managed by Mehak Hussain.          //
 // The purpose of this Class is to create the Key Collectables for the Player to collect one by one. //
 // In this Class, I set the creation and collision of the Keys.                                      //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -39,5 +39,4 @@ public:
 
 	virtual void VHandleFactoryParams ( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition );
 };
-
 #endif

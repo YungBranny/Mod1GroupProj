@@ -21,9 +21,6 @@
 
 #include "SimpleAudioEngine.h"
 
-
-//////////////////////////////////////////////////////////////////////////
-// forward declare
 class CGCObjGroupProjectilePlayer;
 template< typename TActionType > class TGCActionToKeyMap;
 
@@ -34,17 +31,8 @@ enum EPlayerActions
 	EPA_ButtonJump
 };
 
-//////////////////////////////////////////////////////////////////////////
-// This is a sample class derived from CGCObject.
-// 
-// It could be the basis of your player object, it's up to you really.
-//
-// The player will be the only gameplay object in the default object group
-//
-//////////////////////////////////////////////////////////////////////////
 class CGCObjPlayer 
 : public CGCObjSpritePhysics
-//, CGCObjSprite
 {
 private:
 	// member variables for 'physicsy' handling
@@ -83,7 +71,7 @@ private:
 	bool	m_bOnLadder;
 	bool	m_bChangeAnimation; // If more animations added, will be changed to enum or switch
 	bool	m_bLostLife;
-	bool   m_bPlayerLivesCheck;
+	bool    m_bPlayerLivesCheck;
 	
 	bool	m_bIsPlayerOnPlatform;
 
@@ -176,7 +164,7 @@ public:
 	cocos2d::Sprite* getPlayerLoseLivesUI3() const { return m_sprPlayerLoseLives3; }
 	void setPlayerLoseLivesUI3(cocos2d::Sprite* t) { m_sprPlayerLoseLives3 = t; }
 
-	GCFACTORY_DECLARE_CREATABLECLASS( CGCObjPlayer );
+	GCFACTORY_DECLARE_CREATABLECLASS ( CGCObjPlayer );
 
 	virtual ~CGCObjPlayer()
 	{}

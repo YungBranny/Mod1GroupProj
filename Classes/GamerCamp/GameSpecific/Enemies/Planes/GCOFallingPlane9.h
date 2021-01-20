@@ -1,6 +1,12 @@
 #ifndef _GCOFALLINGPLANE9_
 #define _GCOFALLINGPLANE9_
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// This 'GCOFallingPlane9' Header File and Class File was created and was managed by Mehak Hussain.  //
+// The purpose of this Class is to create the Falling Plane Enemy.                                   //
+// In this Class, I set the collision and velocity for the Plane.                                    //
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
@@ -64,6 +70,6 @@ public:
 	virtual void VOnResurrected		( void );
 	virtual void VOnUpdate			( f32 fTimestep );
 
-	virtual void VHandleFactoryParams	( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition );
+	virtual void VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition);
 };
 #endif

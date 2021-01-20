@@ -23,7 +23,8 @@ CGCObjLadder::CGCObjLadder ( void )
 
 }
 
-void CGCObjLadder::VHandleFactoryParams ( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition ) // This enables the parameters to be handled in ogmo level editor
+// This enables the parameters to be handled in ogmo level editor
+void CGCObjLadder::VHandleFactoryParams ( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition )
 {
 	const CGCFactoryCreationParams* pParamsToPassToBaseClass = &rCreationParams;
 
@@ -35,7 +36,7 @@ void CGCObjLadder::VHandleFactoryParams ( const CGCFactoryCreationParams& rCreat
 
 		if (( nullptr != pCustomPlistPath ) && ( 0 != strlen (pCustomPlistPath->Value ()) ))
 		{
-			  m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams > (rCreationParams.strClassName.c_str (),
+			    m_pCustomCreationParams = std::make_unique< CGCFactoryCreationParams > (rCreationParams.strClassName.c_str (),
 				pCustomPlistPath->Value (),
 				pCustomShape->Value (),
 				rCreationParams.eB2dBody_BodyType,

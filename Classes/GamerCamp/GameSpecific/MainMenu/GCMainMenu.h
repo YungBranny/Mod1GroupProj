@@ -28,5 +28,4 @@ public:
 	virtual	void VOnDestroy (void);
 	void playMenuBackgroundMusic();
 };
-
 #endif

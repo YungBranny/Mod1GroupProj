@@ -1,5 +1,11 @@
 #ifndef _CGCOBJLADDER_
-#define _CGCOBJLADDER__
+#define _CGCOBJLADDER_
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// This 'GCObjLadder' Header File and Class File was created and was managed by Mehak Hussain.       //
+// The purpose of this Class is to create the Ladder used in Level 13 and 15.                        //
+// In this Class, I set the creation for the Ladders to be used in Ogmo.                             //
+///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 #include "../../GCCocosInterface/GCFactory_ObjSpritePhysics.h"

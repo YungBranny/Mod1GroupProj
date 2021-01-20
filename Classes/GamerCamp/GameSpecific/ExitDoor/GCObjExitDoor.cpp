@@ -10,7 +10,7 @@ USING_NS_CC;
 GCFACTORY_IMPLEMENT_CREATEABLECLASS ( CGCObjExitDoor );
 
 CGCObjExitDoor::CGCObjExitDoor( void )
-	: CGCObjSpritePhysics ( GetGCTypeIDOf ( CGCObjExitDoor ) ) // We are inheriting from CGCObjSpritePhysics, so we can use physics on the Exit Door
+	: CGCObjSpritePhysics ( GetGCTypeIDOf ( CGCObjExitDoor ) )
 	, m_pCustomCreationParams ( nullptr )
 {
 
@@ -20,8 +20,8 @@ void CGCObjExitDoor::VOnResourceAcquire ()
 {
 	CGCObjSpritePhysics::VOnResourceAcquire ();
 
-	const char* pszPlist_Exit = "TexturePacker/Sprites/Exit/cc_exit.plist";
-	const char* pszAnim_Exit = "ExitIdle";
+	const char* pszPlist_Exit = "TexturePacker/Sprites/Exit/cc_exit.plist"; // Locating PList file animation for Exit
+	const char* pszAnim_Exit = "ExitIdle"; // Calling PList animation for Exit
 
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
 	RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_Exit)));

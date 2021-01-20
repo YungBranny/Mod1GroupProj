@@ -31,10 +31,8 @@ void CGCMainMenu::VOnCreate ()
 	cocos2d::Size visibleSize = cocos2d::Director::getInstance ()->getVisibleSize ();
 	cocos2d::Point origin = cocos2d::Director::getInstance ()->getVisibleOrigin ();
 
-	// create the default object group
 	IGCGameLayer::VOnCreate ();
 
-	// add a "close" icon to exit the progress. it's an autorelease object
 	cocos2d::MenuItemImage* pResetItem
 		= cocos2d::MenuItemImage::create ("TexturePacker/Sprites/MainMenu/Buttons/play_normal.png",
 			"TexturePacker/Sprites/MainMenu/Buttons/play_pressed.png",
@@ -51,7 +49,6 @@ void CGCMainMenu::VOnCreate ()
 	pQuitItem->setPosition (cocos2d::Vec2 (( ( visibleSize.width * 0.60f ) ),
 		( ( ( pQuitItem->getContentSize ().height * 2.0f ) + origin.y + 0.0f ) )));
 
-	// create menu, it's an autorelease object
 	cocos2d::Menu* pMenu = cocos2d::Menu::create (pResetItem, pQuitItem, nullptr);
 	pMenu->setPosition (cocos2d::Vec2::ZERO);
 	this->addChild (pMenu, 1);
@@ -86,7 +83,6 @@ void CGCMainMenu::VOnCreate ()
 	new CGCObjScreenBound (CGCObjScreenBound::EScreenBoundType::Top, ( v2ScreenCentre_B2d + cocos2d::Vec2 (0.0f, fHalfScreenHeightB2d) ), fScreenWidthB2d, 0.5f, 0.0f);
 	new CGCObjScreenBound (CGCObjScreenBound::EScreenBoundType::Left, ( v2ScreenCentre_B2d + cocos2d::Vec2 (-fHalfScreenWidthB2d, 0.0f) ), 0.5f, fScreenHeightB2d, 0.0f);
 	new CGCObjScreenBound (CGCObjScreenBound::EScreenBoundType::Right, ( v2ScreenCentre_B2d + cocos2d::Vec2 (fHalfScreenWidthB2d, 0.0f) ), 0.5f, fScreenHeightB2d, 0.0f);
-
 }
 
 void CGCMainMenu::VOnDestroy ()
@@ -108,4 +104,3 @@ void CGCMainMenu::LoadLevel (Ref* pSender)
 {
 	Director::getInstance()->replaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
 }
-

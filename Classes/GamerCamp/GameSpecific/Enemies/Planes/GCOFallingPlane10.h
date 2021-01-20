@@ -1,6 +1,12 @@
 #ifndef _GCOFALLINGPLANE10_
 #define _GCOFALLINGPLANE10_
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+// This 'GCOFallingPlane10' Header File and Class File was created and was managed by Mehak Hussain. //
+// The purpose of this Class is to create the Falling Plane Enemy.                                   //
+// In this Class, I set the collision and velocity for the Plane.                                    //
+///////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
