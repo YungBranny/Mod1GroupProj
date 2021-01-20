@@ -520,7 +520,7 @@ void CGCLevel4::VOnUpdate(f32 fTimeStep)
 
 	if( m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime() < 2.0f )
 	{
-		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel5 >::CreateScene()));
+		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel5 >::CreateScene()));
 	}
 	if( m_bDoorUnlocked == true )
 	{
@@ -546,7 +546,7 @@ void CGCLevel4::VOnUpdate(f32 fTimeStep)
 	{
 		m_pcGCOPlayer->PlayerLivesWriteFile();
 		SkipRequestWasHandled();
-		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel5 >::CreateScene()));
+		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel5 >::CreateScene()));
 
 	}
 
