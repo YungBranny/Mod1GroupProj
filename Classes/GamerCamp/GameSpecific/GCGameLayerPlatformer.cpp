@@ -37,20 +37,11 @@
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
 #include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
-#include "GamerCamp/GameSpecific/Invaders/GCObjInvader.h"
-#include "GamerCamp/GameSpecific/Invaders/GCObjGroupInvader.h"
 #include "GamerCamp/GameSpecific/Levels/GCLevel2.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasePlatform.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform1.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform2.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform3.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform4.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform5.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform6.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform7.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjBrickPlatform.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjMovingPlatform.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatformManager.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatform.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatformManager.h"
@@ -59,9 +50,6 @@
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjSwitchPlatform1.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/CGCObjSwitchPlatform2.h"
 #include "GamerCamp/GameSpecific/NewPlatforms/GCObjTravelatorPlatform.h"
-#include "GamerCamp/GameSpecific/Platforms/GCObjGroupPlatform.h"
-#include "GamerCamp/GameSpecific/Platforms/GCObjPlatform.h"
-#include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/Player/GCObjPlayer.h"
 #include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 #include "GamerCamp/GameSpecific/Score/GCObjHighScore.h"
@@ -71,9 +59,6 @@ USING_NS_CC;
 
 CGCGameLayerPlatformer::CGCGameLayerPlatformer ()
 	: IGCGameLayer ( GetGCTypeIDOf ( CGCGameLayerPlatformer ) )
-	, m_pcGCGroupItem			   ( nullptr )
-	, m_pcGCGroupInvader		   ( nullptr )
-	, m_pcGCGroupProjectilePlayer  ( nullptr )
 	, m_pcGCTimer				   ( nullptr )
 	, m_pcGCOPlayer                ( nullptr )
 	, m_pcGCOKeys                  ( nullptr )
@@ -87,7 +72,7 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer ()
 	, m_bCheckIfPlayerIsAbovePlatform ( false )
 	, m_bDoorUnlocked				  ( false )
 {
-	m_iTotalKeys = 5; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
+	m_iTotalKeys = 1; // Mia: Sets the total amount of Keys the Player needs to obtain to be able to unlock the Exit Door and move on
 
 	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
 }
@@ -137,13 +122,7 @@ void CGCGameLayerPlatformer::onEnter()
 
 	u32 uSizeOfActionArray = ( sizeof(aeKeyCodesForActions) / sizeof(cocos2d::EventKeyboard::KeyCode) );
 
-	// call base class function	to init the keyboard manager
 	AppDelegate::InitialiseKeyboardManager( uSizeOfActionArray, aeKeyCodesForActions );
-}
-
-void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact )
-{
-	//COLLISIONTESTLOG( "( standard function!) the player hit an item!" );
 }
 
 void CGCGameLayerPlatformer::VOnCreate ()
@@ -151,12 +130,8 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	Size visibleSize = Director::getInstance ()->getVisibleSize ();
 	Point origin = Director::getInstance ()->getVisibleOrigin ();
 
-	// create the default object group
+	// Create the default object group
 	IGCGameLayer::VOnCreate ();
-
-	// create and register the object group for the platform objects
-	m_pcGCGroupPlatform = new CGCObjGroupPlatform ();
-	CGCObjectManager::ObjectGroupRegister (m_pcGCGroupPlatform);
 
 	// Mia: Here are three 'cheat' buttons we used for testing purposes. These buttons are located on the right side of each and every Level
 	MenuItemImage* pResetItem // Mia: This button resets the Level
@@ -207,21 +182,18 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	this->addChild (m_pcGCTimer->getTimerBar (), 50);//Dan: Timer layer UI set
 	this->addChild (m_pcGCTimer->getTimerBarUI (), 51);
 
-	// set "self" as contact listener
+	// Set "self" as contact listener
 	B2dGetWorld ()->SetContactListener (this);
 
-	// load the physics shapes from the plist created with PhysicsEditor
+	// Load the physics shapes from the plist created with PhysicsEditor
 	B2dLoadShapesFromPlist ("PhysicsEditor/GameShapes.plist");
 
-	// PTM_RATIO
 	f32 PTM_RATIO = IGCGAMELAYER_B2D_PIXELS_PER_METER;
 
 	b2Vec2	b2v2ScreenCentre_Pixels (( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ));
 	Vec2	v2ScreenCentre_Pixels (( origin.x + ( visibleSize.width * 0.5f ) ), ( origin.y + ( visibleSize.height * 0.5f ) ));
 
-
-
-	// define the ground body
+	// Define the ground body
 	b2BodyDef groundBodyDef;
 	groundBodyDef.position = IGCGameLayer::B2dPixelsToWorld (b2v2ScreenCentre_Pixels);
 	groundBodyDef.type = b2_kinematicBody;
@@ -250,44 +222,14 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	groundBox.SetAsBox (0.5f, ( ( visibleSize.height * 0.5f ) / PTM_RATIO ), b2Vec2 (( ( visibleSize.width * 0.5f ) / PTM_RATIO ), 0.0f), 0.0f);
 	groundBody->CreateFixture (&groundBox, 0);
 
-
-	///////////////////////////////////////////////////////////////////////////
-	// N.B. this is where you would load a level file, using the factory to
-	// create the class instances specified by the level file by passing their
-	// class names and init data
-	//
-	// In order to ensure stuff is correctly cleaned up you will need to either:
-	//
-	// 1) cache pointers to all created CGCObjSpritePhysics created via the factory and destroy them on shutdown / level unload, or
-	//
-	// 2) make sure all the CGCObjSpritePhysics derived instances you create are in an object group and have the groups destroy them
-	//
-	// Personally I favour option 1, as I reckon it's a) more elegant and b) more philosophically 'correct'.
-	//
-	// The invaders are currently destroyed by using option 2 - see CGCObjGroupInvader::DestroyInvaders
-	///////////////////////////////////////////////////////////////////////////
-
-	// load level data from Ogmo Editor
-
-	// read the oel file for level 0
+	// Loads Level
 	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/GCOgmoTemplateLevel.oel")).c_str ());
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
-	// note: we have now created all the items, platforms, & invaders specified in the level file
-
-
-	///////////////////////////////////////////////////////////////////////////
-	// add player - this shows manual use of class factory
-	///////////////////////////////////////////////////////////////////////////
-
-	// starting position
+	// Player starting position
 	cocos2d::Vec2 v2MarioStartPos (60, 120);
 
-	//(( origin.x + ( visibleSize.width * 0.5f ) ),
-	//	( origin.y + ( visibleSize.height * 0.5f ) ));
-
-	// factory creation parameters
-	// N.B. note m_sPlayerCreateParams is a member variable of this class which will stay in scope whilst mario is in scope
+	// Loads Player into Level
 	CGCFactoryCreationParams& sParams = m_sPlayerCreateParams;
 	sParams.strClassName = "CGCObjPlayer";
 	sParams.strPlistFile = "TexturePacker/Sprites/Willy/Willy.plist";
@@ -295,7 +237,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	sParams.eB2dBody_BodyType = b2_dynamicBody;
 	sParams.bB2dBody_FixedRotation = true;
 
-	// create player object
+	// Create Player object
 	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory ().CreateInstance (sParams, v2MarioStartPos) );
 	m_pcGCOPlayer->setJumpHeight (200.0f);
 
@@ -316,27 +258,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	this->addChild (m_pcGCOPlayer->getPlayerLivesUI3 (), 11);
 
 	m_pcGCOPlayer->LivesUI();
-
-	//////////////////////////////////////////////////////////////////////////
-	// test new collision handler code
-	// 
-	// this is proof of concept code which could be used to replace the 
-	// function HandleCollisions()
-	// 
-	// note it will need a little additional polish (simple & noted in the 
-	// header...) before it's properly ready to be used in a game :)
-	// 
-	//////////////////////////////////////////////////////////////////////////
-	//
-	// you can also pass a regular (non member) function:
-	// GetCollisionManager().AddCollisionHandler( CB_TestCollisionHandler );
-	// 
-
-	GetCollisionManager ().AddCollisionHandler ([](CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const b2Contact& rcContact) -> void
-		{
-			//COLLISIONTESTLOG ("(lambda) the player hit an item!");
-		});
-
 
 	//Brandon - This is where the switches will delete the platforms/doors associated with them  when the player has has collided with a switch.
 	//It does this by adding up every time the player hits a switch which will then cause the if statement to be set to true allowing the platform/Wall to be deleted 
@@ -396,17 +317,6 @@ void CGCGameLayerPlatformer::VOnCreate ()
 			rcPlayer.DecrementLives(); // Mia: Decreases Player Lives by one
 		}
 	}
-	);
-
-
-	//Dan: Handle collision with the player and the travelator 
-	GetCollisionManager ().AddCollisionHandler
-	(
-		[]
-	(CGCObjPlayer& rcPlayer, CGCObjTravelatorPlatform& rcTravelatorPlatform, const b2Contact& rcContact) -> void
-		{
-
-		}
 	);
 
 	// Mia: Handles the Collision between the Player and the Keys
@@ -587,7 +497,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 {
 	IGCGameLayer::VOnUpdate( fTimeStep );
 	
-	// this shows how to iterate and respond to the box2d collision info
+	// This shows how to iterate and respond to the box2d collision info
 	HandleCollisions();	
 
 	if(m_pcGCOPlayer->getPlayerCheckLives()== true)
@@ -606,11 +516,12 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	if (m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime () < 2.0f)
 	{
-		ReplaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene ()));
+		ReplaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< CGCLevel2 >::CreateScene ()));
 	}
 	if(m_bDoorUnlocked == true)
 	{
 		m_pcGCOPlayer->SetVelocity (Vec2 (0, 0));
+		m_pcGCOPlayer->StopAction();
 	}
 	
 	
@@ -631,7 +542,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	{
 		m_pcGCOPlayer->PlayerLivesWriteFile();
 		SkipRequestWasHandled ();
-		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel2 >::CreateScene()));
+		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel2 >::CreateScene()));
 		
 	}
 
@@ -654,26 +565,14 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 void CGCGameLayerPlatformer::VOnDestroy()
 {
-	///////////////////////////////////////////////////////////////////////////
-	// clean up anything we allocated in opposite order to creation
-	///////////////////////////////////////////////////////////////////////////	
 	delete m_pcGCOPlayer;
 	m_pcGCOPlayer = nullptr;
 
-	// clean up the level
 	m_cLevelLoader.DestroyObjects();
 
-	///////////////////////////////////////////////////////////////////////////
-	// N.B. because object groups must register manually, 
-	// we also unregister them manually
-	///////////////////////////////////////////////////////////////////////////
 	IGCGameLayer::VOnDestroy();
 }
 
-
-///////////////////////////////////////////////////////////////////////////////
-// on quit button
-///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
 {
 	RequestQuit();
@@ -685,10 +584,6 @@ void CGCGameLayerPlatformer::Callback_OnSkipButton(Ref* pSender)
 	RequestSkip();
 }
 
-
-///////////////////////////////////////////////////////////////////////////////
-// on reset button
-///////////////////////////////////////////////////////////////////////////////
 void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 {
 	RequestReset();
@@ -700,7 +595,7 @@ void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 // insert any logic that relies on detecting the first frame where a 
 // contact exists
 ///////////////////////////////////////////////////////////////////////////////
-//virtual 
+
 void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 {
 	const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
@@ -729,10 +624,6 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) )
-			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
@@ -818,7 +709,7 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 // insert any logic that relies on detecting the last frame where a 
 // contact exists
 ///////////////////////////////////////////////////////////////////////////////
-//virtual 
+
 void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 {
 	{
@@ -846,10 +737,6 @@ void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
 			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
 				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) )
 			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
 				&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
 			|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
@@ -873,12 +760,11 @@ void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 	}
 }
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // pre solve
 // insert any logic that needs to be done before a contact is resolved
 ///////////////////////////////////////////////////////////////////////////////
-//virtual 
+
 void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* pOldManifold ) 
 {
 	const b2Fixture* pFixtureA = pB2Contact->GetFixtureA();
@@ -906,10 +792,6 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 		&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) ) )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjScalingBasicPlatform) )
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) )
-			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
-		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
-			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjMovingPlatform) ) )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjTravelatorPlatform) )
 			&& ( pGcSprPhysB->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) ) )
 		|| ( ( pGcSprPhysA->GetGCTypeID () == GetGCTypeIDOf (CGCObjPlayer) )
@@ -969,7 +851,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 // insert any logic that needs to be done after a contact is resolved
 // e.g. check the types and double the impulse
 ///////////////////////////////////////////////////////////////////////////////
-//virtual 
+
 void CGCGameLayerPlatformer::PostSolve( b2Contact* pB2Contact, const b2ContactImpulse* pImpulse )
 {
 }
@@ -978,12 +860,8 @@ void CGCGameLayerPlatformer::PostSolve( b2Contact* pB2Contact, const b2ContactIm
 ///////////////////////////////////////////////////////////////////////////////
 // this function can only look at the collisions that happened (and which 
 // have potentially been resolved) in the previous physics step
-// 
-// N.B. it is totally possible to get a callback after collisions have been 
-// detected, but before they're resolved so you can choose to ignore them - 
-// e.g. for gamplay reasons like jumping up through a platform
-// 
 ///////////////////////////////////////////////////////////////////////////////
+
 void CGCGameLayerPlatformer::HandleCollisions()
 {
 	// check for collisions
@@ -1008,11 +886,6 @@ void CGCGameLayerPlatformer::HandleCollisions()
 			return;
 		}
 
-		// check for user data - this is defined in physics editor as the 'Id' text
-		// in the text box immediately below the 'Is Sensor?' checkbox
-		// 
-		// Mario has a fixture that is a sensor with id 'bottom_left' 
-		// and this is what we're checking for :)
 		const std::string*	pstrCheckMe		= cocos2d::GB2ShapeCache::getFixtureIdText( pFixtureA );
 		bool				bNameMatches	= ( 0 == pstrCheckMe->compare( "WillyBottomSensor" ) );
 		bool				bIsASensor		= pFixtureA->IsSensor();
@@ -1031,28 +904,6 @@ void CGCGameLayerPlatformer::HandleCollisions()
 			int i = 0;
 			++i;
 		}
-
-		// is this collision an invader and a projectile?
-		// if so, kill the invader
-		if(	   pB2Contact->IsEnabled()
-			&& ( pGcSprPhysA->GetGCTypeID() != pGcSprPhysB->GetGCTypeID() ) )
-		{
-			// returns a valid ptr if instance's EXACT type matches or nullptr if not
-			CGCObjInvader* pInvaderA = CGCObject::SafeCastToDerived< CGCObjInvader* >( pGcSprPhysA );
-			CGCObjInvader* pInvaderB = CGCObject::SafeCastToDerived< CGCObjInvader* >( pGcSprPhysB );
-
-			// at least one of them is an invader?
-			if(	pInvaderA || pInvaderB )
-			{
-				CGCObjInvader*	pKillMe			= ( pInvaderA ? pInvaderA : pInvaderB );
-				GCTypeID		tidNotInvader	= ( pInvaderA ? pGcSprPhysB->GetGCTypeID() : pGcSprPhysA->GetGCTypeID() );
-			
-				if( GetGCTypeIDOf( CGCObjProjectilePlayer ) == tidNotInvader )
-				{
-					CGCObjectManager::ObjectKill( pKillMe );
-				}
 			}
 		}
-	}
-}
 

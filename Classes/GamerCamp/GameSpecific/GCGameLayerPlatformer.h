@@ -1,7 +1,14 @@
-/////////////////////////////////////////////////////////////////// /////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // (C) Gamer Camp / Alex Darby 2018
 // Distributed under the MIT license - see readme.md
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// This is the Header and Class files for Level 1. All of us as a team have contributed to this Class and //
+// commented on what we worked on. This Class is for putting the Level together and loading it up.        //
+// This Class also contains all the collisions needed for the Level.                                      //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #ifndef _GAMELAYERSPACEINVADERS_H_
 #define _GAMELAYERSPACEINVADERS_H_
 
@@ -16,13 +23,6 @@
 class CGCObjSprite;
 class CGCObjPlayer;
 class CGCObjPlatform;
-class CGCObjGroupPlatform;
-class CGCObjItem;
-class CGCObjGroupItem;
-class CGCObjInvader;
-class CGCObjGroupInvader;
-class CGCObjGroupProjectilePlayer;
-class CGCObjGroupProjectilePlayer;
 class CGCObjTimer;
 class CGCObjKeys;
 class CGCBasicEnemies;
@@ -36,11 +36,8 @@ class CGCMovingEnemyUpDownFast;
 class CGCHazardChild;
 class CGCObjTravelatorPlatform;
 class CGCObjExitDoor;
-class CGCObjScalingBasicPlatformManager;
-class CGCObjScalingFallingPlatformManager;
 class CGCObjScalingBasicPlatform;
 class CGCObjScalingFallingPlatform;
-class CGCObjMovingPlatform;
 class GCObjBrickPlatform;
 class CGCObjLadder;
 class CGCObjKeys;
@@ -68,12 +65,6 @@ class CGCGameLayerPlatformer
 , public b2ContactListener 
 {
 private:
-	// object groups
-	CGCObjGroupPlatform*			m_pcGCGroupPlatform;
-	CGCObjGroupItem*				m_pcGCGroupItem;
-	CGCObjGroupInvader*				m_pcGCGroupInvader;
-	CGCObjGroupProjectilePlayer*	m_pcGCGroupProjectilePlayer;
-
 	CGCObjKeys*						m_pcGCOKeys;  // Mia: Variable for first set of Keys
 	CGCObjKeys*						m_pcGCOKeys1; // Mia: Variable for second set of Keys
 	CGCObjKeys*						m_pcGCOKeys2; // Mia: Variable for third set of Keys
@@ -82,10 +73,10 @@ private:
 	CGCObjTimer*					m_pcGCTimer;
 	CGCObjLives*					m_pcGCOLives;
 	CGCObjScore*					m_pcGCOScore; // Mia: Variable for Player Score
-	CGCObjHighScore*				 m_pcGCOHighScore;
+	CGCObjHighScore*				m_pcGCOHighScore;
 
-	CGCObjPlayer*				m_pcGCOPlayer;
-	CGCFactoryCreationParams	m_sPlayerCreateParams;
+	CGCObjPlayer*					m_pcGCOPlayer;
+	CGCFactoryCreationParams		m_sPlayerCreateParams;
 
 	// level loader
 	CGCLevelLoader_Ogmo		m_cLevelLoader;
@@ -96,7 +87,7 @@ private:
 
 	int						m_iTotalKeys;	  // Mia: Int for the Total amount of Keys
 
-	int			m_iHighScore;
+	int						m_iHighScore;
 	
 	CocosDenshion::SimpleAudioEngine*	m_pcGCBackgroundAudio;   // Mia: Variable for Background music
 	CocosDenshion::SimpleAudioEngine*	m_pcGCSoundEffectsAudio; // Mia: Variable for Sound Effects audio
@@ -145,11 +136,10 @@ public:
 		virtual void PreSolve		( b2Contact* pB2Contact, const b2Manifold* pOldManifold );
 		virtual void PostSolve		( b2Contact* pB2Contact, const b2ContactImpulse* pImpulse );
 private:
-	bool							m_bResetWasRequested;
-	bool							m_bQuitWasRequested;
-	bool							m_bSkipWasRequested;
-
-	bool							m_bDoorUnlocked;
+	bool							m_bResetWasRequested; // Mia: Request Reset for cheat button
+	bool							m_bQuitWasRequested; // Mia: Request Quit for cheat button
+	bool							m_bSkipWasRequested; // Mia: Request Skip for cheat button
+	bool							m_bDoorUnlocked; //Brandon bool which is triggered when the door is unlocked
 	
 	void RequestReset()
 	{
