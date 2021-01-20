@@ -32,9 +32,9 @@ public:
 	int getScoreAmount() const { return m_iScoreAmount; }
 	void setScoreAmount(int i) { m_iScoreAmount = i; }
 
-	void ScoreReadFile(CGCObjScore* m_score);
+	void ScoreReadFile();
 							
-	void ScoreWriteFile(CGCObjScore* m_score);
+	void ScoreWriteFile();
 
 	void ScoreClearFile(CGCObjScore* m_score);
 

@@ -32,7 +32,7 @@ CGCObjScore::~CGCObjScore()
 
 };
 
-void CGCObjScore::ScoreReadFile(CGCObjScore* m_score)
+void CGCObjScore::ScoreReadFile()
 {
 	std::ifstream readFile;
 	readFile.open("Score.txt");
@@ -40,12 +40,13 @@ void CGCObjScore::ScoreReadFile(CGCObjScore* m_score)
 	if (readFile.is_open())
 	{
 		readFile >> m_iScoreAmount;
+		
 	}
 	readFile.close();
   
 }
 
-void CGCObjScore::ScoreWriteFile(CGCObjScore* m_score)
+void CGCObjScore::ScoreWriteFile()
 {
 
 

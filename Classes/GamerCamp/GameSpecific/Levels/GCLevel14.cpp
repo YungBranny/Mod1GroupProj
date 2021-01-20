@@ -1004,7 +1004,7 @@ void GCLevel14::BeginContact(b2Contact* pB2Contact)
 		{
 			playDoorOpeningAudio ();
 
-			m_pcGCOScore->ScoreWriteFile (m_pcGCOScore);
+			m_pcGCOScore->ScoreWriteFile ();
 
 			m_pcGCOPlayer->PlayerLivesWriteFile ();
 

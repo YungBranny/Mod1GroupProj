@@ -368,6 +368,7 @@ void CGCObjPlayer::PlayerLivesReadFile()
 	if (readFile.is_open())
 	{
 		readFile >> m_iNumberOfLives;
+		
 	}
 	readFile.close();
 };

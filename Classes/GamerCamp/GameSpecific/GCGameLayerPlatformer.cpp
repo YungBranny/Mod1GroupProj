@@ -511,7 +511,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	{
 		m_pcGCTimer->setCurrentTime (m_pcGCTimer->getCurrentTime () - 0.4f);
 		m_pcGCOScore->IncreaseScore(); // Mia: Calls IncreaseScore function from GCObjScore.cpp when Player collides with door
-		m_pcGCOScore->ScoreWriteFile(m_pcGCOScore); // Mia: Writes over previous Score and saves it, so Player can continue to next Level with updated Score
+		//m_pcGCOScore->ScoreWriteFile(); // Mia: Writes over previous Score and saves it, so Player can continue to next Level with updated Score
 	}
 
 	if (m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime () < 2.0f)
@@ -540,7 +540,9 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 	if( SkipWasRequested() )
 	{
+		m_pcGCOScore->ScoreWriteFile();
 		m_pcGCOPlayer->PlayerLivesWriteFile();
+		
 		SkipRequestWasHandled ();
 		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel2 >::CreateScene()));
 		
@@ -550,6 +552,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	{
 		QuitRequestWasHandled();
 		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
+		m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Quit back to Main Menu 
 	}
 
 
@@ -692,7 +695,7 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 				}
 				
 				m_bDoorUnlocked = true;
-				m_pcGCOScore->ScoreWriteFile (m_pcGCOScore);// Dan: when the next level is loaded the score is writen to an external file before, then read on the next level
+				m_pcGCOScore->ScoreWriteFile ();// Dan: when the next level is loaded the score is writen to an external file before, then read on the next level
 				m_pcGCOPlayer->PlayerLivesWriteFile ();//Dan: PLayer lives saved to external file
 				if (m_pcGCOScore->getScoreAmount () > m_pcGCOHighScore->getHighScoreValue ())
 				{
