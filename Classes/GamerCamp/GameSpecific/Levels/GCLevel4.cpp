@@ -229,7 +229,7 @@ void CGCLevel4::VOnCreate()
 	m_cLevelLoader.CreateObjects(CGCFactory_ObjSpritePhysics::GetFactory());
 
 	// Player starting position
-	cocos2d::Vec2 v2MarioStartPos(60, 120);
+	cocos2d::Vec2 v2MarioStartPos (1700, 120);
 
 	// Loads Player into Level
 	CGCFactoryCreationParams& sParams = m_sPlayerCreateParams;
