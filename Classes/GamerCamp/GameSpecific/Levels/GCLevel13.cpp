@@ -489,19 +489,7 @@ void GCLevel13::VOnCreate()
 
 
 
-	GetCollisionManager().AddCollisionHandler([](CGCObjPlayer& rcPlayer, CGCObjLadder& rcLadder, const b2Contact& rcContact) -> void
-		{
 
-			if (rcContact.IsTouching())
-			{
-				rcPlayer.setOnLadder(true);
-			}
-
-			else if (rcContact.IsTouching() == false)
-			{
-				rcPlayer.setOnLadder(false);
-			}
-		});
 
 
 	//GetCollisionManager ().AddCollisionHandler

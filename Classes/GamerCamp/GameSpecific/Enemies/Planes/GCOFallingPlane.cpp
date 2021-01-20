@@ -54,7 +54,7 @@ void CGCObjFallingPlane::SettingVelocity()
 	}
 }
 
-void CGCObjFallingPlane::ResetPosition() // Resets Planes position back to start position when this function is collided on collision
+void CGCObjFallingPlane::ResetPosition() // Resets Planes position back to start position when this function is called in collision
 {
 	GetPhysicsBody()->SetTransform(getStartPosition(), 0);
 }
