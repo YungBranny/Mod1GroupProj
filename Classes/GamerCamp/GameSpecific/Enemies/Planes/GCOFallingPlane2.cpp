@@ -1,22 +1,20 @@
 #include <memory.h>
 
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
+#include "GamerCamp/GCCocosInterface/GB2ShapeCache-x.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
-#include "GamerCamp/GCCocosInterface/GB2ShapeCache-x.h"
 
 #include "GCOFallingPlane2.h"
 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS ( CGCObjFallingPlane2 );
+GCFACTORY_IMPLEMENT_CREATEABLECLASS	( CGCObjFallingPlane2 );
 
 CGCObjFallingPlane2::CGCObjFallingPlane2()
 	: CGCObjSpritePhysics ( GetGCTypeIDOf ( CGCObjFallingPlane ) )
-	, m_bMoveUpAndDown		  ( false )
-	, m_bJustCollided		  ( false )
-	, m_v2EndPosition		  ( 500, 110 )
-	, m_v2MoveUpVelocity	  ( cocos2d::Vec2 ( 0.0f, 11.0f ) )
-	, m_v2MoveDownVelocity	  ( -m_v2MoveUpVelocity )
-	, m_iCollisionBuffer	  ( 60 )
+	, m_bJustCollided		  ( false ) // Default Key collision set to False
+	, m_v2MoveUpVelocity	  ( cocos2d::Vec2 ( 0.0f, 11.0f ) ) // Sets up movement velocity
+	, m_v2MoveDownVelocity	  ( -m_v2MoveUpVelocity ) // Sets down movement by calling up velocity and switching direction
+	, m_iCollisionBuffer	  ( 60 ) // Sets default collision buffer to 60
 	, m_pCustomCreationParams ( nullptr )
 {
 	InitialiseMovementDirection();
@@ -24,14 +22,12 @@ CGCObjFallingPlane2::CGCObjFallingPlane2()
 
 void CGCObjFallingPlane2::InitialiseMovementDirection()
 {
-	m_eMoveDirection = EMoveDirection::Down;
+		m_eMoveDirection = EMoveDirection::Down; // Initialises movement
 }
 
 void CGCObjFallingPlane2::VOnResourceAcquire()
 {
-
 	CGCObjSpritePhysics::VOnResourceAcquire();
-
 
 	if( nullptr != m_pCustomCreationParams.get() )
 	{
@@ -42,33 +38,31 @@ void CGCObjFallingPlane2::VOnResourceAcquire()
 void CGCObjFallingPlane2::VOnResurrected(void)
 {
 	CGCObjSpritePhysics::VOnResurrected();
-	m_v2StartPosition = GetPhysicsBody()->GetPosition();
-	GetPhysicsBody()->SetGravityScale(0.0f);
+	m_v2StartPosition = GetPhysicsBody()->GetPosition(); // Setting start position
+	GetPhysicsBody()->SetGravityScale(0.0f); // Sets Gravity
 }
 
 void CGCObjFallingPlane2::SettingVelocity()
 {
-	// Here is Velocity set for each Direction
 	switch( m_eMoveDirection )
 	{
-
-
 	case EMoveDirection::Down:
 	{
-		this->SetVelocity(m_v2MoveDownVelocity);
+		this->SetVelocity(m_v2MoveDownVelocity); // Applying velocity
 	}
 	break;
 	}
 }
 
-void CGCObjFallingPlane2::ResetPosition()
+void CGCObjFallingPlane2::ResetPosition() // Resets Planes position back to start position when this function is collided on collision
 {
 	GetPhysicsBody()->SetTransform(getStartPosition(), 0);
 }
 
 void CGCObjFallingPlane2::CollisionChecker()
 {
-	// Default Collision is false until collided with, this stops collision being called multiple times
+	// Default Collision is False until collided with, this stops collision being called multiple times. First check to see if collision buffer 
+    // is set to True and if so, buffer will countdown to 0 then will be set back to the default False until collided with again
 	if( m_bJustCollided == true )
 	{
 		if( m_iCollisionBuffer >= 0 )
@@ -84,6 +78,7 @@ void CGCObjFallingPlane2::CollisionChecker()
 	}
 }
 
+// This enables the parameters to be handled in Ogmo level editor
 void CGCObjFallingPlane2::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
 {
 	const CGCFactoryCreationParams* pParamsToPassToBaseClass = &rCreationParams;
@@ -110,6 +105,6 @@ void CGCObjFallingPlane2::VHandleFactoryParams(const CGCFactoryCreationParams& r
 
 void CGCObjFallingPlane2::VOnUpdate(f32 fTimeStep)
 {
-	SettingVelocity();
-	CollisionChecker();
+	SettingVelocity(); // Updates SettingVelocity
+	CollisionChecker(); // Updates CollisionChecker
 }

@@ -1,9 +1,9 @@
 #ifndef _GCOFALLINGPLANE_
 #define _GCOFALLINGPLANE_
 
+#include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"
 #include "GamerCamp/GameSpecific/Enemies/GCBasicEnemies.h"
-#include "GamerCamp/GCCocosInterface/GCFactory_ObjSpritePhysics.h"
 
 class CGCObjFallingPlane
 	: public CGCObjSpritePhysics
@@ -11,9 +11,6 @@ class CGCObjFallingPlane
 private:
 	enum class EMoveDirection
 	{
-		Left,
-		Right,
-		Up,
 		Down
 	};
 
@@ -24,9 +21,6 @@ private:
 	float					m_fGravity;
 
 	b2Vec2					m_v2StartPosition;
-	cocos2d::Vec2			m_v2EndPosition;
-	cocos2d::Vec2			m_v2MoveRightVelocity;
-	cocos2d::Vec2			m_v2MoveLeftVelocity;
 	cocos2d::Vec2			m_v2MoveUpVelocity;
 	cocos2d::Vec2			m_v2MoveDownVelocity;
 
@@ -55,19 +49,13 @@ public:
 
 	// Setting up Getters
 	b2Vec2			getStartPosition()					const { return m_v2StartPosition;	  }
-	cocos2d::Vec2	getEndPosition()					const { return m_v2EndPosition;		  }
-	cocos2d::Vec2	getMovingRightVelocity()			const { return m_v2MoveRightVelocity; }
-	cocos2d::Vec2	getMovingLeftVelocity()				const { return m_v2MoveRightVelocity; }
 	cocos2d::Vec2	getMovingUpVelocity()				const { return m_v2MoveUpVelocity;	  }
 	cocos2d::Vec2	getMovingDownVelocity()				const { return m_v2MoveDownVelocity;  }
 
 	// Setting up Setters
 	void setStartPosition		( b2Vec2 i )					{ m_v2StartPosition = i;	 }
-	void setEndPosition			( cocos2d::Vec2 i )				{ m_v2EndPosition = i;		 }
-	void setMovingRightVelocity ( cocos2d::Vec2 i )				{ m_v2MoveRightVelocity = i; }
-	void setMovingLeftVelocity  ( cocos2d::Vec2 i )				{ m_v2MoveLeftVelocity = i;  }
 	void setMovingUpVelocity	( cocos2d::Vec2 i )				{ m_v2MoveUpVelocity = i;    }
-	void setMovingDownVelocityz ( cocos2d::Vec2 i )				{ m_v2MoveDownVelocity = i;  }
+	void setMovingDownVelocity  ( cocos2d::Vec2 i )				{ m_v2MoveDownVelocity = i;  }
 
 	void SettingVelocity();
 	void ResetPosition();
@@ -78,5 +66,4 @@ public:
 
 	virtual void VHandleFactoryParams	( const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition );
 };
-
 #endif

@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 // This 'GCObjKeys' Header File and Class File was created and is managed by Mehak Hussain.          //
 // The purpose of this Class is to create the Key Collectables for the Player to collect one by one. //
-// In this Class, I set the physics and creation of the Keys.                                        //
+// In this Class, I set the creation and collision of the Keys.                                      //
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "GamerCamp/GCCocosInterface/GCObjSpritePhysics.h"

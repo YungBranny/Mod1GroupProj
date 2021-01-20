@@ -18,8 +18,8 @@ GCFACTORY_IMPLEMENT_CREATEABLECLASS ( CGCObjKeys );
 
 CGCObjKeys::CGCObjKeys ( void )
 	: CGCObjSpritePhysics ( GetGCTypeIDOf(CGCObjKeys) )
-	, m_bJustCollided			(	false	)
-	, m_iCollisionBuffer		(	 60		)
+	, m_bJustCollided			(	false	) // Default Key collision set to False
+	, m_iCollisionBuffer		(	 60		) // Sets default collision buffer to 60
 	, m_pCustomCreationParams	(  nullptr  )
 {
 
@@ -34,14 +34,15 @@ void CGCObjKeys::VOnResourceAcquire ( void )
 {
 	CGCObjSpritePhysics::VOnResourceAcquire();
 
-	const char* pszPlist_Key = "TexturePacker/Sprites/Key/cc_collectible_key.plist";
-	const char* pszAnim_Key = "KeyIdle";
+	const char* pszPlist_Key = "TexturePacker/Sprites/Key/cc_collectible_key.plist"; // Locating PList file animation for Key
+	const char* pszAnim_Key = "KeyIdle"; // Calling PList animation for Key
 
 	ValueMap dicPList = GCCocosHelpers::CreateDictionaryFromPlist(GetFactoryCreationParams()->strPlistFile);
 	RunAction(GCCocosHelpers::CreateAnimationActionLoop(GCCocosHelpers::CreateAnimation(dicPList, pszAnim_Key)));
 }
 
-void CGCObjKeys::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)  // This enables the parameters to be handled in ogmo level editor
+// This enables the parameters to be handled in Ogmo level editor
+void CGCObjKeys::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationParams, cocos2d::Vec2 v2InitialPosition)
 {
 	const CGCFactoryCreationParams* pParamsToPassToBaseClass = &rCreationParams;
 
@@ -67,7 +68,8 @@ void CGCObjKeys::VHandleFactoryParams(const CGCFactoryCreationParams& rCreationP
 
 void CGCObjKeys::CollisionChecker()
 {
-	// Default Collision is false until collided with, this stops collision being called multiple times
+	// Default Collision is False until collided with, this stops collision being called multiple times. First check to see if collision buffer 
+	// is set to True and if so, buffer will countdown to 0 then will be set back to the default False until collided with again
 	if( m_bJustCollided == true )
 	{
 		if( m_iCollisionBuffer >= 0 )

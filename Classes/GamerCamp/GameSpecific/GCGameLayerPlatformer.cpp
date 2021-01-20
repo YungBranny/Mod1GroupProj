@@ -146,10 +146,6 @@ void CB_TestCollisionHandler( CGCObjPlayer& rcPlayer, CGCObjItem& rcItem, const 
 	//COLLISIONTESTLOG( "( standard function!) the player hit an item!" );
 }
 
-//////////////////////////////////////////////////////////////////////////
-// on create
-//////////////////////////////////////////////////////////////////////////
-//virtual
 void CGCGameLayerPlatformer::VOnCreate ()
 {
 	Size visibleSize = Director::getInstance ()->getVisibleSize ();
@@ -211,22 +207,11 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	this->addChild (m_pcGCTimer->getTimerBar (), 50);//Dan: Timer layer UI set
 	this->addChild (m_pcGCTimer->getTimerBarUI (), 51);
 
-	///////////////////////////////////////////////////////////////////////////
-	// set up physics 
-	///////////////////////////////////////////////////////////////////////////
-
 	// set "self" as contact listener
 	B2dGetWorld ()->SetContactListener (this);
 
 	// load the physics shapes from the plist created with PhysicsEditor
 	B2dLoadShapesFromPlist ("PhysicsEditor/GameShapes.plist");
-
-	///////////////////////////////////////////////////////////////////////////
-	// stop mario from leaving the screen
-	///////////////////////////////////////////////////////////////////////////
-
-	// get window size
-	//Size s = Director::getInstance()->getWinSize();
 
 	// PTM_RATIO
 	f32 PTM_RATIO = IGCGAMELAYER_B2D_PIXELS_PER_METER;
@@ -598,10 +583,6 @@ void CGCGameLayerPlatformer::HighScore()
 
 }
 
-//////////////////////////////////////////////////////////////////////////
-// on update
-//////////////////////////////////////////////////////////////////////////
-//virtual 
 void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 {
 	IGCGameLayer::VOnUpdate( fTimeStep );
@@ -620,7 +601,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 	{
 		m_pcGCTimer->setCurrentTime (m_pcGCTimer->getCurrentTime () - 0.4f);
 		m_pcGCOScore->IncreaseScore(); // Mia: Calls IncreaseScore function from GCObjScore.cpp when Player collides with door
-		m_pcGCOScore->ScoreWriteFile(m_pcGCOScore); // Mia: Writes over previous Score and saves it, so Player can continue to next Level with updates Score
+		m_pcGCOScore->ScoreWriteFile(m_pcGCOScore); // Mia: Writes over previous Score and saves it, so Player can continue to next Level with updated Score
 	}
 
 	if (m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime () < 2.0f)
@@ -671,11 +652,6 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 }
 
-
-///////////////////////////////////////////////////////////////////////////////
-// on destroy
-///////////////////////////////////////////////////////////////////////////////
-// virtual
 void CGCGameLayerPlatformer::VOnDestroy()
 {
 	///////////////////////////////////////////////////////////////////////////
