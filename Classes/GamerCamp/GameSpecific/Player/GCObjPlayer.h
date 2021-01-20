@@ -2,14 +2,18 @@
 // (C) Gamer Camp / Alex Darby 2018
 // Distributed under the MIT license - see readme.md
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// This is the Header and Class files for the Player. All of us as a team have contributed to this Class          //
+// and commented on what we worked on. This Class is for anything to do with the Player.                          //
+// This Class contains the movement, lives, velocities, fall damage, sound and collision essental for the Player. //                                   //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 #ifndef _GCOBJPLAYER_H_
 #define _GCOBJPLAYER_H_
 
 #include "2d/CCLabel.h"
 #include "GamerCamp/GCCocosInterface/GCObjSprite.h"
-
-
-#include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 
 #ifndef _GCOBJSPRITEPHYSICS_H_
 	#include "../../GCCocosInterface/GCObjSpritePhysics.h"
@@ -24,7 +28,6 @@
 class CGCObjGroupProjectilePlayer;
 template< typename TActionType > class TGCActionToKeyMap;
 
-// enum of user defined input actions the class
 enum EPlayerActions
 {
 	EPA_AxisMove_X,
@@ -35,8 +38,6 @@ class CGCObjPlayer
 : public CGCObjSpritePhysics
 {
 private:
-	// member variables for 'physicsy' handling
-	// N.B. uses sprite to store position and has no rotation
 	f32		m_fMaximumMoveForce_Horizontal;
 	f32		m_fMaximumMoveForce_Vertical;
 	f32		m_fDragCoefficient_Linear;
@@ -44,11 +45,7 @@ private:
 	f32		m_fNoInput_ExtraDrag_Square;
 	f32		m_fNoInput_VelocityThreshold;
 
-	float	m_fLivesFontSize;
-	float	m_iLivesTextOutlineSize;
-	float	m_iLivesBarHeightX;
-	float	m_iLivesBarHeightY;
-
+	// Mia: Floats needed for Player fall damage
 	float	m_fStartPositionY;
 	float	m_fEndPositionY;
 	float	m_fDropDistance;
@@ -57,7 +54,6 @@ private:
 
 	float   m_fLivesStartPositionX;
 	float	m_fLivesStartPositionY;
-	float	m_fLivesSpacingX;
 
 	float	m_fTravelatorVelocity;
 
@@ -68,8 +64,6 @@ private:
 	bool	m_bCanJump;
 	bool	m_bOnTravelator;
 	bool	m_bPlayerDiedFromFalling;
-	bool	m_bOnLadder;
-	bool	m_bChangeAnimation; // If more animations added, will be changed to enum or switch
 	bool	m_bLostLife;
 	bool    m_bPlayerLivesCheck;
 	
@@ -88,22 +82,18 @@ private:
 	cocos2d::Sprite* m_sprPlayerLoseLives1;
 	cocos2d::Sprite* m_sprPlayerLoseLives2;
 	cocos2d::Sprite* m_sprPlayerLoseLives3;
-	
-	cocos2d::Label* m_pLivesText;
 
-	// action map for controllers
 	TGCActionToKeyMap< EPlayerActions >* m_pcControllerActionToKeyMap;
 
 	cocos2d::Vec2			m_v2MovingRightVelocity;			 //The velocitys for how fast the enemy should move
 	cocos2d::Vec2			m_v2MovingLeftVelocity;				 //The velocitys for how fast the enemy should move
 	cocos2d::Vec2			m_v2MovingUpVelocity;				 
 	cocos2d::Vec2			m_v2MovingDownVelocity;				 
-	cocos2d::Vec2			m_v2StopMovingVelocity;				 //The velocitys for how fast the enemy should move
 	b2Vec2					m_bv2jumpVel;
 
 	b2Vec2					m_bv2CurrentPos;
 
-	CocosDenshion::SimpleAudioEngine* m_pcJumpSoundEffectAudio;
+	CocosDenshion::SimpleAudioEngine* m_pcJumpSoundEffectAudio; // Mia: Variable for Sound Effects audio
 
 public:
 	CGCObjPlayer();
@@ -114,8 +104,6 @@ public:
 		Run,
 		Jump	
 	};
-
-	CGCObjScore* m_score;
 	
 	EChangeAnimation m_eChangeAnimation;
 
@@ -129,8 +117,6 @@ public:
 	void setIsPlayerOnPlatform (bool i) { m_bIsPlayerOnPlatform = i; }
 
 	bool getPlayerDiedFromFalling () { return m_bPlayerDiedFromFalling; };
-	bool getOnLadder() const { return m_bOnLadder; }
-	void setOnLadder(bool i) { m_bOnLadder = i; }
 
 	float getJumpHeight () const { return m_fJumpHeight; }
 	void setJumpHeight (float i) { m_fJumpHeight = i; }
@@ -192,23 +178,13 @@ public:
 	void PlayerLivesReadFile();
 	
 	void PlayerLivesWriteFile();
-	
-	void ResetLives();
 
-	void UpdateLives();
-
-	void FallDamage();
-
-	void CreateLives();
+	void FallDamage(); // Mia: Function for Players fall damage
 
 	void LivesUI();
 
 	void ChangeAnimation();
 
-	void playJumpAudio();
-
-	cocos2d::Label* getLivesText() const { return m_pLivesText; }
-
-	void setLivesText(cocos2d::Label* t) { m_pLivesText = t; }
+	void playJumpAudio(); // Mia: Function to play Player jump audio
 };
 #endif // #ifndef _GCOBJPLAYER_H_

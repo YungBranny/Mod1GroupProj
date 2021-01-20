@@ -134,9 +134,9 @@ public:
 	virtual void PostSolve (b2Contact* pB2Contact, const b2ContactImpulse* pImpulse);
 private:
 	bool							m_bResetWasRequested; // Mia: Request Reset for cheat button
-	bool							m_bQuitWasRequested; // Mia: Request Quit for cheat button
-	bool							m_bSkipWasRequested; // Mia: Request Skip for cheat button
-	bool							m_bDoorUnlocked; //Brandon bool which is triggered when the door is unlocked
+	bool							m_bQuitWasRequested;  // Mia: Request Quit for cheat button
+	bool							m_bSkipWasRequested;  // Mia: Request Skip for cheat button
+	bool							m_bDoorUnlocked;      //Brandon bool which is triggered when the door is unlocked
 
 	void RequestReset ()
 	{

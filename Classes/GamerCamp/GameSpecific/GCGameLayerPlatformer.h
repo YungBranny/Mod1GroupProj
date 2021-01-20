@@ -129,7 +129,7 @@ public:
 
 		virtual	void VOnCreate	( void );
 		virtual void VOnUpdate	( f32 fTimeStep );
-		virtual	void VOnDestroy ( void );	
+		virtual	void VOnDestroy ( void );
 
 		virtual void BeginContact	( b2Contact* pB2Contact );
 		virtual void EndContact		( b2Contact* pB2Contact );
@@ -137,9 +137,9 @@ public:
 		virtual void PostSolve		( b2Contact* pB2Contact, const b2ContactImpulse* pImpulse );
 private:
 	bool							m_bResetWasRequested; // Mia: Request Reset for cheat button
-	bool							m_bQuitWasRequested; // Mia: Request Quit for cheat button
-	bool							m_bSkipWasRequested; // Mia: Request Skip for cheat button
-	bool							m_bDoorUnlocked; //Brandon bool which is triggered when the door is unlocked
+	bool							m_bQuitWasRequested;  // Mia: Request Quit for cheat button
+	bool							m_bSkipWasRequested;  // Mia: Request Skip for cheat button
+	bool							m_bDoorUnlocked;      //Brandon bool which is triggered when the door is unlocked
 	
 	void RequestReset()
 	{

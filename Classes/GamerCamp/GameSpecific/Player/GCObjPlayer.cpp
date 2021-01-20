@@ -1,4 +1,3 @@
-
 #include <memory.h>
 #include <fstream>
 
@@ -18,66 +17,42 @@
 
 USING_NS_CC;
 
-// action map arrays must match in length - in the templated controller class we use they map from the user define enum to cocos2d::Controller::Key 
 static EPlayerActions			s_aePlayerActions[]	= { EPA_AxisMove_X,								EPA_ButtonJump };
 static cocos2d::Controller::Key	s_aeKeys[]			= { cocos2d::Controller::Key::JOYSTICK_LEFT_X,	cocos2d::Controller::Key::BUTTON_A };
 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS( CGCObjPlayer );
+GCFACTORY_IMPLEMENT_CREATEABLECLASS ( CGCObjPlayer );
 
 CGCObjPlayer::CGCObjPlayer ()
-	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjPlayer))
-	, m_fMaximumMoveForce_Horizontal (20.0f)
-	, m_fDragCoefficient_Linear (0.25f)
-	, m_fDragCoefficient_Square (0.2f)
-	, m_fNoInput_ExtraDrag_Square (0.2f)
-	, m_fNoInput_VelocityThreshold (0.25f)
-	, m_pcControllerActionToKeyMap (nullptr)
-	, m_fLivesFontSize (20.0f)
-	, m_iLivesTextOutlineSize (1)
-	, m_iLivesBarHeightX (695)
-	, m_iLivesBarHeightY (500)
-	, m_bCanJump (true)
-	, m_bOnTravelator (false)
-	, m_iNumberOfLives (3)
-	, m_v2MovingRightVelocity (15.0f, 0)
-	, m_v2MovingLeftVelocity (-m_v2MovingRightVelocity)
-	, m_v2MovingUpVelocity (3.0f, 0)
-	, m_v2MovingDownVelocity (-m_v2MovingUpVelocity)
-	, m_v2StopMovingVelocity (0, 0)
-	, m_fStartPositionY (0)
-	, m_fEndPositionY (0)
-	, m_fDropDistance (0)
-	, m_fMaximumDropDistance (20.0f)
-	, m_fJumpHeight (12.0f)
-	, m_bPlayerDiedFromFalling (false)
-	, m_fLivesStartPositionX (1600)
-	, m_fLivesStartPositionY (1015)
-	, m_fLivesSpacingX (10.0f)
-	, m_bIsPlayerOnPlatform (true)
-	, m_fTravelatorVelocity (-20.0f)
-	//, m_bv2CurrentPos(0,0)
-	, m_bChangeAnimation (true)
-	, m_iSwitchesHit (0)
-	, m_bPlayerLivesCheck(false)
-	, m_bLostLife(false)
+	: CGCObjSpritePhysics ( GetGCTypeIDOf ( CGCObjPlayer ) )
+	, m_fMaximumMoveForce_Horizontal ( 20.0f  )
+	, m_fDragCoefficient_Linear		 ( 0.25f  )
+	, m_fDragCoefficient_Square		 ( 0.2f   )
+	, m_fNoInput_ExtraDrag_Square	 ( 0.2f   )
+	, m_fNoInput_VelocityThreshold	 ( 0.25f  )
+	, m_fTravelatorVelocity			 ( -20.0f )
+	, m_iNumberOfLives				 ( 3 )
+	, m_iSwitchesHit				 ( 0 )
+	, m_fStartPositionY				 ( 0 )      // Mia: Player start position for fall damage
+	, m_fEndPositionY				 ( 0 )      // Mia: Players end position for fall damage
+	, m_fDropDistance				 ( 0 )      // Mia: Default Player drop distance set to 0
+	, m_fMaximumDropDistance		 ( 20.0f  ) // Mia: Players maxiumum drop distance for fall damage
+	, m_fJumpHeight					 ( 12.0f  )
+	, m_fLivesStartPositionX		 ( 1600   )
+	, m_fLivesStartPositionY		 ( 1015   )
+	, m_v2MovingRightVelocity		 ( 15.0f, 0 )
+	, m_v2MovingUpVelocity			 ( 3.0f, 0  )
+	, m_v2MovingLeftVelocity		 ( -m_v2MovingRightVelocity )
+	, m_v2MovingDownVelocity		 ( -m_v2MovingUpVelocity    )
+	, m_bCanJump					 ( true    )
+	, m_bIsPlayerOnPlatform			 ( true    )
+	, m_bOnTravelator				 ( false   )
+	, m_bPlayerDiedFromFalling		 ( false   ) // Mia: Default is set to false
+	, m_bLostLife					 ( false   )
+	, m_pcControllerActionToKeyMap   ( nullptr )
 {
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
-
-	
-	/*Label* pLabel = Label::createWithTTF(" ", "fonts/Pixeled.ttf", m_fLivesFontSize);
-	CC_ASSERT(pLabel != nullptr);
-
-	setLivesText(pLabel);
-
-	getLivesText()->setColor(Color3B::WHITE);
-
-	getLivesText()->enableOutline(Color4B::BLACK, m_iLivesTextOutlineSize);
-
-	getLivesText()->setPosition(Vec2(m_fLivesStartPositionX, m_fLivesStartPositionY));
-
-	getLivesText()->setString("Lives: " + std::to_string(GetNumberOfLives()));*/
 
 	//Create all the player lives sprites
 	//These are the sprites for when the player has lost a life
@@ -131,7 +106,6 @@ void CGCObjPlayer::VOnReset() //Brandon reset function
 
 void CGCObjPlayer::VOnUpdate( f32 fTimeStep )
 {
-	// handle movement
 	UpdateMovement(fTimeStep);
 
 	//Dan:When player lives are 0, used externaly 
@@ -226,7 +200,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep) //Brandon Movement function
 		m_bCanJump = false;
 		m_eChangeAnimation = EChangeAnimation::Jump;
 		ChangeAnimation ();
-		playJumpAudio();
+		playJumpAudio(); // Mia: Triggers jump audio for when Player jumps
 		if (GetVelocity ().x > 0)
 		{
 			SetVelocity (cocos2d::Vec2 (GetVelocity ().x, m_v2MovingDownVelocity.x));
@@ -258,28 +232,24 @@ void CGCObjPlayer::DecrementLives()
 	}
 }
 
-//Function to reset lives
-void CGCObjPlayer::ResetLives()
-{
-	//m_iNumberOfLives = 3;
-}
-
+// Mia: This function is for the Player fall damage. The drop distance is calculated by getting the Players position then minus what I set as the
+// maximum drop distance. If Players position exceeds the drop distance, the Player recieves fall damage
 void CGCObjPlayer::FallDamage()
 {
 	if( m_bCanJump == false)
 	{
-		m_fStartPositionY = GetPhysicsBody()->GetPosition().y;
-		m_fDropDistance = m_fStartPositionY - m_fMaximumDropDistance;
+		m_fStartPositionY = GetPhysicsBody()->GetPosition().y; // Mia: Grabs the start position of Player along Y axis
+		m_fDropDistance = m_fStartPositionY - m_fMaximumDropDistance; // Mia: Grabs drop distance Player has fallen from
 	}
 
 	else if( m_bCanJump == true )
 	{
-		m_fEndPositionY = GetPhysicsBody()->GetPosition().y;
+		m_fEndPositionY = GetPhysicsBody()->GetPosition().y; // Mia: Grabs the end position of Player along Y axis
 
-		if( m_fEndPositionY <= m_fDropDistance )
+		if( m_fEndPositionY <= m_fDropDistance ) // Mia: If Players end position is less than or equal to the drop distance
 		{
-			CCLOG("Player dead.");
-			m_bPlayerDiedFromFalling = true;
+			CCLOG("Player dead."); // Mia: For testing, to show in the ouput the Player has received fall damage
+			m_bPlayerDiedFromFalling = true; // Mia: Changes bool to true
 		}
 		m_bPlayerDiedFromFalling = false;
 		m_fStartPositionY = GetPhysicsBody()->GetPosition().y;
@@ -287,6 +257,7 @@ void CGCObjPlayer::FallDamage()
 		m_fDropDistance = 0;
 	}
 }
+
 void CGCObjPlayer::LivesUI()
 {
 	if (m_iNumberOfLives == 0)
@@ -388,18 +359,6 @@ void CGCObjPlayer::playJumpAudio()
 	m_pcJumpSoundEffectAudio->playEffect("Sounds/Jumping/jump_up.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
-//void CGCObjPlayer::playJumpDownAudio()
-//{
-//	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-//	m_pcJumpSoundEffectAudio->playEffect("Sounds/Jumping/jump_down.wav", false); // Mia: Play Audio by locating File, set to 'False' to not
-//}
-
-//void CGCObjPlayer::playRunAudio()
-//{
-//	m_pcJumpSoundEffectAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-//	m_pcJumpSoundEffectAudio->playEffect("Sounds/wilfred_run_1.mp3", false); // Mia: Play Audio by locating File, set to 'False' to not
-//}
-
 void CGCObjPlayer::PlayerLivesReadFile()
 {
 	//Dan : opens txt file  then read the value inside 
@@ -427,4 +386,3 @@ void CGCObjPlayer::PlayerLivesWriteFile()
 
 
 }
-

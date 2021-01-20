@@ -13,10 +13,10 @@
 using namespace cocos2d;
 
 CGCObjScore::CGCObjScore()
-	: m_fScoreTextStartPositionX(200) //Sets the X position for the text
-	, m_fScoreTextStartPositionY(1040) //Sets the Y position for the text
-	, m_fScoreTextSize (20.0f)
-	, m_iScoreAmount ( 0 )
+	: m_fScoreTextStartPositionX	( 200   ) // Mia: Sets the X position for the text
+	, m_fScoreTextStartPositionY	( 1040  ) // Mia: Sets the Y position for the text
+	, m_fScoreTextSize				( 20.0f ) // Mia: Sets the text size
+	, m_iScoreAmount				( 0 )	  // Mia: Default Score amount is set to 0
 {
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Point origin = Director::getInstance()->getVisibleOrigin();
