@@ -552,6 +552,7 @@ void CGCLevel3::VOnUpdate(f32 fTimeStep)
 	{
 		QuitRequestWasHandled();
 		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCMainMenu >::CreateScene()));
+		m_pcGCBackgroundAudio->stopBackgroundMusic(); // Mia: Stops all Background Audio on Quit back to Main Menu
 	}
 
 

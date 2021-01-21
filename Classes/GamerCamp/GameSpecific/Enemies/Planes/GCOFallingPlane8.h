@@ -30,7 +30,6 @@ private:
 	cocos2d::Vec2			m_v2MoveUpVelocity;
 	cocos2d::Vec2			m_v2MoveDownVelocity;
 
-	bool					m_bMoveUpAndDown;
 	bool					m_bJustCollided;
 
 	void					InitialiseMovementDirection();
