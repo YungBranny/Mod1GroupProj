@@ -8,7 +8,27 @@
   <Level2ndMidground />
   <LevelForeground />
   <Level2ndForeground />
-  <enemies />
+  <enemies>
+    <MovingEnemyPuffer id="0" x="405" y="495" class="CGCMovingEnemyPuffer" shape="puffer" PlistFile="TexturePacker/Sprites/PufferEnemy/PufferEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <MovingEnemyPuffer id="1" x="750" y="495" class="CGCMovingEnemyPuffer" shape="puffer" PlistFile="TexturePacker/Sprites/PufferEnemy/PufferEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <MovingEnemyPuffer id="2" x="1260" y="615" class="CGCMovingEnemyPuffer" shape="puffer" PlistFile="TexturePacker/Sprites/PufferEnemy/PufferEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <MovingEnemyPuffer id="3" x="1575" y="615" class="CGCMovingEnemyPuffer" shape="puffer" PlistFile="TexturePacker/Sprites/PufferEnemy/PufferEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemySquid id="4" x="1095" y="810" class="CGCMovingEnemies" shape="squid" PlistFile="TexturePacker/Sprites/SquidEnemy/SquidEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemySquid id="5" x="990" y="495" class="CGCMovingEnemies" shape="squid" PlistFile="TexturePacker/Sprites/SquidEnemy/SquidEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemySquid id="6" x="900" y="300" class="CGCMovingEnemies" shape="squid" PlistFile="TexturePacker/Sprites/SquidEnemy/SquidEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="7" x="405" y="945" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="8" x="855" y="825" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="9" x="1185" y="840" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="10" x="1170" y="510" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="11" x="885" y="510" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="12" x="765" y="915" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="13" x="750" y="315" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="14" x="1275" y="345" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="15" x="1260" y="945" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="16" x="1575" y="930" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="17" x="1575" y="330" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <LRNMovingEnemySquid id="18" x="1005" y="960" class="CGCMovingEnemies" shape="squid" PlistFile="TexturePacker/Sprites/SquidEnemy/SquidEnemy.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </enemies>
   <items />
   <platforms>
     <WallPlatform id="3" x="30" y="990" class="GCObjBrickPlatform" shape="WallCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -69,5 +89,11 @@
   </ExitDoor>
   <Ladders />
   <Hazards />
-  <Keys />
+  <Keys>
+    <Keys id="0" x="300" y="930" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="1" x="1200" y="960" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="2" x="1650" y="270" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="3" x="1050" y="270" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="4" x="240" y="300" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+  </Keys>
 </level>
