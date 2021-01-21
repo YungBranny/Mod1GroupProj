@@ -5137,8 +5137,8 @@
 
                          <key>circle</key>
                          <dict>
-                             <key>radius</key> <real>43.205</real>
-                             <key>position</key> <string>{ -0.213,0.213 }</string>
+                             <key>radius</key> <real>27.720</real>
+                             <key>position</key> <string>{ -2.387,-0.222 }</string>
                          </dict>
                     </dict>
 				</array>

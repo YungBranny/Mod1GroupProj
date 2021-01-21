@@ -13,9 +13,9 @@
     <EnemyMovementCollider id="4" x="96" y="672" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="6" x="1840" y="258" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="8" x="1840" y="974" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <LRNMovingEnemySeal id="0" x="1575" y="225" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <LRNMovingEnemySeal id="0" x="1575" y="225" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="2" x="1065" y="255" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <LRNMovingEnemySeal id="1" x="1635" y="975" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <LRNMovingEnemySeal id="1" x="1635" y="975" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="3" x="1095" y="990" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <TMHazard id="5" x="1470" y="630" angle="0" class="CGCTMHazard" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMHazard/TMHazard.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <TMHazard id="7" x="1470" y="870" angle="0" class="CGCTMHazard" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMHazard/TMHazard.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -23,7 +23,7 @@
     <TMHazard id="10" x="1710" y="450" angle="0" class="CGCTMHazard" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMHazard/TMHazard.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="11" x="90" y="720" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="12" x="750" y="705" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <LRNMovingEnemySeal id="13" x="375" y="705" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <LRNMovingEnemySeal id="13" x="375" y="705" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>

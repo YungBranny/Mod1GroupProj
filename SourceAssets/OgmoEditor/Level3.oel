@@ -65,7 +65,7 @@
   <ExitDoor>
     <ExitDoor id="0" x="1800" y="840" class="CGCObjExitDoor" shape="cc_exit" PlistFile="TexturePacker/Sprites/Exit/cc_exit.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </ExitDoor>
-  <Ladder />
+  <Ladders />
   <Hazards>
     <TMHazardDown id="0" x="90" y="630" angle="0" class="CGCTMHazardDown" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMHazardDown/TMHazardDown.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <TMHazardDown id="1" x="1140" y="180" angle="0" class="CGCTMHazardDown" shape="tm_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/TMHazardDown/TMHazardDown.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
