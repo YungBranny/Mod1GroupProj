@@ -83,7 +83,6 @@
     <tm_platform_moving_120x60 id="38" x="1500" y="450" class="CGCObjTravelatorPlatform" shape="tm_platform_moving_120x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_moving_120x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <tm_platform_moving_120x60 id="44" x="1800" y="510" class="CGCObjTravelatorPlatform" shape="tm_platform_moving_120x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_moving_120x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <tm_platform_moving_120x60 id="45" x="1800" y="630" class="CGCObjTravelatorPlatform" shape="tm_platform_moving_120x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_moving_120x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <tm_platform_moving_240x60 id="39" x="180" y="330" class="CGCObjTravelatorPlatform" shape="tm_platform_moving_240x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_moving_240x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <tm_platform_regular_60x60 id="46" x="1710" y="750" class="CGCObjScalingBasicPlatform" shape="tm_platform_regular_60x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_regular_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <tm_platform_regular_60x60 id="47" x="630" y="810" class="CGCObjScalingBasicPlatform" shape="tm_platform_regular_60x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_regular_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <tm_platform_regular_180x60 id="40" x="1500" y="900" class="CGCObjScalingBasicPlatform" shape="tm_platform_regular_180x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_regular_180x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -98,6 +97,7 @@
     <tm_platform_moving_240x60 id="54" x="1140" y="450" class="CGCObjTravelatorPlatform" shape="tm_platform_moving_240x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_moving_240x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <tm_platform_regular_240x60 id="55" x="1170" y="690" class="CGCObjScalingBasicPlatform" shape="tm_platform_regular_240x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_regular_240x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <tm_platform_regular_240x60 id="56" x="930" y="690" class="CGCObjScalingBasicPlatform" shape="tm_platform_regular_240x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_regular_240x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <tm_platform_regular_240x60 id="39" x="180" y="360" class="CGCObjScalingBasicPlatform" shape="tm_platform_regular_240x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_regular_240x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </platforms>
   <ExitDoor>
     <ExitDoor id="0" x="120" y="240" class="CGCObjExitDoor" shape="cc_exit" PlistFile="TexturePacker/Sprites/Exit/cc_exit.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
