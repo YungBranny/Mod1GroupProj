@@ -9,10 +9,10 @@
   <LevelForeground />
   <Level2ndForeground />
   <enemies>
-    <LRNMovingEnemySeal id="0" x="930" y="795" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <LRNMovingEnemySeal id="1" x="960" y="975" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
-    <LRNMovingEnemySeal id="2" x="900" y="615" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
-    <LRNMovingEnemySeal id="3" x="1140" y="525" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemySeal id="0" x="900" y="780" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemySeal id="1" x="1080" y="960" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemySeal id="2" x="870" y="600" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <LRNMovingEnemySeal id="3" x="1185" y="510" class="CGCMovingEnemyNSeal" shape="seal" PlistFile="TexturePacker/Sprites/SealEnemy/SealEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="4" x="1005" y="825" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="5" x="510" y="840" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <EnemyMovementCollider id="6" x="630" y="645" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
