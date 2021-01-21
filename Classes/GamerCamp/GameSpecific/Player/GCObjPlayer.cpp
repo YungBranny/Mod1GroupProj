@@ -3,7 +3,7 @@
 
 #include "AppDelegate.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
-#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "GamerCamp/GameSpecific/GCLevel1.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/Player/GCObjProjectilePlayer.h"
 #include "GamerCamp/GameSpecific/Player/GCObjGroupProjectilePlayer.h"
@@ -143,7 +143,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep) //Brandon Movement function
 
 	if (m_bOnTravelator != true) //if statements to determine which way the player should move and if the player can move
 	{
-		if (pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Left))
+		if (pKeyManager->ActionIsPressed(CGCLevel1::EPA_Left))
 		{
 			if (m_bCanJump == true)
 			{
@@ -153,7 +153,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep) //Brandon Movement function
 				ChangeAnimation ();
 			}
 		}
-		else if (pKeyManager->ActionIsPressed(CGCGameLayerPlatformer::EPA_Right))
+		else if (pKeyManager->ActionIsPressed(CGCLevel1::EPA_Right))
 		{
 			if (m_bCanJump == true)
 			{
@@ -189,7 +189,7 @@ void CGCObjPlayer::UpdateMovement(f32 fTimeStep) //Brandon Movement function
 	}
 	else
 	{
-		if (pKeyManager->ActionHasJustBeenPressed(CGCGameLayerPlatformer::EPA_Fire))
+		if (pKeyManager->ActionHasJustBeenPressed(CGCLevel1::EPA_Fire))
 		{
 			bFireWasPressed = true;
 		}

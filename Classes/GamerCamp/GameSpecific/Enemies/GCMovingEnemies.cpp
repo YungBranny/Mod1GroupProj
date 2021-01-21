@@ -2,7 +2,7 @@
 
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 #include "GamerCamp/GCObject/GCObjectManager.h"
-#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "GamerCamp/GameSpecific/GCLevel1.h"
 #include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
 #include "../../GCCocosInterface/GB2ShapeCache-x.h"
 

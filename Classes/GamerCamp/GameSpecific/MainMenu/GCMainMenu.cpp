@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <stdlib.h>
 
-#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "GamerCamp/GameSpecific/GCLevel1.h"
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 
@@ -98,5 +98,5 @@ void CGCMainMenu::QuitGame (Ref* pSender)
 
 void CGCMainMenu::LoadLevel (Ref* pSender)
 {
-	Director::getInstance()->replaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene ()));
+	Director::getInstance()->replaceScene (TransitionMoveInR::create (0.1f, TGCGameLayerSceneCreator< CGCLevel1 >::CreateScene ()));
 }

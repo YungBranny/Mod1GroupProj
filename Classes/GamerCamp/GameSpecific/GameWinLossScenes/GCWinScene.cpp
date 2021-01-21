@@ -7,7 +7,7 @@
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "MenuScene.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
-#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "GamerCamp/GameSpecific/GCLevel1.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 
 #include "AppDelegate.h"
@@ -137,7 +137,7 @@ void CGCWinScene::VOnCreate()
 	new CGCObjScreenBound(CGCObjScreenBound::EScreenBoundType::Right, (v2ScreenCentre_B2d + cocos2d::Vec2(fHalfScreenWidthB2d, 0.0f)), 0.5f, fScreenHeightB2d, 0.0f);
 
 
-}// void CGCGameLayerPlatformer::VOnCreate() { ...
+}// void CGCLevel1::VOnCreate() { ...
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -185,7 +185,7 @@ void CGCWinScene::Callback_OnQuitButton(Ref* pSender)
 void CGCWinScene::Callback_OnResetButton(Ref* pSender)
 {
 	
-	Director::getInstance()->replaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));//Goes to the main game layer
+	Director::getInstance()->replaceScene(TransitionRotoZoom::create(1.0f, TGCGameLayerSceneCreator< CGCLevel1 >::CreateScene()));//Goes to the main game layer
 }
 
 

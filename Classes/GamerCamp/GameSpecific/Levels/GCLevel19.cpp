@@ -228,7 +228,7 @@ void CGCLevel19::VOnCreate()
 	m_cLevelLoader.CreateObjects(CGCFactory_ObjSpritePhysics::GetFactory());
 
 	// Player starting position
-	cocos2d::Vec2 v2MarioStartPos(60, 120);
+	cocos2d::Vec2 v2PlayerStartPos(60, 120);
 
 	// Loads Player into Level
 	CGCFactoryCreationParams& sParams = m_sPlayerCreateParams;
@@ -239,7 +239,7 @@ void CGCLevel19::VOnCreate()
 	sParams.bB2dBody_FixedRotation = true;
 
 	// Create Player object
-	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory().CreateInstance(sParams, v2MarioStartPos) );
+	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory().CreateInstance(sParams, v2PlayerStartPos) );
 	m_pcGCOPlayer->setJumpHeight(200.0f);
 
 	m_pcGCOPlayer->PlayerLivesReadFile();

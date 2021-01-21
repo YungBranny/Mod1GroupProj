@@ -123,9 +123,6 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjProjectilePlayer.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Player</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GCGameLayerPlatformer.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\GB2ShapeCache-x.cpp">
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
     </ClCompile>
@@ -438,6 +435,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCSwitch.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\GCLevel1.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -484,9 +484,6 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Player\GCObjProjectilePlayer.h">
       <Filter>Classes\GamerCamp\GameSpecific\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GCGameLayerPlatformer.h">
-      <Filter>Classes\GamerCamp\GameSpecific</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\GB2ShapeCache-x.h">
       <Filter>Classes\GamerCamp\GCCocosInterface</Filter>
@@ -805,6 +802,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCSwitch.h">
       <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\GCLevel1.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

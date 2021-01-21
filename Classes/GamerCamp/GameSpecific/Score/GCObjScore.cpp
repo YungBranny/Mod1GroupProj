@@ -1,7 +1,7 @@
 #include <string.h>
 #include <fstream>
 
-#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "GamerCamp/GameSpecific/GCLevel1.h"
 #include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
 

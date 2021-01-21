@@ -9,8 +9,8 @@
 // This Class also contains all the collisions needed for the Level.                                      //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifndef _GAMELAYERSPACEINVADERS_H_
-#define _GAMELAYERSPACEINVADERS_H_
+#ifndef _GCLEVEL1_H_
+#define _GCLEVEL1_H_
 
 #include "../GCCocosInterface/IGCGameLayer.h"
 
@@ -60,7 +60,7 @@ class CGCObjFallingPlane8;
 class CGCObjFallingPlane9;
 class CGLossScene;
 
-class CGCGameLayerPlatformer 
+class CGCLevel1 
 : public IGCGameLayer
 , public b2ContactListener 
 {
@@ -91,8 +91,8 @@ private:
 	CocosDenshion::SimpleAudioEngine*	m_pcGCSoundEffectsAudio; // Mia: Variable for Sound Effects audio
 
 public:
-	CGCGameLayerPlatformer	( void );
-	~CGCGameLayerPlatformer	( void );
+	CGCLevel1	( void );
+	~CGCLevel1	( void );
 
 	enum EPlayerActions
 	{
@@ -182,4 +182,4 @@ private:
 		return m_bQuitWasRequested; 
 	}
 };
-#endif // __CGCGameLayerPlatformer_SCENE_H__
+#endif // __CGCLevel1_SCENE_H__

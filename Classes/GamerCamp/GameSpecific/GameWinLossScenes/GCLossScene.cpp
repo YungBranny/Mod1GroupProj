@@ -7,7 +7,7 @@
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h"
 #include "MenuScene.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
-#include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
+#include "GamerCamp/GameSpecific/GCLevel1.h"
 
 
 #include "AppDelegate.h"
@@ -125,7 +125,7 @@ void CGCLossScene::Callback_OnQuitButton(Ref* pSender)
 void CGCLossScene::Callback_OnResetButton(Ref* pSender)
 {
 	//Replaces the scene with the first level again
-	Director::getInstance()->replaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCGameLayerPlatformer >::CreateScene()));
+	Director::getInstance()->replaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel1 >::CreateScene()));
 }
 
 

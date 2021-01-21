@@ -4,7 +4,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "AppDelegate.h"
-#include "GCGameLayerPlatformer.h"
+#include "GCLevel1.h"
 #include <algorithm>
 #include <fstream>
 #include <stdlib.h>
@@ -57,8 +57,8 @@
 
 USING_NS_CC;
 
-CGCGameLayerPlatformer::CGCGameLayerPlatformer ()
-	: IGCGameLayer ( GetGCTypeIDOf ( CGCGameLayerPlatformer ) )
+CGCLevel1::CGCLevel1 ()
+	: IGCGameLayer ( GetGCTypeIDOf ( CGCLevel1 ) )
 	, m_pcGCTimer				   ( nullptr )
 	, m_pcGCOPlayer                ( nullptr )
 	, m_pcGCOKeys                  ( nullptr )
@@ -77,37 +77,37 @@ CGCGameLayerPlatformer::CGCGameLayerPlatformer ()
 	m_iKeysCollected = 0; // Mia: Sets Default Keys to 0, so we can add 1 more on as Player collects them
 }
 
-CGCGameLayerPlatformer::~CGCGameLayerPlatformer()
+CGCLevel1::~CGCLevel1()
 {
 
 }
 
-void CGCGameLayerPlatformer::keyCollected() // Mia: This function adds one more Key onto how many the Player obtains
+void CGCLevel1::keyCollected() // Mia: This function adds one more Key onto how many the Player obtains
 {
 	m_iKeysCollected++; // Mia: Adds a Key
 	m_pcGCOScore->IncreaseScore(); // Mia: Calls IncreaseScore Function from GCObjScore.cpp
 	CCLOG("Key Collected."); // Mia: Checks to make sure Player has picked up Key only once otherwise will call it continuously
 }
 
-void CGCGameLayerPlatformer::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
+void CGCLevel1::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
 {
 	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
 	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/BackgroundMusic/CrystalCoralReefSvRV1.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
 }
 
-void CGCGameLayerPlatformer::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
+void CGCLevel1::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
 {
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
 	m_pcGCSoundEffectsAudio->playEffect("Sounds/Collectables/Key/item_pickup.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
-void CGCGameLayerPlatformer::playDoorOpeningAudio() // Mia: Function that is called when we want the Door Opened Sound Effect to play
+void CGCLevel1::playDoorOpeningAudio() // Mia: Function that is called when we want the Door Opened Sound Effect to play
 {
 	m_pcGCSoundEffectsAudio = CocosDenshion::SimpleAudioEngine::getInstance();
 	m_pcGCSoundEffectsAudio->playEffect("Sounds/Door/OpeningDoor.wav", false); // Mia: Play Audio by locating File, set to 'False' to not loop
 }
 
-void CGCGameLayerPlatformer::onEnter()
+void CGCLevel1::onEnter()
 {
 	IGCGameLayer::onEnter();
 
@@ -125,7 +125,7 @@ void CGCGameLayerPlatformer::onEnter()
 	AppDelegate::InitialiseKeyboardManager( uSizeOfActionArray, aeKeyCodesForActions );
 }
 
-void CGCGameLayerPlatformer::VOnCreate ()
+void CGCLevel1::VOnCreate ()
 {
 	Size visibleSize = Director::getInstance ()->getVisibleSize ();
 	Point origin = Director::getInstance ()->getVisibleOrigin ();
@@ -137,7 +137,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	MenuItemImage* pResetItem // Mia: This button resets the Level
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
-			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnResetButton, this));
+			CC_CALLBACK_1 (CGCLevel1::Callback_OnResetButton, this));
 
 	pResetItem->setPosition (Vec2 (( ( visibleSize.width - ( pResetItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( ( pResetItem->getContentSize ().height * 0.5f ) + origin.y ) )));
@@ -145,7 +145,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	MenuItemImage* pSkipItem // Mia: This button skips a Level onto the next
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
-			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnSkipButton, this));
+			CC_CALLBACK_1 (CGCLevel1::Callback_OnSkipButton, this));
 
 	pSkipItem->setPosition (Vec2 (( ( visibleSize.width - ( pSkipItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( ( pSkipItem->getContentSize ().height * 6.5f ) + origin.y ) )));
@@ -153,7 +153,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	MenuItemImage* pQuitItem // Mia: This button quits the Game back onto the Main Menu
 		= MenuItemImage::create ("Loose/CloseNormal.png",
 			"Loose/CloseSelected.png",
-			CC_CALLBACK_1 (CGCGameLayerPlatformer::Callback_OnQuitButton, this));
+			CC_CALLBACK_1 (CGCLevel1::Callback_OnQuitButton, this));
 
 	pQuitItem->setPosition (Vec2 (( ( visibleSize.width - ( pQuitItem->getContentSize ().width * 0.5f ) ) + origin.x ),
 		( ( visibleSize.height - ( pQuitItem->getContentSize ().height * 0.8f ) ) + origin.y )));
@@ -227,7 +227,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// Player starting position
-	cocos2d::Vec2 v2MarioStartPos (60, 120);
+	cocos2d::Vec2 v2PlayerStartPos (60, 120);
 
 	// Loads Player into Level
 	CGCFactoryCreationParams& sParams = m_sPlayerCreateParams;
@@ -238,7 +238,7 @@ void CGCGameLayerPlatformer::VOnCreate ()
 	sParams.bB2dBody_FixedRotation = true;
 
 	// Create Player object
-	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory ().CreateInstance (sParams, v2MarioStartPos) );
+	m_pcGCOPlayer = static_cast<CGCObjPlayer*>( CGCFactory_ObjSpritePhysics::GetFactory ().CreateInstance (sParams, v2PlayerStartPos) );
 	m_pcGCOPlayer->setJumpHeight (200.0f);
 
 	//Dan: Adds player lose lives UI to the scene
@@ -481,19 +481,19 @@ void CGCGameLayerPlatformer::VOnCreate ()
 		});
 }
 
-void CGCGameLayerPlatformer::PlayerDeathSceneSwap()
+void CGCLevel1::PlayerDeathSceneSwap()
 {
 	//Dan: When the player dies the scene is replaced with the death scene
 	Director::getInstance()->replaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLossScene >::CreateScene()));
 }
 
-void CGCGameLayerPlatformer::HighScore()
+void CGCLevel1::HighScore()
 {
 	
 
 }
 
-void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
+void CGCLevel1::VOnUpdate( f32 fTimeStep )
 {
 	IGCGameLayer::VOnUpdate( fTimeStep );
 	
@@ -566,7 +566,7 @@ void CGCGameLayerPlatformer::VOnUpdate( f32 fTimeStep )
 
 }
 
-void CGCGameLayerPlatformer::VOnDestroy()
+void CGCLevel1::VOnDestroy()
 {
 	delete m_pcGCOPlayer;
 	m_pcGCOPlayer = nullptr;
@@ -576,18 +576,18 @@ void CGCGameLayerPlatformer::VOnDestroy()
 	IGCGameLayer::VOnDestroy();
 }
 
-void CGCGameLayerPlatformer::Callback_OnQuitButton( Ref* pSender )
+void CGCLevel1::Callback_OnQuitButton( Ref* pSender )
 {
 	RequestQuit();
 }
 
 
-void CGCGameLayerPlatformer::Callback_OnSkipButton(Ref* pSender)
+void CGCLevel1::Callback_OnSkipButton(Ref* pSender)
 {
 	RequestSkip();
 }
 
-void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
+void CGCLevel1::Callback_OnResetButton(Ref* pSender)
 {
 	RequestReset();
 }
@@ -599,7 +599,7 @@ void CGCGameLayerPlatformer::Callback_OnResetButton(Ref* pSender)
 // contact exists
 ///////////////////////////////////////////////////////////////////////////////
 
-void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
+void CGCLevel1::BeginContact( b2Contact* pB2Contact )
 {
 	const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
 	const b2Fixture* pFixtureB = pB2Contact->GetFixtureB ();
@@ -713,7 +713,7 @@ void CGCGameLayerPlatformer::BeginContact( b2Contact* pB2Contact )
 // contact exists
 ///////////////////////////////////////////////////////////////////////////////
 
-void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
+void CGCLevel1::EndContact (b2Contact* pB2Contact)
 {
 	{
 		const b2Fixture* pFixtureA = pB2Contact->GetFixtureA ();
@@ -768,7 +768,7 @@ void CGCGameLayerPlatformer::EndContact (b2Contact* pB2Contact)
 // insert any logic that needs to be done before a contact is resolved
 ///////////////////////////////////////////////////////////////////////////////
 
-void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* pOldManifold ) 
+void CGCLevel1::PreSolve( b2Contact* pB2Contact, const b2Manifold* pOldManifold ) 
 {
 	const b2Fixture* pFixtureA = pB2Contact->GetFixtureA();
 	const b2Fixture* pFixtureB = pB2Contact->GetFixtureB();
@@ -855,7 +855,7 @@ void CGCGameLayerPlatformer::PreSolve( b2Contact* pB2Contact, const b2Manifold* 
 // e.g. check the types and double the impulse
 ///////////////////////////////////////////////////////////////////////////////
 
-void CGCGameLayerPlatformer::PostSolve( b2Contact* pB2Contact, const b2ContactImpulse* pImpulse )
+void CGCLevel1::PostSolve( b2Contact* pB2Contact, const b2ContactImpulse* pImpulse )
 {
 }
 
@@ -865,7 +865,7 @@ void CGCGameLayerPlatformer::PostSolve( b2Contact* pB2Contact, const b2ContactIm
 // have potentially been resolved) in the previous physics step
 ///////////////////////////////////////////////////////////////////////////////
 
-void CGCGameLayerPlatformer::HandleCollisions()
+void CGCLevel1::HandleCollisions()
 {
 	// check for collisions
 	b2Body* pBodyToDestroy = nullptr;
