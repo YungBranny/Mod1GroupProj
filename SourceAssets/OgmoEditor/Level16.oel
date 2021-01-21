@@ -105,5 +105,7 @@
     <Keys id="2" x="1590" y="870" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Keys id="3" x="180" y="780" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Keys id="4" x="1110" y="450" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <auw_hazard_upward_spike_bush_60x60 id="5" x="1500" y="990" class="GCHazardChild" shape="auw_hazard_upward_spike_bush_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_upward_spike_bush_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <auw_hazard_upward_spike_bush_60x60 id="6" x="1650" y="990" class="GCHazardChild" shape="auw_hazard_upward_spike_bush_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_upward_spike_bush_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Keys>
 </level>
