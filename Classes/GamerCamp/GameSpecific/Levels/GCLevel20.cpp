@@ -92,7 +92,7 @@ void CGCLevel20::keyCollected() // Mia: This function adds one more Key onto how
 void CGCLevel20::playBackgroundMusic() // Mia: Function that is called when we want the Background Music to play
 {
 	m_pcGCBackgroundAudio = CocosDenshion::SimpleAudioEngine::getInstance();
-	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/BackgroundMusic/UnderwaterVolcanoSvRV1.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
+	m_pcGCBackgroundAudio->playBackgroundMusic("Sounds/BackgroundMusic/Shipwreck_v2 - Dub.wav", true); // Mia: Play Audio by locating File, set to 'True' to loop
 }
 
 void CGCLevel20::playKeyAudio() // Mia: Function that is called when we want the Collected Key Sound Effect to play
