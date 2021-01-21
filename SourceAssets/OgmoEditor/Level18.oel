@@ -59,6 +59,10 @@
     <tcr_platform_brick_60x960 id="1" x="30" y="600" class="GCObjBrickPlatform" shape="tcr_platform_brick_60x960" PlistFile="TexturePacker/Sprites/TCRPlatforms/tcr_platform_brick_60x960.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <tcr_platform_brick_60x960 id="2" x="1890" y="600" class="GCObjBrickPlatform" shape="tcr_platform_brick_60x960" PlistFile="TexturePacker/Sprites/TCRPlatforms/tcr_platform_brick_60x960.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <tcr_platform_regular_60x60 id="33" x="1710" y="150" class="CGCObjScalingBasicPlatform" shape="tcr_platform_regular_60x60" PlistFile="TexturePacker/Sprites/TCRPlatforms/tcr_platform_regular_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <tcr_platform_regular_360x60 id="48" x="990" y="390" class="CGCObjScalingBasicPlatform" shape="tcr_platform_regular_360x60" PlistFile="TexturePacker/Sprites/TCRPlatforms/tcr_platform_regular_360x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <tcr_platform_regular_180x60 id="49" x="600" y="390" class="CGCObjScalingBasicPlatform" shape="tcr_platform_regular_180x60" PlistFile="TexturePacker/Sprites/TCRPlatforms/tcr_platform_regular_180x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <tcr_platform_regular_180x60 id="50" x="1410" y="390" class="CGCObjScalingBasicPlatform" shape="tcr_platform_regular_180x60" PlistFile="TexturePacker/Sprites/TCRPlatforms/tcr_platform_regular_180x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <tcr_platform_regular_120x60 id="51" x="1800" y="780" class="CGCObjScalingBasicPlatform" shape="tcr_platform_regular_120x60" PlistFile="TexturePacker/Sprites/TCRPlatforms/tcr_platform_regular_120x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </platforms>
   <ExitDoor>
     <ExitDoor id="0" x="1800" y="180" class="CGCObjExitDoor" shape="cc_exit" PlistFile="TexturePacker/Sprites/Exit/cc_exit.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
