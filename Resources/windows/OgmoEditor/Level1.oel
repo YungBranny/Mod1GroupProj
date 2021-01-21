@@ -129,7 +129,7 @@
   <ExitDoor>
     <ExitDoor id="0" x="1800" y="960" class="CGCObjExitDoor" shape="cc_exit" PlistFile="TexturePacker/Sprites/Exit/cc_exit.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </ExitDoor>
-  <Ladder />
+  <Ladders />
   <Hazards>
     <UpwardSpike id="2" x="1260" y="630" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <UpwardSpike id="3" x="750" y="870" angle="0" class="CGCBasicEnemies" shape="cc_hazard_bush" PlistFile="TexturePacker/Sprites/SeaUrchin/SeaUrchin.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />

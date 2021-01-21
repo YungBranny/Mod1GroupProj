@@ -224,7 +224,7 @@ void CGCLevel17::VOnCreate()
 	groundBody->CreateFixture(&groundBox, 0);
 
 	// Loads Level
-	m_cLevelLoader.LoadLevelFile(FileUtils::getInstance()->fullPathForFilename(std::string("OgmoEditor/Level2.oel")).c_str());
+	m_cLevelLoader.LoadLevelFile(FileUtils::getInstance()->fullPathForFilename(std::string("OgmoEditor/Level17.oel")).c_str());
 	m_cLevelLoader.CreateObjects(CGCFactory_ObjSpritePhysics::GetFactory());
 
 	// Player starting position
