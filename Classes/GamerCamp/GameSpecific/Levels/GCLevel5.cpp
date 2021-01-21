@@ -39,17 +39,17 @@
 #include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
 #include "GamerCamp/GameSpecific/Levels/GCLevel6.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasePlatform.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBasicPlatform1.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjBrickPlatform.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatformManager.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatform.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatformManager.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatform.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCSwitch.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjSwitchPlatform1.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/CGCObjSwitchPlatform2.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjTravelatorPlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjBasePlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjBasicPlatform1.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjBrickPlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjScalingBasicPlatformManager.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjScalingBasicPlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjScalingFallingPlatformManager.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjScalingFallingPlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCSwitch.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjSwitchPlatform1.h"
+#include "GamerCamp/GameSpecific/Platforms/CGCObjSwitchPlatform2.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjTravelatorPlatform.h"
 #include "GamerCamp/GameSpecific/Player/GCObjPlayer.h"
 #include "GamerCamp/GameSpecific/Score/GCObjScore.h"
 #include "GamerCamp/GameSpecific/Score/GCObjHighScore.h"
@@ -517,7 +517,7 @@ void CGCLevel5::VOnUpdate(f32 fTimeStep)
 
 	if( m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime() < 2.0f )
 	{
-		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel6 >::CreateScene()));
+		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel6 >::CreateScene()));
 	}
 	if( m_bDoorUnlocked == true )
 	{
@@ -543,7 +543,7 @@ void CGCLevel5::VOnUpdate(f32 fTimeStep)
 	{
 		m_pcGCOPlayer->PlayerLivesWriteFile();
 		SkipRequestWasHandled();
-		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< GCLevel6 >::CreateScene()));
+		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel6 >::CreateScene()));
 
 	}
 

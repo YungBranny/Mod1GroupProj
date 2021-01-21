@@ -5,15 +5,15 @@
 #include "GamerCamp/GCObject/GCObjectManager.h"
 #include "GamerCamp/GameSpecific/GCGameLayerPlatformer.h"
 #include "../../GCCocosInterface/GB2ShapeCache-x.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingBasicPlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjScalingBasicPlatform.h"
 
 
-#include "GCObjBasicPlatform6.h"
+#include "GCObjBasicPlatform2.h"
 
 
-GCFACTORY_IMPLEMENT_CREATEABLECLASS (GCObjBasicPlatform6);
+GCFACTORY_IMPLEMENT_CREATEABLECLASS (GCObjBasicPlatform2);
 
-GCObjBasicPlatform6::GCObjBasicPlatform6 ()
+GCObjBasicPlatform2::GCObjBasicPlatform2 ()
 	: CGCObjSpritePhysics (GetGCTypeIDOf (CGCObjScalingBasicPlatform))
 {
 

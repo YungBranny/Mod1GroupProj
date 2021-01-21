@@ -1,28 +1,25 @@
-/////////////////////////////////////////////////////////////////// /////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // (C) Gamer Camp / Alex Darby 2018
 // Distributed under the MIT license - see readme.md
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-#ifndef _GCLevel14_H_
-#define _GCLevel14_H_
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// This is the Header and Class files for Level 14. All of us as a team have contributed to this Class and //
+// commented on what we worked on. This Class is for putting the Level together and loading it up.        //
+// This Class also contains all the collisions needed for the Level.                                      //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+#ifndef _GCLEVEL14_H_
+#define _GCLEVEL14_H_
 
-#include "SimpleAudioEngine.h"
 #include "GamerCamp/GCCocosInterface/IGCGameLayer.h"
 #include "GamerCamp/GCCocosInterface/LevelLoader/GCLevelLoader_Ogmo.h"
 
-//////////////////////////////////////////////////////////////////////////
-// fwd decl
+#include "SimpleAudioEngine.h"
+
 class CGCObjSprite;
 class CGCObjPlayer;
 class CGCObjPlatform;
-class CGCObjGroupPlatform;
-class CGCObjItem;
-class CGCObjGroupItem;
-class CGCObjInvader;
-class CGCObjGroupInvader;
-class CGCObjGroupProjectilePlayer;
-class CGCObjGroupProjectilePlayer;
 class CGCObjTimer;
 class CGCObjKeys;
 class CGCBasicEnemies;
@@ -36,12 +33,8 @@ class CGCMovingEnemyUpDownFast;
 class CGCHazardChild;
 class CGCObjTravelatorPlatform;
 class CGCObjExitDoor;
-class CGCObjTimePickUp;
-class CGCObjScalingBasicPlatformManager;
-class CGCObjScalingFallingPlatformManager;
 class CGCObjScalingBasicPlatform;
 class CGCObjScalingFallingPlatform;
-class CGCObjMovingPlatform;
 class GCObjBrickPlatform;
 class CGCObjLadder;
 class CGCObjKeys;
@@ -54,64 +47,50 @@ class GCSwitch;
 class CHCOnjSwitchPlatform1;
 class CHCOnjSwitchPlatform2;
 class CGCObjFallingPlane;
+class CGCObjFallingPlane2;
+class CGCObjFallingPlane3;
+class CGCObjFallingPlane4;
+class CGCObjFallingPlane5;
+class CGCObjFallingPlane6;
+class CGCObjFallingPlane7;
+class CGCObjFallingPlane8;
+class CGCObjFallingPlane9;
+class CGLossScene;
 
-//////////////////////////////////////////////////////////////////////////
-// sample class that creates a 'game' by deriving from IGCGameLayer
-//////////////////////////////////////////////////////////////////////////
-class GCLevel14
+class CGCLevel14
 	: public IGCGameLayer
 	, public b2ContactListener
 {
 private:
+	CGCObjKeys* m_pcGCOKeys;  // Mia: Variable for first set of Keys
+	CGCObjKeys* m_pcGCOKeys1; // Mia: Variable for second set of Keys
+	CGCObjKeys* m_pcGCOKeys2; // Mia: Variable for third set of Keys
 
-
-	// object groups
-	CGCObjGroupPlatform* m_pcGCGroupPlatform;
-	CGCObjGroupItem* m_pcGCGroupItem;
-	CGCObjGroupInvader* m_pcGCGroupInvader;
-	CGCObjGroupProjectilePlayer* m_pcGCGroupProjectilePlayer;
-
-	CGCObjKeys* m_pcGCOKeys;
-	CGCObjKeys* m_pcGCOKeys1;
-	CGCObjKeys* m_pcGCOKeys2;
-
-	//UI
 	CGCObjTimer* m_pcGCTimer;
 	CGCObjLives* m_pcGCOLives;
-	CGCObjScore* m_pcGCOScore;
+	CGCObjScore* m_pcGCOScore; // Mia: Variable for Player Score
 	CGCObjHighScore* m_pcGCOHighScore;
 
-
-	// backgrounds
-	CGCObjSprite* m_pcGCSprBackGround;
-
-	// mario
 	CGCObjPlayer* m_pcGCOPlayer;
-	CGCFactoryCreationParams	m_sPlayerCreateParams;
+	CGCFactoryCreationParams		m_sPlayerCreateParams;
 
-	// level loader
 	CGCLevelLoader_Ogmo		m_cLevelLoader;
-
 
 	bool					m_bCheckIfPlayerIsAbovePlatform;
 
-	int						m_iKeysCollected;
+	int						m_iKeysCollected; // Mia: Int for Keys Collected by Player
 
-	int						m_iTotalKeys;
+	int						m_iTotalKeys;	  // Mia: Int for the Total amount of Keys
 
-	int						m_iTimerPickedUp;
+	int						m_iHighScore;
 
-	int			m_iHighScore;
-
-	//CocosDenshion::SimpleAudioEngine* m_pcGCBackgroundAudio;
-	CocosDenshion::SimpleAudioEngine* m_pcGCSoundEffectsAudio;
+	CocosDenshion::SimpleAudioEngine* m_pcGCBackgroundAudio;   // Mia: Variable for Background music
+	CocosDenshion::SimpleAudioEngine* m_pcGCSoundEffectsAudio; // Mia: Variable for Sound Effects audio
 
 public:
-	GCLevel14(void);
-	~GCLevel14(void);
+	CGCLevel14 (void);
+	~CGCLevel14 (void);
 
-	//////////////////////////////////////////////////////////////////////////
-	// player actions 
 	enum EPlayerActions
 	{
 		EPA_Up = 0,
@@ -120,116 +99,84 @@ public:
 		EPA_Right,
 		EPA_Fire
 	};
-	// player actions 
-	//////////////////////////////////////////////////////////////////////////
 
-	//////////////////////////////////////////////////////////////////////////
-	// 'selector' callbacks for menu buttons
-	void Callback_OnQuitButton(Ref* pSender);
-	void Callback_OnSkipButton(Ref* pSender);
-	void Callback_OnResetButton(Ref* pSender);
+	void Callback_OnQuitButton (Ref* pSender);
+	void Callback_OnSkipButton (Ref* pSender);
+	void Callback_OnResetButton (Ref* pSender);
 
-	// called from VOnUpdate
-	void HandleCollisions(void);
+	void HandleCollisions (void);
 
-	void keyCollected();
+	void keyCollected ();		 // Mia: Key Collected by Player function
 
-	void addOnTime();
+	void playBackgroundMusic ();  // Mia: Play Background Music in Level function
 
-	//void playBackgroundMusic();
+	void playKeyAudio ();		 // Mia: Play when a Key is picked up by Player audio function
 
-	void playKeyAudio();
+	void playDoorOpeningAudio (); // Mia: Play when Player unlocks Door audio function
 
-	void playTimerPickUpAudio();
+	void PlayerDeathSceneSwap ();
 
-	void playDoorOpeningAudio();
+	void HighScore ();
 
-	void PlayerDeathSceneSwap();
+	virtual void onEnter ();
 
-	void HighScore();
+	virtual	void VOnCreate (void);
+	virtual void VOnUpdate (f32 fTimeStep);
+	virtual	void VOnDestroy (void);
 
-	//////////////////////////////////////////////////////////////////////////
-	// CCNode interface...
-	virtual void onEnter();
-	// CCNode interface...
-	//////////////////////////////////////////////////////////////////////////
-
-	//////////////////////////////////////////////////////////////////////////
-	// IGCGameLayer interface
-
-	virtual	void VOnCreate(void);
-	virtual void VOnUpdate(f32 fTimeStep);
-	virtual	void VOnDestroy(void);
-
-	// IGCGameLayer interface
-	//////////////////////////////////////////////////////////////////////////
-
-
-	//////////////////////////////////////////////////////////////////////////
-	// b2ContactListener interface - see b2ContactListener for details of 
-	// when these get called and what they are
-
-	virtual void BeginContact(b2Contact* pB2Contact);
-	virtual void EndContact(b2Contact* pB2Contact);
-	virtual void PreSolve(b2Contact* pB2Contact, const b2Manifold* pOldManifold);
-	virtual void PostSolve(b2Contact* pB2Contact, const b2ContactImpulse* pImpulse);
-
-	// b2ContactListener interface - see b2ContactListener for details of 
-	// when these get called and what they are
-	//////////////////////////////////////////////////////////////////////////
-
-	////////////////////////////////////////////////////////////////////////// 
-	// reset / quit handling
+	virtual void BeginContact (b2Contact* pB2Contact);
+	virtual void EndContact (b2Contact* pB2Contact);
+	virtual void PreSolve (b2Contact* pB2Contact, const b2Manifold* pOldManifold);
+	virtual void PostSolve (b2Contact* pB2Contact, const b2ContactImpulse* pImpulse);
 private:
-	bool							m_bResetWasRequested;
-	bool							m_bQuitWasRequested;
-	bool							m_bSkipWasRequested;
+	bool							m_bResetWasRequested; // Mia: Request Reset for cheat button
+	bool							m_bQuitWasRequested;  // Mia: Request Quit for cheat button
+	bool							m_bSkipWasRequested;  // Mia: Request Skip for cheat button
+	bool							m_bDoorUnlocked;      //Brandon bool which is triggered when the door is unlocked
 
-	void RequestReset()
+	void RequestReset ()
 	{
 		m_bResetWasRequested = true;
 	}
 
-	void ResetRequestWasHandled()
+	void ResetRequestWasHandled ()
 	{
 		m_bResetWasRequested = false;
 	}
 
-	bool ResetWasRequested()
+	bool ResetWasRequested ()
 	{
 		return m_bResetWasRequested;
 	}
 
-	void RequestSkip()
+	void RequestSkip ()
 	{
 		m_bSkipWasRequested = true;
 	}
 
-	void SkipRequestWasHandled()
+	void SkipRequestWasHandled ()
 	{
 		m_bSkipWasRequested = false;
 	}
 
-	bool SkipWasRequested()
+	bool SkipWasRequested ()
 	{
 		return m_bSkipWasRequested;
 	}
 
-	void RequestQuit()
+	void RequestQuit ()
 	{
 		m_bQuitWasRequested = true;
 	}
 
-	void QuitRequestWasHandled()
+	void QuitRequestWasHandled ()
 	{
 		m_bQuitWasRequested = false;
 	}
 
-	bool QuitWasRequested()
+	bool QuitWasRequested ()
 	{
 		return m_bQuitWasRequested;
 	}
 };
-//
-#endif
-
+#endif // __CGCLevel14_SCENE_H__

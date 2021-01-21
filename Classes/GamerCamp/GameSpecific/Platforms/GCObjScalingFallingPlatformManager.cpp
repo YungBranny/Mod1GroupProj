@@ -9,7 +9,7 @@
 #include "GamerCamp/Core/GCTypes.h"
 #include "GamerCamp/GCObject/GCObject.h"
 #include "GamerCamp/GCCocosInterface/GCCocosHelpers.h"
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjScalingFallingPlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjScalingFallingPlatform.h"
 
 #include "GamerCamp/GameSpecific/ScreenBounds/GCObjScreenBound.h" 
 

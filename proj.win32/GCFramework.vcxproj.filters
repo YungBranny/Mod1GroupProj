@@ -55,9 +55,6 @@
     <Filter Include="Classes\GamerCamp\GameSpecific\Timer">
       <UniqueIdentifier>{2714bfdd-c475-46ca-a31a-d330cfcb196b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\GamerCamp\GameSpecific\NewPlatforms">
-      <UniqueIdentifier>{a25a1afa-aa75-4455-b681-47a246ee700c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\GamerCamp\GameSpecific\Collectables">
       <UniqueIdentifier>{be2a8cb9-c12b-4309-99fb-85f9be3d3fbb}</UniqueIdentifier>
     </Filter>
@@ -183,30 +180,6 @@
     <ClCompile Include="..\Classes\GamerCamp\GCCocosInterface\LevelLoader\GCLevelLoader_Ogmo.cpp">
       <Filter>Classes\GamerCamp\GCCocosInterface\LevelLoader</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatformManager.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatformManager.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjShortPlatformTest.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTravelatorPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimer.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClCompile>
@@ -240,35 +213,8 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCHazardChild.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBrickPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform1.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform2.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform3.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform4.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform5.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform6.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform7.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GcEnemyMovementCollider.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasePlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
@@ -300,16 +246,9 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownFast.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjSwitchPlatform1.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCSwitch.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Score\GCObjHighScore.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\CGCObjSwitchPlatform2.cpp" />
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevelBackground.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClCompile>
@@ -409,15 +348,6 @@
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel20.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjCCCrumblingPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTCRCrumblingPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTMCrumblingPlatform.cpp">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyPuffer.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClCompile>
@@ -435,6 +365,78 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRDownSpike.cpp">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\CGCObjSwitchPlatform2.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasePlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform1.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform2.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform3.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform4.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform5.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform6.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform7.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBrickPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjCCCrumblingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjFallingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjLongPlatformTest.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjMovingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjScalingBasicPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjScalingBasicPlatformManager.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjScalingFallingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjScalingFallingPlatformManager.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjShortPlatformTest.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjSwitchPlatform1.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjTCRCrumblingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjTMCrumblingPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjTravelatorPlatform.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCSwitch.cpp">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -543,30 +545,6 @@
     <ClInclude Include="..\Classes\GamerCamp\GCCocosInterface\LevelLoader\GCLevelLoader_Ogmo.h">
       <Filter>Classes\GamerCamp\GCCocosInterface\LevelLoader</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjFallingPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjLongPlatformTest.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingBasicPlatformManager.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjScalingFallingPlatformManager.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjShortPlatformTest.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTravelatorPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Timer\GCObjTimer.h">
       <Filter>Classes\GamerCamp\GameSpecific\Timer</Filter>
     </ClInclude>
@@ -603,35 +581,8 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCHazardChild.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBrickPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform1.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform2.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform3.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform4.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform5.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform6.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasicPlatform7.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCEnemyMovementCollider.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjBasePlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel2.h">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
@@ -663,16 +614,9 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyUpDownFast.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjSwitchPlatform1.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCSwitch.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Score\GCObjHighScore.h">
       <Filter>Classes\GamerCamp\GameSpecific\Score</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\CGCObjSwitchPlatform2.h" />
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevelBackground.h">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClInclude>
@@ -772,15 +716,6 @@
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Levels\GCLevel20.h">
       <Filter>Classes\GamerCamp\GameSpecific\Levels</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjCCCrumblingPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTCRCrumblingPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\NewPlatforms\GCObjTMCrumblingPlatform.h">
-      <Filter>Classes\GamerCamp\GameSpecific\NewPlatforms</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCMovingEnemyPuffer.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
     </ClInclude>
@@ -798,6 +733,78 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Enemies\GCTCRDownSpike.h">
       <Filter>Classes\GamerCamp\GameSpecific\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\CGCObjSwitchPlatform2.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasePlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform1.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform2.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform3.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform4.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform5.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform6.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBasicPlatform7.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjBrickPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjCCCrumblingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjFallingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjLongPlatformTest.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjMovingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjScalingBasicPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjScalingBasicPlatformManager.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjScalingFallingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjScalingFallingPlatformManager.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjShortPlatformTest.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjSwitchPlatform1.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjTCRCrumblingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjTMCrumblingPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCObjTravelatorPlatform.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamerCamp\GameSpecific\Platforms\GCSwitch.h">
+      <Filter>Classes\GamerCamp\GameSpecific\Platforms</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

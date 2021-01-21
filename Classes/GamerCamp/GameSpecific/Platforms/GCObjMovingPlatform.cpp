@@ -1,6 +1,6 @@
 #include "../../GCCocosInterface/GB2ShapeCache-x.h"
 
-#include "GamerCamp/GameSpecific/NewPlatforms/GCObjMovingPlatform.h"
+#include "GamerCamp/GameSpecific/Platforms/GCObjMovingPlatform.h"
 
 GCFACTORY_IMPLEMENT_CREATEABLECLASS(CGCObjMovingPlatform);
 
