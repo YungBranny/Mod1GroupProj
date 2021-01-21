@@ -22,6 +22,14 @@
     <UDFMovingEnemyUpDownFast id="8" x="1260" y="510" class="CGCMovingEnemyUpDownFast" shape="cc_enemy_duck" PlistFile="TexturePacker/Sprites/PirateEnemy/PirateEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
     <TravelatorPlatform480x60 id="9" x="1215" y="360" class="CGCObjTravelatorPlatform" shape="cc_platform_moving_480x60" PlistFile="TexturePacker/Sprites/CCPlatforms/cc_platform_moving_480x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <TravelatorPlatform480x60 id="10" x="735" y="360" class="CGCObjTravelatorPlatform" shape="cc_platform_moving_480x60" PlistFile="TexturePacker/Sprites/CCPlatforms/cc_platform_moving_480x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="11" x="705" y="570" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="12" x="1695" y="300" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="13" x="1485" y="1005" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="14" x="420" y="1005" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="15" x="750" y="870" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <LRNMovingEnemyPirate id="16" x="1530" y="930" class="CGCMovingEnemyNPirate" shape="pirate" PlistFile="TexturePacker/Sprites/PirateEnemy/PirateEnemy.plist" B2DBodyType="b2_dynamicBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="17" x="1635" y="930" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <EnemyMovementCollider id="18" x="900" y="930" class="GCObjEnemyMovementCollider" shape="BlankEnemyCollider" PlistFile="TexturePacker/Sprites/BlankEnemyCollider/BlankEnemyCollider.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </enemies>
   <items />
   <platforms>
