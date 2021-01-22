@@ -35,7 +35,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fStartPositionY				 ( 0 )      // Mia: Players start position for fall damage
 	, m_fEndPositionY				 ( 0 )      // Mia: Players end position for fall damage
 	, m_fDropDistance				 ( 0 )      // Mia: Default Player drop distance set to 0
-	, m_fMaximumDropDistance		 ( 0.0f  ) // Mia: Players maximum drop distance for fall damage
+	, m_fMaximumDropDistance		 ( 2.0f  ) // Mia: Players maximum drop distance for fall damage
 	, m_fJumpHeight					 ( 12.0f  )
 	, m_fLivesStartPositionX		 ( 1600   )
 	, m_fLivesStartPositionY		 ( 1015   )
@@ -251,6 +251,7 @@ void CGCObjPlayer::FallDamage()
 			CCLOG("Player dead."); // Mia: For testing, to show in the ouput the Player has received fall damage
 			m_bPlayerDiedFromFalling = true; // Mia: Changes bool to true
 		}
+		
 		m_bPlayerDiedFromFalling = false;
 		m_fStartPositionY = GetPhysicsBody()->GetPosition().y;
 		m_fEndPositionY = GetPhysicsBody()->GetPosition().y;

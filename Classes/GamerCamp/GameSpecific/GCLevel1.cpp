@@ -223,7 +223,7 @@ void CGCLevel1::VOnCreate ()
 	groundBody->CreateFixture (&groundBox, 0);
 
 	// Loads Level
-	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level15.oel")).c_str ());
+	m_cLevelLoader.LoadLevelFile (FileUtils::getInstance ()->fullPathForFilename (std::string ("OgmoEditor/Level1.oel")).c_str ());
 	m_cLevelLoader.CreateObjects (CGCFactory_ObjSpritePhysics::GetFactory ());
 
 	// Player starting position
@@ -815,7 +815,7 @@ void CGCLevel1::PreSolve( b2Contact* pB2Contact, const b2Manifold* pOldManifold 
 				m_pcGCOPlayer->FallDamage (); // Mia: Call FallDamage function from GCObjPlayer.cpp
 				
 			}
-			if( m_pcGCOPlayer->getPlayerDiedFromFalling() ) // Mia: If this function is called
+  			if( m_pcGCOPlayer->getPlayerDiedFromFalling()  == true) // Mia: If this function is called
 			{
 				m_pcGCOPlayer->DecrementLives(); // Mia: Decrease Player Lives by one
 				RequestReset(); // Mia: Then request reset
