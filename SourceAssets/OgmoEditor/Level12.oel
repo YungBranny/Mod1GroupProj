@@ -64,7 +64,6 @@
     <auw_platform_regular_60x60 id="70" x="210" y="630" class="CGCObjScalingBasicPlatform" shape="tcr_platform_regular_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_regular_60x60 id="84" x="390" y="750" class="CGCObjScalingBasicPlatform" shape="tcr_platform_regular_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_regular_60x60 id="85" x="1830" y="510" class="CGCObjScalingBasicPlatform" shape="tcr_platform_regular_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_regular_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <auw_platform_brick_60x60 id="86" x="1260" y="150" class="GCObjBrickPlatform" shape="auw_platform_brick_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_brick_60x180 id="57" x="870" y="990" class="GCObjBrickPlatform" shape="auw_platform_brick_60x180" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x180.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_brick_120x60 id="58" x="960" y="1050" class="GCObjBrickPlatform" shape="auw_platform_brick_120x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_120x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_brick_60x60 id="59" x="1050" y="1050" class="GCObjBrickPlatform" shape="auw_platform_brick_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -110,13 +109,16 @@
     <auw_platform_brick_60x60 id="79" x="870" y="480" class="GCObjBrickPlatform" shape="auw_platform_brick_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_brick_60x60 id="81" x="1050" y="540" class="GCObjBrickPlatform" shape="auw_platform_brick_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_brick_60x60 id="82" x="1050" y="480" class="GCObjBrickPlatform" shape="auw_platform_brick_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <auw_hazard_upward_spike_bush_60x60 id="75" x="1350" y="870" class="GCHazardChild" shape="auw_hazard_upward_spike_bush_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_upward_spike_bush_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <auw_hazard_upward_spike_bush_60x60 id="76" x="1650" y="870" class="GCHazardChild" shape="auw_hazard_upward_spike_bush_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_upward_spike_bush_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </platforms>
   <ExitDoor>
     <ExitDoor id="0" x="960" y="960" class="CGCObjExitDoor" shape="cc_exit" PlistFile="TexturePacker/Sprites/Exit/cc_exit.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </ExitDoor>
   <Ladders />
   <Hazards>
-    <auw_platform_brick_60x60 id="0" x="1050" y="150" class="GCObjBrickPlatform" shape="auw_platform_brick_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <auw_hazard_spider_short_60x60 id="1" x="180" y="150" class="GCHazardChild" shape="auw_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_spider_short_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <auw_hazard_spider_short_60x60 id="2" x="660" y="150" class="GCHazardChild" shape="auw_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_spider_short_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Hazards>
   <Keys>
     <Keys id="0" x="990" y="570" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />

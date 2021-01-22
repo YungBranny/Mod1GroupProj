@@ -37,7 +37,7 @@
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCLossScene.h"
 #include "GamerCamp/GameSpecific/GameWinLossScenes/GCWinScene.h"
 #include "GamerCamp/GameSpecific/Ladder/GCObjLadder.h"
-#include "GamerCamp/GameSpecific/Levels/GCLevel3.h"
+#include "GamerCamp/GameSpecific/GCLevel1.h"
 #include "GamerCamp/GameSpecific/MainMenu/GCMainMenu.h"
 #include "GamerCamp/GameSpecific/Platforms/GCObjBasePlatform.h"
 #include "GamerCamp/GameSpecific/Platforms/GCObjBasicPlatform1.h"
@@ -519,7 +519,7 @@ void CGCLevel20::VOnUpdate(f32 fTimeStep)
 
 	if( m_bDoorUnlocked == true && m_pcGCTimer->getCurrentTime() < 2.0f )
 	{
-		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel3 >::CreateScene()));
+		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel1 >::CreateScene()));
 	}
 	if( m_bDoorUnlocked == true )
 	{
@@ -547,7 +547,7 @@ void CGCLevel20::VOnUpdate(f32 fTimeStep)
 		m_pcGCOPlayer->PlayerLivesWriteFile();
 		m_pcGCOScore->ScoreWriteFile();
 		SkipRequestWasHandled();
-		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel3 >::CreateScene()));
+		ReplaceScene(TransitionMoveInR::create(0.1f, TGCGameLayerSceneCreator< CGCLevel1 >::CreateScene()));
 
 	}
 
