@@ -577,7 +577,7 @@ RepeatForever *RepeatForever::create(ActionInterval *action)
 
 bool RepeatForever::initWithAction(ActionInterval *action)
 {
-    CCASSERT(action != nullptr, "action can't be nullptr!");
+k h    CCASSERT(action != nullptr, "action can't be nullptr!");
     if (action == nullptr)
     {
         log("RepeatForever::initWithAction error:action is nullptr!");

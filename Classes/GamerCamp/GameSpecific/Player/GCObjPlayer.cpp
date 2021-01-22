@@ -35,7 +35,7 @@ CGCObjPlayer::CGCObjPlayer ()
 	, m_fStartPositionY				 ( 0 )      // Mia: Players start position for fall damage
 	, m_fEndPositionY				 ( 0 )      // Mia: Players end position for fall damage
 	, m_fDropDistance				 ( 0 )      // Mia: Default Player drop distance set to 0
-	, m_fMaximumDropDistance		 ( 20.0f  ) // Mia: Players maximum drop distance for fall damage
+	, m_fMaximumDropDistance		 ( 0.0f  ) // Mia: Players maximum drop distance for fall damage
 	, m_fJumpHeight					 ( 12.0f  )
 	, m_fLivesStartPositionX		 ( 1600   )
 	, m_fLivesStartPositionY		 ( 1015   )

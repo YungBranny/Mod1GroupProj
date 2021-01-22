@@ -103,8 +103,6 @@
     <tm_platform_brick_60x60 id="55" x="1650" y="930" class="GCObjBrickPlatform" shape="tm_platform_brick_60x60" PlistFile="TexturePacker/Sprites/TMPlatforms/tm_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_brick_60x180 id="56" x="1050" y="990" class="GCObjBrickPlatform" shape="auw_platform_brick_60x180" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x180.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_brick_60x180 id="60" x="1050" y="660" class="GCObjBrickPlatform" shape="auw_platform_brick_60x180" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x180.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <auw_hazard_upward_spike_bush_60x60 id="75" x="1350" y="870" class="GCHazardChild" shape="auw_hazard_upward_spike_bush_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_upward_spike_bush_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <auw_hazard_upward_spike_bush_60x60 id="76" x="1650" y="870" class="GCHazardChild" shape="auw_hazard_upward_spike_bush_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_upward_spike_bush_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_brick_60x60 id="77" x="870" y="720" class="GCObjBrickPlatform" shape="auw_platform_brick_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_brick_60x60 id="61" x="870" y="660" class="GCObjBrickPlatform" shape="auw_platform_brick_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <auw_platform_brick_60x60 id="62" x="870" y="600" class="GCObjBrickPlatform" shape="auw_platform_brick_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
@@ -119,14 +117,12 @@
   <Ladders />
   <Hazards>
     <auw_platform_brick_60x60 id="0" x="1050" y="150" class="GCObjBrickPlatform" shape="auw_platform_brick_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_platform_brick_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <auw_hazard_spider_short_60x60 id="1" x="180" y="150" class="GCHazardChild" shape="auw_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_spider_short_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <auw_hazard_spider_short_60x60 id="2" x="660" y="150" class="GCHazardChild" shape="auw_hazard_spider_short_60x60" PlistFile="TexturePacker/Sprites/AUWPlatforms/auw_hazard_spider_short_60x60.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Hazards>
   <Keys>
     <Keys id="0" x="990" y="570" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Keys id="1" x="900" y="360" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Keys id="2" x="1590" y="450" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
     <Keys id="3" x="1710" y="930" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
-    <Keys id="4" x="120" y="540" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
+    <Keys id="4" x="120" y="570" class="CGCObjKeys" shape="cc_collectible_key" PlistFile="TexturePacker/Sprites/Key/cc_collectible_key.plist" B2DBodyType="b2_staticBody" HasFixedRotation="True" />
   </Keys>
 </level>
